@@ -1,0 +1,21 @@
+# "Quality check" job
+# See https://gitlab.com/go2scale/jobs/ for more informations
+
+quality_check:
+  stage: code_level
+  image:
+    name: "registry.gitlab.com/go2scale/dockerfiles/quality-check:v0.2.7"
+  variables:
+    SECTION_NAME: 'Quality check'
+    QUALITY_SEVERITY_LEVEL: 'NORMAL'
+    QUALITY_IGNORED_FILES: ''
+    FULL_TEMPLATE: 'coala.html.j2'
+    SHORT_TEMPLATE: 'coala.md.j2'
+  script:
+    - /run.sh .
+  allow_failure: true
+  artifacts:
+    when: always
+    expose_as: "Quality check"
+    paths:
+      - coala_output/quality_check.html
