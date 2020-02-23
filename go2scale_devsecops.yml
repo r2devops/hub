@@ -15,14 +15,14 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
   # Go2Scale global variables
-  BOT_USER_ID: '5097980'
+  BOT_USER_ID: '5097980' # TODO: use your own BOT ID
   TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
-  TEMPLATES_REPO_USER: 'gitlab+deploy-token-112325'
+  TEMPLATES_REPO_USER: ''
   GITLAB_URL: $CI_SERVER_URL
 
 stages:
+  - code_level
   - build
-  - test
   - review
   - application_level
   - staging
@@ -50,3 +50,6 @@ unit_tests:
     - pip install pipenv && pipenv --bare install --dev
   script:
     - make test
+
+container_scanning:
+  stage: review
