@@ -28,7 +28,7 @@ We offer 2 levels of modules:
 * Must be consitent with your software and deployment type
 * Customizable through configuration
 
-**Jobs** templates: only one jobs, which can be assem
+**Jobs** templates: only one jobs
 * Can be used unitary or to create fully customs pipelines
 * Adaptable to any kind of software and deployment type
 * Customizable through configuration
