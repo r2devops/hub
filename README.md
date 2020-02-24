@@ -5,11 +5,15 @@ Go2Scale DevSecOps CI & CD jobs & pipelines templates repository
 * [Description](#description)
 * [Getting started](#getting-started)
     * [Global configuration](#global-configuration)
-    * [Optional configuration](#optional-configuration)
-    * [Use Pipeline templates](#use-pipeline-templates)
-    * [Use Jobs templates](#use-jobs-templates)
+        * [Optional configuration](#optional-configuration)
+    * [Pipeline templates](#pipeline-templates)
+    * [Jobs templates](#jobs-templates)
+* [Pipeline](#pipeline)
+    * [Kubernetes](#kubernetes)
 * [Jobs](#jobs)
     * [Quality](#quality)
+    * [Build](#build)
+    * [Helm](#helm)
 
 ## Description
 
