@@ -191,7 +191,7 @@ Build project as Docker image and deploy it on Kubernetes using Helm.
 
 ### Quality
 
-Auto-detect file in repo and run all [coala](coala.io) relevant linters on it.
+Auto-detect file in repo and run all [coala](https://coala.io) relevant linters on it.
 
 * File: https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/kubernetes.gitlab-ci.yml
 * Publications:
