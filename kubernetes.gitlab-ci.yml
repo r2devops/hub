@@ -17,7 +17,6 @@ variables:
   # Go2Scale global variables
   BOT_USER_ID: '' # TODO: use your own BOT ID
   TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
-  TEMPLATES_REPO_USER: ''
   GITLAB_URL: $CI_SERVER_URL
 
 stages:
@@ -34,9 +33,7 @@ include:
   - template: Jobs/Build.gitlab-ci.yml
   - template: Security/Container-Scanning.gitlab-ci.yml
   # Go2Scale DevSecOps
-  - project: go2scale/jobs
-    ref: master # TODO: set a tag here
-    file: quality_check.gitlab-ci.yml
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/quality_check.gitlab-ci.yml
 
 container_scanning:
   stage: review
