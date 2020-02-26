@@ -39,7 +39,7 @@ container_scanning:
   stage: review
 
 .helm:
-  image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.2.1
+  image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.2.2
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
     VALUES_PATH: "./conf/values"
