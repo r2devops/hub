@@ -39,27 +39,20 @@ container_scanning:
   stage: review
 
 .helm:
-  image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.1.0
+  image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.2.0
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
     VALUES_PATH: "./conf/values"
     REGISTRY: "${CI_REGISTRY_IMAGE}/$CI_COMMIT_REF_SLUG"
-  before_script:
-    - gpg --import "${PGP_PUBLIC}" && gpg --allow-secret-key-import --import "${PGP_PRIVATE}"
-    - helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-    - helm repo update
   script:
-    - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} -f ${VALUES_PATH}/${CI_ENVIRONMENT_NAME}.yaml -f ${VALUES_PATH}/secrets.${CI_ENVIRONMENT_NAME}.yaml --set-string image.tag=${CI_COMMIT_SHA},gitlab.env=${CI_ENVIRONMENT_SLUG},gitlab.app=${CI_PROJECT_PATH_SLUG} --namespace "$KUBE_NAMESPACE" --install
+    - ./run.sh
 
 deploy_review:
   extends: .helm
   stage: review
-  script:
-    - helm upgrade postgres stable/postgresql --namespace ${KUBE_NAMESPACE} --install --set persistence.enabled=false --set postgresqlPassword=${REVIEW_POSTGRES_PASSWORD} --set postgresqlDatabase=grid
-    - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} --namespace "${KUBE_NAMESPACE}" --install -f ${VALUES_PATH}/review.yaml -f ${VALUES_PATH}/secrets.review.yaml --set-string image.registry=${REGISTRY},image.tag=${CI_COMMIT_SHA},ingress.hostPrefix="${CI_ENVIRONMENT_SLUG}.",environment.configmap.DATABASE_HOST=postgres-postgresql,environment.configmap.DATABASE_NAME=grid,environment.configmap.DATABASE_PASSWORD=${REVIEW_POSTGRES_PASSWORD},gitlab.env=${CI_ENVIRONMENT_SLUG},gitlab.app=${CI_PROJECT_PATH_SLUG}
   environment:
     name: review/$CI_COMMIT_REF_SLUG
-    url: https://${CI_ENVIRONMENT_SLUG}.api.tictactoe.go2scale.tech/ # TODO: it's harcoded, not really good
+    url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
     on_stop: cleanup_review
   except:
     refs:
@@ -74,8 +67,7 @@ cleanup_review:
     GIT_STRATEGY: none
   when: manual
   script:
-    - helm delete -n $KUBE_NAMESPACE $CI_PROJECT_PATH_SLUG
-    - helm delete -n $KUBE_NAMESPACE postgres
+    - helm ls --all --short -n $KUBE_NAMESPACE | xargs -L1 helm -n $KUBE_NAMESPACE delete
 #    - kubectl delete namespace $KUBE_NAMESPACE # TODO: it's forbidden due tu user RBAC
   environment:
     name: review/$CI_COMMIT_REF_SLUG
@@ -98,7 +90,7 @@ deploy_stage:
   stage: staging
   environment:
     name: staging
-    url: https://${CI_ENVIRONMENT_SLUG}.api.tictactoe.go2scale.tech/ # TODO: it's harcoded, not really good
+    url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
   only:
     - master
   except:
@@ -116,15 +108,10 @@ deploy_production:
   stage: production
   environment:
     name: production
-    url: https://api.tictactoe.go2scale.tech/ # TODO: it's harcoded, not really good
+    url: https://${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
   when: manual
   only:
     - master
   except:
     variables:
       - $PRODUCTION_DISABLE
-
-# NOTES
-#
-# Postgres deployment:
-# helm upgrade postgres stable/postgresql --namespace grid-api-8782888-staging --install --set persistence.enabled=false --set postgresqlPassword='PASSWORD' --set postgresqlDatabase=grid
