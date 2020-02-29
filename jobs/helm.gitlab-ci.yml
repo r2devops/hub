@@ -2,7 +2,7 @@
 # See https://gitlab.com/go2scale/jobs/ for more informations
 
 .helm:
-  image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.2.2
+  image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.2.3
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
     VALUES_PATH: "./conf/values"
