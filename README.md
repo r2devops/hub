@@ -190,7 +190,7 @@ Build project as Docker image and deploy it on Kubernetes using Helm.
 
 ## Jobs
 
-### Quality
+### ✅ Quality
 
 Auto-detect file in repo and run all [coala](https://coala.io) relevant linters on it.
 
@@ -199,7 +199,7 @@ Auto-detect file in repo and run all [coala](https://coala.io) relevant linters 
   * **TODO:** put variables from https://gitlab.com/go2scale/dockerfiles/quality-check here
 
 #### Specifications
-* File: https://gitlab.com/go2scale/jobs/raw/<TAG>/jobs/quality_check.gitlab-ci.yml
+* File: https://gitlab.com/go2scale/jobs/raw/TAG/jobs/quality_check.gitlab-ci.yml
 * Publications:
   * Full report as artifact
   * Short report in merge request and job logs
@@ -207,10 +207,10 @@ Auto-detect file in repo and run all [coala](https://coala.io) relevant linters 
   * Repository: https://gitlab.com/go2scale/dockerfiles/quality-check
   * Documentation: https://go2scale.gitlab.io/dockerfiles/quality-check
 
-### Build
+### 📥 Build
 *Work in progress...*
 
-### Helm
+### 🚀 Helm
 
 Deploy on your kubernetes cluster using Helm charts.
 * In issue branch: review environment
@@ -218,7 +218,7 @@ Deploy on your kubernetes cluster using Helm charts.
 * In master branch: production environment (manual)
 
 #### Specifications
-* File: https://gitlab.com/go2scale/jobs/raw/<TAG>/jobs/helm.gitlab-ci.yml
+* File: https://gitlab.com/go2scale/jobs/raw/TAG/jobs/helm.gitlab-ci.yml
 * Publications: *TODO*
 * Image:
   * Repository: https://gitlab.com/go2scale/dockerfiles/helm
