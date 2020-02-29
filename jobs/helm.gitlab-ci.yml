@@ -10,7 +10,7 @@
   script:
     - /run.sh
 
-deploy_review 🚀:
+deploy_review🚀:
   extends: .helm
   stage: review
   environment:
@@ -23,7 +23,7 @@ deploy_review 🚀:
     variables:
       - $REVIEW_DISABLE
 
-cleanup_review 🛑:
+cleanup_review🛑:
   extends: .helm
   stage: review
   variables:
@@ -48,7 +48,7 @@ cleanup_review 🛑:
 #  script:
 #    - helm secrets diff upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} -f ${VALUES_PATH}/${ENV}.yaml -f ${VALUES_PATH}/secrets.${ENV}.yaml --set-string image.tag=${CI_COMMIT_SHORT_SHA} --namespace "$KUBE_NAMESPACE" --allow-unreleased
 
-deploy_stage 🚀:
+deploy_stage🚀:
   extends: .helm
   stage: staging
   environment:
@@ -66,7 +66,7 @@ deploy_stage 🚀:
 #  script:
 #    - helm secrets diff upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} -f ${VALUES_PATH}/${ENV}.yaml -f ${VALUES_PATH}/secrets.${ENV}.yaml --set-string image.tag=${CI_COMMIT_SHORT_SHA} --namespace "$KUBE_NAMESPACE" --allow-unreleased
 
-deploy_production 🚀:
+deploy_production🚀:
   extends: .helm
   stage: production
   environment:
