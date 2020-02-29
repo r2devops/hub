@@ -1,42 +1,5 @@
-# ############################
-# Go2Scale DevSecOps template
-# ############################
-#
-# Some variables must be defined in your CI/CD settings
-# (https://docs.gitlab.com/ee/ci/variables/#creating-a-custom-environment-variable):
-#   * DOCKER_AUTH_CONFIG: docker auth configuration to access Go2Scale images
-#   * BOT_TOKEN: Secret token of bot user to interact with Gitlab API
-#   * TEMPLATES_REPO_PASSWORD: If needed, secret password (or token)
-#     with read access to templates repository
-
-image: alpine:latest
-
-variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
-  # Go2Scale global variables
-  BOT_USER_ID: '' # TODO: use your own BOT ID
-  TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
-  GITLAB_URL: $CI_SERVER_URL
-
-stages:
-  - code_level
-  - build
-  - review
-  - application_level
-  - staging
-  - production
-  - performance
-
-include:
-  # Gitlab AutoDevops
-  - template: Jobs/Build.gitlab-ci.yml
-  - template: Security/Container-Scanning.gitlab-ci.yml
-  # Go2Scale DevSecOps
-  - remote: https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/quality_check.gitlab-ci.yml
-
-container_scanning:
-  stage: review
+# "Helm" jobs
+# See https://gitlab.com/go2scale/jobs/ for more informations
 
 .helm:
   image: registry.gitlab.com/go2scale/dockerfiles/helm:v0.2.2
@@ -95,7 +58,7 @@ deploy_stage:
     - master
   except:
     variables:
-      - $STAGE_DISABLE
+      - $STAGING_DISABLE
 
 #test_production:
 #  extends: deploy_production

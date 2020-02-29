@@ -1,0 +1,42 @@
+# ############################
+# Go2Scale DevSecOps template
+# ############################
+#
+# Some variables must be defined in your CI/CD settings
+# (https://docs.gitlab.com/ee/ci/variables/#creating-a-custom-environment-variable):
+#   * DOCKER_AUTH_CONFIG: docker auth configuration to access Go2Scale images
+#   * BOT_TOKEN: Secret token of bot user to interact with Gitlab API
+#   * TEMPLATES_REPO_PASSWORD: If needed, secret password (or token)
+#     with read access to templates repository
+#   * PGP_PUBLIC: PGP public key. Use type "file"
+#   * PGP_PRIVATE: PGP private key. Use type "file"
+
+image: alpine:latest
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
+  # Go2Scale global variables
+  BOT_USER_ID: '' # TODO: use your own BOT ID
+  TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
+  GITLAB_URL: $CI_SERVER_URL
+
+stages:
+  - code_level
+  - build
+  - review
+  - application_level
+  - staging
+  - production
+  - performance
+
+include:
+  # Gitlab AutoDevops
+  - template: Jobs/Build.gitlab-ci.yml
+  - template: Security/Container-Scanning.gitlab-ci.yml
+  # Go2Scale DevSecOps
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/quality_check.gitlab-ci.yml
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/helm.gitlab-ci.yml
+
+container_scanning:
+  stage: review
