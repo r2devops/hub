@@ -180,7 +180,7 @@ Note:
 
 Build project as Docker image and deploy it on Kubernetes using Helm.
 
-Specifications
+#### Specifications
 * File: https://gitlab.com/go2scale/jobs/raw/<TAG>/pipelines/kubernetes.gitlab-ci.yml
 * Integration
   * [quality check](#quality)
@@ -194,11 +194,11 @@ Specifications
 
 Auto-detect file in repo and run all [coala](https://coala.io) relevant linters on it.
 
-How to use it
+#### How to use it
 * Variables:
   * **TODO:** put variables from https://gitlab.com/go2scale/dockerfiles/quality-check here
 
-Specifications
+#### Specifications
 * File: https://gitlab.com/go2scale/jobs/raw/<TAG>/jobs/quality_check.gitlab-ci.yml
 * Publications:
   * Full report as artifact
@@ -217,14 +217,14 @@ Deploy on your kubernetes cluster using Helm charts.
 * In master branch: staging environment
 * In master branch: production environment (manual)
 
-Specifications
+#### Specifications
 * File: https://gitlab.com/go2scale/jobs/raw/<TAG>/jobs/helm.gitlab-ci.yml
 * Publications: *TODO*
 * Image:
   * Repository: https://gitlab.com/go2scale/dockerfiles/helm
   * Documentation: https://go2scale.gitlab.io/dockerfiles/helm
 
-How to use it
+#### How to use it
 * Chart and values files must be in repo, see Variables section
 * Use [helm secrets](https://github.com/futuresimple/helm-secrets) to encrypt/decrypt secrets values files
 * Values files must be named like `<ENV>.yaml` for clear text and `secrets.<ENV>.yaml` for encrypted
