@@ -1,7 +1,7 @@
 # "Quality check" job
 # See https://gitlab.com/go2scale/jobs/ for more informations
 
-quality_check:
+quality_check🔍:
   stage: code_level
   image:
     name: "registry.gitlab.com/go2scale/dockerfiles/quality-check:v0.2.7"
