@@ -78,10 +78,10 @@ pipeline template](#kubernetes) in `.gitlab-ci.yml`:
 
 ```
 include:
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/kubernetes.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/pipelines/kubernetes.gitlab-ci.yml'
 ```
 
-Note that `2020-02-24_1` in url is the versioning `tag` in jobs repository
+Note that `2020-02-29_1` in url is the versioning `tag` in jobs repository
 used to set the version to use, if you want to use latest version at each run,
 you can use `master` instead of this `tag`.
 
@@ -92,8 +92,8 @@ Jobs template usage is simillar to pipeline. Select job(s) you want to use in
 
 ```
 include:
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/quality_check.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/helm.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/quality_check.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/helm.gitlab-ci.yml'
 ```
 
 ### Full example
@@ -114,9 +114,9 @@ variables:
 
 include:
   # Go2Scale DevSecOps
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/kubernetes.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/terraform.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/load.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/pipelines/kubernetes.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/terraform.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/load.gitlab-ci.yml'
 
 unit_tests:
   image: python:3.7-alpine3.10
@@ -153,8 +153,8 @@ stages:
 
 include:
   # Go2Scale DevSecOps
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/quality_check.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-24_1/helm.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/quality_check.gitlab-ci.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-02-29_1/jobs/helm.gitlab-ci.yml'
 
 code_quality:
   QUALITY_SEVERITY_LEVEL: 'MAJOR'
