@@ -30,6 +30,7 @@ cleanup_review:
     GIT_STRATEGY: none
   when: manual
   script:
+    - apk add findutils
     - helm ls --all --short -n $KUBE_NAMESPACE | xargs -L1 helm -n $KUBE_NAMESPACE delete
 #    - kubectl delete namespace $KUBE_NAMESPACE # TODO: it's forbidden due tu user RBAC
   environment:
