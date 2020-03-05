@@ -7,9 +7,7 @@ documentation:
     entrypoint: [""]
   stage: build
   script:
-    - cd docs
-    - mkdocs build -d ../public
-    - cd ..
+    - mkdocs build -d ./public
   artifacts:
     when: always
     expose_as: "Documentation"
