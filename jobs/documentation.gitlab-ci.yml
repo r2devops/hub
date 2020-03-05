@@ -1,0 +1,36 @@
+# "Documentation" jobs
+# See https://gitlab.com/go2scale/jobs/ for more informations
+
+documentation:
+  image:
+    name: squidfunk/mkdocs-material:4.6.3
+    entrypoint: [""]
+  stage: build
+  script:
+    - cd docs
+    - mkdocs build -d ../public
+    - cd ..
+  artifacts:
+    when: always
+    expose_as: "Documentation"
+    paths:
+    - public/
+  except:
+    variables:
+      - $DOCUMENTATION_DISABLE
+
+pages:
+  stage: production
+  script:
+    - echo 'Deploying on Gitlab pages'
+  needs:
+    - job: documentation
+      artifacts: true
+  artifacts:
+    paths:
+    - public
+  only:
+    - master
+  except:
+    variables:
+      - $DOCUMENTATION_DISABLE || $PAGES_DISABLE
