@@ -4,4 +4,4 @@ stages:
 
 include:
   # Go2Scale DevSecOps
-  - remote: https://gitlab.com/go2scale/jobs/raw/2020-03-05_2/jobs/documentation.gitlab-ci.yml
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/documentation.gitlab-ci.yml

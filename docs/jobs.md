@@ -11,7 +11,7 @@ Auto-detect file in repo and run all [coala](https://coala.io) relevant linters 
 
 **Specifications**
 
-* File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_1/jobs/quality_check.gitlab-ci.yml
+* File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/quality_check.gitlab-ci.yml
 * Publications:
     * Full report as artifact
     * Short report in merge request and job logs
@@ -28,7 +28,7 @@ Build HTML documentation form Markdown source and deploy it on Gitlab pages
 
 **Specifications**
 
-* File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_1/jobs/documentation.gitlab-ci.yml
+* File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/documentation.gitlab-ci.yml
 * Publications in MR: `Documentation` artifact
 * Image:
     * Repository: https://hub.docker.com/r/squidfunk/mkdocs-material
@@ -53,7 +53,7 @@ Deploy on your kubernetes cluster using Helm charts.
 
 **Specifications**
 
-* File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_1/jobs/helm.gitlab-ci.yml
+* File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/helm.gitlab-ci.yml
 * Publications: *TODO*
 * Image:
     * Repository: https://gitlab.com/go2scale/dockerfiles/helm
@@ -66,7 +66,7 @@ Deploy on your kubernetes cluster using Helm charts.
 * Values files must be named like `<ENV>.yaml` for clear text and `secrets.<ENV>.yaml` for encrypted
 * Variables:
     * `REVIEW_DISABLE`: disable review deployment
-    * `S2020-03-05_1ING_DISABLE`: disable staging deployment
+    * `S2020-03-05_3ING_DISABLE`: disable staging deployment
     * `PRODUCTION_DISABLE`: disable production deployment
     * `CHART_PATH`: path of helm chart to use. Default: `/charts/$CI_PROJECT_NAME`
     * `VALUES_PATH`: path of values files to use. Default: `./conf/values`
