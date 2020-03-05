@@ -50,7 +50,7 @@ theme:
     text: 'Roboto'
     code: 'Roboto mono'
   # Images
-  favicon: 'assets/images/favicon.ico'
+  favicon: 'images/go2scale_white.svg'
   logo: 'images/go2scale_white.svg'
 
 # Extensions (https://squidfunk.github.io/mkdocs-material/extensions/admonition/)
