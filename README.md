@@ -190,7 +190,7 @@ Build project as Docker image and deploy it on Kubernetes using Helm.
 
 ## Jobs
 
-### ✅ Quality
+### 🔍 Quality
 
 Auto-detect file in repo and run all [coala](https://coala.io) relevant linters on it.
 
@@ -237,5 +237,3 @@ Deploy on your kubernetes cluster using Helm charts.
 * Secret variables:
   * `PGP_PUBLIC`: public PGP key to decrypt secrets values. Use `file` type.
   * `PGP_PRIVATE`: private PGP key to decrypt secrets values. Use `file` type.
-
-
