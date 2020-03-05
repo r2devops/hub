@@ -35,8 +35,9 @@ include:
   - template: Jobs/Build.gitlab-ci.yml
   - template: Security/Container-Scanning.gitlab-ci.yml
   # Go2Scale DevSecOps
-  - remote: https://gitlab.com/go2scale/jobs/raw/2020-02-29_7/jobs/quality_check.gitlab-ci.yml
-  - remote: https://gitlab.com/go2scale/jobs/raw/2020-02-29_7/jobs/helm.gitlab-ci.yml
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-03-05_1/jobs/quality_check.gitlab-ci.yml
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-03-05_1/jobs/documentation.gitlab-ci.yml
+  - remote: https://gitlab.com/go2scale/jobs/raw/2020-03-05_1/jobs/helm.gitlab-ci.yml
 
 container_scanning:
   stage: review
