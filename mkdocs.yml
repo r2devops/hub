@@ -1,0 +1,86 @@
+# Project information
+site_name: Go2Scale DevSecOps templates
+site_description: 'Automated DevSecOps templates for your CI/CD Pipelines !'
+site_author: 'Thomas Boni <thomas@go2scale.com>'
+site_url: 'https://go2scale.gitlab.io/jobs/'
+
+# Copyright
+copyright: 'Copyright &copy; 2020 Go2Scale'
+
+# Repository
+repo_name: 'go2scale/jobs'
+repo_url: 'https://gitlab.com/go2scale/jobs'
+
+# Navigation
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Pipelines: pipelines.md
+  - Jobs: jobs.md
+  - Release notes: release-notes.md
+  - Contributing: contributing.md
+  - License: license.md
+
+# Customization
+extra:
+  social:
+    - type: 'globe'
+      link: 'https://go2scale.com'
+  # TODO: update with Go2Scale social networks
+  #  - type: 'github'
+  #    link: 'https://github.com/thomasboni'
+  #  - type: 'gitlab'
+  #    link: 'https://gitlab.com/thomasboni'
+  #  - type: 'twitter'
+  #    link: 'https://twitter.com/thomas_boni'
+  #  - type: 'linkedin'
+  #    link: 'https://www.linkedin.com/in/bonithomas'
+
+# Configuration
+theme:
+  name: 'material'
+  # Color
+  palette:
+    primary: 'indigo' # choose: https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
+    accent: 'indigo'
+  # Text
+  language: 'en'
+  direction: 'ltr'
+  font:
+    text: 'Roboto'
+    code: 'Roboto mono'
+  # Images
+  favicon: 'assets/images/favicon.ico'
+  logo: 'images/go2scale_white.svg'
+
+# Extensions (https://squidfunk.github.io/mkdocs-material/extensions/admonition/)
+markdown_extensions:
+  - admonition # block-styled content (note, idea, warning, ...)
+  - codehilite # highlite code syntax
+  - footnotes # references in footnotes
+  - toc:
+      permalink: true # anchor on titles
+  # PyMdown extensions (https://squidfunk.github.io/mkdocs-material/extensions/pymdown)
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Plugins (https://squidfunk.github.io/mkdocs-material/plugins/minify-html/)
+plugins:
+  - search # search input
+  - git-revision-date-localized # revision date at the end of pages
+  - minify:
+      minify_html: true # minification of html
