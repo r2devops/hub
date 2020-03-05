@@ -1,5 +1,5 @@
 # Project information
-site_name: Go2Scale DevSecOps templates
+site_name: Go2Scale DevSecOps
 site_description: 'Automated DevSecOps templates for your CI/CD Pipelines !'
 site_author: 'Thomas Boni <thomas@go2scale.com>'
 site_url: 'https://go2scale.gitlab.io/jobs/'
