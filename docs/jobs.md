@@ -33,11 +33,12 @@ Build HTML documentation form Markdown source and deploy it on Gitlab pages
 * Image:
     * Repository: https://hub.docker.com/r/squidfunk/mkdocs-material
 
-**How to use it**
+**Variables**
 
-* Variables:
-    * `DOCUMENTATION_DISABLE`: disable build ans publication
-    * `PAGES_DISABLE`: disable publication on stage
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `DOCUMENTATION_DISABLE` | Disable build ans publication | |
+| `PAGES_DISABLE` | Disable publication on stage | |
 
 ## 📥 Build
 
@@ -51,6 +52,10 @@ Deploy on your kubernetes cluster using Helm charts.
 * In master branch: staging environment
 * In master branch: production environment (manual)
 
+* Chart and values files must be in repo, see Variables section
+* Use [helm secrets](https://github.com/futuresimple/helm-secrets) to encrypt/decrypt secrets values files
+* Values files must be named like `<ENV>.yaml` for clear text and `secrets.<ENV>.yaml` for encrypted
+
 **Specifications**
 
 * File: https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/helm.gitlab-ci.yml
@@ -59,17 +64,19 @@ Deploy on your kubernetes cluster using Helm charts.
     * Repository: https://gitlab.com/go2scale/dockerfiles/helm
     * Documentation: https://go2scale.gitlab.io/dockerfiles/helm
 
-**How to use it**
+**Variables**
 
-* Chart and values files must be in repo, see Variables section
-* Use [helm secrets](https://github.com/futuresimple/helm-secrets) to encrypt/decrypt secrets values files
-* Values files must be named like `<ENV>.yaml` for clear text and `secrets.<ENV>.yaml` for encrypted
-* Variables:
-    * `REVIEW_DISABLE`: disable review deployment
-    * `S2020-03-05_3ING_DISABLE`: disable staging deployment
-    * `PRODUCTION_DISABLE`: disable production deployment
-    * `CHART_PATH`: path of helm chart to use. Default: `/charts/$CI_PROJECT_NAME`
-    * `VALUES_PATH`: path of values files to use. Default: `./conf/values`
-* Secret variables:
-    * `PGP_PUBLIC`: public PGP key to decrypt secrets values. Use `file` type.
-    * `PGP_PRIVATE`: private PGP key to decrypt secrets values. Use `file` type.
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `REVIEW_DISABLE` | Disable review deployment | |
+| `STAGING_DISABLE` | Disable staging deployment | |
+| `PRODUCTION_DISABLE` | Disable production deployment | |
+| `CHART_PATH` | Path of helm chart to use | `/charts/$CI_PROJECT_NAME` |
+| `VALUES_PATH` | Path of values files to use | `./conf/values` |
+
+**Secret variables**
+
+| Name | Description | Type |
+| ---- | ----------- | ------- |
+| `PGP_PUBLIC` | Public PGP key to decrypt secrets values | `file` |
+| `PGP_PRIVATE` | Private PGP key to decrypt secrets values | `file` |

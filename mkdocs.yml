@@ -14,10 +14,11 @@ repo_url: 'https://gitlab.com/go2scale/jobs'
 # Navigation
 nav:
   - Home: index.md
+  - Concept: concept.md
   - Getting started: getting-started.md
   - Pipelines: pipelines.md
   - Jobs: jobs.md
-  - Release notes: release-notes.md
+  - Versioning: versioning.md
   - Contributing: contributing.md
   - License: license.md
 
