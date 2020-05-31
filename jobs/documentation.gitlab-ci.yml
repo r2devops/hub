@@ -3,7 +3,7 @@
 
 documentation:
   image:
-    name: squidfunk/mkdocs-material:4.6.3
+    name: squidfunk/mkdocs-material:5.2.2
     entrypoint: [""]
   stage: build
   script:
