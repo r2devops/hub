@@ -8,6 +8,7 @@ documentation:
     entrypoint: [""]
   stage: build
   script:
+    - apk add make
     - make docs
     - mkdocs build -d ./public
   artifacts:
