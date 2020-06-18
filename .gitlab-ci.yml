@@ -9,7 +9,7 @@ documentation:
   stage: build
   script:
     - apk add make
-    - make docs
+    - make jobs
     - mkdocs build -d ./public
   artifacts:
     when: always
