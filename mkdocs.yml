@@ -1,7 +1,7 @@
 # Project information
-site_name: Go2Scale DevSecOps
-site_description: 'Automated DevSecOps templates for your CI/CD Pipelines !'
-site_author: 'Thomas Boni <thomas@go2scale.com>'
+site_name: G2S Hub
+site_description: 'Automated templates for your CI/CD Pipelines !'
+site_author: 'Go2Scale <cto@go2scale.com>'
 site_url: 'https://go2scale.gitlab.io/jobs/'
 
 # Copyright
@@ -25,17 +25,15 @@ nav:
 # Customization
 extra:
   social:
-    - type: 'globe'
-      link: 'https://go2scale.com'
   # TODO: update with Go2Scale social networks
-  #  - type: 'github'
-  #    link: 'https://github.com/thomasboni'
-  #  - type: 'gitlab'
-  #    link: 'https://gitlab.com/thomasboni'
-  #  - type: 'twitter'
-  #    link: 'https://twitter.com/thomas_boni'
-  #  - type: 'linkedin'
-  #    link: 'https://www.linkedin.com/in/bonithomas'
+    - icon: 'fontawesome/solid/globe'
+      link: 'https://go2scale.com/'
+    - icon: 'fontawesome/brands/gitlab'
+      link: 'https://gitlab.com/go2scale/'
+    - icon: 'fontawesome/brands/twitter'
+      link: 'https://twitter.com/thomas_boni'
+    - icon: 'fontawesome/brands/linkedin'
+      link: 'https://www.linkedin.com/company/go2scale/'
 
 # Configuration
 theme:
