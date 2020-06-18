@@ -1,7 +1,14 @@
 # Home
 
-Welcome to the official Go2Scale DevSecOps documentation!
+Welcome to the g2s hub ! 🎉
 
-[Jobs repository](https://gitlab.com/go2scale/jobs) contains all Go2Scale
-DevSecOps CI & CD jobs & pipelines templates. This documentation goal is to
-explain how to use them efficiently and easilly in your projects.
+[g2s hub](https://gitlab.com/go2scale/jobs) is a collaborative hub of CI & CD
+jobs which helps you to quickly build powerful pipelines for your projects.
+
+Each jobs of the hub can be used unitary or to create fully customs pipelines.
+You can use them for any kind of software and deployment type. Each job can be
+customized through configuration.
+
+## Overview
+
+![Go2Scale DevSecOps](images/go2scale_devsecops.png)

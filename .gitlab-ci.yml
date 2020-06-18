@@ -2,6 +2,35 @@ stages:
   - build
   - production
 
-include:
-  # Go2Scale DevSecOps
-  - remote: https://gitlab.com/go2scale/jobs/raw/2020-05-31_1/jobs/documentation.gitlab-ci.yml
+documentation:
+  image:
+    name: squidfunk/mkdocs-material:5.2.2
+    entrypoint: [""]
+  stage: build
+  script:
+    - make docs
+    - mkdocs build -d ./public
+  artifacts:
+    when: always
+    expose_as: "Documentation"
+    paths:
+    - public/
+  except:
+    variables:
+      - $DOCUMENTATION_DISABLE
+
+pages:
+  stage: production
+  script:
+    - echo 'Deploying on Gitlab pages'
+  needs:
+    - job: documentation
+      artifacts: true
+  artifacts:
+    paths:
+    - public
+  only:
+    - master
+  except:
+    variables:
+      - $DOCUMENTATION_DISABLE || $PAGES_DISABLE

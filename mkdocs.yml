@@ -1,5 +1,5 @@
 # Project information
-site_name: G2S Hub
+site_name: g2s hub
 site_description: 'Automated templates for your CI/CD Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
 site_url: 'https://go2scale.gitlab.io/jobs/'
@@ -12,15 +12,21 @@ repo_name: 'go2scale/jobs'
 repo_url: 'https://gitlab.com/go2scale/jobs'
 
 # Navigation
-nav:
-  - Home: index.md
-  - Concept: concept.md
-  - Getting started: getting-started.md
-  - Pipelines: pipelines.md
-  - Jobs: jobs.md
-  - Versioning: versioning.md
-  - Contributing: contributing.md
-  - License: license.md
+# nav:
+#   - Home: index.md
+#   - Getting started: getting-started.md
+#   - Jobs:
+#     - 📝 Index: jobs-index.md
+#     - Quality: jobs-quality.md
+#     - Documentation: jobs-documentation.md
+#     - Build: jobs.md
+#     - Helm: jobs.md
+#   - Pipelines:
+#     - All: pipelines.md
+#     - Pipelines: pipelines.md
+#   - Versioning: versioning.md
+#   - Contributing: contributing.md
+#   - License: license.md
 
 # Customization
 extra:
@@ -51,6 +57,8 @@ theme:
   # Images
   favicon: 'images/go2scale_white.svg'
   logo: 'images/go2scale_white.svg'
+  features:
+    - tabs
 
 # Extensions (https://squidfunk.github.io/mkdocs-material/extensions/admonition/)
 markdown_extensions:
@@ -81,5 +89,6 @@ markdown_extensions:
 plugins:
   - search # search input
   - git-revision-date-localized # revision date at the end of pages
+  - awesome-pages
   - minify:
       minify_html: true # minification of html

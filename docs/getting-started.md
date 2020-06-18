@@ -1,5 +1,76 @@
 # Getting started
 
+1. Select jobs you want in [Jobs section](/Jobs/)
+2. Fulfil the following file with all selected jobs
+
+    ```yaml
+    stages:
+      - code_level
+      - build
+      - review
+      - application_level
+      - staging
+      - production
+      - performance
+
+    include:
+      - remote: '<JOB-URL>'
+      - remote: '<JOB2-URL>'
+      - remote: ...
+    ```
+
+3. Store this file in `.gitlab-ci.yml` in the root on your repository
+4. Use the full power of a CI/CD pipeline 🚀
+
+## Example
+
+Of course, you can combine jobs templates and your own jobs.
+
+An example of a full `.gitlab-ci.yml` file with [kubernetes pipeline
+template](#kubernetes), 2 jobs templates and a custom `unit_tests` template:
+
+``` yaml
+
+stages:
+  - code_level
+  - build
+  - review
+  - application_level
+  - staging
+  - production
+  - performance
+
+# Jobs from g2s hub
+include:
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/mkdocs/mkdocs.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/coala/coala.yml'
+
+# Some jobs can be configured with variables
+variables:
+  QUALITY_ERROR_LEVEL: MAJOR
+  DOC_TOOL: mkdocs
+
+# You can also include your own jobs
+unit_tests:
+  image: python:3.7-alpine3.10
+  stage: code_level
+  before_script:
+    - apk add gcc make musl-dev postgresql-dev git linux-headers libmagic jpeg-dev zlib-dev
+    - pip install pipenv && pipenv --bare install --dev
+  script:
+    - make test
+```
+
+<!--
+
+TODO: Check what to do about it. Should we require a standard template and put
+configuration doc here ?
+
+
+
+
+
+
 ## Global configuration
 
 In your Gitlab 🦊 project, your configuration is defined in `.gitlab-ci.yml`
@@ -35,110 +106,4 @@ CI/CD settings and never in clear text in `.gitlab-ci.yml`:
 
 * `TEMPLATES_REPO_USER`: user name to with at least read access to repository
 * **SECRET** `TEMPLATES_REPO_PASSWORD`: password (or token) with at least read access to templates repository
-
-## Pipeline templates
-
-First of all, you have to find for a pipeline template matching with your
-project in [Pipelines list](#pipelines).
-
-Once selected, you just have to include it. Example of usage of [kubernetes
-pipeline template](#kubernetes) in `.gitlab-ci.yml`:
-
-``` yaml
-include:
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/pipelines/kubernetes.gitlab-ci.yml'
-```
-
-Note that `2020-03-05_3` in url is the versioning `tag` in jobs repository
-used to set the version to use, if you want to use latest version at each run,
-you can use `master` instead of this `tag`.
-
-## Job templates
-
-Jobs template usage is simillar to pipeline. Select job(s) you want to use in
-[Jobs list](#jobs) and include them in `.gitlab-ci.yml`:
-
-``` yaml
-include:
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/quality_check.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/helm.gitlab-ci.yml'
-```
-
-## Full example
-
-Of course, you can combine pipelines templates, jobs templates and your
-own jobs.
-
-An example of a full `.gitlab-ci.yml` file with [kubernetes pipeline
-template](#kubernetes), 2 jobs templates and a custom `unit_tests` template:
-
-``` yaml
-variables:
-  # Go2Scale global variables
-  BOT_USER_ID: '5097980'
-  TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
-  TEMPLATES_REPO_USER: 'gitlab+deploy-token-112325'
-  GITLAB_URL: $CI_SERVER_URL
-
-include:
-  # Go2Scale DevSecOps
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/pipelines/kubernetes.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/terraform.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/load.gitlab-ci.yml'
-
-unit_tests:
-  image: python:3.7-alpine3.10
-  stage: code_level
-  before_script:
-    - apk add gcc make musl-dev postgresql-dev git linux-headers libmagic jpeg-dev zlib-dev
-    - pip install pipenv && pipenv --bare install --dev
-  script:
-    - make test
-```
-
-*Note that terraform & load jobs used in this example aren't available yet*
-
-An example of a full `.gitlab-ci.yml` file with 2 jobs templates and a custom
-`unit_tests` template:
-
-``` yaml
-variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""
-  # Go2Scale global variables
-  BOT_USER_ID: '5097980'
-  TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
-  TEMPLATES_REPO_USER: 'gitlab+deploy-token-112325'
-  GITLAB_URL: $CI_SERVER_URL
-
-stages:
-  - code_level
-  - build
-  - review
-  - application_level
-  - staging
-  - production
-
-include:
-  # Go2Scale DevSecOps
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/quality_check.gitlab-ci.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/helm.gitlab-ci.yml'
-
-code_quality:
-  QUALITY_SEVERITY_LEVEL: 'MAJOR'
-  QUALITY_IGNORED_FILES: '.gitlab/**'
-
-unit_tests:
-  image: python:3.7-alpine3.10
-  stage: code_level
-  before_script:
-    - apk add gcc make musl-dev postgresql-dev git linux-headers libmagic jpeg-dev zlib-dev
-    - pip install pipenv && pipenv --bare install --dev
-  script:
-    - make test
-```
-
-!!! note
-    * `code_quality` variable section is specified to customize its behavior
-    * because we don't use a pipeline template, we have to declare stages list
 

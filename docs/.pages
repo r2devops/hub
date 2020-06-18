@@ -1,0 +1,7 @@
+title: Home
+arrange:
+  - index.md
+  - getting-started.md
+  - versioning.md
+  - contributing.md
+  - license.md
