@@ -1,17 +1,32 @@
 # Getting started
 
+Follows these steps to setup your CI/CD pipeline in less than 10 minutes !
+
 1. Select jobs you want in [Jobs section](/Jobs/)
-2. Fulfil the following file with all selected jobs
+
+    !!! info
+        You can choose to use the latest version or a specific one for each
+        job. Available version tag and corresponding url are described for each
+        jobs in [Jobs section](/Jobs/).
+
+        Once your pipeline is functional, we recommend to use specific version
+        for jobs in order to ensure that your pipeline will not be broken by a
+        job update.
+
+        Details about versioning format are available in [Versioning
+        page](/versioning/).
+
+2. Create a new file named `.gitlab-ci.yml` in the root on your repository
+3. Fulfil it with the following content using all selected jobs url:
 
     ```yaml
     stages:
-      - code_level
+      - static_tests
       - build
       - review
-      - application_level
+      - dynamic_tests
       - staging
       - production
-      - performance
 
     include:
       - remote: '<JOB-URL>'
@@ -19,41 +34,54 @@
       - remote: ...
     ```
 
-3. Store this file in `.gitlab-ci.yml` in the root on your repository
-4. Use the full power of a CI/CD pipeline 🚀
+3. Some jobs in [Jobs section](/Jobs/) provides options. You can configure them
+   using the `variables` keyword in `.gitlab-ci.yml`:
+
+    ```yaml
+    variables:
+      <OPTION_JOB1>: <VALUE>
+      <OPTION2_JOB1>: <VALUE>
+      <OPTION_JOB2>: <VALUE>
+      ...
+    ```
+
+4. Everything is ready! You can now benefit the full power of a CI / CD
+   pipeline 🎉🚀
 
 ## Example
 
-Of course, you can combine jobs templates and your own jobs.
+You can also combine jobs templates and your own jobs in `.gitlab-ci.yml`
+configuration file.
 
-An example of a full `.gitlab-ci.yml` file with [kubernetes pipeline
-template](#kubernetes), 2 jobs templates and a custom `unit_tests` template:
+An example of a full `.gitlab-ci.yml` file with:
+
+* One job template with latest version (`master`)
+* One job template with specific version using tag `2020-06-22_1`
+* Configuration for one job using `variables`
+* A custom `unit_tests` job
 
 ``` yaml
-
 stages:
-  - code_level
+  - static_tests
   - build
   - review
-  - application_level
+  - dynamic_tests
   - staging
   - production
-  - performance
 
 # Jobs from g2s hub
 include:
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/mkdocs/mkdocs.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/raw/2020-03-05_3/jobs/coala/coala.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/-/raw/master/Jobs/docker/docker.yml'
+  - remote: 'https://gitlab.com/go2scale/jobs/-/raw/2020-06-22_1/Jobs/mkdocs/mkdocs.yml'
 
 # Some jobs can be configured with variables
 variables:
-  QUALITY_ERROR_LEVEL: MAJOR
   DOC_TOOL: mkdocs
 
 # You can also include your own jobs
 unit_tests:
   image: python:3.7-alpine3.10
-  stage: code_level
+  stage: static_tests
   before_script:
     - apk add gcc make musl-dev postgresql-dev git linux-headers libmagic jpeg-dev zlib-dev
     - pip install pipenv && pipenv --bare install --dev
@@ -107,3 +135,4 @@ CI/CD settings and never in clear text in `.gitlab-ci.yml`:
 * `TEMPLATES_REPO_USER`: user name to with at least read access to repository
 * **SECRET** `TEMPLATES_REPO_PASSWORD`: password (or token) with at least read access to templates repository
 
+-->

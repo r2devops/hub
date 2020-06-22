@@ -2,7 +2,7 @@
 # See https://gitlab.com/go2scale/jobs/ for more informations
 
 quality_check:
-  stage: code_level
+  stage: static_tests
   image:
     name: "registry.gitlab.com/go2scale/dockerfiles/quality-check:v0.2.7"
   variables:
