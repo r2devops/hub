@@ -1,5 +1,7 @@
 # 🔍 Coala
 
+🚧 *Work in progress*
+
 Auto-detect file in repo and run all [coala](https://coala.io) relevant linters on it.
 
 **How to use it**
