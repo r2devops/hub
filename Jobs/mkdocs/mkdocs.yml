@@ -1,5 +1,5 @@
-# "Documentation" jobs
-# See https://gitlab.com/go2scale/jobs/ for more informations
+# Job from g2s hub
+# See https://go2scale.gitlab.io/jobs/ for more informations
 
 documentation:
   image:
@@ -26,7 +26,7 @@ pages:
       artifacts: true
   artifacts:
     paths:
-    - public
+   - public
   only:
     - master
   except:
