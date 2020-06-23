@@ -10,8 +10,8 @@ Each jobs of the hub can be used unitary or to create fully customs pipelines.
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-* You can start using jobs from the hub: [Getting started](/getting-started/)
-* You can contribute to the hub: [Contributing](/contributing/)
+* You can start using jobs from the hub: [Getting started](getting-started/)
+* You can contribute to the hub: [Contributing](contributing/)
 
 ## MVP architecture overview
 
