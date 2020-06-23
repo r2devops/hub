@@ -13,6 +13,6 @@ customized through configuration.
 * You can start using jobs from the hub: [Getting started](/getting-started/)
 * You can contribute to the hub: [Contributing](/contributing/)
 
-## Overview
+## MVP architecture overview
 
-![Go2Scale DevSecOps](images/go2scale_devsecops.png)
+![MVP architecture overview](images/g2shub_mvp.png)
