@@ -12,7 +12,7 @@ customized through configuration.
 
 Check the [documentation](https://go2scale.gitlab.io/jobs/).
 
-## How to work on the documentation
+## How to update the documentation
 
 ### Requirements
 
