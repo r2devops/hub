@@ -1,25 +1,45 @@
-# Go2Scale DevSecOps templates
-
-Go2Scale DevSecOps CI & CD jobs & pipelines templates repository
+# g2s hub
 
 ## Description
 
-[Jobs repository](https://gitlab.com/go2scale/jobs) contains all Go2Scale
-DevSecOps CI & CD jobs & pipelines templates. This documentation goal is to
-explain how to use them efficiently and easilly in your projects.
+**g2s hub** is a collaborative hub of CI & CD
+ready to use jobs which helps you to quickly build powerful pipelines for your
+projects.
 
-We offer 2 levels of modules:
+Each jobs of the hub can be used unitary or to create fully customs pipelines.
+You can use them for any kind of software and deployment type. Each job can be
+customized through configuration.
 
-**Pipeline** templates: multiple jobs assembled in a workflow
+Check the [documentation](https://go2scale.gitlab.io/jobs/).
 
-* Easy to use, just import the template in your CI configuration
-* Must be consitent with your software and deployment type
-* Customizable through configuration
+## How to work on the documentation
 
-**Jobs** templates: only one jobs
+### Requirements
 
-* Can be used unitary or to create fully customs pipelines
-* Adaptable to any kind of software and deployment type
-* Customizable through configuration
+Documentation is built using [Mkdocs](https://www.mkdocs.org) and [Material for
+Mkdocs](https://squidfunk.github.io/mkdocs-material/).
 
-**Documentation:** https://go2scale.gitlab.io/jobs
+Make sure that `python` and `pip` are installed on your system. Then install
+all required components:
+
+```shell
+pip install mkdocs-material mkdocs-minify-plugin mkdocs-git-revision-date-localized-plugin mkdocs-awesome-pages-plugin pymdown-extensions
+```
+
+### Clone the repository
+
+Clone the repository locally
+
+```shell
+git clone git@gitlab.com:go2scale/jobs.git
+cd jobs
+```
+
+### Launch Mkdocs
+
+You can launch mkdocs in order to create a local web server with hot reload to
+see your updates in live
+
+```shell
+mkdocs serve
+```
