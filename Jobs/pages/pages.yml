@@ -1,7 +1,7 @@
 # Job from g2s hub. See https://go2scale.gitlab.io/hub/ for more informations
 
 pages:
-  stage: production
+  stage: deployment
   script:
     - echo 'Deploying on Gitlab pages'
   needs:
@@ -10,8 +10,7 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - master
-  except:
-    variables:
-      - $DOCUMENTATION_DISABLE || $PAGES_DISABLE
+  rules:
+    - if: '$DOCUMENTATION_DISABLE || $PAGES_DISABLE'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == "master"'

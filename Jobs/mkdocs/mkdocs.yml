@@ -12,6 +12,6 @@ documentation:
     expose_as: "Documentation"
     paths:
       - public/
-  except:
-    variables:
-      - $DOCUMENTATION_DISABLE
+  rules:
+    - if: '$DOCUMENTATION_DISABLE'
+      when: never

@@ -2,14 +2,14 @@
 site_name: g2s hub
 site_description: 'Automated templates for your CI/CD Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
-site_url: 'https://go2scale.gitlab.io/jobs/'
+site_url: 'https://go2scale.gitlab.io/hub/'
 
 # Copyright
 copyright: 'Copyright &copy; 2020 Go2Scale'
 
 # Repository
-repo_name: 'go2scale/jobs'
-repo_url: 'https://gitlab.com/go2scale/jobs'
+repo_name: 'go2scale/hub'
+repo_url: 'https://gitlab.com/go2scale/hub'
 
 # Navigation
 # nav:
