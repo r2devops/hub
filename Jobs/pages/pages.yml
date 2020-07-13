@@ -1,0 +1,17 @@
+# Job from g2s hub. See https://go2scale.gitlab.io/hub/ for more informations
+
+pages:
+  stage: production
+  script:
+    - echo 'Deploying on Gitlab pages'
+  needs:
+    - job: documentation
+      artifacts: true
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+  except:
+    variables:
+      - $DOCUMENTATION_DISABLE || $PAGES_DISABLE
