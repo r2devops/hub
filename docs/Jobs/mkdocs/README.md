@@ -43,7 +43,7 @@ Build HTML documentation from Makdown source using `Mkdocs`.
 
 ## Versions
 
-* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/master/Jobs/mkdocs/mkdocs.yml`
+* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/latest/Jobs/mkdocs/mkdocs.yml`
 * **Tag `2020-07-13_1`** : `https://gitlab.com/go2scale/hub/-/raw/2020-07-31_1/Jobs/mkdocs/mkdocs.yml`
 
     !!! warning

@@ -42,7 +42,7 @@ from previous job named `documentation`.
 
 ## Versions
 
-* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/master/Jobs/mkdocs/mkdocs.yml`
+* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/latest/Jobs/mkdocs/mkdocs.yml`
 * **Tag `2020-05-31_1`** : `https://gitlab.com/go2scale/jobs/-/raw/2020-05-31_1/Jobs/mkdocs/mkdocs.yml`
 
     !!! warning
