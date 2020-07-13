@@ -1,5 +1,4 @@
-# Job from g2s hub
-# See https://go2scale.gitlab.io/jobs/ for more informations
+# Job from g2s hub. See https://go2scale.gitlab.io/hub/ for more informations
 
 documentation:
   image:
@@ -12,23 +11,7 @@ documentation:
     when: always
     expose_as: "Documentation"
     paths:
-    - public/
+      - public/
   except:
     variables:
       - $DOCUMENTATION_DISABLE
-
-pages:
-  stage: production
-  script:
-    - echo 'Deploying on Gitlab pages'
-  needs:
-    - job: documentation
-      artifacts: true
-  artifacts:
-    paths:
-   - public
-  only:
-    - master
-  except:
-    variables:
-      - $DOCUMENTATION_DISABLE || $PAGES_DISABLE
