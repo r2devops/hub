@@ -1,11 +1,10 @@
-# 📗 Mkdocs
+# 📦 Mkdocs
 
 ## Description
 
 Build HTML documentation form Markdown source using
-[Mkdocs](https://www.mkdocs.org/) and deploy it on Gitlab pages. All
-requirements to use [Material for
-Mkdocs](https://squidfunk.github.io/mkdocs-material/) are installed.
+[Mkdocs](https://www.mkdocs.org/). All requirements to use [Material for
+Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
 ## How to use it
 
@@ -17,7 +16,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are installed.
 
     ```yaml
     include:
-      - remote: 'https://gitlab.com/go2scale/jobs/-/raw/2020-06-22_1/Jobs/mkdocs/mkdocs.yml'
+      - remote: 'https://gitlab.com/go2scale/hub/-/raw/latest/Jobs/mkdocs/mkdocs.yml'
     ```
 
 4. If you need set variables in jobs, use `variables` option in
@@ -42,39 +41,23 @@ Build HTML documentation from Makdown source using `Mkdocs`.
 | `DOCUMENTATION_DISABLE` | Disable build | |
 
 
-### Pages
-
-* Docker image: [ruby](https://hub.docker.com/_/ruby)
-* When: only run on `master` branch
-* Stage: production
-* Artifacts:
-    * Result of documentation from previous job. It's used as input for Gitlab
-      pages
-* Variables:
-
-| Name | Description | Default |
-| ---- | ----------- | ------- |
-| `DOCUMENTATION_DISABLE` | Disable publication on Gitlab pages| |
-| `PAGES_DISABLE` | Disable publication on Gitlab pages | |
-
 ## Versions
 
-### Latest
+* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/latest/Jobs/mkdocs/mkdocs.yml`
+* **Tag `2020-07-13_1`** : `https://gitlab.com/go2scale/hub/-/raw/2020-07-31_1/Jobs/mkdocs/mkdocs.yml`
 
-```
-https://gitlab.com/go2scale/jobs/-/raw/master/Jobs/mkdocs/mkdocs.yml
-```
+    !!! warning
+        Since this version, `pages` job, which publish documentation on Gitlab
+        pages, isn't included anymore. It's now a dedicated job:
+        [pages](Jobs/pages).
 
-### Tag `2020-05-31_1`
+* **Tag `2020-05-31_1`** : `https://gitlab.com/go2scale/hub/-/raw/2020-05-31_1/Jobs/mkdocs/mkdocs.yml`
 
-!!! warning
-    This update introduces breaking changes. Follow [this
-    guide](https://squidfunk.github.io/mkdocs-material/releases/5/#how-to-upgrade)
-    to know how to upgrade.
+    !!! warning
+        This update introduces breaking changes. Follow [this
+        guide](https://squidfunk.github.io/mkdocs-material/releases/5/#how-to-upgrade)
+        to know how to upgrade.
+    * Upgrade Material for Mkdocs to v5
 
-```
-https://gitlab.com/go2scale/jobs/-/raw/2020-05-31_1/Jobs/mkdocs/mkdocs.yml
-```
 
-* Upgrade Material for Mkdocs to v5
 

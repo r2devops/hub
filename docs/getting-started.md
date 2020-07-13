@@ -23,10 +23,9 @@ Follows these steps to setup your CI/CD pipeline in less than 10 minutes !
     stages:
       - static_tests
       - build
-      - review
       - dynamic_tests
-      - staging
-      - production
+      - review
+      - deployment
 
     include:
       - remote: '<JOB-URL>'
