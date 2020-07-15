@@ -29,7 +29,7 @@ pages:
     paths:
     - public
   only:
-    - master
+    - latest
   except:
     variables:
       - $DOCUMENTATION_DISABLE || $PAGES_DISABLE
