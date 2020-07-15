@@ -17,7 +17,7 @@ from previous job named `documentation`.
 
     ```yaml
     include:
-      - remote: 'https://gitlab.com/go2scale/hub/-/raw/latest/Jobs/pages/pages.yml'
+      - remote: 'https://jobs.go2scale.io/pages'
     ```
 
 3. If you need set variables in jobs, use `variables` option in
@@ -42,8 +42,8 @@ from previous job named `documentation`.
 
 ## Versions
 
-* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/latest/Jobs/mkdocs/mkdocs.yml`
-* **Tag `2020-05-31_1`** : `https://gitlab.com/go2scale/jobs/-/raw/2020-05-31_1/Jobs/mkdocs/mkdocs.yml`
+* **Latest** : `https://jobs.go2scale.io/pages/latest`
+* **Tag `2020-05-31_1`** : `https://jobs.go2scale.io/pages/2020-05-31_1`
 
     !!! warning
         This update introduces breaking changes. Follow [this

@@ -16,7 +16,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
     ```yaml
     include:
-      - remote: 'https://gitlab.com/go2scale/hub/-/raw/latest/Jobs/mkdocs/mkdocs.yml'
+      - remote: 'https://jobs.go2scale.io/mkdocs'
     ```
 
 4. If you need set variables in jobs, use `variables` option in
@@ -43,15 +43,15 @@ Build HTML documentation from Makdown source using `Mkdocs`.
 
 ## Versions
 
-* **Latest** : `https://gitlab.com/go2scale/jobs/-/raw/latest/Jobs/mkdocs/mkdocs.yml`
-* **Tag `2020-07-13_1`** : `https://gitlab.com/go2scale/hub/-/raw/2020-07-31_1/Jobs/mkdocs/mkdocs.yml`
+* **Latest** : `https://jobs.go2scale.io/mkdocs/latest`
+* **Tag `2020-07-15_1`** : `https://jobs.go2scale.io/mkdocs/2020-07-15_1`
 
     !!! warning
         Since this version, `pages` job, which publish documentation on Gitlab
         pages, isn't included anymore. It's now a dedicated job:
         [pages](Jobs/pages).
 
-* **Tag `2020-05-31_1`** : `https://gitlab.com/go2scale/hub/-/raw/2020-05-31_1/Jobs/mkdocs/mkdocs.yml`
+* **Tag `2020-05-31_1`** (legacy): `https://gitlab.com/go2scale/hub/-/raw/2020-05-31_1/jobs/documentation.gitlab-ci.yml`
 
     !!! warning
         This update introduces breaking changes. Follow [this
@@ -59,5 +59,6 @@ Build HTML documentation from Makdown source using `Mkdocs`.
         to know how to upgrade.
     * Upgrade Material for Mkdocs to v5
 
+* **Tag `2020-05-31_1`** (legacy): `https://gitlab.com/go2scale/hub/-/raw/2020-05-05_3/jobs/documentation.gitlab-ci.yml`
 
-
+    * Initial version
