@@ -54,7 +54,8 @@ configuration file.
 
 An example of a full `.gitlab-ci.yml` file with:
 
-* One job template with latest version (`master`)
+* One job template with latest version. Note that `/latest` is optional in the
+  job URL
 * One job template with specific version using tag `2020-06-22_1`
 * Configuration for one job using `variables`
 * A custom `unit_tests` job
@@ -63,15 +64,14 @@ An example of a full `.gitlab-ci.yml` file with:
 stages:
   - static_tests
   - build
-  - review
   - dynamic_tests
-  - staging
-  - production
+  - review
+  - deployment
 
 # Jobs from g2s hub
 include:
-  - remote: 'https://gitlab.com/go2scale/jobs/-/raw/master/Jobs/docker/docker.yml'
-  - remote: 'https://gitlab.com/go2scale/jobs/-/raw/2020-06-22_1/Jobs/mkdocs/mkdocs.yml'
+  - remote: 'https://jobs.go2scale.io/docker/latest'
+  - remote: 'https://jobs.go2scale.io/mkdocs/2020-06-22_1'
 
 # Some jobs can be configured with variables
 variables:
