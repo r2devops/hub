@@ -1,23 +1,11 @@
 # Getting started
 
+## ⏳ Quick setup
+
 Follows these steps to setup your CI/CD pipeline in less than 10 minutes !
 
-1. Select jobs you want in [Jobs section](/Jobs/)
-
-    !!! info
-        You can choose to use the latest version or a specific one for each
-        job. Available version tag and corresponding url are described for each
-        jobs in [Jobs section](/Jobs/).
-
-        Once your pipeline is functional, we recommend to use specific version
-        for jobs in order to ensure that your pipeline will not be broken by a
-        job update.
-
-        Details about versioning format are available in [Versioning
-        page](/versioning/).
-
-2. Create a new file named `.gitlab-ci.yml` in the root on your repository
-3. Fulfil it with the following content using all selected jobs url:
+1. If you haven't yet a `.gitlab-ci.yml` file in the root on your repository:
+   create it with the list of stages:
 
     ```yaml
     stages:
@@ -26,38 +14,51 @@ Follows these steps to setup your CI/CD pipeline in less than 10 minutes !
       - dynamic_tests
       - review
       - deployment
-
-    include:
-      - remote: '<JOB-URL>'
-      - remote: '<JOB2-URL>'
-      - remote: ...
     ```
 
-3. Some jobs in [Jobs section](/Jobs/) provides options. You can configure them
-   using the `variables` keyword in `.gitlab-ci.yml`:
+    !!! info
+        Check [stages](#stages) section to get more information about this list
+        or if you already have a configuration with different stages.
+
+2. Select jobs you want in [Jobs section](/jobs/) and add their URL at the end
+   of your `.gitlab-ci.yml` file:
 
     ```yaml
-    variables:
-      <OPTION_JOB1>: <VALUE>
-      <OPTION2_JOB1>: <VALUE>
-      <OPTION_JOB2>: <VALUE>
-      ...
+    include:
+      - remote: 'https://jobs.go2scale.io/<job_name>.yml'
+      - remote: 'https://jobs.go2scale.io/<job_name>.yml'
+      - ...
     ```
+
+    !!! note
+
+        By default, the `latest` version of a job is used. You can choose to
+        use a specific version using a `tag`. Available tags are described for
+        each jobs in [Jobs section](/jobs/). Description of `tag` format is
+        available in [Versioning page](/versioning/).
+
+        Once your pipeline is functional, we recommend to use specific version
+        for jobs in order to ensure that your pipeline will not be broken by a
+        job update.
+
+3. Jobs can be customized 👉 check the [jobs
+   customization](#jobs-customization) section.
 
 4. Everything is ready! You can now benefit the full power of a CI / CD
    pipeline 🎉🚀
 
-## Example
+    !!! tip
+        You can also combine jobs templates and your own jobs in
+        `.gitlab-ci.yml` configuration file.
 
-You can also combine jobs templates and your own jobs in `.gitlab-ci.yml`
-configuration file.
+### 🏳󠁵󠁳󠁴󠁸󠁿 Example
+
 
 An example of a full `.gitlab-ci.yml` file with:
 
-* One job template with latest version. Note that `/latest` is optional in the
+* One job template with latest version. Note that `latest/` is optional in the
   job URL
 * One job template with specific version using tag `2020-06-22_1`
-* Configuration for one job using `variables`
 * A custom `unit_tests` job
 
 ``` yaml
@@ -73,10 +74,6 @@ include:
   - remote: 'https://jobs.go2scale.io/latest/docker.yml'
   - remote: 'https://jobs.go2scale.io/2020-06-22_1/mkdocs.yml'
 
-# Some jobs can be configured with variables
-variables:
-  DOC_TOOL: mkdocs
-
 # You can also include your own jobs
 unit_tests:
   image: python:3.7-alpine3.10
@@ -88,50 +85,23 @@ unit_tests:
     - make test
 ```
 
-<!--
+## ▶ Stages
 
-TODO: Check what to do about it. Should we require a standard template and put
-configuration doc here ?
+By default, each job from the hub is a part of on these stages:
 
+* **🔎 Static_tests:** static tests launched on repository file
+* **📦 Build:** build and packaging of software
+* **🛡 Dynamic_tests:** dynamic tests launched on a running version of the software
+* **🙋 Review:** deployment of the software in an isolated review environment
+* **🚀 Deployment:** deployment of the software on real environments
 
+This is an efficient and simple workflow. Nevertheless, if you want to use your
+own custom stage list: you can re-declare yourself the stage of any job from
+the hub. Follow the [customization section](#jobs-customization) to do it.
 
+## 🔧 Jobs customization
 
+🚧 *Work in progress*
 
-
-## Global configuration
-
-In your Gitlab 🦊 project, your configuration is defined in `.gitlab-ci.yml`
-file. If it doesn't exist, create it.
-
-Go2Scale templates needs some global variables, defined at root level
-of `.gitlab-ci.yml`:
-
-* `BOT_USER_ID`: ID of your bot user
-* `TEMPLATE_REPO_URL`: URL of template repository. If you don't use custom templates, use `gitlab.com/go2scale/templates.git`
-
-Example of declaration in `.gitlab-ci.yml` file:
-
-``` yaml
-variables:
-  # Go2Scale global variables
-  BOT_USER_ID: '5097980'
-  TEMPLATES_REPO_URL: 'gitlab.com/go2scale/templates.git'
-```
-
-Additionally, you have to decalare secrets variables
-([how to do it ?](https://docs.gitlab.com/ee/ci/variables/#creating-a-custom-environment-variable))
-in project (or supergroup) CI/CD settings:
-
-* `DOCKER_AUTH_CONFIG`: docker auth configuration (*given by Go2Scale*) to access images
-* `BOT_TOKEN`: secret token of bot user to interact with Gitlab API
-
-### Optional configuration
-
-If you want to use custom template repo with a restricted access add
-these variables. Note that **SECRET** variables must be declared in
-CI/CD settings and never in clear text in `.gitlab-ci.yml`:
-
-* `TEMPLATES_REPO_USER`: user name to with at least read access to repository
-* **SECRET** `TEMPLATES_REPO_PASSWORD`: password (or token) with at least read access to templates repository
-
--->
+<!-- TODO: describe how to override a job (part of
+https://gitlab.com/go2scale/hub/-/issues/14) -->

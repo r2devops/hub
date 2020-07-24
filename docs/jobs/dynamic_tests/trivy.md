@@ -1,4 +1,4 @@
-# 🛡️ Trivy
+# 🧱 Trivy
 
 ## Description
 

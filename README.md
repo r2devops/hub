@@ -10,7 +10,7 @@ Each jobs of the hub can be used unitary or to create fully customs pipelines.
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-Check the [documentation](https://go2scale.gitlab.io/jobs/).
+Check the [documentation](https://hub.go2scale.io).
 
 ## How to update the documentation
 

@@ -1,7 +1,8 @@
-# 🔍 Coala
+# 🐨 Coala
 
 🚧 *Work in progress*
 
+<!--
 Auto-detect file in repo and run all [coala](https://coala.io) relevant linters on it.
 
 **How to use it**
@@ -18,3 +19,4 @@ Auto-detect file in repo and run all [coala](https://coala.io) relevant linters 
 * Image:
     * Repository: https://gitlab.com/go2scale/dockerfiles/quality-check
     * Documentation: https://go2scale.gitlab.io/dockerfiles/quality-check
+-->
