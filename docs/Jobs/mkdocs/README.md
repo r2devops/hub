@@ -16,7 +16,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/mkdocs'
+      - remote: 'https://jobs.go2scale.io/mkdocs.yml'
     ```
 
 4. If you need set variables in jobs, use `variables` option in
@@ -43,8 +43,8 @@ Build HTML documentation from Makdown source using `Mkdocs`.
 
 ## Versions
 
-* **Latest** : `https://jobs.go2scale.io/mkdocs/latest`
-* **Tag `2020-07-15_1`** : `https://jobs.go2scale.io/mkdocs/2020-07-15_1`
+* **Latest** : `https://jobs.go2scale.io/latest/mkdocs.yml`
+* **Tag `2020-07-15_1`** : `https://jobs.go2scale.io/2020-07-15_1/mkdocs.yml`
 
     !!! warning
         Since this version, `pages` job, which publish documentation on Gitlab

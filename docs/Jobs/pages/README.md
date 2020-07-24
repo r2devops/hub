@@ -17,7 +17,7 @@ from previous job named `documentation`.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/pages'
+      - remote: 'https://jobs.go2scale.io/pages.yml'
     ```
 
 3. If you need set variables in jobs, use `variables` option in
@@ -42,8 +42,8 @@ from previous job named `documentation`.
 
 ## Versions
 
-* **Latest** : `https://jobs.go2scale.io/pages/latest`
-* **Tag `2020-05-31_1`** : `https://jobs.go2scale.io/pages/2020-05-31_1`
+* **Latest** : `https://jobs.go2scale.io/latest/pages.yml`
+* **Tag `2020-05-31_1`** : `https://jobs.go2scale.io/2020-05-31_1/pages.yml`
 
     !!! warning
         This update introduces breaking changes. Follow [this

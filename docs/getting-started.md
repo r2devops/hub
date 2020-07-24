@@ -70,8 +70,8 @@ stages:
 
 # Jobs from g2s hub
 include:
-  - remote: 'https://jobs.go2scale.io/docker/latest'
-  - remote: 'https://jobs.go2scale.io/mkdocs/2020-06-22_1'
+  - remote: 'https://jobs.go2scale.io/latest/docker.yml'
+  - remote: 'https://jobs.go2scale.io/2020-06-22_1/mkdocs.yml'
 
 # Some jobs can be configured with variables
 variables:
