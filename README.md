@@ -31,8 +31,8 @@ pip install mkdocs-material mkdocs-minify-plugin mkdocs-git-revision-date-locali
 Clone the repository locally
 
 ```shell
-git clone git@gitlab.com:go2scale/jobs.git
-cd jobs
+git clone git@gitlab.com:go2scale/hub.git
+cd hub
 ```
 
 ### Launch Mkdocs
