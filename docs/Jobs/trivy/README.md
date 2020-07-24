@@ -23,7 +23,7 @@
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/trivy'
+      - remote: 'https://jobs.go2scale.io/trivy.yml'
     ```
 
 4. Well done, it's finished ! 😀
@@ -116,5 +116,5 @@ By default we use [Junit](https://junit.org/junit5/)'s xml report
 
 ## Version
 
-* **Latest** : `https://jobs.go2scale.io/trivy/latest`
-* **Tag `2020-07-22_1`** (initial version) : `https://jobs.go2scale.io/trivy/2020-07-22_1`
+* **Latest** : `https://jobs.go2scale.io/latest/trivy.yml`
+* **Tag `2020-07-22_1`** (initial version) : `https://jobs.go2scale.io/2020-07-22_1/trivy.yml`
