@@ -1,6 +1,8 @@
-# 🚀 Helm
+# ☸️  Helm
 
 🚧 *Work in progress*
+
+<!--
 
 Deploy on your kubernetes cluster using Helm charts.
 
@@ -36,3 +38,5 @@ Deploy on your kubernetes cluster using Helm charts.
 | ---- | ----------- | ------- |
 | `PGP_PUBLIC` | Public PGP key to decrypt secrets values | `file` |
 | `PGP_PRIVATE` | Private PGP key to decrypt secrets values | `file` |
+
+-->

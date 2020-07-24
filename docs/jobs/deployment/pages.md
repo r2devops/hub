@@ -1,4 +1,4 @@
-# 🚀 Pages
+# 🦊 Pages
 
 ## Description
 
@@ -9,7 +9,7 @@ from previous job named `documentation`.
 
 !!! note "Requirements"
     * Use a `documentation` job in build 📦 stage to be able to retrieve the
-      documentation to publish as artifact. Example: [Mkdocs](/Jobs/mkdocs/)
+      documentation to publish as artifact. Example: [Mkdocs](/jobs/mkdocs/)
 
 1. Choose a version in [version list](#versions)
 2. Add the corresponding url to your `.gitlab-ci.yml` file (see [Getting

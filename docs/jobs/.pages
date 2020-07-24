@@ -1,0 +1,8 @@
+title: 'Jobs'
+arrange:
+    - index.md
+    - static_tests
+    - build
+    - dynamic_tests
+    - review
+    - deployment

@@ -1,6 +1,6 @@
 # Versioning
 
-Jobs are versioned using git tag following this format: `YYYY-MM-DD_RELEASE`.
+jobs are versioned using git tag following this format: `YYYY-MM-DD_RELEASE`.
 
 !!! note
     `RELEASE` is a number started from 1
@@ -21,4 +21,4 @@ include:
 ```
 
 Available tags and release note for each jobs are available in [Jobs
-section](/Jobs/).
+section](/jobs/).
