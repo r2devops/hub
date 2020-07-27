@@ -9,18 +9,25 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 ## How to use it
 
 1. Prepare your project with Mkdocs configuration file and sources files as
-   described in [Mkdocs documentation](https://www.mkdocs.org/#getting-started)
-2. Choose a version in [version list](#versions)
-3. Add the corresponding url to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   described in [Mkdocs
+   documentation](https://www.mkdocs.org/#getting-started). In your repository,
+   documentation files must be organized as follows:
+
+    ```
+    /mkdocs.yml # This is your configuration file
+    /docs/      # This folder contains all your documentation markdown files
+    ```
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
+   started](/getting-started)). You can use a specific version from [version
+   list](#versions). Example with default (`latest`):
 
     ```yaml
     include:
       - remote: 'https://jobs.go2scale.io/mkdocs.yml'
     ```
-
-4. If you need set variables in jobs, use `variables` option in
-   `.gitlab-ci.yml` file
+3. If you need set variables, see [Jobs
+   customization](/getting-started#jobs-customization) section in
+   getting started
 
 ## Jobs
 
