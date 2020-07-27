@@ -101,7 +101,30 @@ the hub. Follow the [customization section](#jobs-customization) to do it.
 
 ## 🔧 Jobs customization
 
-🚧 *Work in progress*
+Each jobs of the hub can be customized. To do it, you have to include the job
+URL as usual and, in addition, override the options you want to customize.
 
-<!-- TODO: describe how to override a job (part of
-https://gitlab.com/go2scale/hub/-/issues/14) -->
+For example, if you want to use the [trivy](/jobs/dynamic_tests/trivy/) job and
+customize it by:
+
+* Redefining the `stage` to `security` to fit in your personal stages workflow
+* Set the variable `TRIVY_VERSION` to `0.9.1` to use this version instead of
+  the default
+* Set the variable `TRIVY_SEVERITY` to `CRITICAL` to display only CRITICAL
+  issues
+
+```yaml
+include:
+  - remote: 'https://jobs.go2scale.io/trivy.yml'
+
+trivy:
+  stage: security
+  variables:
+    TRIVY_VERSION: "0.9.1"
+    TRIVY_SEVERITY: "CRITICAL"
+```
+
+!!! tip
+    In this way, you can override all Gitlab jobs parameters. All parameters
+    are described in [Gitlab
+    documentation](https://docs.gitlab.com/ee/ci/yaml/).
