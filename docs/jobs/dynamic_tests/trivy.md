@@ -116,5 +116,5 @@ By default we use [Junit](https://junit.org/junit5/)'s xml report
 
 ## Version
 
-* **Latest** : `https://jobs.go2scale.io/latest/trivy.yml`
+* **Latest** (current -> `2020-07-22_1`) : `https://jobs.go2scale.io/latest/trivy.yml`
 * **Tag `2020-07-22_1`** (initial version) : `https://jobs.go2scale.io/2020-07-22_1/trivy.yml`
