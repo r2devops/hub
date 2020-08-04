@@ -12,7 +12,7 @@ from previous job named `documentation`.
       documentation to publish as artifact. Example: [Mkdocs](/jobs/mkdocs/)
 
 1. Choose a version in [version list](#versions)
-2. Add the corresponding url to your `.gitlab-ci.yml` file (see [Getting
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
     ```yaml
@@ -20,20 +20,20 @@ from previous job named `documentation`.
       - remote: 'https://jobs.go2scale.io/pages.yml'
     ```
 
-3. If you need set variables in jobs, use `variables` option in
-   `.gitlab-ci.yml` file
+4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+   customization](/getting-started/#jobs-customization)
 
-## Jobs
+5. Well done, your job is ready to work ! 😀
 
-### Pages
 
-* Docker image: [ruby](https://hub.docker.com/_/ruby)
+## Job details
+
+* Job name: `pages`
+* Docker image: [`ruby`](https://hub.docker.com/_/ruby)
+* Stage: `deployment`
 * When: only run on `master` branch
-* Stage: deployment
-* Artifacts:
-    * Result of documentation from previous job. It's used as input for Gitlab
-      pages
-* Variables:
+
+### Variables:
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
