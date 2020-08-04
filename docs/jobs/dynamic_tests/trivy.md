@@ -6,20 +6,18 @@
 
 ##### By default, this job
 
- - Is avaible for any edition of GitLab
-
- - Is 100% autonom - you don't have any updates or config to do, but obviously you can change the values of the variables or configure your own script
-
- - Analysis with [Trivy](https://github.com/aquasecurity/trivy) the GitLab's repo (image or/and filesystem) at every commit to detect vulnerabilities
-
- - Displays a report in pipeline window and merge request (junit.xml format)
+* Is avaible for any edition of GitLab
+* Is 100% autonom - you don't have any updates or config to do, but obviously you can change the values of the variables or configure your own script
+* Analysis with [Trivy](https://github.com/aquasecurity/trivy) the GitLab's repo (image or/and filesystem) at every commit to detect vulnerabilities
+* Displays a report in pipeline window and merge request (junit.xml format)
+* Fails if at least one security issue is found
 
 
 ## How to use it
 
- 1. Please check supported OS and packages (see list below)
- 2. Please check variables config (see list below)
- 3. Add the corresponding url to your `.gitlab-ci.yml` file
+1. Please check supported OS and packages (see list below)
+2. Please check variables config (see list below)
+3. Add the corresponding url to your `.gitlab-ci.yml` file
 
     ```yaml
     include:
@@ -28,18 +26,16 @@
 
 4. Well done, it's finished ! 😀
 
-
 ### Variables Description
-
 
 #### Main Variables
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 | ------------- | ----------- | ------------- |
-| `IMAGE` | Target name or target path | `$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA` or `$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG` if the pipeline is run following a tag creation |
+| `IMAGE` | Target name or target path | `$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA` or `$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG` in case of tag creation |
 | `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases) | `0.9.2` |
-| `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL |
-| `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 0 |
+| `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
+| `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 1 |
 | `TRIVY_VULN_TYPE` | List of vulnerability types | os,library |
 | `TRIVY_OUTPUT` | Output file name | junit-report.xml |
 | `TRIVY_IGNOREFILE` | Specify .trivyignore file | .trivyignore |
