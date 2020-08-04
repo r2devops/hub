@@ -17,40 +17,43 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
     /mkdocs.yml # This is your configuration file
     /docs/      # This folder contains all your documentation markdown files
     ```
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). You can use a specific version from [version
-   list](#versions). Example with default (`latest`):
+2. Choose a version in [version list](#versions)
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
+   started](/getting-started)). Example:
 
     ```yaml
     include:
       - remote: 'https://jobs.go2scale.io/mkdocs.yml'
     ```
-3. If you need set variables, see [Jobs
-   customization](/getting-started#jobs-customization) section in
-   getting started
 
-## Jobs
+4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+   customization](/getting-started/#jobs-customization)
 
-### Documentation
+5. Well done, your job is ready to work ! 😀
 
-Build HTML documentation from Makdown source using `Mkdocs`.
+## Job details
 
+* Job name: `mkdocs`
 * Docker image:
-[squidfunk/mkdocs-material](https://hub.docker.com/r/squidfunk/mkdocs-material)
-* When: always
-* Stage: build
-* Artifacts:
-    * Result of documentation build exposed as `Documentation`
-* Variables:
+[`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)
+* Default stage: `build`
+* When: `always`
+
+### Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `DOCUMENTATION_DISABLE` | Disable build | |
 
+### Artifacts
+
+Result of documentation build is [exposed
+as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `Documentation` in
+merge requests
 
 ## Versions
 
-* **Latest** : `https://jobs.go2scale.io/latest/mkdocs.yml`
+* **Latest** (current -> `2020-07-15_1`) : `https://jobs.go2scale.io/latest/mkdocs.yml`
 * **Tag `2020-07-15_1`** : `https://jobs.go2scale.io/2020-07-15_1/mkdocs.yml`
 
     !!! warning

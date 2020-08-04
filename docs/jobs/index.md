@@ -19,7 +19,7 @@ Jobs index. They are sorted using the [HUB default stages](/getting-started#stag
 
 | Name | Description |
 | ---- | ----------- |
-| 🧱 [Trivy](/jobs/dynamic_tests/trivy) | Run a security analysis on docker image using Trivy |
+| 🧱 [Trivy image analysis](/jobs/dynamic_tests/trivy_image) | Run a security analysis on docker image using Trivy |
 
 ## 🙋 Review
 

@@ -6,6 +6,10 @@ Welcome to the Go2Scale hub ! 🎉
 ready to use jobs which helps you to quickly build powerful pipelines for your
 projects.
 
+!!! info
+    Currently, the hub is focused to provides only **Gitlab 🦊** jobs. We plan
+    to support more CI/CD platforms in the future.
+
 Each jobs of the hub can be used unitary to create fully customs pipelines.
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
