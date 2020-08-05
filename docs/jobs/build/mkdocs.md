@@ -53,8 +53,8 @@ merge requests
 
 ## Versions
 
-* **Latest** (current -> `2020-08-05_1`) : `https://jobs.go2scale.io/latest/mkdocs.yml`
-* **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/mkdocs.yml`
+* **Latest** (current -> `2020-08-05_2`) : `https://jobs.go2scale.io/latest/mkdocs.yml`
+* **Tag `2020-08-05_2`** : `https://jobs.go2scale.io/2020-08-05_2/mkdocs.yml`
 
     !!! warning
         Since this version, `pages` job, which publish documentation on Gitlab

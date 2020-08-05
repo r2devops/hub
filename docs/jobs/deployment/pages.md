@@ -42,7 +42,7 @@ from previous job named `documentation`.
 
 ## Versions
 
-* **Latest** (current -> `2020-08-05_1`): `https://jobs.go2scale.io/latest/pages.yml`
-* **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/pages.yml`
+* **Latest** (current -> `2020-08-05_2`): `https://jobs.go2scale.io/latest/pages.yml`
+* **Tag `2020-08-05_2`** : `https://jobs.go2scale.io/2020-08-05_2/pages.yml`
 
     * Initial version
