@@ -33,7 +33,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
 ## Job details
 
-* Job name: `mkdocs`
+* Job name: `documentation`
 * Docker image:
 [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)
 * Default stage: `build`
