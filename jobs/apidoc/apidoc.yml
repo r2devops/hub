@@ -1,0 +1,23 @@
+# Job from go2scale hub --> hub.go2scale.io
+
+documentation:
+  image:
+    name: node:12.18.3-alpine3.12
+    entrypoint: [""]
+  stage: build
+  variables:
+    - APIDOC_CONFIG: ''
+    - APIDOC_OUTPUT_PATH: './public'
+  script:
+    - npm install apidoc -g
+    - apidoc --verbose -c $APIDOC_CONFIG -o $APIDOC_OUTPUT_PATH
+  artifacts:
+    when: always
+    expose_as: "Documentation"
+    paths:
+      - public/
+  rules:
+    - if: '$DOCUMENTATION_DISABLE'
+      when: never
+
+
