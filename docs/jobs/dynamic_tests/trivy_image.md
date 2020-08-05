@@ -71,5 +71,5 @@ directly in pipeline `Test` tab and in merge request widget
 
 ## Version
 
-* **Latest** (current -> `2020-08-04_1`) : `https://jobs.go2scale.io/latest/trivy_image.yml`
-* **Tag `2020-08-04_1`** (initial version) : `https://jobs.go2scale.io/2020-08-04_1/trivy_image.yml`
+* **Latest** (current -> `2020-08-05_1`) : `https://jobs.go2scale.io/latest/trivy_image.yml`
+* **Tag `2020-08-05_1`** (initial version) : `https://jobs.go2scale.io/2020-08-05_1/trivy_image.yml`
