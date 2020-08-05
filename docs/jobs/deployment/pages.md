@@ -42,11 +42,7 @@ from previous job named `documentation`.
 
 ## Versions
 
-* **Latest** (current -> `2020-05-31_1`): `https://jobs.go2scale.io/latest/pages.yml`
-* **Tag `2020-05-31_1`** : `https://jobs.go2scale.io/2020-05-31_1/pages.yml`
+* **Latest** (current -> `2020-08-05_1`): `https://jobs.go2scale.io/latest/pages.yml`
+* **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/pages.yml`
 
-    !!! warning
-        This update introduces breaking changes. Follow [this
-        guide](https://squidfunk.github.io/mkdocs-material/releases/5/#how-to-upgrade)
-        to know how to upgrade.
     * Initial version
