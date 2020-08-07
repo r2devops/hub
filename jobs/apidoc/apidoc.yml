@@ -18,8 +18,3 @@ documentation:
     paths:
       - "$APIDOC_OUTPUT_PATH"
       #  - public/
-  rules:
-    - if: '$DOCUMENTATION_DISABLE'
-      when: never
-
-

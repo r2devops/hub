@@ -39,12 +39,6 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 * Default stage: `build`
 * When: `always`
 
-### Variables
-
-| Name | Description | Default |
-| ---- | ----------- | ------- |
-| `DOCUMENTATION_DISABLE` | Disable build | |
-
 ### Artifacts
 
 Result of documentation build is [exposed
