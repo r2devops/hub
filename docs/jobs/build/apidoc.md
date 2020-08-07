@@ -1,4 +1,4 @@
-# 🗒 ApiDoc
+# 📒 ApiDoc
 
 ## Description
 
@@ -43,7 +43,7 @@ code using [apiDoc](https://www.apidocjs.com/).
 ### Artifacts
 
 Result of documentation build is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `Documentation` in
+as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `apiDoc build` in
 merge requests.
 
 ## Versions
