@@ -15,7 +15,6 @@ documentation:
     - apidoc --verbose -c "$APIDOC_CONFIG_PATH" -o "$APIDOC_OUTPUT_PATH" -t "$APIDOC_TEMPLATE_PATH"
   artifacts:
     when: always
-    expose_as: "Documentation"
+    expose_as: "apiDoc build"
     paths:
       - "$APIDOC_OUTPUT_PATH"
-      #  - public/
