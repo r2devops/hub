@@ -14,9 +14,6 @@ documentation:
     expose_as: "Documentation"
     paths:
     - public/
-  except:
-    variables:
-      - $DOCUMENTATION_DISABLE
 
 pages:
   stage: production
@@ -30,6 +27,3 @@ pages:
     - public
   only:
     - latest
-  except:
-    variables:
-      - $DOCUMENTATION_DISABLE || $PAGES_DISABLE

@@ -1,4 +1,4 @@
-# Job from g2s hub. See https://go2scale.gitlab.io/hub/ for more informations
+# Job from go2scale hub --> hub.go2scale.io
 
 pages:
   stage: deployment
@@ -11,6 +11,4 @@ pages:
     paths:
       - public
   rules:
-    - if: '$DOCUMENTATION_DISABLE || $PAGES_DISABLE'
-      when: never
-    - if: '$CI_COMMIT_BRANCH == "latest"'
+    - if: '$CI_COMMIT_BRANCH == "master"'

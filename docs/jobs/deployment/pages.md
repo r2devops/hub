@@ -33,12 +33,9 @@ from previous job named `documentation`.
 * Stage: `deployment`
 * When: only run on `master` branch
 
-### Variables:
-
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `DOCUMENTATION_DISABLE` | Disable publication on Gitlab pages| |
-| `PAGES_DISABLE` | Disable publication on Gitlab pages | |
+| `PAGES_BUILD_PATH` | Path to folder which contains documentation build | |
 
 ## Versions
 
