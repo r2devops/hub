@@ -6,16 +6,18 @@ documentation:
     entrypoint: [""]
   stage: build
   variables:
-    - APIDOC_CONFIG: ''
-    - APIDOC_OUTPUT_PATH: './public'
+    - APIDOC_CONFIG_PATH: '.'
+    - APIDOC_OUTPUT_PATH: './apidoc_build'
+    - APIDOC_TEMPLATE_PATH: '/usr/lib/node_modules/apidoc/template/'
   script:
-    - npm install apidoc -g
-    - apidoc --verbose -c $APIDOC_CONFIG -o $APIDOC_OUTPUT_PATH
+    - npm install apidoc@0.24.0 -g
+    - apidoc --verbose -c "$APIDOC_CONFIG_PATH" -o "$APIDOC_OUTPUT_PATH" -t "$APIDOC_TEMPLATE_PATH"
   artifacts:
     when: always
     expose_as: "Documentation"
     paths:
-      - public/
+      - "$APIDOC_OUTPUT_PATH"
+      #  - public/
   rules:
     - if: '$DOCUMENTATION_DISABLE'
       when: never
