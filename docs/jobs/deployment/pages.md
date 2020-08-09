@@ -51,5 +51,6 @@ from previous job named `documentation`.
     * Add possibility to retrieve build artifact from any job in previous stage
     * Add variable `PAGES_BUILD_PATH` to indicate the location of build to
       deploy
+    * Return error case when there is nothing to deploy
 * **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/pages.yml`
     * Initial version
