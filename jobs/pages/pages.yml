@@ -2,11 +2,10 @@
 
 pages:
   stage: deployment
+  variables:
+    PAGES_BUILD_PATH: 'documentation_build/'
   script:
-    - echo 'Deploying on Gitlab pages'
-  needs:
-    - job: documentation
-      artifacts: true
+    - mv $PAGES_BUILD_PATH public
   artifacts:
     paths:
       - public

@@ -25,7 +25,7 @@ code using [apiDoc](https://www.apidocjs.com/).
 
 ## Job details
 
-* Job name: `documentation`
+* Job name: `apidoc`
 * Docker image:
 [`node`](https://hub.docker.com/r/_/node)
 * Default stage: `build`
@@ -37,7 +37,7 @@ code using [apiDoc](https://www.apidocjs.com/).
 | ---- | ----------- | ------- |
 | `APIDOC_VERSION` | Version of apiDoc to use | `0.24.0` |
 | `APIDOC_CONFIG_PATH` | Path to config file or to directory containing config file (apidoc.json or apidoc.config.js) | `.` |
-| `APIDOC_OUTPUT_PATH` | Output directory path | `/apidoc_build` |
+| `APIDOC_OUTPUT_PATH` | Output directory path | `/documentation_build` |
 | `APIDOC_TEMPLATE_PATH` | Path to template folder | `/usr/lib/node_modules/apidoc/template/` |
 
 ### Artifacts
@@ -45,6 +45,12 @@ code using [apiDoc](https://www.apidocjs.com/).
 Result of documentation build is [exposed
 as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `apiDoc build` in
 merge requests.
+
+!!! warning
+    Exposition of artifact doesn't work currently because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129). As soon as
+    the issue will be fixed, exposed artifacts will be available in merge
+    requests.
 
 ## Versions
 
