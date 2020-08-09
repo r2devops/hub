@@ -1,14 +1,16 @@
 # Job from go2scale hub --> hub.go2scale.io
 
-documentation:
+mkdocs:
   image:
     name: squidfunk/mkdocs-material:5.2.2
     entrypoint: [""]
   stage: build
+  variables:
+    MKDOCS_OUTPUT_PATH: 'documentation_build/'
   script:
-    - mkdocs build -d ./public
+    - mkdocs build -d "$MKDOCS_OUTPUT_PATH"
   artifacts:
     when: always
-    expose_as: "Documentation"
+    expose_as: "Mkdocs build"
     paths:
-      - public/
+      - "$MKDOCS_OUTPUT_PATH"

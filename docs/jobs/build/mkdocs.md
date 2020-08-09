@@ -33,11 +33,17 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
 ## Job details
 
-* Job name: `documentation`
+* Job name: `mkdocs`
 * Docker image:
 [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)
 * Default stage: `build`
 * When: `always`
+
+### Variables
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `MKDOCS_OUTPUT_PATH` | Output directory path | `/ documentation_build` |
 
 ### Artifacts
 
@@ -45,9 +51,21 @@ Result of documentation build is [exposed
 as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `Documentation` in
 merge requests
 
+!!! warning
+    Exposition of artifact doesn't work currently because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129). As soon as
+    the issue will be fixed, exposed artifacts will be available in merge
+    requests.
+
 ## Versions
 
-* **Latest** (current -> `2020-08-05_1`) : `https://jobs.go2scale.io/latest/mkdocs.yml`
+* **Latest** (current -> `2020-08-09_1`) : `https://jobs.go2scale.io/latest/mkdocs.yml`
+* **Tag `2020-08-09_1`** : `https://jobs.go2scale.io/2020-08-09_1/mkdocs.yml`
+    * Rename the job from `documentation` to `mkdocs`
+    * Update the default output folder to `/documentation_build` in order to
+      ensure plug and play compatibility with [pages](/jobs/deployment/pages)
+      deployment job. **Note**: output folder can be customized using
+      `MKDOCS_OUTPUT_PATH` [variable](#variables)
 * **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/mkdocs.yml`
 
     !!! warning
