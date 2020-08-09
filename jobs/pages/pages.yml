@@ -5,7 +5,7 @@ pages:
   variables:
     PAGES_BUILD_PATH: 'documentation_build/'
   script:
-    - if [[ "$PAGES_BUILD_PATH" != "public" -a "PAGES_BUILD_PATH" != "public/" ]]; then mv "$PAGES_BUILD_PATH" public; fi
+    - if [ "$PAGES_BUILD_PATH" != "public" -a "PAGES_BUILD_PATH" != "public/" ]; then mv "$PAGES_BUILD_PATH" public; fi
   artifacts:
     paths:
       - public
