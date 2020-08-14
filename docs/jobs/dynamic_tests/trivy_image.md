@@ -40,9 +40,10 @@ vulnerability detection capabilities are available in its official
 
 ### Variables
 
+
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
-| ------------- | ----------- | ------------- |
-| `IMAGE` | Target name or target path | `$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA` or `$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG` in case of tag creation |
+|:-|:-|:-
+| `IMAGE` <img width=450/> | Target name or target path <img width=500/> | `$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA` <br/> or `$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG` in case of tag creation |
 | `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases) | `0.9.2` |
 | `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 1 |
@@ -63,6 +64,7 @@ vulnerability detection capabilities are available in its official
 | `TRIVY_QUIET` | Suppress progress bar and log output | false |
 | `TRIVY_SKIP_UPDATE` | Skip vulnerability database update | false |
 | `TRIVY_REMOVED_PKGS` | Detect vulns of Alpine removed packages | false |
+
 
 ### Artifacts
 

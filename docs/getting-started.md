@@ -1,5 +1,12 @@
 # Getting started
 
+## 📝 Prerequisites
+
+- 🦊  Manage your project in Gitlab
+- ✏️   Have the write access to the gitlab-ci.yml file in your project
+- 🔫  Be aware each file modification in your project will trigger the pipeline
+- 🗝  Have access to the Pipelines page in your Gitlab project to see the pipeline execution
+
 ## ⏳ Quick setup
 
 Follows these steps to setup your CI/CD pipeline in less than 10 minutes !

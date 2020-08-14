@@ -41,6 +41,9 @@ extra:
     - icon: 'fontawesome/brands/linkedin'
       link: 'https://www.linkedin.com/company/go2scale/'
 
+extra_css:
+    - css/extra.css
+
 # Configuration
 theme:
   name: 'material'
@@ -62,6 +65,7 @@ theme:
 
 # Extensions (https://squidfunk.github.io/mkdocs-material/extensions/admonition/)
 markdown_extensions:
+  - attr_list
   - admonition # block-styled content (note, idea, warning, ...)
   - codehilite # highlite code syntax
   - footnotes # references in footnotes
