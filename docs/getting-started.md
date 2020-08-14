@@ -3,7 +3,7 @@
 ## 📝 Prerequisites
 
 - 🦊  Manage your project in Gitlab
-- ✏️   Have the write access to the gitlab-ci.yml file in your project
+- ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
 - 🔫  Be aware each file modification in your project will trigger the pipeline
 - 🗝  Have access to the Pipelines page in your Gitlab project to see the pipeline execution
 
@@ -66,7 +66,7 @@ An example of a full `.gitlab-ci.yml` file with:
 * One job template with latest version. Note that `latest/` is optional in the
   job URL
 * One job template with specific version using tag `2020-08-05_1`
-* A custom `unit_tests` job
+* A your own local `unit_tests` job
 
 ``` yaml
 stages:
@@ -81,12 +81,11 @@ include:
   - remote: 'https://jobs.go2scale.io/latest/docker.yml'
   - remote: 'https://jobs.go2scale.io/2020-08-05_1/mkdocs.yml'
 
-# You can also include your own jobs
+# You can also include your own local jobs
 unit_tests:
   image: python:3.7-alpine3.10
   stage: static_tests
   before_script:
-    - apk add gcc make musl-dev postgresql-dev git linux-headers libmagic jpeg-dev zlib-dev
     - pip install pipenv && pipenv --bare install --dev
   script:
     - make test
