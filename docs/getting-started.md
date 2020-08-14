@@ -66,7 +66,7 @@ An example of a full `.gitlab-ci.yml` file with:
 * One job template with latest version. Note that `latest/` is optional in the
   job URL
 * One job template with specific version using tag `2020-08-05_1`
-* A your own local `unit_tests` job
+* Your own local `unit_tests` job
 
 ``` yaml
 stages:
