@@ -1,0 +1,25 @@
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.red{
+  color:red;
+}
+
+.small_gitlab{
+  width:20%
+}
+
+
+table{
+  max-height: 500px;
+}
