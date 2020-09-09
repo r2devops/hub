@@ -46,7 +46,7 @@ trivy:
     - curl -sSL -o $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
 
   script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
 
   cache:
