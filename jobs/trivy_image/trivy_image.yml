@@ -44,8 +44,8 @@ trivy:
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
 
-  script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
     - ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
 
   cache:
