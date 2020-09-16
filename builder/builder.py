@@ -94,7 +94,8 @@ def create_job_doc(job):
   
 if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
-  for job in listdir(jobs_dir).remove("helm"):
+  jobs = listdir(jobs_dir).remove("helm")
+  for job in jobs:
     create_job_doc(job)
 
   # Using jinja2 with a template to create the index
