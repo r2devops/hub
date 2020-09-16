@@ -24,6 +24,7 @@ mkdocs_dir = "docs"
 job_changelog_dir = "versions"
 job_description_file = "README.md"
 job_license_file = "LICENSE"
+job_metadata_file = "metadata.yml"
 
 mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
@@ -39,7 +40,7 @@ index = {"static_tests": [], "build": [], "dynamic_tests": [], "review": [], "de
 
 def get_conf(job_path, job_name):
   # Load yaml file
-  with open(job_path + "/" + job_name + ".yml") as file:
+  with open(job_path + "/" + job_metadata_file + ".yml") as file:
     return full_load(file)
 
 def add_description(job_path, job_name):
