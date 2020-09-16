@@ -97,7 +97,7 @@ if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
   ### TO EDIT
   # for job in listdir(jobs_dir):
-  for job in ["python_test", "trivy_image"]:
+  for job in ["python_test", "trivy_image", "apidoc"]:
   ###
     create_job_doc(job)
 
