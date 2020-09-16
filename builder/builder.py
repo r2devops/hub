@@ -45,6 +45,8 @@ def add_description(job_path, job_name, mkdocs_job_content):
   # Concatenate description to final file
   with open(job_path + "/" + job_description_file) as file:
     mkdocs_job_content += file.read()
+  return mkdocs_job_content
+
 
 def add_changelog(job_path, job_name, mkdocs_job_content):
   # Concatenate changelog to final file
@@ -60,6 +62,7 @@ def add_changelog(job_path, job_name, mkdocs_job_content):
       # TODO replace <include tag by the link to the release
   # Adding a new line for consistency
   mkdocs_job_content += "\n"
+  return mkdocs_job_content
 
 def add_license(job_path, job_name, mkdocs_job_content):
   # Concatenate license to final file
@@ -67,6 +70,7 @@ def add_license(job_path, job_name, mkdocs_job_content):
   with open(job_path + "/" + job_license_file) as file:
     for line in file.readlines():
       mkdocs_job_content += "    " + line
+  return mkdocs_job_content
 
 def create_job_doc(job):
   job_path = jobs_dir + "/" + job
@@ -78,9 +82,9 @@ def create_job_doc(job):
 
   mkdocs_file_path = mkdocs_dir + "/" + jobs_dir + "/" + conf["default_stage"] + "/" + job + ".md"
 
-  add_description(job_path, job, mkdocs_job_content)
-  add_changelog(job_path, job, mkdocs_job_content)
-  add_license(job_path, job, mkdocs_job_content)
+  mkdocs_job_content += add_description(job_path, job, mkdocs_job_content)
+  mkdocs_job_content += add_changelog(job_path, job, mkdocs_job_content)
+  mkdocs_job_content += add_license(job_path, job, mkdocs_job_content)
   
   # Write final file
   with open(mkdocs_file_path, 'w+') as file:
