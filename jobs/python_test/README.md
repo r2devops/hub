@@ -35,7 +35,7 @@ Allow you to launch unit tests from your python project. The default variables w
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `APT_PACKAGES` | Packages that need to be installed | ` ` |
+| `APT_PACKAGES` <img width=450/> | Packages that need to be installed | ` ` |
 | `PYTHON_SETUP` | Bash commands to setup your python environment | `pip install pipenv; pipenv --bare install --dev` |
 | `VENV` | Command to launch your testing environment | `pipenv run` |
 | `TEST_FRAMEWORK` | Command to launch your testing framework | `pytest` |
