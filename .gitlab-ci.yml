@@ -9,10 +9,6 @@ documentation:
   stage: build
   script:
     - python3 builder/builder.py
-    ### TO REMOVE
-    - ls -R docs/jobs
-    - cat docs/jobs/build/apidoc.md
-    ###
     - mkdocs build -d ./public
   artifacts:
     when: always
