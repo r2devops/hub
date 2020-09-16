@@ -96,9 +96,9 @@ if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
   ### TO EDIT
   # for job in listdir(jobs_dir):
-    job = "python_test"
+  job = "python_test"
   ###
-    create_job_doc(job)
+  create_job_doc(job)
 
   # Using jinja2 with a template to create the index
   env = Environment(loader=FileSystemLoader(builder_dir + "/" + 'templates'))
