@@ -29,8 +29,6 @@ job_metadata_file = "metadata.yml"
 mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
 
-mkdocs_job_content = ""
-
 # Index variables
 builder_dir = "builder"
 template_dir = "templates"
@@ -43,17 +41,13 @@ def get_conf(job_path, job_name):
   with open(job_path + "/" + job_metadata_file) as file:
     return full_load(file)
 
-def add_description(job_path, job_name):
+def add_description(job_path, job_name, mkdocs_job_content):
   # Concatenate description to final file
-  global mkdocs_job_content
-  
   with open(job_path + "/" + job_description_file) as file:
     mkdocs_job_content += file.read()
 
-def add_changelog(job_path, job_name):
+def add_changelog(job_path, job_name), mkdocs_job_content:
   # Concatenate changelog to final file
-  global mkdocs_job_content
-  
   mkdocs_job_content += mk_changelog_wrapper
 
   # For now, we are just getting the latest release, but we will be adding a full link to the release later
@@ -67,10 +61,8 @@ def add_changelog(job_path, job_name):
   # Adding a new line for consistency
   mkdocs_job_content += "\n"
 
-def add_license(job_path, job_name):
+def add_license(job_path, job_name, mkdocs_job_content):
   # Concatenate license to final file
-  global mkdocs_job_content
-
   mkdocs_job_content += mk_license_wrapper
   with open(job_path + "/" + job_license_file) as file:
     for line in file.readlines():
@@ -78,6 +70,7 @@ def add_license(job_path, job_name):
 
 def create_job_doc(job):
   job_path = jobs_dir + "/" + job
+  mkdocs_job_content = ""
 
   # Getting conf for indexing  
   conf = get_conf(job_path, job)
@@ -85,14 +78,14 @@ def create_job_doc(job):
 
   mkdocs_file_path = mkdocs_dir + "/" + jobs_dir + "/" + conf["default_stage"] + "/" + job + ".md"
 
-  add_description(job_path, job)
-  add_changelog(job_path, job)
-  add_license(job_path, job)
+  add_description(job_path, job, mkdocs_job_content)
+  add_changelog(job_path, job, mkdocs_job_content)
+  add_license(job_path, job, mkdocs_job_content)
   
   # Write final file
   with open(mkdocs_file_path, 'w+') as file:
     file.write(mkdocs_job_content)
-
+  
 if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
   ### TO EDIT
