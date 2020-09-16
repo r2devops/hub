@@ -56,31 +56,3 @@ merge requests
     Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129). As soon as
     the issue will be fixed, exposed artifacts will be available in merge
     requests.
-
-## Versions
-
-* **Latest** (current -> `2020-08-09_1`) : `https://jobs.go2scale.io/latest/mkdocs.yml`
-* **Tag `2020-08-09_1`** : `https://jobs.go2scale.io/2020-08-09_1/mkdocs.yml`
-    * Rename the job from `documentation` to `mkdocs`
-    * Update the default output folder to `/documentation_build` in order to
-      ensure plug and play compatibility with [pages](/jobs/deployment/pages)
-      deployment job. **Note**: output folder can be customized using
-      `MKDOCS_OUTPUT_PATH` [variable](#variables)
-* **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/mkdocs.yml`
-
-    !!! warning
-        Since this version, `pages` job, which publish documentation on Gitlab
-        pages, isn't included anymore. It's now a dedicated job:
-        [pages](Jobs/pages).
-
-* **Tag `2020-05-31_1`** (legacy): `https://gitlab.com/go2scale/hub/-/raw/2020-05-31_1/jobs/documentation.gitlab-ci.yml`
-
-    !!! warning
-        This update introduces breaking changes. Follow [this
-        guide](https://squidfunk.github.io/mkdocs-material/releases/5/#how-to-upgrade)
-        to know how to upgrade.
-    * Upgrade Material for Mkdocs to v5
-
-* **Tag `2020-05-31_1`** (legacy): `https://gitlab.com/go2scale/hub/-/raw/2020-05-05_3/jobs/documentation.gitlab-ci.yml`
-
-    * Initial version
