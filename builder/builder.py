@@ -7,10 +7,10 @@
 #     └── <job_name>
 #         ├── <job_name>.yml
 #         ├── LICENSE
+#         ├── job.yml
 #         ├── README.md
 #         └── versions
-#             ├── 0.0.1.md
-#             ├── 0.0.2.md
+#             ├── 0.1.0.md
 #             └──...
 
 from pathlib import Path
