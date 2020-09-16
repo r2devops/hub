@@ -46,7 +46,7 @@ def add_description(job_path, job_name, mkdocs_job_content):
   with open(job_path + "/" + job_description_file) as file:
     mkdocs_job_content += file.read()
 
-def add_changelog(job_path, job_name), mkdocs_job_content:
+def add_changelog(job_path, job_name, mkdocs_job_content):
   # Concatenate changelog to final file
   mkdocs_job_content += mk_changelog_wrapper
 
