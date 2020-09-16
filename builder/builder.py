@@ -106,5 +106,5 @@ if __name__ == "__main__":
   template = env.get_template(template_name)
   index_content = template.render(index=index)
 
-  with open(mkdocs_dir + "/" + index_file, "w+") as file:
+  with open(mkdocs_dir + "/" + jobs_dir + "/" + index_file, "w+") as file:
     file.write(index_content)
