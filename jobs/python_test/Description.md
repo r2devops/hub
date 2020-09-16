@@ -51,8 +51,3 @@ python_tests:
   variables:
     TEST_FRAMEWORK: "nosetests"
 ```
-
-## Versions
-
-* **Latest** (current -> `2020-09-09_1`) : `https://jobs.go2scale.io/latest/python_test.yml`
-* **Tag `2020-09-09_1`** (initial version) : `https://jobs.go2scale.io/2020-09-09_1/python_tests.yml`

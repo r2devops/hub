@@ -8,6 +8,7 @@ documentation:
     entrypoint: [""]
   stage: build
   script:
+    - python3 builder/builder.py
     - mkdocs build -d ./public
   artifacts:
     when: always
