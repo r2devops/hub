@@ -25,7 +25,7 @@ job_changelog_dir = "versions"
 job_description_file = "README.md"
 job_license_file = "LICENSE"
 
-mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(<LATEST_RELEASE>)\n"
+mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
 
 mkdocs_job_content = ""
@@ -62,7 +62,7 @@ def add_changelog(job_path, job_name):
   for release in listdir(job_path + "/" + job_changelog_dir)[::-1]:
     with open(job_path + "/" + job_changelog_dir + "/" + release) as file:
       mkdocs_job_content += file.read()
-      # TODO replace> <include tag by the link to the release
+      # TODO replace <include tag by the link to the release
   # Adding a new line for consistency
   mkdocs_job_content += "\n"
 
@@ -96,9 +96,9 @@ if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
   ### TO EDIT
   # for job in listdir(jobs_dir):
-  job = "python_test"
+  for job in ["python_test", "trivy_image"]:
   ###
-  create_job_doc(job)
+    create_job_doc(job)
 
   # Using jinja2 with a template to create the index
   env = Environment(loader=FileSystemLoader(builder_dir + "/" + 'templates'))
