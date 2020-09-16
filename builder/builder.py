@@ -40,7 +40,7 @@ index = {"static_tests": [], "build": [], "dynamic_tests": [], "review": [], "de
 
 def get_conf(job_path, job_name):
   # Load yaml file
-  with open(job_path + "/" + job_metadata_file + ".yml") as file:
+  with open(job_path + "/" + job_metadata_file) as file:
     return full_load(file)
 
 def add_description(job_path, job_name):
