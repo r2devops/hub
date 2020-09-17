@@ -75,4 +75,5 @@ directly in pipeline `Test` tab and in merge request widget
 
 * **Latest** (current -> `2020-09-16_1`) : `https://jobs.go2scale.io/latest/trivy_image.yml`
 * **Tag `2020-09-16_1`** : `https://jobs.go2scale.io/2020-09-16_1/trivy_image.yml`
+  * Use Gitlab runner default variable to login to the Docker registry
 * **Tag `2020-08-05_1`** (initial version) : `https://jobs.go2scale.io/2020-08-05_1/trivy_image.yml`
