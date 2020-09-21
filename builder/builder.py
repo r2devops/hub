@@ -24,7 +24,7 @@ mkdocs_dir = "docs"
 job_changelog_dir = "versions"
 job_description_file = "README.md"
 job_license_file = "LICENSE"
-job_metadata_file = "metadata.yml"
+job_metadata_file = "job.yml"
 
 mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
