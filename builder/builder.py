@@ -29,7 +29,7 @@ job_metadata_file = "job.yml"
 
 mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
-mk_placeholder_wrapper = "🚧 *Work in progress*\n\nThere is no job for this stage for now"
+mk_placeholder_wrapper = "# 🚧 *Work in progress*\n\nThere is no job for this stage for now"
 
 # Index variables
 builder_dir = "builder"
