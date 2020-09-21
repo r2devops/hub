@@ -51,15 +51,3 @@ merge requests.
     Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129). As soon as
     the issue will be fixed, exposed artifacts will be available in merge
     requests.
-
-## Versions
-
-* **Latest** (current -> `2020-08-09_1`) : `https://jobs.go2scale.io/latest/apidoc.yml`
-* **Tag `2020-08-09_1`** : `https://jobs.go2scale.io/2020-08-09_1/apidoc.yml`
-    * Rename the job from `documentation` to `apidoc`
-    * Update the default output folder to `/documentation_build` in order to
-      ensure plug and play compatibility with [pages](/jobs/deployment/pages)
-      deployment job. **Note**: output folder can be customized using
-      `APIDOC_OUTPUT_PATH` [variable](#variables)
-* **Tag `2020-08-07_1`** : `https://jobs.go2scale.io/2020-08-07_1/apidoc.yml`
-    * Initial version

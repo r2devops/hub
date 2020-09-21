@@ -43,14 +43,3 @@ from previous job named `documentation`.
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `PAGES_BUILD_PATH` | Path to folder which contains documentation build | `documentation_build/` |
-
-## Versions
-
-* **Latest** (current -> `2020-08-09_1`): `https://jobs.go2scale.io/latest/pages.yml`
-* **Tag `2020-08-09_1`** : `https://jobs.go2scale.io/2020-08-09_1/pages.yml`
-    * Add possibility to retrieve build artifact from any job in previous stage
-    * Add variable `PAGES_BUILD_PATH` to indicate the location of build to
-      deploy
-    * Return error case when there is nothing to deploy
-* **Tag `2020-08-05_1`** : `https://jobs.go2scale.io/2020-08-05_1/pages.yml`
-    * Initial version

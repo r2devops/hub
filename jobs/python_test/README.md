@@ -29,13 +29,13 @@ Allow you to launch unit tests from your python project. The default variables w
 * When: `always`
 
 !!! note
-    We are not using an [alpine linux](https://alpinelinux.org/) docker image in order to improve speed over ressource efficiency. Alpine linux is using musl-libc and not glibc, so it can't use the python [wheels](https://pythonwheels.com/) with pip to get compiled dependencies while seting up your environment, and have to download and compile from source those libraries. As speed is the real issue that CI can have when building complex systems, we decided to use the general docker image of `python:3.7` based on Debian. You can see the explanation at this [link](https://pythonspeed.com/articles/alpine-docker-python/#:~:text=Don't%20use%20Alpine%20Linux,choosing%20a%20good%20base%20image).
+    We are not using an [alpine linux](https://alpinelinux.org/) docker image in order to improve speed over ressource efficiency. Alpine linux is using musl-libc and not glibc, so it can't use the python [wheels](https://pythonwheels.com/) with pip to get compiled dependencies while setting up your environment, and have to download and compile from source those libraries. As speed is the real issue that CI can have when building complex systems, we decided to use the general docker image of `python:3.7` based on Debian. You can see the explanation at this [link](https://pythonspeed.com/articles/alpine-docker-python/#:~:text=Don't%20use%20Alpine%20Linux,choosing%20a%20good%20base%20image).
 
 ### Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `APT_PACKAGES` | Packages that need to be installed | ` ` |
+| `APT_PACKAGES` <img width=450/> | Packages that need to be installed | ` ` |
 | `PYTHON_SETUP` | Bash commands to setup your python environment | `pip install pipenv; pipenv --bare install --dev` |
 | `VENV` | Command to launch your testing environment | `pipenv run` |
 | `TEST_FRAMEWORK` | Command to launch your testing framework | `pytest` |
@@ -51,8 +51,3 @@ python_tests:
   variables:
     TEST_FRAMEWORK: "nosetests"
 ```
-
-## Versions
-
-* **Latest** (current -> `2020-09-09_1`) : `https://jobs.go2scale.io/latest/python_test.yml`
-* **Tag `2020-09-09_1`** (initial version) : `https://jobs.go2scale.io/2020-09-09_1/python_tests.yml`
