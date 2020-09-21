@@ -96,10 +96,6 @@ if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
   jobs = listdir(jobs_dir)
 
-  ### TO REMOVE
-  jobs.remove("helm")
-  ###
-
   for job in jobs:
     create_job_doc(job)
 

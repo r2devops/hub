@@ -1,4 +1,4 @@
-name: helm-deploy
+name: helm_deploy
 description: A ready-to-use helm job to deploy your application
 default_stage: deployment
 icon: ☸️
