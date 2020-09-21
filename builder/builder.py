@@ -21,6 +21,7 @@ from jinja2 import Environment, FileSystemLoader
 # Job variables
 jobs_dir = "jobs"
 mkdocs_dir = "docs"
+mkdocs_placeholder_file = "placeholder.md"
 job_changelog_dir = "versions"
 job_description_file = "README.md"
 job_license_file = "LICENSE"
@@ -28,6 +29,7 @@ job_metadata_file = "job.yml"
 
 mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
+mk_placeholder_wrapper = "🚧 *Work in progress*\n\nThere is no job for this stage for now"
 
 # Index variables
 builder_dir = "builder"
@@ -91,6 +93,17 @@ def create_job_doc(job):
   # Write final file
   with open(mkdocs_file_path, 'w+') as file:
     file.write(mkdocs_job_content)
+
+def add_placeholder():
+  # Verify that there is a .md file for every stage, or mkdocs will break
+  stages = listdir(mkdocs_dir + "/" + jobs_dir)
+  stages.remove(".pages")
+
+  for stage in stages:
+    if len(listdir(mkdocs_dir + "/" + jobs_dir + "/" + stage)) == 1:
+      # There is only the .pages file, so mkdocs will break
+      with open(mkdocs_dir + "/" + jobs_dir + "/" + stage + "/" + mkdocs_placeholder_file, "w+") as file:
+        file.write(mk_placeholder_wrapper)
   
 if __name__ == "__main__":
   # Iterate over every directories in jobs directory to create their job.md for the documentation
@@ -98,6 +111,9 @@ if __name__ == "__main__":
 
   for job in jobs:
     create_job_doc(job)
+
+  # Verify that there is a .md file for every stage, or mkdocs will break
+  add_placeholder()
 
   # Using jinja2 with a template to create the index
   env = Environment(loader=FileSystemLoader(builder_dir + "/" + 'templates'))
