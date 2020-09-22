@@ -38,7 +38,10 @@ gitlab_api_url = "https://gitlab.com/api/v4/"
 # Index variables
 builder_dir = "builder"
 template_dir = "templates"
-template_name = "index.md.j2"
+template_index = "index.md.j2"
+template_changelog = "changelog.md.j2"
+template_license = "license.md.j2"
+template_code_owner = "code_owner.md.j2"
 index_file = "index.md"
 index = {"static_tests": [], "build": [], "dynamic_tests": [], "review": [], "deployment": []}
 
@@ -53,14 +56,12 @@ def add_description(job_path, job_name, mkdocs_job_content):
     mkdocs_job_content += file.read()
   return mkdocs_job_content
 
-
 def add_changelog(job_path, job_name, mkdocs_job_content):
-  # Concatenate changelog to final file
-  mkdocs_job_content += mk_changelog_wrapper
-
   # For now, we are just getting the latest release, but we will be adding a full link to the release later
   latest_release = listdir(job_path + "/" + job_changelog_dir)[-1][0:-3]
-  mkdocs_job_content = mkdocs_job_content.replace("<LATEST_RELEASE>", latest_release)
+  env = Environment(loader=FileSystemLoader(builder_dir + "/" + template_dir))
+  template = env.get_template(template_changelog)
+  mkdocs_job_content += template.render(latest_release=latest_release)
 
   for release in listdir(job_path + "/" + job_changelog_dir)[::-1]:
     with open(job_path + "/" + job_changelog_dir + "/" + release) as file:
@@ -137,8 +138,8 @@ if __name__ == "__main__":
   add_placeholder()
 
   # Using jinja2 with a template to create the index
-  env = Environment(loader=FileSystemLoader(builder_dir + "/" + 'templates'))
-  template = env.get_template(template_name)
+  env = Environment(loader=FileSystemLoader(builder_dir + "/" + template_dir))
+  template = env.get_template(template_index)
   index_content = template.render(index=index)
 
   with open(mkdocs_dir + "/" + jobs_dir + "/" + index_file, "w+") as file:
