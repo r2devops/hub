@@ -2,3 +2,4 @@ name: docker
 description: A ready-to-use docker job to push the image of your project repository to the gitlab registry
 default_stage: build
 icon: 🐳
+code-owner: thomasboni

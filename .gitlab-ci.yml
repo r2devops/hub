@@ -8,6 +8,7 @@ documentation:
     entrypoint: [""]
   stage: build
   script:
+    - pip3 install -r requirements.txt
     - python3 builder/builder.py
     - mkdocs build -d ./public
   artifacts:
