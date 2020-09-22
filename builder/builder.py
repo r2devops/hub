@@ -17,6 +17,8 @@ from pathlib import Path
 from os import listdir
 from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
+import requests
+from bs4 import BeautifulSoup
 
 # Job variables
 jobs_dir = "jobs"
@@ -30,6 +32,9 @@ job_metadata_file = "job.yml"
 mk_changelog_wrapper = "\n## Changelog\n\n* **[latest]**(current -> `<LATEST_RELEASE>`) : `<TAG_URL>`\n"
 mk_license_wrapper = "??? License\n"
 mk_placeholder_wrapper = "# 🚧 *Work in progress*\n\nThere is no job for this stage for now"
+mk_code_owner_wrapper = "\n\n-- 🔨 Maintainer: <img src='<GITLAB_IMAGE>' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [<CODE_OWNER_NAME>](<CODE_OWNER_URL>) @<CODE_OWNER>\n"
+
+gitlab_url = "https://gitlab.com:443/"
 
 # Index variables
 builder_dir = "builder"
@@ -76,6 +81,23 @@ def add_license(job_path, job_name, mkdocs_job_content):
       mkdocs_job_content += "    " + line
   return mkdocs_job_content
 
+def add_code_owner(job_path, job, mkdocs_job_content, code_owner):
+  url = gitlab_url + code_owner
+
+  response = requests.request("GET", url)
+
+  if response.status_code == 200:
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    image_url = soup.find("img")["data-src"]
+    full_name = soup.find("div", {"class": "cover-title"}).text
+    mkdocs_job_content += mk_code_owner_wrapper
+    mkdocs_job_content = mkdocs_job_content.replace("<GITLAB_IMAGE>", image_url)
+    mkdocs_job_content = mkdocs_job_content.replace("<CODE_OWNER_NAME>", full_name)
+    mkdocs_job_content = mkdocs_job_content.replace("<CODE_OWNER>", code_owner)
+    mkdocs_job_content = mkdocs_job_content.replace("<CODE_OWNER_URL>", url)
+  return mkdocs_job_content
+
 def create_job_doc(job):
   job_path = jobs_dir + "/" + job
   mkdocs_job_content = ""
@@ -89,6 +111,9 @@ def create_job_doc(job):
   mkdocs_job_content = add_description(job_path, job, mkdocs_job_content)
   mkdocs_job_content = add_changelog(job_path, job, mkdocs_job_content)
   mkdocs_job_content = add_license(job_path, job, mkdocs_job_content)
+  code_owner = conf.get("code-owner")
+  if code_owner:
+    mkdocs_job_content = add_code_owner(job_path, job, mkdocs_job_content, conf["code-owner"])
 
   # Write final file
   with open(mkdocs_file_path, 'w+') as file:
