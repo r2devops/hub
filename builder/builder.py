@@ -58,7 +58,7 @@ def get_description(job_path, job_name):
 
 def get_changelogs(job_path, job_name):
   latest = {
-    "version": listdir(job_path + "/" + job_changelog_dir)[0:-3][0],
+    "version": listdir(job_path + "/" + job_changelog_dir)[0][0:-3],
     "url": gitlab_api_url + job_name + ".yml"
   }
 
