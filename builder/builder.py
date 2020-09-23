@@ -63,11 +63,11 @@ def get_changelogs(job_path, job_name):
   }
 
   changelogs = []
-  for version in listdir(job_path + "/" + job_changelog_dir)[0:-3]:
+  for version in listdir(job_path + "/" + job_changelog_dir):
     with open(job_path + "/" + job_changelog_dir + "/" + version) as file:
       changelogs.append({
-        "version": version,
-        "url": gitlab_api_url + version + "/" + job_name + ".yml",
+        "version": version[0:-3],
+        "url": gitlab_api_url + version[0:-3] + "/" + job_name + ".yml",
         "changelog": file.readlines()
       })
   return (latest, changelogs)
