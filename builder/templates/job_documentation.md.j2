@@ -10,7 +10,7 @@
 # Changelog
 * **[latest]({{ latest.version }})**(current -> `{{ latest.url }}`)
 {% for version in changelogs %}
-* [{{ version }}]({{ version.url }})
+* [{{ version.version }}]({{ version.url }})
   {{ version.changelog }}
 {% endfor %}
 
