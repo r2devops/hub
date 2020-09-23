@@ -11,7 +11,7 @@
 * **[latest]({{ latest.url }})**(current -> `{{ latest.version }}`)
 {% for version in changelogs %}
 * **Tag `{{ version.version }}`**: {{ version.url }}
-  {% for line in version.changelog %}
+  {% for line in version.changelog -%}
   {{ line }}
   {% endfor %}
 {% endfor %}
