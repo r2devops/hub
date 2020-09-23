@@ -29,6 +29,7 @@ job_license_file = "LICENSE"
 job_metadata_file = "job.yml"
 
 gitlab_api_url = "https://gitlab.com/api/v4/"
+go2scale_url = "https://hub.go2scale.io/"
 
 # Templates variables
 builder_dir = "builder"
@@ -56,23 +57,17 @@ def get_description(job_path, job_name):
     return file.read()
 
 def get_changelogs(job_path, job_name):
-  latest_version = listdir(job_path + "/" + job_changelog_dir)[0:-3]
-  ### TODO add the url of the tag in here
-  latest_url = "<TAG_URL>"
-  version_url = "<TAG_URL>"
-  ###
-
   latest = {
-    "url": latest_url,
-    "version": latest_version
+    "version": listdir(job_path + "/" + job_changelog_dir)[0:-3][0],
+    "url": gitlab_api_url + job_name + ".yml"
   }
 
   changelogs = []
-  for version in listdir(job_path + "/" + job_changelog_dir):
+  for version in listdir(job_path + "/" + job_changelog_dir)[0:-3]:
     with open(job_path + "/" + job_changelog_dir + "/" + version) as file:
       changelogs.append({
-        "version": version[0:-3],
-        "url": version_url,
+        "version": version,
+        "url": gitlab_api_url + version + "/" + job_name + ".yml",
         "changelog": file.readlines()
       })
   return (latest, changelogs)
