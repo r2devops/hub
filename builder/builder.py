@@ -62,9 +62,9 @@ def add_changelog(job_path, job_name, mkdocs_job_content):
   latest_release = listdir(job_path + "/" + job_changelog_dir)[-1][0:-3]
   mkdocs_job_content = mkdocs_job_content.replace("<LATEST_RELEASE>", latest_release)
 
-  for release in listdir(job_path + "/" + job_changelog_dir)[::-1]:
+  for release in listdir(job_path + "/" + job_changelog_dir):
     with open(job_path + "/" + job_changelog_dir + "/" + release) as file:
-      mkdocs_job_content += file.read()
+      mkdocs_job_content += file.read() + "\n"
       # TODO replace <TAG_URL> by the link to the release
   
   # Adding a new line for consistency
