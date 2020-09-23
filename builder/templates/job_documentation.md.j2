@@ -1,0 +1,17 @@
+{{ readme }}
+
+??? License\n
+{% for line in license %}
+    {{ line }}
+{% endfor %}
+
+# Changelog
+* **[latest]({{ changelogs.latest.version }})**(current -> `{{ changelogs.latest.url }}`)
+{% for version in changelogs %}
+* [{{ version }}]({{ version.url }})
+  {{ version.changelog }}
+{% endfor %}
+
+{% if code_owner %}
+-- 🔨 Maintainer: <img src='{{ gitlab_image }}' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [{{ code_owner_name }}]({{ code_owner_url }}) @{{ code_owner }}
+{% endif %}
