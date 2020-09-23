@@ -56,7 +56,7 @@ def get_description(job_path, job_name):
     return file.read()
 
 def get_changelogs(job_path, job_name):
-  latest_version = listdir(job_path + "/" + job_changelog_dir)[-1][0:-3]
+  latest_version = listdir(job_path + "/" + job_changelog_dir)[0:-3]
   ### TODO add the url of the tag in here
   latest_url = "<TAG_URL>"
   version_url = "<TAG_URL>"
@@ -68,7 +68,7 @@ def get_changelogs(job_path, job_name):
   }
 
   changelogs = []
-  for version in listdir(job_path + "/" + job_changelog_dir)[::-1]:
+  for version in listdir(job_path + "/" + job_changelog_dir):
     with open(job_path + "/" + job_changelog_dir + "/" + version) as file:
       changelogs.append({
         "version": version[0:-3],
