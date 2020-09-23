@@ -106,11 +106,6 @@ def create_job_doc(job):
   license = get_license(job_path, job)
   user = get_user(job_path, job, conf["code-owner"])
 
-  ### TO REMOVE
-  from pprint import pprint
-  pprint(changelogs)
-  ###
-
   # Write final file
   with open(mkdocs_file_path, 'w+') as file:
     env = Environment(loader=FileSystemLoader(builder_dir + "/" + template_dir))
