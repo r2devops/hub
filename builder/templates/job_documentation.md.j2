@@ -11,7 +11,9 @@
 * **[latest]({{ latest.url }})**(current -> `{{ latest.version }}`)
 {% for version in changelogs %}
 * **Tag `{{ version.version }}`**: {{ version.url }}
-    {{ version.changelog }}
+  {% for line in version.changelog %}
+  {{ line }}
+  {% endfor %}
 {% endfor %}
 
 {% if code_owner %}
