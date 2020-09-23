@@ -2,7 +2,9 @@
 
 ??? License
 {% for line in license %}
+  {% if line %}
     {{ line }}
+  {% endif %}
 {% endfor %}
 
 # Changelog
