@@ -8,12 +8,10 @@
 {% endfor %}
 
 # Changelog
-* **[latest]({{ changelogs.latest.version }})**(current -> `{{ changelogs.latest.url }}`)
+* **[latest]({{ latest.version }})**(current -> `{{ latest.url }}`)
 {% for version in changelogs %}
-  {% if version is not "latest" %}
 * [{{ version }}]({{ version.url }})
   {{ version.changelog }}
-  {% endif %}
 {% endfor %}
 
 {% if code_owner %}

@@ -64,9 +64,8 @@ def get_changelogs(job_path, job_name):
   version_url = "<TAG_URL>"
   ###
 
-  changelogs["latest"] = {
+  latest = {
     "url": latest_url,
-    "version": latest_version
   }
 
   for version in listdir(job_path + "/" + job_changelog_dir)[::-1]:
@@ -75,7 +74,7 @@ def get_changelogs(job_path, job_name):
         "url": version_url,
         "changelog": file.read()
       }
-  return changelogs
+  return (latest, changelogs)
 
 def get_license(job_path, job_name):
   with open(job_path + "/" + job_license_file) as file:
@@ -102,7 +101,7 @@ def create_job_doc(job):
 
   # Get variables for jinja
   description = get_description(job_path, job)
-  changelogs = get_changelogs(job_path, job)
+  latest, changelogs = get_changelogs(job_path, job)
   license = get_license(job_path, job)
   user = get_user(job_path, job, conf["code-owner"])
 
@@ -118,6 +117,7 @@ def create_job_doc(job):
     file.write(template.render(
       readme = description,
       license = license,
+      latest = latest,
       changelogs = changelogs,
       gitlab_image = user["avatar_url"],
       code_owner_name = user["name"],
