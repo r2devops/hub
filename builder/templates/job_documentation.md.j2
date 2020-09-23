@@ -8,9 +8,9 @@
 {% endfor %}
 
 # Changelog
-* **[latest]({{ latest.version }})**(current -> `{{ latest.url }}`)
+* **[latest]({{ latest.url }})**(current -> `{{ latest.version }}`)
 {% for version in changelogs %}
-* [{{ version.version }}]({{ version.url }})
+* **Tag `{{ version.version }}`**: {{ version.url }}
   {{ version.changelog }}
 {% endfor %}
 
