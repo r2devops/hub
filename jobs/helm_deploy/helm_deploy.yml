@@ -76,17 +76,17 @@ cleanup_review:
 #  script:
 #    - helm secrets diff upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} -f ${VALUES_PATH}/${ENV}.yaml -f ${VALUES_PATH}/secrets.${ENV}.yaml --set-string image.tag=${CI_COMMIT_SHORT_SHA} --namespace "$KUBE_NAMESPACE" --allow-unreleased
 
-deploy_stage:
-  extends: .helm
-  stage: staging
-  environment:
-    name: staging
-    url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
-  only:
-    - master
-  except:
-    variables:
-      - ${STAGING_DISABLE}
+# deploy_stage:
+#   extends: .helm
+#   stage: staging
+#   environment:
+#     name: staging
+#     url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
+#   only:
+#     - master
+#   except:
+#     variables:
+#       - ${STAGING_DISABLE}
 
 #test_production:
 #  extends: deploy_production
@@ -94,15 +94,15 @@ deploy_stage:
 #  script:
 #    - helm secrets diff upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} -f ${VALUES_PATH}/${ENV}.yaml -f ${VALUES_PATH}/secrets.${ENV}.yaml --set-string image.tag=${CI_COMMIT_SHORT_SHA} --namespace "$KUBE_NAMESPACE" --allow-unreleased
 
-deploy_production:
-  extends: .helm
-  stage: production
-  environment:
-    name: production
-    url: https://${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
-  when: manual
-  only:
-    - master
-  except:
-    variables:
-      - ${PRODUCTION_DISABLE}
+# deploy_production:
+#   extends: .helm
+#   stage: production
+#   environment:
+#     name: production
+#     url: https://${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
+#   when: manual
+#   only:
+#     - master
+#   except:
+#     variables:
+#       - ${PRODUCTION_DISABLE}
