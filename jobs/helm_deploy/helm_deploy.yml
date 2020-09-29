@@ -2,7 +2,9 @@
 # See https://gitlab.com/go2scale/jobs/ for more informations
 
 .helm:
-  image: lachlanevenson/k8s-helm:v3.0.2
+  image:
+    name: lachlanevenson/k8s-helm:v3.0.2
+    entrypoint: [""]
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
     VALUES_PATH: "./conf/values"
