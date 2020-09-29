@@ -34,7 +34,7 @@ deploy_review:
     refs:
       - master
     variables:
-      - ${REVIEW_DISABLE}
+      - $REVIEW_DISABLE
   script:
     - if [ -f "${VALUES_PATH}/secrets.review.yaml" ]
     - then
@@ -68,7 +68,7 @@ cleanup_review:
     refs:
       - master
     variables:
-      - $REVIEW_DISABLE
+      - ${REVIEW_DISABLE}
 
 #test_stage:
 #  extends: deploy_stage
