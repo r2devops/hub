@@ -15,10 +15,10 @@
     STABLE_REPO_URL: "https://kubernetes-charts.storage.googleapis.com/"
   before_script:
     - apk add --no-cache curl gnupg
-    - curl --output /bin/kubectl ${KUBECTL_URL} \
-      && chmod a+x /bin/kubectl \
-      && mkdir ${HELM_HOME}/plugins \
-      && helm plugin install $HELMSECRETS_URL --version ${HELMSECRETS_VERSION}
+    - curl --output /bin/kubectl ${KUBECTL_URL}
+        && chmod a+x /bin/kubectl
+        && mkdir ${HELM_HOME}/plugins
+        && helm plugin install $HELMSECRETS_URL --version ${HELMSECRETS_VERSION}
     - gpg --import "${PGP_PUBLIC}"
     - gpg --allow-secret-key-import --import "${PGP_PRIVATE}"
     - helm repo add stable ${STABLE_REPO_URL}
@@ -39,13 +39,13 @@ deploy_review:
     - then
     -     SECRET_OPTION="-f ${VALUES_PATH}/secrets.review.yaml"
     - fi
-    - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} \
-        --namespace "${KUBE_NAMESPACE}" --install \
-        -f ${VALUES_PATH}/review.yaml ${SECRET_OPTION} \
-        --set-string image.registry=${REGISTRY} \
-        --set-string image.tag=${CI_COMMIT_SHA} \
-        --set-string ingress.hostPrefix="${CI_ENVIRONMENT_SLUG}." \
-        --set-string gitlab.env=${CI_ENVIRONMENT_SLUG} \
+    - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH}
+        --namespace "${KUBE_NAMESPACE}" --install
+        -f ${VALUES_PATH}/review.yaml ${SECRET_OPTION}
+        --set-string image.registry=${REGISTRY}
+        --set-string image.tag=${CI_COMMIT_SHA}
+        --set-string ingress.hostPrefix="${CI_ENVIRONMENT_SLUG}."
+        --set-string gitlab.env=${CI_ENVIRONMENT_SLUG}
         --set-string gitlab.app=${CI_PROJECT_PATH_SLUG}
 
 cleanup_review:
