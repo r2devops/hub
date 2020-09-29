@@ -40,7 +40,7 @@ deploy_review:
     - then
     -     SECRET_OPTION="-f ${VALUES_PATH}/secrets.review.yaml"
     - fi
-- 
+    - 
     - # Deploy
     - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} \
     -     --namespace "${KUBE_NAMESPACE}" --install \
