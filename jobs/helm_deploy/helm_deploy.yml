@@ -22,9 +22,9 @@
     - helm repo add stable ${STABLE_REPO_URL}
     - helm repo update
 
-
 deploy_review:
   extends: .helm
+  stage: review
   environment:
     name: review/${CI_COMMIT_REF_SLUG}
     url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
@@ -48,6 +48,7 @@ deploy_review:
 
 cleanup_review:
   extends: .helm
+  stage: review
   variables:
     GIT_STRATEGY: none
   when: manual
