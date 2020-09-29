@@ -40,10 +40,9 @@ deploy_review:
     - then
     -     SECRET_OPTION="-f ${VALUES_PATH}/secrets.review.yaml"
     - fi
-    - # Deploy
     - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH} \
     -     --namespace "${KUBE_NAMESPACE}" --install \
-    -     -f ${VALUES_PATH}/review.yaml ${SECRET_OPTION}\
+    -     -f ${VALUES_PATH}/review.yaml ${SECRET_OPTION} \
     -     --set-string image.registry=${REGISTRY} \
     -     --set-string image.tag=${CI_COMMIT_SHA} \
     -     --set-string ingress.hostPrefix="${CI_ENVIRONMENT_SLUG}." \
