@@ -68,7 +68,7 @@ cleanup_review:
     refs:
       - master
     variables:
-      - ${REVIEW_DISABLE}
+      - $REVIEW_DISABLE
 
 #test_stage:
 #  extends: deploy_stage
