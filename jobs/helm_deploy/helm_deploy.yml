@@ -14,7 +14,7 @@
     HELMSECRETS_VERSION: "v2.0.2"
     STABLE_REPO_URL: "https://kubernetes-charts.storage.googleapis.com/"
   before_script:
-    - apk add --no-cache curl gnupg
+    - apk add --no-cache curl gnupg git
     - curl --output /bin/kubectl ${KUBECTL_URL}
         && chmod a+x /bin/kubectl
         && mkdir ${HELM_HOME}/plugins
