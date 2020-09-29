@@ -25,7 +25,6 @@
 
 deploy_review:
   extends: .helm
-  stage: review
   environment:
     name: review/${CI_COMMIT_REF_SLUG}
     url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
@@ -33,8 +32,6 @@ deploy_review:
   except:
     refs:
       - master
-    variables:
-      - $REVIEW_DISABLE
   script:
     - if [ -f "${VALUES_PATH}/secrets.review.yaml" ]
     - then
@@ -51,7 +48,6 @@ deploy_review:
 
 cleanup_review:
   extends: .helm
-  stage: review
   variables:
     GIT_STRATEGY: none
   when: manual
@@ -65,8 +61,6 @@ cleanup_review:
   except:
     refs:
       - master
-    variables:
-      - ${REVIEW_DISABLE}
 
 #test_stage:
 #  extends: deploy_stage
