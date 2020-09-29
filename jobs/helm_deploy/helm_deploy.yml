@@ -6,7 +6,7 @@
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
     VALUES_PATH: "./conf/values"
-    REGISTRY: "${CI_REGISTRY_IMAGE}/$CI_COMMIT_REF_SLUG"
+    REGISTRY: "${CI_REGISTRY_IMAGE}"
   script:
     - /run.sh
 
