@@ -2,4 +2,4 @@ name: trivy_image
 description: A ready-to-use trivy job to scan your docker images
 default_stage: dynamic_tests
 icon: 🧱
-code-owner: paulrgnt
+maintainer: paulrgnt

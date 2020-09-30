@@ -90,7 +90,7 @@ def create_job_doc(job):
 
     # Getting conf for indexing
     conf = get_conf(job_path)
-    code_owner = conf.get("code-owner")
+    code_owner = conf.get("maintainer")
     index[conf["default_stage"]].append(conf)
 
     mkdocs_file_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + conf["default_stage"] + "/" + job + ".md"
@@ -99,7 +99,7 @@ def create_job_doc(job):
     description = get_description(job_path)
     latest, changelogs = get_changelogs(job_path, job)
     license_content = get_license(job_path)
-    user = get_user(conf["code-owner"])
+    user = get_user(code_owner)
 
     # Write final file
     with open(mkdocs_file_path, 'w+') as doc_file:
