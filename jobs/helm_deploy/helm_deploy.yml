@@ -13,6 +13,7 @@
     HELMSECRETS_URL: "https://github.com/futuresimple/helm-secrets"
     HELMSECRETS_VERSION: "v2.0.2"
     STABLE_REPO_URL: "https://kubernetes-charts.storage.googleapis.com/"
+    HELM_ADDITIONAL_OPTIONS: ""
 
 deploy_review:
   extends: .helm
@@ -46,6 +47,7 @@ deploy_review:
         --set-string ingress.hostPrefix="${CI_ENVIRONMENT_SLUG}."
         --set-string gitlab.env=${CI_ENVIRONMENT_SLUG}
         --set-string gitlab.app=${CI_PROJECT_PATH_SLUG}
+        ${HELM_ADDITIONAL_OPTIONS}
 
 cleanup_review:
   extends: .helm
