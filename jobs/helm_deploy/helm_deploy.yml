@@ -13,16 +13,6 @@
     HELMSECRETS_URL: "https://github.com/futuresimple/helm-secrets"
     HELMSECRETS_VERSION: "v2.0.2"
     STABLE_REPO_URL: "https://kubernetes-charts.storage.googleapis.com/"
-  script:
-    - apk add --no-cache curl gnupg git bash
-    - curl --output /bin/kubectl ${KUBECTL_URL}
-        && chmod a+x /bin/kubectl
-        && mkdir ${HELM_HOME}/plugins
-        && helm plugin install $HELMSECRETS_URL --version ${HELMSECRETS_VERSION}
-    - gpg --import "${PGP_PUBLIC}"
-    - gpg --allow-secret-key-import --import "${PGP_PRIVATE}"
-    - helm repo add stable ${STABLE_REPO_URL}
-    - helm repo update
 
 deploy_review:
   extends: .helm
@@ -35,6 +25,15 @@ deploy_review:
     refs:
       - master
   script:
+    - apk add --no-cache curl gnupg git bash
+    - curl --output /bin/kubectl ${KUBECTL_URL}
+        && chmod a+x /bin/kubectl
+        && mkdir ${HELM_HOME}/plugins
+        && helm plugin install $HELMSECRETS_URL --version ${HELMSECRETS_VERSION}
+    - gpg --import "${PGP_PUBLIC}"
+    - gpg --allow-secret-key-import --import "${PGP_PRIVATE}"
+    - helm repo add stable ${STABLE_REPO_URL}
+    - helm repo update
     - if [ -f "${VALUES_PATH}/secrets.review.yaml" ]
     - then
     -     SECRET_OPTION="-f ${VALUES_PATH}/secrets.review.yaml"
@@ -55,6 +54,15 @@ cleanup_review:
     GIT_STRATEGY: none
   when: manual
   script:
+    - apk add --no-cache curl gnupg git bash
+    - curl --output /bin/kubectl ${KUBECTL_URL}
+        && chmod a+x /bin/kubectl
+        && mkdir ${HELM_HOME}/plugins
+        && helm plugin install $HELMSECRETS_URL --version ${HELMSECRETS_VERSION}
+    - gpg --import "${PGP_PUBLIC}"
+    - gpg --allow-secret-key-import --import "${PGP_PRIVATE}"
+    - helm repo add stable ${STABLE_REPO_URL}
+    - helm repo update
     - apk add --no-cache findutils
     - helm ls --all --short -n ${KUBE_NAMESPACE} | xargs -L1 helm -n ${KUBE_NAMESPACE} delete
     # - kubectl delete namespace $KUBE_NAMESPACE # TODO: it's forbidden due to user RBAC
