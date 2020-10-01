@@ -1,0 +1,24 @@
+{{ readme }}
+
+??? License
+{% for line in license %}
+  {% if line %}
+    {{ line }}
+  {% endif %}
+{% endfor %}
+
+# Changelog
+* **[latest]({{ latest.url }})** (current -> `{{ latest.version }}`): `{{ latest.url }}`
+{% for version in changelogs %}
+??? {{ version.version }}
+    `{{ version.url }}`
+  {% for line in version.changelog %}
+    {% if line %}
+    {{ line }}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% if code_owner %}
+-- 🔨 Maintainer: <img src='{{ gitlab_image }}' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [{{ code_owner_name }}]({{ code_owner_url }}) @{{ code_owner }}
+{% endif %}

@@ -2,4 +2,4 @@ name: pages
 description: A ready-to-use gitlab pages job to deploy your static pages from gitlab
 default_stage: deployment
 icon: 🦊
-code-owner: thomasboni
+maintainer: thomasboni
