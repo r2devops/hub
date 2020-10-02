@@ -59,17 +59,16 @@ def get_description(job_path):
 def get_changelogs(job_path, job_name):
 
     latest = {
-      "version": job_name + '-' + listdir(job_path + "/" + JOB_CHANGELOG_DIR)[0][0:-3],
+      "version": listdir(job_path + "/" + JOB_CHANGELOG_DIR)[0][0:-3],
       "url": GO2SCALE_URL + job_name + ".yml"
     }
 
     changelogs = []
     for version in listdir(job_path + "/" + JOB_CHANGELOG_DIR):
-        full_version = job_name + '-' + version[0:-3]
         with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version) as changelog_file:
             changelogs.append({
-                "version": full_version,
-                "url": GO2SCALE_URL + full_version  + "/" + job_name + ".yml",
+                "version": version[0:-3],
+                "url": GO2SCALE_URL + version[0:-3] + "/" + job_name + ".yml",
                 "changelog": changelog_file.readlines()
             })
     return (latest, changelogs)
