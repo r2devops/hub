@@ -29,7 +29,7 @@ JOB_LICENSE_FILE = "LICENSE"
 JOB_METADATA_FILE = "job.yml"
 
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
-GO2SCALE_URL = "https://hub.go2scale.io/"
+GO2SCALE_URL = "https://jobs.go2scale.io/"
 
 # Templates variables
 BUILDER_DIR = "builder"
