@@ -43,13 +43,13 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `MKDOCS_OUTPUT_PATH` | Output directory path | `/ documentation_build` |
+| `MKDOCS_OUTPUT_PATH` | Output directory path | `/documentation_build` |
 
 ### Artifacts
 
 Result of documentation build is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `Documentation` in
-merge requests
+as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `Mkdocs build` in
+merge requests.
 
 !!! warning
     Exposition of artifact doesn't work currently because of [this issue from
