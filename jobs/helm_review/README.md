@@ -6,8 +6,9 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 
 ## How to use it
 
-1. Prepare your project with the files needed for the [helm chart](https://helm.sh/docs/chart_template_guide/getting_started/)
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
+1. Prepare your project with the files needed for the [helm chart](https://helm.sh/docs/chart_template_guide/getting_started/) in the `CHART_PATH` variable
+2. Prepare the PGP variables (`PGP_PUBLIC` and `PGP_PRIVATE`) in your CI/CD variables in [gitlab](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui)
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
     ```yaml
@@ -15,9 +16,9 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
       - remote: 'https://jobs.go2scale.io/helm_review.yml'
     ```
 
-3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/getting-started/#jobs-customization)
-4. Well done, your job is ready to work ! 😀
+5. Well done, your job is ready to work ! 😀
 
 ## Job details
 
@@ -43,4 +44,5 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 ### Secrets
 
 Secrets files are encrypted with the helm plugin [secrets](https://github.com/zendesk/helm-secrets).
-It will allow to decrypt any secrets.review.yaml that you have in your `${VALUES_PATH}`, like a database password for example.
+It will allow to encrypt or decrypt any yaml files that you have in your `${VALUES_PATH}` so you can push values that will be decrypted at runtime but not seen from the source code.
+For example, you can `helm secrets enc review.yaml` to encrypt it to a `secret.review.yaml`, so you will have some public variables in a `review.yalm` file and a password for example in `secrets.review.yaml`.
