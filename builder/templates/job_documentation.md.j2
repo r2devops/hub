@@ -11,13 +11,13 @@
 
 * **[latest]({{ latest.url }})** (current -> `{{ latest.version }}`):
 > ```
-  `{{ latest.url }}`
+  {{ latest.url }}
   ```
 
 {% for version in changelogs -%}
 ??? "{{ version.version }}"
     > ```
-      `{{ version.url }}`
+      {{ version.url }}
       ```
   {% for line in version.changelog %}
     {%- if line %}
