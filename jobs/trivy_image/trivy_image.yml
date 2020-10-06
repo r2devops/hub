@@ -66,7 +66,6 @@ trivy_tag:
   extends: trivy
   variables:
     IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
-  script:
-    - if [ -z ${CI_COMMIT_TAG} ]; then
-    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
-    - fi
+  rules:
+    - if: "$CI_COMMIT_TAG"
+  
