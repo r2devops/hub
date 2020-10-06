@@ -1,6 +1,9 @@
 # "Quality check" job
 # See https://gitlab.com/go2scale/jobs/ for more informations
 
+stages:
+  - static_tests
+
 quality_check:
   stage: static_tests
   image:

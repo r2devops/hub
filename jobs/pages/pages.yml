@@ -1,5 +1,8 @@
 # Job from go2scale hub --> hub.go2scale.io
 
+stages:
+  - deployment
+
 pages:
   stage: deployment
   variables:
