@@ -6,8 +6,8 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 
 ## How to use it
 
-1. Prepare your project with the files needed for the [helm chart](https://helm.sh/docs/chart_template_guide/getting_started/) in the `CHART_PATH` variable
-2. Prepare the PGP variables (`PGP_PUBLIC` and `PGP_PRIVATE`) in your CI/CD variables in [gitlab](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui)
+1. To use this job, you have to provide a helm chart to deploy your project. The chart location must be defined in the CHART_PATH variable. If you want to use custom values files, check the `VALUES_FILE` and `VALUES_SECRET_FILE` variables. More information about helm charts in [documentation](https://helm.sh/docs/chart_template_guide/getting_started/)
+2. Prepare the secret PGP variables (`PGP_PUBLIC` and `PGP_PRIVATE`) in your CI/CD variables (as files and not variables!) in [gitlab](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui) if you need encrypted variables
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
@@ -30,18 +30,25 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 
 ### Variables
 
-| Name | Description | Default |
-| ---- | ----------- | ------- |
-| `CHART_PATH` <img width=250/> | Path to the directory of the chart <img width=400/> | `./charts/$CI_PROJECT_NAME` |
-| `VALUES_PATH` | Path to value files | `./conf/values` |
-| `VALUES_FILE` | Name of the review configuration yaml file | `review.yaml` |
-| `VALUES_SECRET_FILE` | Name of the secrets review configuration yaml file | `secrets.review.yaml` |
-| `REGISTRY` | Registry from where to pull container image | `${CI_REGISTRY_IMAGE}` |
-| `KUBECTL_URL` | Url to get kubectl binary | `https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl` |
-| `HELMSECRETS_URL` | Url to get kubectl secrets plugin | `https://github.com/futuresimple/helm-secrets` |
-| `HELMSECRETS_VERSION` | Version of kubectl secrets plugin | `v2.0.2` |
-| `STABLE_REPO_URL` | Url of stable repo to add to helm | `https://kubernetes-charts.storage.googleapis.com/` |
-| `HELM_ADDITIONAL_OPTIONS` | Additional settings to give to helm for deployment | ` ` |
+| Name | Description | Default | Mandatory |
+| ---- | ----------- | ------- | --------- |
+| `CHART_PATH` <img width=250/> | Path to the directory of the chart <img width=400/> | `./charts/$CI_PROJECT_NAME` | Yes |
+| `VALUES_PATH` | Path to value files | `./conf/values` | Yes |
+| `VALUES_FILE` | Name of the review configuration yaml file | `review.yaml` | Yes |
+| `VALUES_SECRET_FILE` | Name of the secrets review configuration yaml file | `secrets.review.yaml` | Only if the secret file `VALUES_SECRET_FILE` exists |
+| `REGISTRY` | Registry from where to pull container image | `${CI_REGISTRY_IMAGE}` |  Yes |
+| `KUBECTL_URL` | Url to get kubectl binary | `https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl` | Yes |
+| `HELMSECRETS_URL` | Url to get kubectl secrets plugin | `https://github.com/futuresimple/helm-secrets` | Yes |
+| `HELMSECRETS_VERSION` | Version of kubectl secrets plugin | `v2.0.2` | Only if the secret file `VALUES_SECRET_FILE` exists |
+| `STABLE_REPO_URL` | Url of stable repo to add to helm | `https://kubernetes-charts.storage.googleapis.com/` | Yes |
+| `HELM_ADDITIONAL_OPTIONS` | Additional settings to give to helm for deployment | ` ` | No |
+
+**Gitlab CI/CD variables:**
+
+| Name | Description | Type | Mandatory |
+| ---- | ----------- | ---- | --------- | 
+| `PGP_PUBLIC` | PGP public key used to encrypt secret file | File | Only if the secret file `VALUES_SECRET_FILE` exists |
+| `PGP_PRIVATE` | PGP private key used to encrypt secret file | File | Only if the secret file `VALUES_SECRET_FILE` exists |
 
 ### Secrets
 
