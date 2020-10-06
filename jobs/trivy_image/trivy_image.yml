@@ -1,5 +1,8 @@
 # Job from go2scale hub --> hub.go2scale.io
 
+stages:
+  - dynamic_tests
+
 # Run trivy on any commit
 trivy:
   stage: dynamic_tests

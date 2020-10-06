@@ -1,5 +1,8 @@
 # Job from go2scale hub --> hub.go2scale.io
 
+stages:
+  - build
+
 apidoc:
   image:
     name: node:12.18.3-alpine3.12

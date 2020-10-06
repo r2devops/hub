@@ -1,6 +1,18 @@
 stages:
+  - static_tests
   - build
   - production
+
+ci_linter:
+  image: golang:1.15.2-alpine3.12
+  stage: static_tests
+  script:
+    - apk add --no-cache git
+    - go get gitlab.com/orobardet/gitlab-ci-linter
+    - for JOB_PATH in jobs/*; do
+    -   JOB=$(basename ${JOB_PATH})
+    -   gitlab-ci-linter ${JOB_PATH}/${JOB}.yml
+    - done
 
 documentation:
   image:

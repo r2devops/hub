@@ -1,3 +1,6 @@
+stages:
+  - build
+
 docker:
   stage: build
   image:
