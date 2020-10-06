@@ -34,6 +34,8 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 | ---- | ----------- | ------- |
 | `CHART_PATH` <img width=250/> | Path to the directory of the chart <img width=400/> | `./charts/$CI_PROJECT_NAME` |
 | `VALUES_PATH` | Path to value files | `./conf/values` |
+| `VALUES_FILE` | Name of the review configuration yaml file | `review.yaml` |
+| `VALUES_SECRET_FILE` | Name of the secrets review configuration yaml file | `secrets.review.yaml` |
 | `REGISTRY` | Registry from where to pull container image | `${CI_REGISTRY_IMAGE}` |
 | `KUBECTL_URL` | Url to get kubectl binary | `https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl` |
 | `HELMSECRETS_URL` | Url to get kubectl secrets plugin | `https://github.com/futuresimple/helm-secrets` |

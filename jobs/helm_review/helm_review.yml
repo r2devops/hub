@@ -8,6 +8,8 @@
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
     VALUES_PATH: "./conf/values"
+    VALUES_FILE: "review.yaml"
+    VALUES_SECRET_FILE: "secrets.review.yaml"
     REGISTRY: "${CI_REGISTRY_IMAGE}"
     KUBECTL_URL: "https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl"
     HELMSECRETS_URL: "https://github.com/futuresimple/helm-secrets"
@@ -35,13 +37,13 @@ deploy_review:
     - gpg --allow-secret-key-import --import "${PGP_PRIVATE}"
     - helm repo add stable ${STABLE_REPO_URL}
     - helm repo update
-    - if [ -f "${VALUES_PATH}/secrets.review.yaml" ]
+    - if [ -f "${VALUES_PATH}/${VALUES_SECRET_FILE}" ]
     - then
-    -     SECRET_OPTION="-f ${VALUES_PATH}/secrets.review.yaml"
+    -     SECRET_OPTION="-f ${VALUES_PATH}/${VALUES_SECRET_FILE}"
     - fi
     - helm secrets upgrade ${CI_PROJECT_PATH_SLUG} ${CHART_PATH}
         --namespace "${KUBE_NAMESPACE}" --install
-        -f ${VALUES_PATH}/review.yaml ${SECRET_OPTION}
+        -f ${VALUES_PATH}/${VALUES_FILE} ${SECRET_OPTION}
         --set-string image.registry=${REGISTRY}
         --set-string image.tag=${CI_COMMIT_SHA}
         --set-string ingress.hostPrefix="${CI_ENVIRONMENT_SLUG}."
