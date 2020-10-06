@@ -46,7 +46,7 @@ trivy:
 
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - if [ -z ${CI_COMMIT_TAG} ]; then
+    - if [ -z ${CI_COMMIT_SHA} ]; then
     -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
     - fi
 
@@ -66,3 +66,7 @@ trivy_tag:
   extends: trivy
   variables:
     IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  script:
+    - if [ -z ${CI_COMMIT_TAG} ]; then
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
+    - fi
