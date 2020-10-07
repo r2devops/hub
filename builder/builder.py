@@ -82,7 +82,7 @@ def get_license(license_name, copyright_holder):
     return template.render(
         year = datetime.now().year,
         copyright_holder = copyright_holder
-    )
+    ).split('\n')
 
 
 def get_user(code_owner):
