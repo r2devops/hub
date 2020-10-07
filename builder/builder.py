@@ -79,10 +79,12 @@ def get_changelogs(job_path, job_name):
 def get_license(license_name, copyright_holder):
     env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR + "/" + TEMPLATE_LICENSE_DIR))
     template = env.get_template(license_name + ".md.j2")
-    return template.render(
+    license_content = template.render(
         year = datetime.now().year,
         copyright_holder = copyright_holder
     ).split('\n')
+    license_content = [ line + '\n' for line in license_content]
+    return license_content
 
 
 def get_user(code_owner):
