@@ -3,3 +3,4 @@ description: A ready-to-use docker job to push the image of your project reposit
 default_stage: build
 icon: 🐳
 maintainer: thomasboni
+license: MIT

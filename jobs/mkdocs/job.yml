@@ -3,3 +3,4 @@ description: A ready-to-use mkdocs job to build the documentation of your projec
 default_stage: build
 icon: 📃
 maintainer: thomasboni
+license: MIT

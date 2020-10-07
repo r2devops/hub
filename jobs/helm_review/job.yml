@@ -3,3 +3,4 @@ description: A ready-to-use helm job to deploy your review environment in a merg
 default_stage: review
 icon: ☸️
 maintainer: thomasboni
+license: MIT
