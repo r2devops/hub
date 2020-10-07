@@ -12,7 +12,7 @@
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/apidoc.yml'
+      - remote: 'https://jobs.go2scale.io/{{ job_name }}.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
