@@ -1,6 +1,9 @@
 # "Helm review" jobs
 # See https://gitlab.com/go2scale/jobs/ for more informations
 
+stages:
+  - review
+
 .helm:
   image:
     name: lachlanevenson/k8s-helm:v3.0.2
