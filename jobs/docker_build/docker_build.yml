@@ -1,4 +1,4 @@
-docker:
+docker_build:
   stage: build
   image:
     name: gcr.io/kaniko-project/executor:debug-v0.20.0
