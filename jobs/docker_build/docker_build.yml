@@ -4,25 +4,28 @@ docker:
     name: gcr.io/kaniko-project/executor:debug-v0.20.0
     entrypoint: [""]
   variables:
+    IMAGE: ""
     COMMIT_CREATE_LATEST: "False"
     TAG_CREATE_LATEST: "True"
   script:
     - if [ -z ${CI_COMMIT_BRANCH} ]; then
     -   mkdir -p /kaniko/.docker/
-    -   if [ -z ${CI_COMMIT_TAG} ]; then
-    -     IMAGE_TAG=${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
-    -   else
-    -     IMAGE_TAG=${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+    -   if [ -z ${IMAGE} ]; then
+    -     if [ ! -z ${CI_COMMIT_SHA} ]; then
+    -       IMAGE=${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
+    -     elif [ ! -z ${CI_COMMIT_TAG} ]; then
+    -       IMAGE=${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+    -     fi
     -   fi
-    -   if [[ $ {COMMIT_CREATE_LATEST} == "True" ]]; then
-    -     DESTINATIONS="--destionation ${IMAGE_TAG} --destination ${CI_REGISTRY_IMAGE}:latest"
-    -   else
-    -     DESTINATIONS="--destionation ${IMAGE_TAG}"
+    -   if [[ ${COMMIT_CREATE_LATEST} == "True" ]]; then
+    -     DESTINATIONS="--destination ${IMAGE} --destination ${CI_REGISTRY_IMAGE}:latest"
+    -   elif [ ${COMMIT_CREATE_LATEST} == "False" ]]
+    -     DESTINATIONS="--destination ${IMAGE}"
     -   fi
-    -   if [[ $ {TAG_CREATE_LATEST} == "True" ]]; then
-    -     DESTINATIONS="--destionation ${IMAGE_TAG} --destination ${CI_REGISTRY_IMAGE}:latest"
-    -   else
-    -     DESTINATIONS="--destionation ${IMAGE_TAG}"
+    -   if [[ ${TAG_CREATE_LATEST} == "True" ]]; then
+    -     DESTINATIONS="--destination ${IMAGE} --destination ${CI_REGISTRY_IMAGE}:latest"
+    -   elif [[ ${TAG_CREATE_LATEST} == "False" ]]; then
+    -     DESTINATIONS="--destination ${IMAGE}"
     -   fi
     -   echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${IMAGE_TAG} --destination ${CI_REGISTRY_IMAGE}:latest

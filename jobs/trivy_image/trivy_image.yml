@@ -10,7 +10,6 @@ trivy:
       command: ["dockerd-entrypoint.sh"]
 
   variables:
-
     IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
     TRIVY_EXIT_CODE: 1
@@ -25,7 +24,6 @@ trivy:
     TRIVY_IGNORE_UNFIXED: "false"
     TRIVY_DEBUG: "false"
 
-
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
@@ -38,16 +36,20 @@ trivy:
     TRIVY_QUIET: "false"
     TRIVY_SKIP_UPDATE: "false"
 
-
   before_script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
-
+    
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
   script:
-    - if [ -z ${CI_COMMIT_SHA} ]; then
+    - if [ ! -z ${IMAGE} ]; then
     -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
+    - elif [ -z ${CI_COMMIT_SHA} ]; then
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - elif [ -z ${CI_COMMIT_TAG} ]; then
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
     - fi
 
   cache:
