@@ -39,5 +39,5 @@ pages:
   artifacts:
     paths:
     - public
-  only:
-    - latest
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
