@@ -1,9 +1,16 @@
 # Job from go2scale hub --> hub.go2scale.io
 
+
+# TODO:
+# * Details are missing during conversion from tap files to junit xml. Check
+#   issues https://gitlab.com/thomasboni/test2/-/jobs/784528784
+# * Tests report aren't really well displayed in MR:
+#   https://gitab.com/thomasboni/test2/-/merge_requests/3
+
 stages:
   - static_tests
 
-super-linter:
+super_linter:
   stage: static_tests
   image:
     name: github/super-linter:v3
@@ -12,20 +19,20 @@ super-linter:
     - /action/lib/linter.sh
   after_script:
     - npm install -g tap-junit@${TAP_JUNIT_VERSION}
-    - mkdir $CONVERTED_REPORTS_FOLDER
+    - mkdir ${CONVERTED_OUTPUT_FOLDER}
     - cd $OUTPUT_FOLDER
     - for report in *; do
-    -     cat $report | tap-junit > ${CONVERTED_REPORTS_FOLDER}/${report}.xml
+    -     cat $report | tap-junit > ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml
     - done
   variables:
     RUN_LOCAL: "true"
-    DEFAULT_WORKSPACE: $CI_BUILDS_DIR
+    DEFAULT_WORKSPACE: $CI_PROJECT_DIR
     OUTPUT_FORMAT: "tap"
     OUTPUT_FOLDER: "super-linter.report"
     CONVERTED_REPORTS_FOLDER: "converted-xml.report"
     TAP_JUNIT_VERSION: "3.1.2"
   artifacts:
     reports:
-      junit: "$CONVERTED_REPORTS_FOLDER/*.xml"
+      junit: "${CONVERTED_OUTPUT_FOLDER}/*.xml"
     expire_in: 30 days
   allow_failure: true
