@@ -2,8 +2,13 @@
 
 ## Description
 
-Simple combination of various linters, to help validate the quality of your source code.
-TODO (link to repo etc)
+This job uses the [github super-linter](https://github.com/github/super-linter)
+which is a Simple combination of various linters to help validate the quality
+of your source code. This job permit to fully integrate it in Gitlab
+(super-linter is originally made for Github Actions).
+
+More than 35 languages are supported (👉 [full
+list](https://github.com/github/super-linter#supported-linters)).
 
 ## How to use it
 
@@ -31,6 +36,9 @@ TODO (link to repo etc)
 * When: `always`
 
 ### Variables
+
+This table describe the most significant variables (👉 [full
+list](https://github.com/github/super-linter#environment-variables)).
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
