@@ -1,5 +1,0 @@
-name: coala
-description: A ready-to-use coala job to fix your source code
-default_stage: static_tests
-icon: 🐨
-maintainer: thomasboni
