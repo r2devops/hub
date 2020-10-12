@@ -119,6 +119,7 @@ def create_job_doc(job):
         template = env.get_template(TEMPLATE_DOC)
         doc_file.write(template.render(
             readme = description,
+            license_name = license_name,
             license = license_content,
             latest = latest,
             changelogs = changelogs,
