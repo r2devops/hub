@@ -54,8 +54,7 @@ release:
         OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
         if [[ $? -eq 0 ]]; then
           echo "no release for the version ${VERSION}"
-          echo ${CI_JOB_TOKEN}
-          curl --header 'Content-Type: application/json' --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
+          curl --header 'Content-Type: application/json' --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
             --data "{ \
                 \"name\": \"${JOB}-${VERSION}\", \
                 \"tag_name\": \"${JOB}-${VERSION}\", \
