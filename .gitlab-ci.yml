@@ -53,10 +53,14 @@ release:
     - else
     -   echo "release already done"
     - fi
-    # - for JOB in jobs/*; do
-    # -   for VERSION in jobs/${JOB}/versions/*; do
-    # -     if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION%.*} | jq -r ".message") =~ "null" ]]; then
-    # -       echo "no release for this version"
-    # -     fi
-    # -   done
-    # - done
+    - for JOB in jobs/*; do
+    -   echo "Job ${JOB}"
+    -   for VERSION in jobs/${JOB}/versions/*; do
+    -     echo "Version ${VERSION}"
+    -     if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION%.*} | jq -r ".message") =~ "null" ]]; then
+    -       echo "no release for this version"
+    -     else
+    -       echo "release exists"
+    -     fi
+    -   done
+    - done
