@@ -48,16 +48,11 @@ release:
   variables:
 
   script:
-    - if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/test2 | jq -r ".message") =~ "null" ]]; then
-    -   echo "no release for this version"
-    - else
-    -   echo "release already done"
-    - fi
-    - for JOB in $(basename jobs/*); do
-    -   echo "Job ${JOB}"
-    -   for VERSION in $(basename jobs/${JOB}/versions/*); do
-    -     echo "Version ${VERSION}"
-    -     if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION%.*} | jq -r ".message") =~ "null" ]]; then
+    - for JOB in jobs/*; do
+    -   JOB=$(basename ${JOB})
+    -   for VERSION in jobs/${JOB}/versions/*; do
+    -     VERSION=$(basename ${VERSION} .md)
+    -     if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | jq -r ".message") =~ "null" ]]; then
     -       echo "no release for this version"
     -     else
     -       echo "release exists"
