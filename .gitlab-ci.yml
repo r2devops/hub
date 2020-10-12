@@ -56,6 +56,7 @@ release:
     -     if [[ $? -eq 0 ]]; then
     -       echo "no release for the version ${VERSION}"
     -       release-cli create --tag-name ${JOB}-${VERSION}
+                                --name job-${JOB}-${VERSION}
                                 --description $(cat jobs/${JOB}/versions/${VERSION}.md)
                                 --assets-link "{\"name\":\"Hub url\",\"url\":\"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\",\"link_type\":\"other\",\"filepath\":\"jobs/${JOB}/${JOB}.yml\"}"
     -     else
