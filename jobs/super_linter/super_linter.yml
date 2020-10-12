@@ -1,12 +1,5 @@
 # Job from go2scale hub --> hub.go2scale.io
 
-
-# TODO:
-# * Details are missing during conversion from tap files to junit xml. Check
-#   issues https://gitlab.com/thomasboni/test2/-/jobs/784528784
-# * Tests report aren't really well displayed in MR:
-#   https://gitab.com/thomasboni/test2/-/merge_requests/3
-
 stages:
   - static_tests
 
@@ -27,6 +20,7 @@ super_linter:
   variables:
     RUN_LOCAL: "true"
     DEFAULT_WORKSPACE: $CI_PROJECT_DIR
+    DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
     OUTPUT_FORMAT: "tap"
     OUTPUT_FOLDER: "super-linter.report"
     CONVERTED_REPORTS_FOLDER: "converted-xml.report"
