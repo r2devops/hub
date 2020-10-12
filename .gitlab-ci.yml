@@ -50,8 +50,7 @@ release:
   script:
     - for JOB in jobs/*; do
     -   for VERSION in jobs/${JOB}/versions/*; do
-    -     OUT=$(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION%.*} | jq -r ".message")
-    -     if [[ ! ${OUT} =~ "null" ]]; then
+    -     if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION%.*} | jq -r ".message") =~ "null" ]]; then
     -       echo "no release for this version"
     -     fi
     -   done
