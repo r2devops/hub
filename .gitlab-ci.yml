@@ -55,8 +55,11 @@ release:
     -     OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
     -     if [[ $? -eq 0 ]]; then
     -       echo "no release for the version ${VERSION}"
-    -       release-cli create --name job-${JOB}-${VERSION} --description $(cat jobs/${JOB}/versions/${VERSION}.md) --tag-name ${JOB}-${VERSION} --ref ${CI_COMMIT_SHA}
-              --assets-link "{\"name\":\"Hub url\",\"url\":\"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\",\"link_type\":\"other\",\"filepath\":\"jobs/${JOB}/${JOB}.yml\"}"
+    -       release-cli create --name job-${JOB}-${VERSION}
+                                --description $(cat jobs/${JOB}/versions/${VERSION}.md)
+                                --tag-name ${JOB}-${VERSION}
+                                --ref ${CI_COMMIT_SHA}
+                                --assets-link "{\"name\":\"Hub url\",\"url\":\"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\",\"link_type\":\"other\",\"filepath\":\"jobs/${JOB}/${JOB}.yml\"}"
     -     else
     -       echo "release ${VERSION} exists"
     -     fi
