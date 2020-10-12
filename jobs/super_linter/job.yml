@@ -1,5 +1,5 @@
 name: super_linter
-description: Simple combination of various linters, to help validate the quality of your source code.
+description: Simple combination of various linters, to help validate the quality of your source code
 default_stage: static_tests
-icon: ✅
+icon: 🔎
 maintainer: thomasboni
