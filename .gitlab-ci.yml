@@ -58,9 +58,12 @@ release:
     -       release-cli create --tag-name ${JOB}-${VERSION}
                                 --name job-${JOB}-${VERSION}
                                 --description $(cat jobs/${JOB}/versions/${VERSION}.md)
+                                --ref jobs/${JOB}/${JOB}.yml
                                 --assets-link "{\"name\":\"Hub url\",\"url\":\"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\",\"link_type\":\"other\",\"filepath\":\"jobs/${JOB}/${JOB}.yml\"}"
     -     else
     -       echo "release ${VERSION} exists"
     -     fi
     -   done
     - done
+  # rules:
+  #   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
