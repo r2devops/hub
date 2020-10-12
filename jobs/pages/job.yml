@@ -3,3 +3,4 @@ description: A ready-to-use gitlab pages job to deploy your static pages from gi
 default_stage: deployment
 icon: 🦊
 maintainer: thomasboni
+license: MIT

@@ -18,6 +18,7 @@ from os import listdir
 from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
 import requests
+from datetime import datetime
 
 # Job variables
 JOBS_DIR = "jobs"
@@ -25,7 +26,6 @@ MKDOCS_DIR = "docs"
 MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
-JOB_LICENSE_FILE = "LICENSE"
 JOB_METADATA_FILE = "job.yml"
 
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
@@ -37,7 +37,9 @@ TEMPLATE_DIR = "templates"
 TMEPLATE_INDEX = "index.md.j2"
 TEMPLATE_DOC = "job_documentation.md.j2"
 TEMPLATE_PLACEHOLDER = "placeholder.md.j2"
+TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
+
 index = {
     "static_tests": [],
     "build": [],
@@ -64,6 +66,7 @@ def get_changelogs(job_path, job_name):
     }
 
     changelogs = []
+
     for version in listdir(job_path + "/" + JOB_CHANGELOG_DIR):
         with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version) as changelog_file:
             changelogs.append({
@@ -73,9 +76,16 @@ def get_changelogs(job_path, job_name):
             })
     return (latest, changelogs)
 
-def get_license(job_path):
-    with open(job_path + "/" + JOB_LICENSE_FILE) as license_file:
-        return license_file.readlines()
+def get_license(license_name, copyright_holder):
+    env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR + "/" + TEMPLATE_LICENSE_DIR))
+    template = env.get_template(license_name + ".md.j2")
+    license_content = template.render(
+        year = datetime.now().year,
+        copyright_holder = copyright_holder
+    ).split('\n')
+    license_content = [ line + '\n' for line in license_content]
+    return license_content
+
 
 def get_user(code_owner):
     url = GITLAB_API_URL + "users?username=" + code_owner
@@ -92,6 +102,7 @@ def create_job_doc(job):
     # Getting conf for indexing
     conf = get_conf(job_path)
     code_owner = conf.get("maintainer")
+    license_name = conf.get("license")
     index[conf["default_stage"]].append(conf)
 
     mkdocs_file_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + conf["default_stage"] + "/" + job + ".md"
@@ -99,7 +110,7 @@ def create_job_doc(job):
     # Get variables for jinja
     description = get_description(job_path)
     latest, changelogs = get_changelogs(job_path, job)
-    license_content = get_license(job_path)
+    license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
 
     # Write final file
@@ -108,6 +119,7 @@ def create_job_doc(job):
         template = env.get_template(TEMPLATE_DOC)
         doc_file.write(template.render(
             readme = description,
+            license_name = license_name,
             license = license_content,
             latest = latest,
             changelogs = changelogs,
@@ -115,7 +127,7 @@ def create_job_doc(job):
             code_owner_name = user["name"],
             code_owner = code_owner,
             code_owner_url = user["web_url"]
-      ))
+    ))
 
 def add_placeholder():
     # Verify that there is a .md file for every stage, or mkdocs will break

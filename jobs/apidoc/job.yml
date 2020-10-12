@@ -3,3 +3,4 @@ description: A ready-to-use apidoc job to build a web documentation of your API
 default_stage: build
 icon: 📒
 maintainer: thomasboni
+license: MIT

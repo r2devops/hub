@@ -3,3 +3,4 @@ description: A ready-to-use pipenv+pytest environment to launch your unit tests
 default_stage: static_tests
 icon: 🐍
 maintainer: FulcrandG
+license: MIT

@@ -3,3 +3,4 @@ description: A ready-to-use trivy job to scan your docker images
 default_stage: dynamic_tests
 icon: 🧱
 maintainer: paulrgnt
+license: Apache-2.0
