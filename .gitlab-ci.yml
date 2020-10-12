@@ -44,10 +44,9 @@ pages:
 
 # See https://gitlab.com/gitlab-org/release-cli/-/blob/master/docs/index.md#usage
 release:
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.1.0
+  image: curlimages/curl:7.72.0
   stage: deployment
   script:
-    - apk add --no-cache curl
     - for JOB in jobs/*; do
     -   JOB=$(basename ${JOB})
     -   for VERSION in jobs/${JOB}/versions/*; do
@@ -55,11 +54,9 @@ release:
     -     OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
     -     if [[ $? -eq 0 ]]; then
     -       echo "no release for the version ${VERSION}"
-    -       release-cli create --tag-name ${JOB}-${VERSION}
-                                --name job-${JOB}-${VERSION}
-                                --description $(cat jobs/${JOB}/versions/${VERSION}.md)
-                                --ref jobs/${JOB}/${JOB}.yml
-                                --assets-link "{\"name\":\"Hub url\",\"url\":\"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\",\"link_type\":\"other\",\"filepath\":\"jobs/${JOB}/${JOB}.yml\"}"
+    -       curl --header 'Content-Type: application/json' --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
+              --data '{ "name": "'${JOB}-${VERSION}'", "tag_name": "'${JOB}-${VERSION}'", "description": "'$(cat jobs/${JOB}/versions/${VERSION}.md)'", "assets": { "links": [{ "name": "Hub link", "url": "https://jobs.go2scale.io/'${VERSION}/${JOB}.yml'", "filepath": "jobs/'${JOB}/${JOB}.yml'", "link_type":"other" }] } }' \
+              --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
     -     else
     -       echo "release ${VERSION} exists"
     -     fi
