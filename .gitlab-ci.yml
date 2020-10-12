@@ -53,9 +53,9 @@ release:
     -   for VERSION in jobs/${JOB}/versions/*; do
     -     VERSION=$(basename ${VERSION} .md)
     -     if [[ ! $(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | jq -r ".message") =~ "null" ]]; then
-    -       echo "no release for this version"
+    -       echo "no release for version ${VERSION}"
     -     else
-    -       echo "release exists"
+    -       echo "release ${VERSION} exists"
     -     fi
     -   done
     - done
