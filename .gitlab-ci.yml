@@ -54,21 +54,21 @@ release:
         OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
         if [[ $? -eq 0 ]]; then
           echo "no release for the version ${VERSION}"
-          curl --header 'Content-Type: application/json' --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}"
-            --data "{
-                \"name\": \"${JOB}-${VERSION}\",
-                \"tag_name\": \"${JOB}-${VERSION}\",
-                \"description\": \"$(cat jobs/${JOB}/versions/${VERSION}.md)\",
-                \"assets\": {
-                  \"links\": [
-                    { \"name\": \"Hub link\",
-                      \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\",
-                      \"filepath\": \"/jobs/${JOB}/${JOB}.yml\",
-                      \"link_type\":\"other\"
-                    }
-                  ]
-                }
-              }"
+          curl --header 'Content-Type: application/json' --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
+            --data "{ \
+                \"name\": \"${JOB}-${VERSION}\", \
+                \"tag_name\": \"${JOB}-${VERSION}\", \
+                \"description\": \"$(cat jobs/${JOB}/versions/${VERSION}.md)\", \
+                \"assets\": { \
+                  \"links\": [ \
+                    { \"name\": \"Hub link\", \
+                      \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\", \
+                      \"filepath\": \"/jobs/${JOB}/${JOB}.yml\", \
+                      \"link_type\":\"other\" \
+                    } \
+                  ] \
+                } \
+              }" \
             --request POST https://gitlab.example.com/api/v4/projects/go2scale%2Fhub/releases
         else
           echo "release ${VERSION} exists"
