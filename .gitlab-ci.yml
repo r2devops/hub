@@ -42,7 +42,7 @@ pages:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
-# See https://gitlab.com/gitlab-org/release-cli/-/blob/master/docs/index.md#usage
+# See https://docs.gitlab.com/ee/api/releases/
 release:
   image: curlimages/curl:7.72.0
   stage: deployment
@@ -69,7 +69,7 @@ release:
                   ] \
                 } \
               }" \
-            --request POST https://gitlab.example.com/api/v4/projects/go2scale%2Fhub/releases
+            --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
         else
           echo "release ${VERSION} exists"
         fi
