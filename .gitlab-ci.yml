@@ -1,7 +1,7 @@
 stages:
   - static_tests
   - build
-  - production
+  - deployment
 
 ci_linter:
   image: golang:1.15.2-alpine3.12
@@ -30,7 +30,7 @@ documentation:
     - public/
 
 pages:
-  stage: production
+  stage: deployment
   script:
     - echo 'Deploying on Gitlab pages'
   needs:
@@ -41,3 +41,18 @@ pages:
     - public
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+release:
+  image: dwdraju/alpine-curl-jq
+  stage: deployment
+  variables:
+
+  script:
+    - for $JOB in jobs/; do
+    -   for $VERSION in jobs/${JOB}/versions; do
+    -     OUT=$(curl -s -D "/dev/null" https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION%.*} | jq -r ".message")
+    -     if [[ OUT ~= "null" ]]
+    -       echo "no release for this version"
+    -     fi
+    -   done
+    - done
