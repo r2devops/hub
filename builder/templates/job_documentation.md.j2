@@ -1,8 +1,7 @@
 {{ readme }}
 
 ??? License: {{ license_name }}
-
-{%- for line in license -%}
+{% for line in license -%}
   {%- if line %}
     {{ line }}
   {%- endif -%}
