@@ -52,25 +52,20 @@ release:
       JOB=$(basename ${JOB})
       for VERSION in jobs/${JOB}/versions/*; do
         VERSION=$(basename ${VERSION} .md)
-        OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
-        if [[ $? -eq 0 ]]; then
-          echo "Releasing ${JOB}-${VERSION}"
-          curl --header 'Content-Type: application/json' --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-            --data "{ \
-                \"name\": \"${JOB}-${VERSION}\", \
-                \"tag_name\": \"${JOB}-${VERSION}\", \
-                \"description\": \"$(cat jobs/${JOB}/versions/${VERSION}.md)\", \
-                \"assets\": { \
-                  \"links\": [ \
-                    { \"name\": \"Hub link\", \
-                      \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\" \
-                    } \
-                  ] \
-                } \
-              }" \
-            --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
-        else
-          echo "Release ${VERSION} for job ${JOB} exists"
+        curl --header 'Content-Type: application/json' --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+          --data "{ \
+              \"name\": \"${JOB}-${VERSION}\", \
+              \"tag_name\": \"${JOB}-${VERSION}\", \
+              \"description\": \"$(cat jobs/${JOB}/versions/${VERSION}.md)\", \
+              \"assets\": { \
+                \"links\": [ \
+                  { \"name\": \"Hub link\", \
+                    \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\" \
+                  } \
+                ] \
+              } \
+            }" \
+          --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
         fi
       done
     done
