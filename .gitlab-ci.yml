@@ -63,8 +63,6 @@ release:
                   \"links\": [ \
                     { \"name\": \"Hub link\", \
                       \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\", \
-                      \"filepath\": \"/jobs/${JOB}/${JOB}.yml\", \
-                      \"link_type\":\"other\" \
                     } \
                   ] \
                 } \
