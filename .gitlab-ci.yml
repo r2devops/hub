@@ -53,7 +53,6 @@ release:
         VERSION=$(basename ${VERSION} .md)
         OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
         if [[ $? -eq 0 ]]; then
-          echo "no release for the version ${VERSION}"
           curl --header 'Content-Type: application/json' --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
             --data "{ \
                 \"name\": \"${JOB}-${VERSION}\", \
@@ -68,8 +67,6 @@ release:
                 } \
               }" \
             --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
-        else
-          echo "release ${VERSION} exists"
         fi
       done
     done
