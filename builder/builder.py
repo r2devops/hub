@@ -59,7 +59,8 @@ def get_description(job_path):
         return readme_file.read()
 
 def get_changelogs(job_path, job_name):
-    versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR).reverse()
+    versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR)
+    versions.reverse()
     latest = {
       "version": versions[0][0:-3],
       "url": GO2SCALE_URL + job_name + ".yml"
