@@ -62,7 +62,7 @@ release:
                 \"assets\": { \
                   \"links\": [ \
                     { \"name\": \"Hub link\", \
-                      \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\", \
+                      \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\" \
                     } \
                   ] \
                 } \
