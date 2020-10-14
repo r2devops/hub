@@ -23,7 +23,7 @@ super_linter:
     DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
     OUTPUT_FORMAT: "tap"
     OUTPUT_FOLDER: "super-linter.report"
-    CONVERTED_REPORTS_FOLDER: "converted-xml.report"
+    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
     TAP_JUNIT_VERSION: "3.1.2"
   artifacts:
     reports:
