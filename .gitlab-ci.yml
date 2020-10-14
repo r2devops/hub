@@ -43,7 +43,7 @@ pages:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
 # See https://docs.gitlab.com/ee/api/releases/
-# We can only control the link to the hub, the release is still storing the complete source code
+# We can only control the link to the hub, the release is still storing the source code
 release:
   image: curlimages/curl:7.72.0
   stage: deployment
@@ -54,6 +54,7 @@ release:
         VERSION=$(basename ${VERSION} .md)
         OUT=$(curl https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases/${JOB}-${VERSION} | grep '{"message":"403 Forbidden"}')
         if [[ $? -eq 0 ]]; then
+          echo "Releasing ${JOB}-${VERSION}"
           curl --header 'Content-Type: application/json' --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
             --data "{ \
                 \"name\": \"${JOB}-${VERSION}\", \
@@ -68,6 +69,8 @@ release:
                 } \
               }" \
             --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
+        else
+          echo "Release ${VERSION} for job ${JOB} exists"
         fi
       done
     done
