@@ -1,0 +1,32 @@
+# Job from go2scale hub --> hub.go2scale.io
+
+stages:
+  - static_tests
+
+super_linter:
+  stage: static_tests
+  image:
+    name: github/super-linter:v3
+    entrypoint: [""]
+  script:
+    - /action/lib/linter.sh
+  after_script:
+    - npm install -g tap-junit@${TAP_JUNIT_VERSION}
+    - mkdir ${CONVERTED_OUTPUT_FOLDER}
+    - cd $OUTPUT_FOLDER
+    - for report in *; do
+    -     cat $report | tap-junit > ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml
+    - done
+  variables:
+    RUN_LOCAL: "true"
+    DEFAULT_WORKSPACE: $CI_PROJECT_DIR
+    DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
+    OUTPUT_FORMAT: "tap"
+    OUTPUT_FOLDER: "super-linter.report"
+    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
+    TAP_JUNIT_VERSION: "3.1.2"
+  artifacts:
+    reports:
+      junit: "${CONVERTED_OUTPUT_FOLDER}/*.xml"
+    expire_in: 30 days
+  allow_failure: true
