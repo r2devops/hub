@@ -9,17 +9,15 @@ docker_build:
     TAG_CREATE_LATEST: "true"
   script:
     - mkdir -p /kaniko/.docker/
-    - if [ -z ${IMAGE} ]; then
-    -   if [ ! -z ${CI_COMMIT_TAG} ]; then
-    -     IMAGE=${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
-    -     if [[ ${TAG_CREATE_LATEST} == "true" ]]; then
-    -       DESTINATIONS="--destination ${CI_REGISTRY_IMAGE}:latest"
-    -     fi
-    -   else; then
-    -     IMAGE=${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
-    -     if [[ ${COMMIT_CREATE_LATEST} == "true" ]]; then
-    -       DESTINATIONS="--destination ${CI_REGISTRY_IMAGE}:latest"
-    -     fi
+    - if [ ! -z ${CI_COMMIT_TAG} ]; then
+    -   IMAGE=${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+    -   if [ ${TAG_CREATE_LATEST} == "true ]; then
+    -     DESTINATIONS="--destination ${CI_REGISTRY_IMAGE}:latest"
+    -   fi
+    - elif [ -z ${IMAGE} ]; then
+    -   IMAGE=${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
+    -   if [ ${COMMIT_CREATE_LATEST} == "true" ]; then
+    -     DESTINATIONS="--destination ${CI_REGISTRY_IMAGE}:latest"
     -   fi
     - fi
     - DESTINATIONS+="--destination ${IMAGE}"
