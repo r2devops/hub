@@ -5,7 +5,11 @@ site_author: 'Go2Scale <cto@go2scale.com>'
 site_url: 'https://go2scale.gitlab.io/hub/'
 
 # Copyright
-copyright: 'Copyright &copy; 2020 Go2Scale'
+copyright: '
+🍪 This website uses cookies  <br/>
+Copyright &copy; 2020 Go2Scale
+
+'
 
 # Repository
 repo_name: 'go2scale/hub'
@@ -96,3 +100,7 @@ plugins:
   - awesome-pages
   - minify:
       minify_html: true # minification of html
+
+google_analytics:
+  - UA-180635226-1
+  - auto
