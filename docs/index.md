@@ -1,6 +1,6 @@
 # Home
 
-Welcome to the Go2Scale hub ! 🎉
+🎉Welcome to the Go2Scale hub ! 🎉
 
 **Go2Scale hub** is a collaborative hub of CI & CD
 **ready to use** jobs which helps you to quickly build powerful pipelines for your
