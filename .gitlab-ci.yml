@@ -3,6 +3,15 @@ stages:
   - build
   - deployment
 
+include:
+  - remote: 'https://jobs.go2scale.io/mkdocs.yml'
+  - remote: 'https://jobs.go2scale.io/pages.yml'
+
+mkdocs:
+  before_script:
+    - pip3 install -r requirements.txt
+    - python3 builder/builder.py
+
 ci_linter:
   image: golang:1.15.2-alpine3.12
   stage: static_tests
@@ -13,34 +22,6 @@ ci_linter:
     -   JOB=$(basename ${JOB_PATH})
     -   gitlab-ci-linter ${JOB_PATH}/${JOB}.yml
     - done
-
-documentation:
-  image:
-    name: squidfunk/mkdocs-material:5.2.2
-    entrypoint: [""]
-  stage: build
-  script:
-    - pip3 install -r requirements.txt
-    - python3 builder/builder.py
-    - mkdocs build -d ./public
-  artifacts:
-    when: always
-    expose_as: "Documentation"
-    paths:
-    - public/
-
-pages:
-  stage: deployment
-  script:
-    - echo 'Deploying on Gitlab pages'
-  needs:
-    - job: documentation
-      artifacts: true
-  artifacts:
-    paths:
-    - public
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
