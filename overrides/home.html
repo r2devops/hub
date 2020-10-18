@@ -9,16 +9,13 @@
           <img src="images/illustration.png" alt="" width="" height="" draggable="false">
         </div>
         <div class="tx-hero__content">
-          <h1>{{ config.landing_page.title }}</h1>
-          <p>{{ config.landing_page.description }}</p>
+          <h1>{{ config.extra.landing_page.title }}</h1>
+          <p>{{ config.extra.landing_page.description }}</p>
           <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
             Get started
           </a>
           <a href="https://discord.gg/5QKpGqR" title="{{ page.next_page.title | e }}" class="md-button">
-            Join the community
-          </a>
-          <a href="{{ config.repo_url }}" title="{{ lang.t('source.link.title') }}" class="md-button md-button--primary">
-            Go to Gitlab
+            Join Community
           </a>
         </div>
       </div>

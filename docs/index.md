@@ -1,5 +1,5 @@
 ---
 template: home.html
-title: Material for MkDocs
+title: Go2Scale HUB
 ---
 
