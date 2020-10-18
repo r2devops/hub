@@ -1,4 +1,4 @@
-# Setup
+# Use the HUB
 
 ## 📝 Prerequisites
 

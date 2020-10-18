@@ -1,5 +1,5 @@
 # Project information
-site_name: Go2Scale hub
+site_name: Go2Scale HUB
 site_description: 'Ready to use CI/CD Jobs for your Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
 site_url: 'https://go2scale.gitlab.io/hub/'
@@ -15,16 +15,12 @@ Copyright &copy; 2020 Go2Scale
 repo_name: 'go2scale/hub'
 repo_url: 'https://gitlab.com/go2scale/hub'
 
-# Landing page
-landing_page:
-  title: 'Welcome to the Go2Scale hub ! 🎉'
-  description: 'Collaborative hub of CI & CD ready to use jobs which helps you to quickly build powerful pipelines for your projects'
-
 # Navigation
 nav:
   - Home: index.md
   - Getting started:
-    - Setup: setup.md
+    - Concept: concept.md
+    - Use the HUB: use-the-hub.md
     - Versioning: versioning.md
     - Contributing: contributing.md
     - License: license.md
@@ -33,8 +29,13 @@ nav:
 
 # Customization
 extra:
+
+  # Landing page
+  landing_page:
+    title: 'Create powerful CI/CD pipelines, easily'
+    description: 'Use this collection of ready-to-use jobs to quickly create amazing pipelines for your projects. Simply select your jobs, we take care of the rest. Enjoy it after a 10-minutes setup.'
+
   social:
-  # TODO: update with Go2Scale social networks
     - icon: 'fontawesome/brands/discord'
       link: 'https://discord.gg/5QKpGqR'
     - icon: 'fontawesome/solid/globe'
@@ -55,7 +56,7 @@ theme:
   custom_dir: 'overrides'
   # Color
   palette:
-    primary: 'indigo' # choose: https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
+    primary: 'indigo'
     accent: 'indigo'
   # Text
   language: 'en'
@@ -70,7 +71,7 @@ theme:
     - navigation.tabs
     - navigation.instant
 
-# Extensions (https://squidfunk.github.io/mkdocs-material/extensions/admonition/)
+# Extensions (https://squidfunk.github.io/mkdocs-material/reference/abbreviations/)
 markdown_extensions:
   - attr_list
   - admonition # block-styled content (note, idea, warning, ...)
