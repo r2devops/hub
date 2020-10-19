@@ -56,8 +56,7 @@ theme:
   custom_dir: 'overrides'
   # Color
   palette:
-    primary: 'indigo'
-    accent: 'indigo'
+    scheme: 'go2scale'
   # Text
   language: 'en'
   direction: 'ltr'
