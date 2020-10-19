@@ -33,7 +33,7 @@ extra:
   # Landing page
   landing_page:
     title: 'Create powerful CI/CD pipelines, easily'
-    description: 'Use this collection of ready-to-use jobs to quickly create amazing pipelines for your projects. Simply select your jobs, we take care of the rest. Enjoy it after a 10-minutes setup.'
+    description: 'Benefit from our collection of ready-to-use jobs to quickly create amazing pipelines for your projects. The setup will only take you 3 clicks: just select the jobs and enjoy your CI/CD !'
 
   social:
     - icon: 'fontawesome/brands/discord'
