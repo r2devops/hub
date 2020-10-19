@@ -40,8 +40,6 @@ trivy:
     REGISTRY_USER: ""
     REGISTRY_PASSWORD: ""
     CUSTOM_TAG: ""
-    COMMIT_CREATE_LATEST: "false"
-    TAG_CREATE_LATEST: "true"
 
   script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
