@@ -36,20 +36,30 @@ trivy:
     TRIVY_QUIET: "false"
     TRIVY_SKIP_UPDATE: "false"
 
-  before_script:
+    CUSTOM_REGISTRY: ""
+    REGISTRY_USER: ""
+    REGISTRY_PASSWORD: ""
+    CUSTOM_TAG: ""
+    COMMIT_CREATE_LATEST: "false"
+    TAG_CREATE_LATEST: "true"
+
+  script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
-    
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-  script:
-    - if [ ! -z ${IMAGE} ]; then
-    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
-    - elif [ -z ${CI_COMMIT_SHA} ]; then
-    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-    - elif [ -z ${CI_COMMIT_TAG} ]; then
+    - if [ ! -z ${CUSTOM_REGISTRY} ]; then
+    -   docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $CUSTOM_REGISTRY
+    - else
+    -   docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - fi
+
+    - if [ ! -z ${CUSTOM_TAG} ]; then
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $CUSTOM_TAG
+    - elif [ ! -z ${CI_COMMIT_TAG} ]; then
     -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - else
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - fi
 
   cache:
@@ -61,13 +71,4 @@ trivy:
       junit: "$TRIVY_OUTPUT"
     expire_in: 30 days
     when: always
-  dependencies: []
 
-# Run trivy on tag commit
-trivy_tag:
-  extends: trivy
-  variables:
-    IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
-  rules:
-    - if: "$CI_COMMIT_TAG"
-  
