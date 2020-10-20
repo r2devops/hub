@@ -11,10 +11,6 @@ docker_build:
     COMMIT_CREATE_LATEST: "false"
     TAG_CREATE_LATEST: "true"
   script:
-
-    - echo "CI_REGISTRY $CI_REGISTRY"
-    - echo "CI_REGISTRY_IMAGE $CI_REGISTRY_IMAGE"
-
     - mkdir -p /kaniko/.docker/
     - if [ ! -z ${CUSTOM_REGISTRY} ]; then
     -   echo "{\"auths\":{\"$CUSTOM_REGISTRY\":{\"username\":\"$REGISTRY_USER\",\"password\":\"$REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
@@ -35,9 +31,6 @@ docker_build:
     -     OPTIONAL_TAG="--destination ${REGISTRY_IMAGE}:latest"
     -   fi
     - fi
-
-    - echo "REGISTRY_IMAGE $REGISTRY_IMAGE"
-    - echo "OPTIONAL_TAG $OPTIONAL_TAG"
 
     - if [ ! -z ${CUSTOM_TAG} ]; then
     -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${REGISTRY_IMAGE}:${CUSTOM_TAG}
