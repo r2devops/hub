@@ -54,7 +54,7 @@ release:
       JOB=$(basename ${JOB})
       for VERSION in jobs/${JOB}/versions/*; do
         VERSION=$(basename ${VERSION} .md)
-        http --ignore-stdin POST https://gitlab.com/api/v4/projects/FulcrandG%2Fgitlab-release/releases \
+        http --ignore-stdin POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases \
           "JOB-TOKEN: ${CI_JOB_TOKEN}" \
           tag_name=${JOB}-${VERSION} \
           ref=${CI_COMMIT_SHA} \
@@ -62,6 +62,5 @@ release:
           'assets:={"links": [{"name": "Hub link", "url": "https://jobs.go2scale.io/'"${VERSION}/${JOB}"'.yml"}]}'
       done
     done
-
   # rules:
   #   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
