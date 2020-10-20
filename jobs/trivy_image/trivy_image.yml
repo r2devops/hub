@@ -10,7 +10,6 @@ trivy:
       command: ["dockerd-entrypoint.sh"]
 
   variables:
-    IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
     TRIVY_EXIT_CODE: 1
     TRIVY_VULN_TYPE: "os,library"
