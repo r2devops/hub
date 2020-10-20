@@ -62,5 +62,6 @@ release:
           'assets:={"links": [{"name": "Hub link", "url": "https://jobs.go2scale.io/'"${VERSION}/${JOB}"'.yml"}]}'
       done
     done
+
   # rules:
   #   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
