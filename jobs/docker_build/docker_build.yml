@@ -11,6 +11,10 @@ docker_build:
     COMMIT_CREATE_LATEST: "false"
     TAG_CREATE_LATEST: "true"
   script:
+
+    - echo "CI_REGISTRY $CI_REGISTRY"
+    - echo "CI_REGISTRY_IMAGE $CI_REGISTRY_IMAGE"
+
     - mkdir -p /kaniko/.docker/
     - if [ ! -z ${CUSTOM_REGISTRY} ]; then
     -   echo "{\"auths\":{\"$CUSTOM_REGISTRY\":{\"username\":\"$REGISTRY_USER\",\"password\":\"$REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
