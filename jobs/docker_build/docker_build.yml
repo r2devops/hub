@@ -24,6 +24,8 @@ docker_build:
     -   REGISTRY_IMAGE=$CI_REGISTRY/$CI_PROJECT_PATH
     - fi
 
+    - echo "REGISTRY_IMAGE $REGISTRY_IMAGE"
+
     - if [ ! -z ${CI_COMMIT_TAG} ]; then
     -   IMAGE_TAG=${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
     -   if [ ${TAG_CREATE_LATEST} == "true" ]; then
