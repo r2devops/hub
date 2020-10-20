@@ -45,27 +45,21 @@ pages:
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 release:
-  image: curlimages/curl:7.72.0
+  image:
+    name: alpine/httpie:2.2.0
+    entrypoint: [""]
   stage: deployment
   script: >
     for JOB in jobs/*; do
       JOB=$(basename ${JOB})
       for VERSION in jobs/${JOB}/versions/*; do
         VERSION=$(basename ${VERSION} .md)
-        curl --header 'Content-Type: application/json' --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-          --data "{ \
-              \"name\": \"${JOB}-${VERSION}\", \
-              \"tag_name\": \"${JOB}-${VERSION}\", \
-              \"description\": \"$(cat jobs/${JOB}/versions/${VERSION}.md)\", \
-              \"assets\": { \
-                \"links\": [ \
-                  { \"name\": \"Hub link\", \
-                    \"url\": \"https://jobs.go2scale.io/${VERSION}/${JOB}.yml\" \
-                  } \
-                ] \
-              } \
-            }" \
-          --request POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases
+        http --ignore-stdin POST https://gitlab.com/api/v4/projects/go2scale%2Fhub/releases \
+          "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+          tag_name=${JOB}-${VERSION} \
+          ref=${CI_COMMIT_SHA} \
+          "description=$(cat jobs/${JOB}/versions/${VERSION}.md)" \
+          'assets:={"links": [{"name": "Hub link", "url": "https://jobs.go2scale.io/'"${VERSION}/${JOB}"'.yml"}]}'
       done
     done
   rules:
