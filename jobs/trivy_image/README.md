@@ -40,11 +40,9 @@ vulnerability detection capabilities are available in its official
 
 ### Variables
 
-
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
-| `IMAGE` <img width=450/> | Target name or target path <img width=500/> | `$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA` <br/> or `$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG` in case of tag creation |
-| `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases) | `0.9.2` |
+| `TRIVY_VERSION` <img width=450/> | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases) | `0.9.2` |
 | `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 1 |
 | `TRIVY_VULN_TYPE` | List of vulnerability types | os,library |
@@ -64,7 +62,10 @@ vulnerability detection capabilities are available in its official
 | `TRIVY_QUIET` | Suppress progress bar and log output | false |
 | `TRIVY_SKIP_UPDATE` | Skip vulnerability database update | false |
 | `TRIVY_REMOVED_PKGS` | Detect vulns of Alpine removed packages | false |
-
+| `CUSTOM_REGISTRY` | If you use another registry than your gitlab instance's one | ` ` |
+| `REGISTRY_USER` | User to use for authenticating `CUSTOM_REGISTRY` | ` ` |
+| `REGISTRY_PASSWORD` | Password to use for authenticating `CUSTOM_REGISTRY` | ` ` |
+| `CUSTOM_TAG` | If you want to use another tag beside `CI_COMMIT_SHA` or `CI_COMMIT_TAG` | ` ` |
 
 ### Artifacts
 

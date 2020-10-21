@@ -1,0 +1,39 @@
+docker_build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug-v0.20.0
+    entrypoint: [""]
+  variables:
+    CUSTOM_REGISTRY: ""
+    REGISTRY_USER: ""
+    REGISTRY_PASSWORD: ""
+    CUSTOM_TAG: ""
+    COMMIT_CREATE_LATEST: "false"
+    TAG_CREATE_LATEST: "true"
+  script:
+    - mkdir -p /kaniko/.docker/
+    - if [ ! -z ${CUSTOM_REGISTRY} ]; then
+    -   echo "{\"auths\":{\"$CUSTOM_REGISTRY\":{\"username\":\"$REGISTRY_USER\",\"password\":\"$REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    -   REGISTRY_IMAGE=$CUSTOM_REGISTRY
+    - else
+    -   echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    -   REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+    - fi
+
+    - if [ ! -z ${CI_COMMIT_TAG} ]; then
+    -   IMAGE_TAG=${CI_COMMIT_TAG}
+    -   if [ ${TAG_CREATE_LATEST} == "true" ]; then
+    -     OPTIONAL_TAG="--destination ${REGISTRY_IMAGE}:latest"
+    -   fi
+    - else
+    -   IMAGE_TAG=${CI_COMMIT_SHA}
+    -   if [ ${COMMIT_CREATE_LATEST} == "true" ]; then
+    -     OPTIONAL_TAG="--destination ${REGISTRY_IMAGE}:latest"
+    -   fi
+    - fi
+
+    - if [ ! -z ${CUSTOM_TAG} ]; then
+    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${REGISTRY_IMAGE}:${CUSTOM_TAG}
+    - else
+    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG}
+    - fi

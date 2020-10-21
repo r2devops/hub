@@ -13,8 +13,6 @@ trivy:
       command: ["dockerd-entrypoint.sh"]
 
   variables:
-
-    IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
     TRIVY_EXIT_CODE: 1
     TRIVY_VULN_TYPE: "os,library"
@@ -28,7 +26,6 @@ trivy:
     TRIVY_IGNORE_UNFIXED: "false"
     TRIVY_DEBUG: "false"
 
-
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
@@ -41,15 +38,31 @@ trivy:
     TRIVY_QUIET: "false"
     TRIVY_SKIP_UPDATE: "false"
 
+    CUSTOM_REGISTRY: ""
+    REGISTRY_USER: ""
+    REGISTRY_PASSWORD: ""
+    CUSTOM_TAG: ""
 
-  before_script:
+  script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
 
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  script:
-    - ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $IMAGE
+    - if [ ! -z ${CUSTOM_REGISTRY} ]; then
+    -   docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $CUSTOM_REGISTRY
+    -   REGISTRY_IMAGE=$CUSTOM_REGISTRY
+    - else
+    -   docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    -   REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+    - fi
+
+    - if [ ! -z ${CUSTOM_TAG} ]; then
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CUSTOM_TAG
+    - elif [ ! -z ${CI_COMMIT_TAG} ]; then
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - else
+    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - fi
 
   cache:
     paths:
@@ -60,15 +73,4 @@ trivy:
       junit: "$TRIVY_OUTPUT"
     expire_in: 30 days
     when: always
-  dependencies: []
 
-  rules:
-    - if: "$CI_COMMIT_BRANCH"
-
-# Run trivy on tag commit
-trivy_tag:
-  extends: trivy
-  variables:
-    IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
-  rules:
-    - if: "$CI_COMMIT_TAG"
