@@ -1,0 +1,39 @@
+# Job from go2scale hub --> hub.go2scale.io
+
+stages:
+  - static_tests
+
+# Run trivy on local dependencies
+trivy_dependency:
+  stage: static_tests
+  image:
+    name: aquasec/trivy:0.12.0
+    entrypoint: [""]
+  variables:
+    TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
+    TRIVY_EXIT_CODE: 1
+    TRIVY_VULN_TYPE: "library"
+    TRIVY_NO_PROGRESS: "false"
+    TRIVY_OUTPUT: "junit-report.xml"
+    TRIVY_IGNOREFILE: .trivyignore
+    TRIVY_CACHE_DIR: .trivycache/
+    TRIVY_FORMAT: "template"
+    TRIVY_TEMPLATE_DIRECTORY: "/contrib"
+    TEMPLATE_NAME: "junit.tpl"
+    TRIVY_CLEAR_CACHE: "false"
+    TRIVY_IGNORE_UNFIXED: "false"
+    TRIVY_DEBUG: "false"
+
+    TRIVY_VERSION: "0.12.0"
+    TRIVY_REMOTE: ""
+    TRIVY_SKIP_UPDATE: "false"
+  script:
+    - trivy fs --template "@${TRIVY_TEMPLATE_DIRECTORY}/${TEMPLATE_NAME}" -o ${TRIVY_OUTPUT} ./
+  cache:
+    paths:
+      - "${TRIVY_CACHE_DIR}"
+  artifacts:
+    reports:
+      junit: "${TRIVY_OUTPUT}"
+    expire_in: 30 days
+    when: always
