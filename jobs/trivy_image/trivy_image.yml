@@ -4,7 +4,7 @@ stages:
   - dynamic_tests
 
 # Run trivy on any commit
-trivy:
+trivy_image:
   stage: dynamic_tests
   image: docker:19.03
   services:
