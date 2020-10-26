@@ -4,11 +4,14 @@
 
 Using this job you'll be able to launch PHPUnit tests. You need nothing more than a valid phpunit.xml.
 
-Results of tests are available in a report named `report-phpunit.xml` as an artifact.
+The results of your tests are available in two locations:
+
+* In an artifact named report-phpunit.xml 
+* In `Tests` tab, in your pipeline state page.
 
 ## How to use it
 
-1. Have a valid `phpunit.xml` in the root of your project. See [Variables]( #variables) if it is not in the root.
+1. Put a valid `phpunit.xml` in the root of your php project, edit [variables](#variables) if not.
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
@@ -34,5 +37,5 @@ Results of tests are available in a report named `report-phpunit.xml` as an arti
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PHPUNIT_VERBOSITY` <img width=250/> | Define the verbosity of PHPUnit | `v` |
-| `PROJECT_ROOT` <img width=250/> | Define where your project and the phpunit.xml are | `/` |
+| `PHPUNIT_VERBOSITY` <img width=250/> | Verbosity of PHPUnit | `-v` |
+| `PROJECT_ROOT` <img width=250/> | PHP Project and phpunit.xml location | `/` |
