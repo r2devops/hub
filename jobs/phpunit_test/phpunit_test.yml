@@ -1,0 +1,22 @@
+stages:
+  - static_tests
+
+phpunit_test:
+    image: lorisleiva/laravel-docker:7.3
+    stage: static_tests
+    variables:
+      PHPUNIT_VERBOSITY: "v"
+      PROJECT_ROOT: "/"
+    script:
+      # Going to the root of php project
+      - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
+      # Running Unit testing
+      - phpunit -${PHPUNIT_VERBOSITY} --coverage-text --colors=never --stderr --log-junit report-phpunit.xml
+    artifacts:
+      when: always
+      expire_in: never
+      paths:
+        - ${CI_PROJECT_DIR}${PROJECT_ROOT}/report-phpunit.xml
+        - ${CI_PROJECT_DIR}${PROJECT_ROOT}/storage/logs
+      reports:
+        junit: ${CI_PROJECT_DIR}${PROJECT_ROOT}/report-phpunit.xml
