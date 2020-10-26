@@ -186,3 +186,7 @@
     background-color: var(--md-primary-bg-color);
     border-color: var(--md-primary-bg-color);
 }
+
+.z-index-1000{
+  z-index: 1000;
+}
