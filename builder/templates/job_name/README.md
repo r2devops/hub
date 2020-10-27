@@ -31,4 +31,4 @@
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `VARIABLE` <img width=250/> | A general variable for this job | `{{ variable }}` |
+| `VARIABLE` <img width=100/> | A general variable for this job <img width=175/>| `{{ variable }}` <img width=100/>|
