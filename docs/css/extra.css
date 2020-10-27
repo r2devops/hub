@@ -67,6 +67,7 @@
 .tx-container {
     position: relative;
     padding-top: 1rem;
+    padding-bottom: 2rem;
     background-image: linear-gradient(var(--md-primary-fg-color), var(--md-primary-fg-color--light) 99%);
 }
 

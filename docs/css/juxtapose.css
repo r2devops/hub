@@ -40,6 +40,7 @@ div.jx-control {
 	background-color: white;
 }
 
+
 .vertical div.jx-control {
 	height: 3px;
 	width: 100%;
@@ -124,11 +125,13 @@ div.jx-arrow.jx-right {
 div.jx-handle:hover div.jx-arrow.jx-left,
 div.jx-handle:active div.jx-arrow.jx-left {
 	left: -1px;
+	height: 25px;
 }
 
 div.jx-handle:hover div.jx-arrow.jx-right, 
 div.jx-handle:active div.jx-arrow.jx-right {
 	right: -1px;
+	height: 25px;
 }
 
 .vertical div.jx-handle:hover div.jx-arrow.jx-left,
