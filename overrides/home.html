@@ -5,9 +5,9 @@
   <section class="tx-container">
     <div class="md-grid md-typeset">
       <div class="tx-hero">
-        <div class="tx-hero__image z-index-1000">
+        <!-- <div class="tx-hero__image z-index-1000">
           <img src="images/with_hub.png" alt="" width="" height="" draggable="false">
-        </div>
+        </div> -->
         <div class="tx-hero__content">
           <h1>{{ config.extra.landing_page.title }}</h1>
           <p>{{ config.extra.landing_page.description }}</p>
@@ -17,6 +17,12 @@
           <a href="https://discord.gg/5QKpGqR" title="{{ page.next_page.title | e }}" class="md-button">
             Join Community
           </a>
+        </div>   
+        <div class="tx-hero__image z-index-1000">
+          <div class="juxtapose">
+            <img data-animate="true" data-label="With Go2Scale Hub" src="images/with_hub.png" />
+            <img data-animate="true" data-label="Without Go2Scale Hub" src="images/without_hub.png" />
+        </div>
         </div>
       </div>
     </div>

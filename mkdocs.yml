@@ -49,6 +49,10 @@ extra:
 
 extra_css:
     - css/extra.css
+    - css/juxtapose.css
+
+extra_javascript:
+    - js/juxtapose.min.js
 
 # Configuration
 theme:
