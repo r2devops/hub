@@ -1,10 +1,10 @@
 slider = new juxtapose.JXSlider('#juxtapose',
     [
         {
-            src: 'images/with_hub.svg'
+            src: 'images/with_hub.png'
         },
         {
-            src: 'images/without_hub.svg'
+            src: 'images/without_hub.png'
         }
     ],
     {
