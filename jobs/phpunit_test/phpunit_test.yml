@@ -5,18 +5,19 @@ phpunit_test:
     image: lorisleiva/laravel-docker:7.3
     stage: static_tests
     variables:
-      PHPUNIT_VERBOSITY: "-v"
+      PHPUNIT_OUTPUT: "report_phpunit.xml"
+      PHPUNIT_CONFIG_FILE: "phpunit.xml"
+      PHPUNIT_COLORS: "never"
+      PHPUNIT_OPTIONS: ""
       PROJECT_ROOT: "/"
     script:
       # Going to the root of php project
       - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
       # Running Unit testing
-      - phpunit ${PHPUNIT_VERBOSITY} --coverage-text --colors=never --stderr --log-junit report-phpunit.xml
+      - phpunit --configuration ${PHPUNIT_CONFIG_FILE} --coverage-text --colors=${PHPUNIT_COLORS} --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
     artifacts:
       when: always
-      expire_in: never
       paths:
-        - ${CI_PROJECT_DIR}${PROJECT_ROOT}/report-phpunit.xml
-        - ${CI_PROJECT_DIR}${PROJECT_ROOT}/storage/logs
+        - ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
       reports:
-        junit: ${CI_PROJECT_DIR}${PROJECT_ROOT}/report-phpunit.xml
+        junit: ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}

@@ -1,5 +1,5 @@
 name: phpunit_test
-description: A ready to use php environnement that launches phpunit testings
+description: A ready to use php environment that launches phpunit testings
 default_stage: static_tests
 icon: 🐘
 maintainer: Protocole
