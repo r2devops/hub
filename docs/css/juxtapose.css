@@ -124,14 +124,12 @@ div.jx-arrow.jx-right {
 
 div.jx-handle:hover div.jx-arrow.jx-left,
 div.jx-handle:active div.jx-arrow.jx-left {
-	left: -1px;
-	height: 25px;
+	left: -2px;
 }
 
 div.jx-handle:hover div.jx-arrow.jx-right, 
 div.jx-handle:active div.jx-arrow.jx-right {
-	right: -1px;
-	height: 25px;
+	right: -2px;
 }
 
 .vertical div.jx-handle:hover div.jx-arrow.jx-left,
@@ -343,4 +341,11 @@ a.jx-knightlab:focus {
 a.jx-knightlab:focus span.juxtapose-name{
 	color: #000;
 	border: none;
+}
+
+/* Custom */
+div.jx-controller:hover {
+	height: 75px;
+	background-color: #eae34e;
+	transition: all .2s ease;
 }
