@@ -14,7 +14,7 @@ phpunit_test:
       # Going to the root of php project
       - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
       # Running Unit testing
-      - phpunit --configuration ${PHPUNIT_CONFIG_FILE} --coverage-text --colors=${PHPUNIT_COLORS} --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
+      - phpunit --configuration ${PHPUNIT_CONFIG_FILE} --coverage-text --colors=${PHPUNIT_COLORS} --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS}
     artifacts:
       when: always
       paths:
