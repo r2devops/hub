@@ -7,9 +7,50 @@ which is a Simple combination of various linters to help validate the quality
 of your source code. This job permit to fully integrate it in Gitlab
 (super-linter is originally made for Github Actions).
 
-!!! info
-    More than 36 languages are supported (👉 [full
-    list](https://github.com/github/super-linter#supported-linters))
+More than 36 languages are supported :
+
+| _Language_                       | _Linter_                                                                                                                                                                       |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Ansible**                      | [ansible-lint](https://github.com/ansible/ansible-lint)                                                                                                                        |
+| **Azure Resource Manager (ARM)** | [arm-ttk](https://github.com/azure/arm-ttk)                                                                                                                                    |
+| **AWS CloudFormation templates** | [cfn-lint](https://github.com/aws-cloudformation/cfn-python-lint/)                                                                                                             |
+| **C#**                           | [dotnet-format](https://github.com/dotnet/format)                                                                                                                              |
+| **CSS**                          | [stylelint](https://stylelint.io/)                                                                                                                                             |
+| **Clojure**                      | [clj-kondo](https://github.com/borkdude/clj-kondo)                                                                                                                             |
+| **CoffeeScript**                 | [coffeelint](https://coffeelint.github.io/)                                                                                                                                    |
+| **Dart**                         | [dartanalyzer](https://dart.dev/guides/language/analysis-options)                                                                                                              |
+| **Dockerfile**                   | [dockerfilelint](https://github.com/replicatedhq/dockerfilelint.git) / [hadolint](https://github.com/hadolint/hadolint)                                                        |
+| **EDITORCONFIG**                 | [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker)                                                                                           |
+| **ENV**                          | [dotenv-linter](https://github.com/dotenv-linter/dotenv-linter)                                                                                                                |
+| **Golang**                       | [golangci-lint](https://github.com/golangci/golangci-lint)                                                                                                                     |
+| **Groovy**                       | [npm-groovy-lint](https://github.com/nvuillam/npm-groovy-lint)                                                                                                                 |
+| **HTML**                         | [HTMLHint](https://github.com/htmlhint/HTMLHint)                                                                                                                               |
+| **Java**                         | [checkstyle](https://checkstyle.org)                                                                                                                                           |
+| **JavaScript**                   | [eslint](https://eslint.org/) / [standard js](https://standardjs.com/)                                                                                                         |
+| **JSON**                         | [jsonlint](https://github.com/zaach/jsonlint)                                                                                                                                  |
+| **Kubeval**                      | [kubeval](https://github.com/instrumenta/kubeval)                                                                                                                              |
+| **Kotlin**                       | [ktlint](https://github.com/pinterest/ktlint)                                                                                                                                  |
+| **LaTeX**                        | [ChkTex](https://www.nongnu.org/chktex/)                                                                                                                                       |
+| **Lua**                          | [luacheck](https://github.com/luarocks/luacheck)                                                                                                                               |
+| **Markdown**                     | [markdownlint](https://github.com/igorshubovych/markdownlint-cli#readme)                                                                                                       |
+| **OpenAPI**                      | [spectral](https://github.com/stoplightio/spectral)                                                                                                                            |
+| **Perl**                         | [perlcritic](https://metacpan.org/pod/Perl::Critic)                                                                                                                            |
+| **PHP**                          | [PHP built-in linter](https://www.php.net/) / [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) / [PHPStan](https://phpstan.org/n) / [Psalm](https://psalm.dev/) |
+| **PowerShell**                   | [PSScriptAnalyzer](https://github.com/PowerShell/Psscriptanalyzer)                                                                                                             |
+| **Protocol Buffers**             | [protolint](https://github.com/yoheimuta/protolint)                                                                                                                            |
+| **Python3**                      | [pylint](https://www.pylint.org/) / [flake8](https://flake8.pycqa.org/en/latest/) / [black](https://github.com/psf/black)                                                      |
+| **R**                            | [lintr](https://github.com/jimhester/lintr)                                                                                                                                    |
+| **Raku**                         | [Raku](https://raku.org)                                                                                                                                                       |
+| **Ruby**                         | [RuboCop](https://github.com/rubocop-hq/rubocop)                                                                                                                               |
+| **Shell**                        | [Shellcheck](https://github.com/koalaman/shellcheck) / [executable bit check] / [shfmt](https://github.com/mvdan/sh)                                                           |
+| **Snakemake**                    | [snakefmt](https://github.com/snakemake/snakefmt/) / [snakemake --lint](https://snakemake.readthedocs.io/en/stable/snakefiles/writing_snakefiles.html#best-practices)          |
+| **SQL**                          | [sql-lint](https://github.com/joereynolds/sql-lint)                                                                                                                            |
+| **Tekton**                       | [tekton-lint](https://github.com/IBM/tekton-lint)                                                                                                                              |
+| **Terraform**                    | [tflint](https://github.com/terraform-linters/tflint) / [terrascan](https://github.com/accurics/terrascan)                                                                     |
+| **Terragrunt**                   | [terragrunt](https://github.com/gruntwork-io/terragrunt)                                                                                                                       |
+| **TypeScript**                   | [eslint](https://eslint.org/) / [standard js](https://standardjs.com/)                                                                                                         |
+| **XML**                          | [LibXML](http://xmlsoft.org/)                                                                                                                                                  |
+| **YAML**                         | [YamlLint](https://github.com/adrienverge/yamllint)                                                                                                                            |
 
 ## How to use it
 
