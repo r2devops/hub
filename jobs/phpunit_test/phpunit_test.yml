@@ -1,0 +1,23 @@
+stages:
+  - static_tests
+
+phpunit_test:
+    image: lorisleiva/laravel-docker:7.3
+    stage: static_tests
+    variables:
+      PHPUNIT_OUTPUT: "report_phpunit.xml"
+      PHPUNIT_CONFIG_FILE: "phpunit.xml"
+      PHPUNIT_COLORS: "never"
+      PHPUNIT_OPTIONS: ""
+      PROJECT_ROOT: "/"
+    script:
+      # Going to the root of php project
+      - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
+      # Running Unit testing
+      - phpunit --configuration ${PHPUNIT_CONFIG_FILE} --coverage-text --colors=${PHPUNIT_COLORS} --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS}
+    artifacts:
+      when: always
+      paths:
+        - ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
+      reports:
+        junit: ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
