@@ -7,7 +7,7 @@ Jobs index. They are sorted using the [HUB default stages](/getting-started#stag
 | Name | Description |
 | ---- | ----------- |
 {% for job in index["static_tests"] -%}
-  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](jobs/static_tests/{{ job.name }}/) | {{ job.description }} |
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](static_tests/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
 ## 📦 Build
@@ -15,7 +15,7 @@ Jobs index. They are sorted using the [HUB default stages](/getting-started#stag
 | Name | Description |
 | ---- | ----------- |
 {% for job in index["build"] -%}
-  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](jobs/build/{{ job.name }}/) | {{ job.description }} |
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](build/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
 ## 🛡 Dynamic tests
@@ -23,7 +23,7 @@ Jobs index. They are sorted using the [HUB default stages](/getting-started#stag
 | Name | Description |
 | ---- | ----------- |
 {% for job in index["dynamic_tests"] -%}
-  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](jobs/dynamic_tests/{{ job.name }}/) | {{ job.description }} |
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](dynamic_tests/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
 ## 🙋 Review
@@ -31,7 +31,7 @@ Jobs index. They are sorted using the [HUB default stages](/getting-started#stag
 | Name | Description |
 | ---- | ----------- |
 {% for job in index["review"] -%}
-  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](jobs/review/{{ job.name }}/) | {{ job.description }} |
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](review/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
 ## 🚀 Deployment
@@ -39,5 +39,5 @@ Jobs index. They are sorted using the [HUB default stages](/getting-started#stag
 | Name | Description |
 | ---- | ----------- |
 {% for job in index["deployment"] -%}
-  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](jobs/deployment/{{ job.name }}/) | {{ job.description }} |
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](deployment/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
