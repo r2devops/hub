@@ -1,0 +1,15 @@
+stages:
+  - static tests
+
+# From https://github.com/pmarlow/ci_secrets/blob/master/example.gitlab-ci.yml
+
+gitleaks:
+  image: python:3.6-stretch
+  before_script:
+    - pip install ci_secrets
+  script:
+    - if [ ! -z ${CI_MERGE_REQUEST_ID	} ]; then
+    -   ci_secrets --since origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME --log INFO
+    - else
+    -   ci_secrets --since $CI_COMMIT_BEFORE_SHA --log INFO
+    - fi
