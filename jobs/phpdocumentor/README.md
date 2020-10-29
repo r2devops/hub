@@ -22,7 +22,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 5. Well done, your job is ready to work ! 😀
 
 !!! note 
-   If you use a phpdoc.dist.xml you can place it anywhere you want in your repository. But don't forget to edit `PHPDOC_CONFIG_FILE`, so the job knows where the config file is.
+   If you use a `phpdoc.dist.xml` you can place it anywhere in your repository. But don't forget to edit `PHPDOC_CONFIG_FILE`, so the job knows where the config file is.
 
 ## Job details
 
