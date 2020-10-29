@@ -6,9 +6,8 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
 ## How to use it
 
-1. Have a PHP Project with well documented functions.
+1. Have a PHP Project with well documented files.
 2. Edit [variables](#variables) or use a `phpdoc.dist.xml` file (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html)).
-2. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
@@ -42,9 +41,9 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 | `PHPDOC_TITLE` | Custom title for documentation | ` ` |
 | `PHPDOC_VERBOSITY` | Print more logs in the job | ` ` |
 | `PHPDOC_TEMPLATE` | Template used by PHPDoc | ` ` |
-| `PHPDOC_INCLUDE_HIDDEN` | Include hidden PHP files in build | `false` |
+| `PHPDOC_INCLUDE_HIDDEN` | Include hidden PHP files | `false` |
 | `PHPDOC_IGNORE_SYMLINKS` | Ignore symbolic links to avoid loops | `false` |
-| `PHPDOC_MARKERS` | Custom comment markers | ` ` |
+| `PHPDOC_MARKERS` | Custom comment [markers](https://docs.phpdoc.org/3.0/guide/guides/running-phpdocumentor.html#Markers) | ` ` |
 | `PHPDOC_OPTIONS` | Additional custom options  | ` ` |
 | `PROJECT_ROOT` | PHP Project location in your repository | `/` |
 
