@@ -5,6 +5,7 @@ stages:
 
 gitleaks:
   image: python:3.6-stretch
+  stage: static_tests
   before_script:
     - pip install ci_secrets
   script:
