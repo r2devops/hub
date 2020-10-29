@@ -9,7 +9,7 @@ gitleaks:
   before_script:
     - pip install ci_secrets
   script:
-    - if [ ! -z ${CI_MERGE_REQUEST_ID	} ]; then
+    - if [ ! -z ${CI_MERGE_REQUEST_ID} ]; then
     -   ci_secrets --since origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME --log INFO
     - else
     -   ci_secrets --since $CI_COMMIT_BEFORE_SHA --log INFO
