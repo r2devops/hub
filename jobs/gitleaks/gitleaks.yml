@@ -1,5 +1,5 @@
 stages:
-  - static tests
+  - static_tests
 
 # From https://github.com/pmarlow/ci_secrets/blob/master/example.gitlab-ci.yml
 
