@@ -4,7 +4,9 @@ stages:
 # From https://github.com/pmarlow/ci_secrets/blob/master/example.gitlab-ci.yml
 
 gitleaks:
-  image: zricethezav/gitleaks:v6.1.2
+  image:
+    name: zricethezav/gitleaks:v6.1.2
+    entrypoint: [""]
   stage: static_tests
   script:
     - if [ ! -z ${CI_MERGE_REQUEST_ID} ]; then
