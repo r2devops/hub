@@ -23,6 +23,6 @@ repos. As it written in go, it is much faster than most of the
 
 * Job name: `gitleaks`
 * Docker image:
-[`python:3.6-stretch`](https://hub.docker.com/r/_/python)
+[`zricethezav/gitleaks:v6.1.2`](https://hub.docker.com/r/_/zricethezav/gitleaks)
 * Default stage: `static_tests`
 * When: `always`
