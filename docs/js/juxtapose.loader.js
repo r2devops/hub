@@ -2,9 +2,14 @@ let gigotte = false;
 let gigotteInterval = null;
 let gigotteEvent = null;
 
-let stages, gigotteStages, time, slider;
+let stages, gigotteStages, time, slider, initiated;
 
 function initSlider() {
+    if (initiated) 
+        clearInterval(gigotteInterval);
+    
+    initiated = true;
+
     stages = [
         [30, 750],
         [70, 1000],

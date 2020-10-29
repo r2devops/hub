@@ -24,8 +24,7 @@ nav:
     - Versioning: versioning.md
     - Contributing: contributing.md
     - License: license.md
-  - Jobs:
-    - ...
+  - ...
 
 # Customization
 extra:
@@ -52,8 +51,8 @@ extra_css:
     - css/juxtapose.css
 
 extra_javascript:
-    - js/juxtapose.min.js
-    - js/juxtapose.loader.min.js
+    - js/juxtapose.js
+    - js/juxtapose.loader.js
 
 # Configuration
 theme:

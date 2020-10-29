@@ -1,12 +1,8 @@
-/* juxtapose - v1.2.2 - 2020-09-03
- * Copyright (c) 2020 Alex Duner and Northwestern University Knight Lab
- */
 /* juxtapose - v1.1.2 - 2015-07-16
  * Copyright (c) 2015 Alex Duner and Northwestern University Knight Lab
  */
 
 (function(document, window) {
-
     var juxtapose = {
         sliders: [],
         OPTIMIZATION_ACCEPTED: 1,
