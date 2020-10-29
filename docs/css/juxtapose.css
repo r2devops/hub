@@ -346,6 +346,6 @@ a.jx-knightlab:focus span.juxtapose-name{
 /* Custom */
 div.jx-controller:hover {
 	height: 75px;
-	background-color: #eae34e;
+	background-color: #bfbfbf;
 	transition: all .2s ease;
 }

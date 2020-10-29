@@ -3,24 +3,23 @@
   {{ super() }}
   <style>.md-header{position:initial}.md-main__inner{margin:0}.md-content{display:none}@media screen and (min-width:60em){.md-sidebar--secondary{display:none}}@media screen and (min-width:76.25em){.md-sidebar--primary{display:none}}</style>
   <section class="tx-container">
+    <script defer>setTimeout(() => initSlider(), 100);</script>
     <div class="md-grid md-typeset">
       <div class="tx-hero">
-        <!-- <div class="tx-hero__image z-index-1000">
-          <img src="images/with_hub.png" alt="" width="" height="" draggable="false">
-        </div> -->
         <div class="tx-hero__content">
           <h1>{{ config.extra.landing_page.title }}</h1>
           <p>{{ config.extra.landing_page.description }}</p>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
-            Get started
-          </a>
-          <a href="https://discord.gg/5QKpGqR" title="{{ page.next_page.title | e }}" class="md-button">
-            Join Community
-          </a>
+          <div class="tx-hero_buttons">
+            <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
+              Get started
+            </a>
+            <a href="https://discord.gg/5QKpGqR" title="{{ page.next_page.title | e }}" class="md-button">
+              Join Community
+            </a>
+          </div>
         </div>   
         <div class="tx-hero__image z-index-1000">
-          <div id="juxtapose">
-        </div>
+          <div id="juxtapose"></div>
         </div>
       </div>
     </div>
