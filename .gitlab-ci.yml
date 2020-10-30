@@ -12,6 +12,10 @@ mkdocs:
     - pip3 install -r requirements.txt
     - python3 builder/builder.py
 
+pages:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "latest"'
+
 ci_linter:
   image: golang:1.15.2-alpine3.12
   stage: static_tests
