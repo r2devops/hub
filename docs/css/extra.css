@@ -71,7 +71,7 @@
     background-image: linear-gradient(var(--md-primary-fg-color), var(--md-primary-fg-color--light) 99%);
 }
 
-.tx-container svg {
+.landing-background svg {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -171,7 +171,7 @@
         transform: translateX(8rem);
     }
 }
-@media screen 
+@media screen
   and (max-width: 29.9375em)  {
       .tx-hero_buttons {
           display:block;
@@ -182,14 +182,14 @@
       .tx-hero_buttons a:first-child {
         width: 180px;
         display:block;
-        margin: auto;  
+        margin: auto;
         text-align: center;
     }
 
       .tx-hero_buttons a:nth-child(2) {
           width: 220px;
           display:block;
-          margin: auto;  
+          margin: auto;
           margin-top: 15px;
           text-align: center;
       }

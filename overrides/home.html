@@ -22,18 +22,20 @@
               Get started
             </a>
             <a href="https://discord.gg/5QKpGqR" title="{{ page.next_page.title | e }}" class="md-button">
-              Join Community
+                <span class="twemoji">{% include ".icons/fontawesome/brands/discord.svg" %}</span> Join Community
             </a>
           </div>
-        </div>   
+        </div>
         <div class="tx-hero__image z-index-1000">
           <div id="juxtapose"></div>
         </div>
       </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <div class="landing-background">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
       <polygon fill="white" points="0,100 100,0 100,100"/>
-    </svg>
+      </svg>
+    </div>
   </section>
 {% endblock %}
 {% block content %}{% endblock %}
