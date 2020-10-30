@@ -1,4 +1,4 @@
-# Getting started
+# Use the HUB
 
 ## 📝 Prerequisites
 

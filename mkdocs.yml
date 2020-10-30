@@ -1,6 +1,6 @@
 # Project information
-site_name: Go2Scale hub
-site_description: 'Automated templates for your CI/CD Pipelines !'
+site_name: Go2Scale HUB
+site_description: 'Ready to use CI/CD Jobs for your Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
 site_url: 'https://go2scale.gitlab.io/hub/'
 
@@ -16,45 +16,51 @@ repo_name: 'go2scale/hub'
 repo_url: 'https://gitlab.com/go2scale/hub'
 
 # Navigation
-# nav:
-#   - Home: index.md
-#   - Getting started: getting-started.md
-#   - Jobs:
-#     - 📝 Index: jobs-index.md
-#     - Quality: jobs-quality.md
-#     - Documentation: jobs-documentation.md
-#     - Build: jobs.md
-#     - Helm: jobs.md
-#   - Pipelines:
-#     - All: pipelines.md
-#     - Pipelines: pipelines.md
-#   - Versioning: versioning.md
-#   - Contributing: contributing.md
-#   - License: license.md
+nav:
+  - Home: index.md
+  - Getting started:
+    - Concept: concept.md
+    - Use the HUB: use-the-hub.md
+    - Versioning: versioning.md
+#    - Contributing: contributing.md
+#    - License: license.md
+  - ...
 
 # Customization
 extra:
+
+  # Landing page
+  landing_page:
+    title: 'Create powerful CI/CD pipelines, easily'
+    description: 'Benefit from our collection of ready-to-use jobs to quickly create amazing pipelines for your projects. The setup will only take you 3 clicks: just select the jobs and enjoy your CI/CD !'
+
   social:
-  # TODO: update with Go2Scale social networks
+    - icon: 'fontawesome/brands/discord'
+      link: 'https://discord.gg/5QKpGqR'
     - icon: 'fontawesome/solid/globe'
       link: 'https://go2scale.com/'
     - icon: 'fontawesome/brands/gitlab'
       link: 'https://gitlab.com/go2scale/'
-    - icon: 'fontawesome/brands/twitter'
-      link: 'https://twitter.com/#'
+#    - icon: 'fontawesome/brands/twitter'
+#      link: 'https://twitter.com/#'
     - icon: 'fontawesome/brands/linkedin'
       link: 'https://www.linkedin.com/company/go2scale/'
 
 extra_css:
     - css/extra.css
+    - css/juxtapose.css
+
+extra_javascript:
+    - js/juxtapose.js
+    - js/juxtapose.loader.js
 
 # Configuration
 theme:
   name: 'material'
+  custom_dir: 'overrides'
   # Color
   palette:
-    primary: 'indigo' # choose: https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
-    accent: 'indigo'
+    scheme: 'go2scale'
   # Text
   language: 'en'
   direction: 'ltr'
@@ -65,9 +71,10 @@ theme:
   favicon: 'images/go2scale_white.svg'
   logo: 'images/go2scale_white.svg'
   features:
-    - tabs
+    - navigation.tabs
+    - navigation.instant
 
-# Extensions (https://squidfunk.github.io/mkdocs-material/extensions/admonition/)
+# Extensions (https://squidfunk.github.io/mkdocs-material/reference/abbreviations/)
 markdown_extensions:
   - attr_list
   - admonition # block-styled content (note, idea, warning, ...)
