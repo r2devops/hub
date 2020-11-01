@@ -17,7 +17,7 @@
 (Relevant screenshots or logs can be provided - please use code blocks (```) to format console output,
 logs, and code as it's very hard to read otherwise.)
 
-# Example 
+# Example to add a Doxygen job
 
 ## Objectives
 
@@ -58,3 +58,4 @@ Generate nothing, the report of the execution will be available in the runner ou
 
 
 ### Screenshots of the documentation
+
