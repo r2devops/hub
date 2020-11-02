@@ -65,7 +65,7 @@ An example of a full `.gitlab-ci.yml` file with:
 
 * One job template with latest version. Note that `latest/` is optional in the
   job URL
-* One job template with specific version using tag `2020-08-05_1`
+* One job template with specific version using tag `0.1.0`
 * Your own local `unit_tests` job
 
 ``` yaml
@@ -78,8 +78,8 @@ stages:
 
 # Jobs from g2s hub
 include:
-  - remote: 'https://jobs.go2scale.io/latest/docker.yml'
-  - remote: 'https://jobs.go2scale.io/2020-08-05_1/mkdocs.yml'
+  - remote: 'https://jobs.go2scale.io/latest/docker_build.yml'
+  - remote: 'https://jobs.go2scale.io/0.1.0/mkdocs.yml'
 
 # You can also include your own local jobs
 unit_tests:
