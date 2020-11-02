@@ -14,6 +14,7 @@ Copyright &copy; 2020 Go2Scale
 # Repository
 repo_name: 'go2scale/hub'
 repo_url: 'https://gitlab.com/go2scale/hub'
+edit_uri: 'edit/latest/docs/'
 
 # Navigation
 nav:
@@ -51,8 +52,8 @@ extra_css:
     - css/juxtapose.css
 
 extra_javascript:
-    - js/juxtapose.js
-    - js/juxtapose.loader.js
+    - js/juxtapose.min.js
+    - js/juxtapose.loader.min.js
 
 # Configuration
 theme:

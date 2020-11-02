@@ -9,7 +9,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 1. To use this job, you have to provide a helm chart to deploy your project. The chart location must be defined in the CHART_PATH variable. If you want to use custom values files, check the `VALUES_FILE` and `VALUES_SECRET_FILE` variables. More information about helm charts in [documentation](https://helm.sh/docs/chart_template_guide/getting_started/)
 2. Prepare the secret PGP variables (`PGP_PUBLIC` and `PGP_PRIVATE`) in your CI/CD variables (as files and not variables!) in [gitlab](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui) if you need encrypted variables
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub/)). Example:
 
     ```yaml
     include:
@@ -17,7 +17,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
 ## Job details
