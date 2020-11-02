@@ -23,7 +23,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 !!! info 
 
     This job allows you to use a configuration file named `phpdoc.dist.xml` (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html)). 
-    By default PHPDoc will search for a configuration file in `PROJECT_ROOT` and will use it if the file does exist. But you can customize the location to `phpdoc.dist.xml` by editing `PHPDOC_CONFIG_FILE`.
+    By default, PHPDoc will search for a configuration file in `PROJECT_ROOT` and will use it if the file does exist. But you can customize the location to `phpdoc.dist.xml` by editing `PHPDOC_CONFIG_FILE`.
 
 ## Job details
 
