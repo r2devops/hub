@@ -110,7 +110,7 @@ the hub. Follow the [customization section](#jobs-customization) to do it.
 Each jobs of the hub can be customized. To do it, you have to include the job
 URL as usual and, in addition, override the options you want to customize.
 
-For example, if you want to use the [trivy](/jobs/dynamic_tests/trivy/) job and
+For example, if you want to use the [trivy_image](/jobs/dynamic_tests/trivy_image/) job and
 customize it by:
 
 * Redefining the `stage` to `security` to fit in your personal stages workflow
@@ -121,9 +121,9 @@ customize it by:
 
 ```yaml
 include:
-  - remote: 'https://jobs.go2scale.io/trivy.yml'
+  - remote: 'https://jobs.go2scale.io/trivy_image.yml'
 
-trivy:
+trivy_image:
   stage: security
   variables:
     TRIVY_VERSION: "0.9.1"

@@ -21,7 +21,7 @@ from previous job named `documentation`.
 
 1. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub/)). Example:
 
     ```yaml
     include:
@@ -29,7 +29,7 @@ from previous job named `documentation`.
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
 

@@ -35,7 +35,7 @@ More than 36 languages are supported :
 | **Markdown**                     | [markdownlint](https://github.com/igorshubovych/markdownlint-cli#readme)                                                                                                       |
 | **OpenAPI**                      | [spectral](https://github.com/stoplightio/spectral)                                                                                                                            |
 | **Perl**                         | [perlcritic](https://metacpan.org/pod/Perl::Critic)                                                                                                                            |
-| **PHP**                          | [PHP built-in linter](https://www.php.net/) / [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) / [PHPStan](https://phpstan.org/n) / [Psalm](https://psalm.dev/) |
+| **PHP**                          | [PHP built-in linter](https://www.php.net/) / [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) / [PHPStan](https://phpstan.org/) / [Psalm](https://psalm.dev/) |
 | **PowerShell**                   | [PSScriptAnalyzer](https://github.com/PowerShell/Psscriptanalyzer)                                                                                                             |
 | **Protocol Buffers**             | [protolint](https://github.com/yoheimuta/protolint)                                                                                                                            |
 | **Python3**                      | [pylint](https://www.pylint.org/) / [flake8](https://flake8.pycqa.org/en/latest/) / [black](https://github.com/psf/black)                                                      |
@@ -58,7 +58,7 @@ More than 36 languages are supported :
    behavior, check the [variables section](#variables)
 2. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub/)). Example:
 
     ```yaml
     include:
@@ -66,7 +66,7 @@ More than 36 languages are supported :
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 
 5. Well done, your job is ready to work ! 😀
 

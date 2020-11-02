@@ -9,7 +9,7 @@ Allow you to launch unit tests from your python project. The default variables w
 1. Prepare your project with unit tests to run in a separate directory: [pytest usage](https://docs.pytest.org/en/2.8.7/usage.html)
 2. Prepare a Pipfile for pipenv to install any python dependencies your project may have: [Pipfile for pipenv](https://pipenv-fork.readthedocs.io/en/latest/basics.html), including your test framework which is chosen by the `TEST_FRAMEWORK` [variable](#Variables)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub/)). Example:
 
     ```yaml
     include:
@@ -17,7 +17,7 @@ Allow you to launch unit tests from your python project. The default variables w
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
 ## Job details
