@@ -146,6 +146,20 @@
     .tx-hero h1 {
         font-size: 1.4rem;
     }
+    .tx-hero_buttons a:first-child {
+      width: 180px;
+      display:block;
+      margin: auto;
+      text-align: center;
+  }
+
+    .tx-hero_buttons a:nth-child(2) {
+        width: 220px;
+        display:block;
+        margin: auto;
+        margin-top: 15px;
+        text-align: center;
+    }
 }
 .tx-hero__content {
     padding-bottom: 6rem;
@@ -170,30 +184,15 @@
     .tx-hero__image {
         transform: translateX(8rem);
     }
-}
-@media screen
-  and (max-width: 29.9375em)  {
-      .tx-hero_buttons {
-          display:block;
-          /* display: flex; */
-          /* justify-content: center; */
-      }
-
-      .tx-hero_buttons a:first-child {
-        width: 180px;
-        display:block;
-        margin: auto;
-        text-align: center;
+    .tx-hero_buttons {
+        display: flex;
     }
+}
 
-      .tx-hero_buttons a:nth-child(2) {
-          width: 220px;
-          display:block;
-          margin: auto;
-          margin-top: 15px;
-          text-align: center;
-      }
-
+@media screen and (min-width: 29.9375em) {
+    .tx-hero_buttons {
+        display: flex;
+    }
 }
 .tx-hero .md-button {
     margin-top: 0.5rem;
