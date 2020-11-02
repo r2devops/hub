@@ -19,5 +19,5 @@ Relevant screenshots or logs can be provided - please use code blocks (```) to f
 logs, and code as it's very hard to read otherwise. 
 -->
 
-## Possibles stages or label to this jobs
+## Possible stages or labels for this job
 <!-- Identify Stages and Labels available by checking [the documentation](https://hub.go2scale.io/jobs/) -->
