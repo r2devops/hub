@@ -20,4 +20,4 @@ logs, and code as it's very hard to read otherwise.
 -->
 
 ## Possibles stages or label to this jobs
-<!-- Identify Stages and Labels available by checking [the documenation](https://hub.go2scale.io/jobs/) -->
+<!-- Identify Stages and Labels available by checking [the documentation](https://hub.go2scale.io/jobs/) -->
