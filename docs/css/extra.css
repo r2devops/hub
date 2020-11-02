@@ -214,3 +214,8 @@
 .z-index-1000{
   z-index: 1000;
 }
+
+
+.border-radius-10{
+  border-radius: 10px !important;
+}

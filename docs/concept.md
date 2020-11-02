@@ -12,8 +12,7 @@ Each jobs of the hub can be used unitary to create fully **customs pipelines.**
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-* 🚀 Start using jobs from the hub: [Use the HUB](/use-the-hub)
-<!-- * 🙋 Contribute to the hub: [Contributing](/contributing) -->
+[I want to use the HUB 🚀](/use-the-hub){: .md-button  .border-radius-10}
 
 ## Overview
 
