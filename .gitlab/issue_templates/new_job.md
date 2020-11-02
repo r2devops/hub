@@ -10,7 +10,7 @@
 
 ## Artifacts & Return status
 <!-- 
-List the artifacts expected by this job and the return status in these case
+List the artifacts expected by this job and the return status in these cases
 - **When success:**
 - **When failed:**
  
