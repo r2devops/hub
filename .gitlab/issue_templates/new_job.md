@@ -1,23 +1,31 @@
-# Objectives
+# New Job
+
+## Objectives
 
 (Summarize concisely the objectives expected by this job)
 
 (Identify clearly the benefits will help the community to contribute on your job)
 
-# Use case
+## Use case
 
 (Explain how the job could work)
 
-# Artifacts
+## Artifacts
 
 (List the artifacts expected by this job)
 - When success
 - When failed
 
+(Describe how artifacts will be integrated on platform)
+
+## Return status
+
+- When failed
+
 (Relevant screenshots or logs can be provided - please use code blocks (```) to format console output,
 logs, and code as it's very hard to read otherwise.)
 
-# Possibles stages or label to this jobs
+## Possibles stages or label to this jobs
 
 (Identify Stages and Labels available by checking [the documenation](https://hub.go2scale.io/jobs/))
 
@@ -32,7 +40,8 @@ Provide a job to build automatically documenation using [the Doxygen syntax](htt
 Generate the documenation in [more than 10 output formats](https://www.doxygen.nl/manual/output.html) such as HTML, LaTeX, XML,...
 
 #### List of supported langage
-- C++ 
+
+- C++
 - C
 - Objective-C
 - C#
@@ -44,6 +53,7 @@ Generate the documenation in [more than 10 output formats](https://www.doxygen.n
 - VHDL
 
 ### Use case
+
 The job will browse your source code and generate the documenation in the output format choosen.
 
 Your source code must be completed with the Doxygen syntax before running this jobs.
@@ -57,7 +67,11 @@ Your source code must be completed with the Doxygen syntax before running this j
 
 (List the artifacts expected by this job)
 
-- When success
-Generate a html folder with the documentation generated
-- When failed
-Generate nothing, the report of the execution will be available in the runner output console
+- When success: generate a html folder with the documentation generated
+- When failed: generate nothing, the report of the execution will be available in the runner output console
+
+The generated documentation artifact will be integrated in Gitlab Merge Request using `expose_as`
+
+### Return status
+
+When it fails, the job must be marked as failed on the platform and error log must be available in job output
