@@ -1,4 +1,5 @@
 # New Job
+<!-- Title should respect this syntax [Add job] - Add {jobname} -->
 <!-- Sample of usage of this template ➡️ https://gitlab.com/go2scale/hub/-/issues/111 -->
 
 ## Objectives
