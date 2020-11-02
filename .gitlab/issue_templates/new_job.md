@@ -6,11 +6,9 @@
 <!-- Identify clearly the benefits will help the community to contribute on your job -->
 
 ## Use cases
-
 <!-- Explain how the job could work -->
 
 ## Artifacts & Return status
-
 <!-- 
 List the artifacts expected by this job and the return status in these case
 - **When success:**
@@ -22,5 +20,4 @@ logs, and code as it's very hard to read otherwise.
 -->
 
 ## Possibles stages or label to this jobs
-
 <!-- Identify Stages and Labels available by checking [the documenation](https://hub.go2scale.io/jobs/) -->
