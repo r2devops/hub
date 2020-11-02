@@ -6,9 +6,8 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
 ## How to use it
 
-1. Have a PHP Project with well documented files.
-2. Edit [variables](#variables) or use a `phpdoc.dist.xml` file (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html)).
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
+1. Have a PHP Project with well documented files (see [how](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html)).
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
     ```yaml
@@ -16,13 +15,15 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
       - remote: 'https://jobs.go2scale.io/phpdocumentor.yml'
     ```
 
-4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/getting-started/#jobs-customization)
 
-5. Well done, your job is ready to work ! 😀
+4. Well done, your job is ready to work ! 😀
 
-!!! note 
-   If you use a `phpdoc.dist.xml` you can place it anywhere in your repository. But don't forget to edit `PHPDOC_CONFIG_FILE`, so the job knows where the config file is.
+!!! info 
+
+    This job allows you to use a configuration file named `phpdoc.dist.xml` (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html)). 
+    By default PHPDoc will search for a configuration file in `PROJECT_ROOT` and will use it if the file does exist. But you can customize the location to `phpdoc.dist.xml` by editing `PHPDOC_CONFIG_FILE`.
 
 ## Job details
 
