@@ -10,18 +10,13 @@
 
 (Explain how the job could work)
 
-## Artifacts
+## Artifacts & Return status
 
-(List the artifacts expected by this job)
-- When success
-- When failed
+(List the artifacts expected by this job and the return status in these case)
+- **When success:**
+- **When failed:**
 
 (Describe how artifacts will be integrated on platform)
-
-## Return status
-
-- When failed
-
 (Relevant screenshots or logs can be provided - please use code blocks (```) to format console output,
 logs, and code as it's very hard to read otherwise.)
 
@@ -63,15 +58,15 @@ Your source code must be completed with the Doxygen syntax before running this j
 - So that the documentation will be up-to-date with no effort
 
 
-### Artifacts
+### Artifacts && Return status
 
 (List the artifacts expected by this job)
 
-- When success: generate a html folder with the documentation generated
-- When failed: generate nothing, the report of the execution will be available in the runner output console
+**When success:** 
+  - Generate a html folder with the documentation generated
+  - The generated documentation artifact will be integrated in Gitlab Merge Request using `expose_as`
 
-The generated documentation artifact will be integrated in Gitlab Merge Request using `expose_as`
+**When failed:** 
+  - Generate nothing, the report of the execution will be available in the runner output console.
+  - When it fails, the job must be marked as failed on the platform and error log must be available in job output
 
-### Return status
-
-When it fails, the job must be marked as failed on the platform and error log must be available in job output
