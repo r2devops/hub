@@ -1,3 +1,5 @@
+# Job from go2scale hub --> hub.go2scale.io
+
 stages:
   - static_tests
 
