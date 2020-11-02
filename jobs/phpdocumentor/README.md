@@ -8,7 +8,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
 1. Have a PHP Project with well documented files (see [how](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html)).
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub)). Example:
 
     ```yaml
     include:
@@ -16,7 +16,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 
 4. Well done, your job is ready to work ! 😀
 
