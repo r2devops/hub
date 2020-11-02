@@ -8,7 +8,7 @@
 
 1. <Your steps>
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](//use-the-hub/)). Example:
+   started](/use-the-hub)). Example:
 
     ```yaml
     include:
