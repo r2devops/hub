@@ -1,3 +1,8 @@
+# Job from go2scale hub --> hub.go2scale.io
+
+stages:
+  - build
+
 docker_build:
   stage: build
   image:
@@ -10,6 +15,7 @@ docker_build:
     CUSTOM_TAG: ""
     COMMIT_CREATE_LATEST: "false"
     TAG_CREATE_LATEST: "true"
+    DOCKERFILE_PATH: "Dockerfile"
   script:
     - mkdir -p /kaniko/.docker/
     - if [ ! -z ${CUSTOM_REGISTRY} ]; then
@@ -33,7 +39,7 @@ docker_build:
     - fi
 
     - if [ ! -z ${CUSTOM_TAG} ]; then
-    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${REGISTRY_IMAGE}:${CUSTOM_TAG}
+    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${REGISTRY_IMAGE}:${CUSTOM_TAG}
     - else
-    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG}
+    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG}
     - fi
