@@ -1,0 +1,6 @@
+name: dotnet_builder
+description: A ready-to-use job to build .NET project
+default_stage: build
+icon: 🌐
+maintainer: Protocole
+license: MIT

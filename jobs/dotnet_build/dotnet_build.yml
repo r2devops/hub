@@ -1,0 +1,33 @@
+# Job from go2scale hub --> hub.go2scale.io
+
+stages:
+  - build
+
+dotnet_build:
+  image: alpine:3.12.1
+  stage: build
+  variables:
+    DOTNET_OUTPUT: "/build"
+    DOTNET_VERSION: "3.1"
+    DOTNET_VERBOSITY: "minimal"
+    DOTNET_CONFIG: "Debug"
+    PROJECT_ROOT: "/"
+  script:
+    # Installing necessary stuff
+    - apk add curl autoconf bash build-base clang clang-dev cmake curl-dev gcc gettext-dev git icu-dev krb5-dev libtool linux-headers llvm make zlib-dev
+    # Downloading official dotnet install script
+    - curl -O https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh
+    - chmod +x dotnet-install.sh
+    - bash dotnet-install.sh -Channel ${DOTNET_VERSION}
+    # Working Directory
+    - mkdir /app
+    - cp ${CI_PROJECT_DIR}${PROJECT_ROOT}/*.csproj /app
+    # For cache purposes, we restore dependencies
+    - /root/.dotnet/dotnet restore
+    - cp -r ${CI_PROJECT_DIR}${PROJECT_ROOT} /app
+    - /root/.dotnet/dotnet publish -c ${DOTNET_CONFIG} -o ${CI_PROJECT_DIR}${DOTNET_OUTPUT} --no-restore -v ${DOTNET_VERBOSITY}
+  artifacts:
+    when: on_success
+    expose_as: dotNET Build
+    paths:
+      - ${CI_PROJECT_DIR}${DOTNET_OUTPUT}
