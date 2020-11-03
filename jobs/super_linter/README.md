@@ -56,7 +56,7 @@ More than 36 languages are supported :
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-2. Choose a version in [version list](#versions)
+2. Choose a version in [version list](#changelog)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub/)). Example:
 

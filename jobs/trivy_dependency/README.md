@@ -18,7 +18,7 @@ vulnerability detection capabilities are available in its official
 
 1. Ensure that your dependency manager is supported in [dependencies check
    section](#dependencies-check)
-2. Choose a version in [version list](#versions)
+2. Choose a version in [version list](#changelog)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub/)). Example:
 

@@ -17,7 +17,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
     /mkdocs.yml # This is your configuration file
     /docs/      # This folder contains all your documentation markdown files
     ```
-2. Choose a version in [version list](#versions)
+2. Choose a version in [version list](#changelog)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub/)). Example:
 

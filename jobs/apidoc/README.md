@@ -10,7 +10,7 @@ code using [apiDoc](https://www.apidocjs.com/).
 1. Prepare your project with API annotations in your source code following
    [apiDoc format](https://apidocjs.com/#examples) and your [apiDoc
    configuration file](https://apidocjs.com/#configuration).
-2. Choose a version in [version list](#versions)
+2. Choose a version in [version list](#changelog)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub/)). Example:
 
