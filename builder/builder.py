@@ -34,7 +34,7 @@ GO2SCALE_URL = "https://jobs.go2scale.io/"
 # Templates variables
 BUILDER_DIR = "builder"
 TEMPLATE_DIR = "templates"
-TMEPLATE_INDEX = "index.md.j2"
+TEMPLATE_INDEX = "index.md.j2"
 TEMPLATE_DOC = "job_documentation.md.j2"
 TEMPLATE_PLACEHOLDER = "placeholder.md.j2"
 TEMPLATE_LICENSE_DIR = "licenses"
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
     # Using jinja2 with a template to create the index
     env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
-    template = env.get_template(TMEPLATE_INDEX)
+    template = env.get_template(TEMPLATE_INDEX)
     index_content = template.render(index=index)
 
     with open(MKDOCS_DIR + "/" + JOBS_DIR + "/" + INDEX_FILE, "w+") as index_file:
