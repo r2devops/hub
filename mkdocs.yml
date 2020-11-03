@@ -2,7 +2,7 @@
 site_name: Go2Scale HUB
 site_description: 'Ready to use CI/CD Jobs for your Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
-site_url: 'https://go2scale.gitlab.io/hub/'
+site_url: 'https://hub.go2scale.io/'
 
 # Copyright
 copyright: '
