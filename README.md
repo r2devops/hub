@@ -6,7 +6,7 @@
 helps you to quickly build powerful pipelines for your projects.
 
 
-Each jobs of the hub can be used unitary or to create fully **customs pipelines.**
+Each jobs of the hub can be used independently or to create fully **customized pipelines.**
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 

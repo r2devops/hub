@@ -11,9 +11,8 @@ function initSlider() {
     initiated = true;
 
     stages = [
-        [30, 750],
-        [70, 1000],
-        [50, 1250]
+        [0, 1000], // Percent Time
+        [ [100, 5000], 9000 ] // [EndPercent, time], Timee
     ];
 
     gigotteStages = [
@@ -47,18 +46,35 @@ function setSliderAnims() {
     time = 0;
     stages.forEach((item) => {
         time += parseInt(item[1]);
-        setTimeout(() => slider.updateSlider(item[0], true), time);
-    });
-  
-    time = 0;
-    gigotteInterval = setInterval(() => {
-        gigotteStages.forEach((item) => {
-            time += parseInt(item[1]);
+
+        if (!Array.isArray(item[0]))
             setTimeout(() => slider.updateSlider(item[0], true), time);
-        });
-    }, 7000);
+        else {
+            let slideData = item[0];
+
+            for (let percent = 0; percent < slideData[0]; percent++) {
+                setTimeout(() => slider.updateSlider(percent, true), time);
+                time += parseInt(slideData[1]/100);
+            }
+        }
+    });
+
+    setTimeout(() => {
+        time = 0;
+        gigotteInterval = setInterval(() => {
+            gigotteStages.forEach((item) => {
+                time += parseInt(item[1]);
+                setTimeout(() => slider.updateSlider(item[0], true), time);
+            });
+        }, 7000);
+    }, 17000);
+  
 
     gigotteEvent = document.getElementById("juxtapose").addEventListener("mousedown", (e) => {
         clearInterval(gigotteInterval);
     });
+}
+
+function removePercent(num) {
+    return num.replace("%","");
 }
