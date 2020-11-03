@@ -9,7 +9,7 @@ dotnet_build:
   variables:
     DOTNET_OUTPUT: "/build"
     DOTNET_VERSION: "3.1"
-    DOTNET_VERBOSITY: "minimal"
+    DOTNET_VERBOSITY: "m"
     DOTNET_CONFIG: "Debug"
     PROJECT_ROOT: "/"
   script:
