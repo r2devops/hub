@@ -11,6 +11,11 @@ dotnet_build:
     DOTNET_VERSION: "3.1"
     DOTNET_VERBOSITY: "m"
     DOTNET_CONFIG: "Debug"
+    DOTNET_READY_TO_RUN: "false"
+    DOTNET_SINGLE_FILE: "false"
+    DOTNET_TRIMMED: "false"
+    DOTNET_SELF_CONTAINED: "false"
+    DONTET_OPTIONS: ""
     PROJECT_ROOT: "/"
   script:
     # Installing necessary stuff
@@ -19,13 +24,15 @@ dotnet_build:
     - curl -O https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh
     - chmod +x dotnet-install.sh
     - bash dotnet-install.sh -Channel ${DOTNET_VERSION}
+    - export PATH="/root/.dotnet/:$PATH"
     # Working Directory
     - mkdir /app
     - cp ${CI_PROJECT_DIR}${PROJECT_ROOT}/*.csproj /app
     # For cache purposes, we restore dependencies
-    - /root/.dotnet/dotnet restore
+    - dotnet restore
     - cp -r ${CI_PROJECT_DIR}${PROJECT_ROOT} /app
-    - /root/.dotnet/dotnet publish -c ${DOTNET_CONFIG} -o ${CI_PROJECT_DIR}${DOTNET_OUTPUT} --no-restore -v ${DOTNET_VERBOSITY}
+
+    - dotnet publish -c ${DOTNET_CONFIG} -o ${CI_PROJECT_DIR}${DOTNET_OUTPUT} --no-restore -v ${DOTNET_VERBOSITY} --self-contained ${DOTNET_SELF_CONTAINED} -p:PublishReadyToRun=${DOTNET_READY_TO_RUN} -p:PublishSingleFile=${DOTNET_SINGLE_FILE} -p:PublishTrimmed=${DOTNET_TRIMMED} ${DOTNET_OPTIONS}
   artifacts:
     when: on_success
     expose_as: dotNET Build

@@ -2,7 +2,7 @@
 
 ## Description
 
-Builds a .NET Core project with the different versions available. 
+Builds a .NET Core project with the different versions available, and makes it ready to run.
 It is using the scripted installation provided from Microsoft, see [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux-alpine#scripted-install).
 
 ## How to use it
@@ -31,10 +31,15 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
-| `DOTNET_OUTPUT` <img width=150/> | Path to the built in the artifact <img width=175/>| `/build` <img width=100/>|
+| `DOTNET_OUTPUT` <img width=230/> | Path to the built in the artifact <img width=175/>| `/build` <img width=100/>|
 | `DOTNET_VERSION` | .NET version used to build. You have the choice between multiples versions (see [versions](https://github.com/dotnet/installer#installers-and-binaries)). | `3.1` |
 | `DOTNET_VERBOSITY` | Prints more or less logs (*Types available*: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]` and `diag[nostic]`) | `m` |
 | `DOTNET_CONFIG` | Configuration profile used to build | `Debug` |
+| `DOTNET_READY_TO_RUN` | Compiles the application as R2R (see [Ready to Run](https://docs.microsoft.com/en-us/dotnet/core/deploying/ready-to-run)) | `false`
+| `DOTNET_SINGLE_FILE` | Publish as single file (more [infos](https://github.com/dotnet/designs/blob/master/accepted/2020/single-file/design.md)) | `false`
+| `DOTNET_TRIMMED` | Remove unused libaries when publishing, must be used with `DOTNET_SELF_CONTAINED`. Available from 3.0 (more [infos](https://docs.microsoft.com/en-us/dotnet/core/deploying/trim-self-contained)). |  `false`
+| `DOTNET_SELF_CONTAINED` | Publish the .NET Core runtime along with the build | `false`
+| `DOTNET_OPTIONS` | Additional options from user | ` `
 | `PROJECT_ROOT` | The location of the .NET project in your repository | `/` |
 
 !!! warning
