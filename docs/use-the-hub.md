@@ -1,4 +1,4 @@
-# Getting started
+# Use the HUB
 
 ## 📝 Prerequisites
 
@@ -65,7 +65,7 @@ An example of a full `.gitlab-ci.yml` file with:
 
 * One job template with latest version. Note that `latest/` is optional in the
   job URL
-* One job template with specific version using tag `2020-08-05_1`
+* One job template with specific version using tag `0.1.0`
 * Your own local `unit_tests` job
 
 ``` yaml
@@ -78,8 +78,8 @@ stages:
 
 # Jobs from g2s hub
 include:
-  - remote: 'https://jobs.go2scale.io/latest/docker.yml'
-  - remote: 'https://jobs.go2scale.io/2020-08-05_1/mkdocs.yml'
+  - remote: 'https://jobs.go2scale.io/latest/docker_build.yml'
+  - remote: 'https://jobs.go2scale.io/0.1.0/mkdocs.yml'
 
 # You can also include your own local jobs
 unit_tests:
@@ -110,7 +110,7 @@ the hub. Follow the [customization section](#jobs-customization) to do it.
 Each jobs of the hub can be customized. To do it, you have to include the job
 URL as usual and, in addition, override the options you want to customize.
 
-For example, if you want to use the [trivy](/jobs/dynamic_tests/trivy/) job and
+For example, if you want to use the [trivy_image](/jobs/dynamic_tests/trivy_image/) job and
 customize it by:
 
 * Redefining the `stage` to `security` to fit in your personal stages workflow
@@ -121,9 +121,9 @@ customize it by:
 
 ```yaml
 include:
-  - remote: 'https://jobs.go2scale.io/trivy.yml'
+  - remote: 'https://jobs.go2scale.io/trivy_image.yml'
 
-trivy:
+trivy_image:
   stage: security
   variables:
     TRIVY_VERSION: "0.9.1"

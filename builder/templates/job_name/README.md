@@ -8,15 +8,14 @@
 
 1. <Your steps>
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub)). Example:
 
     ```yaml
     include:
       - remote: 'https://jobs.go2scale.io/{{ job_name }}.yml'
     ```
-
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
 ## Job details
