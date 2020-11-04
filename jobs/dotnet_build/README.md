@@ -31,7 +31,7 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
-| `DOTNET_OUTPUT` <img width=150/> | Path to the built in the artifact <img width=175/>| `/build` <img width=100/>|
+| `DOTNET_OUTPUT` <img width=150/> | Path to the output build (used as artifact) <img width=175/>| `/build` <img width=100/>|
 | `DOTNET_VERSION` | .NET version used to build. You have the choice between multiples versions (see [versions](https://github.com/dotnet/installer#installers-and-binaries)). | `3.1` |
 | `DOTNET_VERBOSITY` | Prints more or less logs (*Types available*: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]` and `diag[nostic]`) | `m` |
 | `DOTNET_CONFIG` | Configuration profile used to build | `Debug` |
