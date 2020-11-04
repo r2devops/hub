@@ -12,7 +12,8 @@ Each jobs of the hub can be used unitary to create fully **customs pipelines.**
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-[I want to use the HUB 🚀](/use-the-hub){: .md-button  .border-radius-10}
+[I want to use the HUB  ![](images/rocket.png){: .heart}](/use-the-hub){: .md-button  .border-radius-10}
+
 
 ## Overview
 
