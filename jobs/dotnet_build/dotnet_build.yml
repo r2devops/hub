@@ -1,0 +1,40 @@
+# Job from go2scale hub --> hub.go2scale.io
+
+stages:
+  - build
+
+dotnet_build:
+  image: alpine:3.12.1
+  stage: build
+  variables:
+    DOTNET_OUTPUT: "/build"
+    DOTNET_VERSION: "3.1"
+    DOTNET_VERBOSITY: "m"
+    DOTNET_CONFIG: "Debug"
+    DOTNET_READY_TO_RUN: "false"
+    DOTNET_SINGLE_FILE: "false"
+    DOTNET_TRIMMED: "false"
+    DOTNET_SELF_CONTAINED: "false"
+    DONTET_OPTIONS: ""
+    PROJECT_ROOT: "/"
+  script:
+    # Installing necessary stuff
+    - apk add curl autoconf bash build-base clang clang-dev cmake curl-dev gcc gettext-dev git icu-dev krb5-dev libtool linux-headers llvm make zlib-dev
+    # Downloading official dotnet install script
+    - curl -O https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh
+    - chmod +x dotnet-install.sh
+    - bash dotnet-install.sh -Channel ${DOTNET_VERSION}
+    - export PATH="/root/.dotnet/:$PATH"
+    # Working Directory
+    - mkdir /app
+    - cp ${CI_PROJECT_DIR}${PROJECT_ROOT}/*.csproj /app
+    # For cache purposes, we restore dependencies
+    - dotnet restore
+    - cp -r ${CI_PROJECT_DIR}${PROJECT_ROOT} /app
+
+    - dotnet publish -c ${DOTNET_CONFIG} -o ${CI_PROJECT_DIR}${DOTNET_OUTPUT} --no-restore -v ${DOTNET_VERBOSITY} --self-contained ${DOTNET_SELF_CONTAINED} -p:PublishReadyToRun=${DOTNET_READY_TO_RUN} -p:PublishSingleFile=${DOTNET_SINGLE_FILE} -p:PublishTrimmed=${DOTNET_TRIMMED} ${DOTNET_OPTIONS}
+  artifacts:
+    when: on_success
+    expose_as: dotNET Build
+    paths:
+      - ${CI_PROJECT_DIR}${DOTNET_OUTPUT}

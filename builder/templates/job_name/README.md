@@ -14,7 +14,6 @@
     include:
       - remote: 'https://jobs.go2scale.io/{{ job_name }}.yml'
     ```
-
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
