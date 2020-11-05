@@ -230,4 +230,5 @@
 }
 .heart {
   animation: heart 1000ms infinite;
+  padding-left: 5px;
 }
