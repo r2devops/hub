@@ -48,8 +48,8 @@ extra:
       link: 'https://www.linkedin.com/company/go2scale/'
 
 extra_css:
-    - css/extra.min.css
-    - css/juxtapose.min.css
+    - css/extra.css
+    - css/juxtapose.css
 
 extra_javascript:
     - js/juxtapose.min.js
