@@ -551,7 +551,11 @@
 
             var self = this;
             window.addEventListener("resize", function() {
-                self.setWrapperDimensions();
+                let $juxtapose_container = document.getElementsByClassName("juxtapose-container")[0]
+                let juxtaposeBounding = self.wrapper.getBoundingClientRect();
+                let containerBounding = $juxtapose_container.getBoundingClientRect();
+                self.wrapper.style.width = containerBounding.width + "px";
+                self.wrapper.style.height = containerBounding.width * (juxtaposeBounding.height / juxtaposeBounding.width) + "px";
             });
 
 

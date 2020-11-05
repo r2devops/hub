@@ -164,7 +164,7 @@
 .tx-hero__content {
     padding-bottom: 6rem;
 }
-@media screen and (min-width: 60em) {
+@media screen and (min-width: 70em) {
     .tx-hero {
         display: flex;
         align-items: stretch;
