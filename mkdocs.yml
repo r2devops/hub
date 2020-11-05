@@ -54,6 +54,7 @@ extra_css:
 extra_javascript:
     - js/juxtapose.min.js
     - js/juxtapose.loader.min.js
+    - js/extra.js
 
 # Configuration
 theme:
