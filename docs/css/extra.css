@@ -233,6 +233,13 @@
   padding-left: 5px;
 }
 
-.md-button.md-button-center {
-    display: none;
+button.md-button-center {
+    display:block !important;
+    margin:0 auto !important;
+    padding-bottom:1em !important;
+    padding-top:0.8em !important
+}
+
+button.md-button-center:hover {
+    cursor: pointer;
 }
