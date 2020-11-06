@@ -1,0 +1,6 @@
+name: sls_scan
+description: ShiftLeftSecurity sast scan to secure your application
+default_stage: static_tests
+icon: 🔓
+maintainer: FulcrandG
+license: MIT

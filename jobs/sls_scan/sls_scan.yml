@@ -1,0 +1,27 @@
+stages:
+  - static_tests
+
+sls_scan:
+  image: shiftleft/sast-scan:v1.9.29
+  stage: static_tests
+  variables:
+    SLS_TYPE: ""
+    STOP_ON_VULN: "false"
+  script:
+    - mkdir public
+    - if [ ! -z ${SLS_TYPE} ]; then
+    -   scan --build -o public -t ${SLS_TYPE} | tee output
+    - else
+    -   scan --build -o public | tee output
+    - fi
+    - if [ ${STOP_ON_VULN} == "true" ]; then
+    -   cat output | grep ❌
+    -   if [ $? -eq 0 ]; then
+    -     exit 1
+    -   fi
+    - fi
+  artifacts:
+    when: always
+    expose_as: "ShiftLeft security scan"
+    paths:
+      - public
