@@ -5,6 +5,9 @@ let gigotteEvent = null;
 let stages, gigotteStages, time, slider, initiated;
 
 function initSlider() {
+    if (document.getElementById("juxtapose") == null)
+        return;
+
     if (initiated) 
         clearInterval(gigotteInterval);
     
@@ -43,6 +46,9 @@ function initSlider() {
 }
 
 function setSliderAnims() {
+    if (document.getElementById("juxtapose") == null)
+        return;
+        
     time = 0;
     stages.forEach((item) => {
         time += parseInt(item[1]);

@@ -551,7 +551,7 @@
 
             var self = this;
             window.addEventListener("resize", function() {
-                let $juxtapose_container = document.getElementsByClassName("juxtapose-container")[0]
+                let $juxtapose_container = document.getElementsByClassName("juxtapose-container")[0];
                 let juxtaposeBounding = self.wrapper.getBoundingClientRect();
                 let containerBounding = $juxtapose_container.getBoundingClientRect();
                 self.wrapper.style.width = containerBounding.width + "px";

@@ -12,7 +12,11 @@ Each jobs of the hub can be used independently to create fully **customized pipe
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-[I want to use the HUB  ![](images/rocket.png){: .heart}](/use-the-hub){: .md-button  .border-radius-10 .md-button-center}
+<a alt="Use the hub" href="/use-the-hub">
+    <button class="md-button border-radius-10 md-button-center" >
+        I want to use the HUB <img alt="" class="heart" src="../images/rocket.png">
+    </button>
+</a>
 
 ## Overview
 
