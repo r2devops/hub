@@ -1,4 +1,4 @@
-name: dotnet_builder
+name: dotnet_build
 description: A ready-to-use job to build .NET project
 default_stage: build
 icon: 🌐
