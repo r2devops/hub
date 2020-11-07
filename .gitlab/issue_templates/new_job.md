@@ -1,9 +1,9 @@
 # New Job
-<!-- Title should respect this syntax [Add job] - Add {jobname} -->
+<!-- Title should respect this syntax [New job] - {jobname} -->
 <!-- Sample of usage of this template ➡️ https://gitlab.com/go2scale/hub/-/issues/111 -->
 
-## Objectives
-<!-- Summarize concisely the objectives expected by this job -->
+## Objective
+<!-- Summarize concisely the objective expected by this job -->
 <!-- Identify clearly the benefits will help the community to contribute on your job -->
 
 ## Use cases
