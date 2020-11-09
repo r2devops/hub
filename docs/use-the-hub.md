@@ -9,7 +9,7 @@
 
 ## ⏳ Quick setup
 
-Follows these steps to setup your CI/CD pipeline in less than 10 minutes !
+Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
 1. If you haven't yet a `.gitlab-ci.yml` file in the root on your repository:
    create it with the list of stages:
