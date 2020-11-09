@@ -37,4 +37,5 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `VARIABLE` <img width=100/> | A general variable for this job <img width=175/>| `{{ variable }}` <img width=100/>|
+| `ZAP_SCANNERS` <img width=100/> | A comma-spearated list of scanners to use <img width=175/>| ` ` <img width=100/>|
+| `ZAP_CONTEXT` | Pathfor the context file for authenticated scans | ` ` |
