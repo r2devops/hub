@@ -1,0 +1,10 @@
+stages:
+  - dynamic_tests
+
+job_name:
+    image: owasp/zap2docker-stable:2.9.0
+    stage: dynamic_tests
+    variables:
+      VARIABLE: {{ variable }}
+    script:
+      - echo "${VARIABLE}"
