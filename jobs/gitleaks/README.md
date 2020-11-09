@@ -26,3 +26,13 @@ repos. As it written in go, it is much faster than most of the
 [`zricethezav/gitleaks:v6.1.2`](https://hub.docker.com/r/_/zricethezav/gitleaks)
 * Default stage: `static_tests`
 * When: `always`
+
+## Allowing Failure
+
+If you want for this job not to fail upon discovering a secret in the commits
+of the repository, you can do that by adding this to your `.gitlab-ci.yml`
+
+```
+gitleaks:
+  allow_failure: true
+```
