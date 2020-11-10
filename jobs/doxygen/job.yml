@@ -1,0 +1,6 @@
+name: doxygen
+description: A ready to use doxygen job to build your documentation
+default_stage: build
+icon: 📃 
+maintainer: coconux
+license: MIT
