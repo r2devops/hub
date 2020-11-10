@@ -17,7 +17,7 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
       - remote: 'https://jobs.go2scale.io/zaproxy.yml'
 
     zaproxy:
-      service:
+      services:
          - name: {{ your image }}
            alias: app
     ```

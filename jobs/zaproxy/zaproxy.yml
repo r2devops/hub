@@ -1,7 +1,7 @@
 stages:
   - dynamic_tests
 
-job_name:
+zaproxy:
     image: owasp/zap2docker-stable:2.9.0
     stage: dynamic_tests
     variables:
