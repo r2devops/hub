@@ -1,0 +1,44 @@
+stages:
+  - static_tests
+
+owasp_dependency_check:
+  image: openjdk:16-alpine3.12
+  stage: static_tests
+  variables:
+    DEPCHECK_NO_UPDATE: "false"
+    DEPCHECK_OPTIONS: ""
+    DEPCHECK_CVSS_SCORE_FAIL: "11"
+    DEPCHECK_JUNIT_CVSS_FAIL: "0"
+    DEPCHECK_EXPERIMENTALS: "false"
+    DOTNET_DLL_ANALYZE: "false"
+    DOTNET_VERSION: "3.1"
+    PROJECT_ROOT: "/"
+  script:
+    # Installing Dotnet if needed
+    - apk add wget curl bash unzip
+    - |
+      if [ "$DOTNET_DLL_ANALYZE" = "true" ]; then
+        # Script coming from dotNET_Build job
+        apk add autoconf build-base clang clang-dev cmake curl-dev gcc gettext-dev git icu-dev krb5-dev libtool linux-headers llvm make zlib-dev
+        curl -O https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh
+        chmod +x dotnet-install.sh
+        bash dotnet-install.sh -Channel ${DOTNET_VERSION}
+        export PATH="/root/.dotnet/:$PATH"
+      fi
+    # Installing Dependency-Check
+    - wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.0.3/dependency-check-6.0.3-release.zip
+    - unzip -d ${CI_PROJECT_DIR}/ *.zip 
+    - mkdir ${CI_PROJECT_DIR}/report/
+    # Env variables checking
+    - if [ "$DEPCHECK_NO_UPDATE" = "true" ]; then export DEPCHECK_OPTIONS="-n $DEPCHECK_OPTIONS"; fi
+    - if [ "$DEPCHECK_EXPERIMENTALS" = "true" ]; then export DEPCHECK_OPTIONS="--enableExperimental $DEPCHECK_OPTIONS"; fi
+    
+    - ${CI_PROJECT_DIR}/dependency-check/bin/dependency-check.sh -f JUNIT -s ${CI_PROJECT_DIR}${PROJECT_ROOT} -o ${CI_PROJECT_DIR}/report/ --failOnCVSS ${DEPCHECK_CVSS_SCORE_FAIL} --junitFailOnCVSS ${DEPCHECK_JUNIT_CVSS_FAIL}
+  cache:
+    key: "dependency-check:data"
+    paths:
+      - ${CI_PROJECT_DIR}/dependency-check/data/
+  artifacts:
+    when: always
+    reports:
+      junit: "${CI_PROJECT_DIR}/report/dependency-check-junit.xml"
