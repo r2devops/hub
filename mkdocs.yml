@@ -46,6 +46,8 @@ extra:
 #      link: 'https://twitter.com/#'
     - icon: 'fontawesome/brands/linkedin'
       link: 'https://www.linkedin.com/company/go2scale/'
+    - icon: 'fontawesome/brands/youtube'
+      link: 'https://www.youtube.com/channel/UCVt39An0xR1PJaX3_Me_zkw'
 
 extra_css:
     - css/extra.css
