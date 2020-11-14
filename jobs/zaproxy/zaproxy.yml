@@ -11,15 +11,15 @@ zaproxy:
     script:
       - if [ ! -z ${ZAP_CONTEXT} ]; then
       -   if [ ! -z ${ZAP_OPTIONS}]; then
-      -     python zap/zap-full-scan.py -n ${ZAP_CONTEXT} -z ${ZAP_OPTIONS} -t ${ZAP_TARGET} -r zap-report.html
+      -     python /zap/zap-full-scan.py -n ${ZAP_CONTEXT} -z ${ZAP_OPTIONS} -t ${ZAP_TARGET} -r zap-report.html
       -   else
-      -     python zap/zap-full-scan.py -n ${ZAP_CONTEXT} -t ${ZAP_TARGET} -r zap-report.html
+      -     python /zap/zap-full-scan.py -n ${ZAP_CONTEXT} -t ${ZAP_TARGET} -r zap-report.html
       -   fi
       - else
       -   if [ ! -z ${ZAP_OPTIONS}]; then
-      -     python zap/zap-full-scan.py -z ${ZAP_OPTIONS} -t ${ZAP_TARGET} -r zap-report.html
+      -     python /zap/zap-full-scan.py -z ${ZAP_OPTIONS} -t ${ZAP_TARGET} -r zap-report.html
       -   else
-      -     python zap/zap-full-scan.py -t ${ZAP_TARGET} -r zap-report.html
+      -     python /zap/zap-full-scan.py -t ${ZAP_TARGET} -r zap-report.html
       -   fi
       - fi
     artifacts:
