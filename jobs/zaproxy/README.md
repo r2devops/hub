@@ -37,6 +37,6 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `ZAP_SCANNERS` <img width=100/> | A comma-spearated list of scanners to use <img width=175/>| ` ` <img width=100/>|
+| `ZAP_OPTIONS` <img width=100/> | ZAP command line options e.g. `-z "-config aaa=bbb -config ccc=ddd"` <img width=175/>| ` ` <img width=100/>|
 | `ZAP_CONTEXT` | Path for the context file for authenticated scans | ` ` |
 | `ZAP_TARGET` | Target for zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
