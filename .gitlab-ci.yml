@@ -4,7 +4,6 @@ stages:
   - deployment
 
 include:
-<<<<<<< .gitlab-ci.yml
   - remote: 'https://jobs.r2devops.io/mkdocs.yml'
 #  - remote: 'https://jobs.r2devops.io/pages.yml'
 
