@@ -13,7 +13,7 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/dotnet_build.yml'
+      - remote: 'https://jobs.r2devops.io/dotnet_build.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

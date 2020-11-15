@@ -17,7 +17,7 @@ This job use the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecur
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/sls_scan.yml'
+      - remote: 'https://jobs.r2devops.io/sls_scan.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

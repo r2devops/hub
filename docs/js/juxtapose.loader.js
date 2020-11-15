@@ -27,10 +27,10 @@ function initSlider() {
     slider = new juxtapose.JXSlider('#juxtapose',
         [
             {
-                src: 'images/with_hub.png'
+                src: 'images/with_r2devops.png'
             },
             {
-                src: 'images/without_hub.png'
+                src: 'images/without_r2devops.png'
             }
         ],
         {

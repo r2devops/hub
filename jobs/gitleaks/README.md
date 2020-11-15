@@ -15,7 +15,7 @@ repos. As it written in go, it is much faster than most of the
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/gitleaks.yml'
+      - remote: 'https://jobs.r2devops.io/gitleaks.yml'
     ```
 2. Well done, your job is ready to work ! 😀
 

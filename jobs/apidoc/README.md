@@ -16,7 +16,7 @@ code using [apiDoc](https://www.apidocjs.com/).
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/apidoc.yml'
+      - remote: 'https://jobs.r2devops.io/apidoc.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

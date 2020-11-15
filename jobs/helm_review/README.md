@@ -13,7 +13,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/) charts as a review en
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/helm_review.yml'
+      - remote: 'https://jobs.r2devops.io/helm_review.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

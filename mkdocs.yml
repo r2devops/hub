@@ -1,8 +1,8 @@
 # Project information
-site_name: Go2Scale HUB
+site_name: R2Devops HUB
 site_description: 'Ready to use CI/CD Jobs for your Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
-site_url: 'https://hub.go2scale.io/'
+site_url: 'https://r2devops.io/'
 
 # Copyright
 copyright: '
@@ -12,8 +12,8 @@ Copyright &copy; 2020 Go2Scale
 '
 
 # Repository
-repo_name: 'go2scale/hub'
-repo_url: 'https://gitlab.com/go2scale/hub'
+repo_name: 'r2devops/hub'
+repo_url: 'https://gitlab.com/r2devops/hub'
 edit_uri: 'edit/latest/docs/'
 
 # Navigation
@@ -41,9 +41,9 @@ extra:
     - icon: 'fontawesome/solid/globe'
       link: 'https://go2scale.com/'
     - icon: 'fontawesome/brands/gitlab'
-      link: 'https://gitlab.com/go2scale/'
-#    - icon: 'fontawesome/brands/twitter'
-#      link: 'https://twitter.com/#'
+      link: 'https://gitlab.com/r2devops/'
+    - icon: 'fontawesome/brands/youtube'
+      link: 'https://www.youtube.com/channel/UCVt39An0xR1PJaX3_Me_zkw'
     - icon: 'fontawesome/brands/linkedin'
       link: 'https://www.linkedin.com/company/go2scale/'
 

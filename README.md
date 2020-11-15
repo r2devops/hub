@@ -1,8 +1,8 @@
-# Go2Scale hub
+# R2Devops HUB
 
 ## Description
 
-**Go2Scale hub** is a collaborative hub of CI & CD **ready to use** jobs which
+**R2Devops HUB** is a collaborative hub of CI & CD **ready to use** jobs which
 helps you to quickly build powerful pipelines for your projects.
 
 
@@ -10,7 +10,7 @@ Each jobs of the hub can be used independently or to create fully **customized p
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-Check the [documentation](https://hub.go2scale.io) 📚
+Check the [documentation](https://r2devops.io) 📚
 
 ## How to update the documentation
 
@@ -31,7 +31,7 @@ pip install mkdocs-material mkdocs-minify-plugin mkdocs-git-revision-date-locali
 Clone the repository locally
 
 ```shell
-git clone git@gitlab.com:go2scale/hub.git
+git clone git@gitlab.com:r2devops/hub.git
 cd hub
 ```
 

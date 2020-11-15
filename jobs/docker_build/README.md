@@ -21,7 +21,7 @@ remote registry. The build part is done using
    started](/getting-started)). Example:
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/docker_build.yml'
+      - remote: 'https://jobs.r2devops.io/docker_build.yml'
     ```
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/getting-started/#jobs-customization)

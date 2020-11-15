@@ -32,8 +32,8 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/<job_name>.yml'
-      - remote: 'https://jobs.go2scale.io/<job_name>.yml'
+      - remote: 'https://jobs.r2devops.io/<job_name>.yml'
+      - remote: 'https://jobs.r2devops.io/<job_name>.yml'
       - ...
     ```
 
@@ -78,8 +78,8 @@ stages:
 
 # Jobs from g2s hub
 include:
-  - remote: 'https://jobs.go2scale.io/latest/docker_build.yml'
-  - remote: 'https://jobs.go2scale.io/0.1.0/mkdocs.yml'
+  - remote: 'https://jobs.r2devops.io/latest/docker_build.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/mkdocs.yml'
 
 # You can also include your own local jobs
 unit_tests:
@@ -90,6 +90,12 @@ unit_tests:
   script:
     - make test
 ```
+
+<a alt="See all jobs" href="/jobs">
+    <button class="md-button border-radius-10 md-button-center" >
+        See all jobs available <img alt="" class="heart" src="../images/rocket.png">
+    </button>
+</a>
 
 ## ▶ Stages
 
@@ -121,7 +127,7 @@ customize it by:
 
 ```yaml
 include:
-  - remote: 'https://jobs.go2scale.io/trivy_image.yml'
+  - remote: 'https://jobs.r2devops.io/trivy_image.yml'
 
 trivy_image:
   stage: security

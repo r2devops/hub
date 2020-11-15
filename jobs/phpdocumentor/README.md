@@ -12,7 +12,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/phpdocumentor.yml'
+      - remote: 'https://jobs.r2devops.io/phpdocumentor.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

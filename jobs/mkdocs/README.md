@@ -23,7 +23,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/) are ready to use.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/mkdocs.yml'
+      - remote: 'https://jobs.r2devops.io/mkdocs.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

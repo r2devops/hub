@@ -13,7 +13,7 @@ Using this job you'll be able to launch PHPUnit tests.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/phpunit_test.yml'
+      - remote: 'https://jobs.r2devops.io/phpunit_test.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

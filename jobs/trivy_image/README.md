@@ -24,7 +24,7 @@ vulnerability detection capabilities are available in its official
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/trivy_image.yml'
+      - remote: 'https://jobs.r2devops.io/trivy_image.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

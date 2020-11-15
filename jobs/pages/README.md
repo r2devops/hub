@@ -26,7 +26,7 @@ from previous job named `documentation`.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/pages.yml'
+      - remote: 'https://jobs.r2devops.io/pages.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

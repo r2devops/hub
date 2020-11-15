@@ -1,6 +1,6 @@
 # Concept
 
-The **Go2Scale HUB** is a collaborative hub of CI & CD
+The **R2Devops HUB** is a collaborative hub of CI & CD
 **ready to use** jobs which helps you to easily build powerful pipelines for your
 projects.
 

@@ -13,7 +13,7 @@ Allow you to launch unit tests from your python project. The default variables w
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/python_test.yml'
+      - remote: 'https://jobs.r2devops.io/python_test.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

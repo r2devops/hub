@@ -15,9 +15,9 @@ Example in `.gitlab-ci.yml`:
 
 ```yaml
 include:
-  - remote: 'https://jobs.go2scale.io/latest/docker.yml'
-  - remote: 'https://jobs.go2scale.io/0.1.0/mkdocs.yml'
-  - remote: 'https://jobs.go2scale.io/0.1.0/apidoc.yml'
+  - remote: 'https://jobs.r2devops.io/latest/docker.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/mkdocs.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/apidoc.yml'
 ```
 
 Available tags and release note for each jobs are available in [Jobs

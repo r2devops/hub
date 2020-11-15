@@ -16,7 +16,7 @@ Other languages can be supported with additional code.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/doxygen.yml'
+      - remote: 'https://jobs.r2devops.io/doxygen.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

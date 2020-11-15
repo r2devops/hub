@@ -62,7 +62,7 @@ More than 36 languages are supported :
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/super_linter.yml'
+      - remote: 'https://jobs.r2devops.io/super_linter.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
