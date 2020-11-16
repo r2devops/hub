@@ -7,6 +7,10 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 
 ## How to use it
 
+!!! warning
+    Zaproxy is fisrt used to scan web applications and web frontend. You can use the tool to try and discover
+    API vulnerabilities, but this job is focused on a quick scan for a frontend service (with or without authentication)
+
 1. Build a docker image of your web application so that this job can
 use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/jobs/build/docker_build/) job for it)
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
