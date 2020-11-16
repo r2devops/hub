@@ -14,7 +14,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
    started](/use-the-hub)). Example:
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/owasp_dependency_check.yml'
+      - remote: 'https://jobs.r2devops.io/owasp_dependency_check.yml'
     ```
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
@@ -61,7 +61,7 @@ OWASP dependency-check has several file type analyzers that can detect security 
 | `DEPCHECK_OPTIONS` | User customizable options | ` ` |
 | `DEPCHECK_EXPERIMENTALS` | Uses experimental analyzers | `false` |
 | `DOTNET_DLL_ANALYZE` | Enable the analyzer for *.DLL and *.exe files | `false` |
-| `DOTNET_VERSION` | If `DOTNET_DLL_ANALYZE` is enabled, sets the version of .NET Core (It uses script in [.NET Build](https://hub.go2scale.io/jobs/build/dotnet_build/#variables)) | `3.1` |
+| `DOTNET_VERSION` | If `DOTNET_DLL_ANALYZE` is enabled, sets the version of .NET Core (It uses script in [.NET Build](https://r2devops.io/jobs/build/dotnet_build/#variables)) | `3.1` |
 | `DEPCHECK_NO_UPDATE` | Force `OWASP_dependency_check` to not update its local vulnerabilities database | `false` |
 | `PROJECT_ROOT` | Root of the project to scan in your repository | `/` |
 
