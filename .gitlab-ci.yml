@@ -4,7 +4,7 @@ stages:
   - deployment
 
 include:
-  - remote: 'https://jobs.r2devops.io/163-maj-job-maj-mkdocs/mkdocs.yml'
+  - remote: 'https://gitlab.com/r2devops/hub/-/raw/163-maj-job-maj-mkdocs/jobs/mkdocs/mkdocs.yml'
 #  - remote: 'https://jobs.r2devops.io/pages.yml'
 
 mkdocs:
