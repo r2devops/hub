@@ -4,7 +4,7 @@ stages:
   - deployment
 
 include:
-  - remote: 'https://jobs.go2scale.io/mkdocs.yml'
+  - remote: 'https://jobs.r2devops.io/mkdocs.yml'
 #  - remote: 'https://jobs.go2scale.io/pages.yml'
 
 mkdocs:
