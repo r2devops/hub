@@ -8,35 +8,19 @@ zaproxy:
     ZAP_SCANNERS: ""
     ZAP_CONTEXT: ""
     ZAP_TARGET: "http://app"
-    ZAP_PORT: ""
+    ZAP_PORT: "80"
   script:
     - if [ ! -z ${ZAP_CONTEXT} ]; then
     -   zap-cli context import ${ZAP_CONTEXT}
     -   if [ ! -z ${ZAP_SCANNERS}]; then
-    -     if [ ! -z ${ZAP_PORT} ]; then
-    -       zap-cli -p ${ZAP_PORT} quick-scan -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
-    -     else
-    -       zap-cli quick-scan -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
-    -     fi
+    -     zap-cli -p ${ZAP_PORT} quick-scan -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
     -   else
-    -     if [ ! -z ${ZAP_PORT} ]; then
-    -       zap-cli -p ${ZAP_PORT} quick-scan --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
-    -     else
-    -       zap-cli quick-scan --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
-    -     fi
+    -     zap-cli -p ${ZAP_PORT} quick-scan --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
     -   fi
     - else
     -   if [ ! -z ${ZAP_SCANNERS}]; then
-    -     if [ ! -z ${ZAP_PORT} ]; then
-    -       zap-cli -p ${ZAP_PORT} quick-scan -s $ {ZAP_SCANNERS} --start-options '-config api.disablekey=true' ${ZAP_TARGET} 
-    -     else
-    -       zap-cli quick-scan -s $ {ZAP_SCANNERS} --start-options '-config api.disablekey=true' ${ZAP_TARGET} 
-    -     fi
+    -     zap-cli -p ${ZAP_PORT} quick-scan -s $ {ZAP_SCANNERS} --start-options '-config api.disablekey=true' ${ZAP_TARGET} 
     -   else
-    -     if [ ! -z ${ZAP_PORT} ]; then
-    -       zap-cli -p ${ZAP_PORT} quick-scan --start-options '-config api.disablekey=true' ${ZAP_TARGET}
-    -     else
-    -       zap-cli quick-scan --start-options '-config api.disablekey=true' ${ZAP_TARGET}
-    -     fi
+    -     zap-cli -p ${ZAP_PORT} quick-scan --start-options '-config api.disablekey=true' ${ZAP_TARGET}
     -   fi
     - fi
