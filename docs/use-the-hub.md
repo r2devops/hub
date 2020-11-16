@@ -1,4 +1,4 @@
-# Use the HUB
+# Use the hub
 
 ## 📝 Prerequisites
 

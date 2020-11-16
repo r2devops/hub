@@ -1,8 +1,8 @@
-# R2Devops HUB
+# R2Devops hub
 
 ## Description
 
-**R2Devops HUB** is a collaborative hub of CI & CD **ready to use** jobs which
+**R2Devops hub** is a collaborative hub of CI & CD **ready to use** jobs which
 helps you to quickly build powerful pipelines for your projects.
 
 

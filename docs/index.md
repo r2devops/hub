@@ -1,5 +1,5 @@
 ---
 template: home.html
-title: R2Devops HUB
+title: R2Devops hub
 ---
 

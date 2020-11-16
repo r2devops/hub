@@ -1,5 +1,5 @@
 # Project information
-site_name: R2Devops HUB
+site_name: R2Devops hub
 site_description: 'Ready to use CI/CD Jobs for your Pipelines !'
 site_author: 'Go2Scale <cto@go2scale.com>'
 site_url: 'https://r2devops.io/'
@@ -21,7 +21,7 @@ nav:
   - Home: index.md
   - Getting started:
     - Concept: concept.md
-    - Use the HUB: use-the-hub.md
+    - Use the hub: use-the-hub.md
     - Versioning: versioning.md
 #    - Contributing: contributing.md
 #    - License: license.md

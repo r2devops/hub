@@ -1,4 +1,4 @@
-# Job from R2Devops HUB --> r2devops.io
+# Job from R2Devops hub --> r2devops.io
 
 stages:
   - static_tests

@@ -10,7 +10,7 @@ from previous job named `documentation`.
 !!! note "Requirements"
 
     You have to use a job which build your documentation in a previous stage.
-    We recommend you to use a documentation job available on the HUB in [build
+    We recommend you to use a documentation job available on the hub in [build
     📦 stage](/jobs/#build). They build documentation and publish it as
     artifact in `documentation_build/` folder.
 
