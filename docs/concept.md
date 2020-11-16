@@ -1,6 +1,6 @@
 # Concept
 
-The **Go2Scale HUB** is a collaborative hub of CI & CD
+The **R2Devops hub** is a collaborative hub of CI & CD
 **ready to use** jobs which helps you to easily build powerful pipelines for your
 projects.
 
@@ -14,10 +14,10 @@ customized through configuration.
 
 <a alt="Use the hub" href="/use-the-hub">
     <button class="md-button border-radius-10 md-button-center" >
-        I want to use the HUB <img alt="" class="heart" src="../images/rocket.png">
+        I want to use the hub <img alt="" class="heart" src="../images/rocket.png">
     </button>
 </a>
 
 ## Overview
 
-![HUB overview](images/g2shub_mvp.png)
+![hub overview](images/g2shub_mvp.jpg)

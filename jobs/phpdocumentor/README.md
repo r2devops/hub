@@ -2,17 +2,17 @@
 
 ## Description
 
-Build a complete HTML documentation based on a PHP Project using [DocBlocks](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html) from [PHPDoc](https://www.phpdoc.org/).
+Build a complete HTML documentation based on a PHP Project using [DocBlocks](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html){:target="_blank"} from [PHPDoc](https://www.phpdoc.org/){:target="_blank"}.
 
 ## How to use it
 
-1. Have a PHP Project with well documented files (see [how](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html)).
+1. Have a PHP Project with well documented files (see [how](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html){:target="_blank"}).
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub)). Example:
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/phpdocumentor.yml'
+      - remote: 'https://jobs.r2devops.io/phpdocumentor.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -20,16 +20,16 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
 4. Well done, your job is ready to work ! 😀
 
-!!! info 
+!!! info
 
-    This job allows you to use a configuration file named `phpdoc.dist.xml` (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html)). 
+    This job allows you to use a configuration file named `phpdoc.dist.xml` (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html){:target="_blank"}).
     By default, PHPDoc will search for a configuration file in `PROJECT_ROOT` and will use it if the file does exist. But you can customize the location to `phpdoc.dist.xml` by editing `PHPDOC_CONFIG_FILE`.
 
 ## Job details
 
 * Job name: `phpdocumentor`
 * Docker image:
-[`phpdoc/phpdoc:3.1`](https://hub.docker.com/r/phpdoc/phpdoc)
+[`phpdoc/phpdoc:3.1`](https://hub.docker.com/r/phpdoc/phpdoc){:target="_blank"}
 * Default stage: `build`
 * When: `always`
 
@@ -44,18 +44,18 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 | `PHPDOC_TEMPLATE` | Template used by PHPDoc | ` ` |
 | `PHPDOC_INCLUDE_HIDDEN` | Include hidden PHP files | `false` |
 | `PHPDOC_IGNORE_SYMLINKS` | Ignore symbolic links to avoid loops | `false` |
-| `PHPDOC_MARKERS` | Custom comment [markers](https://docs.phpdoc.org/3.0/guide/guides/running-phpdocumentor.html#Markers) | ` ` |
+| `PHPDOC_MARKERS` | Custom comment [markers](https://docs.phpdoc.org/3.0/guide/guides/running-phpdocumentor.html#Markers){:target="_blank"} | ` ` |
 | `PHPDOC_OPTIONS` | Additional custom options  | ` ` |
 | `PROJECT_ROOT` | PHP Project location in your repository | `/` |
 
 ### Artifacts
 
 Result of documentation build is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `PHPDoc Build` in
+as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"} `PHPDoc Build` in
 merge requests.
 
 !!! warning
     Exposition of artifact doesn't work currently because of [this issue from
-    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129). As soon as
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}. As soon as
     the issue will be fixed, exposed artifacts will be available in merge
     requests.

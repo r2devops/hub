@@ -3,10 +3,10 @@
 ## Description
 
 Run a security issue detection in your local dependencies using
-[Trivy](https://github.com/aquasecurity/trivy), a Simple and Comprehensive
+[Trivy](https://github.com/aquasecurity/trivy){:target="_blank"}, a Simple and Comprehensive
 Vulnerability Scanner for Containers and other Artifacts. More details on Trivy
 vulnerability detection capabilities are available in its official
-[README](https://github.com/aquasecurity/trivy#vulnerability-detection)
+[README](https://github.com/aquasecurity/trivy#vulnerability-detection){:target="_blank"}
 
 !!! warning
     With the default configuration, this job will fail if errors are detected.
@@ -24,7 +24,7 @@ vulnerability detection capabilities are available in its official
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/trivy_dependency.yml'
+      - remote: 'https://jobs.r2devops.io/trivy_dependency.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -34,7 +34,7 @@ vulnerability detection capabilities are available in its official
 ## Job details
 
 * Job name: `trivy_dependency`
-* Docker image: [`aquasec/trivy`](https://hub.docker.com/r/aquasec/trivy/)
+* Docker image: [`aquasec/trivy`](https://hub.docker.com/r/aquasec/trivy/){:target="_blank"}
 * Default stage: `static_tests`
 
 ### Dependencies check
@@ -52,12 +52,12 @@ managers.
     behave the same way, without any changes that may break a feature.
 
     It is
-    [recommended](https://myers.io/2019/01/13/what-is-the-purpose-of-a-lock-file-for-package-managers/) to
+    [recommended](https://myers.io/2019/01/13/what-is-the-purpose-of-a-lock-file-for-package-managers/){:target="_blank"} to
     have these files in your version control system, to ensure everyone will
     get the same behavior from your dependencies.
 
     More details about lock files in [this
-    post](https://myers.io/2019/01/13/what-is-the-purpose-of-a-lock-file-for-package-managers/)
+    post](https://myers.io/2019/01/13/what-is-the-purpose-of-a-lock-file-for-package-managers/){:target="_blank"}
 
 List of supported lock files :
 
@@ -70,13 +70,13 @@ List of supported lock files :
 | Rust | `Cargo.lock` |
 
 To get more information, see [trivy
-documentation](https://github.com/aquasecurity/trivy#application-dependencies).
+documentation](https://github.com/aquasecurity/trivy#application-dependencies){:target="_blank"}.
 
 ### Variables
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
-| `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases) | `0.12.0` |
+| `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.12.0` |
 | `TRIVY_SEVERITY` | Severity of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 1 |
 | `TRIVY_VULN_TYPE` | List of vulnerability types | os,library |
@@ -93,5 +93,5 @@ documentation](https://github.com/aquasecurity/trivy#application-dependencies).
 
 ### Artifacts
 
-We use [Junit](https://junit.org/junit5/)'s XML report to display error report
+We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget

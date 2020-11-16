@@ -3,20 +3,20 @@
 ## Description
 
 This job generates documentation from popular programming languages
-in different output format using this tool [Doxygen](https://www.doxygen.nl/)
+in different output format using this tool [Doxygen](https://www.doxygen.nl/){:target="_blank"}
 
 Programming languages supported by Doxygen include C, C++, C#, D, Fortran, IDL, Java, Objective-C, Perl, PHP, Python, and VHDL.
 Other languages can be supported with additional code.
 ## How to use it
 
 
-1. Ensure that your source code is documenting using [Doxygen syntax](https://www.doxygen.nl/manual/docblocks.html)
+1. Ensure that your source code is documenting using [Doxygen syntax](https://www.doxygen.nl/manual/docblocks.html){:target="_blank"}
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/getting-started)). Example:
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/doxygen.yml'
+      - remote: 'https://jobs.r2devops.io/doxygen.yml'
     ```
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -26,7 +26,7 @@ Other languages can be supported with additional code.
 ## Job details
 
 * Job name: `doxygen`
-* Docker image: [`alpine:3.12.1`](https://hub.docker.com/_/alpine)
+* Docker image: [`alpine:3.12.1`](https://hub.docker.com/_/alpine){:target="_blank"}
 * Default stage: `build`
 * When: `always`
 
@@ -58,11 +58,11 @@ Other languages can be supported with additional code.
 ### Artifacts
 
 Result of documentation build is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `Doyxgen build` in
+as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"} `Doyxgen build` in
 merge requests.
 
 !!! warning
     Exposition of artifact doesn't work currently because of [this issue from
-    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129). As soon as
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}. As soon as
     the issue will be fixed, exposed artifacts will be available in merge
     requests.
