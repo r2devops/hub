@@ -139,4 +139,4 @@ trivy_image:
 !!! tip
     In this way, you can override all Gitlab jobs parameters. All parameters
     are described in [Gitlab
-    documentation](https://docs.gitlab.com/ee/ci/yaml/).
+    documentation](https://docs.gitlab.com/ee/ci/yaml/){:target="_blank"}.

@@ -2,10 +2,10 @@
 
 ## Description
 
-This job use the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan) which is a combination of various vulnerability scaners for different languages to help detect those in your project. This job permit to fully integrate it in Gitlab (sls-scan was developped to be used as a pre-commit and in CI directly).
+This job use the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} which is a combination of various vulnerability scaners for different languages to help detect those in your project. This job permit to fully integrate it in Gitlab (sls-scan was developped to be used as a pre-commit and in CI directly).
 
 !!! info
-    There are 27 different languages supported(👉 [full list](https://github.com/ShiftLeftSecurity/sast-scan#bundled-tools))
+    There are 27 different languages supported(👉 [full list](https://github.com/ShiftLeftSecurity/sast-scan#bundled-tools){:target="_blank"})
 
 ## How to use it
 
@@ -28,7 +28,7 @@ This job use the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecur
 
 * Job name: `sls_scan`
 * Docker image:
-[`shiftleft/sast-scan`](https://hub.docker.com/r/_/shiftleft/sast-scan)
+[`shiftleft/sast-scan`](https://hub.docker.com/r/_/shiftleft/sast-scan){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 

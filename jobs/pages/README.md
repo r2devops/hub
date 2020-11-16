@@ -37,7 +37,7 @@ from previous job named `documentation`.
 ## Job details
 
 * Job name: `pages`
-* Docker image: [`ruby`](https://hub.docker.com/_/ruby)
+* Docker image: [`ruby`](https://hub.docker.com/_/ruby){:target="_blank"}
 * Stage: `deployment`
 * When: only run on `master` branch
 

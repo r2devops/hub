@@ -6,7 +6,7 @@ Using this job you'll be able to launch PHPUnit tests.
 
 ## How to use it
 
-1. Put a `phpunit.xml` (check [syntax](https://phpunit.readthedocs.io/en/latest/configuration.html#the-phpunit-element)) in the root of your php project. Edit `PHPUNIT_CONFIG_FILE` (see [Variables](#variables)) to change the default behavior.
+1. Put a `phpunit.xml` (check [syntax](https://phpunit.readthedocs.io/en/latest/configuration.html#the-phpunit-element){:target="_blank"}) in the root of your php project. Edit `PHPUNIT_CONFIG_FILE` (see [Variables](#variables)) to change the default behavior.
 
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub)). Example:
@@ -24,7 +24,7 @@ Using this job you'll be able to launch PHPUnit tests.
 
 * Job name: `phpunit_test`
 * Docker image:
-[`lorisleiva/laravel-docker:7.3`](https://hub.docker.com/r/lorisleiva/laravel-docker)
+[`lorisleiva/laravel-docker:7.3`](https://hub.docker.com/r/lorisleiva/laravel-docker){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
@@ -44,6 +44,6 @@ Using this job you'll be able to launch PHPUnit tests.
 
 ### Artifacts
 
-We use [Junit](https://junit.org/junit5/)'s XML report to display error report
+We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.
-The report defined in variable `PHPUNIT_OUTPUT` is also available directly in the artifacts. 
+The report defined in variable `PHPUNIT_OUTPUT` is also available directly in the artifacts.

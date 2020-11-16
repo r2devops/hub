@@ -3,10 +3,10 @@
 ## Description
 
 Run a security issue detection in a docker image using
-[Trivy](https://github.com/aquasecurity/trivy), a Simple and Comprehensive
+[Trivy](https://github.com/aquasecurity/trivy){:target="_blank"}, a Simple and Comprehensive
 Vulnerability Scanner for Containers and other Artifacts. More details on Trivy
 vulnerability detection capabilities are available in its official
-[README](https://github.com/aquasecurity/trivy#vulnerability-detection)
+[README](https://github.com/aquasecurity/trivy#vulnerability-detection){:target="_blank"}
 
 !!! warning
     With the default configuration, this job will fail if errors are detected.
@@ -17,7 +17,7 @@ vulnerability detection capabilities are available in its official
 ## How to use it
 
 1. Check supported OS and packages
-   [here](https://github.com/aquasecurity/trivy#vulnerability-detection)
+   [here](https://github.com/aquasecurity/trivy#vulnerability-detection){:target="_blank"}
 2. Choose a version in [version list](#changelog)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub/)). Example:
@@ -35,14 +35,14 @@ vulnerability detection capabilities are available in its official
 ## Job details
 
 * Job name: `trivy_image`
-* Docker image: [`docker`](https://hub.docker.com/_/docker)
+* Docker image: [`docker`](https://hub.docker.com/_/docker){:target="_blank"}
 * Default stage: `dynamic_tests`
 
 ### Variables
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
-| `TRIVY_VERSION` <img width=450/> | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases) | `0.9.2` |
+| `TRIVY_VERSION` <img width=450/> | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.9.2` |
 | `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 1 |
 | `TRIVY_VULN_TYPE` | List of vulnerability types | os,library |
@@ -69,5 +69,5 @@ vulnerability detection capabilities are available in its official
 
 ### Artifacts
 
-We use [Junit](https://junit.org/junit5/)'s XML report to display error report
+We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget

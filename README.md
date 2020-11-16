@@ -17,7 +17,7 @@ Check the [documentation](https://r2devops.io) 📚
 ### Requirements
 
 Documentation is built using [Mkdocs](https://www.mkdocs.org) and [Material for
-Mkdocs](https://squidfunk.github.io/mkdocs-material/).
+Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"}.
 
 Make sure that `python` and `pip` are installed on your system. Then install
 all required components:

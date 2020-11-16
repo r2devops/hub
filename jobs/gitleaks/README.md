@@ -2,10 +2,10 @@
 
 ## Description
 
-[Gitleaks](https://github.com/zricethezav/gitleaks/wiki/Scanning) is a tool
+[Gitleaks](https://github.com/zricethezav/gitleaks/wiki/Scanning){:target="_blank"} is a tool
 made to detect hardcoded secrets like passwords, api keys and tokens in git
-repos. As it written in go, it is much faster than most of the 
-[alternatives](https://github.com/zricethezav/gitleaks/wiki/Comparison-with-other-tools).
+repos. As it written in go, it is much faster than most of the
+[alternatives](https://github.com/zricethezav/gitleaks/wiki/Comparison-with-other-tools){:target="_blank"}.
 
 ## How to use it
 
@@ -23,7 +23,7 @@ repos. As it written in go, it is much faster than most of the
 
 * Job name: `gitleaks`
 * Docker image:
-[`zricethezav/gitleaks:v6.1.2`](https://hub.docker.com/r/_/zricethezav/gitleaks)
+[`zricethezav/gitleaks:v6.1.2`](https://hub.docker.com/r/_/zricethezav/gitleaks){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 

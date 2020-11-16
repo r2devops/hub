@@ -2,10 +2,10 @@
 
 ## Description
 
-Build a [docker](https://www.docker.com/) image of your application
+Build a [docker](https://www.docker.com/){:target="_blank"} image of your application
 from a Dockerfile at the root of your project, and push it to a
 remote registry. The build part is done using
-[kaniko](https://github.com/GoogleContainerTools/kaniko).
+[kaniko](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}.
 
 !!! info
     By default, your images will be pushed to the Gitlab Container
@@ -14,7 +14,7 @@ remote registry. The build part is done using
 ## How to use it
 
 1. Create a
-   [Dockerfile](https://docs.docker.com/get-started/part2/#sample-dockerfile) (by default at the root of your project)
+   [Dockerfile](https://docs.docker.com/get-started/part2/#sample-dockerfile){:target="_blank"} (by default at the root of your project)
    to containerize your application
 2. Choose a version in [version list](#changelog)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
@@ -30,14 +30,13 @@ remote registry. The build part is done using
 ## Job details
 
 * Job name: `docker_build`
-* Docker image: [`gcr.io/kaniko-project/executor:debug-v0.20.0`](https://github.com/GoogleContainerTools/kaniko)
+* Docker image: [`gcr.io/kaniko-project/executor:debug-v0.20.0`](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}
 * Default stage: `build`
 
 ### Build behavior
 
 !!! info
-    This build will use Gitlab CI predefined [environment variables]
-    (https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+    This build will use Gitlab CI predefined [environment variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html){:target="_blank"}
     to know you are in a `commit` context or a `tag` context
     (for example if you are releasing a new version of your project).
 

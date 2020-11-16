@@ -3,7 +3,7 @@
 Each job of the hub are versioned using a git tag.
 
 !!! note
-    Version follows the [Semantic Versioning](https://semver.org/).
+    Version follows the [Semantic Versioning](https://semver.org/){:target="_blank"}.
 
 You can also use the latest version using `latest` instead of a tag. Using
 this, you will retrieve the latest version of jobs at each run. Note that if
