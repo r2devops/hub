@@ -5,20 +5,21 @@ zaproxy:
     image: owasp/zap2docker-stable:2.9.0
     stage: dynamic_tests
     variables:
-      ZAP_OPTIONS: ""
+      ZAP_SCANNERS: ""
       ZAP_CONTEXT: ""
       ZAP_TARGET: "http://app"
     script:
       - if [ ! -z ${ZAP_CONTEXT} ]; then
-      -   if [ ! -z ${ZAP_OPTIONS}]; then
-      -     python /zap/zap-full-scan.py -n ${ZAP_CONTEXT} -z ${ZAP_OPTIONS} -t ${ZAP_TARGET}
+      -   zap-cli context import ${ZAP_CONTEXT}
+      -   if [ ! -z ${ZAP_SCANNERS}]; then
+      -     zap-cli quick-scan -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
       -   else
-      -     python /zap/zap-full-scan.py -n ${ZAP_CONTEXT} -t ${ZAP_TARGET}
+      -     zap-cli quick-scan --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
       -   fi
       - else
-      -   if [ ! -z ${ZAP_OPTIONS}]; then
-      -     python /zap/zap-full-scan.py -z ${ZAP_OPTIONS} -t ${ZAP_TARGET}
+      -   if [ ! -z ${ZAP_SCANNERS}]; then
+      -     zap-cli quick-scan -s $ {ZAP_SCANNERS} --start-options '-config api.disablekey=true' ${ZAP_TARGET} 
       -   else
-      -     python /zap/zap-full-scan.py -t ${ZAP_TARGET}
+      -     zap-cli quick-scan --start-options '-config api.disablekey=true' ${ZAP_TARGET}
       -   fi
       - fi
