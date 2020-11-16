@@ -40,4 +40,3 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
 | `ZAP_OPTIONS` <img width=100/> | ZAP command line options e.g. `-z "-config aaa=bbb -config ccc=ddd"` <img width=175/>| ` ` <img width=100/>|
 | `ZAP_CONTEXT` | Path for the context file for authenticated scans | ` ` |
 | `ZAP_TARGET` | Target for zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
-| `ZAP_PORT` | Custom port if you have one for your project (zap will try 80/443 by default) | `80` |
