@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # This script is used to build the documentation that
-# hub.go2scale.com will be using for every job added to the hub
+# r2devops.io will be using for every job added to the hub
 
 # Directory skeleton for a job:
 # ── jobs
@@ -19,6 +19,7 @@ from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
 import requests
 from datetime import datetime
+from distutils.version import LooseVersion
 
 # Job variables
 JOBS_DIR = "jobs"
@@ -29,7 +30,7 @@ JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
 
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
-GO2SCALE_URL = "https://jobs.go2scale.io/"
+R2DEVOPS_URL = "https://jobs.r2devops.io/"
 
 # Templates variables
 BUILDER_DIR = "builder"
@@ -60,17 +61,18 @@ def get_description(job_path):
 
 def get_changelogs(job_path, job_name):
     versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR)
-    versions.reverse()
+    versions = [version[:-3] for version in versions]
+    versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
-      "version": versions[0][0:-3],
-      "url": GO2SCALE_URL + job_name + ".yml"
+      "version": versions[0],
+      "url": R2DEVOPS_URL + job_name + ".yml"
     }
     changelogs = []
     for version in versions:
-        with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version) as changelog_file:
+        with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + ".md") as changelog_file:
             changelogs.append({
-                "version": version[0:-3],
-                "url": GO2SCALE_URL + version[0:-3] + "/" + job_name + ".yml",
+                "version": version,
+                "url": R2DEVOPS_URL + version + "/" + job_name + ".yml",
                 "changelog": changelog_file.readlines()
             })
     return (latest, changelogs)

@@ -1,9 +1,9 @@
 # Versioning
 
-Each job of the HUB are versioned using a git tag.
+Each job of the hub are versioned using a git tag.
 
 !!! note
-    Version follows the [Semantic Versioning](https://semver.org/).
+    Version follows the [Semantic Versioning](https://semver.org/){:target="_blank"}.
 
 You can also use the latest version using `latest` instead of a tag. Using
 this, you will retrieve the latest version of jobs at each run. Note that if
@@ -15,9 +15,9 @@ Example in `.gitlab-ci.yml`:
 
 ```yaml
 include:
-  - remote: 'https://jobs.go2scale.io/latest/docker.yml'
-  - remote: 'https://jobs.go2scale.io/0.1.0/mkdocs.yml'
-  - remote: 'https://jobs.go2scale.io/0.1.0/apidoc.yml'
+  - remote: 'https://jobs.r2devops.io/latest/docker.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/mkdocs.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/apidoc.yml'
 ```
 
 Available tags and release note for each jobs are available in [Jobs

@@ -1,4 +1,4 @@
-# Job from go2scale hub --> hub.go2scale.io
+# Job from R2Devops hub --> r2devops.io
 
 stages:
   - static_tests
@@ -13,6 +13,8 @@ phpunit_test:
       PHPUNIT_OPTIONS: ""
       PROJECT_ROOT: "/"
     script:
+      # Installing globally PhpUnit
+      - composer global require "phpunit/phpunit"
       # Going to the root of php project
       - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
       # Running Unit testing

@@ -1,4 +1,4 @@
-# Job from go2scale hub --> hub.go2scale.io
+# Job from R2Devops hub --> r2devops.io
 
 stages:
   - dynamic_tests

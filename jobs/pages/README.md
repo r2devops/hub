@@ -10,7 +10,7 @@ from previous job named `documentation`.
 !!! note "Requirements"
 
     You have to use a job which build your documentation in a previous stage.
-    We recommend you to use a documentation job available on the HUB in [build
+    We recommend you to use a documentation job available on the hub in [build
     📦 stage](/jobs/#build). They build documentation and publish it as
     artifact in `documentation_build/` folder.
 
@@ -18,6 +18,7 @@ from previous job named `documentation`.
 
     * [ApiDoc](/jobs/build/apidoc/)
     * [Mkdocs](/jobs/build/mkdocs/)
+    * [Doxygen](/jobs/build/doxygen/)
 
 1. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
@@ -25,7 +26,7 @@ from previous job named `documentation`.
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/pages.yml'
+      - remote: 'https://jobs.r2devops.io/pages.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -36,7 +37,7 @@ from previous job named `documentation`.
 ## Job details
 
 * Job name: `pages`
-* Docker image: [`ruby`](https://hub.docker.com/_/ruby)
+* Docker image: [`ruby`](https://hub.docker.com/_/ruby){:target="_blank"}
 * Stage: `deployment`
 * When: only run on `master` branch
 

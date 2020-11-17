@@ -1,5 +1,5 @@
 ---
 template: home.html
-title: Go2Scale HUB
+title: R2Devops hub
 ---
 

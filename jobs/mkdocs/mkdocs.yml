@@ -1,11 +1,11 @@
-# Job from go2scale hub --> hub.go2scale.io
+# Job from R2Devops hub --> r2devops.io
 
 stages:
   - build
 
 mkdocs:
   image:
-    name: squidfunk/mkdocs-material:6.0.2
+    name: squidfunk/mkdocs-material:6.1.5
     entrypoint: [""]
   stage: build
   variables:

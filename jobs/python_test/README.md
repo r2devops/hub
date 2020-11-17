@@ -6,14 +6,14 @@ Allow you to launch unit tests from your python project. The default variables w
 
 ## How to use it
 
-1. Prepare your project with unit tests to run in a separate directory: [pytest usage](https://docs.pytest.org/en/2.8.7/usage.html)
-2. Prepare a Pipfile for pipenv to install any python dependencies your project may have: [Pipfile for pipenv](https://pipenv-fork.readthedocs.io/en/latest/basics.html), including your test framework which is chosen by the `TEST_FRAMEWORK` [variable](#Variables)
+1. Prepare your project with unit tests to run in a separate directory: [pytest usage](https://docs.pytest.org/en/2.8.7/usage.html){:target="_blank"}
+2. Prepare a Pipfile for pipenv to install any python dependencies your project may have: [Pipfile for pipenv](https://pipenv-fork.readthedocs.io/en/latest/basics.html){:target="_blank"}, including your test framework which is chosen by the `TEST_FRAMEWORK` [variable](#variables)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub/)). Example:
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/python_test.yml'
+      - remote: 'https://jobs.r2devops.io/python_test.yml'
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -24,12 +24,12 @@ Allow you to launch unit tests from your python project. The default variables w
 
 * Job name: `python_test`
 * Docker image:
-[`python:3.7`](https://hub.docker.com/r/_/python)
+[`python:3.7`](https://hub.docker.com/r/_/python){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
 !!! note
-    We are not using an [alpine linux](https://alpinelinux.org/) docker image in order to improve speed over ressource efficiency. Alpine linux is using musl-libc and not glibc, so it can't use the python [wheels](https://pythonwheels.com/) with pip to get compiled dependencies while setting up your environment, and have to download and compile from source those libraries. As speed is the real issue that CI can have when building complex systems, we decided to use the general docker image of `python:3.7` based on Debian. You can see the explanation at this [link](https://pythonspeed.com/articles/alpine-docker-python/#:~:text=Don't%20use%20Alpine%20Linux,choosing%20a%20good%20base%20image).
+    We are not using an [alpine linux](https://alpinelinux.org/){:target="_blank"} docker image in order to improve speed over ressource efficiency. Alpine linux is using musl-libc and not glibc, so it can't use the python [wheels](https://pythonwheels.com/){:target="_blank"} with pip to get compiled dependencies while setting up your environment, and have to download and compile from source those libraries. As speed is the real issue that CI can have when building complex systems, we decided to use the general docker image of `python:3.7` based on Debian. You can see the explanation at this [link](https://pythonspeed.com/articles/alpine-docker-python/#:~:text=Don't%20use%20Alpine%20Linux,choosing%20a%20good%20base%20image){:target="_blank"}.
 
 ### Variables
 
