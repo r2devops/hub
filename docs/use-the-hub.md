@@ -41,10 +41,10 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
         By default, the `latest` version of a job is used. You can choose to
         use a specific version using a `tag`. Available tags are described for
-        each jobs in [Jobs section](/jobs/). Description of `tag` format is
+        each job in [Jobs section](/jobs/). Description of `tag` format is
         available in [Versioning page](/versioning/).
 
-        Once your pipeline is functional, we recommend to use specific version
+        Once your pipeline is functional, we recommend to use a specific version
         for jobs in order to ensure that your pipeline will not be broken by a
         job update.
 

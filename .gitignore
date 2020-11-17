@@ -1,3 +1,4 @@
 site/
 docs/jobs/**/*
 !docs/jobs/**/.pages
+**/.DS_Store
