@@ -1,5 +1,5 @@
 name: trivy_image
-description: A ready-to-use trivy job to scan your docker images
+description: A ready-to-use trivy job to scan your docker images and discover dependency vulnerabilities
 default_stage: dynamic_tests
 icon: 🧱
 maintainer: paulrgnt
