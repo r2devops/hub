@@ -4,9 +4,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🔎 Static tests
 
-| Name | Description |
+| Name <img width=250/> | Description |
 | ---- | ----------- |
-| <img width=250/> | |
 {% for job in index["static_tests"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](static_tests/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
@@ -15,7 +14,7 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 📦 Build
 
-| Name | Description |
+| Name <img width=250/> | Description |
 | ---- | ----------- |
 {% for job in index["build"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](build/{{ job.name }}/) | {{ job.description }} |
@@ -23,7 +22,7 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🛡 Dynamic tests
 
-| Name | Description |
+| Name <img width=250/> | Description |
 | ---- | ----------- |
 {% for job in index["dynamic_tests"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](dynamic_tests/{{ job.name }}/) | {{ job.description }} |
@@ -31,7 +30,7 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🙋 Review
 
-| Name | Description |
+| Name <img width=250/> | Description |
 | ---- | ----------- |
 {% for job in index["review"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](review/{{ job.name }}/) | {{ job.description }} |
@@ -39,7 +38,7 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🚀 Deployment
 
-| Name | Description |
+| Name <img width=250/> | Description |
 | ---- | ----------- |
 {% for job in index["deployment"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](deployment/{{ job.name }}/) | {{ job.description }} |
