@@ -14,7 +14,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 1. Build a docker image of your web application so that this job can
 use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/jobs/build/docker_build/) job for it)
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+   started](/use-the-hub)) and add a `services` section. Example:
 
     ```yaml
     include:
@@ -25,9 +25,12 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
          - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
            alias: app
     ```
-    You need the `services` part because you need to be able to reach your web application.
-    You may also run some other services like a database depending on your application needs.
-    The `name` variable is your image name, and the `alias` needs to match the `ZAP_TARGET` variable.
+
+    * You need the `services` part because you need to be able to reach your web application
+    * The `name` option must contains your image name and tag
+    * The `alias` option permits to zaproxy to reach your application using a name. This name must be the same that the one specified inside [variable `ZAP_TARGET`](#variables)
+    * You may also run some other services like a database depending on your application needs
+
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
