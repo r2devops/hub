@@ -20,7 +20,7 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🛡 Dynamic tests
 
-| Name <img width=170/> | Description |
+| Name <img width=220/> | Description |
 | ---- | ----------- |
 {% for job in index["dynamic_tests"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](dynamic_tests/{{ job.name }}/) | {{ job.description }} |
@@ -36,7 +36,7 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🚀 Deployment
 
-| Name <img width=170/> | Description |
+| Name <img width=200/> | Description |
 | ---- | ----------- |
 {% for job in index["deployment"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](deployment/{{ job.name }}/) | {{ job.description }} |
