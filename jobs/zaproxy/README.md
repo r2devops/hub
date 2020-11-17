@@ -22,9 +22,12 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
 
     zaproxy:
       services:
-         - name: {{ your image }}
+         - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
            alias: app
     ```
+    You need the `services` part because you need to be able to reach your web application.
+    You may also run some other services like a database depending on your application needs.
+    The `name` variable is your image name, and the `alias` needs to match the `ZAP_TARGET` variable.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
