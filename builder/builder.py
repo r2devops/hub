@@ -19,6 +19,7 @@ from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
 import requests
 from datetime import datetime
+from distutils.version import LooseVersion
 
 # Job variables
 JOBS_DIR = "jobs"
@@ -60,17 +61,18 @@ def get_description(job_path):
 
 def get_changelogs(job_path, job_name):
     versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR)
-    versions.reverse()
+    versions = [version[:-3] for version in versions]
+    versions = sorted(versions, key=LooseVersion).reverse()
     latest = {
-      "version": versions[0][0:-3],
+      "version": versions[0],
       "url": R2DEVOPS_URL + job_name + ".yml"
     }
     changelogs = []
     for version in versions:
         with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version) as changelog_file:
             changelogs.append({
-                "version": version[0:-3],
-                "url": R2DEVOPS_URL + version[0:-3] + "/" + job_name + ".yml",
+                "version": version,
+                "url": R2DEVOPS_URL + version + "/" + job_name + ".yml",
                 "changelog": changelog_file.readlines()
             })
     return (latest, changelogs)
