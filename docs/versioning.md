@@ -9,7 +9,7 @@ You can also use the latest version using `latest` instead of a tag. Using
 this, you will retrieve the latest version of jobs at each run. Note that if
 you don't set any tag, `latest` is used by default.
 
-Each jobs can be used independently with different version.
+Each jobs can be used independently with a different version.
 
 Example in `.gitlab-ci.yml`:
 
@@ -20,5 +20,5 @@ include:
   - remote: 'https://jobs.r2devops.io/0.1.0/apidoc.yml'
 ```
 
-Available tags and release note for each jobs are available in [Jobs
+Available tags and release note for each job are available in [Jobs
 section](/jobs/).

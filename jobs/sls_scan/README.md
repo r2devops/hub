@@ -2,7 +2,7 @@
 
 ## Description
 
-This job use the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} which is a combination of various vulnerability scaners for different languages to help detect those in your project. This job permit to fully integrate it in Gitlab (sls-scan was developped to be used as a pre-commit and in CI directly).
+This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} which is a combination of various vulnerability scanners for different languages to help detect those in your project. This job permit to fully integrate it in Gitlab (sls-scan was developped to be used as a pre-commit and in CI directly).
 
 !!! info
     There are 27 different languages supported(👉 [full list](https://github.com/ShiftLeftSecurity/sast-scan#bundled-tools){:target="_blank"})
@@ -43,10 +43,10 @@ This job use the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecur
 
 !!! info
     Currently, sls_scan isn't integrated in a merge request widget, so we
-    create an exposed atifact containing resulsts.
+    create an exposed artifact containing results.
 
 You can view the report by languages when browsing through the published
-artifact and clicking on the html outputs in your browser.
+artifact and clicking on the HTML outputs in your browser.
 
 ### Bundled tools
 

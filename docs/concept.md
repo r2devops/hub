@@ -5,7 +5,7 @@ The **R2Devops hub** is a collaborative hub of CI & CD
 projects.
 
 !!! info
-    Currently, the hub is focused to provides only **Gitlab 🦊** jobs. We plan
+    Currently, the hub is focused to provide only **Gitlab 🦊** jobs. We plan
     to support more CI/CD platforms in the future.
 
 Each jobs of the hub can be used independently to create fully **customized pipelines.**

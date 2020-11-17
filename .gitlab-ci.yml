@@ -5,16 +5,16 @@ stages:
 
 include:
   - remote: 'https://jobs.r2devops.io/mkdocs.yml'
-#  - remote: 'https://jobs.r2devops.io/pages.yml'
+  - remote: 'https://jobs.r2devops.io/pages.yml'
 
 mkdocs:
   before_script:
     - pip3 install -r requirements.txt
     - python3 builder/builder.py
 
-#pages:
-#  rules:
-#    - if: '$CI_COMMIT_BRANCH == "latest"'
+pages:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "latest"'
 
 ci_linter:
   image: golang:1.15.2-alpine3.12
