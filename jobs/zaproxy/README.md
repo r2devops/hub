@@ -12,13 +12,13 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     API vulnerabilities, but this job is focused on a quick scan for a frontend service (with or without authentication)
 
 1. Build a docker image of your web application so that this job can
-use it as a service (we recommend using our [Docker](https://hub.go2scale.io/jobs/build/docker_build/) job for it)
+use it as a service (we recommend using our [Docker](https://r2deveops.io/jobs/build/docker_build/) job for it)
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub)) and add a `services` section. Example:
 
     ```yaml
     include:
-      - remote: 'https://jobs.go2scale.io/zaproxy.yml'
+      - remote: 'https://jobs.r2devops.io/zaproxy.yml'
 
     zaproxy:
       services:
