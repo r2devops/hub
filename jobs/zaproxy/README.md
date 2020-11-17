@@ -8,11 +8,11 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 ## How to use it
 
 !!! warning
-    Zaproxy is fisrt used to scan web applications and web frontend. You can use the tool to try and discover
+    Zaproxy is mainly used to scan web applications and web frontend. You can use the tool to try and discover
     API vulnerabilities, but this job is focused on a quick scan for a frontend service (with or without authentication)
 
 1. Build a docker image of your web application so that this job can
-use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/jobs/build/docker_build/) job for it)
+use it as a service (we recommend using our [Docker](https://hub.go2scale.io/jobs/build/docker_build/) job for it)
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub)) and add a `services` section. Example:
 
@@ -27,8 +27,8 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
     ```
 
     * You need the `services` part because you need to be able to reach your web application
-    * The `name` option must contains your image name and tag
-    * The `alias` option permits to zaproxy to reach your application using a name. This name must be the same that the one specified inside [variable `ZAP_TARGET`](#variables)
+    * The `name` option must contain your image name and tag
+    * The `alias` option permits to Zaproxy to reach your application using a name. This name must be the same that the one specified inside [variable `ZAP_TARGET`](#variables)
     * You may also run some other services like a database depending on your application needs
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -49,4 +49,4 @@ use it as a service (we reccomend using our [Docker](https://hub.go2scale.io/job
 | ---- | ----------- | ------- |
 | `ZAP_OPTIONS` <img width=100/> | ZAP command line options e.g. `-z "-config aaa=bbb -config ccc=ddd"` <img width=175/>| ` ` <img width=100/>|
 | `ZAP_CONTEXT` | Path for the context file for authenticated scans | ` ` |
-| `ZAP_TARGET` | Target for zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
+| `ZAP_TARGET` | Target for Zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
