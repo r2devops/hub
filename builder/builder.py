@@ -62,14 +62,14 @@ def get_description(job_path):
 def get_changelogs(job_path, job_name):
     versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR)
     versions = [version[:-3] for version in versions]
-    versions = sorted(versions, key=LooseVersion).reverse()
+    versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
       "version": versions[0],
       "url": R2DEVOPS_URL + job_name + ".yml"
     }
     changelogs = []
     for version in versions:
-        with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version) as changelog_file:
+        with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + ".md") as changelog_file:
             changelogs.append({
                 "version": version,
                 "url": R2DEVOPS_URL + version + "/" + job_name + ".yml",
