@@ -1,0 +1,6 @@
+name: zaproxy
+description: A ready-to-use job to run DAST using Zaproxy
+default_stage: dynamic_tests
+icon: 🔎
+maintainer: FulcrandG
+license: MIT

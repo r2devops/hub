@@ -5,7 +5,7 @@ stages:
 
 include:
   - remote: 'https://jobs.r2devops.io/mkdocs.yml'
-#  - remote: 'https://jobs.go2scale.io/pages.yml'
+#  - remote: 'https://jobs.r2devops.io/pages.yml'
 
 mkdocs:
   before_script:

@@ -1,0 +1,25 @@
+stages:
+  - dynamic_tests
+
+zaproxy:
+  image: owasp/zap2docker-stable:2.9.0
+  stage: dynamic_tests
+  variables:
+    ZAP_SCANNERS: ""
+    ZAP_CONTEXT: ""
+    ZAP_TARGET: "http://app"
+  script:
+    - if [ ! -z ${ZAP_CONTEXT} ]; then
+    -   zap-cli context import ${ZAP_CONTEXT}
+    -   if [ ! -z ${ZAP_SCANNERS}]; then
+    -     zap-cli quick-scan -sc -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
+    -   else
+    -     zap-cli quick-scan -sc --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
+    -   fi
+    - else
+    -   if [ ! -z ${ZAP_SCANNERS}]; then
+    -     zap-cli quick-scan -sc -s $ {ZAP_SCANNERS} --start-options '-config api.disablekey=true' ${ZAP_TARGET} 
+    -   else
+    -     zap-cli quick-scan -sc --start-options '-config api.disablekey=true' ${ZAP_TARGET}
+    -   fi
+    - fi
