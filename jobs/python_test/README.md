@@ -24,7 +24,7 @@ Allow you to launch unit tests from your python project. The default variables w
 
 * Job name: `python_test`
 * Docker image:
-[`python:3.7`](https://hub.docker.com/r/_/python){:target="_blank"}
+[`python:3.8`](https://hub.docker.com/r/_/python){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 

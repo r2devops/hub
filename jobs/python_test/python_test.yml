@@ -5,13 +5,13 @@ stages:
 
 python_test:
   stage: static_tests
-  image: python:3.7
+  image: python:3.8
   variables:
     # Dependencies variables
     APT_PACKAGES: ""
     PYTHON_SETUP: "pip install pipenv; pipenv --bare install --dev"
 
-    # Running variables 
+    # Running variables
     VENV: "pipenv run"
     TEST_FRAMEWORK: "pytest"
     OPTIONS: ""
