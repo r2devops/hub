@@ -21,7 +21,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
     ```
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/getting-started/#jobs-customization)
+   customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
 ## Job details
