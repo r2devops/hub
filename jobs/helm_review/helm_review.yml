@@ -20,13 +20,13 @@ stages:
     STABLE_REPO_URL: "https://kubernetes-charts.storage.googleapis.com/"
     HELM_ADDITIONAL_OPTIONS: ""
 
-deploy_review:
+helm_review:
   extends: .helm
   stage: review
   environment:
     name: review/${CI_COMMIT_REF_SLUG}
     url: https://${CI_ENVIRONMENT_SLUG}.${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/
-    on_stop: cleanup_review
+    on_stop: cleanup_helm_review
   except:
     refs:
       - master
@@ -55,7 +55,7 @@ deploy_review:
         --set-string gitlab.app=${CI_PROJECT_PATH_SLUG}
         ${HELM_ADDITIONAL_OPTIONS}
 
-cleanup_review:
+cleanup_helm_review:
   extends: .helm
   stage: review
   variables:

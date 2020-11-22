@@ -22,7 +22,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 
 ## Job details
 
-* Job name: `helm_review`
+* Job name: `helm_review`, `cleanup_helm_review`
 * Docker image:
 [`lachlanevenson/k8s-helm:v3.0.2`](https://hub.docker.com/r/lachlanevenson/k8s-helm/){:target="_blank"}
 * Default stage: `review`
