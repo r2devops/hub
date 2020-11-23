@@ -35,16 +35,28 @@ release:
     entrypoint: [""]
   stage: deployment
   script: >
+    apk update && apk add --no-cache bash;
+    PROJECT_ENCODED=$(/bin/bash -c "$(http --ignore-stdin --body https://gist.githubusercontent.com/cdown/1163649/raw/8a35c36fdd24b373788a7057ed483a5bcd8cd43e/gistfile1.sh) && _encode '$CI_PROJECT_PATH'");
+    
     for JOB in jobs/*; do
       JOB=$(basename ${JOB})
       for VERSION in jobs/${JOB}/versions/*; do
         VERSION=$(basename ${VERSION} .md)
-        http --ignore-stdin POST https://gitlab.com/api/v4/projects/r2devops%2Fhub/releases \
+        result=$(http --ignore-stdin POST https://gitlab.com/api/v4/projects/$PROJECT_ENCODED/releases \
           "JOB-TOKEN: ${CI_JOB_TOKEN}" \
           tag_name=${JOB}-${VERSION} \
           ref=${CI_COMMIT_SHA} \
           "description=$(cat jobs/${JOB}/versions/${VERSION}.md)" \
-          'assets:={"links": [{"name": "Hub link", "url": "https://jobs.r2devops.io/'"${VERSION}/${JOB}"'.yml"}]}'
+          'assets:={"links": [{"name": "Hub link", "url": "https://jobs.r2devops.io/'"${VERSION}/${JOB}"'.yml"}]}')
+        
+          if [ $(echo $result | grep "Release already exists\|${JOB}-${VERSION}" | wc -l) -eq 0 ]; then
+            echo "[ERROR] Problem when attempting to create release ${JOB}-${VERSION}"
+            echo "[ERROR] ${result}"
+            exit 1;
+          else
+            echo "Processed ${JOB}-${VERSION} : ${result}";
+          fi
+
       done
     done
   rules:
