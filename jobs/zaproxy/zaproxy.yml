@@ -8,7 +8,7 @@ zaproxy:
     ZAP_SCANNERS: ""
     ZAP_CONTEXT: ""
     ZAP_TARGET: "http://app"
-    ZAP_REPORT: "/zap-report.xml"
+    ZAP_REPORT: "${CI_PROJECT_DIR}/zap-report.xml"
   script:
     - zap.sh -cmd -quickurl ${ZAP_TARGET} -quickout ${ZAP_REPORT}
   artifacts:
