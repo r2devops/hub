@@ -29,7 +29,7 @@ zaproxy:
     -     zap-cli active-scan --recursive ${ZAP_TARGET}
     -   fi
     - fi
-    - zap report -o ${CI_PROJECT_DIR}/${ZAP_REPORT} -f xml
+    - zap-cli report -o ${CI_PROJECT_DIR}/${ZAP_REPORT} -f xml
   artifacts:
     paths:
       - "${ZAP_REPORT}"
