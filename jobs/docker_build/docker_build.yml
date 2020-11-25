@@ -12,10 +12,17 @@ docker_build:
     CUSTOM_REGISTRY: ""
     REGISTRY_USER: ""
     REGISTRY_PASSWORD: ""
+
     CUSTOM_TAG: ""
     COMMIT_CREATE_LATEST: "false"
     TAG_CREATE_LATEST: "true"
     DOCKERFILE_PATH: "Dockerfile"
+
+    DOCKER_USE_CACHE: "false"
+    DOCKER_CACHE_TTL: "336h"
+
+    DOCKER_VERBOSITY: "info"
+    DOCKER_OPTIONS: ""
   script:
     - mkdir -p /kaniko/.docker/
     - if [ ! -z ${CUSTOM_REGISTRY} ]; then
@@ -38,8 +45,14 @@ docker_build:
     -   fi
     - fi
 
+    - if [ "${DOCKER_USE_CACHE}" = "true" ]; then
+    -   DOCKER_OPTIONS="--cache=true --cache-ttl=${DOCKER_CACHE_TTL} ${DOCKER_OPTIONS}"
+    - fi
+
+    - DOCKER_OPTIONS="--verbosity=${DOCKER_VERBOSITY} ${DOCKER_OPTIONS}"
+
     - if [ ! -z ${CUSTOM_TAG} ]; then
-    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${REGISTRY_IMAGE}:${CUSTOM_TAG}
+    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${REGISTRY_IMAGE}:${CUSTOM_TAG} ${DOCKER_OPTIONS}
     - else
-    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG}
+    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG} ${DOCKER_OPTIONS}
     - fi

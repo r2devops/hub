@@ -64,3 +64,7 @@ The registry and tag of the resulting Docker image follow this behavior:
 | `COMMIT_CREATE_LATEST` | In a commit context, also update `latest` tag | `false` |
 | `TAG_CREATE_LATEST` | In a tag context, also update `latest` tag | `true` |
 | `DOCKERFILE_PATH` | Path to Dockerfile from the repository root | `Dockerfile` |
+| `DOCKER_USE_CACHE` | Cache Dockerfile layers. Cached layers are stored in the [container registry](https://docs.gitlab.com/ee/user/packages/container_registry/){:target="_blank"} in `/cache` repository | `false` | 
+| `DOCKER_CACHE_TTL` | Cached layers TTL |  `336h` |
+| `DOCKER_VERBOSITY` | Set the verbosity of the build in job's log (see [levels](https://github.com/GoogleContainerTools/kaniko#--verbosity){:target="_blank"})  |  `info` |
+| `DOCKER_OPTIONS`   | If you want to use additional [options](https://github.com/GoogleContainerTools/kaniko#additional-flags){:target="_blank"} | ` ` |
