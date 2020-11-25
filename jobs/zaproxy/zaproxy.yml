@@ -8,7 +8,8 @@ zaproxy:
     ZAP_SCANNERS: ""
     ZAP_CONTEXT: ""
     ZAP_TARGET: "http://app"
-    ZAP_REPORT: "zap-report.html"
+    ZAP_REPORT_FILE: "zap-report"
+    ZAP_REPORT_FORMAT: "html"
   script:
     - zap-cli start --start-options '-config api.disablekey=true'
     - if [ ! -z ${ZAP_CONTEXT} ]; then
@@ -29,9 +30,9 @@ zaproxy:
     -     zap-cli active-scan --recursive ${ZAP_TARGET}
     -   fi
     - fi
-    - zap-cli report -o ${CI_PROJECT_DIR}/${ZAP_REPORT} -f html
+    - zap-cli report -o ${CI_PROJECT_DIR}/${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT} -f ${ZAP_REPORT_FORMAT}
   artifacts:
     paths:
-      - "${ZAP_REPORT}"
+      - "${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT}"
     expire_in: 30 days
     when: always
