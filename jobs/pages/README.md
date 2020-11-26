@@ -19,6 +19,8 @@ from previous job named `documentation`.
     * [ApiDoc](/jobs/build/apidoc/)
     * [Mkdocs](/jobs/build/mkdocs/)
     * [Doxygen](/jobs/build/doxygen/)
+    * [PHPDocumentor](/jobs/build/phpdocumentor/)
+    * [OpenAPI](/jobs/build/openapi/)
 
 1. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
