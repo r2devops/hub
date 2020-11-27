@@ -29,3 +29,9 @@
 {%- if code_owner %}
 -- 🔨 Maintainer: <img src='{{ gitlab_image }}' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [{{ code_owner_name }}]({{ code_owner_url }}) @{{ code_owner }}
 {%- endif %}
+
+## Gallery
+<!-- Put in place a js gallery here -->
+{% for screenshots in screenshots_files -%}
+<img src="{{screenshot_path}}/{{screenshots}}" />
+{% endfor %}

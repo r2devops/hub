@@ -14,20 +14,30 @@
 #             ├── 0.1.0.md
 #             └──...
 
-from os import listdir
+from os import listdir, makedirs
 from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
 import requests
 from datetime import datetime
 from distutils.version import LooseVersion
+from shutil import copyfile
+
+
 
 # Job variables
 JOBS_DIR = "jobs"
 MKDOCS_DIR = "docs"
+
 MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
+
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
+
+# Path to images used for the built job documentation
+MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
+# Directory name to use for the jobs screenshot
+SCREENSHOTS_DIR = "screenshots"
 
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
@@ -87,6 +97,36 @@ def get_license(license_name, copyright_holder):
     license_content = [ line + '\n' for line in license_content]
     return license_content
 
+def get_screenshots(job_path, job_name):
+    """Create the job directory for the job documentation
+       Gets the jobs screenshots and copy them to the documentation directory
+
+    Parameters
+    ----------
+    job_path : str
+        The job path
+    job_name : str
+        The job name (ex: Gitleaks)
+
+    Returns
+    -------
+    str
+        Path to the documentation directory
+    list
+        List of all screenshots name for the job
+    """
+
+    # Create screenshots folder in docs for the job
+    makedirs(MKDOCS_DIR+"/"+MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR,0o777,True)
+
+    # Get all screenshots of the job
+    screenshot_list = listdir(job_path + "/" + SCREENSHOTS_DIR)
+
+    # Copy all screenshot of the job into screenshots folder for the doc
+    for screenshot in screenshot_list:
+        copyfile(job_path + "/" + SCREENSHOTS_DIR+"/"+screenshot, MKDOCS_DIR+ "/"+ MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR+"/"+screenshot)
+
+    return ("/" + MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR, screenshot_list)
 
 def get_user(code_owner):
     url = GITLAB_API_URL + "users?username=" + code_owner
@@ -111,6 +151,7 @@ def create_job_doc(job):
     # Get variables for jinja
     description = get_description(job_path)
     latest, changelogs = get_changelogs(job_path, job)
+    screenshot_path, screenshots_files = get_screenshots(job_path, job)
     license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
 
@@ -127,7 +168,9 @@ def create_job_doc(job):
             gitlab_image = user["avatar_url"],
             code_owner_name = user["name"],
             code_owner = code_owner,
-            code_owner_url = user["web_url"]
+            code_owner_url = user["web_url"],
+            screenshot_path = screenshot_path,
+            screenshots_files = screenshots_files
     ))
 
 def add_placeholder():
