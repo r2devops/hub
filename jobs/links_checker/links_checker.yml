@@ -1,0 +1,66 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+links_checker:
+  image: 
+      name: peterevans/liche:1.1.1
+      entrypoint: [""]
+  stage: static_tests
+  variables:
+      LICHE_DIRECTORY: ""
+      LICHE_FILES: ""
+      LICHE_EXCLUDE: ""
+      LICHE_WRITE_OK: "true"
+      LICHE_OPTIONS: ""
+      FAIL_ON_ERROR: "false"
+      REPORT_OUTPUT: "junit-report.xml"
+  script:
+      - apk add --update nodejs npm curl && npm install junit-report-builder
+      - add_option() { export LICHE_OPTIONS="${LICHE_OPTIONS} ${1}"; }
+      - |
+          generate_report() {
+              cat linkchecker_logs
+              echo "EOF" >> linkchecker_logs
+              curl -s -O https://gitlab.com/r2devops/hub/-/snippets/2044617/raw/master/main.cjs
+              node main.cjs "${CI_PROJECT_DIR}" "linkchecker_logs" "${REPORT_OUTPUT}"
+          }
+
+      - | 
+          if [ ! -z ${LICHE_DIRECTORY} ]; then 
+              if [ ! -d ${LICHE_DIRECTORY} ]; then
+                  echo "Directory specified ${LICHE_DIRECTORY} does not exist, exit"
+                  exit 1
+              fi
+              add_option "-r ${CI_PROJECT_DIR}/${LICHE_DIRECTORY}"; 
+          fi
+      - |
+          if [ ! -z "${LICHE_FILES}" ]; then
+              for i in ${LICHE_FILES}; do
+                  if [ ! -f ${i} ]; then
+                      echo "File ${i} does not exist, exit";
+                      exit 1;
+                  fi
+
+                  add_option "${CI_PROJECT_DIR}/${i}"
+              done
+          fi
+      - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x \"${LICHE_EXCLUDE}\""; fi
+      - if [ ${LICHE_WRITE_OK} = "true" ]; then add_option "-v"; fi
+
+      - |
+          if liche ${LICHE_OPTIONS} > linkchecker_logs 2>&1; then
+              echo "No errors so far in in the checked files";
+              generate_report;
+          else
+              generate_report;
+              echo "Errors found in checked files";
+              if [ ${FAIL_ON_ERROR} = "true" ]; then exit 1; fi
+          fi
+  artifacts:
+      when: always
+      paths:
+          - ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
+      reports:
+          junit: ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
