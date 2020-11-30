@@ -11,8 +11,17 @@ mkdocs:
   variables:
     MKDOCS_OUTPUT_PATH: 'documentation_build/'
   script:
-    - pip3 install mkdocs-git-revision-date-localized-plugin==0.7.2
-    - mkdocs build -d "$MKDOCS_OUTPUT_PATH"
+    # Create an associative array to manage dependencies
+    declare -A MYMAP
+    MYMAP["git-revision-date-localized"]=mkdocs-git-revision-date-localized-plugin==0.7.2
+    MYMAP["macros"]=mkdocs-macros-plugin==0.5.0
+
+    # For each dependencie, verify if we need to install it
+    - for K in "${!MYMAP[@]}"; do
+    -    if [ ! $(grep -c $K mkdocs.yml) -eq 0 ]; then
+    -        pip3 install ${MYMAP[$K]}
+    -    fi
+    - done
   artifacts:
     when: always
     expose_as: "Mkdocs build"
