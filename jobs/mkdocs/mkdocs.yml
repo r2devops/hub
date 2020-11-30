@@ -12,9 +12,9 @@ mkdocs:
     MKDOCS_OUTPUT_PATH: 'documentation_build/'
   script:
     # Create an associative array to manage dependencies
-    declare -A MYMAP
-    MYMAP["git-revision-date-localized"]=mkdocs-git-revision-date-localized-plugin==0.7.2
-    MYMAP["macros"]=mkdocs-macros-plugin==0.5.0
+    - declare -A MYMAP
+    - MYMAP["git-revision-date-localized"]=mkdocs-git-revision-date-localized-plugin==0.7.2
+    - MYMAP["macros"]=mkdocs-macros-plugin==0.5.0
 
     # For each dependencie, verify if we need to install it
     - for K in "${!MYMAP[@]}"; do
