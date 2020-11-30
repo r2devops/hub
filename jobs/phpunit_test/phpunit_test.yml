@@ -11,14 +11,18 @@ phpunit_test:
       PHPUNIT_CONFIG_FILE: "phpunit.xml"
       PHPUNIT_COLORS: "never"
       PHPUNIT_OPTIONS: ""
+      PHPUNIT_MEMORY_LIMIT: "512M"
       PROJECT_ROOT: "/"
     script:
-      # Installing globally PhpUnit
+      # Installing globally PHPUnit if not already
       - composer global require "phpunit/phpunit"
       # Going to the root of php project
       - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
       # Running Unit testing
-      - phpunit --configuration ${PHPUNIT_CONFIG_FILE} --coverage-text --colors=${PHPUNIT_COLORS} --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS}
+      - phpunit \
+        -d memory_limit=${PHPUNIT_MEMORY_LIMIT} --configuration ${PHPUNIT_CONFIG_FILE} \
+        --coverage-text --colors=${PHPUNIT_COLORS} \
+        --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS} 
     artifacts:
       when: always
       paths:
