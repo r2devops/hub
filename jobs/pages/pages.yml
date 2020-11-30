@@ -8,7 +8,11 @@ pages:
   variables:
     PAGES_BUILD_PATH: 'documentation_build/'
   script:
-    - if [ "$PAGES_BUILD_PATH" != "public" -a "$PAGES_BUILD_PATH" != "public/" ]; then mv "$PAGES_BUILD_PATH" public; fi
+    - if [ "$PAGES_BUILD_PATH" != "public" -a "$PAGES_BUILD_PATH" != "public/" ]; then 
+    -   if [ -d "public" ]; then rm -rf public; fi
+    -   mv "$PAGES_BUILD_PATH" public 
+    - fi
+
     - if [ ! -d "public" ]; then echo "Nothing to deploy"; exit 1; fi
   artifacts:
     paths:
