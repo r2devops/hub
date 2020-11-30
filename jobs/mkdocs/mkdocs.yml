@@ -11,6 +11,8 @@ mkdocs:
   variables:
     MKDOCS_OUTPUT_PATH: 'documentation_build/'
   script:
+    - apk add bash
+    - bash 
     # Create an associative array to manage dependencies
     - declare -A MYMAP
     - MYMAP["git-revision-date-localized"]=mkdocs-git-revision-date-localized-plugin==0.7.2
