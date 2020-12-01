@@ -12,6 +12,7 @@ mkdocs:
     MKDOCS_OUTPUT_PATH: 'documentation_build/'
   script:
     - pip3 install mkdocs-git-revision-date-localized-plugin==0.7.2
+    - pip3 install mkdocs-macros-plugin==0.5.0
     - mkdocs build -d "$MKDOCS_OUTPUT_PATH"
   artifacts:
     when: always
