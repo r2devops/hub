@@ -12,9 +12,10 @@ links_checker:
       LICHE_DIRECTORY: ""
       LICHE_FILES: ""
       LICHE_EXCLUDE: ""
-      LICHE_WRITE_OK: "true"
+      LICHE_PRINT_OK: "true"
       LICHE_OPTIONS: ""
-      FAIL_ON_ERROR: "false"
+      LICHE_RECURSIVE: "true"
+      FAIL_ON_BROKEN: "false"
       REPORT_OUTPUT: "junit-report.xml"
   script:
       - apk add --update nodejs npm curl && npm install junit-report-builder
@@ -33,7 +34,7 @@ links_checker:
                   echo "Directory specified ${LICHE_DIRECTORY} does not exist, exit"
                   exit 1
               fi
-              add_option "-r ${CI_PROJECT_DIR}/${LICHE_DIRECTORY}"; 
+              add_option "${CI_PROJECT_DIR}/${LICHE_DIRECTORY}"; 
           fi
       - |
           if [ ! -z "${LICHE_FILES}" ]; then
@@ -47,7 +48,8 @@ links_checker:
               done
           fi
       - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x \"${LICHE_EXCLUDE}\""; fi
-      - if [ ${LICHE_WRITE_OK} = "true" ]; then add_option "-v"; fi
+      - if [ ${LICHE_PRINT_OK} = "true" ]; then add_option "-v"; fi
+      - if [ ${LICHE_RECURSIVE} = "true" ]; then add_option "-r"; fi
 
       - |
           if liche ${LICHE_OPTIONS} > linkchecker_logs 2>&1; then
@@ -56,7 +58,7 @@ links_checker:
           else
               generate_report;
               echo "Errors found in checked files";
-              if [ ${FAIL_ON_ERROR} = "true" ]; then exit 1; fi
+              if [ ${FAIL_ON_BROKEN} = "true" ]; then exit 1; fi
           fi
   artifacts:
       when: always
