@@ -4,8 +4,8 @@ stages:
   - deployment
 
 include:
-  - remote: 'https://jobs.r2devops.io/mkdocs.yml'
-  - remote: 'https://jobs.r2devops.io/pages.yml'
+  - remote: 'https://jobs.r2devops.io/mkdocs.yml?scope=1.yml'
+  - remote: 'https://jobs.r2devops.io/pages.yml?scope=1.yml'
 
 mkdocs:
   before_script:
