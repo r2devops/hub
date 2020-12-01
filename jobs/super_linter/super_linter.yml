@@ -22,6 +22,7 @@ super_linter:
     DEFAULT_WORKSPACE: $CI_PROJECT_DIR
     DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
     OUTPUT_FORMAT: "tap"
+    OUTPUT_DETAILS: "detailed"
     OUTPUT_FOLDER: "super-linter.report"
     CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
     TAP_JUNIT_VERSION: "4.0.0"
