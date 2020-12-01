@@ -197,9 +197,5 @@ customize its behavior.
 
 ### Artifacts
 
-!!! warning
-    Currently, the report in merge request widget doesn't display details on
-    issues found, they are only described in the job output log.
-
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.

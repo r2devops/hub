@@ -24,7 +24,7 @@ super_linter:
     OUTPUT_FORMAT: "tap"
     OUTPUT_FOLDER: "super-linter.report"
     CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
-    TAP_JUNIT_VERSION: "3.1.2"
+    TAP_JUNIT_VERSION: "4.0.0"
   artifacts:
     reports:
       junit: "${CONVERTED_OUTPUT_FOLDER}/*.xml"
