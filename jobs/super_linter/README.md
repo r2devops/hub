@@ -102,6 +102,7 @@ customize its behavior.
 | **FILTER_REGEX_INCLUDE**          | Regular expression defining which files will be processed by linters (ex: `.*src/.*`)                                                                                      | `all`                |
 | **LOG_LEVEL**                     | How much output the script will generate to the console. One of `VERBOSE`, `DEBUG` or `TRACE`.                                                                             | `VERBOSE`            |
 | **MULTI_STATUS**                  | A status API is made for each language that is linted to make visual parsing easier.                                                                                       | `true`               |
+| **REPORT_SUITE_TEST_NAME**        | Name of test suite inside test report                   | `super_linter`       |
 
 #### Linters configuration
 
