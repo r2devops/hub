@@ -47,8 +47,8 @@ use it as a service (we recommend using our [Docker](https://r2deveops.io/jobs/b
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `ZAP_OPTIONS` <img width=100/> | ZAP command line options e.g. `-z "-config aaa=bbb -config ccc=ddd"` <img width=175/>| ` ` <img width=100/>|
-| `ZAP_CONTEXT` | Path for the context file for authenticated scans | ` ` |
+| `ZAP_SCANNERS` <img width=100/> | Enable, disable, or list a set of scanners <img width=175/> | ` ` <img width=100/> |
+| `ZAP_CONTEXT` | Path for the [context](https://www.zaproxy.org/docs/desktop/ui/dialogs/session/contexts/) file for authenticated scans | ` ` |
 | `ZAP_TARGET` | Target for Zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
 | `ZAP_REPORT_FILE` | Filename for the zaproxy report | `zap-report` |
 | `ZAP_REPORT_FORMAT` | Format for the zaproxy report (html, xml, or json) | `html` |
