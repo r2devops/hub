@@ -32,7 +32,7 @@ zaproxy:
     - fi
     - zap-cli report -o ${CI_PROJECT_DIR}/${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT} -f ${ZAP_REPORT_FORMAT}
   artifacts:
-    expose_as: "${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT}"
+    expose_as: "${ZAP_REPORT_FILE}"
     paths:
       - "${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT}"
     expire_in: 30 days
