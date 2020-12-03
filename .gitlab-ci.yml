@@ -54,6 +54,11 @@ release:
             echo "[ERROR] ${result}"
             exit 1;
           else
+            if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
+              echo "New version detected for $JOB, sending notification to discord"
+              python3 builder/discord_release_notify.py -n ${JOB} -v ${VERSION}
+            fi
+            
             echo "Processed ${JOB}-${VERSION} : ${result}";
           fi
 
