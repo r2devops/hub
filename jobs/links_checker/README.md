@@ -4,10 +4,13 @@
 
 Using this job you will be able to detect most (see [here](#types-of-link-verified)) broken links in your **Markdown** or **HTML** files.
 
-It uses the tool [`Liche`](https://github.com/raviqqe/liche){:target="_blank"} in [Go](https://golang.org/){:target="_blank"} to test and find the links in your documents. In its default state, this job will analyze your whole project for eligible files to verify.
+It uses the tool [`Liche`](https://github.com/raviqqe/liche){:target="_blank"} in [Go](https://golang.org/){:target="_blank"} 
+to test and find the links in your documents. 
+In its default state, this job will analyze your whole project for eligible files to verify.
 
 !!! warning
-    This job may generate a lot errors about local broken links in your document if you are using **absolute paths** or **rewriting urls**. See [Absolute paths and rewriting urls](#absolute-paths-and-rewriting-urls)
+    This job may generate a lot of errors about local broken links in your document if you are using **absolute paths** or **rewriting URLs**. 
+    See [Absolute paths and rewriting URLs](#absolute-paths-and-rewriting-urls)
 
 ## How to use it
 
@@ -36,19 +39,19 @@ It uses the tool [`Liche`](https://github.com/raviqqe/liche){:target="_blank"} i
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `LICHE_DIRECTORY` <img width=450/> | Path to the directory to be scanned | `/` |
+| `LICHE_DIRECTORY` <img width=450/> | Path to the directory to be scanned | ` ` |
 | `LICHE_FILES` | A list of files (separated with spaces) to scan. It can be used with `LICHE_DIRECTORY` | ` ` |
-| `LICHE_EXCLUDE` | A [regular expression](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"} | ` ` |
-| `LICHE_PRINT_OK` | In addition to broken links, it will add not-broken links in the report (see [artifacts](#artifacts)) | `true` |
+| `LICHE_EXCLUDE` | A [regular expression](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"} to exclude a pattern of link | ` ` |
+| `LICHE_PRINT_OK` | In addition to broken links, it will add not-broken links in the report (see [artifacts](#artifacts)) | `false` |
 | `LICHE_RECURSIVE` | When `LICHE_DIRECTORY` is filled it will search for files recursively  | `true` |
 | `FAIL_ON_BROKEN` | Make your pipeline fails when a broken link is found | `false` |
-| `ROOT_DIRECTORY` | Used for absolute paths, it define the root of HTML projects | ` ` |
+| `ROOT_DIRECTORY` | Used for absolute paths, it defines the root of HTML projects | ` ` |
 | `LICHE_OPTIONS` | Additional options (see [options](https://github.com/raviqqe/liche){:target="_blank"}) | ` ` |
 | `REPORT_OUTPUT` | Report file's name | `junit-report.xml` |
 
 ### Types of link verified
 
-This tool will check for links in a specific context, and so in your project some links may not be checked. However,
+This tool will check for links in a specific context, and so in your project some link formats may not be checked. However,
 here is (a non-exhaustive) list of what `Liche` can or can't identify:
 
 **In HTML files (`.html`, `.htm`):**
@@ -78,19 +81,16 @@ Can identify:
 * [Gitlab](https://gitlab.com)
 * [R2DevOps](https://r2devops.io){:target="_blank"}
 * # New post [posts](https://pastebin.com)
-
-Can't identify:
-
 * # My title link : https://www.google.com
-* https://www.google.com
+* **See here a search engine: https://www.google.com**
 ```
 
 ### Absolute paths and rewriting urls
 
-If you are using absolute paths in your HTML documents, be sure to fill the variable `ROOT_DIRECTORY`. By default, if you use `LICHE_DIRECTORY`, `ROOT_DIRECTORY`  will be filled with the same path.
+If you are using absolute paths in your HTML documents, be sure to fill the variable `ROOT_DIRECTORY`. If you don't, by default, the variable will be filled with the same path as `LICHE_DIRECTORY`.
 
 If you use URL rewriting in your static website, using this job, most of the internal links will be considered as broken. To avoid that, you can define that you
-only want to check external links, by using `LICHE_EXCLUSE` with the following value: `"^[^http]"` 
+only want to check external links, by using `LICHE_EXCLUDE: "^[^http]"` (see [regex](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"}) 
 
 ### Artifacts
 
