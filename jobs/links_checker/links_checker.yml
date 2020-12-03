@@ -44,16 +44,14 @@ links_checker:
             }
 
         - | 
-            if [ ! -z ${ROOT_DIRECTORY} ]; then
-                if [ ! -d ${CI_PROJECT_DIR}/${LICHE_DIRECTORY} ]; then
-                    echo "Directory specified ${CI_PROJECT_DIR}/${LICHE_DIRECTORY} does not exist, exit"
-                    exit 1
-                fi
-                if [ -z ${ROOT_DIRECTORY} ]; then
-                    export ROOT_DIRECTORY=${LICHE_DIRECTORY}
-                fi
-                add_option "${CI_PROJECT_DIR}/${LICHE_DIRECTORY} -d ${CI_PROJECT_DIR}/${ROOT_DIRECTORY}"; 
+            if [ ! -d ${CI_PROJECT_DIR}/${LICHE_DIRECTORY} ]; then
+                echo "Directory specified ${CI_PROJECT_DIR}/${LICHE_DIRECTORY} does not exist, exit"
+                exit 1
             fi
+            if [ -z ${ROOT_DIRECTORY} ]; then
+                export ROOT_DIRECTORY=${LICHE_DIRECTORY}
+            fi
+            add_option "${CI_PROJECT_DIR}/${LICHE_DIRECTORY} -d ${CI_PROJECT_DIR}/${ROOT_DIRECTORY}"; 
         - |
             if [ ! -z "${LICHE_FILES}" ]; then
                 for i in ${LICHE_FILES}; do
@@ -67,7 +65,7 @@ links_checker:
             fi
         - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x \"${LICHE_EXCLUDE}\""; fi
         - if [ ${LICHE_PRINT_OK} = "true" ]; then add_option "-v"; fi
-        - if [ ${LICHE_RECURSIVE} = "true" ] && [ ! -z ${LICHE_DIRECTORY} ]; then add_option "-r"; fi
+        - if [ ${LICHE_RECURSIVE} = "true" ]; then add_option "-r"; fi
         
         - |
             if liche ${LICHE_OPTIONS} > ${CI_PROJECT_DIR}/linkchecker_logs 2>&1; then
