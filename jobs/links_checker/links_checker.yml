@@ -9,13 +9,14 @@ links_checker:
       entrypoint: [""]
   stage: static_tests
   variables:
-      LICHE_DIRECTORY: ""
+      LICHE_DIRECTORY: "/"
       LICHE_FILES: ""
       LICHE_EXCLUDE: ""
       LICHE_PRINT_OK: "true"
       LICHE_OPTIONS: ""
       LICHE_RECURSIVE: "true"
       FAIL_ON_BROKEN: "false"
+      ROOT_DIRECTORY: ""
       REPORT_OUTPUT: "junit-report.xml"
   script:
       - apk add --update nodejs npm curl && npm install junit-report-builder
@@ -34,7 +35,10 @@ links_checker:
                   echo "Directory specified ${LICHE_DIRECTORY} does not exist, exit"
                   exit 1
               fi
-              add_option "${CI_PROJECT_DIR}/${LICHE_DIRECTORY}"; 
+              if [ -z ${ROOT_DIRECTORY} ]; then
+                  export ROOT_DIRECTORY=${LICHE_DIRECTORY}
+              fi
+              add_option "${CI_PROJECT_DIR}/${LICHE_DIRECTORY} -d ${CI_PROJECT_DIR}/${ROOT_DIRECTORY}"; 
           fi
       - |
           if [ ! -z "${LICHE_FILES}" ]; then
