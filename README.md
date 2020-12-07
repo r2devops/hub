@@ -15,7 +15,7 @@ index](https://r2devops.io/jobs/) 🚀
 
 ## Repository
 
-This mono-repo contains several parts
+This mono-repo contains several parts:
 
 * Documentation sources
 * Jobs
@@ -83,6 +83,9 @@ You can use `pipenv` or `pip` to install python requirements:
     ```shell
     pip install -r requirements
     ```
+
+🚨 Take care to update both `Pipfile` and `requirements.txt` when you modify
+dependencies.
 
 ### Launch Mkdocs
 
