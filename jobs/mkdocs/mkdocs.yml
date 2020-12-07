@@ -5,7 +5,7 @@ stages:
 
 mkdocs:
   image:
-    name: squidfunk/mkdocs-material:6.1.7
+    name: squidfunk/mkdocs-material:6.1.5
     entrypoint: [""]
   stage: build
   variables:
@@ -13,7 +13,6 @@ mkdocs:
   script:
     - pip3 install mkdocs-git-revision-date-localized-plugin==0.7.2
     - pip3 install mkdocs-macros-plugin==0.5.0
-    - pip3 install mkdocs-awesome-pages-plugin==2.4.0
     - mkdocs build -d "$MKDOCS_OUTPUT_PATH"
   artifacts:
     when: always
