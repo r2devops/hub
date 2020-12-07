@@ -8,18 +8,32 @@ zaproxy:
     ZAP_SCANNERS: ""
     ZAP_CONTEXT: ""
     ZAP_TARGET: "http://app"
+    ZAP_REPORT_FILE: "zap-report"
+    ZAP_REPORT_FORMAT: "html"
   script:
+    - zap-cli start --start-options '-config api.disablekey=true'
     - if [ ! -z ${ZAP_CONTEXT} ]; then
     -   zap-cli context import ${ZAP_CONTEXT}
+    -   zap-cli open-url ${ZAP_TARGET}
+    -   zap-cli spider ${ZAP_TARGET}
     -   if [ ! -z ${ZAP_SCANNERS}]; then
-    -     zap-cli quick-scan -sc -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
+    -     zap-cli active-scan --recursive -s ${ZAP_SCANNERS} --context-name ${ZAP_CONTEXT} ${ZAP_TARGET}
     -   else
-    -     zap-cli quick-scan -sc --context-name ${ZAP_CONTEXT} --start-options '-config api.disablekey=true' ${ZAP_TARGET}
+    -     zap-cli active-scan --recursive --context-name ${ZAP_CONTEXT} ${ZAP_TARGET}
     -   fi
     - else
+    -   zap-cli open-url ${ZAP_TARGET}
+    -   zap-cli spider ${ZAP_TARGET}
     -   if [ ! -z ${ZAP_SCANNERS}]; then
-    -     zap-cli quick-scan -sc -s $ {ZAP_SCANNERS} --start-options '-config api.disablekey=true' ${ZAP_TARGET} 
+    -     zap-cli active-scan --recursive -s $ {ZAP_SCANNERS} ${ZAP_TARGET} 
     -   else
-    -     zap-cli quick-scan -sc --start-options '-config api.disablekey=true' ${ZAP_TARGET}
+    -     zap-cli active-scan --recursive ${ZAP_TARGET}
     -   fi
     - fi
+    - zap-cli report -o ${CI_PROJECT_DIR}/${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT} -f ${ZAP_REPORT_FORMAT}
+  artifacts:
+    expose_as: "zap-report"
+    paths:
+      - "${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT}"
+    expire_in: 30 days
+    when: always
