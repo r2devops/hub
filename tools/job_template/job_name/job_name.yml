@@ -1,0 +1,10 @@
+stages:
+  - {{ stage }}
+
+job_name:
+    image: {{ image_tag }}
+    stage: {{ stage }}
+    variables:
+      VARIABLE: {{ variable }}
+    script:
+      - echo "${VARIABLE}"
