@@ -8,9 +8,11 @@ include:
   - remote: 'https://jobs.r2devops.io/0.2.0/pages.yml?scope=0.yml'
 
 mkdocs:
+  variables:
+    PIPENV_PIPFILE: tools/builder/Pipfile
   before_script:
-    - pip3 install -r requirements.txt
-    - python3 builder/builder.py
+    - pip install pipenv && pipenv install
+    - pipenv run python tools/builder/builder.py
 
 pages:
   rules:
@@ -34,10 +36,15 @@ release:
     name: alpine/httpie:2.2.0
     entrypoint: [""]
   stage: deployment
+  variables:
+    PIPENV_PIPFILE: tools/notify/Pipfile
+  before_script:
+    - apk update && apk add --no-cache bash
+    - pip install pipenv && pipenv install
+
   script: >
-    apk update && apk add --no-cache bash;
     PROJECT_ENCODED=$(/bin/bash -c "$(http --ignore-stdin --body https://gist.githubusercontent.com/cdown/1163649/raw/8a35c36fdd24b373788a7057ed483a5bcd8cd43e/gistfile1.sh) && _encode '$CI_PROJECT_PATH'");
-    
+
     for JOB in jobs/*; do
       JOB=$(basename ${JOB})
       for VERSION in jobs/${JOB}/versions/*; do
@@ -48,7 +55,7 @@ release:
           ref=${CI_COMMIT_SHA} \
           "description=$(cat jobs/${JOB}/versions/${VERSION}.md)" \
           'assets:={"links": [{"name": "Hub link", "url": "https://jobs.r2devops.io/'"${VERSION}/${JOB}"'.yml"}]}')
-        
+
           if [ $(echo $result | grep "Release already exists\|${JOB}-${VERSION}" | wc -l) -eq 0 ]; then
             echo "[ERROR] Problem when attempting to create release ${JOB}-${VERSION}"
             echo "[ERROR] ${result}"
@@ -56,9 +63,9 @@ release:
           else
             if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
               echo "New version detected for $JOB, sending notification to discord"
-              python3 builder/discord_release_notify.py -n ${JOB} -v ${VERSION}
+              pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION}
             fi
-            
+
             echo "Processed ${JOB}-${VERSION} : ${result}";
           fi
 
