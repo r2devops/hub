@@ -13,6 +13,8 @@ mkdocs:
   before_script:
     - pip install pipenv && pipenv install
     - pipenv run python tools/builder/builder.py
+    - unset PIPENV_PIPFILE
+    - pipenv install
 
 pages:
   rules:
