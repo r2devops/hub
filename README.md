@@ -10,7 +10,7 @@ Each jobs of the hub can be used independently or to create fully **customized p
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-Check the [documentation](https://r2devops.io) 📚 and [Jobs
+Check the [Documentation](https://r2devops.io) 📚 and [Jobs
 index](https://r2devops.io/jobs/) 🚀
 
 ## Repository
