@@ -11,4 +11,4 @@ jinja2 = "==2.11.2"
 requests = "==2.25.0"
 
 [requires]
-python_version = "3.8"
+python_version = "3"
