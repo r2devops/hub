@@ -33,7 +33,7 @@ GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
 
 # Templates variables
-BUILDER_DIR = "builder"
+BUILDER_DIR = "tools/builder"
 TEMPLATE_DIR = "templates"
 TEMPLATE_INDEX = "index.md.j2"
 TEMPLATE_DOC = "job_documentation.md.j2"
