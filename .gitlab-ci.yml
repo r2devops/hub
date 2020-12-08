@@ -41,7 +41,8 @@ release:
     PIPENV_PIPFILE: tools/notify/Pipfile
   before_script:
     - apk update && apk add --no-cache bash
-    - pip install pipenv && pipenv install
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
 
   script: >
     PROJECT_ENCODED=$(/bin/bash -c "$(http --ignore-stdin --body https://gist.githubusercontent.com/cdown/1163649/raw/8a35c36fdd24b373788a7057ed483a5bcd8cd43e/gistfile1.sh) && _encode '$CI_PROJECT_PATH'");
