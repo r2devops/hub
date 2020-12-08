@@ -98,5 +98,27 @@ mkdocs serve
 
 ## How to update tools
 
+### Requirements
+
 Each tools have their own `Pipfile` in their folder to manage their
-dependencies. Uses `pipenv` to work on them.
+dependencies. You must install `pipenv` to work on them:
+
+```shell
+pip install pipenv
+```
+
+### Work on `builder`
+
+    ```shell
+    cd tools/builder
+    pipenv install
+    pipenv shell
+    ```
+
+### Work on `notify`
+
+    ```shell
+    cd tools/notify
+    pipenv install
+    pipenv shell
+    ```
