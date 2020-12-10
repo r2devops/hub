@@ -1,0 +1,6 @@
+name: links_checker
+description: Helping you find broken links it will do.
+default_stage: static_tests
+icon: 🔗
+maintainer: Protocole
+license: MIT
