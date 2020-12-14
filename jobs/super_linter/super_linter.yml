@@ -29,8 +29,9 @@ super_linter:
     TAP_JUNIT_VERSION: "4.0.0"
     REPORT_SUITE_TEST_NAME: "super_linter"
   artifacts:
+    paths:
+      - "${CONVERTED_OUTPUT_FOLDER}/*.xml"
+    when: always
     reports:
       junit: "${CONVERTED_OUTPUT_FOLDER}/*.xml"
-    paths:
-      - "${CONVERTED_OUTPUT_FOLDER}/"
   allow_failure: true
