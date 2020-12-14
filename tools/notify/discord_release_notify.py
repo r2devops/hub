@@ -14,32 +14,7 @@ import requests
 import yaml
 
 ROOT_DIR = os.getenv("CI_PROJECT_DIR", "../")
-FOOTERS = [
-    "You’re a wizard, R2! 🧙‍♂️",
-    "It’s alive! It’s alive 👾",
-    "My precious 💍",
-    "To infinity and beyond 🌟",
-    "My name is 2. R2. 🔫",
-    "May the force be with you.",
-    "Elementary, my dear R2. 🔎",
-    "You have chosen...wisely.",
-    "Kneel before R2!  👑",
-    "Ho-ho-ho. Now I have a machine gun.",
-    "What did you expect? They’re savages! 🔫",
-    "Why are you trying so hard to fit in when you were born to stand out?",
-    "Oh yes, the past can hurt. But you can either run from it, or learn from it.",
-    "I’m going to make him an offer he can’t refuse. 💸",
-    "Why so serious? 🤡",
-    "I’ll be back",
-    "Roads? Where we’re going we don’t need roads! 🚗",
-    "I’m the king of the world! 👑",
-    "Carpe diem. Seize the day, boys. Make your lives extraordinary",
-    "I feel the need for speed…",
-    "Hakuna Matata! ✨",
-    "Just keep swimming. 🐠",
-    "I am speed!"
-]
-
+QUOTES_URL = "https://gitlab.com/r2devops/hub/-/snippets/2046463/raw/master/snippetfile1.txt" # Link to snippet
 AVATAR_URL = "https://go2scale.io/wp-content/uploads/2020/07/cropped-favicon_bleu-192x192.png" # Avatar of the author showed in the footer also
 USERNAME = "R2" # Message's author
 EMBED_COLOR = 1127128 # Trailing color at left of message
@@ -71,6 +46,15 @@ def get_yaml_property(file_path, property_name):
             logging.error("[ERROR] Property %s not found in file %s", property_name, file_path)
             sys.exit(1)
 
+def get_random_quote():
+    """Retrieve a random quote from R2Devops Snippet
+
+    Returns:
+        str: A quote from R2
+    """
+    with requests.get(QUOTES_URL) as response:
+        data = response.json()
+        return random.choice(data)
 
 def generate_data(name: str, version: str):
     """Generate the body of the request
@@ -120,7 +104,7 @@ def generate_data(name: str, version: str):
                         }
                     ],
                 "footer": {
-                    "text": random.choice(FOOTERS),
+                    "text": get_random_quote(),
                     "icon_url": AVATAR_URL
                 }
             }
