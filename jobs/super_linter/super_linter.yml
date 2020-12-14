@@ -15,7 +15,8 @@ super_linter:
     - mkdir ${CONVERTED_OUTPUT_FOLDER}
     - cd $OUTPUT_FOLDER
     - for report in *; do
-    -     cat $report | tap-junit -p -s "${REPORT_SUITE_TEST_NAME}" > ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml
+    -     cat $report | tap-junit -p -s "${REPORT_SUITE_TEST_NAME}" > ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # convert each tap file to junit xml
+    -     sed -i 's/\\n/\&#x0a;/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # encode newlines
     - done
   variables:
     RUN_LOCAL: "true"
