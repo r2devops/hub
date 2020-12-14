@@ -32,5 +32,5 @@ super_linter:
     reports:
       junit: "${CONVERTED_OUTPUT_FOLDER}/*.xml"
     paths:
-      - "${CONVERTED_OUTPUT_FOLDER}/*.xml"
+      - "${CONVERTED_OUTPUT_FOLDER}/"
   allow_failure: true
