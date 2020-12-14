@@ -30,7 +30,7 @@ super_linter:
     REPORT_SUITE_TEST_NAME: "super_linter"
   artifacts:
     paths:
-      - "${CONVERTED_OUTPUT_FOLDER}/*.xml"
+      - "${OUTPUT_FOLDER}/*.tap"
     when: always
     reports:
       junit: "${CONVERTED_OUTPUT_FOLDER}/*.xml"
