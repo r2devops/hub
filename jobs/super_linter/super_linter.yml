@@ -17,7 +17,7 @@ super_linter:
     - for report in *; do
     -     sed -i 's/message: \*\+/message: /g' $report # workaround for https://github.com/dhershman1/tap-junit/issues/30#issuecomment-744462006
     -     cat $report | tap-junit -p -s "${REPORT_SUITE_TEST_NAME}" > ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # convert each tap file to junit xml
-    -     sed -i 's/<failure message="\(.\+\)" type="fail">.*/<failure message="" type="fail">\n\1/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # extract message to improve report display
+    -     sed -i 's/<failure message="\(.\+\)" type="fail">.*/<failure message="" type="fail">\n\1\n<\/failure>/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # extract message to improve report display
     -     sed -i 's/\\n/\n/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # add new line
     - done
   variables:
