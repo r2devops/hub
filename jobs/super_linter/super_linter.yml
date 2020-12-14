@@ -18,8 +18,8 @@ super_linter:
     -     'sed -i "s/message: \*\+/message: /g" $report' # workaround for https://github.com/dhershman1/tap-junit/issues/30#issuecomment-744462006
     -     cat $report | tap-junit -p -s "${REPORT_SUITE_TEST_NAME}" > ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # convert each tap file to junit xml
     -     sed -i 's/<failure message="\(.\+\)" type="fail">.*/<failure message="" type="fail">\n\1\n<\/failure>/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # extract message to improve report display
-    -     sed -i 's/\\n/\n/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # add new line
-    -     sed -i ':begin;$!N;s/<\/failure>\n<\/failure>/<\/failure>/;tbegin;P;D' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # remove double </failure> that break the syntax
+    -     sed -i 's/\\n/\n/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # add real newlines
+    -     sed -i ':begin;$!N;s/<\/failure>\n<\/failure>/<\/failure>/;tbegin;P;D' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # remove double </failure> that break the syntax in some reports
     - done
   variables:
     RUN_LOCAL: "true"
