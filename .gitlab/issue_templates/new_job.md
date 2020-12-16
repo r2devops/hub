@@ -1,13 +1,43 @@
 # New Job
 <!-- Title should respect this syntax [New job] - {jobname} -->
-<!-- Sample of usage of this template ➡️ https://gitlab.com/r2devops/hub/-/issues/111 -->
+<!-- Sample of usage of this template ➡️  https://gitlab.com/r2devops/hub/-/issues/111 -->
 
 ## Objective
 <!-- Summarize concisely the objective expected by this job -->
 <!-- Identify clearly the benefits will help the community to contribute on your job -->
 
 ## Use cases
-<!-- Explain how the job could work -->
+
+### Scenarios
+<!-- Using the Gherkin syntax (see https://cucumber.io/docs/gherkin/reference/)
+describe several scenarios of the job working. Example for Gitlab release
+creation job:
+
+Scenario: With a `CHANGELOG.md` file
+* Given there is a `CHANGELOG.md` file in repository
+* When the job is run on a pipeline on default branch
+* Then a new Gitlab release is created using:
+    * `name`, `description`, `milestones`, `assets:links` from `CHANGELOG.md`
+    * `tag_name` from `name`
+    * `ref` from `$CI_COMMIT_SHA`
+-->
+
+### Parameters
+
+<!-- Describe here the parameters of the job. Example for Gitlab release
+creation job:
+
+| Name | Mandatory to create release ? | Default | How to get it ? |
+| ---- | ----------------------------- | ------- | --------------- |
+| `name` | yes | if `CHANGELOG.md` exists: from this file. Else, use the current date and commit SHA | Parse `CHANGELOG.md`. Else, use `YYYY-MM-DD.$CI_COMMIT_SHORT_SHA` |
+| `tag_name` | yes | same as `name` | get value set to `name` |
+| `ref` | yes | current commit | use Gitlab variable `$CI_COMMIT_SHA` |
+| `description` | no | get it from `CHANGELOG.md` if it exists | parse `CHANGELOG.md` |
+| `milestones` | no | get it from `CHANGELOG.md` if it exists | parse `CHANGELOG.md` |
+| `assets:links` | no | get it from `CHANGELOG.md` if it exists | parse `CHANGELOG.md` |
+-->
+
+
 
 ## Artifacts & Return status
 <!--
