@@ -23,7 +23,6 @@ Scenario: With a `CHANGELOG.md` file
 -->
 
 ### Parameters
-
 <!-- Describe here the parameters of the job. Example for Gitlab release
 creation job:
 
