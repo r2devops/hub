@@ -9,8 +9,7 @@ newman:
     NEWMAN_JUNIT_REPORT: "newman-report.xml"
   script:
     - npm install -g newman newman-reporter-junitfull
-    - newman run ${NEWMAN_COLLECTION}
-    # -r junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n 2
+    - newman run ${NEWMAN_COLLECTION} -r junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n 2
   artifacts:
     reports:
       junit: ${NEWMAN_JUNIT_REPORT}
