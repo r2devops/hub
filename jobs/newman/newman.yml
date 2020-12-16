@@ -5,11 +5,12 @@ newman:
   image: node:15.4.0
   stage: dynamic_tests
   variables:
+    NEWMAN_GLOBALS_FILE: "postman_globals.json"
     NEWMAN_COLLECTION: "postman_collection.json"
     NEWMAN_JUNIT_REPORT: "newman-report.xml"
   script:
     - npm install -g newman newman-reporter-junitfull
-    - newman run ${NEWMAN_COLLECTION} -r junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n 2
+    - newman run ${NEWMAN_COLLECTION} -g ${NEWMAN_GLOBALS_FILE} -r junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n 2
   artifacts:
     reports:
       junit: ${NEWMAN_JUNIT_REPORT}
