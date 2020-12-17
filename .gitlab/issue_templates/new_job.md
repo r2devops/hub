@@ -12,6 +12,9 @@
 <!-- Using the Gherkin syntax (see https://cucumber.io/docs/gherkin/reference/)
 describe several scenarios of the job working. Example for Gitlab release
 creation job:
+* Given: Steps used to describe the initial context of the system.
+* When:  Steps used to describe an event, or an action.
+* Then:  Steps used to describe an expected outcome, or result.
 
 Scenario: With a `CHANGELOG.md` file
 * Given there is a `CHANGELOG.md` file in repository
