@@ -109,16 +109,16 @@ pip install pipenv
 
 ### Work on `builder`
 
-    ```shell
-    cd tools/builder
-    pipenv install
-    pipenv shell
-    ```
+```shell
+cd tools/builder
+pipenv install
+pipenv shell
+```
 
 ### Work on `notify`
 
-    ```shell
-    cd tools/notify
-    pipenv install
-    pipenv shell
-    ```
+```shell
+cd tools/notify
+pipenv install
+pipenv shell
+```
