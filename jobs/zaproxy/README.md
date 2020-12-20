@@ -31,7 +31,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     variable by adding following lines in your `.gitlab-ci.yml` file:
 
     ```yaml
-    nmap:
+    zaproxy:
       variables:
         ZAP_TARGET: <address or domain name>
     ```
