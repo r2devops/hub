@@ -11,25 +11,49 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     Zaproxy is mainly used to scan web applications and web frontend. You can use the tool to try and discover
     API vulnerabilities, but this job is focused on a quick scan for a frontend service (with or without authentication)
 
-1. Build a docker image of your web application so that this job can
-use it as a service (we recommend using our [Docker](https://r2deveops.io/jobs/build/docker_build/) job for it)
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
+1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
    started](/use-the-hub)) and add a `services` section. Example:
-
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/zaproxy.yml'
+    ```
 
+2. Choose a target
+
+    !!! note
+        This job can be run on external services or by running a container
+        instance of your software. **You need to choose between two following
+        options**.
+
+    * Option 1: external service
+
+    Add the IP address or the domain name of the service in `ZAP_TARGET`
+    variable by adding following lines in your `.gitlab-ci.yml` file:
+
+    ```yaml
+    nmap:
+      variables:
+        ZAP_TARGET: <address or domain name>
+    ```
+
+    *  Option 2: container instance
+
+    To use this option, you must have access to a container image of your
+    software. For example, if you are using our
+    [docker_build](https://r2devops.io/jobs/build/docker_build/) job, just
+    add the following configuration in your `.gitlab-ci.yml` file:
+
+    !!! info
+        * The `name` option must contain your image name and tag
+        * The `alias` option permits to the job to reach your application using a name. This name must be the same that the one specified inside [variable `ZAP_TARGET`](#variables)
+        * You may also run some other services like a database depending on your application needs
+
+    ```yaml
     zaproxy:
       services:
          - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
            alias: app
     ```
-
-    * You need the `services` part because you need to be able to reach your web application
-    * The `name` option must contain your image name and tag
-    * The `alias` option permits to Zaproxy to reach your application using a name. This name must be the same that the one specified inside [variable `ZAP_TARGET`](#variables)
-    * You may also run some other services like a database depending on your application needs
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
