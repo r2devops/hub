@@ -21,7 +21,7 @@ import requests
 from datetime import datetime
 from distutils.version import LooseVersion
 from shutil import copyfile
-
+import re
 
 
 # Job variables
@@ -120,7 +120,9 @@ def get_screenshots(job_path, job_name):
     makedirs(MKDOCS_DIR+"/"+MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR,0o777,True)
 
     # Get all screenshots of the job
+    regex = re.compile('(.png|.jpg|.jpeg)$')
     screenshot_list = listdir(job_path + "/" + SCREENSHOTS_DIR)
+    screenshot_list = list(filter(regex.search, screenshot_list))
 
     # Copy all screenshot of the job into screenshots folder for the doc
     for screenshot in screenshot_list:
