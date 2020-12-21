@@ -18,6 +18,7 @@ newman:
     - if [[ ${NEWMAN_EXIT_ON_ERROR} == "true" ]]; then
     -   NEWMAN_ADDITIONAL_OPTIONS+="--suppress-exit-code"
     - fi
+    - echo ${NEWMAN_ADDITIONAL_OPTIONS}
     - newman run ${NEWMAN_COLLECTION} -r junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n 2 ${NEWMAN_ADDITIONAL_OPTIONS}
   artifacts:
     reports:
