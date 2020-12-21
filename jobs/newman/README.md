@@ -7,18 +7,36 @@ Launch a Postman collection of requests to test your API using [newman](https://
 ## How to use it
 
 1. Add a Postman collection to your project and a globals file to use your variables
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+2. Choose a target
 
-   ```yaml
-   include:
-     - remote: 'https://jobs.r2devops.io/newman.yml'
+    !!! note
+        This job can be run on external services or by running a container
+        instance of your software. **You need to choose between two following
+        options**.
 
-   newman:
-      services:
-        - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-          alias: app
-   ```
+    * Option 1: external service
+
+    Add the IP address or the domain name of the service in your Postman collection
+    or in your globals and use [Postman variables](https://learning.postman.com/docs/sending-requests/variables/)
+    like this:
+    ```
+    https://{{my_domain}}
+    ```
+    
+
+    *  Option 2: container instance
+
+    To use this option, you must have access to a container image of your
+    software. For example, if you are using our
+    [docker_build](https://r2devops.io/jobs/build/docker_build/) job, just
+    add the following configuration in your `.gitlab-ci.yml` file:
+
+    !!! info
+        * The `name` option must contain your image name and tag
+        * The `alias` option permits to the job to reach your application using a name.
+          This name must be the same that the one specified inside the collection or globals file
+        * You may also run some other services like a database depending on your application needs
+
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
