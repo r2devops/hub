@@ -18,11 +18,11 @@ Launch a Postman collection of requests to test your API using [newman](https://
 
     Add the IP address or the domain name of the service in your Postman collection
     or in your globals and use [Postman variables](https://learning.postman.com/docs/sending-requests/variables/)
-    like this:
+    like this in the request:
     ```
     https://{{my_domain}}
     ```
-    
+    You can also use that syntax anywhere in the request, the tests...
 
     *  Option 2: container instance
 
