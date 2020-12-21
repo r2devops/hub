@@ -13,7 +13,7 @@ newman:
   script:
     - npm install -g newman newman-reporter-junitfull
     - if [[ ! -z ${NEWMAN_GLOBALS_FILE} ]]; then
-    -   NEWMAN_ADDITIONAL_OPTIONS+="-g ${NEWMAN_GLOBALS_FILE}"
+    -   NEWMAN_ADDITIONAL_OPTIONS+="-g ${NEWMAN_GLOBALS_FILE} "
     - fi
     - if [[ ! ${NEWMAN_EXIT_ON_ERROR} == "true" ]]; then
     -   NEWMAN_ADDITIONAL_OPTIONS+="--suppress-exit-code"
