@@ -30,6 +30,13 @@ Launch a Postman collection of requests to test your API using [newman](https://
     software. For example, if you are using our
     [docker_build](https://r2devops.io/jobs/build/docker_build/) job, just
     add the following configuration in your `.gitlab-ci.yml` file:
+    ```
+    newman:
+      services:
+      - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+        alias: app
+    ```
+    And specify `app` as your domain in your globals file
 
     !!! info
         * The `name` option must contain your image name and tag
