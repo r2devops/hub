@@ -86,4 +86,4 @@ job_labels:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
   script:
-    - python3 tools/labels/job_labels.py
+    - pipenv run python3 tools/labels/job_labels.py

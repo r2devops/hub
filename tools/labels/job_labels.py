@@ -5,16 +5,21 @@
 
 import requests
 from urllib.parse import quote, urlencode
-from os import getenv
+from os import getenv, listdir
 
 # API Variables
 
-BASE_API_URL = "https://gitlab.com/api/v4"
 PROJECT_NAME = "r2devops/hub"
+BASE_API_URL = "https://gitlab.com/api/v4"
 JOB_TOKEN = getenv("CI_JOB_TOKEN")
 
+# Job variables
+JOBS_DIR = "jobs"
+JOBS_SCOPE_LABEL = "Jobs::"
+LABEL_COLOR = "fuchsia"
+
 def get_labels(project_name, with_counts=False, include_ancestor_groups=True, search=""):
-    """Get the first 20 labels of the project
+    """Get labels of the project, can also serach for a specific label with search filter
     
     Parameters:
     -----------
@@ -29,8 +34,8 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
 
     Returns:
     --------
-    str
-        The text of the API response
+    obj
+        Response to the request
     """
     headers = {
         'PRIVATE-TOKEN': JOB_TOKEN
@@ -40,12 +45,81 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
         'include_ancestors_groups': include_ancestor_groups,
         'search': search
     }
-    base_label_url = BASE_API_URL + "/projects/" + quote(project_name, safe='') + "/labels"
-    url = base_label_url + "?" + urlencode(payload)
-    r = requests.get(url, headers=headers)
-    return (r.text)
+    base_label_url = f"{BASE_API_URL}/projects/{quote(project_name, safe='')}" + "/labels"
+    url = f"{base_label_url}?{urlencode(payload)}"
+    return (requests.get(url, headers=headers))
 
+def create_label(project_name, label_name, label_color=LABEL_COLOR):
+    """Create a new label for a job
+
+    Parameters:
+    -----------
+    project_name : str
+        The name of the project
+    label_name : str
+        The name of the label to create
+    label_color : str
+        6-digit hex notation with leading '#'
+        or one of the CSS color names (default: fuchsia)
+    
+    Returns:
+    --------
+    obj
+        Response to the request
+    """
+    headers = {
+        'PRIVATE-TOKEN': JOB_TOKEN
+    }
+    payload = {
+        "name": label_name,
+        "color": label_color,
+        "description": f"Issues related to {label_name}"
+    }
+    url = f"{BASE_API_URL}/projects/{quote(project_name, safe='')}/labels"
+    return (requests.post(url, headers=headers, data=payload))
+
+def delete_label(project_name, label_name):
+    """Delete a label for the project
+
+    Parameters:
+    -----------
+    proejct_name : str
+        The name of the project
+    label_name : str
+        The name of the label to delete
+
+    Returns:
+    --------
+    obj:
+        Response to the request
+    """
+    headers = {
+        'PRIVATE-TOKEN': JOB_TOKEN
+    }
+    url = f"{BASE_API_URL}/projects/{quote(project_name, safe='')}/labels/{label_name}"
+    return (requests.delete(url, headers=headers))
 
 if __name__ == "__main__":
-    labels = get_labels(PROJECT_NAME)
-    print(labels)
+    """Main function if used as a program
+    Looping through all jobs to check if their scoped
+    label exist or if we need to create it
+
+    Returns:
+    --------
+    boolean
+        0 if nothing is wrong, 1 otherwise
+    """
+    jobs = listdir(JOBS_DIR)
+    for job in jobs:
+        job_label = JOBS_SCOPE_LABEL + job
+        label = get_labels(PROJECT_NAME, search=job_label)
+        if "Unauthorized" not in label.text:
+            if label.json():
+                print(f"label {job} exist")
+                print(delete_label(PROJECT_NAME, job_label).text)
+            else:
+                print(f"label {job} does not exist")
+                print(create_label(PROJECT_NAME, job_label).text)
+        else:
+            print("Not Authorized")
+            exit(1)
