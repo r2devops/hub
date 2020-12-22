@@ -1,6 +1,6 @@
 # Versioning
 
-Each job of the hub are versioned using a git tag.
+Each job of the hub are versioned using git tags.
 
 !!! note
     Version follows the [Semantic Versioning](https://semver.org/){:target="_blank"}.
