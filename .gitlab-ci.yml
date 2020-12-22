@@ -75,3 +75,15 @@ release:
     done
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+# See https://docs.gitlab.com/ee/api/labels.html
+job_labels:
+  image: python:3.9.1-alpine
+  stage: deployment
+  variables:
+    PIPENV_PIPFILE: tools/labels/Pipfile
+  before_script:
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+  script:
+    - python3 tools/labels/job_labels.py
