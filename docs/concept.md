@@ -1,7 +1,7 @@
 # Concept
 
 The **R2Devops hub** is a collaborative hub of CI & CD
-**ready to use** jobs which helps you to easily build powerful pipelines for your
+**ready to use** jobs which helps you to easily build powerful [`pipelines`](/r2bulary#pipeline) for your
 projects.
 
 !!! info
