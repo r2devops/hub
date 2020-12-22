@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-urllib = "==3.9.0"
 requests = "==2.25.0"
 
 [requires]

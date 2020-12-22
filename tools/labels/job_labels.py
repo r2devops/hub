@@ -33,7 +33,7 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
         The text of the API response
     """
     headers = {
-        'JOB_TOKEN': JOB_TOKEN
+        'PRIVATE-TOKEN': JOB_TOKEN
     }
     payload = {
         'with_counts': with_counts,
@@ -42,7 +42,6 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
     }
     base_label_url = BASE_API_URL + "/projects/" + quote(project_name, safe='') + "/labels"
     url = base_label_url + "?" + urlencode(payload)
-    print(url)
     r = requests.get(url, headers=headers)
     return (r.text)
 
