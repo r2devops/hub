@@ -38,7 +38,7 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
         Response to the request
     """
     headers = {
-        'JOB-TOKEN': JOB_TOKEN
+        'PRIVATE-TOKEN': JOB_TOKEN
     }
     payload = {
         'with_counts': with_counts,
