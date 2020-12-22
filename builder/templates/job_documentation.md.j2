@@ -30,8 +30,25 @@
 -- 🔨 Maintainer: <img src='{{ gitlab_image }}' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [{{ code_owner_name }}]({{ code_owner_url }}) @{{ code_owner }}
 {%- endif %}
 
+{% if screenshots_files %}
 ## Gallery
-<!-- Put in place a js gallery here -->
-{% for screenshots in screenshots_files -%}
-<img src="{{screenshot_path}}/{{screenshots}}" />
-{% endfor %}
+<div class="splide">
+	<div class="splide__track">
+		<ul class="splide__list">
+      {% for screenshots in screenshots_files -%}
+      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+      {% endfor %}
+		</ul>
+	</div>
+</div>
+
+<script>
+  checkGallery();
+  function checkGallery() {
+    if (typeof initSplide != "function")
+      setTimeout(() => checkGallery(), 100);
+    else
+      initSplide();
+  }
+</script>
+{% endif %}

@@ -152,6 +152,7 @@ div.jx-image {
 	top: 0;
 	overflow: hidden;
 	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 .vertical div.jx-image {
