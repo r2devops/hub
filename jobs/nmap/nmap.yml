@@ -1,0 +1,26 @@
+stages:
+  - dynamic_tests
+
+nmap:
+  image:
+    name: instrumentisto/nmap
+    entrypoint: [""]
+  stage: dynamic_tests
+  variables:
+    NMAP_TARGET: "app"
+    NMAP_SCRIPTS: ""
+    NMAP_OPTIONS: ""
+    NMAP_OUTPUT: "nmap-report.xml"
+    HTML_OUTPUT: "nmap-report.html"
+  script:
+    - apk add --no-cache libxslt
+    - if [[ ! -z ${NMAP_SCRIPTS} ]]; then
+    -   NMAP_OPTIONS="--script=${NMAP_SCRIPTS} ${NMAP_OPTIONS}"
+    - fi
+    - nmap -oX ${NMAP_OUTPUT} ${NMAP_OPTIONS} ${NMAP_TARGET}
+    - xsltproc ${NMAP_OUTPUT} -o ${HTML_OUTPUT}
+  artifacts:
+    expose_as: "nmap-report"
+    paths:
+      - "${HTML_OUTPUT}"
+    when: always
