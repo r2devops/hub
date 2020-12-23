@@ -102,6 +102,7 @@ def get_user(code_owner):
         return response.json()[0]
     return None
 
+# https://docs.gitlab.com/ee/api/issues.html#list-project-issues (for the structure of the response)
 def get_linked_issues(job_name, opened=True):
     """Get a list of linked issues for a job
 
