@@ -32,7 +32,7 @@
 
 {% if linked_issues %}
 ??? "Linked issues"
-  {%- for issue in linked_issues %}
+  {% for issue in linked_issues %}
     [{{ issue.name }}]({{ issue.url }})
-  {%- endfor %}
+  {% endfor %}
 {%- endif %}
