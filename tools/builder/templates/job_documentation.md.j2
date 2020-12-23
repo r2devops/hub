@@ -29,3 +29,10 @@
 {%- if code_owner %}
 -- 🔨 Maintainer: <img src='{{ gitlab_image }}' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [{{ code_owner_name }}]({{ code_owner_url }}) @{{ code_owner }}
 {%- endif %}
+
+{%- if linked_issues %}
+??? "Linked issues"
+  {% for issue in linked_issues -%}
+    [{{ issue.name }}]({{ issue.url }})
+  {%- endfor %}
+{%- endif %}

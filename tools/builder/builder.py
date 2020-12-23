@@ -14,10 +14,11 @@
 #             ├── 0.1.0.md
 #             └──...
 
-from os import listdir
+from os import getenv, listdir
 from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
 import requests
+from urllib.parse import quote, urlencode
 from datetime import datetime
 from distutils.version import LooseVersion
 
@@ -29,8 +30,12 @@ JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
 
+# Requests variables
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
+JOB_TOKEN = getenv("CI_JOB_TOKEN")
+PROJECT_NAME = "r2devops/hub"
+JOBS_SCOPE_LABEL = "Jobs::"
 
 # Templates variables
 BUILDER_DIR = "tools/builder"
@@ -97,6 +102,44 @@ def get_user(code_owner):
         return response.json()[0]
     return None
 
+def get_linked_issues(job_name, opened=True):
+    """Get a list of linked issues for a job
+
+    Parameters:
+    -----------
+    job_name : str
+        The name of the job
+    opened : boolean
+        If we get only opened issues or all of them (default: True)
+
+    Returns:
+    list
+        A list of issues linked to the job with their name and url
+    """
+    linked_issues = []
+    headers = {
+        'PRIVATE-TOKEN': JOB_TOKEN
+    }
+    base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
+    if opened:
+        payload = {
+            "label": f"{JOBS_SCOPE_LABEL}{job_name}",
+            "state": "opened"
+        }
+    else:
+        payload = {
+            "label": f"{JOBS_SCOPE_LABEL}{job_name}"
+        }
+    url = f"{base_url}?{urlencode(payload)}"
+    r = requests.get(url, headers=headers)
+    for issue in r.json():
+        if f"{JOBS_SCOPE_LABEL}{job_name}" in issue['labels']:
+            linked_issues.append({
+                "name": issue['title'],
+                "url": issue['_links']['self']
+            })
+    return (linked_issues)
+
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
 
@@ -113,6 +156,7 @@ def create_job_doc(job):
     latest, changelogs = get_changelogs(job_path, job)
     license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
+    linked_issues = get_linked_issues(job)
 
     # Write final file
     with open(mkdocs_file_path, 'w+') as doc_file:
@@ -127,7 +171,8 @@ def create_job_doc(job):
             gitlab_image = user["avatar_url"],
             code_owner_name = user["name"],
             code_owner = code_owner,
-            code_owner_url = user["web_url"]
+            code_owner_url = user["web_url"],
+            linked_issues = linked_issues
     ))
 
 def add_placeholder():
@@ -144,7 +189,6 @@ def add_placeholder():
 if __name__ == "__main__":
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
-
     for job in jobs:
         create_job_doc(job)
 

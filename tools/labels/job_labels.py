@@ -109,7 +109,6 @@ if __name__ == "__main__":
     boolean
         0 if nothing is wrong, 1 otherwise
     """
-    print(JOB_TOKEN)
     jobs = listdir(JOBS_DIR)
     for job in jobs:
         job_label = JOBS_SCOPE_LABEL + job

@@ -1,5 +1,6 @@
 stages:
   - static_tests
+  - build_dependencies
   - build
   - deployment
 
@@ -79,7 +80,7 @@ release:
 # See https://docs.gitlab.com/ee/api/labels.html
 job_labels:
   image: python:3.9.1-alpine
-  stage: deployment
+  stage: build_dependencies
   variables:
     PIPENV_PIPFILE: tools/labels/Pipfile
   before_script:
