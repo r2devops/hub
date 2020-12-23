@@ -33,7 +33,7 @@ JOB_METADATA_FILE = "job.yml"
 # Requests variables
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
-JOB_TOKEN = getenv("CI_JOB_TOKEN")
+JOB_TOKEN = getenv("API_TOKEN")
 PROJECT_NAME = "r2devops/hub"
 JOBS_SCOPE_LABEL = "Jobs::"
 

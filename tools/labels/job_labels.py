@@ -11,7 +11,7 @@ from os import getenv, listdir
 
 PROJECT_NAME = "r2devops/hub"
 BASE_API_URL = "https://gitlab.com/api/v4"
-JOB_TOKEN = getenv("CI_JOB_TOKEN")
+JOB_TOKEN = getenv("API_TOKEN")
 
 # Job variables
 JOBS_DIR = "jobs"
