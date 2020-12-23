@@ -116,10 +116,9 @@ if __name__ == "__main__":
         if "Unauthorized" not in label.text:
             if label.json():
                 print(f"label {job} exist")
-                print(delete_label(PROJECT_NAME, job_label).text)
             else:
-                print(f"label {job} does not exist")
-                print(create_label(PROJECT_NAME, job_label).text)
+                print(f"label {job} does not exist, creating one now")
+                create_label(PROJECT_NAME, job_label)
         else:
             print("Not Authorized")
             exit(1)
