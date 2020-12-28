@@ -31,6 +31,18 @@ ci_linter:
     -   gitlab-ci-linter ${JOB_PATH}/${JOB}.yml
     - done
 
+# See https://docs.gitlab.com/ee/api/labels.html
+job_labels:
+  image: python:3.9.1-alpine
+  stage: build_dependencies
+  variables:
+    PIPENV_PIPFILE: tools/labels/Pipfile
+  before_script:
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+  script:
+    - pipenv run python3 tools/labels/job_labels.py
+    
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 release:
@@ -76,15 +88,3 @@ release:
     done
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-
-# See https://docs.gitlab.com/ee/api/labels.html
-job_labels:
-  image: python:3.9.1-alpine
-  stage: build_dependencies
-  variables:
-    PIPENV_PIPFILE: tools/labels/Pipfile
-  before_script:
-    - pip install --ignore-installed distlib pipenv
-    - pipenv install
-  script:
-    - pipenv run python3 tools/labels/job_labels.py
