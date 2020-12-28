@@ -1,0 +1,25 @@
+stages:
+  - dynamic_tests
+
+newman:
+  image: node:15.4.0
+  stage: dynamic_tests
+  variables:
+    NEWMAN_COLLECTION: "postman_collection.json"
+    NEWMAN_GLOBALS_FILE: ""
+    NEWMAN_ADDITIONAL_OPTIONS: ""
+    NEWMAN_JUNIT_REPORT: "newman-report.xml"
+    NEWMAN_FAIL_ON_ERROR: "false"
+  script:
+    - npm install -g newman newman-reporter-junitfull
+    - if [[ ! -z ${NEWMAN_GLOBALS_FILE} ]]; then
+    -   NEWMAN_ADDITIONAL_OPTIONS+=" -g ${NEWMAN_GLOBALS_FILE}"
+    - fi
+    - if [[ ! ${NEWMAN_EXIT_ON_ERROR} == "true" ]]; then
+    -   NEWMAN_ADDITIONAL_OPTIONS+=" --suppress-exit-code"
+    - fi
+    - newman run ${NEWMAN_COLLECTION} -r junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n 2 ${NEWMAN_ADDITIONAL_OPTIONS}
+  artifacts:
+    reports:
+      junit: ${NEWMAN_JUNIT_REPORT}
+    expire_in: 30 days
