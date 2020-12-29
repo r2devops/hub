@@ -32,11 +32,22 @@
 
 {% if screenshots_files %}
 ## Gallery
-<div class="splide">
+
+<div id="primary-slider" class="splide">
 	<div class="splide__track">
 		<ul class="splide__list">
       {% for screenshots in screenshots_files -%}
-      <li class="splide__slide"><img data-splide-lazy="{{screenshot_path}}/{{screenshots}}" /></li>
+      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+      {% endfor %}
+		</ul>
+	</div>
+</div>
+
+<div id="secondary-slider" class="splide">
+	<div class="splide__track">
+		<ul class="splide__list">
+      {% for screenshots in screenshots_files -%}
+      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
       {% endfor %}
 		</ul>
 	</div>

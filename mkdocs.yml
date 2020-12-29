@@ -52,6 +52,7 @@ extra_css:
     - css/juxtapose/juxtapose.css
     - css/splide/splide-core.min.css
     - css/splide/splide.min.css
+    - css/splide/extra.css
 
 extra_javascript:
     - js/juxtapose/juxtapose.min.js
