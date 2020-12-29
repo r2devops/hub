@@ -1,5 +1,29 @@
 {{ readme }}
 
+{% if screenshots_files %}
+## Gallery
+
+<div id="primary-slider" class="splide">
+	<div class="splide__track">
+		<ul class="splide__list">
+      {% for screenshots in screenshots_files -%}
+      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+      {% endfor %}
+		</ul>
+	</div>
+</div>
+
+<div id="secondary-slider" class="splide">
+	<div class="splide__track">
+		<ul class="splide__list">
+      {% for screenshots in screenshots_files -%}
+      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+      {% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+
 ??? "License: {{ license_name }}"
 {%- for line in license -%}
   {%- if line %}
@@ -31,28 +55,6 @@
 {%- endif %}
 
 {% if screenshots_files %}
-## Gallery
-
-<div id="primary-slider" class="splide">
-	<div class="splide__track">
-		<ul class="splide__list">
-      {% for screenshots in screenshots_files -%}
-      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
-      {% endfor %}
-		</ul>
-	</div>
-</div>
-
-<div id="secondary-slider" class="splide">
-	<div class="splide__track">
-		<ul class="splide__list">
-      {% for screenshots in screenshots_files -%}
-      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
-      {% endfor %}
-		</ul>
-	</div>
-</div>
-
 <script>
   checkGallery();
   function checkGallery() {
