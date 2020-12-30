@@ -29,32 +29,13 @@ if one of them should not be.
     * Option 1: external service
 
     Add the IP address or the domain name of the service in `NMAP_TARGET`
-    variable by adding following lines in your `.gitlab-ci.yml` file:
-
-    ```yaml
-    nmap:
-      variables:
-        NMAP_TARGET: <address or domain name>
-    ```
+    (see [jobs customization](http://localhost:8000/use-the-hub/#jobs-customization))
 
     *  Option 2: container instance
 
-    To use this option, you must have access to a container image of your
-    software. For example, if you are using our
-    [docker_build](https://r2devops.io/jobs/build/docker_build/) job, just
-    add the following configuration in your `.gitlab-ci.yml` file:
-
-    !!! info
-        * The `name` option must contain your image name and tag
-        * The `alias` option permits to the job to reach your application using a name. This name must be the same that the one specified inside [variable `NMAP_TARGET`](#variables)
-        * You may also run some other services like a database depending on your application needs
-
-    ```yaml
-    nmap:
-      services:
-        - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-          alias: app
-    ```
+    Add the target container instance as a service (see
+    [Container instance as Service](/use-the-hub/#container-instance-as-service))
+    and set `NMAP_TARGET` as the name of your container.
 
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
