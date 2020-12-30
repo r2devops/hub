@@ -1,0 +1,13 @@
+.secondary__slider img {
+	width : 100%;
+	height: auto;
+}
+
+.primary__slider {
+	background-size: contain !important;
+	margin-left: 0 !important;
+}
+
+#secondary-slider {
+    margin-top: 15px;
+}
