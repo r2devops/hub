@@ -7,7 +7,7 @@
 	<div class="splide__track">
 		<ul class="splide__list">
       {% for screenshots in screenshots_files -%}
-      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+      <li class="splide__slide primary__slider"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
       {% endfor %}
 		</ul>
 	</div>
@@ -17,7 +17,7 @@
 	<div class="splide__track">
 		<ul class="splide__list">
       {% for screenshots in screenshots_files -%}
-      <li class="splide__slide"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+      <li class="splide__slide secondary__slider" style="background-size: cover;" ><img src="{{screenshot_path}}/{{screenshots}}" /></li>
       {% endfor %}
 		</ul>
 	</div>

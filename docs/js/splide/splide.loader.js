@@ -13,8 +13,8 @@ function initSplide() {
 				height    : 40,
 			}
         },
-        autoplay: true,
-        interval: 5000,
+        //autoplay: true,
+        //interval: 5000,
         pauseOnHover: true,
         resetProgress: true,
         rewind: true,
@@ -22,7 +22,8 @@ function initSplide() {
 	} ).mount();
     var primarySlider = new Splide( '#primary-slider', {
 		type       : 'fade',
-		heightRatio: 0.5,
+		width: '100%',
+		height: '400px',
 		pagination : false,
 		arrows     : false,
 		cover      : true,
