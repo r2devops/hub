@@ -13,8 +13,8 @@ function initSplide() {
 				height    : 40,
 			}
         },
-        //autoplay: true,
-        //interval: 5000,
+        autoplay: true,
+        interval: 5000,
         pauseOnHover: true,
         resetProgress: true,
         rewind: true,
