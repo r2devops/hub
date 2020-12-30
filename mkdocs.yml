@@ -23,9 +23,13 @@ nav:
     - Concept: concept.md
     - Use the hub: use-the-hub.md
     - Versioning: versioning.md
-    - Contributing: contributing.md
 #    - License: license.md
   - ...
+  - Contributing:
+    - Home: contributing.md
+    - Structure: structure.md
+    - Create an issue: create-issue.md
+    - Create a new job: create-new-job.md
 
 # Customization
 extra:
@@ -50,6 +54,7 @@ extra:
 extra_css:
     - css/extra.css
     - css/juxtapose.css
+    - css/custom_admonitions.css
 
 extra_javascript:
     - js/juxtapose.min.js
@@ -91,7 +96,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark

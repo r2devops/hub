@@ -1,0 +1,6 @@
+name: helm_review
+description: A ready-to-use helm job to deploy your review environment in a merge request
+default_stage: review
+icon: ☸️
+maintainer: thomasboni
+license: MIT
