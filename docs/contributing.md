@@ -10,12 +10,12 @@ that you want to do:
 * If you want to **add or create a new job** to the hub 👉 [Create a new job
   page](/create-new-job/)
 
-!!! heart "Community"
+!!! heart
     We love talking with our contributors and users ! Join our
     [:fontawesome-brands-discord: Discord
-    community](https://discord.gg/5QKpGqR)
+    community](https://discord.gg/5QKpGqR) to dis
 
 
 
-<!-- TODO: describe that jobs are verified, dedicated page to describe the pipeline
-? préciser aussi dans la partie utilisation que les jobs sont vérifiés -->
+TODO: describe that jobs are verified, dedicated page to describe the pipeline
+? préciser aussi dans la partie utilisation que les jobs sont vérifiés
