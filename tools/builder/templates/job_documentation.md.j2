@@ -33,10 +33,10 @@
 {% if linked_issues %}
 ## Linked Issues
 
-  {%- for issue in linked_issues[:linked_issues_limit] -%}
+  {% for issue in linked_issues[:linked_issues_limit] %}
 - [#{{issue.iid}} - {{ issue.name }}]({{ issue.url }})
-  {%- endfor -%}
-  {%- if linked_issues[linked_issues_limit] -%}
+  {% endfor %}
+  {% if linked_issues[linked_issues_limit] %}
 - [...](linked_issues_url)
-  {%- endif %}
-{%- endif %}
+  {% endif %}
+{% endif %}
