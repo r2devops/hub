@@ -1,5 +1,3 @@
-# 🦊 Pages
-
 ## Description
 
 Publish HTML documentation located in `public` folder, retrieved as an artifact

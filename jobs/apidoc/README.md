@@ -1,5 +1,3 @@
-# 📒 ApiDoc
-
 ## Description
 
 Creates a versioned HTML documentation from API annotations in your source

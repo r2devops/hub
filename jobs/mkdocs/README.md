@@ -1,5 +1,3 @@
-# 📃 Mkdocs
-
 ## Description
 
 Build HTML documentation form Markdown source using

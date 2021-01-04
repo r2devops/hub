@@ -1,5 +1,3 @@
-# 🐘 PHPUnit Testing
-
 ## Description
 
 Using this job you'll be able to launch PHPUnit tests.

@@ -1,5 +1,3 @@
-# 🔎 Super-linter
-
 ## Description
 
 This job uses the [github super-linter](https://github.com/github/super-linter){:target="_blank"}

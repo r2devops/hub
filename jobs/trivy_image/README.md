@@ -1,5 +1,3 @@
-# 🧱 Trivy image analysis
-
 ## Description
 
 Run a security issue detection in a docker image using

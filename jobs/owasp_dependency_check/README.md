@@ -1,5 +1,3 @@
-# 👁 OWASP Dependency Check
-
 ## Description
 
 This job will search for security issues in your dependencies, using the tool [Dependency-Check](https://github.com/jeremylong/DependencyCheck){:target="_blank"} powered by [OWASP](https://owasp.org/){:target="_blank"}.

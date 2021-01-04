@@ -1,5 +1,3 @@
-# 🛡 Nmap
-
 ## Description
 
 [Nmap](https://nmap.org) is a tool designed to discover networks, map them, and

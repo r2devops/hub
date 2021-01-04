@@ -1,5 +1,3 @@
-# 🚀 Newman
-
 ## Description
 
 Launch a Postman collection of requests to test your API using [newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/)

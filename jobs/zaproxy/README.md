@@ -1,5 +1,3 @@
-# 🔎 Zaproxy
-
 ## Description
 
 Run a Dynamic Application Security Testing (DAST) in a docker image
@@ -35,7 +33,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     Add the target container instance as a service (see
     [Container instance as Service](/use-the-hub/#container-instance-as-service))
     and set `ZAP_TARGET` as the name of your container.
-    
+
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
