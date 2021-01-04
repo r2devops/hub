@@ -10,9 +10,9 @@
     <div id="primary-slider" class="splide">
         <div class="splide__track">
             <ul class="splide__list">
-        {% for screenshots in screenshots_files -%}
-        <li class="splide__slide primary__slider"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
-        {% endfor %}
+                {% for screenshots in screenshots_files -%}
+                <li class="splide__slide primary__slider"><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+                {% endfor -%}
             </ul>
         </div>
     </div>
@@ -20,9 +20,9 @@
     <div id="secondary-slider" class="splide">
         <div class="splide__track">
             <ul class="splide__list">
-        {% for screenshots in screenshots_files -%}
-        <li class="splide__slide secondary__slider" style="background-size: cover;" ><img src="{{screenshot_path}}/{{screenshots}}" /></li>
-        {% endfor %}
+                {% for screenshots in screenshots_files -%}
+                <li class="splide__slide secondary__slider" style="background-size: cover;" ><img src="{{screenshot_path}}/{{screenshots}}" /></li>
+                {% endfor -%}
             </ul>
         </div>
     </div>
@@ -60,20 +60,21 @@
     -- 🔨 Maintainer: <img src='{{ gitlab_image }}' alt='avatar' style='width: 20px; height: 20px; border-radius: 50%'> [{{ code_owner_name }}]({{ code_owner_url }}) @{{ code_owner }}
     {%- endif %}
 
-    {% if screenshots_files %}
-    <script>
-    checkGallery();
-    function checkGallery() {
-        if (typeof initSplide != "function")
-        setTimeout(() => checkGallery(), 100);
-        else
-        initSplide();
-    }
-    </script>
-    {% endif %}
-
 === ".gitlab-ci.yml"
 
     ```yaml
     {{ job_raw_content | indent(4, False) }}
     ```
+
+{% if screenshots_files %}
+<script>
+checkGallery();
+function checkGallery() {
+    if (typeof initSplide != "function")
+    setTimeout(() => checkGallery(), 100);
+    else
+    initSplide();
+}
+</script>
+{% endif %}
+
