@@ -14,14 +14,16 @@
 #             ├── 0.1.0.md
 #             └──...
 
-from os import listdir, makedirs
-from yaml import full_load
-from jinja2 import Environment, FileSystemLoader
-import requests
+import logging
+import re
+import sys
 from datetime import datetime
 from distutils.version import LooseVersion
+from os import listdir, makedirs
 from shutil import copyfile
-import re
+import requests
+from yaml import full_load
+from jinja2 import Environment, FileSystemLoader
 
 
 # Job variables
@@ -33,6 +35,7 @@ JOB_CHANGELOG_DIR = "versions"
 
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
+JOBS_EXTENSION = ".yml"
 
 # Path to images used for the built job documentation
 MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
@@ -75,14 +78,14 @@ def get_changelogs(job_path, job_name):
     versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
       "version": versions[0],
-      "url": R2DEVOPS_URL + job_name + ".yml"
+      "url": R2DEVOPS_URL + job_name + JOBS_EXTENSION
     }
     changelogs = []
     for version in versions:
         with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + ".md") as changelog_file:
             changelogs.append({
                 "version": version,
-                "url": R2DEVOPS_URL + version + "/" + job_name + ".yml",
+                "url": R2DEVOPS_URL + version + "/" + job_name + JOBS_EXTENSION,
                 "changelog": changelog_file.readlines()
             })
     return (latest, changelogs)
@@ -106,7 +109,7 @@ def get_screenshots(job_path, job_name):
     job_path : str
         The job path
     job_name : str
-        The job name (ex: Gitleaks)
+        The job name (ex: gitleaks)
 
     Returns
     -------
@@ -139,6 +142,31 @@ def get_user(code_owner):
         return response.json()[0]
     return None
 
+def get_job_raw_content(job_name):
+    """Return the raw content of a job
+
+    Parameters
+    ----------
+    job_name : str
+        The job name (ex: gitleaks)
+
+    Returns
+    -------
+    yaml
+        Raw content of the job
+    """
+    try:
+        with open("{}/{job}/{job}{}".format(JOBS_DIR, JOBS_EXTENSION,
+                                            job=job_name), 'r') as job:
+            return job.readlines()
+    except FileNotFoundError :
+        logging.error("File %s/%s/%s.%s not found", JOBS_DIR,
+                                                    job_name,
+                                                    job_name,
+                                                    JOBS_EXTENSION)
+        sys.exit(1)
+
+
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
 
@@ -156,12 +184,16 @@ def create_job_doc(job):
     screenshot_path, screenshots_files = get_screenshots(job_path, job)
     license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
+    job_raw_content = get_job_raw_content(job)
+    job_icon = conf.get("icon")
 
     # Write final file
     with open(mkdocs_file_path, 'w+') as doc_file:
         env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
         template = env.get_template(TEMPLATE_DOC)
         doc_file.write(template.render(
+            job_name = job,
+            job_icon = job_icon,
             readme = description,
             license_name = license_name,
             license = license_content,
@@ -172,7 +204,8 @@ def create_job_doc(job):
             code_owner = code_owner,
             code_owner_url = user["web_url"],
             screenshot_path = screenshot_path,
-            screenshots_files = screenshots_files
+            screenshots_files = screenshots_files,
+            job_raw_content = ''.join(job_raw_content)
     ))
 
 def add_placeholder():
@@ -186,7 +219,14 @@ def add_placeholder():
                 template = env.get_template(TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
-if __name__ == "__main__":
+def main():
+    """
+    Main function
+    """
+
+    # logging
+    logging.basicConfig(level=logging.INFO)
+
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
 
@@ -203,3 +243,6 @@ if __name__ == "__main__":
 
     with open(MKDOCS_DIR + "/" + JOBS_DIR + "/" + INDEX_FILE, "w+") as index_file:
         index_file.write(index_content)
+
+if __name__ == "__main__":
+    main()
