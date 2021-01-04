@@ -186,7 +186,7 @@ def create_job_doc(job):
             code_owner = code_owner,
             code_owner_url = user["web_url"],
             linked_issues = linked_issues,
-            linked_issues_limit = ISSUES_LIMIT - 1,
+            linked_issues_limit = ISSUES_LIMIT,
             linked_issues_url= linked_issues_url
     ))
 
