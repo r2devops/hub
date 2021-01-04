@@ -29,7 +29,7 @@ MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
-ISSUES_LIMIT = 1
+ISSUES_LIMIT = 5
 
 # Requests variables
 GITLAB_BASE_URL = "https://gitlab.com/"
