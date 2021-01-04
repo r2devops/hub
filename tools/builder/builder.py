@@ -29,8 +29,10 @@ MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
+ISSUES_LIMIT = 5
 
 # Requests variables
+GITLAB_BASE_URL = "https://gitlab.com/"
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
 JOB_TOKEN = getenv("API_TOKEN")
@@ -116,6 +118,8 @@ def get_linked_issues(job_name, opened=True):
     Returns:
     list
         A list of issues linked to the job with their name and url
+    str
+        Url to list the issues related to the job
     """
     linked_issues = []
     headers = {
@@ -133,13 +137,21 @@ def get_linked_issues(job_name, opened=True):
         }
     url = f"{base_url}?{urlencode(payload)}"
     r = requests.get(url, headers=headers)
+
+
     for issue in r.json():
         if f"{JOBS_SCOPE_LABEL}{job_name}" in issue['labels']:
             linked_issues.append({
                 "name": issue['title'],
-                "url": issue['_links']['self']
+                "url": issue['_links']['self'],
+                "iid": issue['iid']
             })
-    return (linked_issues)
+    linked_issues_base_url = f"{GITLAB_BASE_URL}/{quote(PROJECT_NAME, safe='')}"
+    filter = {
+        "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
+    }
+    linked_issues_url = f"{linked_issues_base_url}/issues?{urlencode(filter)}"
+    return (linked_issues, linked_issues_url)
 
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
@@ -157,7 +169,7 @@ def create_job_doc(job):
     latest, changelogs = get_changelogs(job_path, job)
     license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
-    linked_issues = get_linked_issues(job)
+    linked_issues, linked_issues_url = get_linked_issues(job)
 
     # Write final file
     with open(mkdocs_file_path, 'w+') as doc_file:
@@ -173,7 +185,9 @@ def create_job_doc(job):
             code_owner_name = user["name"],
             code_owner = code_owner,
             code_owner_url = user["web_url"],
-            linked_issues = linked_issues
+            linked_issues = linked_issues,
+            linked_issues_limit = ISSUES_LIMIT - 1,
+            linked_issues_url= linked_issues_url
     ))
 
 def add_placeholder():

@@ -4,11 +4,11 @@
 # 
 
 import requests
+import logging
 from urllib.parse import quote, urlencode
 from os import getenv, listdir
 
 # API Variables
-
 PROJECT_NAME = "r2devops/hub"
 BASE_API_URL = "https://gitlab.com/api/v4"
 JOB_TOKEN = getenv("API_TOKEN")
@@ -17,6 +17,7 @@ JOB_TOKEN = getenv("API_TOKEN")
 JOBS_DIR = "jobs"
 JOBS_SCOPE_LABEL = "Jobs::"
 LABEL_COLOR = "fuchsia"
+LOGFILE_NAME = getenv("JOB_LOGFILE")
 
 def get_labels(project_name, with_counts=False, include_ancestor_groups=True, search=""):
     """Get labels of the project, can also serach for a specific label with search filter
@@ -47,6 +48,7 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
     }
     base_label_url = f"{BASE_API_URL}/projects/{quote(project_name, safe='')}" + "/labels"
     url = f"{base_label_url}?{urlencode(payload)}"
+    logging.info(f"Getting the list of issues from the project {project_name} filtered by {search}")
     return (requests.get(url, headers=headers))
 
 def create_label(project_name, label_name, label_color=LABEL_COLOR):
@@ -76,6 +78,7 @@ def create_label(project_name, label_name, label_color=LABEL_COLOR):
         "description": f"Issues related to {label_name}"
     }
     url = f"{BASE_API_URL}/projects/{quote(project_name, safe='')}/labels"
+    logging.info(f"Creating a label {label_name} for the project {project_name}")
     return (requests.post(url, headers=headers, data=payload))
 
 def delete_label(project_name, label_name):
@@ -97,6 +100,7 @@ def delete_label(project_name, label_name):
         'PRIVATE-TOKEN': JOB_TOKEN
     }
     url = f"{BASE_API_URL}/projects/{quote(project_name, safe='')}/labels/{label_name}"
+    logging.info(f"Deleting a label {label_name} for the project {project_name}")
     return (requests.delete(url, headers=headers))
 
 if __name__ == "__main__":
@@ -109,16 +113,28 @@ if __name__ == "__main__":
     boolean
         0 if nothing is wrong, 1 otherwise
     """
+    # Setup logging
+    logging.basicConfig(
+        encoding="utf-8",
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[
+            logging.FileHandler(LOGFILE_NAME),
+            logging.StreamHandler()
+        ]
+    )
+    
+
     jobs = listdir(JOBS_DIR)
     for job in jobs:
         job_label = JOBS_SCOPE_LABEL + job
         label = get_labels(PROJECT_NAME, search=job_label)
         if "Unauthorized" not in label.text:
             if label.json():
-                print(f"label {job} exist")
+                logging.info(f"Label {job} exist")
             else:
-                print(f"label {job} does not exist, creating one now")
+                logging.info(f"Label {job} does not exist, creating one now")
                 create_label(PROJECT_NAME, job_label)
         else:
-            print("Not Authorized")
+            logging.error("Not Authorized, verify the API_TOKEN environment variable in the gitlab project")
             exit(1)

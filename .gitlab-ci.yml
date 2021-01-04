@@ -36,12 +36,18 @@ job_labels:
   image: python:3.9.1-alpine
   stage: build_dependencies
   variables:
-    PIPENV_PIPFILE: tools/labels/Pipfile
+    PIPENV_PIPFILE: tools/job_labels/Pipfile
+    JOB_LOGFILE: "job_labels.log"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
   script:
-    - pipenv run python3 tools/labels/job_labels.py
+    - pipenv run python3 tools/job_labels/job_labels.py
+  artifacts:
+    paths:
+      - ${JOB_LOGFILE}
+    expire_in: 30 days
+    when: always
     
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code

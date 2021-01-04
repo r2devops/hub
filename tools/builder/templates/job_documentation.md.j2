@@ -31,8 +31,12 @@
 {%- endif %}
 
 {% if linked_issues %}
-??? "Linked issues"
-  {% for issue in linked_issues %}
-    [{{ issue.name }}]({{ issue.url }})
-  {% endfor %}
+## Linked Issues
+
+  {%- for issue in linked_issues[:linked_issues_limit] -%}
+- [#{{issue.iid}} - {{ issue.name }}]({{ issue.url }})
+  {%- endfor -%}
+  {%- if linked_issues[linked_issues_limit] -%}
+- [...](linked_issues_url)
+  {%- endif %}
 {%- endif %}
