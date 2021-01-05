@@ -243,3 +243,7 @@ button.md-button-center {
 button.md-button-center:hover {
     cursor: pointer;
 }
+
+a.banner-link:hover {
+    font-weight: bold;;
+}
