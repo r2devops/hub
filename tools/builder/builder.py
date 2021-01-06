@@ -146,7 +146,7 @@ def get_linked_issues(job_name, opened=True):
                 "url": issue['_links']['self'],
                 "iid": issue['iid']
             })
-    linked_issues_base_url = f"{GITLAB_BASE_URL}/{quote(PROJECT_NAME, safe='')}"
+    linked_issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
     filter = {
         "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
     }
