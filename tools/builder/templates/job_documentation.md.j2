@@ -6,6 +6,9 @@
   {% for issue in linked_issues[:linked_issues_limit] %}
 - [#{{issue.iid}} - {{ issue.name }}]({{ issue.url }})
   {% endfor %}
+  {% if linked_issues[linked_issues_limit] %}
+- And more...]
+  {% endif %}
 [See all the issues]({{linked_issues_url}}){: .md-button }
 [Add an issue](https://gitlab.com/r2devops/hub/-/issues/new?issue[title]=[job][{{job_name}}]%20-%20){: .md-button .md-button--primary}
 {% endif %}
