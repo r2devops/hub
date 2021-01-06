@@ -6,10 +6,7 @@
   {% for issue in linked_issues[:linked_issues_limit] %}
 - [#{{issue.iid}} - {{ issue.name }}]({{ issue.url }})
   {% endfor %}
-  {% if linked_issues[linked_issues_limit] %}
-- [See more...]({{linked_issues_url}})
-  {% endif %}
-- [Wants more ? Suggest your idea](https://gitlab.com/r2devops/hub/-/issues/new?issue[title]=[job][{{job_name}}]%20-%20)
+[See all the issues]({{linked_issues_url}}){: .md-button } [Add an issue](https://gitlab.com/r2devops/hub/-/issues/new?issue[title]=[job][{{job_name}}]%20-%20){: .md-button--primary }
 {% endif %}
 
 ## License
