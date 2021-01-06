@@ -138,12 +138,16 @@ def get_linked_issues(job_name, opened=True):
     url = f"{base_url}?{urlencode(payload)}"
     r = requests.get(url, headers=headers)
 
+    ##
+    from pprint import pprint
+    pprint(r.json())
+    ##
 
     for issue in r.json():
         if f"{JOBS_SCOPE_LABEL}{job_name}" in issue['labels']:
             linked_issues.append({
                 "name": issue['title'],
-                "url": issue['_links']['self'],
+                "url": issue['web_url'],
                 "iid": issue['iid']
             })
     linked_issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
@@ -151,11 +155,6 @@ def get_linked_issues(job_name, opened=True):
         "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
     }
     linked_issues_url = f"{linked_issues_base_url}/issues?{urlencode(filter)}"
-    
-    ###
-    print(linked_issues_url)
-    ###
-
     return (linked_issues, linked_issues_url)
 
 def create_job_doc(job):
