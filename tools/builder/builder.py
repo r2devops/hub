@@ -29,7 +29,7 @@ MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
-ISSUES_LIMIT = 5
+ISSUES_LIMIT = 1
 
 # Requests variables
 GITLAB_BASE_URL = "https://gitlab.com/"
@@ -151,6 +151,11 @@ def get_linked_issues(job_name, opened=True):
         "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
     }
     linked_issues_url = f"{linked_issues_base_url}/issues?{urlencode(filter)}"
+    
+    ###
+    print(linked_issues_url)
+    ###
+
     return (linked_issues, linked_issues_url)
 
 def create_job_doc(job):
@@ -176,6 +181,7 @@ def create_job_doc(job):
         env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
         template = env.get_template(TEMPLATE_DOC)
         doc_file.write(template.render(
+            job_name = job,
             readme = description,
             license_name = license_name,
             license = license_content,

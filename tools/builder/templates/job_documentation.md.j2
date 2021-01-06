@@ -7,8 +7,9 @@
 - [#{{issue.iid}} - {{ issue.name }}]({{ issue.url }})
   {% endfor %}
   {% if linked_issues[linked_issues_limit] %}
-- [And more...](linked_issues_url)
+- [See more...]({{linked_issues_url}})
   {% endif %}
+- [Wants more ? Suggest your idea](https://gitlab.com/r2devops/hub/-/issues/new?issue[title]=[job][{{job_name}}]%20-%20)
 {% endif %}
 
 ## License
