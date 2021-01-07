@@ -18,6 +18,10 @@ customized through configuration.
     </button>
 </a>
 
+The HTML specification is maintained by the W3C.
+
 ## Overview
 
 ![hub overview](images/g2shub_mvp.jpg)
+
+--8<-- "includes/abbreviations.md"
