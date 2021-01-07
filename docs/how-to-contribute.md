@@ -1,4 +1,4 @@
-# Contributing
+# How to
 
 Welcome to the contributing guide of R2Devops hub 🥳 Glad to see you here ! 😀
 
@@ -7,7 +7,7 @@ that you want to do:
 
 * If you want to contribute by **creating an issue** to report a bug or to
   propose a new feature 👉 [Create an issue page](/create-issue/)
-* If you want to **add or create a new job** to the hub 👉 [Create a new job
+* If you want to **add or create a new public job** to the hub 👉 [Create a new job
   page](/create-new-job/)
 
 !!! heart "Community"
