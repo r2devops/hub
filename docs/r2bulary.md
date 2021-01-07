@@ -8,8 +8,6 @@
 ___
 ### Hub
 
-The R2Devops hub is a collaborative hub of CI & CD ready to use jobs which helps you to easily build powerful pipelines for your projects.
-Anyone can contribute and propose his own job and get feedback from the community.
 
 ___
 ### Job configuration
