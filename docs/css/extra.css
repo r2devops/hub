@@ -251,3 +251,7 @@ button.md-button-center:hover {
 .codehilitetable .linenos, .highlighttable .linenos {
     font-size: .75em;
 }
+
+a.banner-link:hover {
+    font-weight: bold;;
+}
