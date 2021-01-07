@@ -1,5 +1,3 @@
-# 🔐 Gitleaks
-
 ## Description
 
 [Gitleaks](https://github.com/zricethezav/gitleaks/wiki/Scanning){:target="_blank"} is a tool

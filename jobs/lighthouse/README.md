@@ -1,5 +1,3 @@
-# 🗽 Lighthouse
-
 ## Description
 
 This job analyzes a remote website (or a local web service) and gives you a report about the good and the bad points, see [HTML report](#html-report).
@@ -24,13 +22,13 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
     * Option 1: external service
 
-    Add the site IP or the domain name of the service in `LIGHTHOUSE_TARGET` variable 
+    Add the site IP or the domain name of the service in `LIGHTHOUSE_TARGET` variable
     (see [jobs customization](http://localhost:8000/use-the-hub/#jobs-customization))
 
     *  Option 2: container instance
 
     Add the target container instance as a service (see
-    [Container instance as Service](/use-the-hub/#container-instance-as-service)) and 
+    [Container instance as Service](/use-the-hub/#container-instance-as-service)) and
     set variable `LIGHTHOUSE_TARGET` as the name of your container.
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -52,7 +50,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 | `LIGHTHOUSE_TARGET` <img width=100/> | Web application URL <img width=175/>| ` ` <img width=100/>|
 | `OUTPUT_NAME` | Name of report file | `lighthouse` |
 | `OUTPUT_FORMAT` | Format of report file (`json`, `csv`, `html`) | `html` |
-| `OUTPUT_LOCALE` | Language of report file | `en` | 
+| `OUTPUT_LOCALE` | Language of report file | `en` |
 | `ADDITIONAL_OPTIONS` | Variable to add custom options (see [options](https://github.com/GoogleChrome/lighthouse#cli-options){:target="_blank"}) | ` ` |
 
 ### Audit configuration
