@@ -1,41 +1,8 @@
+# Create a new job
+
 <!-- Check https://docs.github.com/en/free-pro-team@latest/developers/github-marketplace -->
 
-
-# Contributing guide
-
 Guide to add efficiently and easily new jobs
-
-## hub structure
-
-TODO: define whole structyre
-
-## vision and mission
-
-TODO: define vision and mission but in concept page, not here
-
-## Create an issue
-
-Describe how to write an issue
-
-## Job structure
-
-TODO: move this section in dedicated page ?
-
-All jobs are based on a docker image
-
-Add information about the structure of a job directory and what need to be here.
-
-```tree
-.
-└── jobs                            # Folder containing jobs sources
-    └── docker_build
-        ├── docker_build.yml        # Job content
-        ├── job.yml                 # Job metadata
-        ├── README.md               # Job documentation
-        └── versions                # Jobs changelogs
-            ├── 0.1.0.md
-            └── ...
-```
 
 ## Workflow
 
@@ -59,32 +26,85 @@ Add information about the structure of a job directory and what need to be here.
     <!-- TODO: * How to manage CI/CD pipeline from their project ? We have to manually ensure that they don't alter it? -->
 
 
-## Create a new job
+## Jobs criteria
+
+### Structure of a job
+
+!!! tip
+    A template of job is available
+    [here](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
+    in the R2Devops hub repository
+
+Jobs are stored in the [R2Devops hub](https://gitlab.com/r2devops/hub)
+repository inside the
+[`jobs`](https://gitlab.com/r2devops/hub/-/tree/latest/jobs) folder and
+follow this standardized structure:
+
+```
+.
+└── jobs
+    └── <job_name>
+        ├── <job_name>.yml        # Job definition
+        ├── job.yml               # Job metadata
+        ├── README.md             # Job documentation
+        └── versions              # Jobs changelogs
+            ├── 0.1.0.md
+            └── ...
+```
+
+#### Job definition
+
+This file must have the same name that the job with the `yml` extension:
+`<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
+
+See [GitLab CI/CD pipeline
+configuration reference](https://docs.gitlab.com/ee/ci/yaml/) (`yaml`).
+
+#### Job metadata: `job.yml`
+
+This file, named `job.yml`, contains the job metadata, in `yaml` format, with
+the following fields:
+
+* `name`: name of the job
+* `description`: short description of the job
+* `default_stage`: default stage of the job, you have to choose the most
+  relevant stage from our [default stage list](/use-the-hub/#stages)
+* `icon`: TODO
+* `maintainer`: TODO
+* `license`: TODO
+
+Example:
+
+```yaml
+
+```
+
+#### Job documentation: `README.md`
+* `README.md`: file containing documentation of a job (`markdown`)
+* `versions`: folder containing releases notes files for each versions of the job
+    * `0.1.0.md`: release note
+
+### Mandatory criteria
+
+* All mandatory files of the [job structure](/structure#job-structure) must be provided
+* All fields from `job.yml` must be fulfilled (excepted `icon` which is optional but if no icon is chosen we put a default icon. We also have to help the user to choose an icon by proving him a link (emojipedia) or anything to choose)
+* Job file must be validated by gitlab (CI lint)
+
+## Mandatory rules for **public** jobs (not enforced private jobs, can be customized for on-premise)
+
+* The job must be run in a docker container
+* Provide evidences of job working (url, screenshots, output, ...)
+* Must be compliant with our security jobs (#230, #229)
+* Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
+* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
+* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
+* Ensure that every resource used by the job has a license compatible with the job license
+    * **Question**: is it possible to use a GPL tool in my job if my job is delivered under Apache or MIT ?
+* Docker image version and version of all tools retrieved must be fixed
+
 
 * What about code-owners
 
-### How to choose the best docker to implement new job ?
-    Check the job is maintained
-    Check the size (smallest is the best)
-    Check the job has versioning (not only latest)
-    If criteria above are not met --> ##Create my docker from Alpine image
-    Choose the officiel Alpine image in latest (think to fix version after)
-    Install doxygen in the frist line of the script 'apk add --no-cache doxygen==1.8.18-r0'
-
-    The installed version of Doxygen must be specified as variable with the default value on the current latest version 1.8.18-r0
-    A fixed tag must be specified for the alpine image used
-
-
-### How can I test my job locally/easily ?
-    Locally ? using the doxygen binary in my own operating system ? (brew install...)
-    Using a blank repo in gitlab ? ex: https://gitlab.com/coconux/doxygen and link with the job in WIP Ex: - remote: 'https://gitlab.com/go2scale/hub/-/raw/111-add-doxygen-job/jobs/doxygen/doxygen.yml'
-    How can I check the hub documentation went well ?
-    ...
-
-### About versions:
-
-    The installed version of Doxygen must be specified as variable with the default value on the current latest version 1.8.18-r0
-    A fixed tag must be specified for the alpine image used
 
 ### About process:
 
