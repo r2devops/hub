@@ -6,11 +6,11 @@ Set of jobs launched in the same sequence. Pipeline can be run manually, after a
 
 
 *[Job]:
-A job is a program hosted in R2Devops Hub that can be included in CI/CD pipeline to do a unitary work.
+A job is a script hosted in R2Devops Hub that can be included in CI/CD pipeline to do a unitary work.
 
 
 *[Jobs]:
-A job is a program hosted in R2Devops Hub that can be included in CI/CD pipeline to do a unitary work.
+A job is a script hosted in R2Devops Hub that can be included in CI/CD pipeline to do a unitary work.
 
 
 *[CI]:

@@ -38,6 +38,19 @@ We consider the pipeline as succeeded if all jobs in the pipeline success.
 ___
 ### Job
 
+**A job is a script hosted in R2Devops Hub that can be included in CI/CD pipeline to do a unitary work.**
+
+- 🆕 The job must be considered like a "disposable treatment" and not like something persistent.
+- 🖇️The job is included in a stage in a pipeline. 1 job belongs to 1 stage (and 1 stage may contain several jobs 1:N)
+- 🔫 Job is triggered by an action (either a merge on branch, or a manual triggering, or a previous job success).
+- 🎁 Job may produce an artifact.
+- 📄 Job always produces logs.
+- ✋If a job failed, it can stop the pipeline (block the run of next stages or in case of [DAG](https://docs.gitlab.com/ee/ci/directed_acyclic_graph/) the next jobs of the graph).
+- ⚠️ If a job failed, it can just throw a non-blocking warning.
+- 📝 Once the pipeline is finished, jobs inside the pipeline are considered as finished too. The results (logs, artifacts, output) as for them are persistent.
+- ⚙️ The Job can be customized by setting up the variables.
+- 🧬A job instance in a pipeline is unique but a "job definition" can be implemented multiple time in a pipeline as multiple jobs instances.
+
 ___
 ### CI
 
@@ -46,3 +59,5 @@ ___
 
 ___
 ### Stage
+
+--8<-- "includes/abbreviations.md"
