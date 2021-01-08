@@ -24,12 +24,12 @@ nav:
     - Use the hub: use-the-hub.md
     - Versioning: versioning.md
 #    - License: license.md
-  - ...
   - Contributing:
     - How to: how-to-contribute.md
     - Structure: structure.md
     - Create an issue: create-issue.md
     - Create a new job: create-new-job.md
+  - ...
 
 # Customization
 extra:
