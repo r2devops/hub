@@ -26,9 +26,7 @@ Guide to add efficiently and easily new jobs
     <!-- TODO: * How to manage CI/CD pipeline from their project ? We have to manually ensure that they don't alter it? -->
 
 
-## Jobs criteria
-
-### Structure of a job
+## Structure of a job
 
 !!! tip
     A template of job is available
@@ -40,7 +38,7 @@ repository inside the
 [`jobs`](https://gitlab.com/r2devops/hub/-/tree/latest/jobs) folder and
 follow this standardized structure:
 
-```
+```shell
 .
 └── jobs
     └── <job_name>
@@ -52,55 +50,138 @@ follow this standardized structure:
             └── ...
 ```
 
-#### Job definition
+* All mandatory files of the [job structure](/structure#job-structure) must be provided
+* All fields from `job.yml` must be fulfilled (excepted `icon` which is optional but if no icon is chosen we put a default icon. We also have to help the user to choose an icon by proving him a link (emojipedia) or anything to choose)
+
+**Mandatory rules for **public** jobs (not enforced private jobs, can be customized for on-premise)**
+
+* Provide evidences of job working (url, screenshots, output, ...)
+
+### 🤖 Job definition
 
 This file must have the same name that the job with the `yml` extension:
 `<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
 
-See [GitLab CI/CD pipeline
-configuration reference](https://docs.gitlab.com/ee/ci/yaml/) (`yaml`).
+!!! info
+    * Jobs of the hub uses the Gitlab CI/CD configuration format
+    * Jobs of the hub must specify a Docker image to be run in a container
+    * See [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/)
 
-#### Job metadata: `job.yml`
 
-This file, named `job.yml`, contains the job metadata, in `yaml` format, with
+**TODO:**
+* Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
+* What about `stages` global list ?
+* Job file must be validated by gitlab (CI lint)
+* Must be compliant with our security jobs (#230, #229)
+
+Your job definition file must at least contains the following fields:
+
+* [`image`](#image)
+* [`stage`](#stage)
+* [`script`](#script)
+
+#### Image
+
+Tag of the image must be a fixed version (not latest)
+* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
+* Docker image version and version of all tools retrieved must be fixed
+
+TODO: link to "how to choose my docker image"
+
+#### Stage
+
+Default stage for the job, from our [default stage list](/use-the-hub/#stages)
+
+#### Script
+
+* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
+* Docker image version and version of all tools retrieved must be fixed
+
+#### Variables
+
+* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
+
+#### Artifacts
+
+Use expose_as like in mkdocs job to expose the artifact in the MR
+
+See our Best Practices: TODO LINK
+
+#### Other options
+
+
+### 🗂 Job metadata
+
+!!! note "Example of `job.yml`"
+    ```yaml
+    name: super_linter
+    description: Bundle of various linters, to validate the quality of your code
+    icon: 🔎
+    default_stage: static_tests
+    maintainer: thomasboni
+    license: MIT
+    ```
+
+This file, named `job.yml`, contains the job metadata in `yaml` format with
 the following fields:
 
-* `name`: name of the job
-* `description`: short description of the job
-* `default_stage`: default stage of the job, you have to choose the most
-  relevant stage from our [default stage list](/use-the-hub/#stages)
-* `icon`: TODO
-* `maintainer`: TODO
-* `license`: TODO
+| Name | Description | Mandatory |
+| ---- | ----------- | --------- |
+| `name` <img width=80/> | Name of the job, must be unique | Yes |
+| `description` | Short description of the job | Yes |
+| `icon` | Unicode emoji character to represent the job ([emojipedia](https://emojipedia.org))| Yes |
+| `default_stage` | Default stage of the job, you have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages) | Yes |
+| `maintainer` | Gitlab username of the maintainer | Yes |
+| `license` | Open-source licence for the job. You can choose between `Apache-2.0` and `MIT` | Yes |
 
-Example:
 
-```yaml
+### 📚 Job documentation
 
+This file, named `README.md`, contains the documentation of a job  in `markdown` format.
+
+### 🏗 Job changelogs
+
+Jobs keep their changelogs in one folder named `versions`. This folder contains
+`markdown` files, each of them representing a version and containing list of
+changes provided by this version.
+
+!!! info
+    * Jobs version must follows the [Semantic Versioning](https://semver.org/)
+    format (`MAJOR.MINOR.PATCH`)
+    * The first version for a job must be `0.1.0`
+
+Example of a `versions` folder for a job:
+
+```shell
+.
+└── versions
+    ├── 0.1.0.md
+    ├── 0.2.0.md
+    └── 0.3.0.md
 ```
 
-#### Job documentation: `README.md`
-* `README.md`: file containing documentation of a job (`markdown`)
-* `versions`: folder containing releases notes files for each versions of the job
-    * `0.1.0.md`: release note
+**📃 `0.1.0.md`**
 
-### Mandatory criteria
+```md
+* Initial version
+```
 
-* All mandatory files of the [job structure](/structure#job-structure) must be provided
-* All fields from `job.yml` must be fulfilled (excepted `icon` which is optional but if no icon is chosen we put a default icon. We also have to help the user to choose an icon by proving him a link (emojipedia) or anything to choose)
-* Job file must be validated by gitlab (CI lint)
+**📃 `0.2.0.md`**
+```md
+* Add variable `DOCKERFILE_PATH` which permits specifying custom path to Dockerfile
+```
 
-## Mandatory rules for **public** jobs (not enforced private jobs, can be customized for on-premise)
+**📃 `0.3.0.md`**
+```md
+* New variable `DOCKER_USE_CACHE` to be able to cache layers of build
+* New variable `DOCKER_CACHE_TTL` to define time to live of cache
+* New variable `DOCKER_VERBOSITY` to set the verbosity of the build
+* New variable `DOCKER_OPTIONS` to be able to add additional options%
+```
 
-* The job must be run in a docker container
-* Provide evidences of job working (url, screenshots, output, ...)
-* Must be compliant with our security jobs (#230, #229)
-* Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
-* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
-* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
-* Ensure that every resource used by the job has a license compatible with the job license
-    * **Question**: is it possible to use a GPL tool in my job if my job is delivered under Apache or MIT ?
-* Docker image version and version of all tools retrieved must be fixed
+
+## Mandatory criteria
+
 
 
 * What about code-owners
@@ -124,7 +205,6 @@ Example:
 
 ### About artifact:
 
-    Use expose_as like in mkdocs job to expose the artifact in the MR
 
 ### About compliance with pages job:
 
@@ -156,7 +236,6 @@ Example:
     Test it (How ?)
     Create the documentation page following template
     Add the job in the index list
-    Creation of a new tag
 
 ## Modify existing job
 
@@ -164,5 +243,5 @@ Example:
 
     Test the job (How ?)
     Update the doc
-    Creation of a new tag
+    Creation of a new version
 
