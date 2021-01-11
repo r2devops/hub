@@ -10,16 +10,20 @@
 - And more...
   {% endif %}
 
-
-| <a alt="See all issues" href="{{linked_issues_url}}">
-    <button class="md-button border-radius-10 md-button-center" >
-        See all issues <img alt="" class="heart" src="/images/rocket.png">
-    </button>
-</a> | <a alt="Add an issue" href="{{create_issue_url}}">
-    <button class="md-button border-radius-10 md-button-center" >
-        Add an issue <img alt="" class="heart" src="/images/rocket.png">
-    </button>
-</a> |
+  {% if {{linked_issues_url}} -%}}
+    <a alt="See all issues" href="{{linked_issues_url}}">
+        <button class="md-button border-radius-10 md-button-center" >
+            See all issues <img alt="" class="heart" src="/images/rocket.png">
+        </button>
+    </a>
+  {%- endif -%}
+  {%- if {{create_issue_url}} -%}}
+    <a alt="Add an issue" href="{{create_issue_url}}">
+        <button class="md-button border-radius-10 md-button-center" >
+            Add an issue <img alt="" class="heart" src="/images/rocket.png">
+        </button>
+    </a>
+  {%- endif %}
 {% endif %}
 
 ---
