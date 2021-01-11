@@ -120,6 +120,8 @@ def get_linked_issues(job_name, opened=True):
         A list of issues linked to the job with their name and url
     str
         Url to list the issues related to the job
+    str
+        Url to create a new issue for the job
     """
     linked_issues = []
     headers = {
@@ -150,12 +152,16 @@ def get_linked_issues(job_name, opened=True):
                 "url": issue['web_url'],
                 "iid": issue['iid']
             })
-    linked_issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
-    filter = {
+    issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
+    linked_issues_payload = {
         "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
     }
-    linked_issues_url = f"{linked_issues_base_url}/issues?{urlencode(filter)}"
-    return (linked_issues, linked_issues_url)
+    linked_issues_url = f"{issues_base_url}/issues?{urlencode(linked_issues_payload)}"
+    create_issue_payload = {
+        "new": f"issue[title]=[job][{job_name}]"
+    }
+    create_issue_url = f"{issues_base_url}/issues?{urlencode(create_issue_payload)}"
+    return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
@@ -173,7 +179,7 @@ def create_job_doc(job):
     latest, changelogs = get_changelogs(job_path, job)
     license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
-    linked_issues, linked_issues_url = get_linked_issues(job)
+    linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
     # Write final file
     with open(mkdocs_file_path, 'w+') as doc_file:
@@ -192,7 +198,8 @@ def create_job_doc(job):
             code_owner_url = user["web_url"],
             linked_issues = linked_issues,
             linked_issues_limit = ISSUES_LIMIT,
-            linked_issues_url= linked_issues_url
+            linked_issues_url = linked_issues_url,
+            create_issue_url = create_issue_url
     ))
 
 def add_placeholder():

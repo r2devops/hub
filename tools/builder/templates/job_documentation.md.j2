@@ -9,9 +9,20 @@
   {% if linked_issues[linked_issues_limit] %}
 - And more...
   {% endif %}
-[See all the issues]({{linked_issues_url}}){: .md-button }
-[Add an issue](https://gitlab.com/r2devops/hub/-/issues/new?issue[title]=[job][{{job_name}}]%20-%20){: .md-button .md-button--primary}
+
+<a alt="See all issues" href="{{linked_issues_url}}">
+    <button class="md-button border-radius-10 md-button-center" >
+        See all issues <img alt="" class="heart" src="/images/rocket.png">
+    </button>
+</a>
+<a alt="Add an issue" href="{{create_issue_url}}">
+    <button class="md-button border-radius-10 md-button-center" >
+        Add an issue <img alt="" class="heart" src="/images/rocket.png">
+    </button>
+</a>
 {% endif %}
+
+---
 
 ## License
 
@@ -21,6 +32,8 @@
     {{ line }}
   {%- endif -%}
 {%- endfor %}
+
+---
 
 ## Changelog
 
