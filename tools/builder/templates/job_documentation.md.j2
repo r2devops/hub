@@ -10,20 +10,29 @@
 - And more...
   {% endif %}
 
-  {% if linked_issues_url -%}
-    <a alt="See all issues" href="{{linked_issues_url}}">
-        <button class="md-button border-radius-10 md-button-center" >
-            See all issues <img alt="" class="heart" src="/images/rocket.png">
-        </button>
-    </a>
-  {%- endif -%}
-  {%- if create_issue_url -%}
-    <a alt="Add an issue" href="{{create_issue_url}}">
-        <button class="md-button border-radius-10 md-button-center" >
-            Add an issue <img alt="" class="heart" src="/images/rocket.png">
-        </button>
-    </a>
-  {%- endif %}
+<div>
+  <a href="{{linked_issues_url}}" class="md-button md-button--primary">
+    See all issues
+  </a>
+  <a href="{{create_issue_url}}" class="md-button">
+    Create an issue
+  </a>
+</div>
+
+
+
+
+
+<a href="">
+    <button class="md-button border-radius-10 md-button-center" >
+        See all issues <img alt="" class="heart" src="../../../images/rocket.png">
+    </button>
+</a>
+<a alt="Add an issue" href="">
+    <button class="md-button border-radius-10 md-button-center" >
+        Add an issue <img alt="" class="heart" src="../../../images/rocket.png">
+    </button>
+</a>
 {% endif %}
 
 ---
