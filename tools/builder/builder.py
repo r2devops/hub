@@ -160,7 +160,7 @@ def get_linked_issues(job_name, opened=True):
     create_issue_payload = {
         "new": f"issue[title]=[job][{job_name}]"
     }
-    create_issue_url = f"{issues_base_url}/issues?{urlencode(create_issue_payload)}"
+    create_issue_url = f"{issues_base_url}/issues?{urlencode(create_issue_payload)}%20-%20"
     return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
