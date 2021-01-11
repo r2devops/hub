@@ -10,16 +10,18 @@
 - And more...
   {% endif %}
 
-<a alt="See all issues" href="{{linked_issues_url}}">&nbsp;
-    <button class="md-button border-radius-10 md-button-center" >&nbsp;
-        See all issues <img alt="" class="heart" src="/images/rocket.png">&nbsp;
-    </button>&nbsp;
-</a>&nbsp;
-<a alt="Add an issue" href="{{create_issue_url}}">&nbsp;
-    <button class="md-button border-radius-10 md-button-center" >&nbsp;
-        Add an issue <img alt="" class="heart" src="/images/rocket.png">&nbsp;
-    </button>&nbsp;
-</a>&nbsp;
+<div>
+  <a alt="See all issues" href="{{linked_issues_url}}">
+      <button class="md-button border-radius-10 md-button-center" >
+          See all issues <img alt="" class="heart" src="/images/rocket.png">
+      </button>
+  </a>
+  <a alt="Add an issue" href="{{create_issue_url}}">
+      <button class="md-button border-radius-10 md-button-center" >
+          Add an issue <img alt="" class="heart" src="/images/rocket.png">
+      </button>
+  </a>
+</div>
 {% endif %}
 
 ---
