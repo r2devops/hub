@@ -244,34 +244,10 @@ button.md-button-center:hover {
     cursor: pointer;
 }
 
-div#issues_buttons span#linked_issues {
-    display: inline;
-}
-
-div#issues_buttons:hover span#linked_issues {
+.linked_issues:hover span {
     display: none;
 }
 
-div#issues_buttons span#linked_issues_hover {
-    display: inline;
-}
-
-div#issues_buttons:hover span#linked_issues_hover {
-    display: none;
-}
-
-div#issues_buttons span#create_issue {
-    display: inline;
-}
-
-div#issues_buttons:hover span#create_issue {
-    display: none;
-}
-
-div#issues_buttons span#create_issue_hover {
-    display: inline;
-}
-
-div#issues_buttons:hover span#create_issue_hover {
-    display: none;
+.linked_issues:hover:before {
+    content: attr(data-hover);
 }

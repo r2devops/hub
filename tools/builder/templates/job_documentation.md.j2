@@ -1,6 +1,8 @@
 {{ readme }}
-
 {% if linked_issues %}
+
+---
+
 ## Linked Issues
 
   {% for issue in linked_issues[:linked_issues_limit] %}
@@ -10,14 +12,12 @@
 - And more...
   {% endif %}
 
-<div id="issues_buttons">
-  <a href="{{linked_issues_url}}" class="md-button border-radius-10 md-button-center">
-    <span id="linked_issues">See all issues</span><span id="linked_issues_hover">🔎</span>
-  </a>
-  <a href="{{create_issue_url}}" class="md-button border-radius-10 md-button-center">
-    <span id="create_issue">Create an issue</span><span id="create_issue_hover">➕</span>
-  </a>
-</div>
+<a href="{{linked_issues_url}}" class="md-button border-radius-10 md-button-center" class="linked_issues" data-hover="🔎">
+  <span>See all issues</span>
+</a>
+<a href="{{create_issue_url}}" class="md-button border-radius-10 md-button-center">
+  <span id="create_issue">Create an issue</span>
+</a>
 {% endif %}
 
 ---

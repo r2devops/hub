@@ -29,9 +29,9 @@ MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
-ISSUES_LIMIT = 3
+ISSUES_LIMIT = 5
 
-# Requests variables
+# Requests variable
 GITLAB_BASE_URL = "https://gitlab.com/"
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
@@ -128,30 +128,17 @@ def get_linked_issues(job_name, opened=True):
         'PRIVATE-TOKEN': JOB_TOKEN
     }
     base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
+    url = f"{base_url}?labels={JOBS_SCOPE_LABEL}{job_name}"
     if opened:
-        payload = {
-            "label": f"{JOBS_SCOPE_LABEL}{job_name}",
-            "state": "opened"
-        }
-    else:
-        payload = {
-            "label": f"{JOBS_SCOPE_LABEL}{job_name}"
-        }
-    url = f"{base_url}?{urlencode(payload)}"
+        url += "&state=opened"
     r = requests.get(url, headers=headers)
 
-    ##
-    from pprint import pprint
-    pprint(r.json())
-    ##
-
     for issue in r.json():
-        if f"{JOBS_SCOPE_LABEL}{job_name}" in issue['labels']:
-            linked_issues.append({
-                "name": issue['title'],
-                "url": issue['web_url'],
-                "iid": issue['iid']
-            })
+        linked_issues.append({
+            "name": issue['title'],
+            "url": issue['web_url'],
+            "iid": issue['iid']
+        })
     issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
     linked_issues_payload = {
         "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
