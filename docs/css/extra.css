@@ -244,10 +244,18 @@ button.md-button-center:hover {
     cursor: pointer;
 }
 
-button.linked_issues:hover {
-    content: "🔎"
+div.issues_buttons span.linked_issues {
+    display: inline;
 }
 
-button.create_issue:hover {
-    content: "➕"
+div.issues_buttons:hover span.linked_issues {
+    display: none;
+}
+
+div.issues_buttons span.create_issue {
+    display: inline;
+}
+
+div.issues_buttons:hover span.create_issue {
+    display: none;
 }
