@@ -243,3 +243,11 @@ button.md-button-center {
 button.md-button-center:hover {
     cursor: pointer;
 }
+
+.linked_issues_button:hover a p.new-label:after {
+    content: "🔎"
+}
+
+.create_issue_button:hover a p.new-label:after {
+    content: "➕"
+}
