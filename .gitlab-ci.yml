@@ -30,6 +30,23 @@ ci_linter:
     -   gitlab-ci-linter ${JOB_PATH}/${JOB}.yml
     - done
 
+structure:
+  image: python:3.9.1-alpine
+  stage: static_tests
+  variables:
+    PIPENV_PIPFILE: tools/job_structure/Pipfile
+    JOB_LOGFILE: "job_structure.log"
+  before_script:
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+  script:
+    - pipenv run python3 tools/job_structure/job_structure.py
+  artifacts:
+    paths:
+      - ${JOB_LOGFILE}
+    expire_in: 30 days
+    when: always
+
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 release:
