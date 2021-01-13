@@ -25,7 +25,6 @@ import requests
 from yaml import full_load
 from jinja2 import Environment, FileSystemLoader
 
-
 # Job variables
 JOBS_DIR = "jobs"
 MKDOCS_DIR = "docs"
