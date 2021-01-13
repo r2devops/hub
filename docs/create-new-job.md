@@ -1,30 +1,7 @@
 # Create a new job
 
 <!-- Check https://docs.github.com/en/free-pro-team@latest/developers/github-marketplace -->
-
 Guide to add efficiently and easily new jobs
-
-## Workflow
-
-!!! note
-    To leverage the R2Devops validaty and security checks on your job, do not
-    update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
-    If you alter it, we will not be able to merge your job in `r2devops/hub`
-    repository.
-
-
-* Fork the [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new) project
-    <!-- TODO: * Do we need to specify rules about fork visibility ? -->
-* Clone the repository locally
-* Create a new directory dedicated to your job in `jobs/` folder
-* Ensure to respect rules in this guide
-* Do not update the CI/CD configuration
-* Ensure that the last pipeline in your fork passed
-* Ensure to fulfill the [job Definition of Done](#job-definition-of-done)
-* Submit Merge request from your fork to source project
-* Go2Scale team check and validate your job using automated tests
-    <!-- TODO: * How to manage CI/CD pipeline from their project ? We have to manually ensure that they don't alter it? -->
-
 
 ## Structure of a job
 
@@ -49,66 +26,6 @@ follow this standardized structure:
             ├── 0.1.0.md
             └── ...
 ```
-
-* All mandatory files of the [job structure](/structure#job-structure) must be provided
-* All fields from `job.yml` must be fulfilled (excepted `icon` which is optional but if no icon is chosen we put a default icon. We also have to help the user to choose an icon by proving him a link (emojipedia) or anything to choose)
-
-**Mandatory rules for **public** jobs (not enforced private jobs, can be customized for on-premise)**
-
-* Provide evidences of job working (url, screenshots, output, ...)
-
-### 🤖 Job definition
-
-This file must have the same name that the job with the `yml` extension:
-`<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
-
-!!! info
-    * Jobs of the hub uses the Gitlab CI/CD configuration format
-    * Jobs of the hub must specify a Docker image to be run in a container
-    * See [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/)
-
-
-**TODO:**
-* Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
-* What about `stages` global list ?
-* Job file must be validated by gitlab (CI lint)
-* Must be compliant with our security jobs (#230, #229)
-
-Your job definition file must at least contains the following fields:
-
-* [`image`](#image)
-* [`stage`](#stage)
-* [`script`](#script)
-
-#### Image
-
-Tag of the image must be a fixed version (not latest)
-* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
-* Docker image version and version of all tools retrieved must be fixed
-
-TODO: link to "how to choose my docker image"
-
-#### Stage
-
-Default stage for the job, from our [default stage list](/use-the-hub/#stages)
-
-#### Script
-
-* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
-* Docker image version and version of all tools retrieved must be fixed
-
-#### Variables
-
-* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
-
-#### Artifacts
-
-Use expose_as like in mkdocs job to expose the artifact in the MR
-
-See our Best Practices: TODO LINK
-
-#### Other options
-
 
 ### 🗂 Job metadata
 
@@ -179,10 +96,29 @@ Example of a `versions` folder for a job:
 * New variable `DOCKER_OPTIONS` to be able to add additional options%
 ```
 
+### 🤖 Job definition
 
-## Mandatory criteria
+This file must have the same name that the job with the `yml` extension:
+`<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
+
+!!! info
+    * Jobs of the hub uses the Gitlab CI/CD configuration format
+    * Jobs of the hub must specify a Docker image to be run in a container
+    * See [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/)
 
 
+* What about `stages` global list ?
+
+Your job definition file must at least contains the following fields:
+
+* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image)**: docker image used to run the job (TODO: link on how to chose my docker image)
+* **`stage`**: default stage for the job, must be in our [default stage list](/use-the-hub/#stages) (TODO: link on how to chose a stage)
+* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script)**: this is the heart of the job. It contains a list of shell commands to run the job (TODO: link on how to create my script and talk about before and after sript)
+* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables)**: variables used by the `script` part of the job to customize its behaviour (TODO: link on how to define variables)
+* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports(TODO: link on how to define variables)
+
+
+See our Best Practices: TODO LINK
 
 * What about code-owners
 
@@ -245,3 +181,51 @@ Example of a `versions` folder for a job:
     Update the doc
     Creation of a new version
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Workflow
+
+!!! note
+    To leverage the R2Devops validaty and security checks on your job, do not
+    update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
+    If you alter it, we will not be able to merge your job in `r2devops/hub`
+    repository.
+
+
+* Fork the [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new) project
+    <!-- TODO: * Do we need to specify rules about fork visibility ? -->
+* Clone the repository locally
+* Create a new directory dedicated to your job in `jobs/` folder
+* Ensure to respect rules in this guide
+* Do not update the CI/CD configuration
+* Ensure that the last pipeline in your fork passed
+* Ensure to fulfill the [job Definition of Done](#job-definition-of-done)
+* Submit Merge request from your fork to source project
+* Go2Scale team check and validate your job using automated tests
+    <!-- TODO: * How to manage CI/CD pipeline from their project ? We have to manually ensure that they don't alter it? -->
+
+
+**TODO:**
+* Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
+    * Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
+* All mandatory files of the [job structure](/structure#job-structure) must be provided
+* Provide evidences of job working (url, screenshots, output, ...)
+* Job file must be validated by gitlab (CI lint)
+* Must be compliant with our security jobs (#230, #229)
+* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
+* Docker image version and version of all tools retrieved must be fixed
+    * Tag of the image must be a fixed version (not latest)
+    * Any tools used in the image must Docker image version and version of all tools retrieved must be fixed
+* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
+* Use expose_as like in mkdocs job to expose the artifact in the MR
