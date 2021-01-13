@@ -68,4 +68,11 @@ Launch a Postman collection of requests to test your API using [newman](https://
 | `NEWMAN_COLLECTION` <img width=100/> | Name of the Postman collection <img width=175/> | `postman_collection.json` <img width=100/> |
 | `NEWMAN_GLOBALS_FILE` | Name of the Postman globals file for [variables](https://learning.postman.com/docs/sending-requests/variables/) | ` ` |
 | `NEWMAN_ADDITIONAL_OPTIONS` | Other [options](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/) you may want to use with Newman | ` ` |
-| `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `false` |
+| `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
+| `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
+
+### Artifact
+
+We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to
+display error report directly in pipeline `Test` tab and in merge request
+widget.
