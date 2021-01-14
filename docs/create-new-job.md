@@ -229,3 +229,4 @@ See our Best Practices: TODO LINK
     * Any tools used in the image must Docker image version and version of all tools retrieved must be fixed
 * Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
 * Use expose_as like in mkdocs job to expose the artifact in the MR
+* Explain verification pipeline
