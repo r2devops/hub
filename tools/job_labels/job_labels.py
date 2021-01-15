@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 # API documentation: https://docs.gitlab.com/ee/api/labels.html
-# 
+#
 
-import requests
 import logging
+import sys
 from urllib.parse import quote, urlencode
 from os import getenv, listdir
+import requests
 
 # API Variables
 PROJECT_NAME = "r2devops/hub"
@@ -21,7 +22,7 @@ LOGFILE_NAME = getenv("JOB_LOGFILE")
 
 def get_labels(project_name, with_counts=False, include_ancestor_groups=True, search=""):
     """Get labels of the project, can also serach for a specific label with search filter
-    
+
     Parameters:
     -----------
     project_name : str
@@ -63,7 +64,7 @@ def create_label(project_name, label_name, label_color=LABEL_COLOR):
     label_color : str
         6-digit hex notation with leading '#'
         or one of the CSS color names (default: fuchsia)
-    
+
     Returns:
     --------
     obj
@@ -123,7 +124,6 @@ if __name__ == "__main__":
             logging.StreamHandler()
         ]
     )
-    
 
     jobs = listdir(JOBS_DIR)
     for job in jobs:
@@ -137,4 +137,4 @@ if __name__ == "__main__":
                 create_label(PROJECT_NAME, job_label)
         else:
             logging.error("Not Authorized, verify the API_TOKEN environment variable in the gitlab project")
-            exit(1)
+            sys.exit(1)
