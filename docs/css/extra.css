@@ -239,13 +239,3 @@ a.md-button-center {
     padding-bottom:1em !important;
     padding-top:0.8em !important;
 }
-
-/*
-.linked_issues:hover span {
-    display: none;
-}
-
-.linked_issues:hover:before {
-    content: attr(data-hover);
-}
-*/
