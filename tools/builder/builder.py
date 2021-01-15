@@ -15,12 +15,12 @@
 #             └──...
 
 from os import getenv, listdir
-from yaml import full_load
-from jinja2 import Environment, FileSystemLoader
-import requests
 from urllib.parse import quote, urlencode
 from datetime import datetime
 from distutils.version import LooseVersion
+import requests
+from yaml import full_load
+from jinja2 import Environment, FileSystemLoader
 
 # Job variables
 JOBS_DIR = "jobs"
