@@ -4,3 +4,7 @@ default_stage: dynamic_tests
 icon: 🗽
 maintainer: Protocole
 license: MIT
+images:
+  - 'justinribeiro/lighthouse:latest'
+tools:
+  lighthouse: 'latest'

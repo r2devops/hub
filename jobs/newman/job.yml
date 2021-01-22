@@ -4,3 +4,7 @@ default_stage: dynamic_tests
 icon: 🚀
 maintainer: FulcrandG
 license: MIT
+images:
+  - 'node:15.4.0'
+tools:
+  newman: 'latest'

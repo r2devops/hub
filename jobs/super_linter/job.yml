@@ -4,3 +4,7 @@ default_stage: static_tests
 icon: 🔎
 maintainer: thomasboni
 license: MIT
+images:
+  - 'github/super-linter:v3.14.3'
+tools:
+  junit_version: '$TAP_JUNIT_VERSION'

@@ -4,3 +4,5 @@ default_stage: deployment
 icon: 🦊
 maintainer: thomasboni
 license: MIT
+images:
+tools:

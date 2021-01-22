@@ -4,3 +4,5 @@ default_stage: dynamic_tests
 icon: 🔎
 maintainer: FulcrandG
 license: MIT
+images:
+  - 'owasp/zap2docker-stable:2.9.0'

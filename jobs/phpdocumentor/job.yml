@@ -4,3 +4,7 @@ default_stage: build
 icon: 📑
 maintainer: protocole
 license: MIT
+images:
+  - 'phpdoc/phpdoc:3.1'
+tools:
+  PhpDocumentor: 3.1

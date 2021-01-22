@@ -4,3 +4,7 @@ default_stage: static_tests
 icon: 🐘
 maintainer: Protocole
 license: MIT
+images:
+  - 'lorisleiva/laravel-docker:7.3'
+tools:
+  php: 7.3
