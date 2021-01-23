@@ -26,9 +26,9 @@ nav:
 #    - License: license.md
   - Contributing:
     - How to: how-to-contribute.md
-    - Structure: structure.md
+    - Structure of a job: job-structure.md
     - Create an issue: create-issue.md
-    - Create a new job: create-new-job.md
+    - Create or update a job: create-update-job.md
   - ...
 
 # Customization
