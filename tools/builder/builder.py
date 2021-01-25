@@ -14,20 +14,32 @@
 #             ├── 0.1.0.md
 #             └──...
 
-from os import listdir
-from yaml import full_load
-from jinja2 import Environment, FileSystemLoader
-import requests
+import logging
+import re
+import sys
 from datetime import datetime
 from distutils.version import LooseVersion
+from os import listdir, makedirs
+from shutil import copyfile
+import requests
+from yaml import full_load
+from jinja2 import Environment, FileSystemLoader
 
 # Job variables
 JOBS_DIR = "jobs"
 MKDOCS_DIR = "docs"
+
 MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
+
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
+JOBS_EXTENSION = ".yml"
+
+# Path to images used for the built job documentation
+MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
+# Directory name to use for the jobs screenshot
+SCREENSHOTS_DIR = "screenshots"
 
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
@@ -65,14 +77,14 @@ def get_changelogs(job_path, job_name):
     versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
       "version": versions[0],
-      "url": R2DEVOPS_URL + job_name + ".yml"
+      "url": R2DEVOPS_URL + job_name + JOBS_EXTENSION
     }
     changelogs = []
     for version in versions:
         with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + ".md") as changelog_file:
             changelogs.append({
                 "version": version,
-                "url": R2DEVOPS_URL + version + "/" + job_name + ".yml",
+                "url": R2DEVOPS_URL + version + "/" + job_name + JOBS_EXTENSION,
                 "changelog": changelog_file.readlines()
             })
     return (latest, changelogs)
@@ -87,6 +99,38 @@ def get_license(license_name, copyright_holder):
     license_content = [ line + '\n' for line in license_content]
     return license_content
 
+def get_screenshots(job_path, job_name):
+    """Create the job directory for the job documentation
+       Gets the jobs screenshots and copy them to the documentation directory
+
+    Parameters
+    ----------
+    job_path : str
+        The job path
+    job_name : str
+        The job name (ex: gitleaks)
+
+    Returns
+    -------
+    str
+        Path to the documentation directory
+    list
+        List of all screenshots name for the job
+    """
+
+    # Create screenshots folder in docs for the job
+    makedirs(MKDOCS_DIR+"/"+MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR,0o777,True)
+
+    # Get all screenshots of the job
+    regex = re.compile('(.png|.jpg|.jpeg)$')
+    screenshot_list = listdir(job_path + "/" + SCREENSHOTS_DIR)
+    screenshot_list = list(filter(regex.search, screenshot_list))
+
+    # Copy all screenshot of the job into screenshots folder for the doc
+    for screenshot in screenshot_list:
+        copyfile(job_path + "/" + SCREENSHOTS_DIR+"/"+screenshot, MKDOCS_DIR+ "/"+ MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR+"/"+screenshot)
+
+    return ("/" + MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR, screenshot_list)
 
 def get_user(code_owner):
     url = GITLAB_API_URL + "users?username=" + code_owner
@@ -96,6 +140,31 @@ def get_user(code_owner):
     if response.status_code == 200:
         return response.json()[0]
     return None
+
+def get_job_raw_content(job_name):
+    """Return the raw content of a job
+
+    Parameters
+    ----------
+    job_name : str
+        The job name (ex: gitleaks)
+
+    Returns
+    -------
+    yaml
+        Raw content of the job
+    """
+    try:
+        with open("{}/{job}/{job}{}".format(JOBS_DIR, JOBS_EXTENSION,
+                                            job=job_name), 'r') as job:
+            return job.readlines()
+    except FileNotFoundError :
+        logging.error("File %s/%s/%s.%s not found", JOBS_DIR,
+                                                    job_name,
+                                                    job_name,
+                                                    JOBS_EXTENSION)
+        sys.exit(1)
+
 
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
@@ -111,14 +180,19 @@ def create_job_doc(job):
     # Get variables for jinja
     description = get_description(job_path)
     latest, changelogs = get_changelogs(job_path, job)
+    screenshot_path, screenshots_files = get_screenshots(job_path, job)
     license_content = get_license(license_name, code_owner)
     user = get_user(code_owner)
+    job_raw_content = get_job_raw_content(job)
+    job_icon = conf.get("icon")
 
     # Write final file
     with open(mkdocs_file_path, 'w+') as doc_file:
         env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
         template = env.get_template(TEMPLATE_DOC)
         doc_file.write(template.render(
+            job_name = job,
+            job_icon = job_icon,
             readme = description,
             license_name = license_name,
             license = license_content,
@@ -127,7 +201,10 @@ def create_job_doc(job):
             gitlab_image = user["avatar_url"],
             code_owner_name = user["name"],
             code_owner = code_owner,
-            code_owner_url = user["web_url"]
+            code_owner_url = user["web_url"],
+            screenshot_path = screenshot_path,
+            screenshots_files = screenshots_files,
+            job_raw_content = ''.join(job_raw_content)
     ))
 
 def add_placeholder():
@@ -141,7 +218,14 @@ def add_placeholder():
                 template = env.get_template(TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
-if __name__ == "__main__":
+def main():
+    """
+    Main function
+    """
+
+    # logging
+    logging.basicConfig(level=logging.INFO)
+
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
 
@@ -158,3 +242,6 @@ if __name__ == "__main__":
 
     with open(MKDOCS_DIR + "/" + JOBS_DIR + "/" + INDEX_FILE, "w+") as index_file:
         index_file.write(index_content)
+
+if __name__ == "__main__":
+    main()

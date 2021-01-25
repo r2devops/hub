@@ -1,5 +1,3 @@
-# 👁 OWASP Dependency Check
-
 ## Description
 
 This job will search for security issues in your dependencies, using the tool [Dependency-Check](https://github.com/jeremylong/DependencyCheck){:target="_blank"} powered by [OWASP](https://owasp.org/){:target="_blank"}.
@@ -78,7 +76,5 @@ directly in pipeline `Test` tab and in merge request widget.
 You will be able to directly see all the dependencies analyzed and, when there is security issue the Common Vulnerabilities and Exposures [CVE](https://cve.mitre.org/){:target="_blank"} referenced.
 
 <!--
-!!! info
-
     `OWASP Dependency-Check` will analyze itself to see if there are any vulnerabilities, so the report will contain the dependencies linked to the tool used.
 -->

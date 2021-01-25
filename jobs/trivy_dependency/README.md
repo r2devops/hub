@@ -1,5 +1,3 @@
-# 🧱 Trivy dependency analysis
-
 ## Description
 
 Run a security issue detection in your local dependencies using

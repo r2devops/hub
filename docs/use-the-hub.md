@@ -113,8 +113,15 @@ the hub. Follow the [customization section](#jobs-customization) to do it.
 
 ## 🔧 Jobs customization
 
+### 🖌 Global
+
 Each jobs of the hub can be customized. To do it, you have to include the job
 URL as usual and, in addition, override the options you want to customize.
+
+!!! tip
+    In this way, you can override all Gitlab jobs parameters. All parameters
+    are described in [Gitlab
+    documentation](https://docs.gitlab.com/ee/ci/yaml/){:target="_blank"}.
 
 For example, if you want to use the [trivy_image](/jobs/dynamic_tests/trivy_image/) job and
 customize it by:
@@ -136,9 +143,30 @@ trivy_image:
     TRIVY_SEVERITY: "CRITICAL"
 ```
 
-!!! tip
-    In this way, you can override all Gitlab jobs parameters. All parameters
-    are described in [Gitlab
-    documentation](https://docs.gitlab.com/ee/ci/yaml/){:target="_blank"}.
+### 🐳 Advanced: `services`
+
+You may want one of your job to interact with a container instance (API,
+database, web server...) to work. GitLab has an option to run a container next
+to a job: [`services`](https://docs.gitlab.com/ee/ci/yaml/#services).
+
+To use this option, you must have access to an image of the container you want
+to run as a service. For example, if you are using our
+[docker_build](https://r2devops.io/jobs/build/docker_build/) job to build an
+image of your application, and you want to test this image using the
+[nmap](/jobs/dynamic_tests/nmap/) job, just add the following configuration in
+your `.gitlab-ci.yml` file:
+
+!!! info
+    * The `name` option must contain your image name and tag or an image name from [Docker Hub](https://hub.docker.com){:target="_blank"}.
+    * The `alias` option permits to the job to reach your application using a name. This name
+    must be the same that the one specified inside the job target's variable.
+    * You may also run some other services like a database depending on your application needs.
+
+```yaml
+nmap:
+  services:
+    - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      alias: app
+```
 
 --8<-- "includes/abbreviations.md"

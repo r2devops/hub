@@ -1,5 +1,3 @@
-# 📑 PHPDocumentor
-
 ## Description
 
 Build a complete HTML documentation based on a PHP Project using [DocBlocks](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html){:target="_blank"} from [PHPDoc](https://www.phpdoc.org/){:target="_blank"}.

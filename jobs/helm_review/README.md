@@ -1,5 +1,3 @@
-# ☸️  Helm Review
-
 ## Description
 
 Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} charts as a review environment when a pipeline is run in a merge request
@@ -24,7 +22,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 
 * Job name: `helm_review`, `cleanup_helm_review`
 * Docker image:
-[`lachlanevenson/k8s-helm:v3.0.2`](https://hub.docker.com/r/lachlanevenson/k8s-helm/){:target="_blank"}
+[`lachlanevenson/k8s-helm:v3.4.2`](https://hub.docker.com/r/lachlanevenson/k8s-helm/){:target="_blank"}
 * Default stage: `review`
 * When: `always`
 
@@ -37,10 +35,10 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 | `VALUES_FILE` | Name of the review configuration yaml file | `review.yaml` | Yes |
 | `VALUES_SECRET_FILE` | Name of the secrets review configuration yaml file | `secrets.review.yaml` | Only if the secret file `VALUES_SECRET_FILE` exists |
 | `REGISTRY` | Registry from where to pull container image | `${CI_REGISTRY_IMAGE}` |  Yes |
-| `KUBECTL_URL` | Url to get kubectl binary | `https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl` | Yes |
-| `HELMSECRETS_URL` | Url to get kubectl secrets plugin | `https://github.com/futuresimple/helm-secrets` | Yes |
-| `HELMSECRETS_VERSION` | Version of kubectl secrets plugin | `v2.0.2` | Only if the secret file `VALUES_SECRET_FILE` exists |
-| `STABLE_REPO_URL` | Url of stable repo to add to helm | `https://kubernetes-charts.storage.googleapis.com/` | Yes |
+| `KUBECTL_URL` | Url to get kubectl binary | `https://storage.googleapis.com/kubernetes-release/release/v1.20.1/bin/linux/amd64/kubectl` | Yes |
+| `HELMSECRETS_URL` | Url to get kubectl secrets plugin | `https://github.com/jkroepke/helm-secrets` | Yes |
+| `HELMSECRETS_VERSION` | Version of kubectl secrets plugin | `v3.4.0` | Only if the secret file `VALUES_SECRET_FILE` exists |
+| `STABLE_REPO_URL` | Url of stable repo to add to helm | `https://charts.helm.sh/stable` | Yes |
 | `HELM_ADDITIONAL_OPTIONS` | Additional settings to give to helm for deployment | ` ` | No |
 
 **Gitlab CI/CD variables:**

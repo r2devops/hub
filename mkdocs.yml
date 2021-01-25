@@ -50,11 +50,16 @@ extra:
 
 extra_css:
     - css/extra.css
-    - css/juxtapose.css
+    - css/juxtapose/juxtapose.css
+    - css/splide/splide-core.min.css
+    - css/splide/splide.min.css
+    - css/splide/extra.css
 
 extra_javascript:
-    - js/juxtapose.min.js
-    - js/juxtapose.loader.min.js
+    - js/juxtapose/juxtapose.min.js
+    - js/juxtapose/juxtapose.loader.min.js
+    - js/splide/splide.min.js
+    - js/splide/splide.loader.js
 
 # Configuration
 theme:
@@ -98,6 +103,7 @@ markdown_extensions:
   - pymdownx.smartsymbols
   - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde

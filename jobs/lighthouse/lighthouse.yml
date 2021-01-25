@@ -1,0 +1,22 @@
+stages:
+  - dynamic_tests
+
+lighthouse:
+  image: justinribeiro/lighthouse
+  stage: dynamic_tests
+  variables:
+    LIGHTHOUSE_TARGET: "https://go2scale.io"
+    OUTPUT_NAME: "lighthouse"
+    OUTPUT_FORMAT: "html"
+    OUTPUT_LOCALE: "en"
+    ADDITIONAL_OPTIONS: ""
+  script:
+    # Put in full lowercase OUTPUT_FORMAT to avoid problems
+    - export OUTPUT_FORMAT=$(echo ${OUTPUT_FORMAT} | tr '[:upper:]' '[:lower:]')
+    - export ADDITIONAL_OPTIONS="--output ${OUTPUT_FORMAT} --output-path ./${OUTPUT_NAME}.${OUTPUT_FORMAT} ${ADDITIONAL_OPTIONS}"
+    - export ADDITIONAL_OPTIONS="--locale ${OUTPUT_LOCALE} ${ADDITIONAL_OPTIONS}"
+    - lighthouse ${ADDITIONAL_OPTIONS} --chrome-flags="--headless --disable-gpu" ${LIGHTHOUSE_TARGET}
+  artifacts:
+    paths: 
+        - ${OUTPUT_NAME}.${OUTPUT_FORMAT}
+    expose_as: "Lighthouse Report"

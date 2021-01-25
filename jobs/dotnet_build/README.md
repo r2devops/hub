@@ -1,5 +1,3 @@
-# 🌐 .NET Build
-
 ## Description
 
 Builds a .NET Core project with the different versions available, and makes it ready to run.

@@ -1,5 +1,3 @@
-# 📃 Doxygen
-
 ## Description
 
 This job generates documentation from popular programming languages
