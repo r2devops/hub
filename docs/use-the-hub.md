@@ -4,8 +4,8 @@
 
 - 🦊  Manage your project in Gitlab
 - ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
-- 🔫  Be aware each file modification in your project will trigger the pipeline
-- 🗝  Have access to the Pipelines page in your Gitlab project to see the pipeline execution
+- 🔫  Be aware each file modification in your project will trigger the [Pipeline](/r2bulary/#pipeline)
+- 🗝  Have access to the pipelines page in your Gitlab project to see the pipeline execution
 
 ## ⏳ Quick setup
 
@@ -27,7 +27,7 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
         Check [stages](#stages) section to get more information about this list
         or if you already have a configuration with different stages.
 
-2. Select jobs you want in [Jobs section](/jobs/) and add their URL at the end
+2. Select Jobs you want in [jobs section](/jobs/) and add their URL at the end
    of your `.gitlab-ci.yml` file:
 
     ```yaml
@@ -41,7 +41,7 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
         By default, the `latest` version of a job is used. You can choose to
         use a specific version using a `tag`. Available tags are described for
-        each job in [Jobs section](/jobs/). Description of `tag` format is
+        each job in [jobs section](/jobs/). Description of `tag` format is
         available in [Versioning page](/versioning/).
 
         Once your pipeline is functional, we recommend to use a specific version
@@ -168,3 +168,5 @@ nmap:
     - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
       alias: app
 ```
+
+--8<-- "includes/abbreviations.md"

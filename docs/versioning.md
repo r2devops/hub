@@ -1,6 +1,6 @@
 # Versioning
 
-Each job of the hub are versioned using a git tag.
+Each Job of the Hub are versioned using a git tag.
 
 !!! note
     Version follows the [Semantic Versioning](https://semver.org/){:target="_blank"}.
@@ -20,5 +20,6 @@ include:
   - remote: 'https://jobs.r2devops.io/0.1.0/apidoc.yml'
 ```
 
-Available tags and release note for each job are available in [Jobs
-section](/jobs/).
+Available tags and release note for each job are available in [jobs section](/jobs/).
+
+--8<-- "includes/abbreviations.md"

@@ -23,6 +23,7 @@ nav:
     - Concept: concept.md
     - Use the hub: use-the-hub.md
     - Versioning: versioning.md
+    - R2bulary: r2bulary.md
 #    - Contributing: contributing.md
 #    - License: license.md
   - ...
@@ -80,15 +81,14 @@ theme:
     - navigation.tabs
     - navigation.instant
 
-# Extensions (https://squidfunk.github.io/mkdocs-material/reference/abbreviations/)
 markdown_extensions:
+  - abbr
   - attr_list
   - admonition # block-styled content (note, idea, warning, ...)
   - codehilite # highlite code syntax
   - footnotes # references in footnotes
   - toc:
       permalink: true # anchor on titles
-  # PyMdown extensions (https://squidfunk.github.io/mkdocs-material/extensions/pymdown)
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
@@ -101,11 +101,13 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
 
 # Plugins (https://squidfunk.github.io/mkdocs-material/plugins/minify-html/)
 plugins:
