@@ -17,7 +17,7 @@ mkdocs:
 
 pages:
   rules:
-    - if: '$CI_COMMIT_BRANCH == "latest"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops/hub"'
 
 ci_linter:
   image: golang:1.15.2-alpine3.12
@@ -74,4 +74,4 @@ release:
       done
     done
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops/hub"'
