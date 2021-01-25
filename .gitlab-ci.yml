@@ -47,6 +47,79 @@ structure:
     expire_in: 30 days
     when: always
 
+scan_images_dep:
+  image: docker:19.03
+  stage: static_tests
+  services:
+    - name: docker:19.03-dind
+      entrypoint: ["env", "-u", "DOCKER_HOST"]
+      command: ["dockerd-entrypoint.sh"]
+  variables:
+    PIPENV_PIPFILE: tools/job_image/Pipfile
+    JOB_LOGFILE: "job_image.log"
+    OUTPUT_DIR: "scan_output"
+
+    TRIVY_EXIT_ON_SEVERITY: ""
+    TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
+    TRIVY_EXIT_CODE: 0
+    TRIVY_VULN_TYPE: "os,library"
+    TRIVY_NO_PROGRESS: "false"
+    TRIVY_OUTPUT: "junit-report.xml"
+    TRIVY_IGNOREFILE: .trivyignore
+    TRIVY_CACHE_DIR: .trivycache/
+    TRIVY_FORMAT: "template"
+    TEMPLATE_NAME: "junit.tpl"
+    TRIVY_CLEAR_CACHE: "false"
+    TRIVY_IGNORE_UNFIXED: "false"
+    TRIVY_DEBUG: "false"
+
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    TRIVY_VERSION: "0.9.2"
+    TRIVY_REMOTE: ""
+    TRIVY_TIMEOUT: ""
+    TRIVY_LIGHT: "false"
+    TRIVY_DOWNLOAD_DB_ONLY: "false"
+    TRIVY_TOKEN: ""
+    TRIVY_QUIET: "false"
+    TRIVY_SKIP_UPDATE: "false"
+
+  before_script:
+    - apk add --no-cache python3 py3-pip
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+
+    - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+    - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+    - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
+
+    - mkdir ${OUTPUT_DIR}
+  script:
+    - for JOB in $(ls jobs); do
+    -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
+    -   if [ ! -z ${IMAGE} ]; then
+    -     NAME=$(basename ${IMAGE})
+    -     ./trivy --template "@${TEMPLATE_NAME}" -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
+    -     if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
+    -       ./trivy --template "@${TEMPLATE_NAME}" --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
+    -     fi
+    -   fi
+    -   IMAGE=""
+    - done
+  cache:
+    paths:
+      - "$TRIVY_CACHE_DIR"
+  artifacts:
+    paths:
+      - "${JOB_LOGFILE}"
+      - "${OUTPUT_DIR}/*.xml"
+    reports:
+      junit:
+        - "${OUTPUT_DIR}/*.xml"
+    expire_in: 30 days
+    when: always
+
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 release:
