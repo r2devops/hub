@@ -47,6 +47,21 @@ structure:
     expire_in: 30 days
     when: always
 
+job_customs:
+  image: python:3.9.1-alpine
+  stage: static_tests
+  variables:
+    PIPENV_PIPFILE: tools/job_customs/Pipfile
+    JOB_LOGFILE: "job_customs.log"
+  before_script:
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+  script:
+    - pipenv run python3 tools/job_customs/job_customs.py
+  artifacts:
+    paths:
+      - ${JOB_LOGFILE}
+
 scan_images_dep:
   image: docker:19.03
   stage: static_tests
