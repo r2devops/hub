@@ -10,57 +10,75 @@ In order to contribute efficiently, we recommend you to know following topics:
 
 ## Contributing workflow
 
+Follow 3 quick steps above to contribute in the hub 👇
+
+### 🍴 Step 1: Fork !
+
+The first step is to create your own copy of the
+[`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository to be
+able to work on it before merging your update in the real project.
+
+1. Go on the fork page creation: [`r2devops/hub new fork`](https://gitlab.com/r2devops/hub/-/forks/new)
+1. Select the group in which you want to create the fork
+
+### 💻 Step 2: Work in your fork
+
 !!! note
     To leverage the R2Devops validaty and security checks on your job, do not
     update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
     If you alter it, we will not be able to merge your job in `r2devops/hub`
     repository.
 
-### Step 1: Fork !
-
-The first step is to create your own copy of the
-[`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository to be
-able to work on it before merging your update in the real project.
-
-1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new)
-2. Select the group in which you want to create the fork
-
-### Step 2: Work in your fork
-
 1. If you want to add a new job, create a new directory dedicated to your job in `jobs/` folder
 1. Ensure to respect rules in this guide
 1. Do not update the CI/CD configuration (file `.gitlab-ci.yml`)
-1. Merge your update to [`r2devops/hub`](https://gitlab.com/r2devops/hub/):
-1. TODO: test your job
+1. Test your job and ensure it works
 
-### Step 3: Merge request
+### 🚀 Step 3: Merge request
 
+1. Ensure that the last pipeline in your fork passed before going further
+   (check it in `CI/CD > Pipelines`)
 1. Create a new merge request in your fork (`Merge Requests > New merge request`)
     1. Select branches
         * As `Source branch`, select the branch in which you have worked in
         your fork (usually `latest`)
         * As `Target branch`, select latest in `r2devops/hub` project
         * Click on `Compare branches and continue`
-    1. In `Title`: short description of your contribution
+    1. In `Title`: add short description of your contribution
     1. In `Description`:
         * Do not remove the default content, this is the Definition of Done
             (DoD)
-        * Add a description of your contribution. If your contribution is related to an existing issue, refers it in Example:
+        * Add a description of your contribution with all information
+          permitting us to understand what you have done and why. If your
+          contribution is related to an existing issue, add a reference.
+          Example:
             ```md
             ## Contribution
             Addition of a new job permitting to build go binaries. Issue
             related: r2devops/hub#945
 
-            ## Definition of DOne
+            ## Definition of Done
             [...]
             ```
-    * Ensure that the last pipeline in your fork passed
-    * Ensure to fulfill the [job Definition of Done](#job-definition-of-done)
+        * Add link to your job running and working in a publicly accessible
+          Gitlab project
+    1. If you want to allow commits from hub maintainers inside your fork
+       branche, check the box
+       [`Contribution`](https://docs.gitlab.com/ee/user/project/merge_requests/allow_collaboration.html)
+        (this isn't available for protected branches like `latest`)
+1. In the newly created MR, ensure to fulfill all steps of the [job Definition
+   of Done](#job-definition-of-done) and tick related boxes
+1. Thanks a lot for your contribution 😀🎉 ! Now, we will take a look on your
+   contribution and merge it if everything is ok 👀 Meanwhile, you can join our
+   [Discord community](https://discord.gg/5QKpGqR), we love talking with our
+   contributors and users !
 
-* Submit Merge request from your fork to source project
-* Go2Scale team check and validate your job using automated tests
-    <!-- TODO: * How to manage CI/CD pipeline from their project ? We have to manually ensure that they don't alter it? -->
+## Guidelines and Best practices
 
+!!! info
+    These guidelines are made for R2Devops/hub repository
+
+**TODO**
 
 ### About process:
 
@@ -134,6 +152,7 @@ able to work on it before merging your update in the real project.
 
 
 **TODO:**
+
 * Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
     * Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
 * All mandatory files of the [job structure](/structure#job-structure) must be provided
@@ -149,3 +168,4 @@ able to work on it before merging your update in the real project.
 * Explain verification pipeline
 * Explain in how to use the hub the fact that jobs from the hub run in docker
   containers
+* Add contact us at each blocking issue points
