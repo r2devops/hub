@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Using this job you will be able to detect most (see [here](#types-of-link-verified)) broken links in your **Markdown** or **HTML** files.
 

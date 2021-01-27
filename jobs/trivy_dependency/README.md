@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Run a security issue detection in your local dependencies using
 [Trivy](https://github.com/aquasecurity/trivy){:target="_blank"}, a Simple and Comprehensive

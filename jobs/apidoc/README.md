@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Creates a versioned HTML documentation from API annotations in your source
 code using [apiDoc](https://www.apidocjs.com/){:target="_blank"}.

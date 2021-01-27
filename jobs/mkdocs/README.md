@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Build HTML documentation form Markdown source using
 [Mkdocs](https://www.mkdocs.org/){:target="_blank"}. All requirements to use [Material for

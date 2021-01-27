@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Using this job you'll be able to launch PHPUnit tests.
 

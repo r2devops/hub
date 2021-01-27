@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Allow you to launch unit tests from your python project. The default variables will use `pipenv` and `pytest` to launch the tests, but you're welcome to override them as you want.
 

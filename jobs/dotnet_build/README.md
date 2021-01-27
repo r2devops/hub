@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Builds a .NET Core project with the different versions available, and makes it ready to run.
 It is using the scripted installation provided from Microsoft, see [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux-alpine#scripted-install){:target="_blank"}.
