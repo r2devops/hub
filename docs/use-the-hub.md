@@ -2,7 +2,7 @@
 
 ## 📝 Prerequisites
 
-- 🦊  Manage your project in Gitlab
+- 🦊  Manage your project in Gitlab and understand what is [CI/CD with Giltab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
 - ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
 - 🔫  Be aware each file modification in your project will trigger the [Pipeline](/r2bulary/#pipeline)
 - 🗝  Have access to the pipelines page in your Gitlab project to see the pipeline execution
@@ -19,8 +19,11 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
       - static_tests
       - build
       - dynamic_tests
+      - provision
       - review
-      - deployment
+      - release
+      - deploy
+      - others
     ```
 
     !!! info
@@ -73,8 +76,11 @@ stages:
   - static_tests
   - build
   - dynamic_tests
+  - provision
   - review
-  - deployment
+  - release
+  - deploy
+  - others
 
 # Jobs from g2s hub
 include:
@@ -101,11 +107,14 @@ unit_tests:
 
 By default, each job from the hub is a part of on these stages:
 
-* **🔎 Static_tests:** static tests launched on repository file
-* **📦 Build:** build and packaging of software
-* **🛡 Dynamic_tests:** dynamic tests launched on a running version of the software
-* **🙋 Review:** deployment of the software in an isolated review environment
-* **🚀 Deployment:** deployment of the software on real environments
+* **🔎 Static_tests:** static testing of  repository files
+* **🧱 Build:** building and packaging of software
+* **🔥 Dynamic_tests:** dynamic testing of a running version of the software
+* **🛠 Provision:** preparation of the software infrastructure
+* **👌 Review:** deployment of the software in an isolated review environment
+* **🏷 Release:** releasing and tagging of the software
+* **🚀 Deploy:** deployment of the software on environments
+* **🦄 Others:** all other magic jobs not included in previous stages
 
 This is an efficient and simple workflow. Nevertheless, if you want to use your
 own custom stage list: you can re-declare yourself the stage of any job from

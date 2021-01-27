@@ -39,7 +39,7 @@ ssh:
 
 * Job name: `ssh`
 * Docker image: [`alpine:3`](https://hub.docker.com/_/alpine){:target="_blank"}
-* Default stage: `deployment`
+* Default stage: `deploy`
 * When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).
   To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
 
