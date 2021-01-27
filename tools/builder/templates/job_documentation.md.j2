@@ -28,14 +28,18 @@
     </div>
     {% endif %}
 
+    <hr/>
+
     ## License
 
-    ??? "License: {{ license_name }}"
+    ??? info "License: {{ license_name }}"
     {%- for line in license -%}
     {%- if line %}
         {{ line }}
     {%- endif -%}
     {%- endfor %}
+
+    <hr/>
 
     ## Changelog
 
@@ -66,6 +70,8 @@
     {{ job_raw_content | indent(4, False) }}
     ```
 
+    <hr/>
+
 {% if screenshots_files %}
 <script>
 checkGallery();
@@ -77,4 +83,3 @@ function checkGallery() {
 }
 </script>
 {% endif %}
-
