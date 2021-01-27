@@ -57,8 +57,11 @@ index = {
     "static_tests": [],
     "build": [],
     "dynamic_tests": [],
+    "provision": [],
     "review": [],
-    "deployment": []
+    "release": [],
+    "deploy": [],
+    "others": []
 }
 
 def get_conf(job_path):

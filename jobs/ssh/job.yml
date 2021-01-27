@@ -1,6 +1,6 @@
 name: ssh
 description: A simple job to run a remote command through ssh
-default_stage: deployment
+default_stage: deploy
 icon: 🖥
 maintainer: thomasboni
 license: MIT

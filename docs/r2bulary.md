@@ -54,9 +54,12 @@ ___
 ___
 ### CI
 
+Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories frequently.
+This will ensure that your application meets your criteria of quality, security, performance, after each modification of your code.
 ___
 ### CD
 
+Continuous delivery starts where continuous integration ends. CD philosophy is to automate the delivery of applications to the selected infrastructure environments.
 ___
 ### Stage
 
