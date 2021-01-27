@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 This job analyzes a remote website (or a local web service) and gives you a report about the good and the bad points, see [HTML report](#html-report).
 

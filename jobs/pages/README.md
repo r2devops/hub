@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Publish HTML documentation located in `public` folder, retrieved as an artifact
 from previous job named `documentation`.

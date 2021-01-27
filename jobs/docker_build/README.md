@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Build a [docker](https://www.docker.com/){:target="_blank"} image of your application
 from a Dockerfile at the root of your project, and push it to a

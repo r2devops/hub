@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Creates an interactive version of an API documentation (see [demo](https://petstore.swagger.io/){:target="_blank"})
 with [Swagger UI](https://swagger.io/tools/swagger-ui/){:target="_blank"}. It uses a [OpenAPI specifications](https://swagger.io/specification/){:target="_blank"}

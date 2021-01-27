@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 [Gitleaks](https://github.com/zricethezav/gitleaks/wiki/Scanning){:target="_blank"} is a tool
 made to detect hardcoded secrets like passwords, api keys and tokens in git

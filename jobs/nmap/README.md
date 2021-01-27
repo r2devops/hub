@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 [Nmap](https://nmap.org) is a tool designed to discover networks, map them, and
 information that they could offer by being reachable on the internet. Its

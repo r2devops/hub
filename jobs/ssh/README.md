@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Run a SSH command on a remote host.
 
