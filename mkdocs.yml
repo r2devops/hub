@@ -19,7 +19,7 @@ edit_uri: 'edit/latest/docs/'
 # Navigation
 nav:
   - Home: index.md
-  - Getting started:
+  - Get started:
     - Concept: concept.md
     - Use the hub: use-the-hub.md
     - Versioning: versioning.md
