@@ -60,6 +60,7 @@ extra_javascript:
     - js/juxtapose/juxtapose.loader.min.js
     - js/splide/splide.min.js
     - js/splide/splide.loader.js
+    - js/extra.js
 
 # Configuration
 theme:

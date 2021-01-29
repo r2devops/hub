@@ -83,3 +83,15 @@ function checkGallery() {
 }
 </script>
 {% endif %}
+
+
+<script>
+checkSidebarFade();
+function checkSidebarFade() {
+    if (typeof loadListeners != "function")
+        setTimeout(() => checkSidebarFade(), 100);
+    else
+        loadListeners();
+}
+</script>
+
