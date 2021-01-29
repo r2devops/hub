@@ -42,7 +42,7 @@ Other languages can be supported with additional code.
 | `DOXYGEN_GENERATE_LATEX`               | Set to YES if you want to generate LaTeX documentation | `YES`|
 | `DOXYGEN_LATEX_OUTPUT`               | The path of your LaTeX documentation generated| `latex/`|
 | `DOXYGEN_GENERATE_HTML`               | Set to YES if you want to generate HTML documentation | `YES`|
-| `DOXYGEN_HTML_OUTPUT`               | The path of your LaTeX documentation generated| `documentation_build/`|
+| `DOXYGEN_HTML_OUTPUT`               | The path of your LaTeX documentation generated| `website_build/`|
 | `DOXYGEN_HTML_EXTRA_STYLESHEET`               | The path of additional user-defined cascading style sheets [CSS](https://www.w3schools.com/css/)| ` `|
 | `DOXYGEN_RECURSIVE`               | Specify whether or not subdirectories should be searched for input files as well| `NO`|
 | `DOXYGEN_EXCLUDE`               | Specify files and/or directories that should be excluded from the INPUT source files| ` `|

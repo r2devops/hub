@@ -10,7 +10,7 @@ apidoc:
   stage: build
   variables:
     APIDOC_CONFIG_PATH: '.'
-    APIDOC_OUTPUT_PATH: 'documentation_build/'
+    APIDOC_OUTPUT_PATH: 'website_build/'
     APIDOC_TEMPLATE_PATH: '/usr/local/lib/node_modules/apidoc/template/'
     APIDOC_VERSION: '0.24.0'
   script:

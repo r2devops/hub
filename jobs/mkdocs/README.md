@@ -41,7 +41,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `MKDOCS_OUTPUT_PATH` | Output directory path | `/documentation_build` |
+| `MKDOCS_OUTPUT_PATH` | Output directory path | `website_build/` |
 
 ### Artifacts
 
