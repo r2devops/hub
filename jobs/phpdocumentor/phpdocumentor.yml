@@ -9,7 +9,7 @@ phpdocumentor:
       entrypoint: [""]
     stage: build
     variables: 
-      PHPDOC_OUTPUT: "documentation_build/"
+      PHPDOC_OUTPUT: "website_build/"
       PHPDOC_CONFIG_FILE: ""
       PHPDOC_TITLE: ""
       PHPDOC_VERBOSITY: ""

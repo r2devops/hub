@@ -9,7 +9,7 @@ mkdocs:
     entrypoint: [""]
   stage: build
   variables:
-    MKDOCS_OUTPUT_PATH: 'documentation_build/'
+    MKDOCS_OUTPUT_PATH: 'website_build/'
   script:
     - pip3 install mkdocs-awesome-pages-plugin==2.4.0
     - pip3 install mkdocs-git-revision-date-localized-plugin==0.7.2

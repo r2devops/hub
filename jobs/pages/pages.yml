@@ -6,7 +6,7 @@ stages:
 pages:
   stage: deploy
   variables:
-    PAGES_BUILD_PATH: 'documentation_build/'
+    PAGES_BUILD_PATH: 'website_build/'
   script:
     - if [ "$PAGES_BUILD_PATH" != "public" -a "$PAGES_BUILD_PATH" != "public/" ]; then
     -   if [ -d "public" ]; then rm -rf public; fi
@@ -18,4 +18,4 @@ pages:
     paths:
       - public
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

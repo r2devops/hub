@@ -10,7 +10,7 @@ from previous job named `documentation`.
     You have to use a job which build your documentation in a previous stage.
     We recommend you to use a documentation job available on the hub in [build
     📦 stage](/jobs/#build). They build documentation and publish it as
-    artifact in `documentation_build/` folder.
+    artifact in `website_build/` folder.
 
     **Documentation jobs list:**
 
@@ -43,4 +43,4 @@ from previous job named `documentation`.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PAGES_BUILD_PATH` | Path to folder which contains documentation build | `documentation_build/` |
+| `PAGES_BUILD_PATH` | Path to folder which contains documentation build | `website_build/` |
