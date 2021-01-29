@@ -150,3 +150,20 @@ Job definition usually contains the following fields:
 * **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
 
 See our Best Practices and guidelines: TODO LINK
+
+**Example of job definition [`gitleaks.yml`](https://r2devops.io/jobs/static_tests/gitleaks/):**
+
+```yaml
+gitleaks:
+  stage: static_tests
+  image:
+    name: "zricethezav/gitleaks:v6.1.2"
+    entrypoint: [""]
+  script:
+    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH --report gitleaks-report.json
+  artifacts:
+    when: always
+    expose_as: "gitleaks-report"
+    paths:
+      - "gitleaks-report.json"
+```
