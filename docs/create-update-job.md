@@ -76,9 +76,193 @@ able to work on it before merging your update in the real project.
 ## Guidelines and Best practices
 
 !!! info
-    These guidelines are made for R2Devops/hub repository
+    Following these guidelines is required to contribute in
+    [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-**TODO**
+* In order to provide **plug and play** jobs, each of them must specify a
+  docker image using the option `image:` to be run inside a docker container
+* Must be compliant with [our job definition](r2bulary/#job)
+* Ensure that every resource used by the job has a license compatibles with the
+  job licence and permits to anyone to use it
+* Variables naming convention (to be defined, should we require the job name
+  uppercase as prefix for all variables ? Think about a way to verify variables
+  in hub pipeline and permit various configuration for on-premise #232)
+* Docker image tag must be a fixed version. It shouldn't be `latest` or any
+  tag that will be overwritten.
+* and version of all tools retrieved during the jobsmust be fixed
+
+* **Question**: should we enforce the user to define variables or it's only best practices ? If we choose to enforce it, how to define what should be in variables and what not ?
+
+## Best practices
+
+* **+**: important criteria
+* **-**: mandatory criteria
+
+### How to choose the best docker image to implement a new job ?
+
+* Check if there is an image dedicated for the tool to run in the job
+    * Check if the image is official (+++)
+    * Check if the image is maintained (++)
+    * Check if the image is largely used (++)
+    * Check if the image is efficient to run the job (++) *difficult to check for the user*
+    * Check if the image use the latest version of the tool (how to check it automatically)(+)
+    * Check the size (smallest is the best, it should only contain essential tools, KISS) (+)
+    * Check if the image has versioning (not only latest) (-)
+* If no, check if there is an image already setup for the language of the tool (python, node, go...)
+    * Check if the image is official (+++)
+    * Check if the image is maintained (++)
+    * Check if the image is largely used (++)
+    * Check if the image is efficient to run the job (++) *difficult to check for the user*
+    * Check the size (smallest is the best, it should only contain essential tools, KISS) (+)
+    * Check if the image has versioning (not only latest) (-)
+    * Install the tool in the image using package manager (fixed version)
+* If no, use docker alpine and install tool in it. If the installation is too long in the job: create your own image (fixed version)
+
+
+* How can I test my job locally/easily ?
+> Locally ? using the doxygen binary in my own operating system ? (brew install...)
+> Using a blank repo in gitlab ?
+> ex: https://gitlab.com/coconux/doxygen and link with the job in WIP Ex: - remote: 'https://gitlab.com/go2scale/hub/-/raw/111-add-doxygen-job/jobs/doxygen/doxygen.yml'
+> How can I check the hub documentation went well ?
+> Note about including a local job file
+
+* About versions:
+> The installed version of Doxygen must be specified as variable with the default value on the current latest version 1.8.18-r0
+> A fixed tag must be specified for the alpine image used
+
+* About artifact
+> integration in MR widget ? expose_as ?
+> artifact retention
+
+* Compliance with another job
+
+* Usage of `rules`, `before_script`, `after_Script`, ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### About process:
 
