@@ -105,7 +105,7 @@ For `pyhton` tools:
 * Pylint note >= 9
 * Usage of logging
 * Usage of argparse when args are required
-* Docstring format following (Google styleguide)[https://google.github.io/styleguide/pyguide.html#244-decision]
+* Docstring format compliant with [Google styleguide](https://google.github.io/styleguide/pyguide.html#244-decision)
 
 ### Requirements
 
