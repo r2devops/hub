@@ -55,14 +55,14 @@ TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
 index = {
-    "static_tests": [],
-    "build": [],
-    "dynamic_tests": [],
-    "provision": [],
-    "review": [],
-    "release": [],
-    "deploy": [],
-    "others": []
+    "static_tests": {"name":"Static_tests","icon":"🔎","content":[]},
+    "build": {"name":"Build","icon":"🧱","content":[]},
+    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[]},
+    "provision": {"name":"Provision","icon":"🛠","content":[]},
+    "review": {"name":"Review","icon":"👌","content":[]},
+    "release": {"name":"Release","icon":"🏷","content":[]},
+    "deploy": {"name":"Deploy","icon":"🚀","content":[]},
+    "others": {"name":"Others","icon":"🦄","content":[]}
 }
 
 def get_conf(job_path):
@@ -264,7 +264,7 @@ def create_job_doc(job):
         logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job, JOB_METADATA_FILE)
         sys.exit(1)
 
-    index[stage].append(conf)
+    index[stage]["content"].append(conf)
 
     mkdocs_file_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage + "/" + job + MARKDOWN_EXTENSION
 
