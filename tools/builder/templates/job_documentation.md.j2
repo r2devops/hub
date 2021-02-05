@@ -1,31 +1,11 @@
 # {% if job_icon %} {{ job_icon }} {% endif %} {{ job_name | capitalize }}
 
-<div id="labels">
+<div class="labels_zone">
 
-
-
-{% if job_platforms %}
-{% set list_platforms = job_platforms.split(',') %}
-  {% for platform in list_platforms -%}
-  <span class=" " style="display: inline-flex;border-radius: 6px;background-color: springgreen;margin-right: 0.5rem;padding: 0.2rem; margin-bottom:0.4rem;">
-    <a class="" data-html="true" data-title="<span class=''>Platform</span><br/>" href="" style="color:white">
-      <span class="gl-label-text-scoped " data-container="body" data-html="true">
-      {{platform}}
-      </span>
-    </a>
-  </span>
-  {% endfor -%}
-{% endif %}
-
-{% if job_benefits %}
-{% set list_benefits = job_benefits.split(',') %}
-  {% for benefit in list_benefits -%}
-  <span class=" " style="display: inline-flex;border-radius: 6px;background-color: dodgerblue;margin-right: 0.5rem;padding: 0.2rem; margin-bottom:0.4rem;">
-    <a class="" data-html="true" data-title="<span class=''>Benefit</span><br/>" href="" style="color:white">
-      <span class="gl-label-text-scoped " data-container="body" data-html="true">
-      {{benefit}}
-      </span>
-    </a>
+{% if job_labels %}
+  {% for label in job_labels -%}
+  <span class="label">
+  <span class=""> {{label}} </span>
   </span>
   {% endfor -%}
 {% endif %}

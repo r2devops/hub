@@ -1,5 +1,31 @@
 # All
 
+{% set list_labels = [] %}
+{% for stage in index %}
+  {% for job in index[stage] %}
+    {% if job.labels %}
+      {% for label in job.labels %}
+        {% set l_temp = list_labels.append(label) %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+{% set list_all_labels = list_labels|unique|list %}
+
+<div class="labels_zone">
+
+{% if list_all_labels %}
+  {% for label in list_all_labels -%}
+  <span class="label">
+    <a> <span class=""> {{label}} </span> </a>
+  </span>
+  {% endfor -%}
+{% endif %}
+
+</div>
+
 Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🔎 Static tests

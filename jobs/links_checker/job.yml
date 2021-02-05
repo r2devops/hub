@@ -4,5 +4,9 @@ default_stage: static_tests
 icon: 🔗
 maintainer: Protocole
 license: MIT
-platforms: GitLab
-benefits: Security
+labels:
+  - GitLab
+  - GitHub
+  - Security
+  - Robustness
+  - Quality

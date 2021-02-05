@@ -276,8 +276,7 @@ def create_job_doc(job):
     user = get_user(code_owner)
     job_raw_content = get_job_raw_content(job)
     job_icon = conf.get("icon")
-    job_platforms = conf.get("platforms")
-    job_benefits = conf.get("benefits")
+    job_labels = conf.get("labels")
 
     # Write final file
     try:
@@ -299,8 +298,7 @@ def create_job_doc(job):
                 screenshot_path = screenshot_path,
                 screenshots_files = screenshots_files,
                 job_raw_content = ''.join(job_raw_content),
-                job_platforms = job_platforms,
-                job_benefits= job_benefits
+                job_labels = job_labels
         ))
     except Exception as error:
         logging.error("Failed to create final file for job %s", job)
