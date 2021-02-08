@@ -2,6 +2,7 @@ stages:
   - static_tests
   - project_setup
   - build
+  - release
   - deploy
 
 include:
