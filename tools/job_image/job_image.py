@@ -55,17 +55,30 @@ if __name__ == "__main__":
 
     if args.job is None:
         logging.error(f"No argument provided")
-        exit(EXIT_FAILURE)
+        sys.exit(EXIT_FAILURE)
+
     logging.info(f"Getting the image for job {args.job}")
+
+    data = {}
     with open(f"{JOBS_DIR}/{args.job}/{args.job}.{JOBS_EXTENSION}", 'r') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
-        if "image" in data[args.job].keys():
-            if isinstance(data[args.job]['image'], dict):
-                print(data[args.job]['image']['name'])
-            else:
-                print(data[args.job]['image'])
-        elif "extends" in data[args.job].keys():
+
+    # If image option is directly specified in the job
+    if "image" in data[args.job].keys():
+        if isinstance(data[args.job]['image'], dict):
+            print(data[args.job]['image']['name'])
+        else:
+            print(data[args.job]['image'])
+
+    # If image isn't specified in the job but extends is
+    elif "extends" in data[args.job].keys():
+
+        try:
             if isinstance(data[data[args.job]['extends']]['image'], dict):
                 print(data[data[args.job]['extends']]['image']['name'])
             else:
                 print(data[data[args.job]['extends']]['image'])
+        # If the extended job isn't in the file, it produce a KeyError
+        except KeyError :
+            logging.warning('The job %s doesn\'t declare its image and extends a job from outside of the file, we aren\'t able to check its image vulnerabilities', args.job)
+            # TODO: check images from included jobs ==> https://gitlab.com/r2devops/hub/-/issues/282

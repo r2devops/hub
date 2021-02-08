@@ -1,3 +1,5 @@
 site/
 docs/jobs/**/*.md
+docs/images/jobs
 **/.DS_Store
+

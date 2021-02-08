@@ -111,7 +111,7 @@ scan_images_dep:
 
     - mkdir ${OUTPUT_DIR}
   script:
-    - for JOB in $(ls jobs); do
+    - for JOB in $(ls -A jobs); do
     -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
     -   if [ ! -z ${IMAGE} ]; then
     -     NAME=$(basename ${IMAGE})
