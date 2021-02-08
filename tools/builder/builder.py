@@ -266,7 +266,17 @@ def create_job_doc(job):
 
     index[stage].append(conf)
 
-    mkdocs_file_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage + "/" + job + MARKDOWN_EXTENSION
+    # If job name starts with a dot, we must remove the dot for the file name,
+    # else mkdocs will ignore it
+    job_file = job
+    if job.startswith('.'):
+        job_file = job_file[1:]
+
+    mkdocs_file_path = '{}/{}/{}/{}{}'.format(MKDOCS_DIR,
+                                              JOBS_DIR,
+                                              stage,
+                                              job_file,
+                                              MARKDOWN_EXTENSION)
 
     # Get variables for jinja
     description = get_description(job_path)
@@ -278,6 +288,10 @@ def create_job_doc(job):
     job_icon = conf.get("icon")
 
     # Write final file
+    logging.info('Build of documentation file for job "%s" in stage "%s"',
+                 job,
+                 stage)
+
     try:
         with open(mkdocs_file_path, 'w+') as doc_file:
             env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))

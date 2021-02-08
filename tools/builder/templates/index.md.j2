@@ -4,6 +4,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🔎 Static tests
 
+*Static testing of repository files*
+
 | Name <img width=200/> | Description |
 | ---- | ----------- |
 {% for job in index["static_tests"] -%}
@@ -11,6 +13,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 {% endfor %}
 
 ## 🧱 Build
+
+*Building and packaging of software*
 
 | Name <img width=220/> | Description |
 | ---- | ----------- |
@@ -20,6 +24,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🔥 Dynamic tests
 
+*Dynamic testing of a running version of the software*
+
 | Name <img width=220/> | Description |
 | ---- | ----------- |
 {% for job in index["dynamic_tests"] -%}
@@ -27,6 +33,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 {% endfor %}
 
 ## 🛠 Provision
+
+*Preparation of the software infrastructure*
 
 | Name <img width=220/> | Description |
 | ---- | ----------- |
@@ -36,6 +44,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 👌 Review
 
+*Deployment of the software in an isolated review environment*
+
 | Name <img width=180/> | Description |
 | ---- | ----------- |
 {% for job in index["review"] -%}
@@ -43,6 +53,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 {% endfor %}
 
 ## 🏷 Release
+
+*Releasing and tagging of the software*
 
 | Name <img width=180/> | Description |
 | ---- | ----------- |
@@ -52,6 +64,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🚀 Deploy
 
+*Deployment of the software on environments*
+
 | Name <img width=170/> | Description |
 | ---- | ----------- |
 {% for job in index["deploy"] -%}
@@ -59,6 +73,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 {% endfor %}
 
 ## 🦄 Others
+
+*All other magic jobs not included in previous stages*
 
 | Name <img width=170/> | Description |
 | ---- | ----------- |

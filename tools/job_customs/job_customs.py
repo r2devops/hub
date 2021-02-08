@@ -2,6 +2,7 @@
 
 import os
 import logging
+import sys
 import yaml
 import argparse
 import re
@@ -58,21 +59,33 @@ if __name__ == "__main__":
         ]
     )
 
-    ret = EXIT_SUCCESS
+    return_code = EXIT_SUCCESS
     for job in os.listdir(JOBS_DIR):
+
         logging.info(f"Getting the script for job {job}")
+
+        data = {}
         with open(f"{JOBS_DIR}/{job}/{job}.{JOBS_EXTENSION}", 'r') as file:
             data = yaml.load(file, Loader=yaml.FullLoader)
-            for script in scripts:
+
+        for script in scripts:
+
+            try:
                 if script in data[job].keys():
                     for line in data[job][script]:
                         if any(re.match(pattern, line) for pattern in patterns):
                             logging.error(f"Code modification discovered in script of job {job}")
-                            ret = EXIT_FAILURE
+                            return_code = EXIT_FAILURE
                 elif "extends" in data[job].keys():
                     if script in data[data[job]['extends']].keys():
                         for line in data[data[job]['extends']][script]:
                             if any(re.match(pattern, line) for pattern in patterns):
                                 logging.error(f"Code modification discovered in script of job {job}")
-                                ret = EXIT_FAILURE
-    exit(ret)
+                                return_code = EXIT_FAILURE
+            # If the extended job isn't in the file, it produce a KeyError
+            except KeyError :
+                logging.warning('The job %s extends a job not declared in the file, we aren\'t able to check what %s does',
+                                job, script)
+                # TODO: check images from included jobs ==> https://gitlab.com/r2devops/hub/-/issues/282
+
+    sys.exit(return_code)

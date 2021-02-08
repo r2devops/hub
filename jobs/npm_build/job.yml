@@ -1,0 +1,6 @@
+name: npm_build
+description: A ready to use `npm` job to build your application
+default_stage: build
+icon: 🧱
+maintainer: coconux
+license: MIT
