@@ -1,34 +1,5 @@
 # All
 
-<!-- To generate from the list of labels from jobs -->
-
-{% set list_labels = [] %}
-{% for stage in index %}
-  {% for job in index[stage].content %}
-    {% if job.labels %}
-      {% for label in job.labels %}
-        {% set l_temp = list_labels.append(label) %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
-
-
-<!-- To display the list of labels -->
-
-{% set list_all_labels = list_labels|unique|list %}
-<div class="labels_zone">
-{% if list_all_labels %}
-  {% for label in list_all_labels -%}
-  <span class="label">
-    <a> <span class=""> {{label}} </span> </a>
-  </span>
-  {% endfor -%}
-{% endif %}
-</div>
-
-
-
 <!-- To display the list of jobs in stages -->
 
 Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).

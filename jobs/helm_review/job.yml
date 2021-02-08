@@ -4,3 +4,9 @@ default_stage: review
 icon: ☸️
 maintainer: thomasboni
 license: MIT
+labels:
+  - GitLab
+  - Optimization
+  - Build tool
+  - Image build
+  - Helm

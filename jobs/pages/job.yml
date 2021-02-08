@@ -4,3 +4,7 @@ default_stage: deploy
 icon: 🦊
 maintainer: thomasboni
 license: MIT
+labels:
+  - GitLab
+  - Documentation
+  - Easy-deploy

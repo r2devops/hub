@@ -6,4 +6,5 @@ maintainer: Protocole
 license: MIT
 labels:
   - GitLab
-  - GitHub
+  - Security
+  - Dependency management

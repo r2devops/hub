@@ -7,5 +7,4 @@ license: MIT
 labels:
   - GitLab
   - Security
-  - Robustness
-  - Quality
+  - SAST

@@ -4,3 +4,8 @@ default_stage: build
 icon: 📑
 maintainer: protocole
 license: MIT
+labels:
+  - GitLab
+  - API
+  - Documentation
+  - PHP
