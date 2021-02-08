@@ -116,6 +116,7 @@ def get_linked_issues(job_name, opened=True):
         If we get only opened issues or all of them (default: True)
 
     Returns:
+    --------
     list
         A list of issues linked to the job with their name and url
     str

@@ -1,24 +1,12 @@
 stages:
   - static_tests
-  - build_dependencies
+  - project_setup
   - build
-  - deployment
+  - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/1.2.0/mkdocs.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/0.2.0/pages.yml?scope=0.yml'
-
-mkdocs:
-  variables:
-    PIPENV_PIPFILE: tools/builder/Pipfile
-  before_script:
-    - pip install pipenv && pipenv install
-    - pipenv run python tools/builder/builder.py
-    - pip3 install mkdocs-awesome-pages-plugin==2.4.0 # temporary, it will be removed after #202
-
-pages:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "latest"'
+  - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
 
 ci_linter:
   image: golang:1.15.2-alpine3.12
@@ -34,7 +22,7 @@ ci_linter:
 # See https://docs.gitlab.com/ee/api/labels.html
 job_labels:
   image: python:3.9.1-alpine
-  stage: build_dependencies
+  stage: project_setup
   variables:
     PIPENV_PIPFILE: tools/job_labels/Pipfile
     JOB_LOGFILE: "job_labels.log"
@@ -49,7 +37,14 @@ job_labels:
     expire_in: 30 days
     when: always
   rules:
-    - if: '$CI_PROJECT_PATH_SLUG == "r2devops/hub"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops/hub"'
+
+mkdocs:
+  variables:
+    PIPENV_PIPFILE: tools/builder/Pipfile
+  before_script:
+    - pip install pipenv && pipenv install
+    - pipenv run python tools/builder/builder.py
 
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
@@ -94,5 +89,9 @@ release:
 
       done
     done
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+pages:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
