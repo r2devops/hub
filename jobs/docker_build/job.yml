@@ -7,6 +7,5 @@ license: MIT
 labels:
   - GitLab
   - Optimization
-  - Build tool
-  - Image build
+  - Build
   - Docker
