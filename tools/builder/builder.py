@@ -333,6 +333,7 @@ def create_job_doc(job):
     user = get_user(code_owner)
     job_raw_content = get_job_raw_content(job)
     job_icon = conf.get("icon")
+    linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
     # Write final file
     logging.info('Build of documentation file for job "%s" in stage "%s"',
