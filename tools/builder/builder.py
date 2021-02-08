@@ -125,14 +125,11 @@ def get_linked_issues(job_name, opened=True):
         Url to create a new issue for the job
     """
     linked_issues = []
-    headers = {
-        'PRIVATE-TOKEN': JOB_TOKEN
-    }
     base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
     url = f"{base_url}?labels={JOBS_SCOPE_LABEL}{job_name}"
     if opened:
         url += "&state=opened"
-    r = requests.get(url, headers=headers)
+    r = requests.get(url)
 
     for issue in r.json():
         linked_issues.append({
