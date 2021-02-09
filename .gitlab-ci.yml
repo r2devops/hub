@@ -16,7 +16,7 @@ ci_linter:
     - go get gitlab.com/orobardet/gitlab-ci-linter
     - for JOB_PATH in jobs/*; do
     -   JOB=$(basename ${JOB_PATH})
-    -   gitlab-ci-linter ${JOB_PATH}/${JOB}.yml
+    -   gitlab-ci-linter --versbose ${JOB_PATH}/${JOB}.yml
     - done
 
 structure:
