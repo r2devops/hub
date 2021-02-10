@@ -243,3 +243,13 @@ button.md-button-center {
 button.md-button-center:hover {
     cursor: pointer;
 }
+
+a.md-tabs__link>strong.job_tab {
+    transition-delay: 60ms;
+    border: 1px solid black;
+    padding: 0.5em;
+    border-radius: 7px;
+    background-color: white;
+    color: #076E81;
+    box-shadow: black 3px 3px;
+}

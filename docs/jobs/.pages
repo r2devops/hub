@@ -1,4 +1,4 @@
-title: "<strong>🚀 Jobs</strong>"
+title: "<strong class='job_tab'>🚀 Jobs list</strong>"
 arrange:
     - index.md
     - static_tests
