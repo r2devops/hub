@@ -262,18 +262,19 @@ a.banner-link:hover {
 
 .label{
   display: inline-flex;
-  border-radius: 8px;
+  border-radius: 5px;
   background-color: #00B1D2;
-  margin-right: 0.5rem;
-  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+  margin-right: 0.1rem;
+  padding: 0.0rem 0.4rem 0.0rem 0.4rem;
   margin-bottom:0.4rem;
   opacity: 1;
   color:white;
+
 }
 .label > a{
   color:white;
   cursor: pointer;
 }
 .labels_zone{
-  font-size:0.7rem;
+  font-size:0.6rem;
 }
