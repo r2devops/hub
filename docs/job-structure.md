@@ -22,6 +22,44 @@ follow this standardized structure:
             └── ...
 ```
 
+## 🤖 Job definition
+
+This file must have the same name that the job with the `yml` extension:
+`<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
+
+!!! info
+    * Jobs of the hub uses the Gitlab CI/CD configuration format
+    * Jobs of the hub must specify a Docker image to be run in a container
+    * See [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/)
+
+Job definition usually contains the following fields:
+
+* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image)**: docker image used to run the job
+* **`stage`**: default stage for the job, must be in our [default stage list](/use-the-hub/#stages)
+* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script)**: this is the heart of the job. It contains a list of shell commands to run the job
+* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables)**: variables used by the `script` part of the job to customize its behaviour
+* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
+
+See our Best Practices and guidelines: TODO LINK
+
+**Example of job definition [`gitleaks.yml`](https://r2devops.io/jobs/static_tests/gitleaks/):**
+
+```yaml
+gitleaks:
+  stage: static_tests
+  image:
+    name: "zricethezav/gitleaks:v6.1.2"
+    entrypoint: [""]
+  script:
+    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH --report gitleaks-report.json
+  artifacts:
+    when: always
+    expose_as: "gitleaks-report"
+    paths:
+      - "gitleaks-report.json"
+```
+
+
 ## 🗂 Job metadata
 
 **TODO: add options introduced by
@@ -51,11 +89,13 @@ the following fields:
     license: MIT
     ```
 
+
 ## 📚 Job documentation
 
 This file, named `README.md`, contains the documentation of a job  in `markdown` format.
 
-**Example of `README.md`:**
+=== "Example of `README.md`"
+
     ```md
     ## Description
 
@@ -94,6 +134,57 @@ This file, named `README.md`, contains the documentation of a job  in `markdown`
     in merge requests.
     ```
 
+=== "Result"
+
+    # 📒 ApiDoc
+
+    ## Description
+
+    Creates a versioned HTML documentation from API annotations in your source
+    code using [apiDoc](https://www.apidocjs.com/){:target="_blank"}.
+
+    ## How to use it
+
+    1. Prepare your project with API annotations in your source code following
+    [apiDoc format](https://apidocjs.com/#examples){:target="_blank"} and your [apiDoc
+    configuration file](https://apidocjs.com/#configuration){:target="_blank"}.
+    2. Choose a version in [version list](#changelog)
+    3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
+    started](/use-the-hub/)). Example:
+
+        ```yaml
+        include:
+        - remote: 'https://jobs.r2devops.io/apidoc.yml'
+        ```
+
+    4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+    customization](/use-the-hub/#jobs-customization)
+    5. Well done, your job is ready to work ! 😀
+
+    ## Job details
+
+    * Job name: `apidoc`
+    * Docker image:
+    [`node`](https://hub.docker.com/r/_/node){:target="_blank"}
+    * Default stage: `build`
+    * When: `always`
+
+    ### Variables
+
+    | Name | Description | Default |
+    | ---- | ----------- | ------- |
+    | `APIDOC_VERSION` <img width=250/> | Version of apiDoc to use <img width=400/> | `0.24.0` |
+    | `APIDOC_CONFIG_PATH` | Path to config file or to directory containing config file (apidoc.json or apidoc.config.js) | `.` |
+    | `APIDOC_OUTPUT_PATH` | Output directory path | `/documentation_build` |
+    | `APIDOC_TEMPLATE_PATH` | Path to template folder | `/usr/lib/node_modules/apidoc/template/` |
+
+    ### Artifacts
+
+    Result of documentation build is [exposed
+    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"} `apiDoc build` in
+    merge requests.
+
+
 ## 🏗 Job changelogs
 
 Jobs keep their changelogs in one folder named `versions`. This folder contains
@@ -129,41 +220,4 @@ changes provided by this version.
 * New variable `DOCKER_CACHE_TTL` to define time to live of cache
 * New variable `DOCKER_VERBOSITY` to set the verbosity of the build
 * New variable `DOCKER_OPTIONS` to be able to add additional options%
-```
-
-## 🤖 Job definition
-
-This file must have the same name that the job with the `yml` extension:
-`<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
-
-!!! info
-    * Jobs of the hub uses the Gitlab CI/CD configuration format
-    * Jobs of the hub must specify a Docker image to be run in a container
-    * See [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/)
-
-Job definition usually contains the following fields:
-
-* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image)**: docker image used to run the job
-* **`stage`**: default stage for the job, must be in our [default stage list](/use-the-hub/#stages)
-* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script)**: this is the heart of the job. It contains a list of shell commands to run the job
-* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables)**: variables used by the `script` part of the job to customize its behaviour
-* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
-
-See our Best Practices and guidelines: TODO LINK
-
-**Example of job definition [`gitleaks.yml`](https://r2devops.io/jobs/static_tests/gitleaks/):**
-
-```yaml
-gitleaks:
-  stage: static_tests
-  image:
-    name: "zricethezav/gitleaks:v6.1.2"
-    entrypoint: [""]
-  script:
-    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH --report gitleaks-report.json
-  artifacts:
-    when: always
-    expose_as: "gitleaks-report"
-    paths:
-      - "gitleaks-report.json"
 ```
