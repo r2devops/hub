@@ -23,7 +23,7 @@ nav:
     - Concept: concept.md
     - Use the hub: use-the-hub.md
     - Versioning: versioning.md
-#    - License: license.md
+    - R2bulary: r2bulary.md
   - Contributing:
     - How to: how-to-contribute.md
     - Structure of a job: job-structure.md
@@ -53,12 +53,18 @@ extra:
 
 extra_css:
     - css/extra.css
-    - css/juxtapose.css
     - css/custom_admonitions.css
+    - css/juxtapose/juxtapose.css
+    - css/splide/splide-core.min.css
+    - css/splide/splide.min.css
+    - css/splide/extra.css
 
 extra_javascript:
-    - js/juxtapose.min.js
-    - js/juxtapose.loader.min.js
+    - js/juxtapose/juxtapose.min.js
+    - js/juxtapose/juxtapose.loader.min.js
+    - js/splide/splide.min.js
+    - js/splide/splide.loader.js
+    - js/extra.js
 
 # Configuration
 theme:
@@ -80,15 +86,14 @@ theme:
     - navigation.tabs
     - navigation.instant
 
-# Extensions (https://squidfunk.github.io/mkdocs-material/reference/abbreviations/)
 markdown_extensions:
+  - abbr
   - attr_list
   - admonition # block-styled content (note, idea, warning, ...)
   - codehilite # highlite code syntax
   - footnotes # references in footnotes
   - toc:
       permalink: true # anchor on titles
-  # PyMdown extensions (https://squidfunk.github.io/mkdocs-material/extensions/pymdown)
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
@@ -102,10 +107,13 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
 
 # Plugins (https://squidfunk.github.io/mkdocs-material/plugins/minify-html/)
 plugins:

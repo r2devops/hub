@@ -1,6 +1,4 @@
-# 🧱 Trivy image analysis
-
-## Description
+## Objective
 
 Run a security issue detection in a docker image using
 [Trivy](https://github.com/aquasecurity/trivy){:target="_blank"}, a Simple and Comprehensive

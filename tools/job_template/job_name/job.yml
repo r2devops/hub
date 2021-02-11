@@ -1,6 +1,6 @@
-name: {{ job_name }}
-description: {{ description }}
-default_stage: {{ stage }}
-icon: {{ icon }}
-maintainer: {{ maintainer }}
-license: {{ license name }}
+name: "{{ job_name }}"
+description: "{{ description }}"
+default_stage: "{{ stage }}"
+icon: "{{ icon }}"
+maintainer: "{{ maintainer }}"
+license: "{{ license name }}"

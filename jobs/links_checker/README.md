@@ -1,15 +1,13 @@
-# 🔗 Links Checker
-
-## Description
+## Objective
 
 Using this job you will be able to detect most (see [here](#types-of-link-verified)) broken links in your **Markdown** or **HTML** files.
 
-It uses the tool [`Liche`](https://github.com/raviqqe/liche){:target="_blank"} in [Go](https://golang.org/){:target="_blank"} 
-to test and find the links in your documents. 
+It uses the tool [`Liche`](https://github.com/raviqqe/liche){:target="_blank"} in [Go](https://golang.org/){:target="_blank"}
+to test and find the links in your documents.
 In its default state, this job will analyze your whole project for eligible files to verify.
 
 !!! warning
-    This job may generate a lot of errors about local broken links in your document if you are using **absolute paths** or **rewriting URLs**. 
+    This job may generate a lot of errors about local broken links in your document if you are using **absolute paths** or **rewriting URLs**.
     See [Absolute paths and rewriting URLs](#absolute-paths-and-rewriting-urls)
 
 ## How to use it
@@ -68,7 +66,7 @@ Can't identify:
 
 * <div onClick="redirect('https://www.google.com')"></div>
 * <script type="text/javascript">
-      window.location.href = "https://www.google.com" 
+      window.location.href = "https://www.google.com"
   </script>
 ...
 ```
@@ -90,7 +88,7 @@ Can identify:
 If you are using absolute paths in your HTML documents, be sure to fill the variable `ROOT_DIRECTORY`. If you don't, by default, the variable will be filled with the same path as `LICHE_DIRECTORY`.
 
 If you use URL rewriting in your static website, using this job, most of the internal links will be considered as broken. To avoid that, you can define that you
-only want to check external links, by using `LICHE_EXCLUDE: "^[^http]"` (see [regex](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"}) 
+only want to check external links, by using `LICHE_EXCLUDE: "^[^http]"` (see [regex](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"})
 
 ### Artifacts
 

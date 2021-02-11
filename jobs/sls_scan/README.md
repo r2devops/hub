@@ -1,6 +1,4 @@
-# 🔓 SLS Scan
-
-## Description
+## Objective
 
 This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} which is a combination of various vulnerability scanners for different languages to help detect those in your project. This job permit to fully integrate it in Gitlab (sls-scan was developped to be used as a pre-commit and in CI directly).
 

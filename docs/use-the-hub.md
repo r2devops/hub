@@ -2,10 +2,10 @@
 
 ## 📝 Prerequisites
 
-- 🦊  Manage your project in Gitlab
+- 🦊  Manage your project in Gitlab and understand what is [CI/CD with Giltab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
 - ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
-- 🔫  Be aware each file modification in your project will trigger the pipeline
-- 🗝  Have access to the Pipelines page in your Gitlab project to see the pipeline execution
+- 🔫  Be aware each file modification in your project will trigger the [Pipeline](/r2bulary/#pipeline)
+- 🗝  Have access to the pipelines page in your Gitlab project to see the pipeline execution
 
 ## ⏳ Quick setup
 
@@ -19,15 +19,18 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
       - static_tests
       - build
       - dynamic_tests
+      - provision
       - review
-      - deployment
+      - release
+      - deploy
+      - others
     ```
 
     !!! info
         Check [stages](#stages) section to get more information about this list
         or if you already have a configuration with different stages.
 
-2. Select jobs you want in [Jobs section](/jobs/) and add their URL at the end
+2. Select Jobs you want in [jobs section](/jobs/) and add their URL at the end
    of your `.gitlab-ci.yml` file:
 
     ```yaml
@@ -41,7 +44,7 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
         By default, the `latest` version of a job is used. You can choose to
         use a specific version using a `tag`. Available tags are described for
-        each job in [Jobs section](/jobs/). Description of `tag` format is
+        each job in [jobs section](/jobs/). Description of `tag` format is
         available in [Versioning page](/versioning/).
 
         Once your pipeline is functional, we recommend to use a specific version
@@ -73,8 +76,11 @@ stages:
   - static_tests
   - build
   - dynamic_tests
+  - provision
   - review
-  - deployment
+  - release
+  - deploy
+  - others
 
 # Jobs from g2s hub
 include:
@@ -101,11 +107,14 @@ unit_tests:
 
 By default, each job from the hub is a part of on these stages:
 
-* **🔎 Static_tests:** static tests launched on repository file
-* **📦 Build:** build and packaging of software
-* **🛡 Dynamic_tests:** dynamic tests launched on a running version of the software
-* **🙋 Review:** deployment of the software in an isolated review environment
-* **🚀 Deployment:** deployment of the software on real environments
+* **🔎 Static_tests:** static testing of  repository files
+* **🧱 Build:** building and packaging of software
+* **🔥 Dynamic_tests:** dynamic testing of a running version of the software
+* **🛠 Provision:** preparation of the software infrastructure
+* **👌 Review:** deployment of the software in an isolated review environment
+* **🏷 Release:** releasing and tagging of the software
+* **🚀 Deploy:** deployment of the software on environments
+* **🦄 Others:** all other magic jobs not included in previous stages
 
 This is an efficient and simple workflow. Nevertheless, if you want to use your
 own custom stage list: you can re-declare yourself the stage of any job from
@@ -113,8 +122,15 @@ the hub. Follow the [customization section](#jobs-customization) to do it.
 
 ## 🔧 Jobs customization
 
+### 🖌 Global
+
 Each jobs of the hub can be customized. To do it, you have to include the job
 URL as usual and, in addition, override the options you want to customize.
+
+!!! tip
+    In this way, you can override all Gitlab jobs parameters. All parameters
+    are described in [Gitlab
+    documentation](https://docs.gitlab.com/ee/ci/yaml/){:target="_blank"}.
 
 For example, if you want to use the [trivy_image](/jobs/dynamic_tests/trivy_image/) job and
 customize it by:
@@ -136,7 +152,30 @@ trivy_image:
     TRIVY_SEVERITY: "CRITICAL"
 ```
 
-!!! tip
-    In this way, you can override all Gitlab jobs parameters. All parameters
-    are described in [Gitlab
-    documentation](https://docs.gitlab.com/ee/ci/yaml/){:target="_blank"}.
+### 🐳 Advanced: `services`
+
+You may want one of your job to interact with a container instance (API,
+database, web server...) to work. GitLab has an option to run a container next
+to a job: [`services`](https://docs.gitlab.com/ee/ci/yaml/#services).
+
+To use this option, you must have access to an image of the container you want
+to run as a service. For example, if you are using our
+[docker_build](https://r2devops.io/jobs/build/docker_build/) job to build an
+image of your application, and you want to test this image using the
+[nmap](/jobs/dynamic_tests/nmap/) job, just add the following configuration in
+your `.gitlab-ci.yml` file:
+
+!!! info
+    * The `name` option must contain your image name and tag or an image name from [Docker Hub](https://hub.docker.com){:target="_blank"}.
+    * The `alias` option permits to the job to reach your application using a name. This name
+    must be the same that the one specified inside the job target's variable.
+    * You may also run some other services like a database depending on your application needs.
+
+```yaml
+nmap:
+  services:
+    - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      alias: app
+```
+
+--8<-- "includes/abbreviations.md"

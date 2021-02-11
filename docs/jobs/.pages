@@ -4,5 +4,8 @@ arrange:
     - static_tests
     - build
     - dynamic_tests
+    - provision
     - review
-    - deployment
+    - release
+    - deploy
+    - others

@@ -1,6 +1,4 @@
-# 🔎 Super-linter
-
-## Description
+## Objective
 
 This job uses the [github super-linter](https://github.com/github/super-linter){:target="_blank"}
 which is a Simple combination of various linters to help validate the quality

@@ -1,14 +1,13 @@
 # Concept
 
-The **R2Devops hub** is a collaborative hub of CI & CD
-**ready to use** jobs which helps you to easily build powerful pipelines for your
-projects.
+The **R2Devops hub** is a collaborative [Hub](/r2bulary/#hub) of CI & CD
+**ready to use** jobs which helps you to easily build powerful Pipelines for your projects.
 
 !!! info
     Currently, the hub is focused to provide only **Gitlab 🦊** jobs. We plan
     to support more CI/CD platforms in the future.
 
-Each jobs of the hub can be used independently to create fully **customized pipelines.**
+Each Job of the hub can be used independently to create fully **customized pipelines.**
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
@@ -18,6 +17,9 @@ customized through configuration.
     </button>
 </a>
 
+
 ## Overview
 
 ![hub overview](images/g2shub_mvp.jpg)
+
+--8<-- "includes/abbreviations.md"

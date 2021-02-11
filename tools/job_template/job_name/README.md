@@ -1,6 +1,4 @@
-# {{ icon }} {{ job_name }}
-
-## Description
+## Objective
 
 {{ description }}
 

@@ -1,6 +1,4 @@
-# 📒 ApiDoc
-
-## Description
+## Objective
 
 Creates a versioned HTML documentation from API annotations in your source
 code using [apiDoc](https://www.apidocjs.com/){:target="_blank"}.
@@ -37,7 +35,7 @@ code using [apiDoc](https://www.apidocjs.com/){:target="_blank"}.
 | ---- | ----------- | ------- |
 | `APIDOC_VERSION` <img width=250/> | Version of apiDoc to use <img width=400/> | `0.24.0` |
 | `APIDOC_CONFIG_PATH` | Path to config file or to directory containing config file (apidoc.json or apidoc.config.js) | `.` |
-| `APIDOC_OUTPUT_PATH` | Output directory path | `/documentation_build` |
+| `APIDOC_OUTPUT_PATH` | Output directory path | `website_build/` |
 | `APIDOC_TEMPLATE_PATH` | Path to template folder | `/usr/lib/node_modules/apidoc/template/` |
 
 ### Artifacts

@@ -4,13 +4,17 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 
 ## 🔎 Static tests
 
+*Static testing of repository files*
+
 | Name <img width=200/> | Description |
 | ---- | ----------- |
 {% for job in index["static_tests"] -%}
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](static_tests/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
-## 📦 Build
+## 🧱 Build
+
+*Building and packaging of software*
 
 | Name <img width=220/> | Description |
 | ---- | ----------- |
@@ -18,7 +22,9 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](build/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
-## 🛡 Dynamic tests
+## 🔥 Dynamic tests
+
+*Dynamic testing of a running version of the software*
 
 | Name <img width=220/> | Description |
 | ---- | ----------- |
@@ -26,7 +32,19 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](dynamic_tests/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
-## 🙋 Review
+## 🛠 Provision
+
+*Preparation of the software infrastructure*
+
+| Name <img width=220/> | Description |
+| ---- | ----------- |
+{% for job in index["provision"] -%}
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](provision/{{ job.name }}/) | {{ job.description }} |
+{% endfor %}
+
+## 👌 Review
+
+*Deployment of the software in an isolated review environment*
 
 | Name <img width=180/> | Description |
 | ---- | ----------- |
@@ -34,10 +52,32 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
   | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](review/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}
 
-## 🚀 Deployment
+## 🏷 Release
+
+*Releasing and tagging of the software*
+
+| Name <img width=180/> | Description |
+| ---- | ----------- |
+{% for job in index["release"] -%}
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](release/{{ job.name }}/) | {{ job.description }} |
+{% endfor %}
+
+## 🚀 Deploy
+
+*Deployment of the software on environments*
 
 | Name <img width=170/> | Description |
 | ---- | ----------- |
-{% for job in index["deployment"] -%}
-  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](deployment/{{ job.name }}/) | {{ job.description }} |
+{% for job in index["deploy"] -%}
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](deploy/{{ job.name }}/) | {{ job.description }} |
+{% endfor %}
+
+## 🦄 Others
+
+*All other magic jobs not included in previous stages*
+
+| Name <img width=170/> | Description |
+| ---- | ----------- |
+{% for job in index["others"] -%}
+  | {% if job.icon is defined -%} {{ job.icon }} {% endif %}[{{- job.name }}](others/{{ job.name }}/) | {{ job.description }} |
 {% endfor %}

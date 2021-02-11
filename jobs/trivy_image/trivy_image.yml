@@ -63,7 +63,6 @@ trivy_image:
     - else
     -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CI_COMMIT_SHA
     - fi
-
   cache:
     paths:
       - "$TRIVY_CACHE_DIR"

@@ -26,6 +26,10 @@
   width:20%
 }
 
+.small_r2bulary{
+  width:15%
+}
+
 /* Landing Page */
 
 .md-typeset .tx-insiders {
@@ -238,10 +242,30 @@ button.md-button-center {
     margin:0 auto !important;
     padding-bottom:1em !important;
     padding-top:0.8em !important
+    padding-top:0.8em !important;
+}
+
+a.md-button-center {
+    display:block !important;
+    margin:0 auto !important;
+    padding-bottom:1em !important;
+    padding-top:0.8em !important;
 }
 
 button.md-button-center:hover {
     cursor: pointer;
+}
+
+.md-typeset code {
+    font-size: .75em;
+}
+
+.codehilitetable .linenos, .highlighttable .linenos {
+    font-size: .75em;
+}
+
+a.banner-link:hover {
+    font-weight: bold;
 }
 
 a.md-tabs__link>strong.job_tab {
