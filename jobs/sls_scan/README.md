@@ -11,7 +11,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
    behavior, check the [variables section](#variables)
 2. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub)). Example:
 
     ```yaml
     include:

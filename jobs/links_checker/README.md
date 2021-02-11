@@ -14,7 +14,7 @@ In its default state, this job will analyze your whole project for eligible file
 
 1. Have `.md`, `.html` or `.htm` files in your project
 2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub)). Example:
 
     ```yaml
     include:
