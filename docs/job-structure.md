@@ -94,7 +94,7 @@ the following fields:
 
 This file, named `README.md`, contains the documentation of a job  in `markdown` format.
 
-=== "Example of `README.md`"
+=== "Example of README.md"
 
     ```md
     ## Description
@@ -126,63 +126,11 @@ This file, named `README.md`, contains the documentation of a job  in `markdown`
     | `APIDOC_CONFIG_PATH` | Path to config file or to directory containing config file (apidoc.json or apidoc.config.js) | `.` |
     | `APIDOC_OUTPUT_PATH` | Output directory path | `/documentation_build` |
     | `APIDOC_TEMPLATE_PATH` | Path to template folder | `/usr/lib/node_modules/apidoc/template/` |
-
-    ## Artifacts
-
-    Result of documentation build is [exposed
-    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as) `apiDoc build`
-    in merge requests.
     ```
 
 === "Result"
 
-    # 📒 ApiDoc
-
-    ## Description
-
-    Creates a versioned HTML documentation from API annotations in your source
-    code using [apiDoc](https://www.apidocjs.com/){:target="_blank"}.
-
-    ## How to use it
-
-    1. Prepare your project with API annotations in your source code following
-    [apiDoc format](https://apidocjs.com/#examples){:target="_blank"} and your [apiDoc
-    configuration file](https://apidocjs.com/#configuration){:target="_blank"}.
-    2. Choose a version in [version list](#changelog)
-    3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-    started](/use-the-hub/)). Example:
-
-        ```yaml
-        include:
-        - remote: 'https://jobs.r2devops.io/apidoc.yml'
-        ```
-
-    4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-    customization](/use-the-hub/#jobs-customization)
-    5. Well done, your job is ready to work ! 😀
-
-    ## Job details
-
-    * Job name: `apidoc`
-    * Docker image:
-    [`node`](https://hub.docker.com/r/_/node){:target="_blank"}
-    * Default stage: `build`
-    * When: `always`
-
-    ### Variables
-
-    | Name | Description | Default |
-    | ---- | ----------- | ------- |
-    | `APIDOC_VERSION` <img width=250/> | Version of apiDoc to use <img width=400/> | `0.24.0` |
-    | `APIDOC_CONFIG_PATH` | Path to config file or to directory containing config file (apidoc.json or apidoc.config.js) | `.` |
-    | `APIDOC_OUTPUT_PATH` | Output directory path | `/documentation_build` |
-    | `APIDOC_TEMPLATE_PATH` | Path to template folder | `/usr/lib/node_modules/apidoc/template/` |
-
-    ### Artifacts
-
-    Result of documentation build is [exposed
-    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"} `apiDoc build` in
-    merge requests.
+    ![Documentation result](images/documentation_result.png){: align=center }
 
 
 ## 🏗 Job changelogs
@@ -206,18 +154,23 @@ changes provided by this version.
     └── 0.3.0.md
 ```
 
-* **📃 `0.1.0.md`**
-```md
-* Initial version
-```
-* **📃 `0.2.0.md`**
-```md
-* Add variable `DOCKERFILE_PATH` which permits specifying custom path to Dockerfile
-```
-* **📃 `0.3.0.md`**
-```md
-* New variable `DOCKER_USE_CACHE` to be able to cache layers of build
-* New variable `DOCKER_CACHE_TTL` to define time to live of cache
-* New variable `DOCKER_VERBOSITY` to set the verbosity of the build
-* New variable `DOCKER_OPTIONS` to be able to add additional options%
-```
+=== "📃 0.1.0.md"
+
+    ```md
+    * Initial version
+    ```
+
+=== "📃 0.2.0.md"
+
+    ```md
+    * Add variable `DOCKERFILE_PATH` which permits specifying custom path to Dockerfile
+    ```
+
+=== "📃 0.3.0.md"
+
+    ```md
+    * New variable `DOCKER_USE_CACHE` to be able to cache layers of build
+    * New variable `DOCKER_CACHE_TTL` to define time to live of cache
+    * New variable `DOCKER_VERBOSITY` to set the verbosity of the build
+    * New variable `DOCKER_OPTIONS` to be able to add additional options
+    ```
