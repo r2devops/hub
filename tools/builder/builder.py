@@ -81,7 +81,7 @@ def get_conf(job_path):
         (dict): Object of parsed YAML
     """
     try:
-        with open(job_path + "/" + JOB_METADATA_FILE, encoding='utf8') as conf_file:
+        with open(job_path + "/" + JOB_METADATA_FILE) as conf_file:
             return full_load(conf_file)
     except YAMLError as error:
         logging.error("Failed to parse job config '%s/%s", job_path,
@@ -247,8 +247,8 @@ def get_job_raw_content(job_name):
     """
     try:
         with open("{}/{job}/{job}{}".format(JOBS_DIR, JOBS_EXTENSION,
-                                            job=job_name), 'r', encoding='utf8') as job:
-            return job.read().split('\n')
+                                            job=job_name), 'r') as job:
+            return job.readlines()
     except FileNotFoundError :
         logging.error("File %s/%s/%s.%s not found", JOBS_DIR,
                                                     job_name,
@@ -344,7 +344,7 @@ def create_job_doc(job):
         with open(mkdocs_file_path, 'w+') as doc_file:
             env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
             template = env.get_template(TEMPLATE_DOC)
-            doc_file.write(str(template.render(
+            doc_file.write(template.render(
                 job_name = job,
                 job_icon = job_icon,
                 readme = description,
@@ -363,12 +363,11 @@ def create_job_doc(job):
                 linked_issues_limit = ISSUES_LIMIT,
                 linked_issues_url = linked_issues_url,
                 create_issue_url = create_issue_url
-        ).encode('utf8')))
+        ))
     except Exception as error:
         logging.error("Failed to create final file for job %s", job)
         logging.error(error)
         sys.exit(1)
-
 
 def add_placeholder():
     # Verify that there is a .md file for every stage, or mkdocs will break
@@ -402,7 +401,7 @@ def main():
     template = env.get_template(TEMPLATE_INDEX)
     index_content = template.render(index=index)
 
-    with open(MKDOCS_DIR + "/" + JOBS_DIR + "/" + INDEX_FILE, "w+", encoding='utf8') as index_file:
+    with open(MKDOCS_DIR + "/" + JOBS_DIR + "/" + INDEX_FILE, "w+") as index_file:
         index_file.write(index_content)
 
 if __name__ == "__main__":
