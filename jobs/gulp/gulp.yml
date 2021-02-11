@@ -1,0 +1,58 @@
+#Job from R2Devops hub --> r2devops.io
+
+cache:
+  key:
+    files:
+      - "${PROJECT_ROOT}/package.json"
+    prefix: "npm-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "${PROJECT_ROOT}/node_modules"
+  when: "on_success"
+
+gulp:
+  image:
+    name: node:15.7-buster
+    entrypoint: [""]
+  stage: others
+  variables:
+    PROJECT_ROOT: "."
+    NPM_INSTALL_OPTIONS: ""
+    GULPFILE_PATH: "."
+    GULP_TASKS: ""
+    OUTPUT_FOLDER: "./build/"
+
+    # Deploy on GitLab pages
+    GITLAB_PAGES_DEPLOY: "true"
+    GITLAB_PAGES_OUTPUT: "./website_build"
+
+
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run npm install
+    - npm install $NPM_INSTALL_OPTIONS
+    # Install gulp
+    - npm install -g gulp-cli
+    # Install alternative of gulpfile.js .ts .babel.js
+    - npm install -D ts-node typescript @types/gulp
+    # Get and run all the tasks
+    - echo "Begin run tasks"
+    - TASKS_LIST=$(echo $GULP_TASKS | tr ";" "\n")
+    - for TASK in $TASKS_LIST; do
+    -     echo "Running:$TASK "
+    -     gulp -f "$GULPFILE_PATH" "$TASK"
+    -   done
+
+    # To deploy on GitLab pages
+    - if [ "$GITLAB_PAGES_DEPLOY" == "true" ]; then
+    - mkdir $GITLAB_PAGES_OUTPUT
+    - cp -Rp $OUTPUT_FOLDER $GITLAB_PAGES_OUTPUT
+    - fi
+
+  artifacts:
+    when: always
+    expose_as: "gulp artefact"
+    paths:
+    - "$OUTPUT_FOLDER"
+    # To deploy on GitLab pages
+    - "$GITLAB_PAGES_OUTPUT"
