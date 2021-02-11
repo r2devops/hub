@@ -1,0 +1,24 @@
+# Job from R2Devops hub --> r2devops.io
+
+cache:
+  key:
+    files:
+      - "${PROJECT_ROOT}/package.json"
+    prefix: "yarn-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "${PROJECT_ROOT}/node_modules"
+  when: "on_success"
+
+yarn_install:
+  stage: .pre
+  image:
+    name: node:15.7-buster
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    YARN_INSTALL_OPTIONS: ""
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run yarn install
+    - yarn install $YARN_INSTALL_OPTIONS
