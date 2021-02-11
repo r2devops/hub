@@ -34,11 +34,11 @@ This file must have the same name that the job with the `yml` extension:
 
 Job definition usually contains the following fields:
 
-* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image)**: docker image used to run the job
+* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image){:target="_blank"}**: docker image used to run the job
 * **`stage`**: default stage for the job, must be in our [default stage list](/use-the-hub/#stages)
-* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script)**: this is the heart of the job. It contains a list of shell commands to run the job
-* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables)**: variables used by the `script` part of the job to customize its behaviour
-* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
+* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}**: this is the heart of the job. It contains a list of shell commands to run the job
+* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: variables used by the `script` part of the job to customize its behaviour
+* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
 
 See our Best Practices and guidelines: TODO LINK
 
@@ -62,8 +62,12 @@ gitleaks:
 
 ## 🗂 Job metadata
 
-**TODO: add options introduced by
-https://gitlab.com/r2devops/hub/-/merge_requests/129**
+TODO:
+
+* add options introduced by https://gitlab.com/r2devops/hub/-/merge_requests/129
+* add options about labels
+* add screenshot folder
+
 
 This file, named `job.yml`, contains the job metadata in `yaml` format with
 the following fields:
