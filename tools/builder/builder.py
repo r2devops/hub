@@ -61,14 +61,14 @@ TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
 index = {
-    "static_tests": {"name":"Static_tests","icon":"🔎","content":[]},
-    "build": {"name":"Build","icon":"🧱","content":[]},
-    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[]},
-    "provision": {"name":"Provision","icon":"🛠","content":[]},
-    "review": {"name":"Review","icon":"👌","content":[]},
-    "release": {"name":"Release","icon":"🏷","content":[]},
-    "deploy": {"name":"Deploy","icon":"🚀","content":[]},
-    "others": {"name":"Others","icon":"🦄","content":[]}
+    "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
+    "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
+    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
+    "provision": {"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
+    "review": {"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
+    "release": {"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
+    "deploy": {"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
+    "others": {"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
 }
 
 def get_conf(job_path):
