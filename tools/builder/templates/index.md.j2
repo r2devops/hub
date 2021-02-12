@@ -7,6 +7,8 @@ Jobs index. They are sorted using the [hub default stages](/use-the-hub#stages).
 {% for stage in index %}
 ##  {{index[stage].icon}} {{index[stage].name}}
 
+*Static testing of repository files*
+
 | Name <img width=200/> | Description |
 | ---- | ----------- |
   {% for job in index[stage].content -%}

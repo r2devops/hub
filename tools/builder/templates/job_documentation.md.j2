@@ -16,6 +16,25 @@
 
     {{ readme | indent(4, False) }}
 
+    {% if linked_issues %}
+
+    ## Linked Issues
+
+    {% for issue in linked_issues[:linked_issues_limit] %}
+    👉🏼 &nbsp; [#{{issue.iid}} - {{ issue.name }}]({{ issue.url }})
+    {% endfor %}
+    {% if linked_issues[linked_issues_limit] %}
+    - And more...
+    {% endif %}
+
+    <a href="{{linked_issues_url}}" class="md-button  border-radius-10 linked_issues" data-hover="See all issues 🔎">
+    <span id="see_all_issues" >See all issues 🔎</span>
+    </a>
+    <a href="{{create_issue_url}}" class="md-button  border-radius-10 linked_issues" data-hover="Create an issue ＋">
+    <span id="create_issue">Create an issue ➕</span>
+    </a>
+    {% endif %}
+
     {% if screenshots_files %}
     ## Gallery
 

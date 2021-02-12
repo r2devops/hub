@@ -1,0 +1,35 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+npm_build:
+  stage: build
+  image:
+    name: node:15.7-buster
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    NPM_INSTALL_OPTIONS: ""
+    NPM_BUILD_SCRIPT_NAME: "build"
+    NPM_BUILD_OPTIONS: ""
+    NPM_BUILD_OUTPUT_FOLDER: "build"
+    PAGES_DEPLOY: "false"
+    PAGES_FOLDER: "./website_build"
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    - npm install $NPM_INSTALL_OPTIONS
+    - npm run $NPM_BUILD_SCRIPT_NAME $NPM_BUILD_OPTIONS
+    # To deploy on pages
+    - if [ "$PAGES_DEPLOY" == "true" ]; then
+        # Pages folder must to be at the root of the repo
+    -   cd $CI_PROJECT_DIR
+    -   cp -r ${PROJECT_ROOT}/${NPM_BUILD_OUTPUT_FOLDER} ${CI_PROJECT_DIR}/${PAGES_FOLDER}
+    - fi
+  artifacts:
+    expose_as: "npm build"
+    paths:
+      - "${PROJECT_ROOT}/${NPM_BUILD_OUTPUT_FOLDER}"
+      # To deploy on pages
+      - "${PAGES_FOLDER}"

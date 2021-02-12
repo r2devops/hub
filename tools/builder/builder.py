@@ -21,6 +21,7 @@ from datetime import datetime
 from distutils.version import LooseVersion
 from os import listdir, makedirs
 from shutil import copyfile
+from urllib.parse import quote, urlencode
 import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
@@ -41,9 +42,14 @@ MARKDOWN_EXTENSION = ".md"
 MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
 # Directory name to use for the jobs screenshot
 SCREENSHOTS_DIR = "screenshots"
+ISSUES_LIMIT = 5
 
+# Requests variable
+GITLAB_BASE_URL = "https://gitlab.com/"
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
+PROJECT_NAME = "r2devops/hub"
+JOBS_SCOPE_LABEL = "Jobs::"
 
 # Templates variables
 BUILDER_DIR = "tools/builder"
@@ -250,6 +256,47 @@ def get_job_raw_content(job_name):
                                                     JOBS_EXTENSION)
         sys.exit(1)
 
+# https://docs.gitlab.com/ee/api/issues.html#list-project-issues (for the structure of the response)
+def get_linked_issues(job_name, opened=True):
+    """Get a list of linked issues for a job
+
+    Parameters:
+    -----------
+    job_name : str
+        The name of the job
+    opened : boolean
+        If we get only opened issues or all of them (default: True)
+
+    Returns:
+    --------
+    list
+        A list of issues linked to the job with their name and url
+    str
+        Url to list the issues related to the job
+    str
+        Url to create a new issue for the job
+    """
+    linked_issues = []
+    base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
+    url = f"{base_url}?labels={JOBS_SCOPE_LABEL}{job_name}"
+    if opened:
+        url += "&state=opened"
+    r = requests.get(url)
+
+    for issue in r.json():
+        linked_issues.append({
+            "name": issue['title'],
+            "url": issue['web_url'],
+            "iid": issue['iid']
+        })
+    issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
+    linked_issues_payload = {
+        "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
+    }
+    linked_issues_url = f"{issues_base_url}/issues?{urlencode(linked_issues_payload)}"
+    create_issue_payload = f"issue[title]=[job][{job_name}]"
+    create_issue_url = f"{issues_base_url}/issues/new?{quote(create_issue_payload, safe='=')}%20-%20"
+    return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
@@ -266,7 +313,17 @@ def create_job_doc(job):
 
     index[stage]["content"].append(conf)
 
-    mkdocs_file_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage + "/" + job + MARKDOWN_EXTENSION
+    # If job name starts with a dot, we must remove the dot for the file name,
+    # else mkdocs will ignore it
+    job_file = job
+    if job.startswith('.'):
+        job_file = job_file[1:]
+
+    mkdocs_file_path = '{}/{}/{}/{}{}'.format(MKDOCS_DIR,
+                                              JOBS_DIR,
+                                              stage,
+                                              job_file,
+                                              MARKDOWN_EXTENSION)
 
     # Get variables for jinja
     description = get_description(job_path)
@@ -277,8 +334,13 @@ def create_job_doc(job):
     job_raw_content = get_job_raw_content(job)
     job_icon = conf.get("icon")
     job_labels = conf.get("labels")
+    linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
     # Write final file
+    logging.info('Build of documentation file for job "%s" in stage "%s"',
+                 job,
+                 stage)
+
     try:
         with open(mkdocs_file_path, 'w+') as doc_file:
             env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
@@ -299,6 +361,10 @@ def create_job_doc(job):
                 screenshots_files = screenshots_files,
                 job_raw_content = ''.join(job_raw_content),
                 job_labels = job_labels
+                linked_issues = linked_issues,
+                linked_issues_limit = ISSUES_LIMIT,
+                linked_issues_url = linked_issues_url,
+                create_issue_url = create_issue_url
         ))
     except Exception as error:
         logging.error("Failed to create final file for job %s", job)
@@ -327,7 +393,6 @@ def main():
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
-
     for job in jobs:
         create_job_doc(job)
 

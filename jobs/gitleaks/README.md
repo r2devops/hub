@@ -9,7 +9,7 @@ repos. As it written in go, it is much faster than most of the
 
 
 1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub/)). Example:
 
     ```yaml
     include:
