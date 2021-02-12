@@ -4,3 +4,7 @@ default_stage: build
 icon: 🧱
 maintainer: coconux
 license: MIT
+labels:
+    - GitLab
+    - NPM
+    - Build

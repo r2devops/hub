@@ -4,3 +4,7 @@ default_stage: others
 icon: 💡
 maintainer: coconux
 license: MIT
+labels:
+    - GitLab
+    - Utilities
+    - Yarn

@@ -61,14 +61,14 @@ TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
 index = {
-    "static_tests": [],
-    "build": [],
-    "dynamic_tests": [],
-    "provision": [],
-    "review": [],
-    "release": [],
-    "deploy": [],
-    "others": []
+    "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
+    "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
+    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
+    "provision": {"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
+    "review": {"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
+    "release": {"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
+    "deploy": {"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
+    "others": {"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
 }
 
 def get_conf(job_path):
@@ -311,7 +311,7 @@ def create_job_doc(job):
         logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job, JOB_METADATA_FILE)
         sys.exit(1)
 
-    index[stage].append(conf)
+    index[stage]["content"].append(conf)
 
     # If job name starts with a dot, we must remove the dot for the file name,
     # else mkdocs will ignore it
@@ -333,6 +333,7 @@ def create_job_doc(job):
     user = get_user(code_owner)
     job_raw_content = get_job_raw_content(job)
     job_icon = conf.get("icon")
+    job_labels = conf.get("labels")
     linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
     # Write final file
@@ -359,6 +360,7 @@ def create_job_doc(job):
                 screenshot_path = screenshot_path,
                 screenshots_files = screenshots_files,
                 job_raw_content = ''.join(job_raw_content),
+                job_labels = job_labels,
                 linked_issues = linked_issues,
                 linked_issues_limit = ISSUES_LIMIT,
                 linked_issues_url = linked_issues_url,
@@ -379,6 +381,7 @@ def add_placeholder():
                 env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
                 template = env.get_template(TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
+
 
 def main():
     """

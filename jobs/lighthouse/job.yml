@@ -4,3 +4,9 @@ default_stage: dynamic_tests
 icon: 🗽
 maintainer: Protocole
 license: MIT
+labels:
+  - GitLab
+  - Testing
+  - Quality
+  - Security
+  - Performance

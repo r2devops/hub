@@ -4,3 +4,7 @@ default_stage: dynamic_tests
 icon: 🔎
 maintainer: FulcrandG
 license: MIT
+labels:
+  - GitLab
+  - DAST
+  - Robustness
