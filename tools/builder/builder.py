@@ -360,7 +360,7 @@ def create_job_doc(job):
                 screenshot_path = screenshot_path,
                 screenshots_files = screenshots_files,
                 job_raw_content = ''.join(job_raw_content),
-                job_labels = job_labels
+                job_labels = job_labels,
                 linked_issues = linked_issues,
                 linked_issues_limit = ISSUES_LIMIT,
                 linked_issues_url = linked_issues_url,
