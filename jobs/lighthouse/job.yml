@@ -6,8 +6,7 @@ maintainer: Protocole
 license: MIT
 labels:
   - GitLab
-  - Optimization
   - Testing
   - Quality
   - Security
-  - Code performance
+  - Performance

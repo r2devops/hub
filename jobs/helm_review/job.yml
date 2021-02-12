@@ -6,6 +6,5 @@ maintainer: thomasboni
 license: MIT
 labels:
   - GitLab
-  - Optimization
-  - Build
   - Helm
+  - Kubernetes

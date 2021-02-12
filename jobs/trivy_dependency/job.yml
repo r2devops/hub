@@ -6,6 +6,5 @@ maintainer: FulcrandG
 license: Apache-2.0
 labels:
   - GitLab
-  - Dependency management
-  - Robustness
+  - Dependency scan
   - Security
