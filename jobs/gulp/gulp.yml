@@ -4,7 +4,7 @@ cache:
   key:
     files:
       - "${PROJECT_ROOT}/package.json"
-    prefix: "npm-${CI_COMMIT_REF_SLUG}"
+    prefix: "$PACKAGE_MANAGER-${CI_COMMIT_REF_SLUG}"
   paths:
     - "${PROJECT_ROOT}/node_modules"
   when: "on_success"
@@ -16,7 +16,8 @@ gulp:
   stage: others
   variables:
     PROJECT_ROOT: "."
-    NPM_INSTALL_OPTIONS: ""
+    PACKAGE_MANAGER: "npm"
+    INSTALL_OPTIONS: ""
     GULPFILE_PATH: "."
     GULP_TASKS: ""
     OUTPUT_FOLDER: "./build/"
@@ -29,12 +30,19 @@ gulp:
   script:
     # Working directory
     - cd $PROJECT_ROOT
-    # Run npm install
-    - npm install $NPM_INSTALL_OPTIONS
-    # Install gulp
-    - npm install -g gulp-cli
-    # Install alternative of gulpfile.js .ts .babel.js
-    - npm install -D ts-node typescript @types/gulp
+    # Run npm or yarn install
+    -   $PACKAGE_MANAGER install $INSTALL_OPTIONS
+
+    # Install global gulp for npm
+    -   if [ $PACKAGE_MANAGER == "npm" ]; then
+    -     $PACKAGE_MANAGER add --global gulp-cli
+    -   fi
+
+    # Install global gulp for yarn
+    -   if [ $PACKAGE_MANAGER == "yarn" ]; then
+    -     $PACKAGE_MANAGER global add gulp-cli
+    -   fi
+
     # Get and run all the tasks
     - echo "Begin run tasks"
     - TASKS_LIST=$(echo $GULP_TASKS | tr ";" "\n")
