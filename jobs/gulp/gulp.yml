@@ -13,7 +13,7 @@ gulp:
   image:
     name: node:15.7-buster
     entrypoint: [""]
-  stage: others
+  stage: .pre
   variables:
     PROJECT_ROOT: "."
     PACKAGE_MANAGER: "npm"
