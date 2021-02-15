@@ -35,8 +35,8 @@ This file must have the same name that the job with the `yml` extension:
 Job definition usually contains the following fields:
 
 * **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image){:target="_blank"}**: docker image used to run the job
-* **`stage`**: default stage for the job, must be in our [default stage list](/use-the-hub/#stages)
-* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}**: this is the heart of the job. It contains a list of shell commands to run the job
+* **`stage`** (mandatory): default stage for the job, must be in our [default stage list](/use-the-hub/#stages)
+* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}** (mandatory): this is the heart of the job. It contains a list of shell commands to run the job
 * **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: variables used by the `script` part of the job to customize its behaviour
 * **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
 

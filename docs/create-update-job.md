@@ -73,32 +73,40 @@ able to work on it before merging your update in the real project.
    [Discord community](https://discord.gg/5QKpGqR), we love talking with our
    contributors and users !
 
-## Guidelines and Best practices
 
-!!! info
+## Guidelines
+
+!!! warning
     Following these guidelines is required to contribute in
     [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-* In order to provide **plug and play** jobs, each of them must specify a
-  docker image using the option `image:` to be run inside a docker container
-* Must be compliant with [our job definition](r2bulary/#job)
-* Ensure that every resource used by the job has a license compatibles with the
-  job licence and permits to anyone to use it
-* Variables naming convention (to be defined, should we require the job name
-  uppercase as prefix for all variables ? Think about a way to verify variables
-  in hub pipeline and permit various configuration for on-premise #232)
-* Docker image tag must be a fixed version. It shouldn't be `latest` or any
-  tag that will be overwritten.
-* and version of all tools retrieved during the jobsmust be fixed
+Each jobs must:
 
-* **Question**: should we enforce the user to define variables or it's only best practices ? If we choose to enforce it, how to define what should be in variables and what not ?
+* [ ] Be compliant with [job structure](/job-structure/)
+* [ ] Use the `image` option. Goal is to provide **plug and play** jobs working in
+  any environments thanks to containers
+* [ ] Use Docker image with a fixed tag. It shouldn't be `latest` or any tag that
+  will be overwritten
+* [ ] Use fixed versions to retrieves external tools
+* [ ] Use only resource with license compatible with the job licence and permits to
+  anyone to use it
+* [ ] Pass our Continuous Integration pipeline which includes security check jobs
+  (pipeline will be run automatically inside your fork)
+* [ ] Be compliant with [our job definition](/r2bulary/#job)
+
 
 ## Best practices
 
-* **+**: important criteria
-* **-**: mandatory criteria
+!!! info
+    Following these best practices is recommended to contribute in
+    [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-### How to choose the best docker image to implement a new job ?
+### Job variables
+
+* Declare variables using uppercase
+* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
+
+### Choose the best docker image
 
 * Check if there is an image dedicated for the tool to run in the job
     * Check if the image is official (+++)
@@ -119,149 +127,15 @@ able to work on it before merging your update in the real project.
 * If no, use docker alpine and install tool in it. If the installation is too long in the job: create your own image (fixed version)
 
 
-* How can I test my job locally/easily ?
-> Locally ? using the doxygen binary in my own operating system ? (brew install...)
-> Using a blank repo in gitlab ?
-> ex: https://gitlab.com/coconux/doxygen and link with the job in WIP Ex: - remote: 'https://gitlab.com/go2scale/hub/-/raw/111-add-doxygen-job/jobs/doxygen/doxygen.yml'
-> How can I check the hub documentation went well ?
-> Note about including a local job file
 
-* About versions:
+### About versions:
+
 > The installed version of Doxygen must be specified as variable with the default value on the current latest version 1.8.18-r0
 > A fixed tag must be specified for the alpine image used
 
-* About artifact
-> integration in MR widget ? expose_as ?
-> artifact retention
+### Compliance with another job
 
 * Compliance with another job
-
-* Usage of `rules`, `before_script`, `after_Script`, ...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ### About process:
@@ -282,6 +156,10 @@ able to work on it before merging your update in the real project.
 
 ### About artifact:
 
+* Use expose_as like in mkdocs job to expose the artifact in the MR
+> integration in MR widget ? expose_as ?
+> artifact retention
+
 
 ### About compliance with pages job:
 
@@ -291,65 +169,46 @@ able to work on it before merging your update in the real project.
 
 ### Documentation of your job `README.md`
 
-<!-- TODO: est ce qu'on met les variables dans le fichier job.yml ? -->
+TODO
+
+### How to test my job
+
+TODO
+
+* How can I test my job locally/easily ?
+> Locally ? using the doxygen binary in my own operating system ? (brew install...)
+> Using a blank repo in gitlab ?
+> ex: https://gitlab.com/coconux/doxygen and link with the job in WIP Ex: - remote: 'https://gitlab.com/go2scale/hub/-/raw/111-add-doxygen-job/jobs/doxygen/doxygen.yml'
+> How can I check the hub documentation went well ?
+> Note about including a local job file
+
 
 ### Job definition of done
 
-<!-- TODO -->
+TODO
+
 
 ### Advises to keep your job generic
-<!-- TODO: * Advises or rules ? -->
 
-* Try to avoid using `rules`: in majority of cases, `rules` of a job are specific to the project on which they will be used. If you use it, your job will loose its genericity. Also, some feature requiring specific workflows, as [Gitlab Merge Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/) are more easily implemented by users if you don't specify `rules` in your job.
-<!-- TODO: * What if the user push the job only for him ? should we refuse ? What about private jobs ? -->
+TODO
 
-### Merge to `r2devops/hub` latest
+* Try to avoid using `rules`: in majority of cases, `rules` of a job are
+  specific to the project on which they will be used. If you use it, your job
+  will loose its genericity. Also, some feature requiring specific workflows,
+  as [Gitlab Merge
+  Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/)
+  are more easily implemented by users if you don't specify `rules` in your
+  job.
 
-<!-- TODO: Guide must include commit squash guidelines: see @Protocole presentation -->
-
-### ABCD
-
-    Create the job
-    Test it (How ?)
-    Create the documentation page following template
-    Add the job in the index list
-
-## Modify existing job
-
-* What about code-owners
-
-    Test the job (How ?)
-    Update the doc
-    Creation of a new version
+* Usage of `rules`, `before_script`, `after_Script`, ...
 
 
+### Continuous integration pipeline
+
+TODO: describe our CI/CD pipeline
 
 
+### TODO
 
-
-
-
-
-
-
-
-
-
-**TODO:**
-
-* Must be compliant with our job definition (see #39) (ex: a job mustn't be a daemon)
-    * Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
-* All mandatory files of the [job structure](/structure#job-structure) must be provided
-* Provide evidences of job working (url, screenshots, output, ...)
-* Job file must be validated by gitlab (CI lint)
-* Must be compliant with our security jobs (#230, #229)
-* Ensure that every resource used by the job has a license permitting to anyone to use it without a strong copyleft
-* Docker image version and version of all tools retrieved must be fixed
-    * Tag of the image must be a fixed version (not latest)
-    * Any tools used in the image must Docker image version and version of all tools retrieved must be fixed
-* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
-* Use expose_as like in mkdocs job to expose the artifact in the MR
-* Explain verification pipeline
-* Explain in how to use the hub the fact that jobs from the hub run in docker
-  containers
+* Stage list in job file with only one stage: the one of the job
 * Add contact us at each blocking issue points
