@@ -83,7 +83,7 @@ doxygen:
        # Include config Doxyfile and override default variables
        - if [ ! -f "$DOXYGEN_CONFIGFILE" ]; then
        -   touch ${DOXYGEN_CONFIGFILE}
-       -   echo "PROJECT_NAME=${DOXYGEN_PROJECT_NAME}" >> ${DOXYGEN_CONFIGFILE}
+       -   echo 'PROJECT_NAME="'${DOXYGEN_PROJECT_NAME}'"' >> ${DOXYGEN_CONFIGFILE}
        -   echo "INPUT=${DOXYGEN_INPUT}" >> ${DOXYGEN_CONFIGFILE}
        -   echo "OUTPUT_DIRECTORY=${DOXYGEN_OUTPUT_DIRECTORY}" >> ${DOXYGEN_CONFIGFILE}
        -   echo "OUTPUT_LANGUAGE=${DOXYGEN_OUTPUT_LANGUAGE}" >> ${DOXYGEN_CONFIGFILE}
