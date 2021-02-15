@@ -12,7 +12,7 @@ that you want to do:
 
 * **Understand the structure of a job** 👉 [Structure of a
   job](/job-structure/)
-* **Suggest a feature, a new job or report a bug** 👉 [Create an
-  issue](/create-issue/)
+<!-- * **Suggest a feature, a new job or report a bug** 👉 [Create an
+  issue](/create-issue/) -->
 * **Create or update a public job in R2Devops hub repository** 👉 [Create or
   update a job](/create-update-job/)

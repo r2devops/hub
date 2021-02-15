@@ -27,7 +27,7 @@ nav:
   - Contributing:
     - How to: how-to-contribute.md
     - Structure of a job: job-structure.md
-    - Create an issue: create-issue.md
+#    - Create an issue: create-issue.md
     - Create or update a job: create-update-job.md
   - ...
 
