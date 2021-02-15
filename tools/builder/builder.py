@@ -371,10 +371,33 @@ def create_job_doc(job):
         logging.error(error)
         sys.exit(1)
 
+
+def create_pages_placeholder(placeholder_path,stage_key):
+    """ Create jobs folder destination folder in docs for the job and .pages fil
+
+    Parameters:
+    -----------
+    placeholder_path : str
+        Path to the stage documentation
+    stage_key : boolean
+        Name of the stage
+
+    Returns:
+    --------
+    """
+    # Create jobs folder destination folder in docs for the job
+    makedirs(placeholder_path,0o777,True)
+    # Create the .pages files mandatory to serve documentaiton and display stages
+    f = open(placeholder_path + "/.pages", "w+")
+    f.write("title: '"+ stage_key +"'")
+    f.close()
+
+
 def add_placeholder():
     # Verify that there is a .md file for every stage, or mkdocs will break
     for stage_key, _ in index.items():
         placeholder_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage_key
+        create_pages_placeholder(placeholder_path,stage_key)
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
             with open(placeholder_path + "/" + MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
@@ -391,13 +414,14 @@ def main():
     # logging
     logging.basicConfig(level=logging.INFO)
 
+    # Verify that there is a .md file for every stage, or mkdocs will break
+    add_placeholder()
+
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
     for job in jobs:
         create_job_doc(job)
 
-    # Verify that there is a .md file for every stage, or mkdocs will break
-    add_placeholder()
 
     # Using jinja2 with a template to create the index
     env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
