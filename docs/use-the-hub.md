@@ -63,7 +63,6 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
 ### 🏳󠁵󠁳󠁴󠁸󠁿 Example
 
-
 An example of a full `.gitlab-ci.yml` file with:
 
 * One job template with latest version. Note that `latest/` is optional in the
@@ -121,6 +120,10 @@ own custom stage list: you can re-declare yourself the stage of any job from
 the hub. Follow the [customization section](#jobs-customization) to do it.
 
 ## 🔧 Jobs customization
+
+!!! info
+    All jobs from the `r2devops/hub` specify a docker image to be run in a
+    docker container
 
 ### 🖌 Global
 
