@@ -17,7 +17,10 @@ follow this standardized structure:
         ├── <job_name>.yml        # Job definition
         ├── job.yml               # Job metadata
         ├── README.md             # Job documentation
-        └── versions              # Jobs changelogs
+        ├── versions              # Jobs changelogs
+        │   ├── job_picture.png
+        │   └── ...
+        └── screenshots           # Job screenshots
             ├── 0.1.0.md
             └── ...
 ```
@@ -62,13 +65,6 @@ gitleaks:
 
 ## 🗂 Job metadata
 
-TODO:
-
-* add options introduced by https://gitlab.com/r2devops/hub/-/merge_requests/129
-* add options about labels
-* add screenshot folder
-
-
 This file, named `job.yml`, contains the job metadata in `yaml` format with
 the following fields:
 
@@ -76,21 +72,27 @@ the following fields:
 | ---- | ----------- | --------- |
 | `name` <img width=80/> | Name of the job, must be unique | Yes |
 | `description` | Short description of the job | Yes |
-| `icon` | Unicode emoji character to represent the job ([emojipedia](https://emojipedia.org))| Yes |
+| `icon` | Unicode emoji character to represent the job ([emojipedia](https://emojipedia.org)) | Yes |
 | `default_stage` | Default stage of the job, you have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages) | Yes |
 | `maintainer` | Gitlab username of the maintainer | Yes |
 | `license` | Open-source licence for the job. You can choose between `Apache-2.0` and `MIT` | Yes |
-| `images` | TODO | TODO |
-| `tools` | TODO | TODO |
+| `labels` | List of label describing the job | No |
+| `images` | https://gitlab.com/r2devops/hub/-/merge_requests/129  | TODO |
+| `tools` | https://gitlab.com/r2devops/hub/-/merge_requests/129  | TODO |
 
 **Example of `job.yml`:**
+
     ```yaml
     name: super_linter
-    description: Bundle of various linters, to validate the quality of your code
-    icon: 🔎
+    description: Simple combination of various linters, to help validate the quality of your source code
     default_stage: static_tests
+    icon: 🔎
     maintainer: thomasboni
     license: MIT
+    labels:
+        - GitLab
+        - Linter
+        - Quality
     ```
 
 
@@ -178,3 +180,14 @@ changes provided by this version.
     * New variable `DOCKER_VERBOSITY` to set the verbosity of the build
     * New variable `DOCKER_OPTIONS` to be able to add additional options
     ```
+
+
+## 🗺 Screenshots
+
+Jobs can include screenshots or any pictures to improve documentation and
+provide an overview of what job does.
+
+* You can add as many picture as you want in this folder but try to add only
+relevant images.
+* If you don't want to add any pictures, you have to add at least an empty file
+named `.gitkeep` to ensure the folder presence in git.
