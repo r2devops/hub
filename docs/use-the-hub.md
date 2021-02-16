@@ -152,6 +152,20 @@ trivy_image:
     TRIVY_SEVERITY: "CRITICAL"
 ```
 
+### ✏ Change the default stage of job
+
+If you want to use your own stage name it's possible to do so when including
+your job.
+
+```yaml
+include:
+  - remote: 'https://jobs.r2devops.io/trivy_image.yml'
+
+trivy_image:
+  stage: security
+```
+
+
 ### 🐳 Advanced: `services`
 
 You may want one of your job to interact with a container instance (API,
