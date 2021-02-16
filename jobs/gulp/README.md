@@ -23,6 +23,26 @@ It exposes `node_modules` as cache to other jobs of your pipeline. It allows you
 1. Well done, your job is ready to work ! 😀
 
 
+### Example of .gitlab-ci.yml file
+
+If you want to [change the default stage](/use-the-hub/#change-the-default-stage-of-job), or [customize your job](/use-the-hub/#global) have a look ont the example below 👇🏽
+
+```yaml
+stages:
+  - prepare-frontend
+
+include:
+  - remote: 'https://jobs.r2devops.io/gulp.yml'
+
+gulp:
+  variables:
+    PROJECT_ROOT: "frontend/"
+    GULP_TASKS: "generate-fonts; minify-css; minify-js; "
+    GULPFILE_PATH: "config/gulpfile.js"
+```
+
+
+
 ## Job details
 
 !!! info
