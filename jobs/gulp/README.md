@@ -25,13 +25,8 @@ It exposes `node_modules` as cache to other jobs of your pipeline. It allows you
 
 ## Job details
 
-!!! info
-    On Gitlab, this job will run `npm_install` in the default first stage of your
-    pipeline: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post)
-
-
 * Job name: `gulp`
-* Default stage: [`others`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post)
+* Default stage: [`others`]
 * Docker image: [`node:15.7-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
