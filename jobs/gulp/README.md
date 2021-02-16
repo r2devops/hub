@@ -11,15 +11,15 @@ It exposes `node_modules` as cache to other jobs of your pipeline. It allows you
    [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
    file which contains the requirements
 1. Ensure that your project have
-  [`gulpfile.js`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#gulpfile-explained){:target="_blank"} or [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#transpilation){:target="_blank"} file which contains your tasks
+   [`gulpfile.js`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#gulpfile-explained){:target="_blank"}
+   or
+   [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#transpilation){:target="_blank"}
+   file which contains your tasks
 1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
-    ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/gulp.yml'
-    ```
+   started](/use-the-hub)). Example: ```yaml include:
+      - remote: 'https://jobs.r2devops.io/gulp.yml' ```
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
 
@@ -44,16 +44,6 @@ It exposes `node_modules` as cache to other jobs of your pipeline. It allows you
 | `INSTALL_OPTIONS` | Additional options for the installation of `PACKAGE_MANAGER` <br/> *Ex: For npm `--save-dev`*  | ` ` |
 | `GULPFILE_PATH` | Path (from `PROJECT_ROOT`) to your  gulpfile `gulpfile.js` or `gulpfile.ts`| ` ` |
 | `GULP_TASKS` | List of your tasks to run with `gulp` (separated by ; ). <br/> *Ex: "minify-css; minify-js;"* | ` ` |
-
-
-### Cache
-
-This job creates a global cache configuration. Regarding the configuration
-applied, cache behavior is the following:
-
-* Shared between all jobs and pipelines on the same branch
-* Contains folder `$PROJECT_ROOT/node_modules`
-* If `npm install` or `yarn install` produces different result than the cached content
-
-More information on Gitlab caching mechanism in [Gitlab CI/CD caching
-documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
+| `GULP_OUTPUT_FOLDER` | If needed, path to the output produced by your scripts (path relative from the `PROJECT_ROOT`) | `build` |
+| `PAGES_DEPLOY` | If enabled, prepare your build result to be deployed on pages (require [pages job](jobs/deploy/pages/)) | `false` |
+| `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
