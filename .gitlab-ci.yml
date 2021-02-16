@@ -151,9 +151,6 @@ links_checker:
     LICHE_EXCLUDE: "^[^http]"
     FAIL_ON_BROKEN: "true"
   allow_failure: true
-  after_script:
-    - echo ${LICHE_OPTIONS}
-    - echo ${LICHE_EXCLUDE}
 
     # See https://docs.gitlab.com/ee/api/labels.html
 job_labels:

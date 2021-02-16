@@ -63,7 +63,7 @@ links_checker:
                     add_option "${CI_PROJECT_DIR}/${i}"
                 done
             fi
-        - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x ${LICHE_EXCLUDE}"; fi
+        - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x '${LICHE_EXCLUDE}'"; fi
         - if [ ${LICHE_PRINT_OK} = "true" ]; then add_option "-v"; fi
         - if [ ${LICHE_RECURSIVE} = "true" ]; then add_option "-r"; fi
         
