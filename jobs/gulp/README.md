@@ -16,11 +16,17 @@ It exposes `node_modules` as cache to other jobs of your pipeline. It allows you
    [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#transpilation){:target="_blank"}
    file which contains your tasks
 1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example: ```yaml include:
-      - remote: 'https://jobs.r2devops.io/gulp.yml' ```
+   started](/use-the-hub)). Example:
+
+    ```yaml
+    include:
+      - remote: 'https://jobs.r2devops.io/gulp.yml'
+    ```
+
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
 customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
+
 
 
 ### Example of .gitlab-ci.yml file
@@ -59,7 +65,7 @@ gulp:
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PROJECT_ROOT` <img width=70/>| Path to the directory containing `package.json`  | `.` |
+| `PROJECT_ROOT` <img width=105/>| Path to the directory containing `package.json`  | `.` |
 | `PACKAGE_MANAGER` | Package manager to install your dependencies `npm` or `yarn`  | `npm` |
 | `INSTALL_OPTIONS` | Additional options for the installation of `PACKAGE_MANAGER` <br/> *Ex: For npm `--save-dev`*  | ` ` |
 | `GULPFILE_PATH` | Path (from `PROJECT_ROOT`) to your  gulpfile `gulpfile.js` or `gulpfile.ts`| ` ` |
