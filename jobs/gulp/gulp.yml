@@ -18,7 +18,6 @@ gulp:
     # Deploy on pages
     PAGES_DEPLOY: "false"
     PAGES_FOLDER: "./website_build"
-
   script:
     # Working directory
     - cd $PROJECT_ROOT
@@ -39,7 +38,7 @@ gulp:
     - echo "Begin run tasks"
     - TASKS_LIST=$(echo $GULP_TASKS | tr ";" "\n")
     - for TASK in $TASKS_LIST; do
-    -   echo "Running: $TASK "
+    -   echo "Running \"$TASK\" "
     -   gulp -f "$GULPFILE_PATH" "$TASK"
     - done
 
@@ -49,7 +48,6 @@ gulp:
     -   cd $CI_PROJECT_DIR
     -   cp -r ${PROJECT_ROOT}/${GULP_OUTPUT_FOLDER} ${CI_PROJECT_DIR}/${PAGES_FOLDER}
     - fi
-
   artifacts:
     expose_as: "gulp artifact"
     paths:
