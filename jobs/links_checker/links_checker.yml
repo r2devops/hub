@@ -33,7 +33,7 @@ links_checker:
         - mkdir /liche && cd /liche
         - apk add --update nodejs npm curl && npm install junit-report-builder
 
-        - add_option() { export LICHE_OPTIONS="${LICHE_OPTIONS} ${1}"; }
+        - add_option() { echo "ADD OPTION ${1}"; export LICHE_OPTIONS="${LICHE_OPTIONS} ${1}"; }
         - |
             generate_report() {
                 cat ${CI_PROJECT_DIR}/linkchecker_logs
@@ -63,7 +63,11 @@ links_checker:
                     add_option "${CI_PROJECT_DIR}/${i}"
                 done
             fi
-        - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x \"${LICHE_EXCLUDE}\""; fi
+        - |
+            if [ ! -z ${LICHE_EXCLUDE} ]; then
+                add_option "-x ${LICHE_EXCLUDE}";
+                echo "Added options"
+            fi
         - if [ ${LICHE_PRINT_OK} = "true" ]; then add_option "-v"; fi
         - if [ ${LICHE_RECURSIVE} = "true" ]; then add_option "-r"; fi
         

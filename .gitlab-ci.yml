@@ -5,7 +5,8 @@ stages:
   - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/links_checker.yml?scope=0.yml'
+  # - remote: 'https://jobs.r2devops.io/links_checker.yml?scope=0.yml'
+  - remote: 'https://gitlab.com/r2devops/hub/-/raw/293-pipeline-hub-fix-link_checker/jobs/links_checker/links_checker.yml'
   - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
 
@@ -145,8 +146,16 @@ job_image_scan:
     expire_in: 30 days
     when: always
 
+links_checker:
+  variables:
+    LICHE_EXCLUDE: "^[^http]"
+    FAIL_ON_BROKEN: "true"
+  allow_failure: true
+  after_script:
+    - echo ${LICHE_OPTIONS}
+    - echo ${LICHE_EXCLUDE}
 
-# See https://docs.gitlab.com/ee/api/labels.html
+    # See https://docs.gitlab.com/ee/api/labels.html
 job_labels:
   image: python:3.9.1-alpine
   stage: project_setup
