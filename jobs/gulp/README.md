@@ -26,8 +26,7 @@ customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
 
-
-### Example of .gitlab-ci.yml file
+### Example of `.gitlab-ci.yml` file
 
 If you want to [change the default stage](/use-the-hub/#change-the-default-stage-of-job), or [customize your job](/use-the-hub/#global) have a look ont the example below 👇🏽
 
@@ -39,18 +38,17 @@ include:
   - remote: 'https://jobs.r2devops.io/gulp.yml'
 
 gulp:
+  stage: prepare-frontend
   variables:
     PROJECT_ROOT: "frontend/"
     GULP_TASKS: "generate-fonts; minify-css; minify-js; "
     GULPFILE_PATH: "config/gulpfile.js"
 ```
 
-
-
 ## Job details
 
 * Job name: `gulp`
-* Default stage: [`others`]
+* Default stage: `others`
 * Docker image: [`node:15.7-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
