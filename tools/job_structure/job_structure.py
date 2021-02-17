@@ -4,6 +4,7 @@ import os
 import logging
 import sys
 import yaml
+from yaml import full_load, YAMLError
 
 # Job variables
 JOBS_DIR = "jobs"
