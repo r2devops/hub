@@ -4,3 +4,7 @@ default_stage: build
 icon: 📒
 maintainer: thomasboni
 license: MIT
+labels:
+  - GitLab
+  - API
+  - Documentation
