@@ -65,14 +65,11 @@ def check_job_labels(job):
     if job_labels is None:
         logging.info(' 🚫 🏷  Missing label(s) for job Job label: "%s"',
              job)
-        print(' 🚫 🏷  Missing label(s) for job Job label: "%s"',
-             job)
     # Check if job lable are weel knonw
     else:
         difference_labels = [label for label in job_labels if label not in set_labels_list]
         if difference_labels != []:
             logging.info(' ⚠️  🏷  Label(s) unknown: "%s"',difference_labels)
-            print(' ⚠️  🏷  Label(s) unknown: "%s"',difference_labels)
 
 
 
