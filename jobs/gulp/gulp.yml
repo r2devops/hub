@@ -1,0 +1,56 @@
+#Job from R2Devops hub --> r2devops.io
+
+stages:
+  - others
+
+gulp:
+  stage: others
+  image:
+    name: node:15.7-buster
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    PACKAGE_MANAGER: "npm"
+    INSTALL_OPTIONS: ""
+    GULPFILE_PATH: "."
+    GULP_TASKS: ""
+    GULP_OUTPUT_FOLDER: "./build/"
+    # Deploy on pages
+    PAGES_DEPLOY: "false"
+    PAGES_FOLDER: "./website_build"
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run npm or yarn install
+    - $PACKAGE_MANAGER install $INSTALL_OPTIONS
+
+    # Install global gulp for npm
+    - if [ $PACKAGE_MANAGER == "npm" ]; then
+    -   $PACKAGE_MANAGER add --global gulp-cli
+    - fi
+
+    # Install global gulp for yarn
+    - if [ $PACKAGE_MANAGER == "yarn" ]; then
+    -   $PACKAGE_MANAGER global add gulp-cli
+    - fi
+
+    # Get and run all the tasks
+    - echo "Begin run tasks"
+    - TASKS_LIST=$(echo $GULP_TASKS | tr ";" "\n")
+    - for TASK in $TASKS_LIST; do
+    -   echo "Running \"$TASK\" "
+    -   gulp -f "$GULPFILE_PATH" "$TASK"
+    - done
+
+    # To deploy on pages
+    - if [ "$PAGES_DEPLOY" == "true" ]; then
+        # Pages folder must to be at the root of the repo
+    -   cd $CI_PROJECT_DIR
+    -   cp -r ${PROJECT_ROOT}/${GULP_OUTPUT_FOLDER} ${CI_PROJECT_DIR}/${PAGES_FOLDER}
+    - fi
+  artifacts:
+    expose_as: "gulp artifact"
+    paths:
+      - "${PROJECT_ROOT}/${GULP_OUTPUT_FOLDER}"
+      # To deploy on pages
+      - "${PAGES_FOLDER}"
