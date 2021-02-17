@@ -2,8 +2,6 @@
 
 This job installs `npm` or `yarn` dependencies listed in your `package.json` and installs
  gulp to run your tasks.
-It exposes `node_modules` as cache to other jobs of your pipeline. It allows you to run
-`npm install` only once in your pipeline.
 
 ## How to use it
 
