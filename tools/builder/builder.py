@@ -60,9 +60,6 @@ TEMPLATE_PLACEHOLDER = "placeholder.md.j2"
 TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
-# List of available labels for jobs
-labels_list = ["GitLab","Build","Container","Docker","PHP", "Testing","Utilities","Yarn", "Dependency scan", "Security","Python","API", "Documentation","Quality","SAST","Linter","Helm","DAST","Kubernetes","NPM"]
-set_labels_list = set(labels_list)
 
 index = {
     "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
