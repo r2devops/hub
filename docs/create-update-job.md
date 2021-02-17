@@ -5,8 +5,8 @@ This page describes how to create or update a job in the
 
 In order to contribute efficiently, we recommend you to know following topics:
 
-* [R2Devops hub job structure](#job-structure)
-* [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/)
+* [x] [R2Devops hub job structure](/job-structure/)
+* [x] [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
 
 ## Contributing workflow
 
@@ -18,16 +18,17 @@ The first step is to create your own copy of the
 [`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository to be
 able to work on it before merging your update in the real project.
 
-1. Go on the fork page creation: [`r2devops/hub new fork`](https://gitlab.com/r2devops/hub/-/forks/new)
+1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new)
 1. Select the group in which you want to create the fork
 
 ### 💻 Step 2: Work in your fork
 
-!!! note
+!!! error "Do not alter `.gitlab-ci.yml`"
     To leverage the R2Devops validaty and security checks on your job, do not
     update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
+
     If you alter it, we will not be able to merge your job in `r2devops/hub`
-    repository.
+    repository 😕
 
 1. If you want to add a new job, create a new directory dedicated to your job in `jobs/` folder
 1. Ensure to respect rules in this guide
@@ -36,9 +37,9 @@ able to work on it before merging your update in the real project.
 
 ### 🚀 Step 3: Merge request
 
-1. Ensure that the last pipeline in your fork passed before going further
-   (check it in `CI/CD > Pipelines`)
-1. Create a new merge request in your fork (`Merge Requests > New merge request`)
+!!! note "1. Ensure that the last pipeline in your fork passed before going further (check it in `CI/CD > Pipelines`)"
+
+??? note "2. Create a new merge request in your fork (`Merge Requests > New merge request`) 👇"
     1. Select branches
         * As `Source branch`, select the branch in which you have worked in
         your fork (usually `latest`)
@@ -50,8 +51,7 @@ able to work on it before merging your update in the real project.
             (DoD)
         * Add a description of your contribution with all information
           permitting us to understand what you have done and why. If your
-          contribution is related to an existing issue, add a reference.
-          Example:
+          contribution is related to an existing issue, add a reference:
             ```md
             ## Contribution
             Addition of a new job permitting to build go binaries. Issue
@@ -63,15 +63,17 @@ able to work on it before merging your update in the real project.
         * Add link to your job running and working in a publicly accessible
           Gitlab project
     1. If you want to allow commits from hub maintainers inside your fork
-       branche, check the box
+       branch, check the box
        [`Contribution`](https://docs.gitlab.com/ee/user/project/merge_requests/allow_collaboration.html)
         (this isn't available for protected branches like `latest`)
-1. In the newly created MR, ensure to fulfill all steps of the [job Definition
-   of Done](#job-definition-of-done) and tick related boxes
-1. Thanks a lot for your contribution 😀🎉 ! Now, we will take a look on your
-   contribution and merge it if everything is ok 👀 Meanwhile, you can join our
-   [Discord community](https://discord.gg/5QKpGqR), we love talking with our
-   contributors and users !
+
+!!! note "3. In the newly created MR, ensure to fulfill all steps of the [job Definition of Done](#job-definition-of-done) and tick related boxes"
+
+Thanks a lot for your contribution 😀🎉 !
+
+Now, we will take a look on your contribution and merge it if everything is ok
+👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR),
+we love talking with our contributors and users !
 
 
 ## Guidelines
@@ -80,18 +82,17 @@ able to work on it before merging your update in the real project.
     Following these guidelines is required to contribute in
     [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-Each jobs must:
+Each jobs must be compliant with following rules:
 
 * [ ] Be compliant with [job structure](/job-structure/)
-* [ ] Use the `image` option. Goal is to provide **plug and play** jobs working in
-  any environments thanks to containers
-* [ ] Use Docker image with a fixed tag. It shouldn't be `latest` or any tag that
-  will be overwritten
-* [ ] Use fixed versions to retrieves external tools
-* [ ] Use only resource with license compatible with the job licence and permits to
-  anyone to use it
-* [ ] Pass our Continuous Integration pipeline which includes security check jobs
-  (pipeline will be run automatically inside your fork)
+* [ ] Use the `image` option. Goal is to provide **plug and play** jobs working
+  in any environments thanks to containers
+* [ ] Use **fixed tag** for docker image and any external tool used inside the
+  job. It shouldn't be `latest` or any tag/version that will be overwritten
+* [ ] Use only resource with license compatible with the job licence and
+  permits to anyone to use it
+* [ ] Pass our Continuous Integration pipeline which includes security check
+  jobs (pipeline will be run automatically inside your fork)
 * [ ] Be compliant with [our job definition](/r2bulary/#job)
 
 
@@ -101,67 +102,186 @@ Each jobs must:
     Following these best practices is recommended to contribute in
     [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-### Job variables
+### 🧮 Variables
 
-* Declare variables using uppercase
-* Variables naming convention (to be defined, should we require the job name uppercase as prefix for all variables ? Think about a way to verify variables in hub pipeline and permit various configuration for on-premise #231)
+In order to be customizable, your job should use `variables`. This section
+permits to define environment variables, usable by the job script.
 
-### Choose the best docker image
+!!! tip
+    Set default values to your variables to reflect the most common use-case,
+    in this way, your job will remains plug-and-play while being customizable
 
-* Check if there is an image dedicated for the tool to run in the job
-    * Check if the image is official (+++)
-    * Check if the image is maintained (++)
-    * Check if the image is largely used (++)
-    * Check if the image is efficient to run the job (++) *difficult to check for the user*
-    * Check if the image use the latest version of the tool (how to check it automatically)(+)
-    * Check the size (smallest is the best, it should only contain essential tools, KISS) (+)
-    * Check if the image has versioning (not only latest) (-)
-* If no, check if there is an image already setup for the language of the tool (python, node, go...)
-    * Check if the image is official (+++)
-    * Check if the image is maintained (++)
-    * Check if the image is largely used (++)
-    * Check if the image is efficient to run the job (++) *difficult to check for the user*
-    * Check the size (smallest is the best, it should only contain essential tools, KISS) (+)
-    * Check if the image has versioning (not only latest) (-)
-    * Install the tool in the image using package manager (fixed version)
-* If no, use docker alpine and install tool in it. If the installation is too long in the job: create your own image (fixed version)
+Example of relevant situation to use variable:
 
+* File name
+* Path to files or folders
+* Any options/parameters used by the job
+* Enable or disable job features
+* Version of tools retrieved during the job
 
+Example for `newman` job:
 
-### About versions:
+=== "Job content"
 
-> The installed version of Doxygen must be specified as variable with the default value on the current latest version 1.8.18-r0
-> A fixed tag must be specified for the alpine image used
+    ```yaml
+    newman:
+        image: node:15.4.0
+        stage: dynamic_tests
+        variables:
+            NEWMAN_COLLECTION: "postman_collection.json"
+            NEWMAN_GLOBALS_FILE: ""
+            NEWMAN_ADDITIONAL_OPTIONS: ""
+            NEWMAN_JUNIT_REPORT: "newman-report.xml"
+            NEWMAN_FAIL_ON_ERROR: "true"
+            NEWMAN_ITERATIONS_NUMBER: "2"
+        script:
+            - npm install -g newman newman-reporter-junitfull
+            - if [[ ! -z ${NEWMAN_GLOBALS_FILE} ]]; then
+            -   NEWMAN_ADDITIONAL_OPTIONS+=" -g ${NEWMAN_GLOBALS_FILE}"
+            - fi
+            - if [[ ! ${NEWMAN_FAIL_ON_ERROR} == "true" ]]; then
+            -   NEWMAN_ADDITIONAL_OPTIONS+=" --suppress-exit-code"
+            - fi
+            - newman run ${NEWMAN_COLLECTION} -r cli,junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n ${NEWMAN_ITERATIONS_NUMBER} ${NEWMAN_ADDITIONAL_OPTIONS}
+        artifacts:
+            [...]
+    ```
+
+=== "Variables"
+
+    | Name | Description | Default |
+    | ---- | ----------- | ------- |
+    | `NEWMAN_COLLECTION` <img width=100/> | Name of the Postman collection <img width=175/> | `postman_collection.json` <img width=100/> |
+    | `NEWMAN_GLOBALS_FILE` | Name of the Postman globals file for [variables](https://learning.postman.com/docs/sending-requests/variables/) | ` ` |
+    | `NEWMAN_ADDITIONAL_OPTIONS` | Other [options](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/) you may want to use with Newman | ` ` |
+    | `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
+    | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
+
+### 🐳 Choose a Docker image
+
+!!! info
+    As described in [our guidelines](#guidelines), all jobs are run inside a
+    container instance, so they must specify Docker image to use. Depending of
+    your job, it can be tricky to find the perfect image.
+
+The better place to found a docker image is the [docker
+hub](https://hub.docker.com/search?q=&type=image). You can start your research
+there with following steps :
+
+1. Search for an image prepared with the tool you want to run
+    * This is the preferred situation with a ready-to-use docker image that
+      doesn't require any additional installation
+    * *Example for `mkdocs` job:
+      [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*
+    * If you found it, check it with general guidelines below
+1. If there isn't any image prepared with tool you want to run, search for more
+general images
+    * This case will require to install needed tool as first step of your job.
+      If the installation is long or heavy, you should considers to build your
+      own image with tool already installed
+    * The vast majority of operating system and languages provides official
+      images, choose the more appropriate for your job. Examples:
+      [`alpine`](https://hub.docker.com/_/alpine),
+      [`debian`](https://hub.docker.com/_/debian),
+      [`ubuntu`](https://hub.docker.com/_/ubuntu),
+      [`python`](https://hub.docker.com/_/python),
+      [`node`](https://hub.docker.com/_/node)
+1. If you decide to build your own image: the image must be stored in publicly
+reachable registry like Docker hub or Gitlab registry
+
+!!! summary "**General guidelines to choose the image**"
+    * If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is
+      the perfect image for your use case
+    * Else, following points should be considered to choose an image:
+        * The image must be versioned and not only with `latest` tag. If image
+          isn't versioned: it's not usable for your job
+        * It should be activelly maintained, with frequent updates and contains
+          recent versions
+        * The image should be small, containing only required tools
+        * The image should be efficient to run the job
+        * A large usage of the image can be a good indicator but take care, it
+          doesn't guarantee the quality neither security of the image
+
+### 📦 About artifact
+
+The vast majority of jobs produce a result. This result can be of different
+kinds:
+
+* Check report
+* Build result
+
+In both case, the result should be exposed by the job using
+[`artifact`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target=blank}
+option. It permits to pass artifact to another job of the pipeline and
+expose results to users.
+
+Artifact can be configured at different level of integration in Gitlab
+interface:
+
+1. Better integration: Gitlab [`artifacts:reports`](https://docs.gitlab.com/ee/ci/yaml/#artifactsreports){:target=blank}
+
+    This is a way to integrate report result in user-friendly way in Gitlab
+    interface. We encourage all job contributors to adapt their job output to a
+    format compatible with a Gitlab report.
+
+    ??? example "Example of `artifacts:reports:junit` report"
+        Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
+        use its output as `junit` report in `artifacts:repors:junit` section:
+        ```yaml
+        trivy_image:
+          [...]
+          artifacts:
+            reports:
+              junit: "$TRIVY_OUTPUT"
+        ```
+
+2. Quick integration with [`artifacts:expose_as`](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target=blank}
+
+    !!! info
+        In this case, you need to use `when: always` option under `artifacts`
+        if you want to expose result even if job fails.
+
+    This is a way to quickly integrate any format of report in Gitlab Merge
+    Request interface. Technically, you don't have to format your report ouput
+    in a specific format but we recommend to use `HTML` format. In this way,
+    the report is one-click readable from any Merge Request.
+
+    ??? example "Example of `artifacts:expose_as` report"
+        Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
+        use its output as `junit` report in `artifacts:repors:junit` section:
+        ```yaml
+        nmap:
+          [...]
+          artifacts:
+            expose_as: "nmap-report"
+            paths:
+              - "${HTML_OUTPUT}"
+            when: always
+        ```
+
+3. Simple artifact without integration
+
+    !!! info
+        In this case, you need to use `when: always` option under `artifacts`
+        if you want to expose result even if job fails.
+
+    ??? example "Example of `artifacts`"
+        Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
+        use its output as `junit` report in `artifacts:repors:junit` section:
+        ```yaml
+        job_name:
+          [...]
+          artifacts:
+            paths:
+              - "output"
+            when: always
+        ```
+
 
 ### Compliance with another job
 
 * Compliance with another job
-
-
-### About process:
-
-    The configuration file path must be a variable in the job with default value Doxygen
-    If the configuration file already exists: just run Doxygen with variable specifying path to conf file
-    Else, as you have started to do:
-        Select relevant configuration options in the doxygen doc
-        Add them in variables section of the job with the same default value that Doxygen
-        DO NOT Generate a default configuration file.
-        Create an empty the configuration file (using path specified in variable)
-        For all input variables, add them in the file, like:
-
-    - echo "HTML_OUTPUT=$DOXYGEN_HTML_OUTPUT" >> $DOXYGEN_CONFIGURATION
-    - echo "INPUT=$DOXYGEN_INPUT" >> $DOXYGEN_CONFIGURATION
-
-    Then, run doxygen like : - doxygen $DOXYGEN_CONFIGURATION
-
-### About artifact:
-
-* Use expose_as like in mkdocs job to expose the artifact in the MR
-> integration in MR widget ? expose_as ?
-> artifact retention
-
-
-### About compliance with pages job:
+* Compliance with pages
 
     Add this job to the list of documentation builder jobs in pages documentation
     The documentation output must be specified in a variable with the default value to documentation_build/ in order to be retrieved by pages job by default
@@ -183,11 +303,6 @@ TODO
 > Note about including a local job file
 
 
-### Job definition of done
-
-TODO
-
-
 ### Advises to keep your job generic
 
 TODO
@@ -203,12 +318,8 @@ TODO
 * Usage of `rules`, `before_script`, `after_Script`, ...
 
 
-### Continuous integration pipeline
-
-TODO: describe our CI/CD pipeline
-
-
-### TODO
+### TODO in another issue
 
 * Stage list in job file with only one stage: the one of the job
 * Add contact us at each blocking issue points
+* Describe our CI/CD pipeline

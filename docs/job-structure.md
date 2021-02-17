@@ -18,10 +18,10 @@ follow this standardized structure:
         ├── job.yml               # Job metadata
         ├── README.md             # Job documentation
         ├── versions              # Jobs changelogs
-        │   ├── job_picture.png
+        │   ├── 0.1.0.md
         │   └── ...
         └── screenshots           # Job screenshots
-            ├── 0.1.0.md
+            ├── job_picture.png
             └── ...
 ```
 
@@ -82,18 +82,18 @@ the following fields:
 
 **Example of `job.yml`:**
 
-    ```yaml
-    name: super_linter
-    description: Simple combination of various linters, to help validate the quality of your source code
-    default_stage: static_tests
-    icon: 🔎
-    maintainer: thomasboni
-    license: MIT
-    labels:
-        - GitLab
-        - Linter
-        - Quality
-    ```
+```yaml
+name: super_linter
+description: Simple combination of various linters, to help validate the quality of your source code
+default_stage: static_tests
+icon: 🔎
+maintainer: thomasboni
+license: MIT
+labels:
+    - GitLab
+    - Linter
+    - Quality
+```
 
 
 ## 📚 Job documentation
@@ -182,12 +182,17 @@ changes provided by this version.
     ```
 
 
-## 🗺 Screenshots
+## 🗺 Job screenshots
 
 Jobs can include screenshots or any pictures to improve documentation and
-provide an overview of what job does.
+provide an overview of what job does
 
-* You can add as many picture as you want in this folder but try to add only
-relevant images.
-* If you don't want to add any pictures, you have to add at least an empty file
-named `.gitkeep` to ensure the folder presence in git.
+You can add as many picture as you want in this folder but try to add only
+relevant images. You just have to put file inside the folder and they will be
+included in the documentation.
+
+Supported format: `.png`, `.jpeg`, `.jpg`
+
+!!! warning
+    If you don't want to add any pictures, you have to add at least an empty
+    file named `.gitkeep` to ensure the folder presence in git
