@@ -270,10 +270,9 @@ a.banner-link:hover {
 
 a.md-tabs__link>strong.job_tab {
     transition-delay: 60ms;
-    border: 1px solid black;
     padding: 0.5em;
     border-radius: 7px;
     background-color: white;
     color: #076E81;
-    box-shadow: black 2px 2px;
+    box-shadow: #014F5D 5px 5px;
 }
