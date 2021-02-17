@@ -60,10 +60,6 @@ TEMPLATE_PLACEHOLDER = "placeholder.md.j2"
 TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
-# List of available labels for jobs
-labels_list = ["GitLab","Build","Container","Docker","PHP", "Testing","Utilities","Yarn", "Dependency scan", "Security","Python","API", "Documentation","Quality","SAST","Linter","Helm","DAST","Kubernetes","NPM"]
-set_labels_list = set(labels_list)
-
 index = {
     "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
     "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
@@ -302,31 +298,6 @@ def get_linked_issues(job_name, opened=True):
     create_issue_url = f"{issues_base_url}/issues/new?{quote(create_issue_payload, safe='=')}%20-%20"
     return (linked_issues, linked_issues_url, create_issue_url)
 
-
-def check_job_labels(job, job_labels):
-    """Check and logging if job labels are not in the knonw label set_labels_list
-
-    Parameters:
-    -----------
-    job : str
-        The name of the job
-    job_labels : list
-        List of job labels
-
-    Returns:
-    --------
-    """
-    # If job has no label
-    if job_labels is None:
-        logging.info(' 🚫 🏷  Missing label(s) for job Job label: "%s"',
-             job)
-    # Check if job lable are weel knonw
-    else:
-        difference_labels = [label for label in job_labels if label not in set_labels_list]
-        if difference_labels != []:
-            logging.info(' ⚠️  🏷  Label(s) unknown: "%s"',difference_labels)
-
-
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
 
@@ -365,13 +336,11 @@ def create_job_doc(job):
     job_labels = conf.get("labels")
     linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
-    # Check job labels_list
-    check_job_labels(job,job_labels)
-
     # Write final file
     logging.info('Build of documentation file for job "%s" in stage "%s"',
                  job,
                  stage)
+
     try:
         with open(mkdocs_file_path, 'w+') as doc_file:
             env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
