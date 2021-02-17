@@ -303,30 +303,6 @@ def get_linked_issues(job_name, opened=True):
     return (linked_issues, linked_issues_url, create_issue_url)
 
 
-def check_job_labels(job, job_labels):
-    """Check and logging if job labels are not in the knonw label set_labels_list
-
-    Parameters:
-    -----------
-    job : str
-        The name of the job
-    job_labels : list
-        List of job labels
-
-    Returns:
-    --------
-    """
-    # If job has no label
-    if job_labels is None:
-        logging.info(' 🚫 🏷  Missing label(s) for job Job label: "%s"',
-             job)
-    # Check if job lable are weel knonw
-    else:
-        difference_labels = [label for label in job_labels if label not in set_labels_list]
-        if difference_labels != []:
-            logging.info(' ⚠️  🏷  Label(s) unknown: "%s"',difference_labels)
-
-
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
 
@@ -364,9 +340,6 @@ def create_job_doc(job):
     job_icon = conf.get("icon")
     job_labels = conf.get("labels")
     linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
-
-    # Check job labels_list
-    check_job_labels(job,job_labels)
 
     # Write final file
     logging.info('Build of documentation file for job "%s" in stage "%s"',
