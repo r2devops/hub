@@ -102,7 +102,9 @@ Each jobs must be compliant with following rules:
     Following these best practices is recommended to contribute in
     [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-### 🧮 Variables
+### 🤖 Job definition
+
+#### 🧮 Variables
 
 In order to be customizable, your job should use `variables`. This section
 permits to define environment variables, usable by the job script.
@@ -157,7 +159,7 @@ Example for `newman` job:
     | `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
     | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
 
-### 🐳 Choose a Docker image
+#### 🐳 Docker image
 
 !!! info
     As described in [our guidelines](#guidelines), all jobs are run inside a
@@ -202,18 +204,22 @@ reachable registry like Docker hub or Gitlab registry
         * A large usage of the image can be a good indicator but take care, it
           doesn't guarantee the quality neither security of the image
 
-### 📦 About artifact
+#### 📦 Artifacts
 
 The vast majority of jobs produce a result. This result can be of different
 kinds:
 
-* Check report
+* Test report
 * Build result
 
 In both case, the result should be exposed by the job using
 [`artifact`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target=blank}
 option. It permits to pass artifact to another job of the pipeline and
 expose results to users.
+
+!!! info
+    In the case of a test report, you need to use `when: always` option under
+    `artifacts` if you want to expose result even if job fails.
 
 Artifact can be configured at different level of integration in Gitlab
 interface:
@@ -237,10 +243,6 @@ interface:
 
 2. Quick integration with [`artifacts:expose_as`](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target=blank}
 
-    !!! info
-        In this case, you need to use `when: always` option under `artifacts`
-        if you want to expose result even if job fails.
-
     This is a way to quickly integrate any format of report in Gitlab Merge
     Request interface. Technically, you don't have to format your report ouput
     in a specific format but we recommend to use `HTML` format. In this way,
@@ -261,10 +263,6 @@ interface:
 
 3. Simple artifact without integration
 
-    !!! info
-        In this case, you need to use `when: always` option under `artifacts`
-        if you want to expose result even if job fails.
-
     ??? example "Example of `artifacts`"
         Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
         use its output as `junit` report in `artifacts:repors:junit` section:
@@ -277,8 +275,60 @@ interface:
             when: always
         ```
 
+#### 🔩 Keep genericity
 
-### Compliance with another job
+Jobs of the hub should remains as generic as possible, in order to ensure it:
+
+* Try to avoid using `rules` options that is strongly linked to the context of
+  user and so should be set by the user. Also, some feature requiring specific
+  workflows, as [Gitlab Merge
+  Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/){:target=blank}
+  are more easily implemented by users if you don't specify `rules` in your
+  job.
+* Try to avoid using `before_script` and `after_script` to let users the
+  possibility to redefine these options while exploiting to the maximum your
+  job.
+
+!!! info
+    Jobs of the hub can be dynamically
+    [`customized`](/use-the-hub/#jobs-customization) by users. Customization
+    works thanks to overriding of job options, so, in order to
+
+
+### 📖 Job documentation
+
+As described in [R2Devops/hub job
+structure](/job-structure/#job-documentation), documentation of a job is
+written inside its `README.md` file.
+
+!!! tip
+    Don't hesitate to copy the documentation from another job as starting
+    point. Example: raw content of [openapi
+    `README.md`](https://gitlab.com/r2devops/hub/-/raw/latest/jobs/openapi/README.md)
+
+We recommend to include following sections in your documentation:
+
+* Objective: describe the goal of your goal
+* How to use it: a list of steps to quickly use your job
+* Job details: describes details of job (name, docker image, stage, etc)
+* Variables: table listing variables used by the job (name, description,
+  mandatory)
+* Artifacts: describes artifact defined by the job
+
+### 🚄 Compliance with another job
+
+Several jobs of the hub can be used together without any configuration. This is
+currently implemented for all jobs producing an `HTML` output and the job
+[`pages`](/jobs/deploy/pages/) which deploys the `HTML` on a webserver.
+
+!!! info
+    This feature is empowered by the `artifacts` option: jobs producing a
+    static website output give it to the `pages` job trough an artifact stored
+    in a standard path: `${CI_PROJECT_DIR}/website_build`.
+
+So, if your job produce an static website output, ensure to store the result of
+the build in `${CI_PROJECT_DIR}/website_build` and to configure this path as
+artifact. See example in [`mkdocs`](/jobs/build/mkdocs/) job.
 
 * Compliance with another job
 * Compliance with pages
@@ -287,39 +337,26 @@ interface:
     The documentation output must be specified in a variable with the default value to documentation_build/ in order to be retrieved by pages job by default
 
 
-### Documentation of your job `README.md`
+### 🧪 Test your job
 
-TODO
+In order to test your job before merging it into the hub, we recommend you to
+follow these steps:
 
-### How to test my job
+1. Test the behavior of your job inside a local container on your machine (with
+   the same image than you want to use for the job). To simulate the Gitlab job
+   that will run it on your project you can mount the repository folder inside
+   the container:
+      ```shell
+      # Example if your job will uses node:15.7-buster as Docker image docker run -v
+      /path/to/your/repo:/mnt --entrypoint "/bin/sh" -it node:15.7-buster
+      ```
 
-TODO
+2. Create your job configuration in a repository and test it locally using
+   [`include
+   local`](https://docs.gitlab.com/ee/ci/yaml/#includelocal){:target=blank}
+   instead of `remote` from the hub. Example:
 
-* How can I test my job locally/easily ?
-> Locally ? using the doxygen binary in my own operating system ? (brew install...)
-> Using a blank repo in gitlab ?
-> ex: https://gitlab.com/coconux/doxygen and link with the job in WIP Ex: - remote: 'https://gitlab.com/go2scale/hub/-/raw/111-add-doxygen-job/jobs/doxygen/doxygen.yml'
-> How can I check the hub documentation went well ?
-> Note about including a local job file
-
-
-### Advises to keep your job generic
-
-TODO
-
-* Try to avoid using `rules`: in majority of cases, `rules` of a job are
-  specific to the project on which they will be used. If you use it, your job
-  will loose its genericity. Also, some feature requiring specific workflows,
-  as [Gitlab Merge
-  Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/)
-  are more easily implemented by users if you don't specify `rules` in your
-  job.
-
-* Usage of `rules`, `before_script`, `after_Script`, ...
-
-
-### TODO in another issue
-
-* Stage list in job file with only one stage: the one of the job
-* Add contact us at each blocking issue points
-* Describe our CI/CD pipeline
+    ```yaml
+    include:
+        - local: 'my-work-in-progress-job.yml'
+    ```

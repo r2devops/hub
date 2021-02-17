@@ -33,7 +33,11 @@ This file must have the same name that the job with the `yml` extension:
 !!! info
     * Jobs of the hub uses the Gitlab CI/CD configuration format
     * Jobs of the hub must specify a Docker image to be run in a container
-    * See [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/)
+    * See [GitLab CI/CD pipeline configuration
+      reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}
+    * See [R2Devops guidelines and best
+      practices](/create-update-job/#guidelines) about
+      job definition
 
 Job definition usually contains the following fields:
 
@@ -42,8 +46,6 @@ Job definition usually contains the following fields:
 * **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}** (mandatory): this is the heart of the job. It contains a list of shell commands to run the job
 * **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: variables used by the `script` part of the job to customize its behaviour
 * **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
-
-See our Best Practices and guidelines: TODO LINK
 
 **Example of job definition [`gitleaks.yml`](https://r2devops.io/jobs/static_tests/gitleaks/):**
 
@@ -77,8 +79,11 @@ the following fields:
 | `maintainer` | Gitlab username of the maintainer | Yes |
 | `license` | Open-source licence for the job. You can choose between `Apache-2.0` and `MIT` | Yes |
 | `labels` | List of label describing the job | No |
-| `images` | https://gitlab.com/r2devops/hub/-/merge_requests/129  | TODO |
-| `tools` | https://gitlab.com/r2devops/hub/-/merge_requests/129  | TODO |
+
+<!-- TODO after https://gitlab.com/r2devops/hub/-/merge_requests/129
+| `images` | TODO | TODO |
+| `tools` | TODO | TODO |
+-->
 
 **Example of `job.yml`:**
 
