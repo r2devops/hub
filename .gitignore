@@ -1,4 +1,5 @@
 site/
-docs/jobs/**/*
-!docs/jobs/**/.pages
+docs/jobs/**/*.md
+docs/images/jobs
 **/.DS_Store
+.idea

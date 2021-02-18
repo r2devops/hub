@@ -1,36 +1,44 @@
 stages:
   - static_tests
+  - project_setup
   - build
-  - deployment
+  - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/1.2.0/mkdocs.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/0.2.0/pages.yml?scope=0.yml'
-
-mkdocs:
-  variables:
-    PIPENV_PIPFILE: tools/builder/Pipfile
-  before_script:
-    - pip install pipenv && pipenv install
-    - pipenv run python tools/builder/builder.py
-    - pip3 install mkdocs-awesome-pages-plugin==2.4.0 # temporary, it will be removed after #202
-
-pages:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "latest"'
+  - remote: 'https://jobs.r2devops.io/links_checker.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
 
 ci_linter:
-  image: golang:1.15.2-alpine3.12
   stage: static_tests
+  image:
+    name: alpine/httpie:2.4.0
+    entrypoint: [""]
+  variables:
+    GITLAB_CI_LINT_URL: "https://gitlab.com/api/v4/ci/lint?include_merged_yaml=true"
+    JOB_FILES_EXTENSION: ".yml"
   script:
-    - apk add --no-cache git
-    - go get gitlab.com/orobardet/gitlab-ci-linter
+    - apk add --no-cache jq
+    - mkdir ci_linter_reports
     - for JOB_PATH in jobs/*; do
+    -   echo "Start checking ${JOB_PATH}/${JOB} using Gitlab CI linter API"
     -   JOB=$(basename ${JOB_PATH})
-    -   gitlab-ci-linter ${JOB_PATH}/${JOB}.yml
+    -   jq --null-input --arg yaml "$(cat ${JOB_PATH}/${JOB}${JOB_FILES_EXTENSION})" '.content=$yaml' | http --print 'b' --check-status "$GITLAB_CI_LINT_URL" Content-Type:"application/json" PRIVATE-TOKEN:${API_TOKEN} > ci_linter_reports/${JOB}.json
+    -   if [ $(jq -r '.status' ci_linter_reports/${JOB}.json) == "valid" ]; then
+    -     echo "👍 job ${JOB_PATH}/${JOB} is valid"
+    -   else
+    -     echo "👎 job ${JOB_PATH}/${JOB} is invalid"
+    -     jq '.' ci_linter_reports/${JOB}.json
+    -     exit 1
+    -   fi
     - done
+  artifacts:
+    expose_as: "job_ci_lint"
+    paths:
+      - ci_linter_reports/
+    when: always
 
-structure:
+job_structure:
   image: python:3.9.1-alpine
   stage: static_tests
   variables:
@@ -42,18 +50,144 @@ structure:
   script:
     - pipenv run python3 tools/job_structure/job_structure.py
   artifacts:
+    expose_as: "job_structure"
+    paths:
+      - ${JOB_LOGFILE}
+    when: always
+
+job_customs:
+  image: python:3.9.1-alpine
+  stage: static_tests
+  variables:
+    PIPENV_PIPFILE: tools/job_customs/Pipfile
+    JOB_LOGFILE: "job_customs.log"
+  before_script:
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+  script:
+    - pipenv run python3 tools/job_customs/job_customs.py
+  artifacts:
+    expose_as: "jobs_customs"
+    paths:
+      - ${JOB_LOGFILE}
+
+job_image_scan:
+  image: docker:19.03
+  stage: static_tests
+  services:
+    - name: docker:19.03-dind
+      entrypoint: ["env", "-u", "DOCKER_HOST"]
+      command: ["dockerd-entrypoint.sh"]
+  variables:
+    PIPENV_PIPFILE: tools/job_image/Pipfile
+    JOB_LOGFILE: "job_image.log"
+    OUTPUT_DIR: "scan_output"
+
+    TRIVY_EXIT_ON_SEVERITY: ""
+    TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
+    TRIVY_EXIT_CODE: 0
+    TRIVY_VULN_TYPE: "os,library"
+    TRIVY_NO_PROGRESS: "false"
+    TRIVY_OUTPUT: "junit-report.xml"
+    TRIVY_IGNOREFILE: .trivyignore
+    TRIVY_CACHE_DIR: .trivycache/
+    TRIVY_FORMAT: "template"
+    TEMPLATE_NAME: "junit.tpl"
+    TRIVY_CLEAR_CACHE: "false"
+    TRIVY_IGNORE_UNFIXED: "false"
+    TRIVY_DEBUG: "false"
+
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    TRIVY_VERSION: "0.9.2"
+    TRIVY_REMOTE: ""
+    TRIVY_TIMEOUT: ""
+    TRIVY_LIGHT: "false"
+    TRIVY_DOWNLOAD_DB_ONLY: "false"
+    TRIVY_TOKEN: ""
+    TRIVY_QUIET: "false"
+    TRIVY_SKIP_UPDATE: "false"
+
+  before_script:
+    - apk add --no-cache python3 py3-pip
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+
+    - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+    - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+    - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
+
+    - mkdir ${OUTPUT_DIR}
+  script:
+    - for JOB in $(ls -A jobs); do
+    -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
+    -   if [ ! -z ${IMAGE} ]; then
+    -     NAME=$(basename ${IMAGE})
+    -     ./trivy --template "@${TEMPLATE_NAME}" -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
+    -     if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
+    -       ./trivy --template "@${TEMPLATE_NAME}" --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
+    -     fi
+    -   fi
+    -   IMAGE=""
+    - done
+  cache:
+    paths:
+      - "$TRIVY_CACHE_DIR"
+  artifacts:
+    expose_as: "job_image_scan"
+    paths:
+      - "${JOB_LOGFILE}"
+      - "${OUTPUT_DIR}"
+    reports:
+      junit:
+        - "${OUTPUT_DIR}/*.xml"
+    expire_in: 30 days
+    when: always
+
+links_checker:
+  variables:
+    LICHE_EXCLUDE: "^[^http]"
+    FAIL_ON_BROKEN: "true"
+  allow_failure: true
+
+# See https://docs.gitlab.com/ee/api/labels.html
+job_labels:
+  image: python:3.9.1-alpine
+  stage: project_setup
+  variables:
+    PIPENV_PIPFILE: tools/job_labels/Pipfile
+    JOB_LOGFILE: "job_labels.log"
+  before_script:
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+  script:
+    - pipenv run python3 tools/job_labels/job_labels.py
+  artifacts:
+    expose_as: "job_labels"
     paths:
       - ${JOB_LOGFILE}
     expire_in: 30 days
     when: always
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+
+
+mkdocs:
+  variables:
+    PIPENV_PIPFILE: tools/builder/Pipfile
+  before_script:
+    - pip install pipenv && pipenv install
+    - pipenv run python tools/builder/builder.py
+
 
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 release:
+  stage: deploy
   image:
     name: alpine/httpie:2.2.0
     entrypoint: [""]
-  stage: deployment
   variables:
     PIPENV_PIPFILE: tools/notify/Pipfile
   before_script:
@@ -90,5 +224,9 @@ release:
 
       done
     done
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+pages:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

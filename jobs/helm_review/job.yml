@@ -8,3 +8,7 @@ images:
   "lachlanevenson/k8s-helm": 'v3.4.2'
 tools:
   helm: 3.4.2
+labels:
+  - GitLab
+  - Helm
+  - Kubernetes

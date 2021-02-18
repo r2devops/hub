@@ -9,3 +9,7 @@ images:
 tools:
   xsltproc: 'latest'
   nmap: 'latest'
+labels:
+  - GitLab
+  - Security
+  - Testing

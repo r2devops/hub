@@ -48,7 +48,7 @@ doxygen:
       # The HTML_OUTPUT tag is used to specify where the HTML docs will be put. If a relative path is entered the value of OUTPUT_DIRECTORY will be put in front of it.
       # The default directory is: html.
       # This tag requires that the tag GENERATE_HTML is set to YES.
-      DOXYGEN_HTML_OUTPUT: "documentation_build/"
+      DOXYGEN_HTML_OUTPUT: "website_build/"
 
       # The HTML_EXTRA_STYLESHEET tag can be used to specify additional user-defined cascading style sheets that are included after the standard style sheets created by doxygen.
       # Using this option one can overrule certain style aspects. This is preferred over using HTML_STYLESHEET since it does not replace the standard style sheet and is therefore more robust against future updates.
@@ -83,7 +83,7 @@ doxygen:
        # Include config Doxyfile and override default variables
        - if [ ! -f "$DOXYGEN_CONFIGFILE" ]; then
        -   touch ${DOXYGEN_CONFIGFILE}
-       -   echo "PROJECT_NAME=${DOXYGEN_PROJECT_NAME}" >> ${DOXYGEN_CONFIGFILE}
+       -   echo 'PROJECT_NAME="'${DOXYGEN_PROJECT_NAME}'"' >> ${DOXYGEN_CONFIGFILE}
        -   echo "INPUT=${DOXYGEN_INPUT}" >> ${DOXYGEN_CONFIGFILE}
        -   echo "OUTPUT_DIRECTORY=${DOXYGEN_OUTPUT_DIRECTORY}" >> ${DOXYGEN_CONFIGFILE}
        -   echo "OUTPUT_LANGUAGE=${DOXYGEN_OUTPUT_LANGUAGE}" >> ${DOXYGEN_CONFIGFILE}

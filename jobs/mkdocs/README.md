@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Build HTML documentation form Markdown source using
 [Mkdocs](https://www.mkdocs.org/){:target="_blank"}. All requirements to use [Material for
@@ -41,7 +41,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `MKDOCS_OUTPUT_PATH` | Output directory path | `/documentation_build` |
+| `MKDOCS_OUTPUT_PATH` | Output directory path | `website_build/` |
 
 ### Artifacts
 

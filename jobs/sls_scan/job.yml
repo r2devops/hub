@@ -6,3 +6,7 @@ maintainer: FulcrandG
 license: MIT
 images:
   "shiftleft/sast-scan": 'v1.9.29'
+labels:
+  - GitLab
+  - Security
+  - SAST

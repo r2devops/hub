@@ -8,3 +8,8 @@ images:
   "zricethezav/gitleaks": 'v6.1.2'
 tools:
   gitleaks: 6.1.2
+
+labels:
+  - GitLab
+  - Security
+  - SAST

@@ -6,17 +6,17 @@ openapi:
   stage: build
   variables:
       API_DEF_LOCATION: "openapi.json"
-      SWAGGER_OUTPUT: "/documentation_build"
+      SWAGGER_OUTPUT: "website_build/"
       SWAGGERUI_VERSION: "v3.37.0"
   script:
-      - apk add git 
+      - apk add git
       - git clone --depth 1 --branch ${SWAGGERUI_VERSION} https://github.com/swagger-api/swagger-ui.git ./swaggerui
-      - mkdir ${CI_PROJECT_DIR}${SWAGGER_OUTPUT}
-      - mv swaggerui/dist/* ${CI_PROJECT_DIR}${SWAGGER_OUTPUT}/
-      - cp $API_DEF_LOCATION ${CI_PROJECT_DIR}${SWAGGER_OUTPUT}/
-      - sed -i "s|https://petstore.swagger.io/v2/swagger.json|$(basename $API_DEF_LOCATION)|g" ${CI_PROJECT_DIR}${SWAGGER_OUTPUT}/index.html
+      - mkdir ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
+      - mv swaggerui/dist/* ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
+      - cp $API_DEF_LOCATION ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
+      - sed -i "s|https://petstore.swagger.io/v2/swagger.json|$(basename $API_DEF_LOCATION)|g" ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}/index.html
   artifacts:
       when: always
       expose_as: "OpenAPI Build"
       paths:
-          - ${CI_PROJECT_DIR}${SWAGGER_OUTPUT}
+          - ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}

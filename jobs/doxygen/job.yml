@@ -6,6 +6,8 @@ maintainer: coconux
 license: MIT
 images:
   "alpine": "3.12.1"
-when: always
 tools:
   doxygen: '1.8.18-r0'
+labels:
+  - GitLab
+  - Documentation

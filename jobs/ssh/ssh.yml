@@ -1,0 +1,48 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+ssh:
+  image: alpine:3
+  stage: deploy
+  variables:
+    TARGET_HOST: ''
+    SHELL_COMMAND: ''
+    SSH_USER: ''
+    SSH_PORT: '22'
+    SSH_OUTPUT_FILE: 'ssh_output.txt'
+  script:
+    # Check if mandatory variables are set
+    - if [ -z "$SSH_PRIVATE_KEY" ]; then
+    -   echo '[ERROR] You must provide a variable $SSH_PRIVATE_KEY. See documentation -> https://r2devops.io/jobs/deployment/ssh/'
+    -   exit 1
+    - elif [ -z "$SSH_USER" ]; then
+    -   echo '[ERROR] You must provide a variable $SSH_USER. See documentation -> https://r2devops.io/jobs/deployment/ssh/'
+    -   exit 1
+    - elif [ -z "$SHELL_COMMAND" ]; then
+    -   echo '[ERROR] You must provide a variable $SHELL_COMMAND. See documentation -> https://r2devops.io/jobs/deployment/ssh/'
+    -   exit 1
+    - elif [ -z "$TARGET_HOST" ]; then
+    -   echo '[ERROR] You must provide a variable $TARGET_HOST. See documentation -> https://r2devops.io/jobs/deployment/ssh/'
+    -   exit 1
+    - fi
+    - apk add openssh-client
+    - mkdir -m 700 -p ~/.ssh
+    # $SSH_PRIVATE_KEY can contain directly the key or it can be a path to a file
+    - if [ -f "$SSH_PRIVATE_KEY" ]; then
+    -   cp "$SSH_PRIVATE_KEY" ~/.ssh/private_key
+    -   echo >> ~/.ssh/private_key
+    - else
+    -   echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/private_key
+    - fi
+    - chmod 700 ~/.ssh/private_key
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/private_key -p $SSH_PORT -l $SSH_USER $TARGET_HOST "$SHELL_COMMAND" 2>&1 | tee "$SSH_OUTPUT_FILE"
+  artifacts:
+    when: always
+    expose_as: "SSH output"
+    paths:
+      - "$SSH_OUTPUT_FILE"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual

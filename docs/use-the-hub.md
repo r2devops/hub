@@ -2,10 +2,10 @@
 
 ## 📝 Prerequisites
 
-- 🦊  Manage your project in Gitlab
+- 🦊  Manage your project in Gitlab and understand what is [CI/CD with Giltab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
 - ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
-- 🔫  Be aware each file modification in your project will trigger the pipeline
-- 🗝  Have access to the Pipelines page in your Gitlab project to see the pipeline execution
+- 🔫  Be aware each file modification in your project will trigger the [Pipeline](/r2bulary/#pipeline)
+- 🗝  Have access to the pipelines page in your Gitlab project to see the pipeline execution
 
 ## ⏳ Quick setup
 
@@ -19,15 +19,18 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
       - static_tests
       - build
       - dynamic_tests
+      - provision
       - review
-      - deployment
+      - release
+      - deploy
+      - others
     ```
 
     !!! info
         Check [stages](#stages) section to get more information about this list
         or if you already have a configuration with different stages.
 
-2. Select jobs you want in [Jobs section](/jobs/) and add their URL at the end
+2. Select Jobs you want in [jobs section](/jobs/) and add their URL at the end
    of your `.gitlab-ci.yml` file:
 
     ```yaml
@@ -41,7 +44,7 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
 
         By default, the `latest` version of a job is used. You can choose to
         use a specific version using a `tag`. Available tags are described for
-        each job in [Jobs section](/jobs/). Description of `tag` format is
+        each job in [jobs section](/jobs/). Description of `tag` format is
         available in [Versioning page](/versioning/).
 
         Once your pipeline is functional, we recommend to use a specific version
@@ -73,8 +76,11 @@ stages:
   - static_tests
   - build
   - dynamic_tests
+  - provision
   - review
-  - deployment
+  - release
+  - deploy
+  - others
 
 # Jobs from g2s hub
 include:
@@ -101,11 +107,14 @@ unit_tests:
 
 By default, each job from the hub is a part of on these stages:
 
-* **🔎 Static_tests:** static tests launched on repository file
-* **📦 Build:** build and packaging of software
-* **🛡 Dynamic_tests:** dynamic tests launched on a running version of the software
-* **🙋 Review:** deployment of the software in an isolated review environment
-* **🚀 Deployment:** deployment of the software on real environments
+* **🔎 Static_tests:** static testing of  repository files
+* **🧱 Build:** building and packaging of software
+* **🔥 Dynamic_tests:** dynamic testing of a running version of the software
+* **🛠 Provision:** preparation of the software infrastructure
+* **👌 Review:** deployment of the software in an isolated review environment
+* **🏷 Release:** releasing and tagging of the software
+* **🚀 Deploy:** deployment of the software on environments
+* **🦄 Others:** all other magic jobs not included in previous stages
 
 This is an efficient and simple workflow. Nevertheless, if you want to use your
 own custom stage list: you can re-declare yourself the stage of any job from
@@ -143,6 +152,20 @@ trivy_image:
     TRIVY_SEVERITY: "CRITICAL"
 ```
 
+### ✏ Change the default stage of job
+
+If you want to use your own stage name it's possible to do so when including
+your job.
+
+```yaml
+include:
+  - remote: 'https://jobs.r2devops.io/trivy_image.yml'
+
+trivy_image:
+  stage: security
+```
+
+
 ### 🐳 Advanced: `services`
 
 You may want one of your job to interact with a container instance (API,
@@ -168,3 +191,5 @@ nmap:
     - name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
       alias: app
 ```
+
+--8<-- "includes/abbreviations.md"

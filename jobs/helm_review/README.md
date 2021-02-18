@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} charts as a review environment when a pipeline is run in a merge request
 

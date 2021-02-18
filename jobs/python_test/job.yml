@@ -6,3 +6,7 @@ maintainer: FulcrandG
 license: MIT
 images:
   "python": '3.8'
+labels:
+  - GitLab
+  - Python
+  - Testing

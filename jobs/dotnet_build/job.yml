@@ -8,3 +8,7 @@ images:
   "alpine": '3.12.1'
 tools:
   .NET: '$DOTNET_VERSION'
+labels:
+  - GitLab
+  - .NET
+  - Build

@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Build a complete HTML documentation based on a PHP Project using [DocBlocks](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html){:target="_blank"} from [PHPDoc](https://www.phpdoc.org/){:target="_blank"}.
 
@@ -35,7 +35,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PHPDOC_OUTPUT`<img width=100/> | Output directory path<img width=175/> | `/documentation_build` <img width=100/>|
+| `PHPDOC_OUTPUT`<img width=100/> | Output directory path<img width=175/> | `website_build/` <img width=100/>|
 | `PHPDOC_CONFIG_FILE` | Specific `phpdoc.dist.xml` file to use | ` ` |
 | `PHPDOC_TITLE` | Custom title for documentation | ` ` |
 | `PHPDOC_VERBOSITY` | Print more logs in the job | ` ` |

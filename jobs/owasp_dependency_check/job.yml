@@ -9,3 +9,7 @@ images:
 tools:
   .NET: '$DOTNET_VERSION'
   dependency-check: 6.0.3
+labels:
+  - GitLab
+  - Security
+  - Dependency management

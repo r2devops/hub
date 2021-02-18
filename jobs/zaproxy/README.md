@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Run a Dynamic Application Security Testing (DAST) in a docker image
 using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.

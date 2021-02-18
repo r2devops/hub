@@ -8,3 +8,8 @@ images:
   "node": '15.4.0'
 tools:
   newman: 'latest'
+labels:
+  - GitLab
+  - Robustness
+  - Testing
+  - API

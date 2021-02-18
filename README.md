@@ -98,6 +98,16 @@ mkdocs serve
 
 ## How to update tools
 
+### Guidelines
+
+For `pyhton` tools: 
+
+* Pylint note >= 9
+* Usage of logging
+* Usage of argparse when args are required
+* [`Format`](https://docs.python.org/3/library/functions.html?highlight=format#format) must be used instead of `%s` or string concatenation with `+`
+* Docstring format compliant with [Google styleguide](https://google.github.io/styleguide/pyguide.html#244-decision)
+
 ### Requirements
 
 Each tools have their own `Pipfile` in their folder to manage their

@@ -8,3 +8,7 @@ images:
   "node": "12.18.3-alpine3.12"
 tools:
   ApiDoc: "$APIDOC_VERSION"
+labels:
+  - GitLab
+  - API
+  - Documentation

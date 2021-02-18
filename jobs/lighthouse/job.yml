@@ -8,3 +8,9 @@ images:
   "justinribeiro/lighthouse": 'latest'
 tools:
   lighthouse: 'latest'
+labels:
+  - GitLab
+  - Testing
+  - Quality
+  - Security
+  - Performance

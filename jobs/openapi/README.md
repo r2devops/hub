@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 Creates an interactive version of an API documentation (see [demo](https://petstore.swagger.io/){:target="_blank"})
 with [Swagger UI](https://swagger.io/tools/swagger-ui/){:target="_blank"}. It uses a [OpenAPI specifications](https://swagger.io/specification/){:target="_blank"}
@@ -34,7 +34,7 @@ This job let you the possibility to change SwaggerUI version (see [versions](htt
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `API_DEF_LOCATION` <img width=250/> | Path to your OpenAPI file in your repository <img width=400/> | `openapi.json` |
-| `SWAGGER_OUTPUT` | Output directory path | `/documentation_build` |
+| `SWAGGER_OUTPUT` | Output directory path | `website_build/` |
 | `SWAGGERUI_VERSION` | Version of SwaggerUI (see [versions](https://github.com/swagger-api/swagger-ui#compatibility){:target="_blank"}) | `v3.37.0` |
 
 ### Artifacts

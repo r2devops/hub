@@ -1,4 +1,4 @@
-## Description
+## Objective
 
 This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} which is a combination of various vulnerability scanners for different languages to help detect those in your project. This job permit to fully integrate it in Gitlab (sls-scan was developped to be used as a pre-commit and in CI directly).
 
@@ -11,7 +11,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
    behavior, check the [variables section](#variables)
 2. Choose a version in [version list](#versions)
 3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/getting-started)). Example:
+   started](/use-the-hub)). Example:
 
     ```yaml
     include:

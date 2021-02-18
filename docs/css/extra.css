@@ -26,6 +26,10 @@
   width:20%
 }
 
+.small_r2bulary{
+  width:15%
+}
+
 /* Landing Page */
 
 .md-typeset .tx-insiders {
@@ -238,6 +242,14 @@ button.md-button-center {
     margin:0 auto !important;
     padding-bottom:1em !important;
     padding-top:0.8em !important
+    padding-top:0.8em !important;
+}
+
+a.md-button-center {
+    display:block !important;
+    margin:0 auto !important;
+    padding-bottom:1em !important;
+    padding-top:0.8em !important;
 }
 
 button.md-button-center:hover {
@@ -254,4 +266,23 @@ button.md-button-center:hover {
 
 a.banner-link:hover {
     font-weight: bold;;
+}
+
+.label{
+  display: inline-flex;
+  border-radius: 5px;
+  background-color: #00B1D2;
+  margin-right: 0.1rem;
+  padding: 0.0rem 0.4rem 0.0rem 0.4rem;
+  margin-bottom:0.4rem;
+  opacity: 1;
+  color:white;
+
+}
+.label > a{
+  color:white;
+  cursor: pointer;
+}
+.labels_zone{
+  font-size:0.6rem;
 }

@@ -1,8 +1,11 @@
 name: pages
 description: A ready-to-use gitlab pages job to deploy your html static pages from gitlab
-default_stage: deployment
+default_stage: deploy
 icon: 🦊
 maintainer: thomasboni
 license: MIT
 images:
 tools:
+labels:
+  - GitLab
+  - Documentation

@@ -8,3 +8,8 @@ images:
   "peterevans/liche": '1.1.1'
 tools:
   liche: 'latest'
+labels:
+  - GitLab
+  - Testing
+  - Quality
+  - Code performance

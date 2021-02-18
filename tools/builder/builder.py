@@ -21,9 +21,10 @@ from datetime import datetime
 from distutils.version import LooseVersion
 from os import listdir, makedirs
 from shutil import copyfile
+from urllib.parse import quote, urlencode
 import requests
-from yaml import full_load
-from jinja2 import Environment, FileSystemLoader
+from yaml import full_load, YAMLError
+from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
 # Job variables
 JOBS_DIR = "jobs"
@@ -35,14 +36,20 @@ JOB_CHANGELOG_DIR = "versions"
 JOB_DESCRIPTION_FILE = "README.md"
 JOB_METADATA_FILE = "job.yml"
 JOBS_EXTENSION = ".yml"
+MARKDOWN_EXTENSION = ".md"
 
 # Path to images used for the built job documentation
 MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
 # Directory name to use for the jobs screenshot
 SCREENSHOTS_DIR = "screenshots"
+ISSUES_LIMIT = 5
 
+# Requests variable
+GITLAB_BASE_URL = "https://gitlab.com/"
 GITLAB_API_URL = "https://gitlab.com/api/v4/"
 R2DEVOPS_URL = "https://jobs.r2devops.io/"
+PROJECT_NAME = "r2devops/hub"
+JOBS_SCOPE_LABEL = "Jobs::"
 
 # Templates variables
 BUILDER_DIR = "tools/builder"
@@ -54,24 +61,67 @@ TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
 index = {
-    "static_tests": [],
-    "build": [],
-    "dynamic_tests": [],
-    "review": [],
-    "deployment": []
+    "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
+    "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
+    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
+    "provision": {"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
+    "review": {"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
+    "release": {"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
+    "deploy": {"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
+    "others": {"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
 }
 
 def get_conf(job_path):
-    # Load yaml file
-    with open(job_path + "/" + JOB_METADATA_FILE) as conf_file:
-        return full_load(conf_file)
+    """Parse the YAML config of the job
+
+    Args:
+        job_path (string): Path to job.yml
+
+    Returns:
+        (dict): Object of parsed YAML
+    """
+    try:
+        with open(job_path + "/" + JOB_METADATA_FILE) as conf_file:
+            return full_load(conf_file)
+    except YAMLError as error:
+        logging.error("Failed to parse job config '%s/%s", job_path,
+                      JOB_METADATA_FILE )
+        logging.error(error)
+        sys.exit(1)
+    except OSError as error:
+        logging.error("Failed to open and read job config '%s/%s",
+                      job_path, JOB_METADATA_FILE )
+        logging.error(error)
+        sys.exit(1)
 
 def get_description(job_path):
-    # Concatenate description to final file
-    with open(job_path + "/" + JOB_DESCRIPTION_FILE) as readme_file:
-        return readme_file.read()
+    """Fetch the README file from job
+
+    Args:
+        job_path (string): Path the job folder
+
+    Returns:
+        (string): Full README file
+    """
+    try:
+        with open(job_path + "/" + JOB_DESCRIPTION_FILE) as readme_file:
+            return readme_file.read()
+    except OSError as error:
+        logging.error("Failed to open and read file README %s", job_path)
+        logging.error(error)
+        sys.exit(1)
 
 def get_changelogs(job_path, job_name):
+    """Fetch the changelogs file from job
+
+    Args:
+        job_path (string): Path the job folder
+        job_name (string): Name of the job
+
+    Returns:
+        latest (dict): data about latest version
+        changelogs (list): list of data about each versions
+    """
     versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR)
     versions = [version[:-3] for version in versions]
     versions = sorted(versions, key=LooseVersion, reverse=True)
@@ -80,23 +130,44 @@ def get_changelogs(job_path, job_name):
       "url": R2DEVOPS_URL + job_name + JOBS_EXTENSION
     }
     changelogs = []
-    for version in versions:
-        with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + ".md") as changelog_file:
-            changelogs.append({
-                "version": version,
-                "url": R2DEVOPS_URL + version + "/" + job_name + JOBS_EXTENSION,
-                "changelog": changelog_file.readlines()
-            })
+    try:
+        for version in versions:
+            with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + MARKDOWN_EXTENSION) as changelog_file:
+                changelogs.append({
+                    "version": version,
+                    "url": R2DEVOPS_URL + version + "/" + job_name + JOBS_EXTENSION,
+                    "changelog": changelog_file.readlines()
+                })
+    except OSError as error:
+        logging.error("Failed to open and read versions files of %s", job_name)
+        logging.error(error)
+        sys.exit(1)
+
     return (latest, changelogs)
 
 def get_license(license_name, copyright_holder):
-    env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR + "/" + TEMPLATE_LICENSE_DIR))
-    template = env.get_template(license_name + ".md.j2")
-    license_content = template.render(
-        year = datetime.now().year,
-        copyright_holder = copyright_holder
-    ).split('\n')
-    license_content = [ line + '\n' for line in license_content]
+    """Return the license file
+
+    Args:
+        licence_name (string): name of the licence
+        copyright_holder (string): gitlab name of the job maitainer
+
+    Returns:
+        license_content (string): content of the license
+    """
+    try:
+        env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR + "/" + TEMPLATE_LICENSE_DIR))
+        template = env.get_template(license_name + MARKDOWN_EXTENSION + ".j2")
+        license_content = template.render(
+            year = datetime.now().year,
+            copyright_holder = copyright_holder
+        ).split('\n')
+        license_content = [ line + '\n' for line in license_content]
+    except TemplateNotFound as error:
+        logging.error("Failed to fetch the template for license %s and copyright holder: %s", license_name, copyright_holder)
+        logging.error(error)
+        sys.exit(1)
+
     return license_content
 
 def get_screenshots(job_path, job_name):
@@ -133,12 +204,32 @@ def get_screenshots(job_path, job_name):
     return ("/" + MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR, screenshot_list)
 
 def get_user(code_owner):
+    """Fetch the job maintainer Gitlab user
+
+    Args:
+        code_owner (string): gitlab name of the job maitainer
+
+    Returns:
+        (dict): user data
+    """
     url = GITLAB_API_URL + "users?username=" + code_owner
 
     response = requests.request("GET", url)
 
-    if response.status_code == 200:
-        return response.json()[0]
+    try:
+        if response.status_code == 200:
+            return response.json()[0]
+
+        raise Exception('Expected 200 status code, but got {}'.format(response.status_code))
+    except IndexError as error:
+        logging.error("Unexpected error when retrieving user %s", code_owner)
+        logging.error(error)
+        sys.exit(1)
+    except Exception as error:
+        logging.error("User %s was not found", code_owner)
+        logging.error(error)
+        sys.exit(1)
+
     return None
 
 def get_job_raw_content(job_name):
@@ -165,6 +256,47 @@ def get_job_raw_content(job_name):
                                                     JOBS_EXTENSION)
         sys.exit(1)
 
+# https://docs.gitlab.com/ee/api/issues.html#list-project-issues (for the structure of the response)
+def get_linked_issues(job_name, opened=True):
+    """Get a list of linked issues for a job
+
+    Parameters:
+    -----------
+    job_name : str
+        The name of the job
+    opened : boolean
+        If we get only opened issues or all of them (default: True)
+
+    Returns:
+    --------
+    list
+        A list of issues linked to the job with their name and url
+    str
+        Url to list the issues related to the job
+    str
+        Url to create a new issue for the job
+    """
+    linked_issues = []
+    base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
+    url = f"{base_url}?labels={JOBS_SCOPE_LABEL}{job_name}"
+    if opened:
+        url += "&state=opened"
+    r = requests.get(url)
+
+    for issue in r.json():
+        linked_issues.append({
+            "name": issue['title'],
+            "url": issue['web_url'],
+            "iid": issue['iid']
+        })
+    issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
+    linked_issues_payload = {
+        "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
+    }
+    linked_issues_url = f"{issues_base_url}/issues?{urlencode(linked_issues_payload)}"
+    create_issue_payload = f"issue[title]=[job][{job_name}]"
+    create_issue_url = f"{issues_base_url}/issues/new?{quote(create_issue_payload, safe='=')}%20-%20"
+    return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
     job_path = JOBS_DIR + "/" + job
@@ -173,9 +305,25 @@ def create_job_doc(job):
     conf = get_conf(job_path)
     code_owner = conf.get("maintainer")
     license_name = conf.get("license")
-    index[conf["default_stage"]].append(conf)
+    stage = conf.get("default_stage")
 
-    mkdocs_file_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + conf["default_stage"] + "/" + job + ".md"
+    if not code_owner or not license_name or not stage:
+        logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job, JOB_METADATA_FILE)
+        sys.exit(1)
+
+    index[stage]["content"].append(conf)
+
+    # If job name starts with a dot, we must remove the dot for the file name,
+    # else mkdocs will ignore it
+    job_file = job
+    if job.startswith('.'):
+        job_file = job_file[1:]
+
+    mkdocs_file_path = '{}/{}/{}/{}{}'.format(MKDOCS_DIR,
+                                              JOBS_DIR,
+                                              stage,
+                                              job_file,
+                                              MARKDOWN_EXTENSION)
 
     # Get variables for jinja
     description = get_description(job_path)
@@ -185,27 +333,43 @@ def create_job_doc(job):
     user = get_user(code_owner)
     job_raw_content = get_job_raw_content(job)
     job_icon = conf.get("icon")
+    job_labels = conf.get("labels")
+    linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
     # Write final file
-    with open(mkdocs_file_path, 'w+') as doc_file:
-        env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
-        template = env.get_template(TEMPLATE_DOC)
-        doc_file.write(template.render(
-            job_name = job,
-            job_icon = job_icon,
-            readme = description,
-            license_name = license_name,
-            license = license_content,
-            latest = latest,
-            changelogs = changelogs,
-            gitlab_image = user["avatar_url"],
-            code_owner_name = user["name"],
-            code_owner = code_owner,
-            code_owner_url = user["web_url"],
-            screenshot_path = screenshot_path,
-            screenshots_files = screenshots_files,
-            job_raw_content = ''.join(job_raw_content)
-    ))
+    logging.info('Build of documentation file for job "%s" in stage "%s"',
+                 job,
+                 stage)
+
+    try:
+        with open(mkdocs_file_path, 'w+') as doc_file:
+            env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
+            template = env.get_template(TEMPLATE_DOC)
+            doc_file.write(template.render(
+                job_name = job,
+                job_icon = job_icon,
+                readme = description,
+                license_name = license_name,
+                license = license_content,
+                latest = latest,
+                changelogs = changelogs,
+                gitlab_image = user["avatar_url"],
+                code_owner_name = user["name"],
+                code_owner = code_owner,
+                code_owner_url = user["web_url"],
+                screenshot_path = screenshot_path,
+                screenshots_files = screenshots_files,
+                job_raw_content = ''.join(job_raw_content),
+                job_labels = job_labels,
+                linked_issues = linked_issues,
+                linked_issues_limit = ISSUES_LIMIT,
+                linked_issues_url = linked_issues_url,
+                create_issue_url = create_issue_url
+        ))
+    except Exception as error:
+        logging.error("Failed to create final file for job %s", job)
+        logging.error(error)
+        sys.exit(1)
 
 def add_placeholder():
     # Verify that there is a .md file for every stage, or mkdocs will break
@@ -218,6 +382,7 @@ def add_placeholder():
                 template = env.get_template(TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
+
 def main():
     """
     Main function
@@ -228,7 +393,6 @@ def main():
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
-
     for job in jobs:
         create_job_doc(job)
 
