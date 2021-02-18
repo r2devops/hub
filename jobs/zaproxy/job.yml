@@ -6,6 +6,7 @@ maintainer: FulcrandG
 license: MIT
 images:
   "owasp/zap2docker-stable": '2.9.0'
+tools:
 labels:
   - GitLab
   - DAST
