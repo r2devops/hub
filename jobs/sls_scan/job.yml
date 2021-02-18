@@ -5,4 +5,4 @@ icon: 🔓
 maintainer: FulcrandG
 license: MIT
 images:
-  "shiftleft/sast-scan": 'latest'
+  "shiftleft/sast-scan": 'v1.9.29'
