@@ -5,7 +5,7 @@ icon: 📃
 maintainer: thomasboni
 license: MIT
 images:
-  - 'squidfunk/mkdocs-material:6.1.7'
+  "squidfunk/mkdocs-material": '6.1.7'
 tools:
   'mkdocs-awesome-pages-plugin': 2.4.0
   'mkdocs-git-revision-date-localized-plugin': 0.7.2

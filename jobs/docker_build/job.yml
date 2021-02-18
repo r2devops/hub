@@ -5,4 +5,4 @@ icon: 🐳
 maintainer: thomasboni
 license: MIT
 images:
-  - 'gcr.io/kaniko-project/executor:debug-v0.20.0'
+  "gcr.io/kaniko-project/executor": 'debug-v0.20.0'

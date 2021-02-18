@@ -5,6 +5,6 @@ icon: 🗽
 maintainer: Protocole
 license: MIT
 images:
-  - 'justinribeiro/lighthouse:latest'
+  "justinribeiro/lighthouse": 'latest'
 tools:
   lighthouse: 'latest'
