@@ -1,0 +1,15 @@
+name: "spell_check"
+description: "Analyze your `.md` files to find spelling mistakes"
+default_stage: "static_tests"
+icon: "🎤"
+maintainer: "Protocole"
+license: "MIT"
+tools:
+  "pyspelling": "2.7.1"
+images:
+  "python": "3.9.1"
+labels:
+  - GitLab
+  - Spelling
+  - Testing
+  - Quality
