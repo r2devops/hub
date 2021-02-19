@@ -144,7 +144,9 @@ Example for `newman` job:
             - if [[ ! ${NEWMAN_FAIL_ON_ERROR} == "true" ]]; then
             -   NEWMAN_ADDITIONAL_OPTIONS+=" --suppress-exit-code"
             - fi
-            - newman run ${NEWMAN_COLLECTION} -r cli,junitfull --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT} -n ${NEWMAN_ITERATIONS_NUMBER} ${NEWMAN_ADDITIONAL_OPTIONS}
+            - newman run ${NEWMAN_COLLECTION} -r cli,junitfull
+              --reporter-junitfull-export ${NEWMAN_JUNIT_REPORT}
+              -n ${NEWMAN_ITERATIONS_NUMBER} ${NEWMAN_ADDITIONAL_OPTIONS}
         artifacts:
             [...]
     ```
@@ -218,8 +220,10 @@ option. It permits to pass artifact to another job of the pipeline and
 expose results to users.
 
 !!! info
-    In the case of a test report, you need to use `when: always` option under
-    `artifacts` if you want to expose result even if job fails.
+    * In the case of a test report, you need to use `when: always` option under
+      `artifacts` if you want to expose result even if job fails.
+    * You can combine both a build result and a test report by using both
+      `artifacts:paths` and `artifacts:reports`
 
 Artifact can be configured at different level of integration in Gitlab
 interface:
@@ -231,7 +235,7 @@ interface:
     format compatible with a Gitlab report.
 
     ??? example "Example of `artifacts:reports:junit` report"
-        Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
+        Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
         use its output as `junit` report in `artifacts:repors:junit` section:
         ```yaml
         trivy_image:
@@ -249,7 +253,7 @@ interface:
     the report is one-click readable from any Merge Request.
 
     ??? example "Example of `artifacts:expose_as` report"
-        Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
+        Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
         use its output as `junit` report in `artifacts:repors:junit` section:
         ```yaml
         nmap:
@@ -264,7 +268,7 @@ interface:
 3. Simple artifact without integration
 
     ??? example "Example of `artifacts`"
-        Example: job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
+        Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
         use its output as `junit` report in `artifacts:repors:junit` section:
         ```yaml
         job_name:
@@ -291,8 +295,7 @@ Jobs of the hub should remains as generic as possible, in order to ensure it:
 
 !!! info
     Jobs of the hub can be dynamically
-    [`customized`](/use-the-hub/#jobs-customization) by users. Customization
-    works thanks to overriding of job options, so, in order to
+    [`customized`](/use-the-hub/#jobs-customization) by users.
 
 
 ### 📖 Job documentation
@@ -312,7 +315,7 @@ We recommend to include following sections in your documentation:
 * How to use it: a list of steps to quickly use your job
 * Job details: describes details of job (name, docker image, stage, etc)
 * Variables: table listing variables used by the job (name, description,
-  mandatory)
+  default value, mandatory if needed)
 * Artifacts: describes artifact defined by the job
 
 ### 🚄 Compliance with another job
@@ -329,13 +332,6 @@ currently implemented for all jobs producing an `HTML` output and the job
 So, if your job produce an static website output, ensure to store the result of
 the build in `${CI_PROJECT_DIR}/website_build` and to configure this path as
 artifact. See example in [`mkdocs`](/jobs/build/mkdocs/) job.
-
-* Compliance with another job
-* Compliance with pages
-
-    Add this job to the list of documentation builder jobs in pages documentation
-    The documentation output must be specified in a variable with the default value to documentation_build/ in order to be retrieved by pages job by default
-
 
 ### 🧪 Test your job
 

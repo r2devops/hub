@@ -1,10 +1,5 @@
 # Structure of a job
 
-!!! tip
-    A template of job is available
-    [here](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
-    in the R2Devops hub repository
-
 Jobs are stored in the [R2Devops hub](https://gitlab.com/r2devops/hub)
 repository inside the
 [`jobs`](https://gitlab.com/r2devops/hub/-/tree/latest/jobs) folder and
@@ -24,6 +19,10 @@ follow this standardized structure:
             ├── job_picture.png
             └── ...
 ```
+
+*A template of job is available
+[here](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
+in the R2Devops hub repository*
 
 ## 🤖 Job definition
 
@@ -56,7 +55,9 @@ gitleaks:
     name: "zricethezav/gitleaks:v6.1.2"
     entrypoint: [""]
   script:
-    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH --report gitleaks-report.json
+    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA
+      --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH
+      --report gitleaks-report.json
   artifacts:
     when: always
     expose_as: "gitleaks-report"
