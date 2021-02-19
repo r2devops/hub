@@ -3,14 +3,14 @@
 This page describes how to create or update a job in the
 [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository.
 
-In order to contribute efficiently, we recommend you to know following topics:
+In order to contribute efficiently, we recommend you to know the following topics:
 
 * [x] [R2Devops hub job structure](/job-structure/)
 * [x] [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
 
 ## Contributing workflow
 
-Follow 3 quick steps above to contribute in the hub 👇
+Follow 3 quick steps below to contribute in the hub 👇
 
 ### 🍴 Step 1: Fork !
 
@@ -72,31 +72,31 @@ able to work on it before merging your update in the real project.
 Thanks a lot for your contribution 😀🎉 !
 
 Now, we will take a look on your contribution and merge it if everything is ok
-👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR),
-we love talking with our contributors and users !
+👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR) to tell us more about your fresh new contribution.
+We love talking with our contributors and users !
 
 
-## Guidelines
+## Guidelines (Required)
 
 !!! warning
     Following these guidelines is required to contribute in
     [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
 
-Each jobs must be compliant with following rules:
+Each jobs must be compliant with these following rules:
 
 * [ ] Be compliant with [job structure](/job-structure/)
 * [ ] Use the `image` option. Goal is to provide **plug and play** jobs working
   in any environments thanks to containers
 * [ ] Use **fixed tag** for docker image and any external tool used inside the
-  job. It shouldn't be `latest` or any tag/version that will be overwritten
+  job. **It shouldn't be `latest` or any tag/version that will be overwritten**
 * [ ] Use only resource with license compatible with the job licence and
   permits to anyone to use it
 * [ ] Pass our Continuous Integration pipeline which includes security check
-  jobs (pipeline will be run automatically inside your fork)
+  jobs (pipeline will be run automatically inside your fork 🎢 )
 * [ ] Be compliant with [our job definition](/r2bulary/#job)
 
 
-## Best practices
+## Best practices (Optional)
 
 !!! info
     Following these best practices is recommended to contribute in
@@ -155,7 +155,7 @@ Example for `newman` job:
 
     | Name | Description | Default |
     | ---- | ----------- | ------- |
-    | `NEWMAN_COLLECTION` <img width=100/> | Name of the Postman collection <img width=175/> | `postman_collection.json` <img width=100/> |
+    | `NEWMAN_COLLECTION` <img width=105/> | Name of the Postman collection <img width=175/> | `postman_collection.json` <img width=100/> |
     | `NEWMAN_GLOBALS_FILE` | Name of the Postman globals file for [variables](https://learning.postman.com/docs/sending-requests/variables/) | ` ` |
     | `NEWMAN_ADDITIONAL_OPTIONS` | Other [options](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/) you may want to use with Newman | ` ` |
     | `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
@@ -172,14 +172,15 @@ The better place to found a docker image is the [docker
 hub](https://hub.docker.com/search?q=&type=image). You can start your research
 there with following steps :
 
-1. Search for an image prepared with the tool you want to run
-    * This is the preferred situation with a ready-to-use docker image that
-      doesn't require any additional installation
-    * *Example for `mkdocs` job:
-      [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*
-    * If you found it, check it with general guidelines below
-1. If there isn't any image prepared with tool you want to run, search for more
-general images
+??? note "1. Search for an image prepared with the tool you want to run"
+    1. Search for an image prepared with the tool you want to run
+        * This is the preferred situation with a ready-to-use docker image that
+          doesn't require any additional installation
+        * *Example for `mkdocs` job:
+          [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*
+        * If you found it, check it with general guidelines below
+
+??? note "2. If there isn't any image prepared with tool you want to run, search for more general images"
     * This case will require to install needed tool as first step of your job.
       If the installation is long or heavy, you should considers to build your
       own image with tool already installed
@@ -190,8 +191,9 @@ general images
       [`ubuntu`](https://hub.docker.com/_/ubuntu),
       [`python`](https://hub.docker.com/_/python),
       [`node`](https://hub.docker.com/_/node)
-1. If you decide to build your own image: the image must be stored in publicly
-reachable registry like Docker hub or Gitlab registry
+
+!!! note "3. If you decide to build your own image: the image must be stored in publicly reachable registry like Docker hub or Gitlab registry"
+
 
 !!! summary "**General guidelines to choose the image**"
     * If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is

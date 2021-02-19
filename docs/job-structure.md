@@ -30,7 +30,7 @@ This file must have the same name that the job with the `yml` extension:
 `<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
 
 !!! info
-    * Jobs of the hub uses the Gitlab CI/CD configuration format
+    * Jobs of the hub use the Gitlab CI/CD configuration format
     * Jobs of the hub must specify a Docker image to be run in a container
     * See [GitLab CI/CD pipeline configuration
       reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}
@@ -73,7 +73,7 @@ the following fields:
 
 | Name | Description | Mandatory |
 | ---- | ----------- | --------- |
-| `name` <img width=80/> | Name of the job, must be unique | Yes |
+| `name` <img width=100/> | Name of the job, must be unique | Yes |
 | `description` | Short description of the job | Yes |
 | `icon` | Unicode emoji character to represent the job ([emojipedia](https://emojipedia.org)) | Yes |
 | `default_stage` | Default stage of the job, you have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages) | Yes |
