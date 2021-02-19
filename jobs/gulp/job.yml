@@ -7,6 +7,7 @@ license: MIT
 images:
   "node": "15.7-buster"
 tools:
+  Gulp: "$GULP_VERSION"
 labels:
   - GitLab
   - Utilities
