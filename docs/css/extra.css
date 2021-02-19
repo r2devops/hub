@@ -268,11 +268,33 @@ a.banner-link:hover {
     font-weight: bold;
 }
 
-a.md-tabs__link>strong.job_tab {
+
+
+.job_tab {
     transition-delay: 60ms;
     padding: 0.5em;
     border-radius: 7px;
     background-color: white;
     color: #076E81;
-    box-shadow: #014F5D 5px 5px;
+    box-shadow: #014F5D 4px 4px;
+}
+
+/* As we don't have parent selector in CSS, we use the url to identify
+the job button */
+a[href$="jobs/"] {
+  opacity: 1;
+}
+
+.job_tab:hover {
+opacity: .8;
+}
+
+/* Title in the left menu bar */
+.md-nav__title > .job_tab{
+  box-shadow: none;
+}
+
+
+.documentation_result{
+  box-shadow: 8px 8px 12px #aaa;
 }

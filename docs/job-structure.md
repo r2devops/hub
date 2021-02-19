@@ -142,7 +142,7 @@ This file, named `README.md`, contains the documentation of a job  in `markdown`
 
 === "Result"
 
-    ![Documentation result](images/documentation_result.png){: align=center }
+    ![Documentation result](images/documentation_result.png){: .documentation_result }
 
 
 ## 🏗 Job changelogs
