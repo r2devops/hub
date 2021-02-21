@@ -111,7 +111,7 @@ permits to define environment variables, usable by the job script.
 
 !!! tip
     Set default values to your variables to reflect the most common use-case,
-    in this way, your job will remains plug-and-play while being customizable
+    in this way, your job will remain plug-and-play while being customizable
 
 Example of relevant situation to use variable:
 
@@ -198,11 +198,16 @@ there with following steps :
 !!! summary "**General guidelines to choose the image**"
     * If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is
       the perfect image for your use case
+      ![Docker official badge](images/docker_official_badge.png){: .docker_official_badge }
+
+
+      <div class="styles__officialImageBanner___1Ey-B styles__rightBanner___3gtom" data-testid="imageBanner" style="background-color: #8ca8b8;COLOR: white;/* padding: 4px 6px 4px 14px; */padding-top: 4px;/* margin-right: 0px; */width: 10em;padding-bottom: 2px;padding-left: 15px;"><span style="margin-right: 5px; color: white; font-weight: 600;"> Official Image</span><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon   " viewBox="0 0 14 14" style="opacity: 0.7;width: 14px;height: 14px;"><g fill="#FFFFFF"><path d="M0,17.257497 L2.6406073,16.1524777 L3.79166667,18.6875 L6.5,11.8625027 C5.0781073,11.7975196 3.72394063,11.3425016 2.70833333,10.5625 L0,17.257497 Z" id="Shape"></path><path d="M10.2916667,10.5625 C9.20833333,11.3425016 7.9218573,11.7975196 6.5,11.8625027 L9.20833333,18.6875 L10.3593927,16.1524777 L13,17.257497 L10.2916667,10.5625 Z" id="Shape"></path><path d="M12.1875,5.6875 C12.1875,2.52777778 9.65972222,0 6.5,0 C3.34027778,0 0.8125,2.52777778 0.8125,5.6875 C0.8125,8.84722222 3.34027778,11.375 6.5,11.375 C9.65972222,11.375 12.1875,8.84722222 12.1875,5.6875 Z M8.71178903,8.84722222 L6.49996696,7.39376652 L4.28817792,8.84722222 L5.23611111,6.31944444 L3.34027778,5.05555556 L5.55209985,5.05555556 L6.50003304,2.52777778 L7.44796623,5.05555556 L9.65978831,5.05555556 L7.76395497,6.31944444 L8.71178903,8.84722222 Z" id="Shape"></path></g></svg></div>
+
     * Else, following points should be considered to choose an image:
-        * The image must be versioned and not only with `latest` tag. If image
-          isn't versioned: it's not usable for your job
-        * It should be activelly maintained, with frequent updates and contains
-          recent versions
+        * The image must be versioned and not only with `latest` tag. ==If image
+          isn't versioned: it's not usable for your job==
+        * It should be actively maintained, with frequent updates and contains
+          recents versions
         * The image should be small, containing only required tools
         * The image should be efficient to run the job
         * A large usage of the image can be a good indicator but take care, it
@@ -238,7 +243,7 @@ interface:
 
     ??? example "Example of `artifacts:reports:junit` report"
         Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
-        use its output as `junit` report in `artifacts:repors:junit` section:
+        uses its output as `junit` report in `artifacts:repors:junit` section:
         ```yaml
         trivy_image:
           [...]
@@ -256,7 +261,7 @@ interface:
 
     ??? example "Example of `artifacts:expose_as` report"
         Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
-        use its output as `junit` report in `artifacts:repors:junit` section:
+        uses its output as `junit` report in `artifacts:repors:junit` section:
         ```yaml
         nmap:
           [...]
@@ -271,7 +276,7 @@ interface:
 
     ??? example "Example of `artifacts`"
         Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
-        use its output as `junit` report in `artifacts:repors:junit` section:
+        uses its output as `junit` report in `artifacts:repors:junit` section:
         ```yaml
         job_name:
           [...]
@@ -283,10 +288,10 @@ interface:
 
 #### 🔩 Keep genericity
 
-Jobs of the hub should remains as generic as possible, in order to ensure it:
+Jobs of the hub should remain as generic as possible, in order to ensure it:
 
 * Try to avoid using `rules` options that is strongly linked to the context of
-  user and so should be set by the user. Also, some feature requiring specific
+  user and so should be set by the user. Also, some features requiring specific
   workflows, as [Gitlab Merge
   Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/){:target=blank}
   are more easily implemented by users if you don't specify `rules` in your
@@ -297,7 +302,7 @@ Jobs of the hub should remains as generic as possible, in order to ensure it:
 
 !!! info
     Jobs of the hub can be dynamically
-    [`customized`](/use-the-hub/#jobs-customization) by users.
+    [customized](/use-the-hub/#jobs-customization) by users.
 
 
 ### 📖 Job documentation
@@ -311,9 +316,9 @@ written inside its `README.md` file.
     point. Example: raw content of [openapi
     `README.md`](https://gitlab.com/r2devops/hub/-/raw/latest/jobs/openapi/README.md)
 
-We recommend to include following sections in your documentation:
+We recommend to include the following sections in your documentation:
 
-* Objective: describe the goal of your goal
+* Objective: describe the goal of your job
 * How to use it: a list of steps to quickly use your job
 * Job details: describes details of job (name, docker image, stage, etc)
 * Variables: table listing variables used by the job (name, description,
