@@ -5,7 +5,7 @@ icon: 🔓
 maintainer: FulcrandG
 license: MIT
 images:
-  "shiftleft/sast-scan": 'v1.9.29'
+  "shiftleft/sast-scan": "v1.9.29"
 tools:
 labels:
   - GitLab
