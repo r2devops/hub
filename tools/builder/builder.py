@@ -25,10 +25,12 @@ from urllib.parse import quote, urlencode
 import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+import os
 
 # Job variables
 JOBS_DIR = "jobs"
 MKDOCS_DIR = "docs"
+LOGFILE_NAME = os.getenv("JOB_LOGFILE")
 
 MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
 JOB_CHANGELOG_DIR = "versions"
@@ -80,6 +82,7 @@ def get_conf(job_path):
     Returns:
         (dict): Object of parsed YAML
     """
+    logging.info("Parsing conf file")
     try:
         with open(job_path + "/" + JOB_METADATA_FILE) as conf_file:
             return full_load(conf_file)
@@ -103,6 +106,7 @@ def get_description(job_path):
     Returns:
         (string): Full README file
     """
+    logging.info(f"Parsing readme for job {job_path}")
     try:
         with open(job_path + "/" + JOB_DESCRIPTION_FILE) as readme_file:
             return readme_file.read()
@@ -130,6 +134,7 @@ def get_changelogs(job_path, job_name):
       "url": R2DEVOPS_URL + job_name + JOBS_EXTENSION
     }
     changelogs = []
+    logging.info(f"Parsing changelogs for job {job_name}")
     try:
         for version in versions:
             with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + MARKDOWN_EXTENSION) as changelog_file:
@@ -155,6 +160,7 @@ def get_license(license_name, copyright_holder):
     Returns:
         license_content (string): content of the license
     """
+    logging.info(f"Getting licence {license_name}")
     try:
         env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR + "/" + TEMPLATE_LICENSE_DIR))
         template = env.get_template(license_name + MARKDOWN_EXTENSION + ".j2")
@@ -189,6 +195,7 @@ def get_screenshots(job_path, job_name):
         List of all screenshots name for the job
     """
 
+    logging.info(f"Getting screenshots for job {job_name}")
     # Create screenshots folder in docs for the job
     makedirs(MKDOCS_DIR+"/"+MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR,0o777,True)
 
@@ -216,6 +223,7 @@ def get_user(code_owner):
 
     response = requests.request("GET", url)
 
+    logging.info(f"Getting user link for {code_owner}")
     try:
         if response.status_code == 200:
             return response.json()[0]
@@ -245,6 +253,7 @@ def get_job_raw_content(job_name):
     yaml
         Raw content of the job
     """
+    logging.info(f"Parsing content of the job {job_name}")
     try:
         with open("{}/{job}/{job}{}".format(JOBS_DIR, JOBS_EXTENSION,
                                             job=job_name), 'r') as job:
@@ -276,6 +285,7 @@ def get_linked_issues(job_name, opened=True):
     str
         Url to create a new issue for the job
     """
+    logging.info(f"Getting list of linked issues for job {job_name}")
     linked_issues = []
     base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
     url = f"{base_url}?labels={JOBS_SCOPE_LABEL}{job_name}"
@@ -377,6 +387,7 @@ def add_placeholder():
         placeholder_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage_key
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
+            logging.info(f"Creading a placeholder file for the stage {stage_key}")
             with open(placeholder_path + "/" + MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
                 env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
                 template = env.get_template(TEMPLATE_PLACEHOLDER)
@@ -388,8 +399,15 @@ def main():
     Main function
     """
 
-    # logging
-    logging.basicConfig(level=logging.INFO)
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[
+            logging.FileHandler(LOGFILE_NAME),
+            logging.StreamHandler()
+        ]
+    )
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
@@ -400,6 +418,7 @@ def main():
     add_placeholder()
 
     # Using jinja2 with a template to create the index
+    logging.info(f"Creating index of jobs")
     env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
     template = env.get_template(TEMPLATE_INDEX)
     index_content = template.render(index=index)
