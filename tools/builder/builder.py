@@ -333,7 +333,7 @@ def create_job_doc(job):
 
 def add_placeholder():
     # Verify that there is a .md file for every stage, or mkdocs will break
-    for stage_key, _ in index.items():
+    for stage_key, _ in utils.INDEX.items():
         placeholder_path = utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + stage_key
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
@@ -361,7 +361,7 @@ def main():
     # Using jinja2 with a template to create the index
     env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
     template = env.get_template(utils.TEMPLATE_INDEX)
-    index_content = template.render(index=index)
+    index_content = template.render(index=utils.INDEX)
 
     with open(utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + utils.INDEX_FILE, "w+") as index_file:
         index_file.write(index_content)
