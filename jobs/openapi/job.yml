@@ -5,9 +5,9 @@ icon: 📗
 maintainer: Protocole
 license: MIT
 images:
-  "alpine": '3.12.1'
+  "alpine": "3.12.1"
 tools:
-  swaggerui: 3.37.0
+  "swaggerui": "3.37.0"
 labels:
   - GitLab
   - API

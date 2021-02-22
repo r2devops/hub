@@ -5,9 +5,9 @@ icon: 🚀
 maintainer: FulcrandG
 license: MIT
 images:
-  "node": '15.4.0'
+  "node": "15.4.0"
 tools:
-  newman: 'latest'
+  "newman": "latest"
 labels:
   - GitLab
   - Robustness

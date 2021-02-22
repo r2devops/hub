@@ -7,7 +7,7 @@ license: MIT
 images:
   "peterevans/liche": '1.1.1'
 tools:
-  liche: 'latest'
+  liche: '0.2.0'
 labels:
   - GitLab
   - Testing

@@ -5,10 +5,10 @@ icon: 👁
 maintainer: Protocole
 license: MIT
 images:
-  "openjdk": '16-alpine3.12'
+  "openjdk": "16-alpine3.12"
 tools:
-  .NET: '$DOTNET_VERSION'
-  dependency-check: 6.0.3
+  ".NET": "$DOTNET_VERSION"
+  "dependency-check": "6.0.3"
 labels:
   - GitLab
   - Security

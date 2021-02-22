@@ -5,10 +5,10 @@ icon: 🛡
 maintainer: FulcrandG
 license: MIT
 images:
-  "instrumentisto/nmap": '7.91'
+  "instrumentisto/nmap": "7.91"
 tools:
-  xsltproc: 'latest'
-  nmap: 'latest'
+  "xsltproc": "latest"
+  "nmap": "latest"
 labels:
   - GitLab
   - Security
