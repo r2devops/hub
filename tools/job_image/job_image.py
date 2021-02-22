@@ -57,7 +57,7 @@ if __name__ == "__main__":
     logging.info(f"Getting the image for job {args.job}")
 
     data = {}
-    with open(f"{utils.JOBS_DIR}/{args.job}/{args.job}.{utils.JOBS_EXTENSION}", 'r') as file:
+    with open(f"{utils.JOBS_DIR}/{args.job}/{args.job}{utils.JOBS_EXTENSION}", 'r') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
 
     # If image option is directly specified in the job

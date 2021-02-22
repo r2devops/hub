@@ -63,7 +63,7 @@ if __name__ == "__main__":
         logging.info(f"Getting the script for job {job}")
 
         data = {}
-        with open(f"{utils.JOBS_DIR}/{job}/{job}.{utils.JOBS_EXTENSION}", 'r') as file:
+        with open(f"{utils.JOBS_DIR}/{job}/{job}{utils.JOBS_EXTENSION}", 'r') as file:
             data = yaml.load(file, Loader=yaml.FullLoader)
 
         for script in scripts:
