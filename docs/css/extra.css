@@ -215,11 +215,6 @@
     border-color: var(--md-primary-bg-color);
 }
 
-.z-index-1000{
-  z-index: 1000;
-}
-
-
 .border-radius-10{
   border-radius: 10px !important;
 }
@@ -241,7 +236,6 @@ button.md-button-center {
     display:block !important;
     margin:0 auto !important;
     padding-bottom:1em !important;
-    padding-top:0.8em !important
     padding-top:0.8em !important;
 }
 
@@ -285,4 +279,8 @@ a.banner-link:hover {
 }
 .labels_zone{
   font-size:0.6rem;
+}
+
+.md-header {
+    z-index: 3;
 }

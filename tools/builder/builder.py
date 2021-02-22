@@ -7,9 +7,11 @@
 # ── jobs
 #     └── <job_name>
 #         ├── <job_name>.yml
-#         ├── LICENSE
 #         ├── job.yml
 #         ├── README.md
+#         ├── screenshots
+#             ├── <screen_name>
+#             └──...
 #         └── versions
 #             ├── 0.1.0.md
 #             └──...
@@ -299,6 +301,17 @@ def get_linked_issues(job_name, opened=True):
     return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
+    """Create the Markdown documentation file for a job
+
+    Parameters:
+    -----------
+    job : str
+        The name of the job
+
+    Returns:
+    --------
+    nothing
+    """
     job_path = JOBS_DIR + "/" + job
 
     # Getting conf for indexing
@@ -372,7 +385,16 @@ def create_job_doc(job):
         sys.exit(1)
 
 def add_placeholder():
-    # Verify that there is a .md file for every stage, or mkdocs will break
+    """Add a placeholder file for every stage, in case a stage have no job
+
+    Parameters:
+    -----------
+    nothing
+
+    Return:
+    -------
+    nothing
+    """
     for stage_key, _ in index.items():
         placeholder_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage_key
         if len(listdir(placeholder_path)) == 1:
@@ -382,10 +404,13 @@ def add_placeholder():
                 template = env.get_template(TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
-
 def main():
     """
-    Main function
+    Main function, multiple-purpose:
+    - Setup logging
+    - Iterate over jobs to create their documentation
+    - Add placeholders in stages that don't have a job
+    - Create jobs index
     """
 
     # logging
