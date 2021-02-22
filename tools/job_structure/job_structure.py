@@ -24,7 +24,7 @@ def check_job_yaml(job):
     1
         If at least one key is missing
     """
-    ret = EXIT_SUCCESS
+    ret = utils.EXIT_SUCCESS
 
     with open(f"{utils.TOOLS_DIR}/{utils.JOB_TEMPLATE_DIR}/{utils.JOB_DIR}/{utils.JOB_YAML}", "r") as template_yml, open(f"{utils.JOBS_DIR}/{job}/{utils.JOB_YAML}", "r") as job_yml:
         template_content = yaml.load(template_yml, Loader=yaml.FullLoader)
