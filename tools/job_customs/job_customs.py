@@ -7,12 +7,10 @@ import yaml
 import argparse
 import re
 
-# Job variables
-JOBS_DIR = "jobs"
-JOBS_EXTENSION = "yml"
-LOGFILE_NAME = os.getenv("JOB_LOGFILE")
-EXIT_SUCCESS = 0
-EXIT_FAILURE = 1
+# Import the config module
+from tools.utils.utils import Config
+utils = Config()
+
 
 patterns = [
     "git commit",
@@ -54,18 +52,18 @@ if __name__ == "__main__":
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
         handlers=[
-            logging.FileHandler(LOGFILE_NAME),
+            logging.FileHandler(utils.LOGFILE_NAME),
             logging.StreamHandler()
         ]
     )
 
-    return_code = EXIT_SUCCESS
-    for job in os.listdir(JOBS_DIR):
+    return_code = utils.EXIT_SUCCESS
+    for job in os.listdir(utils.JOBS_DIR):
 
         logging.info(f"Getting the script for job {job}")
 
         data = {}
-        with open(f"{JOBS_DIR}/{job}/{job}.{JOBS_EXTENSION}", 'r') as file:
+        with open(f"{utils.JOBS_DIR}/{job}/{job}.{utils.JOBS_EXTENSION}", 'r') as file:
             data = yaml.load(file, Loader=yaml.FullLoader)
 
         for script in scripts:
@@ -75,13 +73,13 @@ if __name__ == "__main__":
                     for line in data[job][script]:
                         if any(re.match(pattern, line) for pattern in patterns):
                             logging.error(f"Code modification discovered in script of job {job}")
-                            return_code = EXIT_FAILURE
+                            return_code = utils.EXIT_FAILURE
                 elif "extends" in data[job].keys():
                     if script in data[data[job]['extends']].keys():
                         for line in data[data[job]['extends']][script]:
                             if any(re.match(pattern, line) for pattern in patterns):
                                 logging.error(f"Code modification discovered in script of job {job}")
-                                return_code = EXIT_FAILURE
+                                return_code = utils.EXIT_FAILURE
             # If the extended job isn't in the file, it produce a KeyError
             except KeyError :
                 logging.warning('The job %s extends a job not declared in the file, we aren\'t able to check what %s does',

@@ -26,10 +26,9 @@ import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
+# Import the config module
 from tools.utils.utils import Config
-
 utils = Config()
-
 
 def get_conf(job_path):
     """Parse the YAML config of the job

@@ -5,8 +5,8 @@ import logging
 import sys
 import yaml
 
+# Import the config module
 from tools.utils.utils import Config
-
 utils = Config()
 
 def check_job_yaml(job):

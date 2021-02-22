@@ -32,12 +32,14 @@ class Config:
     # Path to images used for the built job documentation
     MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
 
-    # Requests variable
+    # Requests variable & API Variables
     GITLAB_BASE_URL = "https://gitlab.com/"
     GITLAB_API_URL = "https://gitlab.com/api/v4/"
     R2DEVOPS_URL = "https://jobs.r2devops.io/"
     PROJECT_NAME = "r2devops/hub"
     JOBS_SCOPE_LABEL = "Jobs::"
+    LABEL_COLOR = "fuchsia"
+    JOB_TOKEN = getenv("API_TOKEN")
 
     # Templates variables
     BUILDER_DIR = "tools/builder"
