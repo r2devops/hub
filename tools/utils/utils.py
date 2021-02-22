@@ -4,6 +4,7 @@ import os
 import logging
 import sys
 import yaml
+from os import getenv, listdir
 
 class Config:
     # Job variables
