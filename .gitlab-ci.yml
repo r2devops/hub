@@ -44,6 +44,7 @@ job_structure:
   variables:
     PIPENV_PIPFILE: tools/job_structure/Pipfile
     JOB_LOGFILE: "job_structure.log"
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
@@ -176,6 +177,7 @@ job_labels:
 mkdocs:
   variables:
     PIPENV_PIPFILE: tools/builder/Pipfile
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install pipenv && pipenv install
     - pipenv run python tools/builder/builder.py
