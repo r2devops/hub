@@ -62,6 +62,7 @@ job_customs:
   variables:
     PIPENV_PIPFILE: tools/job_customs/Pipfile
     JOB_LOGFILE: "job_customs.log"
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
@@ -83,6 +84,7 @@ job_image_scan:
     PIPENV_PIPFILE: tools/job_image/Pipfile
     JOB_LOGFILE: "job_image.log"
     OUTPUT_DIR: "scan_output"
+    PYTHONPATH: "./:$PYTHONPATH"
 
     TRIVY_EXIT_ON_SEVERITY: ""
     TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
@@ -159,6 +161,7 @@ job_labels:
   variables:
     PIPENV_PIPFILE: tools/job_labels/Pipfile
     JOB_LOGFILE: "job_labels.log"
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
