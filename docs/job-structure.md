@@ -5,7 +5,7 @@ repository inside the
 [`jobs`](https://gitlab.com/r2devops/hub/-/tree/latest/jobs) folder and
 follow this standardized structure:
 
-```shell
+```
 .
 └── jobs
     └── <job_name>
@@ -46,23 +46,27 @@ Job definition usually contains the following fields:
 * **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: variables used by the `script` part of the job to customize its behaviour
 * **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
 
-**Example of job definition [`gitleaks.yml`](https://r2devops.io/jobs/static_tests/gitleaks/):**
+**Example of job definition [`apidoc.yml`](https://r2devops.io/jobs/build/apidoc/):**
 
 ```yaml
-gitleaks:
-  stage: static_tests
+apidoc:
   image:
-    name: "zricethezav/gitleaks:v6.1.2"
+    name: node:12.18.3-alpine3.12
     entrypoint: [""]
+  stage: build
+  variables:
+    APIDOC_CONFIG_PATH: '.'
+    APIDOC_OUTPUT_PATH: 'website_build/'
+    APIDOC_TEMPLATE_PATH: '/usr/local/lib/node_modules/apidoc/template/'
+    APIDOC_VERSION: '0.24.0'
   script:
-    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA
-      --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH
-      --report gitleaks-report.json
+    - npm install apidoc@$APIDOC_VERSION -g
+    - apidoc -c "$APIDOC_CONFIG_PATH" -o "$APIDOC_OUTPUT_PATH" -t "$APIDOC_TEMPLATE_PATH"
   artifacts:
     when: always
-    expose_as: "gitleaks-report"
+    expose_as: "apiDoc build"
     paths:
-      - "gitleaks-report.json"
+      - "$APIDOC_OUTPUT_PATH"
 ```
 
 
@@ -80,11 +84,8 @@ the following fields:
 | `maintainer` | Gitlab username of the maintainer | Yes |
 | `license` | Open-source licence for the job. You can choose between `Apache-2.0` and `MIT` | Yes |
 | `labels` | List of label describing the job | No |
-
-<!-- TODO after https://gitlab.com/r2devops/hub/-/merge_requests/129
-| `images` | TODO | TODO |
-| `tools` | TODO | TODO |
--->
+| `images` | Dict of docker image(s) used by the job. Image name as key and tag version as value | Yes |
+| `tools` | Dict of tool(s) installed during the job. Name as key and version as value  | No |
 
 **Example of `job.yml`:**
 

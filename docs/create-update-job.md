@@ -30,7 +30,10 @@ able to work on it before merging your update in the real project.
     If you alter it, we will not be able to merge your job in `r2devops/hub`
     repository 😕
 
-1. If you want to add a new job, create a new directory dedicated to your job in `jobs/` folder
+1. If you want to add a new job, create a new directory dedicated to your job
+   in `jobs/` folder. You can use the [job
+   template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
+   as starting point
 1. Ensure to respect rules in this guide
 1. Do not update the CI/CD configuration (file `.gitlab-ci.yml`)
 1. Test your job and ensure it works
@@ -67,7 +70,7 @@ able to work on it before merging your update in the real project.
        [`Contribution`](https://docs.gitlab.com/ee/user/project/merge_requests/allow_collaboration.html)
         (this isn't available for protected branches like `latest`)
 
-!!! note "3. In the newly created MR, ensure to fulfill all steps of the [job Definition of Done](#job-definition-of-done) and tick related boxes"
+!!! note "3. In the newly created MR, ensure to fulfill all steps of the job Definition of Done and tick related boxes"
 
 Thanks a lot for your contribution 😀🎉 !
 
@@ -195,23 +198,20 @@ there with following steps :
 !!! note "3. If you decide to build your own image: the image must be stored in publicly reachable registry like Docker hub or Gitlab registry"
 
 
-!!! summary "**General guidelines to choose the image**"
-    * If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is
-      the perfect image for your use case
-      ![Docker official badge](images/docker_official_badge.png){: .docker_official_badge }
+**General guidelines to choose the image**
 
-
-      <div class="styles__officialImageBanner___1Ey-B styles__rightBanner___3gtom" data-testid="imageBanner" style="background-color: #8ca8b8;COLOR: white;/* padding: 4px 6px 4px 14px; */padding-top: 4px;/* margin-right: 0px; */width: 10em;padding-bottom: 2px;padding-left: 15px;"><span style="margin-right: 5px; color: white; font-weight: 600;"> Official Image</span><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon   " viewBox="0 0 14 14" style="opacity: 0.7;width: 14px;height: 14px;"><g fill="#FFFFFF"><path d="M0,17.257497 L2.6406073,16.1524777 L3.79166667,18.6875 L6.5,11.8625027 C5.0781073,11.7975196 3.72394063,11.3425016 2.70833333,10.5625 L0,17.257497 Z" id="Shape"></path><path d="M10.2916667,10.5625 C9.20833333,11.3425016 7.9218573,11.7975196 6.5,11.8625027 L9.20833333,18.6875 L10.3593927,16.1524777 L13,17.257497 L10.2916667,10.5625 Z" id="Shape"></path><path d="M12.1875,5.6875 C12.1875,2.52777778 9.65972222,0 6.5,0 C3.34027778,0 0.8125,2.52777778 0.8125,5.6875 C0.8125,8.84722222 3.34027778,11.375 6.5,11.375 C9.65972222,11.375 12.1875,8.84722222 12.1875,5.6875 Z M8.71178903,8.84722222 L6.49996696,7.39376652 L4.28817792,8.84722222 L5.23611111,6.31944444 L3.34027778,5.05555556 L5.55209985,5.05555556 L6.50003304,2.52777778 L7.44796623,5.05555556 L9.65978831,5.05555556 L7.76395497,6.31944444 L8.71178903,8.84722222 Z" id="Shape"></path></g></svg></div>
-
-    * Else, following points should be considered to choose an image:
-        * The image must be versioned and not only with `latest` tag. ==If image
-          isn't versioned: it's not usable for your job==
-        * It should be actively maintained, with frequent updates and contains
-          recents versions
-        * The image should be small, containing only required tools
-        * The image should be efficient to run the job
-        * A large usage of the image can be a good indicator but take care, it
-          doesn't guarantee the quality neither security of the image
+* If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is the
+  perfect image for your use case ![Docker official
+  badge](images/docker_official_badge.png){: .docker_official_badge }
+* Else, following points should be considered to choose an image:
+    * The image must be versioned and not only with `latest` tag. ==If image
+      isn't versioned: it's not usable for your job==
+    * It should be actively maintained, with frequent updates and contains
+      recents versions
+    * The image should be small, containing only required tools
+    * The image should be efficient to run the job
+    * A large usage of the image can be a good indicator but take care, it
+      doesn't guarantee the quality neither security of the image
 
 #### 📦 Artifacts
 
@@ -243,7 +243,7 @@ interface:
 
     ??? example "Example of `artifacts:reports:junit` report"
         Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
-        uses its output as `junit` report in `artifacts:repors:junit` section:
+        uses its output as `junit` report in `artifacts:reports:junit` section:
         ```yaml
         trivy_image:
           [...]
@@ -260,8 +260,8 @@ interface:
     the report is one-click readable from any Merge Request.
 
     ??? example "Example of `artifacts:expose_as` report"
-        Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
-        uses its output as `junit` report in `artifacts:repors:junit` section:
+        Job [`nmap`](/jobs/dynamic_tests/nmap/) uses `artifacts:expose_as`
+        to expose its `HTML` report:
         ```yaml
         nmap:
           [...]
@@ -275,8 +275,7 @@ interface:
 3. Simple artifact without integration
 
     ??? example "Example of `artifacts`"
-        Job [`trivy_image`](/jobs/dynamic_tests/trivy_image/) that
-        uses its output as `junit` report in `artifacts:repors:junit` section:
+        Job that specify an `artifact`:
         ```yaml
         job_name:
           [...]
