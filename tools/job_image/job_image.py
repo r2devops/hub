@@ -6,12 +6,9 @@ import logging
 import yaml
 import argparse
 
-# Job variables
-JOBS_DIR = "jobs"
-JOBS_EXTENSION = "yml"
-LOGFILE_NAME = os.getenv("JOB_LOGFILE")
-EXIT_SUCCESS = 0
-EXIT_FAILURE = 1
+# Import the config module
+from tools.utils.utils import Config
+utils = Config()
 
 def argparse_setup():
     """Setup argparse
@@ -48,19 +45,19 @@ if __name__ == "__main__":
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
         handlers=[
-            logging.FileHandler(LOGFILE_NAME),
+            logging.FileHandler(utils.LOGFILE_NAME),
             logging.StreamHandler(sys.stderr)
         ]
     )
 
     if args.job is None:
         logging.error(f"No argument provided")
-        sys.exit(EXIT_FAILURE)
+        sys.exit(utils.EXIT_FAILURE)
 
     logging.info(f"Getting the image for job {args.job}")
 
     data = {}
-    with open(f"{JOBS_DIR}/{args.job}/{args.job}.{JOBS_EXTENSION}", 'r') as file:
+    with open(f"{utils.JOBS_DIR}/{args.job}/{args.job}{utils.JOBS_EXTENSION}", 'r') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
 
     # If image option is directly specified in the job

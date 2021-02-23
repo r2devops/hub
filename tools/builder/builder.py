@@ -26,50 +26,9 @@ import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
-# Job variables
-JOBS_DIR = "jobs"
-MKDOCS_DIR = "docs"
-
-MKDOCS_PLACEHOLDER_FILE = "placeholder.md"
-JOB_CHANGELOG_DIR = "versions"
-
-JOB_DESCRIPTION_FILE = "README.md"
-JOB_METADATA_FILE = "job.yml"
-JOBS_EXTENSION = ".yml"
-MARKDOWN_EXTENSION = ".md"
-
-# Path to images used for the built job documentation
-MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
-# Directory name to use for the jobs screenshot
-SCREENSHOTS_DIR = "screenshots"
-ISSUES_LIMIT = 5
-
-# Requests variable
-GITLAB_BASE_URL = "https://gitlab.com/"
-GITLAB_API_URL = "https://gitlab.com/api/v4/"
-R2DEVOPS_URL = "https://jobs.r2devops.io/"
-PROJECT_NAME = "r2devops/hub"
-JOBS_SCOPE_LABEL = "Jobs::"
-
-# Templates variables
-BUILDER_DIR = "tools/builder"
-TEMPLATE_DIR = "templates"
-TEMPLATE_INDEX = "index.md.j2"
-TEMPLATE_DOC = "job_documentation.md.j2"
-TEMPLATE_PLACEHOLDER = "placeholder.md.j2"
-TEMPLATE_LICENSE_DIR = "licenses"
-INDEX_FILE = "index.md"
-
-index = {
-    "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
-    "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
-    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
-    "provision": {"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
-    "review": {"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
-    "release": {"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
-    "deploy": {"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
-    "others": {"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
-}
+# Import the config module
+from tools.utils.utils import Config
+utils = Config()
 
 def get_conf(job_path):
     """Parse the YAML config of the job
@@ -81,16 +40,16 @@ def get_conf(job_path):
         (dict): Object of parsed YAML
     """
     try:
-        with open(job_path + "/" + JOB_METADATA_FILE) as conf_file:
+        with open(job_path + "/" + utils.JOB_METADATA_FILE) as conf_file:
             return full_load(conf_file)
     except YAMLError as error:
         logging.error("Failed to parse job config '%s/%s", job_path,
-                      JOB_METADATA_FILE )
+                      utils.JOB_METADATA_FILE )
         logging.error(error)
         sys.exit(1)
     except OSError as error:
         logging.error("Failed to open and read job config '%s/%s",
-                      job_path, JOB_METADATA_FILE )
+                      job_path, utils.JOB_METADATA_FILE )
         logging.error(error)
         sys.exit(1)
 
@@ -104,7 +63,7 @@ def get_description(job_path):
         (string): Full README file
     """
     try:
-        with open(job_path + "/" + JOB_DESCRIPTION_FILE) as readme_file:
+        with open(job_path + "/" + utils.JOB_DESCRIPTION_FILE) as readme_file:
             return readme_file.read()
     except OSError as error:
         logging.error("Failed to open and read file README %s", job_path)
@@ -122,20 +81,20 @@ def get_changelogs(job_path, job_name):
         latest (dict): data about latest version
         changelogs (list): list of data about each versions
     """
-    versions = listdir(job_path + "/" + JOB_CHANGELOG_DIR)
+    versions = listdir(job_path + "/" + utils.JOB_CHANGELOG_DIR)
     versions = [version[:-3] for version in versions]
     versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
       "version": versions[0],
-      "url": R2DEVOPS_URL + job_name + JOBS_EXTENSION
+      "url": utils.R2DEVOPS_URL + job_name + utils.JOBS_EXTENSION
     }
     changelogs = []
     try:
         for version in versions:
-            with open(job_path + "/" + JOB_CHANGELOG_DIR + "/" + version + MARKDOWN_EXTENSION) as changelog_file:
+            with open(job_path + "/" + utils.JOB_CHANGELOG_DIR + "/" + version + utils.MARKDOWN_EXTENSION) as changelog_file:
                 changelogs.append({
                     "version": version,
-                    "url": R2DEVOPS_URL + version + "/" + job_name + JOBS_EXTENSION,
+                    "url": utils.R2DEVOPS_URL + version + "/" + job_name + utils.JOBS_EXTENSION,
                     "changelog": changelog_file.readlines()
                 })
     except OSError as error:
@@ -156,8 +115,8 @@ def get_license(license_name, copyright_holder):
         license_content (string): content of the license
     """
     try:
-        env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR + "/" + TEMPLATE_LICENSE_DIR))
-        template = env.get_template(license_name + MARKDOWN_EXTENSION + ".j2")
+        env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR + "/" + utils.TEMPLATE_LICENSE_DIR))
+        template = env.get_template(license_name + utils.MARKDOWN_EXTENSION + ".j2")
         license_content = template.render(
             year = datetime.now().year,
             copyright_holder = copyright_holder
@@ -190,18 +149,18 @@ def get_screenshots(job_path, job_name):
     """
 
     # Create screenshots folder in docs for the job
-    makedirs(MKDOCS_DIR+"/"+MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR,0o777,True)
+    makedirs(utils.MKDOCS_DIR+"/"+utils.MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+utils.SCREENSHOTS_DIR,0o777,True)
 
     # Get all screenshots of the job
     regex = re.compile('(.png|.jpg|.jpeg)$')
-    screenshot_list = listdir(job_path + "/" + SCREENSHOTS_DIR)
+    screenshot_list = listdir(job_path + "/" + utils.SCREENSHOTS_DIR)
     screenshot_list = list(filter(regex.search, screenshot_list))
 
     # Copy all screenshot of the job into screenshots folder for the doc
     for screenshot in screenshot_list:
-        copyfile(job_path + "/" + SCREENSHOTS_DIR+"/"+screenshot, MKDOCS_DIR+ "/"+ MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR+"/"+screenshot)
+        copyfile(job_path + "/" + utils.SCREENSHOTS_DIR+"/"+screenshot, utils.MKDOCS_DIR+ "/"+ utils.MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+utils.SCREENSHOTS_DIR+"/"+screenshot)
 
-    return ("/" + MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+SCREENSHOTS_DIR, screenshot_list)
+    return ("/" + utils.MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+utils.SCREENSHOTS_DIR, screenshot_list)
 
 def get_user(code_owner):
     """Fetch the job maintainer Gitlab user
@@ -212,7 +171,7 @@ def get_user(code_owner):
     Returns:
         (dict): user data
     """
-    url = GITLAB_API_URL + "users?username=" + code_owner
+    url = utils.GITLAB_API_URL + "users?username=" + code_owner
 
     response = requests.request("GET", url)
 
@@ -246,14 +205,14 @@ def get_job_raw_content(job_name):
         Raw content of the job
     """
     try:
-        with open("{}/{job}/{job}{}".format(JOBS_DIR, JOBS_EXTENSION,
+        with open("{}/{job}/{job}{}".format(utils.JOBS_DIR, utils.JOBS_EXTENSION,
                                             job=job_name), 'r') as job:
             return job.readlines()
     except FileNotFoundError :
-        logging.error("File %s/%s/%s.%s not found", JOBS_DIR,
+        logging.error("File %s/%s/%s.%s not found", utils.JOBS_DIR,
                                                     job_name,
                                                     job_name,
-                                                    JOBS_EXTENSION)
+                                                    utils.JOBS_EXTENSION)
         sys.exit(1)
 
 # https://docs.gitlab.com/ee/api/issues.html#list-project-issues (for the structure of the response)
@@ -277,8 +236,8 @@ def get_linked_issues(job_name, opened=True):
         Url to create a new issue for the job
     """
     linked_issues = []
-    base_url = f"{GITLAB_API_URL}/projects/{quote(PROJECT_NAME, safe='')}/issues"
-    url = f"{base_url}?labels={JOBS_SCOPE_LABEL}{job_name}"
+    base_url = f"{utils.GITLAB_API_URL}/projects/{quote(utils.PROJECT_NAME, safe='')}/issues"
+    url = f"{base_url}?labels={utils.JOBS_SCOPE_LABEL}{job_name}"
     if opened:
         url += "&state=opened"
     r = requests.get(url)
@@ -289,9 +248,9 @@ def get_linked_issues(job_name, opened=True):
             "url": issue['web_url'],
             "iid": issue['iid']
         })
-    issues_base_url = f"{GITLAB_BASE_URL}/{PROJECT_NAME}"
+    issues_base_url = f"{utils.GITLAB_BASE_URL}/{utils.PROJECT_NAME}"
     linked_issues_payload = {
-        "label_name": f"{JOBS_SCOPE_LABEL}{job_name}"
+        "label_name": f"{utils.JOBS_SCOPE_LABEL}{job_name}"
     }
     linked_issues_url = f"{issues_base_url}/issues?{urlencode(linked_issues_payload)}"
     create_issue_payload = f"issue[title]=[job][{job_name}]"
@@ -299,7 +258,7 @@ def get_linked_issues(job_name, opened=True):
     return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
-    job_path = JOBS_DIR + "/" + job
+    job_path = utils.JOBS_DIR + "/" + job
 
     # Getting conf for indexing
     conf = get_conf(job_path)
@@ -308,10 +267,10 @@ def create_job_doc(job):
     stage = conf.get("default_stage")
 
     if not code_owner or not license_name or not stage:
-        logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job, JOB_METADATA_FILE)
+        logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job, utils.JOB_METADATA_FILE)
         sys.exit(1)
 
-    index[stage]["content"].append(conf)
+    utils.INDEX[stage]["content"].append(conf)
 
     # If job name starts with a dot, we must remove the dot for the file name,
     # else mkdocs will ignore it
@@ -319,11 +278,11 @@ def create_job_doc(job):
     if job.startswith('.'):
         job_file = job_file[1:]
 
-    mkdocs_file_path = '{}/{}/{}/{}{}'.format(MKDOCS_DIR,
-                                              JOBS_DIR,
+    mkdocs_file_path = '{}/{}/{}/{}{}'.format(utils.MKDOCS_DIR,
+                                              utils.JOBS_DIR,
                                               stage,
                                               job_file,
-                                              MARKDOWN_EXTENSION)
+                                              utils.MARKDOWN_EXTENSION)
 
     # Get variables for jinja
     description = get_description(job_path)
@@ -343,8 +302,8 @@ def create_job_doc(job):
 
     try:
         with open(mkdocs_file_path, 'w+') as doc_file:
-            env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
-            template = env.get_template(TEMPLATE_DOC)
+            env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+            template = env.get_template(utils.TEMPLATE_DOC)
             doc_file.write(template.render(
                 job_name = job,
                 job_icon = job_icon,
@@ -362,7 +321,7 @@ def create_job_doc(job):
                 job_raw_content = ''.join(job_raw_content),
                 job_labels = job_labels,
                 linked_issues = linked_issues,
-                linked_issues_limit = ISSUES_LIMIT,
+                linked_issues_limit = utils.ISSUES_LIMIT,
                 linked_issues_url = linked_issues_url,
                 create_issue_url = create_issue_url
         ))
@@ -373,13 +332,13 @@ def create_job_doc(job):
 
 def add_placeholder():
     # Verify that there is a .md file for every stage, or mkdocs will break
-    for stage_key, _ in index.items():
-        placeholder_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage_key
+    for stage_key, _ in utils.INDEX.items():
+        placeholder_path = utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + stage_key
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
-            with open(placeholder_path + "/" + MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
-                env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
-                template = env.get_template(TEMPLATE_PLACEHOLDER)
+            with open(placeholder_path + "/" + utils.MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
+                env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+                template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
 
@@ -390,9 +349,8 @@ def main():
 
     # logging
     logging.basicConfig(level=logging.INFO)
-
     # Iterate over every directories in jobs directory to create their job.md for the documentation
-    jobs = listdir(JOBS_DIR)
+    jobs = listdir(utils.JOBS_DIR)
     for job in jobs:
         create_job_doc(job)
 
@@ -400,11 +358,11 @@ def main():
     add_placeholder()
 
     # Using jinja2 with a template to create the index
-    env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
-    template = env.get_template(TEMPLATE_INDEX)
-    index_content = template.render(index=index)
+    env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+    template = env.get_template(utils.TEMPLATE_INDEX)
+    index_content = template.render(index=utils.INDEX)
 
-    with open(MKDOCS_DIR + "/" + JOBS_DIR + "/" + INDEX_FILE, "w+") as index_file:
+    with open(utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + utils.INDEX_FILE, "w+") as index_file:
         index_file.write(index_content)
 
 if __name__ == "__main__":
