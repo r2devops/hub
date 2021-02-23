@@ -69,7 +69,7 @@ Add information about the structure of a job directory and what need to be here.
     Check the job has versioning (not only latest)
     If criteria above are not met --> ##Create my docker from Alpine image
     Choose the officiel Alpine image in latest (think to fix version after)
-    Install doxygen in the frist line of the script 'apk add --no-cache doxygen==1.8.18-r0'
+    Install doxygen in the first line of the script 'apk add --no-cache doxygen==1.8.18-r0'
 
     The installed version of Doxygen must be specified as variable with the default value on the current latest version 1.8.18-r0
     A fixed tag must be specified for the alpine image used
@@ -104,7 +104,7 @@ Add information about the structure of a job directory and what need to be here.
 
 ### About artifact:
 
-    Use expose_as like in mkdocs job to expose the artifact in the MR
+    Use `expose_as` like in [mkdocs](https://gitlab.com/r2devops/hub/-/blob/latest/jobs/mkdocs/mkdocs.yml) job to expose the artifact in the MR
 
 ### About compliance with pages job:
 
