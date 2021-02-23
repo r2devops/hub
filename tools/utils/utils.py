@@ -38,6 +38,8 @@ class Config():
         self.MARKDOWN_EXTENSION = ".md"
         # Path to images used for the built job documentation
         self.MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
+        self.ARRANGE_PAGES_FILE_PATH = "docs/jobs/.pages"
+        self.TITLE_ARRANGE_PAGES = 'Jobs'
 
         # Requests variable & API Variables
         self.GITLAB_BASE_URL = "https://gitlab.com/"
@@ -56,17 +58,21 @@ class Config():
         self.TEMPLATE_PLACEHOLDER = "placeholder.md.j2"
         self.TEMPLATE_LICENSE_DIR = "licenses"
         self.INDEX_FILE = "index.md"
+        self.TEMPLATE_ARRANGE_PAGES = "arrange_pages.md.j2"
+
 
         # List of stages
         self.INDEX = {
-            "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
-            "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
-            "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
-            "provision": {"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
-            "review": {"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
-            "release": {"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
-            "deploy": {"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
-            "others": {"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
+            "static_tests": {"order":1, "name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
+            "build": {"order":2, "name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
+            "dynamic_tests": {"order":3, "name":"Dynamic_tests","icon":"🔥","content":[], \
+            "description":"Dynamic testing of a running version of the software"},
+            "provision": {"order":4, "name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
+            "review": {"order":5, "name":"Review","icon":"👌","content":[], \
+            "description":"Deployment of the software in an isolated review environment"},
+            "release": {"order":6, "name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
+            "deploy": {"order":7, "name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
+            "others": {"order":8, "name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
         }
 
 
