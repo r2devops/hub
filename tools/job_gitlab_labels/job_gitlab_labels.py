@@ -8,12 +8,11 @@ import sys
 from urllib.parse import quote, urlencode
 from os import getenv, listdir
 import requests
+import argparse
 
 # Import the config module
 from tools.utils.utils import Config
 utils = Config()
-
-
 
 def get_labels(project_name, with_counts=False, include_ancestor_groups=True, search=""):
     """Get labels of the project, can also serach for a specific label with search filter
@@ -99,6 +98,17 @@ def delete_label(project_name, label_name):
     logging.info(f"Deleting a label {label_name} for the project {project_name}")
     return (requests.delete(url, headers=headers))
 
+def argparse_setup():
+    """Setup argparse
+
+    Return
+    ------
+    obj
+        Python object with arguments parsed
+    """
+    parser = argparse.ArgumentParser()
+    return parser.parse_args()
+
 if __name__ == "__main__":
     """Main function if used as a program
     Looping through all jobs to check if their scoped
@@ -109,6 +119,9 @@ if __name__ == "__main__":
     boolean
         0 if nothing is wrong, 1 otherwise
     """
+    # Setup argparse
+    args = argparse_setup()
+
     # Setup logging
     logging.basicConfig(
         encoding="utf-8",
