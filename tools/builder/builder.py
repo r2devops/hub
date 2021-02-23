@@ -62,13 +62,13 @@ INDEX_FILE = "index.md"
 
 index = {
     "static_tests": {"order":1,"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
-    "build": {"order":8,"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
+    "build": {"order":2,"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
     "dynamic_tests": {"order":3,"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
     "provision": {"order":4,"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
     "review": {"order":5,"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
     "release": {"order":6,"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
     "deploy": {"order":7,"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
-    "others": {"order":2,"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
+    "others": {"order":8,"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
 }
 
 
