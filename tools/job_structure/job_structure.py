@@ -24,16 +24,16 @@ def get_conf(job_path):
         (dict): Object of parsed YAML
     """
     try:
-        with open(job_path + "/" + JOB_YAML) as conf_file:
+        with open(job_path + "/" + utils.JOB_YAML) as conf_file:
             return full_load(conf_file)
     except YAMLError as error:
         logging.error("Failed to parse job config '%s/%s", job_path,
-                      JOB_YAML )
+                      utils.JOB_YAML )
         logging.error(error)
         sys.exit(1)
     except OSError as error:
         logging.error("Failed to open and read job config '%s/%s",
-                      job_path, JOB_YAML )
+                      job_path, utils.JOB_YAML )
         logging.error(error)
         sys.exit(1)
 
@@ -49,9 +49,9 @@ def check_job_labels(job):
     --------
     """
 
-    ret = EXIT_SUCCESS
+    ret = utils.EXIT_SUCCESS
     # Getting conf for indexing
-    conf = get_conf(JOBS_DIR+"/"+job)
+    conf = get_conf(utils.JOBS_DIR+"/"+job)
     job_labels = conf.get("labels")
 
 

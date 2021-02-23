@@ -344,11 +344,6 @@ def create_job_doc(job):
         sys.exit(1)
 
 def add_placeholder():
-<<<<<<< HEAD
-    # Verify that there is a .md file for every stage, or mkdocs will break
-    for stage_key, _ in utils.INDEX.items():
-        placeholder_path = utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + stage_key
-=======
     """Add a placeholder file for every stage, in case a stage have no job
 
     Parameters:
@@ -359,9 +354,8 @@ def add_placeholder():
     -------
     nothing
     """
-    for stage_key, _ in index.items():
-        placeholder_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage_key
->>>>>>> c767458a64a4ec118dbce0fad6bb909f39eb4ef6
+    for stage_key, _ in utils.INDEX.items():
+        placeholder_path = utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + stage_key
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
             with open(placeholder_path + "/" + utils.MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
