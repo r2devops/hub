@@ -363,6 +363,17 @@ def add_placeholder():
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
+def argparse_setup():
+    """Setup argparse
+
+    Return
+    ------
+    obj
+        Python object with arguments parsed
+    """
+    parser = argparse.ArgumentParser()
+    return parser.parse_args()
+
 def main():
     """
     Main function, multiple-purpose:
@@ -372,8 +383,12 @@ def main():
     - Create jobs index
     """
 
+    # Setup argparse
+    args = argparse_setup()
+
     # logging
     logging.basicConfig(level=logging.INFO)
+    
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(utils.JOBS_DIR)
     for job in jobs:
