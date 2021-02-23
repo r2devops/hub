@@ -399,7 +399,7 @@ def create_arrange_pages():
     """
     stages = sorted(utils.INDEX.items(), key=lambda x: x[1]['order'])
     try:
-        with open(utils.ARRANGE_PAGES_FILME_PATH, 'w+') as doc_file:
+        with open(utils.ARRANGE_PAGES_FILE_PATH, 'w+') as doc_file:
             env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
             template = env.get_template(utils.TEMPLATE_ARRANGE_PAGES)
             doc_file.write(template.render(
