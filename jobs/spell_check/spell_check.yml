@@ -1,0 +1,44 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+spell_check:
+    image: python:3.9.1
+    stage: static_tests
+    allow_failure: true
+    variables:
+      PYSPELLING_LANGUAGE: "en"
+      PYSPELLING_SPELLER: "aspell"
+      PYSPELLING_CONFIG: ""
+      PYSPELLING_OPTIONS: ""
+      SNIPPET_VERSION: "4cc2af8e840aff6f599a894351de62c9b29ddc69"
+    script:
+      # Installing global dependencies depending on variables
+      - apt update && apt install -y ${PYSPELLING_SPELLER}
+      - for i in ${PYSPELLING_LANGUAGE}; do apt install -y ${PYSPELLING_SPELLER}-$i; done
+
+      # Download required files
+      - mkdir spell_check
+      - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/Pipfile -O spell_check/Pipfile
+      - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/Pipfile.lock -O spell_check/Pipfile.lock
+      - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/spell_junit.py -O spell_check/spell_junit.py
+      - |
+        if [ -z "$PYSPELLING_CONFIG" ]; then
+         wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/.pyspelling.yml -O .pyspelling.yml
+        fi
+
+      # Installing python virtual env.
+      - pip install --ignore-installed distlib pipenv
+      - export PIPENV_PIPFILE="spell_check/Pipfile"
+      - pipenv install
+
+      # Running programs
+      - (pipenv run pyspelling --config "${PYSPELLING_CONFIG}" ${PYSPELLING_OPTIONS} | tee -a .pyspellinglog) || true
+      - pipenv run python spell_check/spell_junit.py
+    artifacts:
+      when: always
+      paths:
+        - ${CI_PROJECT_DIR}/spelling_junit.xml
+      reports:
+        junit: ${CI_PROJECT_DIR}/spelling_junit.xml

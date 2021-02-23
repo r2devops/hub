@@ -1,0 +1,9 @@
+name: gulp
+description: A ready to use `gulp` job that runs your tasks
+default_stage: others
+icon: 💡
+maintainer: coconux
+license: MIT
+labels:
+  - GitLab
+  - Utilities
