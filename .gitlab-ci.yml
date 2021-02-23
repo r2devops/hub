@@ -155,20 +155,20 @@ links_checker:
   allow_failure: true
 
 # See https://docs.gitlab.com/ee/api/labels.html
-job_labels:
+job_gitlab_labels:
   image: python:3.9.1-alpine
   stage: project_setup
   variables:
-    PIPENV_PIPFILE: tools/job_labels/Pipfile
-    JOB_LOGFILE: "job_labels.log"
+    PIPENV_PIPFILE: tools/job_gitlab_labels/Pipfile
+    JOB_LOGFILE: "job_gitlab_labels.log"
     PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
   script:
-    - pipenv run python3 tools/job_labels/job_labels.py
+    - pipenv run python3 tools/job_gitlab_labels/job_gitlab_labels.py
   artifacts:
-    expose_as: "job_labels"
+    expose_as: "job_gitlab_labels"
     paths:
       - ${JOB_LOGFILE}
     expire_in: 30 days

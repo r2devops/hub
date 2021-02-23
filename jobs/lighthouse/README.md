@@ -13,23 +13,27 @@ This job analyzes a remote website (or a local web service) and gives you a repo
     include:
       - remote: 'https://jobs.r2devops.io/lighthouse.yml'
     ```
+
 2. Choose a target
 
-    !!! note
-        This job can be run on external services or by running a container
-        instance of your website. **You need to choose between two following
-        options**.
+    !!! tip "Plug and play available !"
+      This job is **plug and play** 🚀, see the Option 1.<br/>
+      Other options need some configuration.<br/><br/>
+      **Using one of these option is mandatory to job success**
 
-    * Option 1: external service
+    ??? summary "Option 1: Choose the **plug and play** 🚀 mode"
+      😎 You have nothing to do, you can go to the next step.<br/><br/>If you are using one of hub building job to build a static website, **prefer to choose this option.**<br/>
+      Your static website will be directly used by lighthouse !
+      <br/><br/>*In case you updated the artifact path in your building job, don't forget to update `PAGES_PATH` variable.*
 
-    Add the site IP or the domain name of the service in `LIGHTHOUSE_TARGET` variable
-    (see [jobs customization](http://localhost:8000/use-the-hub/#jobs-customization))
+    ??? summary "Option 2: Plug manually your external website"
+      Add the site IP or the domain name of the service to check in `LIGHTHOUSE_TARGET` variable
+      (see [jobs customization](/use-the-hub/#jobs-customization))
 
-    *  Option 2: container instance
-
-    Add the target container instance as a service (see
-    [Container instance as Service](/use-the-hub/#container-instance-as-service)) and
-    set variable `LIGHTHOUSE_TARGET` as the name of your container.
+    ??? summary "Option 3: Plug manually your container instance"
+      Add the target container instance as a service (see
+      [Container instance as Service](/use-the-hub/#advanced-services)) and
+      set variable `LIGHTHOUSE_TARGET` as the name of your container.
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
@@ -52,6 +56,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 | `OUTPUT_FORMAT` | Format of report file (`json`, `csv`, `html`) | `html` |
 | `OUTPUT_LOCALE` | Language of report file | `en` |
 | `ADDITIONAL_OPTIONS` | Variable to add custom options (see [options](https://github.com/GoogleChrome/lighthouse#cli-options){:target="_blank"}) | ` ` |
+| `PAGES_PATH` | Path of your static website (not used if `LIGHTHOUSE_TARGET` is filled) | `website_build/` |
 
 ### Audit configuration
 

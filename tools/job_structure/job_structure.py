@@ -4,10 +4,68 @@ import os
 import logging
 import sys
 import yaml
+from yaml import full_load, YAMLError
 
 # Import the config module
 from tools.utils.utils import Config
 utils = Config()
+
+# List of available labels for jobs
+labels_list = ["GitLab","Build","Container","Docker","PHP", "Testing","Utilities","Yarn", "Dependency scan", "Security","Python","API", "Documentation","Quality","SAST","Linter","Helm","DAST","Kubernetes","NPM"]
+set_labels_list = set(labels_list)
+
+def get_conf(job_path):
+    """Parse the YAML config of the job
+
+    Args:
+        job_path (string): Path to job.yml
+
+    Returns:
+        (dict): Object of parsed YAML
+    """
+    try:
+        with open(job_path + "/" + JOB_YAML) as conf_file:
+            return full_load(conf_file)
+    except YAMLError as error:
+        logging.error("Failed to parse job config '%s/%s", job_path,
+                      JOB_YAML )
+        logging.error(error)
+        sys.exit(1)
+    except OSError as error:
+        logging.error("Failed to open and read job config '%s/%s",
+                      job_path, JOB_YAML )
+        logging.error(error)
+        sys.exit(1)
+
+
+def check_job_labels(job):
+    """Check and logging if job labels are not in the knonw label set_labels_list
+
+    Parameters:
+    -----------
+    job : str
+        The name of the job
+    Returns:
+    --------
+    """
+
+    ret = EXIT_SUCCESS
+    # Getting conf for indexing
+    conf = get_conf(JOBS_DIR+"/"+job)
+    job_labels = conf.get("labels")
+
+
+    # If job has no label
+    if job_labels is None:
+        logging.warning(' 🚫 🏷  Missing label(s) for job Job label: "%s"',
+             job)
+    # Check if job lable are weel knonw
+    else:
+        difference_labels = [label for label in job_labels if label not in set_labels_list]
+        if difference_labels != []:
+            logging.warning(' ⚠️  🏷  Label(s) unknown: "%s"',difference_labels)
+
+
 
 def check_job_yaml(job):
     """Verify the content of job.yaml for every job
@@ -124,4 +182,5 @@ if __name__ == "__main__":
             ret = utils.EXIT_FAILURE
         elif check_job_yaml(job) != utils.EXIT_SUCCESS:
             ret = utils.EXIT_FAILURE
+        check_job_labels(job)
     sys.exit(ret)

@@ -7,9 +7,11 @@
 # ── jobs
 #     └── <job_name>
 #         ├── <job_name>.yml
-#         ├── LICENSE
 #         ├── job.yml
 #         ├── README.md
+#         ├── screenshots
+#             ├── <screen_name>
+#             └──...
 #         └── versions
 #             ├── 0.1.0.md
 #             └──...
@@ -258,6 +260,17 @@ def get_linked_issues(job_name, opened=True):
     return (linked_issues, linked_issues_url, create_issue_url)
 
 def create_job_doc(job):
+    """Create the Markdown documentation file for a job
+
+    Parameters:
+    -----------
+    job : str
+        The name of the job
+
+    Returns:
+    --------
+    nothing
+    """
     job_path = utils.JOBS_DIR + "/" + job
 
     # Getting conf for indexing
@@ -331,9 +344,24 @@ def create_job_doc(job):
         sys.exit(1)
 
 def add_placeholder():
+<<<<<<< HEAD
     # Verify that there is a .md file for every stage, or mkdocs will break
     for stage_key, _ in utils.INDEX.items():
         placeholder_path = utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + stage_key
+=======
+    """Add a placeholder file for every stage, in case a stage have no job
+
+    Parameters:
+    -----------
+    nothing
+
+    Return:
+    -------
+    nothing
+    """
+    for stage_key, _ in index.items():
+        placeholder_path = MKDOCS_DIR + "/" + JOBS_DIR + "/" + stage_key
+>>>>>>> c767458a64a4ec118dbce0fad6bb909f39eb4ef6
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
             with open(placeholder_path + "/" + utils.MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
@@ -341,10 +369,13 @@ def add_placeholder():
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
-
 def main():
     """
-    Main function
+    Main function, multiple-purpose:
+    - Setup logging
+    - Iterate over jobs to create their documentation
+    - Add placeholders in stages that don't have a job
+    - Create jobs index
     """
 
     # logging
