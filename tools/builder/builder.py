@@ -61,15 +61,16 @@ TEMPLATE_LICENSE_DIR = "licenses"
 INDEX_FILE = "index.md"
 
 index = {
-    "static_tests": {"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
-    "build": {"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
-    "dynamic_tests": {"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
-    "provision": {"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
-    "review": {"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
-    "release": {"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
-    "deploy": {"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
-    "others": {"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
+    "static_tests": {"order":1,"name":"Static_tests","icon":"🔎","content":[], "description":"Static testing of repository files"},
+    "build": {"order":8,"name":"Build","icon":"🧱","content":[], "description":"Building and packaging of software"},
+    "dynamic_tests": {"order":3,"name":"Dynamic_tests","icon":"🔥","content":[], "description":"Dynamic testing of a running version of the software"},
+    "provision": {"order":4,"name":"Provision","icon":"🛠","content":[], "description":"Preparation of the software infrastructure"},
+    "review": {"order":5,"name":"Review","icon":"👌","content":[], "description":"Deployment of the software in an isolated review environment"},
+    "release": {"order":6,"name":"Release","icon":"🏷","content":[], "description":"Releasing and tagging of the software"},
+    "deploy": {"order":7,"name":"Deploy","icon":"🚀","content":[], "description":"Deployment of the software on environments"},
+    "others": {"order":2,"name":"Others","icon":"🦄","content":[], "description":"All other magic jobs not included in previous stages"}
 }
+
 
 def get_conf(job_path):
     """Parse the YAML config of the job
@@ -406,6 +407,34 @@ def add_placeholder():
                 file_handle.write(template.render())
 
 
+
+def create_arrange_pages():
+    """ Create arrange .pages for mkdocs to sort the list of stage in job page
+
+    Parameters:
+    -----------
+
+    Returns:
+    --------
+    """
+    stages = sorted(index.items(), key=lambda x: x[1]['order'])
+    title_arrange_pages = 'Jobs'
+    TEMPLATE_ARRANGE_PAGES = "arrange_pages.md.j2"
+    doc_file_path = "docs/jobs/.pages"
+    try:
+        with open(doc_file_path, 'w+') as doc_file:
+            env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
+            template = env.get_template(TEMPLATE_ARRANGE_PAGES)
+            doc_file.write(template.render(
+                title = title_arrange_pages,
+                stages = stages
+        ))
+    except Exception as error:
+        logging.error("Failed to create arrange pages file for job %s", doc_file_path)
+        logging.error(error)
+        sys.exit(1)
+
+
 def main():
     """
     Main function
@@ -416,6 +445,8 @@ def main():
 
     # Verify that there is a .md file for every stage, or mkdocs will break
     add_placeholder()
+
+    create_arrange_pages()
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(JOBS_DIR)
