@@ -26,7 +26,8 @@ import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
-# Import the config module
+# Set the Path and import the config module
+sys.path.insert(0, "./")
 from tools.utils.utils import Config
 utils = Config()
 

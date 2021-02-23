@@ -7,7 +7,8 @@ import yaml
 import argparse
 import re
 
-# Import the config module
+# Set the Path and import the config module
+sys.path.insert(0, "./")
 from tools.utils.utils import Config
 utils = Config()
 
