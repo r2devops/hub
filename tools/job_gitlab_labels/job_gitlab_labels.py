@@ -8,6 +8,7 @@ import sys
 from urllib.parse import quote, urlencode
 from os import getenv, listdir
 import requests
+import argparse
 
 # Import the config module
 from tools.utils.utils import Config
