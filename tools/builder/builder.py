@@ -397,16 +397,13 @@ def create_arrange_pages():
     Returns:
     --------
     """
-    stages = sorted(index.items(), key=lambda x: x[1]['order'])
-    title_arrange_pages = 'Jobs'
-    TEMPLATE_ARRANGE_PAGES = "arrange_pages.md.j2"
-    doc_file_path = "docs/jobs/.pages"
+    stages = sorted(utils.INDEX.items(), key=lambda x: x[1]['order'])
     try:
-        with open(doc_file_path, 'w+') as doc_file:
-            env = Environment(loader=FileSystemLoader(BUILDER_DIR + "/" + TEMPLATE_DIR))
-            template = env.get_template(TEMPLATE_ARRANGE_PAGES)
+        with open(utils.ARRANGE_PAGES_FILME_PATH, 'w+') as doc_file:
+            env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+            template = env.get_template(utils.TEMPLATE_ARRANGE_PAGES)
             doc_file.write(template.render(
-                title = title_arrange_pages,
+                title = utils.TITLE_ARRANGE_PAGES,
                 stages = stages
         ))
     except Exception as error:
