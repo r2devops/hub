@@ -2,7 +2,7 @@
 
 Jobs are stored in the [R2Devops hub](https://gitlab.com/r2devops/hub)
 repository inside the
-[`jobs`](https://gitlab.com/r2devops/hub/-/tree/latest/jobs) folder and
+[`jobs`](https://gitlab.com/r2devops/hub/-/tree/latest/jobs) folder, and
 follow this standardized structure:
 
 ```
@@ -20,33 +20,31 @@ follow this standardized structure:
             └── ...
 ```
 
-*A template of job is available
-[here](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
-in the R2Devops hub repository*
+*A template of job is available in the [R2Devops hub repository](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name).*
 
 ## 🤖 Job definition
 
-This file must have the same name that the job with the `yml` extension:
+This file must have the same name as the job with the `yml` extension:
 `<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
 
 !!! info
-    * Jobs of the hub use the Gitlab CI/CD configuration format
-    * Jobs of the hub must specify a Docker image to be run in a container
+    * The jobs of the hub use the Gitlab CI/CD configuration format.
+    * The jobs of the hub must specify a Docker image to be run in a container.
     * See [GitLab CI/CD pipeline configuration
-      reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}
+      reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}.
     * See [R2Devops guidelines and best
       practices](/create-update-job/#guidelines) about
-      job definition
+      job definition.
 
 Job definition usually contains the following fields:
 
-* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image){:target="_blank"}**: docker image used to run the job
-* **`stage`** (mandatory): default stage for the job, must be in our [default stage list](/use-the-hub/#stages)
-* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}** (mandatory): this is the heart of the job. It contains a list of shell commands to run the job
-* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: variables used by the `script` part of the job to customize its behavior
-* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: specify the result of the job that should be exposed to the user trough classic artifact or Gitlab reports
+* **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image){:target="_blank"}**: this is the docker image used to run the job.
+* **`stage`** (mandatory): this is the default stage for the job, it must come from our [default stage list](/use-the-hub/#stages).
+* **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}** (mandatory): this is the heart of the job. It contains a list of shell commands to run the job.
+* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: in this field, you will find all the variables used by the `script` part of the job to customize its behavior.
+* **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: it specifies the result of the job that should be exposed to the user through classic artifact or Gitlab reports.
 
-**Example of job definition [`apidoc.yml`](https://r2devops.io/jobs/build/apidoc/):**
+**Here is an example of job definition [`apidoc.yml`](https://r2devops.io/jobs/build/apidoc/) 👇**
 
 ```yaml
 apidoc:
@@ -77,17 +75,17 @@ the following fields:
 
 | Name | Description | Mandatory |
 | ---- | ----------- | --------- |
-| `name` <img width=100/> | Name of the job, must be unique | Yes |
-| `description` | Short description of the job | Yes |
-| `icon` | Unicode emoji character to represent the job ([emojipedia](https://emojipedia.org)) | Yes |
-| `default_stage` | Default stage of the job, you have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages) | Yes |
-| `maintainer` | Gitlab username of the maintainer | Yes |
-| `license` | Open-source license for the job. You can choose between `Apache-2.0` and `MIT` | Yes |
-| `labels` | List of label describing the job | No |
-| `images` | Dict of docker image(s) used by the job. Image name as key and tag version as value | Yes |
-| `tools` | Dict of tool(s) installed during the job. Name as key and version as value  | No |
+| `name` <img width=120/> | Name of the job, must be unique | **Yes** |
+| `description` | Short description of the job | **Yes** |
+| `icon` | Unicode emoji character to represent the job (if you lack inspiration, you can find some in [emojipedia](https://emojipedia.org)) | **Yes** |
+| `default_stage` | Default stage of the job. You have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages). We promise you will find the one you need!  | **Yes** |
+| `maintainer` | Gitlab username of the maintainer (be proud of your work) | **Yes** |
+| `license` | Open-source license for the job. You can choose between `Apache-2.0` and `MIT` | **Yes** |
+| `labels` | List of labels describing the job | No |
+| `images` | Dict of docker image(s) used by the job. Please entre the image name as key and the tag version as value | **Yes** |
+| `tools` | Dict of tool(s) installed during the job. Please entre the name as key and the version as value  | No |
 
-**Example of `job.yml`:**
+**Here is an example of `job.yml` 👇**
 
 ```yaml
 name: super_linter
@@ -148,16 +146,16 @@ This file, named `README.md`, contains the documentation of a job  in `markdown`
 
 ## 🏗 Job changelogs
 
-Jobs keep their changelogs in one folder named `versions`. This folder contains
+Jobs keep their changelogs in one folder, named `versions`. This folder contains several
 `markdown` files, each of them representing a version and containing a list of
 changes provided by this version.
 
 !!! info
-    * Jobs version must follow the [Semantic Versioning](https://semver.org/)
+    * The jobs version must follow the [semantic versioning](https://semver.org/)
     format (`MAJOR.MINOR.PATCH`)
     * The first version for a job must be `0.1.0`
 
-**Example of a `versions` folder for a job:**
+**Here is an example of a `versions` folder for a job 👇**
 
 ```shell
 .
@@ -189,12 +187,12 @@ changes provided by this version.
     ```
 
 
-## 🗺 Job screenshots
+## 🖼️ Job screenshots
 
-Jobs can include screenshots or any pictures to improve documentation and
-provide an overview of what job does
+Jobs can include screenshots, or any pictures, to improve documentation and
+provide an overview of what the job does.
 
-You can add as many picture as you want in this folder but try to add only
+You can add as many pictures as you want in this folder, but try to add only
 relevant images. You just have to put the file inside the folder, and they will
 be included in the documentation.
 
@@ -202,4 +200,4 @@ Supported format: `.png`, `.jpeg`, `.jpg`
 
 !!! warning
     If you don't want to add any pictures, you have to add at least an empty
-    file named `.gitkeep` to ensure the folder presence in git
+    file named `.gitkeep` to ensure the folder presence in git!

@@ -6,37 +6,36 @@ This page describes how to create or update a job in the
 In order to contribute efficiently, we recommend you to know the following topics:
 
 * [x] [R2Devops hub job structure](/job-structure/)
-* [x] [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
+* [x] [GitLab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
 
 ## Contributing workflow
 
-Follow 3 quick steps below to contribute in the hub 👇
+Follow the 3 simple steps below to contribute in the hub. You'll see, it will all go smoothly! 👇
 
-### 🍴 Step 1: Fork !
+### 🍴 Step 1: Fork!
 
 The first step is to create your own copy of the
-[`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository to be
+[`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository, to be
 able to work on it before merging your update in the real project.
 
-1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new)
-1. Select the group in which you want to create the fork
+1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new).
+1. Select the group in which you want to create the fork.
 
 ### 💻 Step 2: Work in your fork
 
-!!! error "Do not alter `.gitlab-ci.yml`"
+!!! error "Do not alter **`.gitlab-ci.yml`**"
     To leverage the R2Devops validity and security checks on your job, do not
     update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
 
     If you alter it, we will not be able to merge your job in `r2devops/hub`
-    repository 😕
+    repository. 😕
 
-1. If you want to add a new job, create a new directory dedicated to your job
-   in `jobs/` folder. You can use the [job
+1. Create a new directory dedicated to your job in `jobs/` folder if you want to add a new job. You can use the [job
    template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
-   as starting point
-1. Ensure to respect rules in this guide
-1. Do not update the CI/CD configuration (file `.gitlab-ci.yml`)
-1. Test your job and ensure it works
+   as starting point.
+2. Be sure to respect the rules we describe in this guide.
+3. Do not update the CI/CD configuration (file `.gitlab-ci.yml`).
+4. Test your job and ensure it works!
 
 ### 🚀 Step 3: Merge request
 
@@ -45,13 +44,12 @@ able to work on it before merging your update in the real project.
 ??? note "2. Create a new merge request in your fork (`Merge Requests > New merge request`) 👇"
     1. Select branches
         * As `Source branch`, select the branch in which you have worked in
-        your fork (usually `latest`)
-        * As `Target branch`, select latest in `r2devops/hub` project
-        * Click on `Compare branches and continue`
-    1. In `Title`: add short description of your contribution
+        your fork (usually `latest`).
+        * As `Target branch`, select latest in `r2devops/hub` project.
+        * Click on `Compare branches and continue`.
+    1. In `Title`: add short description of your contribution.
     1. In `Description`:
-        * Do not remove the default content, this is the Definition of Done
-            (DoD)
+        * Do not remove the default content, this is the [Definition of Done (DoD)](https://go2scale.io/definition-of-done-a-recipe-for-optimal-results/)!
         * Add a description of your contribution with all information
           permitting us to understand what you have done and why. If your
           contribution is related to an existing issue, add a reference:
@@ -63,68 +61,68 @@ able to work on it before merging your update in the real project.
             ## Definition of Done
             [...]
             ```
-        * Add link to your job running and working in a publicly accessible
-          Gitlab project
+        * Add a link to your job running and working in a publicly accessible
+          Gitlab project.
     1. If you want to allow commits from hub maintainers inside your fork
        branch, check the box
        [`Contribution`](https://docs.gitlab.com/ee/user/project/merge_requests/allow_collaboration.html)
-        (this isn't available for protected branches like `latest`)
+        (this isn't available for protected branches like `latest`).
 
-!!! note "3. In the newly created MR, ensure to fulfill all steps of the job Definition of Done and tick related boxes"
+!!! note "3. In the newly created MR, ensure to fulfill all the steps of the job's Definition of Done, and tick the related boxes"
 
 Thanks a lot for your contribution 😀🎉 !
 
-Now, we will take a look on your contribution and merge it if everything is ok
+Now, we will take a look at your contribution and merge it if everything is ok.
 👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR) to tell us more about your fresh new contribution.
-We love talking with our contributors and users !
+We love talking with our contributors and users!
 
 
 ## Guidelines (Required)
 
 !!! warning
-    Following these guidelines is required to contribute in
-    [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
+    Following these guidelines is required to contribute to
+    [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository.
 
 Each jobs must be compliant with these following rules:
 
-* [ ] Be compliant with [job structure](/job-structure/)
+* [ ] Be compliant with the [job structure](/job-structure/).
 * [ ] Use the `image` option. The goal is to provide **plug and play** jobs working
-  in any environments thanks to containers
+  in any environments thanks to containers.
 * [ ] Use **fixed tag** for docker image and any external tool used inside the
-  job. **It shouldn't be `latest` or any tag/version that will be overwritten**
-* [ ] Use only resource with license compatible with the job license and
-  permits to anyone to use it
-* [ ] Pass our Continuous Integration pipeline which includes security check
-  jobs (pipeline will be run automatically inside your fork 🎢 )
-* [ ] Be compliant with [our job definition](/r2bulary/#job)
+  job. **It shouldn't be `latest` or any tag/version that will be overwritten**.
+* [ ] Use only resource with license compatible with the job license, and
+  permitting anyone to use it.
+* [ ] Pass our Continuous Integration pipeline, which includes security check
+  jobs (the pipeline will be run automatically inside your fork 🎢).
+* [ ] Be compliant with [our job definition](/r2bulary/#job).
 
 
 ## Best practices (Optional)
 
 !!! info
-    Following these best practices is recommended to contribute in
-    [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository
+    Following these best practices is recommended to contribute to
+    [R2Devops/hub](https://gitlab.com/r2devops/hub/) repository.
 
 ### 🤖 Job definition
 
 #### 🧮 Variables
 
 In order to be customizable, your job should use `variables`. This section
-permits defining environment variables, usable by the job script.
+allows to define environment variables, usable by the job script.
 
 !!! tip
-    Set default values to your variables to reflect the most common use-case,
-    in this way, your job will remain plug-and-play while being customizable
+    Set default values to your variables to reflect the most common use-case. 
+    This, your job will remain plug-and-play while being customizable.
 
 Example of relevant situation to use variable:
 
-* File name
-* Path to files or folders
-* Any options/parameters used by the job
-* Enable or disable job features
-* Version of tools retrieved during the job
+* File name.
+* Path to files or folders.
+* Any options/parameters used by the job.
+* Enable or disable job features.
+* Version of tools retrieved during the job.
 
-Example for `newman` job:
+Here is an example for `newman` job 👇
 
 === "Job content"
 
@@ -168,58 +166,57 @@ Example for `newman` job:
 
 !!! info
     As described in [our guidelines](#guidelines), all jobs are run inside a
-    container instance, so they must specify Docker image to use. Depending on
+    container instance, so they must specify the Docker image to use. Depending on
     your job, it can be tricky to find the perfect image.
 
-The better place to found a docker image is the [docker
+The better place to find a docker image is the [docker
 hub](https://hub.docker.com/search?q=&type=image). You can start your research
-there with the following steps :
+there with the following steps:
 
 ??? note "1. Search for an image prepared with the tool you want to run"
-    1. Search for an image prepared with the tool you want to run
         * This is the preferred situation with a ready-to-use docker image that
-          doesn't require any additional installation
+          doesn't require any additional installation.
         * *Example for `mkdocs` job:
-          [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*
-        * If you found it, check it with general guidelines below
+          [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*.
+        * If you find it, check it with the general guidelines below.
 
-??? note "2. If there isn't any image prepared with tool you want to run, search for more general images"
+??? note "2. If there isn't any image prepared for the tool you want to run, search for more general images"
     * This case will require to install needed tool as first step of your job.
       If the installation is long or heavy, you should considers to build your
-      own image with tool already installed
+      own image with the tool already installed.
     * The vast majority of operating system and languages provides official
-      images, choose the more appropriate for your job. Examples:
+      images, choose the more appropriate for your job. Some examples:
       [`alpine`](https://hub.docker.com/_/alpine),
       [`debian`](https://hub.docker.com/_/debian),
       [`ubuntu`](https://hub.docker.com/_/ubuntu),
       [`python`](https://hub.docker.com/_/python),
       [`node`](https://hub.docker.com/_/node)
 
-!!! note "3. If you decide to build your own image: the image must be stored in publicly reachable registry like Docker hub or Gitlab registry"
+!!! note "3. If you decide to build your own image: the image must be stored in a publicly reachable registry, like Docker hub or Gitlab registry"
 
 
 **General guidelines to choose the image**
 
-* If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is the
+* The first thing to check is if the image is official (`OFFICIAL IMAGE` badge on docker hub): this is the
   perfect image for your use case ![Docker official
-  badge](images/docker_official_badge.png){: .docker_official_badge }
-* Else, the following points should be considered to choose an image:
+  badge](images/docker_official_badge.png){: .docker_official_badge }.
+* If it is not, the following points should be considered to choose an image:
     * The image must be versioned and not only with `latest` tag. ==If image
-      isn't versioned: it's not usable for your job==
-    * It should be actively maintained, with frequent updates and contains
-      recent versions
-    * The image should be small, containing only required tools
-    * The image should be efficient to run the job
-    * A large usage of the image can be a good indicator but take care, it
-      doesn't guarantee the quality neither security of the image
+      isn't versioned: it's not usable for your job==.
+    * It should be actively maintained, with frequent updates, and contains
+      recent versions.
+    * The image should be small, containing only required tools.
+    * The image should be efficient to run the job.
+    * A large usage of the image can be a good indicator but be aware, it
+      doesn't guarantee the quality neither the security of the image.
 
 #### 📦 Artifacts
 
 The vast majority of jobs produce a result. This result can be of different
 kinds:
 
-* Test report
-* Build result
+* Test report.
+* Build result.
 
 In both case, the result should be exposed by the job using the
 [`artifact`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target=blank}
@@ -230,14 +227,14 @@ expose results to users.
     * In the case of a test report, you need to use `when: always` option under
       `artifacts` if you want to expose result even if job fails.
     * You can combine both a build result and a test report by using both
-      `artifacts:paths` and `artifacts:reports`
+      `artifacts:paths` and `artifacts:reports`.
 
-Artifact can be configured at different level of integration in Gitlab
+An artifact can be configured at different level of integration in Gitlab
 interface:
 
 1. Better integration: Gitlab [`artifacts:reports`](https://docs.gitlab.com/ee/ci/yaml/#artifactsreports){:target=blank}
 
-    This is a way to integrate report result in aa  user-friendly way in Gitlab
+    This is a way to integrate a report result in an user-friendly way in Gitlab's
     interface. We encourage all job contributors to adapt their job output to a
     format compatible with a Gitlab report.
 
@@ -287,12 +284,12 @@ interface:
 
 #### 🔩 Keep genericity
 
-Jobs of the hub should remain as generic as possible, in order to ensure it:
+The jobs of the hub should remain as generic as possible. In order to ensure it:
 
-* Try to avoid using `rules` options that is strongly linked to the context of
+* Try to avoid using `rules` options, that is strongly linked to the context of
   the user and so should be set by the user. Also, some features requiring
   specific workflows, as [Gitlab Merge
-  Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/){:target=blank}
+  Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/){:target=blank},
   are more easily implemented by users if you don't specify `rules` in your
   job.
 * Try to avoid using `before_script` and `after_script` to let users the
@@ -300,29 +297,29 @@ Jobs of the hub should remain as generic as possible, in order to ensure it:
   job.
 
 !!! info
-    Jobs of the hub can be dynamically
+    The jobs of the hub can be dynamically
     [customized](/use-the-hub/#jobs-customization) by users.
 
 
 ### 📖 Job documentation
 
 As described in [R2Devops/hub job
-structure](/job-structure/#job-documentation), documentation of a job is
+structure](/job-structure/#job-documentation), the documentation of a job is
 written inside its `README.md` file.
 
 !!! tip
     Don't hesitate to copy the documentation from another job as starting
-    point. Example: raw content of [openapi
+    point. For example, the raw content of [openapi
     `README.md`](https://gitlab.com/r2devops/hub/-/raw/latest/jobs/openapi/README.md)
 
 We recommend including the following sections in your documentation:
 
-* Objective: describe the goal of your job
-* How to use it: a list of steps to quickly use your job
-* Job details: describes details of job (name, docker image, stage, etc)
+* Objective: describe the goal of your job.
+* How to use it: a list of steps to quickly use your job.
+* Job details: describes details of the job (name, docker image, stage, etc).
 * Variables: table listing variables used by the job (name, description,
-  default value, mandatory if needed)
-* Artifacts: describes artifact defined by the job
+  default value, mandatory if needed).
+* Artifacts: describes artifact(s) defined by the job.
 
 ### 🚄 Compliance with another job
 
@@ -336,8 +333,8 @@ currently implemented for all jobs producing an `HTML` output and the job
     in a standard path: `${CI_PROJECT_DIR}/website_build`.
 
 So, if your job produce a static website output, ensure to store the result of
-the build in `${CI_PROJECT_DIR}/website_build` and to configure this path as
-artifact. See example in [`mkdocs`](/jobs/build/mkdocs/) job.
+the build in `${CI_PROJECT_DIR}/website_build`, and to configure this path as
+artifact. You can see an example in [`mkdocs`](/jobs/build/mkdocs/) job.
 
 ### 🧪 Test your job
 
@@ -345,8 +342,8 @@ In order to test your job before merging it into the hub, we recommend you to
 follow these steps:
 
 1. Test the behavior of your job inside a local container on your machine (with
-   the same image as you want to use for the job). To simulate the Gitlab job
-   that will run it on your project you can mount the repository folder inside
+   the same image you want to use for the job). To simulate the GitLab job
+   that will run it on your project, you can mount the repository folder inside
    the container:
       ```shell
       # Example if your job will use node:15.7-buster as Docker image docker run -v
@@ -355,8 +352,8 @@ follow these steps:
 
 2. Create your job configuration in a repository and test it locally using
    [`include
-   local`](https://docs.gitlab.com/ee/ci/yaml/#includelocal){:target=blank}
-   instead of `remote` from the hub. Example:
+   local`](https://docs.gitlab.com/ee/ci/yaml/#includelocal){:target=blank},
+   instead of `remote` from the hub. For example:
 
     ```yaml
     include:
