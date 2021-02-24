@@ -76,6 +76,10 @@ class Config():
         }
 
 
+        # Check in Constructor
+        if not self.LOGFILE_NAME:
+            self.LOGFILE_NAME = "default_logfile.log"
+
     def __str__(self):
         """ Print function, return an string representation of the config object
         Returns

@@ -441,27 +441,25 @@ def main():
 
     # Setup argparse
     args = argparse_setup()
-
     # Setup logging
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
         handlers=[
-            logging.FileHandler(LOGFILE_NAME),
+            logging.FileHandler(utils.LOGFILE_NAME),
             logging.StreamHandler()
         ]
     )
-
-    # Verify that there is a .md file for every stage, or mkdocs will break
-    add_placeholder()
-
-    create_arrange_pages()
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(utils.JOBS_DIR)
     for job in jobs:
         create_job_doc(job)
 
+    # Verify that there is a .md file for every stage, or mkdocs will break
+    add_placeholder()
+
+    create_arrange_pages()
 
     # Using jinja2 with a template to create the index
     logging.info("Creating index of jobs")

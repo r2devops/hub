@@ -1,5 +1,6 @@
 site/
-docs/jobs/**/*.md
+docs/jobs/
 docs/images/jobs
 **/.DS_Store
 .idea
+default_logfile.log
