@@ -24,7 +24,7 @@ able to work on it before merging your update in the real project.
 ### 💻 Step 2: Work in your fork
 
 !!! error "Do not alter `.gitlab-ci.yml`"
-    To leverage the R2Devops validaty and security checks on your job, do not
+    To leverage the R2Devops validity and security checks on your job, do not
     update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
 
     If you alter it, we will not be able to merge your job in `r2devops/hub`
@@ -88,11 +88,11 @@ We love talking with our contributors and users !
 Each jobs must be compliant with these following rules:
 
 * [ ] Be compliant with [job structure](/job-structure/)
-* [ ] Use the `image` option. Goal is to provide **plug and play** jobs working
+* [ ] Use the `image` option. The goal is to provide **plug and play** jobs working
   in any environments thanks to containers
 * [ ] Use **fixed tag** for docker image and any external tool used inside the
   job. **It shouldn't be `latest` or any tag/version that will be overwritten**
-* [ ] Use only resource with license compatible with the job licence and
+* [ ] Use only resource with license compatible with the job license and
   permits to anyone to use it
 * [ ] Pass our Continuous Integration pipeline which includes security check
   jobs (pipeline will be run automatically inside your fork 🎢 )
@@ -110,7 +110,7 @@ Each jobs must be compliant with these following rules:
 #### 🧮 Variables
 
 In order to be customizable, your job should use `variables`. This section
-permits to define environment variables, usable by the job script.
+permits defining environment variables, usable by the job script.
 
 !!! tip
     Set default values to your variables to reflect the most common use-case,
@@ -168,12 +168,12 @@ Example for `newman` job:
 
 !!! info
     As described in [our guidelines](#guidelines), all jobs are run inside a
-    container instance, so they must specify Docker image to use. Depending of
+    container instance, so they must specify Docker image to use. Depending on
     your job, it can be tricky to find the perfect image.
 
 The better place to found a docker image is the [docker
 hub](https://hub.docker.com/search?q=&type=image). You can start your research
-there with following steps :
+there with the following steps :
 
 ??? note "1. Search for an image prepared with the tool you want to run"
     1. Search for an image prepared with the tool you want to run
@@ -203,11 +203,11 @@ there with following steps :
 * If the image is official (`OFFICIAL IMAGE` badge on docker hub): this is the
   perfect image for your use case ![Docker official
   badge](images/docker_official_badge.png){: .docker_official_badge }
-* Else, following points should be considered to choose an image:
+* Else, the following points should be considered to choose an image:
     * The image must be versioned and not only with `latest` tag. ==If image
       isn't versioned: it's not usable for your job==
     * It should be actively maintained, with frequent updates and contains
-      recents versions
+      recent versions
     * The image should be small, containing only required tools
     * The image should be efficient to run the job
     * A large usage of the image can be a good indicator but take care, it
@@ -221,9 +221,9 @@ kinds:
 * Test report
 * Build result
 
-In both case, the result should be exposed by the job using
+In both case, the result should be exposed by the job using the
 [`artifact`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target=blank}
-option. It permits to pass artifact to another job of the pipeline and
+option. It permits passing an artifact to another job of the pipeline and
 expose results to users.
 
 !!! info
@@ -237,7 +237,7 @@ interface:
 
 1. Better integration: Gitlab [`artifacts:reports`](https://docs.gitlab.com/ee/ci/yaml/#artifactsreports){:target=blank}
 
-    This is a way to integrate report result in user-friendly way in Gitlab
+    This is a way to integrate report result in aa  user-friendly way in Gitlab
     interface. We encourage all job contributors to adapt their job output to a
     format compatible with a Gitlab report.
 
@@ -255,8 +255,8 @@ interface:
 2. Quick integration with [`artifacts:expose_as`](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target=blank}
 
     This is a way to quickly integrate any format of report in Gitlab Merge
-    Request interface. Technically, you don't have to format your report ouput
-    in a specific format but we recommend to use `HTML` format. In this way,
+    Request interface. Technically, you don't have to format your report output
+    in a specific format, but we recommend to use `HTML` format. In this way,
     the report is one-click readable from any Merge Request.
 
     ??? example "Example of `artifacts:expose_as` report"
@@ -290,8 +290,8 @@ interface:
 Jobs of the hub should remain as generic as possible, in order to ensure it:
 
 * Try to avoid using `rules` options that is strongly linked to the context of
-  user and so should be set by the user. Also, some features requiring specific
-  workflows, as [Gitlab Merge
+  the user and so should be set by the user. Also, some features requiring
+  specific workflows, as [Gitlab Merge
   Trains](https://docs.gitlab.com/ee/ci/merge_request_pipelines/pipelines_for_merged_results/merge_trains/){:target=blank}
   are more easily implemented by users if you don't specify `rules` in your
   job.
@@ -315,7 +315,7 @@ written inside its `README.md` file.
     point. Example: raw content of [openapi
     `README.md`](https://gitlab.com/r2devops/hub/-/raw/latest/jobs/openapi/README.md)
 
-We recommend to include the following sections in your documentation:
+We recommend including the following sections in your documentation:
 
 * Objective: describe the goal of your job
 * How to use it: a list of steps to quickly use your job
@@ -332,10 +332,10 @@ currently implemented for all jobs producing an `HTML` output and the job
 
 !!! info
     This feature is empowered by the `artifacts` option: jobs producing a
-    static website output give it to the `pages` job trough an artifact stored
+    static website output give it to the `pages` job through an artifact stored
     in a standard path: `${CI_PROJECT_DIR}/website_build`.
 
-So, if your job produce an static website output, ensure to store the result of
+So, if your job produce a static website output, ensure to store the result of
 the build in `${CI_PROJECT_DIR}/website_build` and to configure this path as
 artifact. See example in [`mkdocs`](/jobs/build/mkdocs/) job.
 
@@ -345,11 +345,11 @@ In order to test your job before merging it into the hub, we recommend you to
 follow these steps:
 
 1. Test the behavior of your job inside a local container on your machine (with
-   the same image than you want to use for the job). To simulate the Gitlab job
+   the same image as you want to use for the job). To simulate the Gitlab job
    that will run it on your project you can mount the repository folder inside
    the container:
       ```shell
-      # Example if your job will uses node:15.7-buster as Docker image docker run -v
+      # Example if your job will use node:15.7-buster as Docker image docker run -v
       /path/to/your/repo:/mnt --entrypoint "/bin/sh" -it node:15.7-buster
       ```
 
