@@ -4,6 +4,10 @@ default_stage: build
 icon: 📃
 maintainer: coconux
 license: MIT
+images:
+  "alpine": "3.12.1"
+tools:
+  "doxygen": "1.8.18-r0"
 labels:
   - GitLab
   - Documentation

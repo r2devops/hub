@@ -4,6 +4,10 @@ default_stage: dynamic_tests
 icon: 🧱
 maintainer: paulrgnt
 license: Apache-2.0
+images:
+  "docker": "19.03"
+tools:
+  "trivy": "0.9.2"
 labels:
   - GitLab
   - Security

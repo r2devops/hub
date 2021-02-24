@@ -4,3 +4,7 @@ default_stage: "{{ stage }}"
 icon: "{{ icon }}"
 maintainer: "{{ maintainer }}"
 license: "{{ license name }}"
+images:
+  "{{ image_name }}": "{{ image_tag }}"
+tools:
+  "{{ tool_name }}": "{{ tool_version }}"

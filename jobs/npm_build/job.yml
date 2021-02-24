@@ -4,6 +4,9 @@ default_stage: build
 icon: 🧱
 maintainer: coconux
 license: MIT
+images:
+    "node": "15.7-buster"
+tools:
 labels:
     - GitLab
     - NPM

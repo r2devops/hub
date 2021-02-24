@@ -4,6 +4,9 @@ default_stage: static_tests
 icon: 🐍
 maintainer: FulcrandG
 license: MIT
+images:
+  "python": "3.8"
+tools:
 labels:
   - GitLab
   - Python

@@ -14,6 +14,7 @@ gulp:
     INSTALL_OPTIONS: ""
     GULPFILE_PATH: "."
     GULP_TASKS: ""
+    GULP_VERSION: '2.3.0'
     GULP_OUTPUT_FOLDER: "./build/"
     # Deploy on pages
     PAGES_DEPLOY: "false"
@@ -26,12 +27,12 @@ gulp:
 
     # Install global gulp for npm
     - if [ $PACKAGE_MANAGER == "npm" ]; then
-    -   $PACKAGE_MANAGER add --global gulp-cli
+    -   $PACKAGE_MANAGER add --global gulp-cli@$GULP_VERSION
     - fi
 
     # Install global gulp for yarn
     - if [ $PACKAGE_MANAGER == "yarn" ]; then
-    -   $PACKAGE_MANAGER global add gulp-cli
+    -   $PACKAGE_MANAGER global add gulp-cli@$GULP_VERSION
     - fi
 
     # Get and run all the tasks

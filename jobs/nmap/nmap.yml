@@ -3,7 +3,7 @@ stages:
 
 nmap:
   image:
-    name: instrumentisto/nmap
+    name: instrumentisto/nmap:7.91
     entrypoint: [""]
   stage: dynamic_tests
   variables:

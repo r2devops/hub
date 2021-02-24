@@ -4,6 +4,11 @@ default_stage: static_tests
 icon: 🔐
 maintainer: FulcrandG
 license: MIT
+images:
+  "zricethezav/gitleaks": "v6.1.2"
+tools:
+  "gitleaks": "6.1.2"
+
 labels:
   - GitLab
   - Security

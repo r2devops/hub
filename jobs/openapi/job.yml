@@ -4,6 +4,10 @@ default_stage: build
 icon: 📗
 maintainer: Protocole
 license: MIT
+images:
+  "alpine": "3.12.1"
+tools:
+  "swaggerui": "3.37.0"
 labels:
   - GitLab
   - API

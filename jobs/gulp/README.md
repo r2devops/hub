@@ -61,7 +61,8 @@ gulp:
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PROJECT_ROOT` <img width=105/>| Path to the directory containing `package.json`  | `.` |
+| `GULP_VERSION` <img width=105/>| Version of Gulp to use  | `2.3.0` |
+| `PROJECT_ROOT` | Path to the directory containing `package.json`  | `.` |
 | `PACKAGE_MANAGER` | Package manager to install your dependencies `npm` or `yarn`  | `npm` |
 | `INSTALL_OPTIONS` | Additional options for the installation of `PACKAGE_MANAGER` <br/> *Ex: For npm `--save-dev`*  | ` ` |
 | `GULPFILE_PATH` | Path (from `PROJECT_ROOT`) to your  gulpfile `gulpfile.js` or `gulpfile.ts`| ` ` |
