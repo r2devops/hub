@@ -436,16 +436,15 @@ def main():
     # logging
     logging.basicConfig(level=logging.INFO)
 
-    # Verify that there is a .md file for every stage, or mkdocs will break
-    add_placeholder()
-
-    create_arrange_pages()
-    
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(utils.JOBS_DIR)
     for job in jobs:
         create_job_doc(job)
 
+    # Verify that there is a .md file for every stage, or mkdocs will break
+    add_placeholder()
+
+    create_arrange_pages()
 
     # Using jinja2 with a template to create the index
     env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
