@@ -51,10 +51,10 @@ if __name__ == "__main__":
     )
 
     if args.job is None:
-        logging.error(f"No argument provided")
+        logging.error("No argument provided")
         sys.exit(utils.EXIT_FAILURE)
 
-    logging.info(f"Getting the image for job {args.job}")
+    logging.info("Getting the image for job %s", args.job)
 
     data = {}
     with open(f"{utils.JOBS_DIR}/{args.job}/{args.job}{utils.JOBS_EXTENSION}", 'r') as file:

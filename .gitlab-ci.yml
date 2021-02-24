@@ -183,9 +183,13 @@ mkdocs:
   variables:
     PIPENV_PIPFILE: tools/builder/Pipfile
     PYTHONPATH: "./:$PYTHONPATH"
+    JOB_LOGFILE: "builder.log"
   before_script:
     - pip install pipenv && pipenv install
     - pipenv run python tools/builder/builder.py
+  artifacts:
+    paths:
+      - "${JOB_LOGIFILE}"
 
 
 # See https://docs.gitlab.com/ee/api/releases/

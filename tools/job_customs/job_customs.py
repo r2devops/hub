@@ -60,7 +60,7 @@ if __name__ == "__main__":
     return_code = utils.EXIT_SUCCESS
     for job in os.listdir(utils.JOBS_DIR):
 
-        logging.info(f"Getting the script for job {job}")
+        logging.info("Getting the script for job %s", job)
 
         data = {}
         with open(f"{utils.JOBS_DIR}/{job}/{job}{utils.JOBS_EXTENSION}", 'r') as file:
@@ -72,13 +72,13 @@ if __name__ == "__main__":
                 if script in data[job].keys():
                     for line in data[job][script]:
                         if any(re.match(pattern, line) for pattern in patterns):
-                            logging.error(f"Code modification discovered in script of job {job}")
+                            logging.error("Code modification discovered in script of job %s", job)
                             return_code = utils.EXIT_FAILURE
                 elif "extends" in data[job].keys():
                     if script in data[data[job]['extends']].keys():
                         for line in data[data[job]['extends']][script]:
                             if any(re.match(pattern, line) for pattern in patterns):
-                                logging.error(f"Code modification discovered in script of job {job}")
+                                logging.error("Code modification discovered in script of job %s", job)
                                 return_code = utils.EXIT_FAILURE
             # If the extended job isn't in the file, it produce a KeyError
             except KeyError :

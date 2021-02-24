@@ -43,7 +43,7 @@ def get_labels(project_name, with_counts=False, include_ancestor_groups=True, se
     }
     base_label_url = f"{utils.GITLAB_API_URL}/projects/{quote(project_name, safe='')}" + "/labels"
     url = f"{base_label_url}?{urlencode(payload)}"
-    logging.info(f"Getting the list of issues from the project {project_name} filtered by {search}")
+    logging.info("Getting the list of issues from the project %s filtered by %s", project_name, search)
     return (requests.get(url, headers=headers))
 
 def create_label(project_name, label_name, label_color=utils.LABEL_COLOR):
@@ -73,7 +73,7 @@ def create_label(project_name, label_name, label_color=utils.LABEL_COLOR):
         "description": f"Issues related to {label_name}"
     }
     url = f"{utils.GITLAB_API_URL}/projects/{quote(project_name, safe='')}/labels"
-    logging.info(f"Creating a label {label_name} for the project {project_name}")
+    logging.info("Creating a label %s for the project %s", label_name, project_name)
     return (requests.post(url, headers=headers, data=payload))
 
 def delete_label(project_name, label_name):
@@ -95,7 +95,7 @@ def delete_label(project_name, label_name):
         'PRIVATE-TOKEN': utils.JOB_TOKEN
     }
     url = f"{utils.GITLAB_API_URL}/projects/{quote(project_name, safe='')}/labels/{label_name}"
-    logging.info(f"Deleting a label {label_name} for the project {project_name}")
+    logging.info("Deleting a label %s for the project %s", label_name, project_name)
     return (requests.delete(url, headers=headers))
 
 def argparse_setup():
@@ -139,9 +139,9 @@ if __name__ == "__main__":
         label = get_labels(utils.PROJECT_NAME, search=job_label)
         if "Unauthorized" not in label.text:
             if label.json():
-                logging.info(f"Label {job} exist")
+                logging.info("Label %s exist", job)
             else:
-                logging.info(f"Label {job} does not exist, creating one now")
+                logging.info("Label %s does not exist, creating one now", job)
                 create_label(utils.PROJECT_NAME, job_label)
         else:
             logging.error("Not Authorized, verify the API_TOKEN environment variable in the gitlab project")
