@@ -32,9 +32,9 @@ able to work on it before merging your update in the real project.
 
 1. Create a new directory dedicated to your job in `jobs/` folder if you want to add a new job. You can use the [job
    template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
-   as starting point.
+   as starting point. If you want to modify an existing job, you don't have to create a new directory.
 2. Be sure to respect the rules we describe in this guide.
-3. Do not update the CI/CD configuration (file `.gitlab-ci.yml`).
+3. Do not update the CI/CD configuration file `.gitlab-ci.yml`.
 4. Test your job and ensure it works!
 
 ### 🚀 Step 3: Merge request
@@ -55,7 +55,7 @@ able to work on it before merging your update in the real project.
           contribution is related to an existing issue, add a reference:
             ```md
             ## Contribution
-            Addition of a new job permitting to build go binaries. Issue
+            Addition of a new job permitting to build golang binaries. Issue
             related: r2devops/hub#945
 
             ## Definition of Done
@@ -174,11 +174,11 @@ hub](https://hub.docker.com/search?q=&type=image). You can start your research
 there with the following steps:
 
 ??? note "1. Search for an image prepared with the tool you want to run"
-        * This is the preferred situation with a ready-to-use docker image that
+    * This is the preferred situation with a ready-to-use docker image that
           doesn't require any additional installation.
-        * *Example for `mkdocs` job:
+    * *Example for `mkdocs` job:
           [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*.
-        * If you find it, check it with the general guidelines below.
+    * If you find it, check it with the general guidelines below.
 
 ??? note "2. If there isn't any image prepared for the tool you want to run, search for more general images"
     * This case will require to install needed tool as first step of your job.
@@ -282,7 +282,7 @@ interface:
             when: always
         ```
 
-#### 🔩 Keep genericity
+#### 🔩 Keep your job generic
 
 The jobs of the hub should remain as generic as possible. In order to ensure it:
 

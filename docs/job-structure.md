@@ -27,9 +27,9 @@ follow this standardized structure:
 This file must have the same name as the job with the `yml` extension:
 `<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
 
+    * The jobs of the hub use the Gitlab CI/CD configuration format. They must specify a Docker image to be run in a container.
+
 !!! info
-    * The jobs of the hub use the Gitlab CI/CD configuration format.
-    * The jobs of the hub must specify a Docker image to be run in a container.
     * See [GitLab CI/CD pipeline configuration
       reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}.
     * See [R2Devops guidelines and best
@@ -81,9 +81,9 @@ the following fields:
 | `default_stage` | Default stage of the job. You have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages). We promise you will find the one you need!  | **Yes** |
 | `maintainer` | Gitlab username of the maintainer (be proud of your work) | **Yes** |
 | `license` | Open-source license for the job. You can choose between `Apache-2.0` and `MIT` | **Yes** |
-| `labels` | List of labels describing the job | No |
-| `images` | Dict of docker image(s) used by the job. Please entre the image name as key and the tag version as value | **Yes** |
-| `tools` | Dict of tool(s) installed during the job. Please entre the name as key and the version as value  | No |
+| `labels` | List of labels describing the job. It should describe a characteristic of your job. For example: Docker, PHP, Security, Quality... | No |
+| `images` | Dictionary of docker image(s) used by the job. Please entre the image name as key and the tag version as value | **Yes** |
+| `tools` | Dictionary of tool(s) installed during the job. Please entre the name as key and the version as value  | No |
 
 **Here is an example of `job.yml` 👇**
 
@@ -103,7 +103,10 @@ labels:
 
 ## 📚 Job documentation
 
-This file, named `README.md`, contains the documentation of a job  in `markdown` format.
+This file, named `README.md`, contains the documentation of a job  in `markdown` format. 
+
+!!! info
+      The documentation explains what the job does, how to use it and to customize it. A clear documentation is important: it guides the people using your job!
 
 === "Example of README.md"
 
