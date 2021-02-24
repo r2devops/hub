@@ -10,6 +10,10 @@ include:
   - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
 
+spell_check:
+  variables:
+    PYSPELLING_CONFIG: ".pyspelling.yml"
+
 ci_linter:
   stage: static_tests
   image:
