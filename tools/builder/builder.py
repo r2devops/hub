@@ -27,6 +27,7 @@ from urllib.parse import quote, urlencode
 import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+import argparse
 
 # Import the config module
 from tools.utils.utils import Config
@@ -386,8 +387,6 @@ def add_placeholder():
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
-
-
 def create_arrange_pages():
     """ Create arrange .pages for mkdocs to sort the list of stage in job page
 
@@ -411,6 +410,16 @@ def create_arrange_pages():
         logging.error(error)
         sys.exit(1)
 
+def argparse_setup():
+    """Setup argparse
+
+    Return
+    ------
+    obj
+        Python object with arguments parsed
+    """
+    parser = argparse.ArgumentParser()
+    return parser.parse_args()
 
 def main():
     """
@@ -421,6 +430,9 @@ def main():
     - Create jobs index
     """
 
+    # Setup argparse
+    args = argparse_setup()
+
     # logging
     logging.basicConfig(level=logging.INFO)
 
@@ -428,7 +440,7 @@ def main():
     add_placeholder()
 
     create_arrange_pages()
-
+    
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(utils.JOBS_DIR)
     for job in jobs:
