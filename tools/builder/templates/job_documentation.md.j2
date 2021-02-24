@@ -85,9 +85,9 @@
         {{ version.url }}
         ```
     {% for line in version.changelog %}
-        {%- if line %}
+        {% if line -%}
         {{ line }}
-        {%- endif %}
+        {% endif -%}
     {%- endfor %}
     {% endfor %}
 
