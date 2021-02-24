@@ -10,7 +10,7 @@ matrix:
     lang: en
   dictionary:
     wordlists:
-    - docs/src/dictionary/en-custom.txt
+    - docs/dicts/en-custom.txt
   pipeline:
   - pyspelling.filters.context:
       context_visible_first: true
