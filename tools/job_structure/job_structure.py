@@ -36,14 +36,14 @@ def check_job_yaml(job):
         template_content = yaml.load(template_yml, Loader=yaml.FullLoader)
         job_content = yaml.load(job_yml, Loader=yaml.FullLoader)
 
-        logging.info(f"Checking the content of {JOB_YAML} in job {job}")
+        logging.info("Checking the content of %s in job %s", JOB_YAML, job)
         diff = set(template_content.keys()) - set(job_content.keys())
         if len(diff) > 0:
             for item in diff:
-                logging.error(f"Key {item} in {JOB_YAML} of job {job} is missing")
+                logging.error("Key %s in %s of job %s is missing", item, JOB_YAML, job)
             ret = EXIT_FAILURE
         else:
-            logging.info(f"{JOB_YAML} for job {job} is complete")
+            logging.info("%s for job %s is complete", JOB_YAML, job)
     return ret
 
 def check_directory_structure(template_structure, job):
@@ -75,24 +75,24 @@ def check_directory_structure(template_structure, job):
     job_structure = [obj[obj.find('/') + 1:] for obj in job_structure]
 
     # Check if file/directory is empty
-    logging.info(f"Checking empty file/directory in job structure of job {job}")
+    logging.info("Checking empty file/directory in job structure of job %s", job)
     for item in job_structure:
         if os.path.isfile(item):
             if os.path.getsize(item) == 0:
-                logging.error(f"File {item} for job {job} is empty")
+                logging.error("File %s for job %s is empty", item, job)
         elif os.path.isdir(item):
             if len(os.listdir(item)) == 0:
-                logging.error(f"Directory {item} for job {job} is empty")
+                logging.error("Directory %s for job %s is empty", item, job)
 
     ret = EXIT_SUCCESS
     if len(set(template_structure_tmp).intersection(job_structure)) != len(template_structure_tmp):
         # Not every file and directories in template_structure_tmp matched the job structure
-        logging.error(f"Job structure of {job} does not match the template:")
+        logging.error("Job structure of %s does not match the template:", job)
         for item in set(template_structure_tmp) - set(template_structure_tmp).intersection(job_structure):
-            logging.error(f"\tFile/directory missing: {item}")
+            logging.error("\tFile/directory missing: %s", item)
         ret = EXIT_FAILURE
     else:
-        logging.info(f"Job structure of {job} matches the template")
+        logging.info("Job structure of %s matches the template", job)
     return ret
 
 
