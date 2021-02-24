@@ -33,6 +33,7 @@ import argparse
 from tools.utils.utils import Config
 utils = Config()
 
+
 def get_conf(job_path):
     """Parse the YAML config of the job
 
@@ -344,6 +345,28 @@ def create_job_doc(job):
         logging.error(error)
         sys.exit(1)
 
+
+def create_pages_placeholder(placeholder_path,stage_key):
+    """ Create jobs folder destination folder in docs for the job and .pages fil
+
+    Parameters:
+    -----------
+    placeholder_path : str
+        Path to the stage documentation
+    stage_key : boolean
+        Name of the stage
+
+    Returns:
+    --------
+    """
+    # Create jobs folder destination folder in docs for the job
+    makedirs(placeholder_path,0o777,True)
+    # Create the .pages files mandatory to serve documentaiton and display stages
+    f = open(placeholder_path + "/.pages", "w+")
+    f.write("title: '"+ stage_key +"'")
+    f.close()
+
+
 def add_placeholder():
     """Add a placeholder file for every stage, in case a stage have no job
 
@@ -363,6 +386,29 @@ def add_placeholder():
                 env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
+
+def create_arrange_pages():
+    """ Create arrange .pages for mkdocs to sort the list of stage in job page
+
+    Parameters:
+    -----------
+
+    Returns:
+    --------
+    """
+    stages = sorted(utils.INDEX.items(), key=lambda x: x[1]['order'])
+    try:
+        with open(utils.ARRANGE_PAGES_FILE_PATH, 'w+') as doc_file:
+            env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+            template = env.get_template(utils.TEMPLATE_ARRANGE_PAGES)
+            doc_file.write(template.render(
+                title = utils.TITLE_ARRANGE_PAGES,
+                stages = stages
+        ))
+    except Exception as error:
+        logging.error("Failed to create arrange pages file for job %s", doc_file_path)
+        logging.error(error)
+        sys.exit(1)
 
 def argparse_setup():
     """Setup argparse
@@ -389,14 +435,17 @@ def main():
 
     # logging
     logging.basicConfig(level=logging.INFO)
+
+    # Verify that there is a .md file for every stage, or mkdocs will break
+    add_placeholder()
+
+    create_arrange_pages()
     
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(utils.JOBS_DIR)
     for job in jobs:
         create_job_doc(job)
 
-    # Verify that there is a .md file for every stage, or mkdocs will break
-    add_placeholder()
 
     # Using jinja2 with a template to create the index
     env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
