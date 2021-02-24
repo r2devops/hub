@@ -4,3 +4,8 @@ default_stage: static_tests
 icon: 🔗
 maintainer: Protocole
 license: MIT
+labels:
+  - GitLab
+  - Testing
+  - Quality
+  - Code performance

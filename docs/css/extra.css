@@ -215,11 +215,6 @@
     border-color: var(--md-primary-bg-color);
 }
 
-.z-index-1000{
-  z-index: 1000;
-}
-
-
 .border-radius-10{
   border-radius: 10px !important;
 }
@@ -241,7 +236,6 @@ button.md-button-center {
     display:block !important;
     margin:0 auto !important;
     padding-bottom:1em !important;
-    padding-top:0.8em !important
     padding-top:0.8em !important;
 }
 
@@ -302,4 +296,27 @@ opacity: .8;
 .docker_official_badge{
   width: 11em;
   box-shadow: 8px 8px 12px #aaa;
+}
+
+.label{
+  display: inline-flex;
+  border-radius: 5px;
+  background-color: #00B1D2;
+  margin-right: 0.1rem;
+  padding: 0.0rem 0.4rem 0.0rem 0.4rem;
+  margin-bottom:0.4rem;
+  opacity: 1;
+  color:white;
+
+}
+.label > a{
+  color:white;
+  cursor: pointer;
+}
+.labels_zone{
+  font-size:0.6rem;
+}
+
+.md-header {
+    z-index: 3;
 }

@@ -4,3 +4,7 @@ default_stage: static_tests
 icon: 🔎
 maintainer: thomasboni
 license: MIT
+labels:
+  - GitLab
+  - Linter
+  - Quality

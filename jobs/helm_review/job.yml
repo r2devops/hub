@@ -4,3 +4,7 @@ default_stage: review
 icon: ☸️
 maintainer: thomasboni
 license: MIT
+labels:
+  - GitLab
+  - Helm
+  - Kubernetes

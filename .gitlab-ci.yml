@@ -5,8 +5,8 @@ stages:
   - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/links_checker.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/spell_check.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/links_checker.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/spell_check.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
 
@@ -45,6 +45,7 @@ job_structure:
   variables:
     PIPENV_PIPFILE: tools/job_structure/Pipfile
     JOB_LOGFILE: "job_structure.log"
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
@@ -62,6 +63,7 @@ job_customs:
   variables:
     PIPENV_PIPFILE: tools/job_customs/Pipfile
     JOB_LOGFILE: "job_customs.log"
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
@@ -83,6 +85,7 @@ job_image_scan:
     PIPENV_PIPFILE: tools/job_image/Pipfile
     JOB_LOGFILE: "job_image.log"
     OUTPUT_DIR: "scan_output"
+    PYTHONPATH: "./:$PYTHONPATH"
 
     TRIVY_EXIT_ON_SEVERITY: ""
     TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
@@ -146,32 +149,39 @@ job_image_scan:
     expire_in: 30 days
     when: always
 
+links_checker:
+  variables:
+    LICHE_EXCLUDE: "^[^http]"
+    FAIL_ON_BROKEN: "true"
+  allow_failure: true
 
 # See https://docs.gitlab.com/ee/api/labels.html
-job_labels:
+job_gitlab_labels:
   image: python:3.9.1-alpine
   stage: project_setup
   variables:
-    PIPENV_PIPFILE: tools/job_labels/Pipfile
-    JOB_LOGFILE: "job_labels.log"
+    PIPENV_PIPFILE: tools/job_gitlab_labels/Pipfile
+    JOB_LOGFILE: "job_gitlab_labels.log"
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install --ignore-installed distlib pipenv
     - pipenv install
   script:
-    - pipenv run python3 tools/job_labels/job_labels.py
+    - pipenv run python3 tools/job_gitlab_labels/job_gitlab_labels.py
   artifacts:
-    expose_as: "job_labels"
+    expose_as: "job_gitlab_labels"
     paths:
       - ${JOB_LOGFILE}
     expire_in: 30 days
     when: always
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops/hub"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 
 mkdocs:
   variables:
     PIPENV_PIPFILE: tools/builder/Pipfile
+    PYTHONPATH: "./:$PYTHONPATH"
   before_script:
     - pip install pipenv && pipenv install
     - pipenv run python tools/builder/builder.py

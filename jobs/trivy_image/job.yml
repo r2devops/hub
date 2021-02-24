@@ -4,3 +4,9 @@ default_stage: dynamic_tests
 icon: 🧱
 maintainer: paulrgnt
 license: Apache-2.0
+labels:
+  - GitLab
+  - Security
+  - Dependency scan
+  - Container
+  - Docker

@@ -4,3 +4,7 @@ default_stage: build
 icon: 🌐
 maintainer: Protocole
 license: MIT
+labels:
+  - GitLab
+  - .NET
+  - Build

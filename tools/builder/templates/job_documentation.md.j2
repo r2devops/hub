@@ -1,5 +1,17 @@
 # {% if job_icon %} {{ job_icon }} {% endif %} {{ job_name | capitalize }}
 
+<div class="labels_zone">
+
+{% if job_labels %}
+  {% for label in job_labels -%}
+  <span class="label">
+  <span class=""> {{label}} </span>
+  </span>
+  {% endfor -%}
+{% endif %}
+
+</div>
+
 === "Documentation"
 
     {{ readme | indent(4, False) }}
@@ -73,9 +85,9 @@
         {{ version.url }}
         ```
     {% for line in version.changelog %}
-        {%- if line %}
+        {% if line -%}
         {{ line }}
-        {%- endif %}
+        {% endif -%}
     {%- endfor %}
     {% endfor %}
 
@@ -113,4 +125,3 @@ function checkSidebarFade() {
         loadListeners();
 }
 </script>
-

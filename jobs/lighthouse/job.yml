@@ -1,6 +1,12 @@
 name: lighthouse
-description: A simple job to do various tests on a site using Google Lighthouse
+description: A simple job to do various tests on a website using Google Lighthouse
 default_stage: dynamic_tests
 icon: 🗽
 maintainer: Protocole
 license: MIT
+labels:
+  - GitLab
+  - Testing
+  - Quality
+  - Security
+  - Performance

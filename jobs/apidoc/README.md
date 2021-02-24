@@ -1,7 +1,7 @@
 ## Objective
 
 Creates a versioned HTML documentation from API annotations in your source
-code using [apiDoc](https://www.apidocjs.com/){:target="_blank"}.
+code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 
 ## How to use it
 
