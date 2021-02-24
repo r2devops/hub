@@ -1,5 +1,5 @@
 site/
-docs/jobs/
+docs/jobs/*
 docs/images/jobs
 **/.DS_Store
 .idea
