@@ -29,8 +29,11 @@ from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 import argparse
 
-# Import the config module
+
+# Import the Config module and set the path to run the script from root project
+# /!\ This instruction is only working if you run this script from the root of the project
 from tools.utils.utils import Config
+sys.path.insert(0, "./")
 utils = Config()
 
 

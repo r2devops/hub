@@ -6,8 +6,10 @@ import sys
 import yaml
 from yaml import full_load, YAMLError
 
-# Import the config module
+# Import the Config module and set the path to run the script from root project
+# /!\ This instruction is only working if you run this script from the root of the project
 from tools.utils.utils import Config
+sys.path.insert(0, "./")
 utils = Config()
 
 # List of available labels for jobs

@@ -10,8 +10,10 @@ from os import getenv, listdir
 import requests
 import argparse
 
-# Import the config module
+# Import the Config module and set the path to run the script from root project
+# /!\ This instruction is only working if you run this script from the root of the project
 from tools.utils.utils import Config
+sys.path.insert(0, "./")
 utils = Config()
 
 def get_labels(project_name, with_counts=False, include_ancestor_groups=True, search=""):
