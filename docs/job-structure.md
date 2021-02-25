@@ -27,21 +27,20 @@ follow this standardized structure:
 This file must have the same name as the job with the `yml` extension:
 `<job_name>.yml`. It contains the Gitlab job configuration in `yaml` format.
 
-    * The jobs of the hub use the Gitlab CI/CD configuration format. They must specify a Docker image to be run in a container.
+The jobs of the hub use the Gitlab CI/CD configuration format. They must specify a Docker image to be run in a container.
 
 !!! info
-    * See [GitLab CI/CD pipeline configuration
-      reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}.
-    * See [R2Devops guidelines and best
-      practices](/create-update-job/#guidelines) about
-      job definition.
+    If you are curious and want to know more about the job definition, you can go to:
+
+    * [GitLab CI/CD pipeline configuration reference](https://docs.gitlab.com/ee/ci/yaml/){:target=blank}.
+    * [R2Devops guidelines and best practices](/create-update-job/#guidelines) about job definition.
 
 Job definition usually contains the following fields:
 
 * **[`image`](https://docs.gitlab.com/ee/ci/yaml/#image){:target="_blank"}**: this is the docker image used to run the job.
-* **`stage`** (mandatory): this is the default stage for the job, it must come from our [default stage list](/use-the-hub/#stages).
+* **`stage`** (mandatory): this is the default stage for the job. You can choose you in our [default stage list](/use-the-hub/#stages).
 * **[`script`](https://docs.gitlab.com/ee/ci/yaml/#script){:target="_blank"}** (mandatory): this is the heart of the job. It contains a list of shell commands to run the job.
-* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: in this field, you will find all the variables used by the `script` part of the job to customize its behavior.
+* **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: in this field, you will find all the variables used by the `script` of the job. This is where you customize its behavior.
 * **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: it specifies the result of the job that should be exposed to the user through classic artifact or Gitlab reports.
 
 **Here is an example of job definition [`apidoc.yml`](https://r2devops.io/jobs/build/apidoc/) 👇**
@@ -70,13 +69,13 @@ apidoc:
 
 ## 🗂 Job metadata
 
-This file, named `job.yml`, contains the job metadata in `yaml` format with
+In this file, named `job.yml`, you find the job metadata in `yaml` format with
 the following fields:
 
 | Name | Description | Mandatory |
 | ---- | ----------- | --------- |
 | `name` <img width=120/> | Name of the job, must be unique | **Yes** |
-| `description` | Short description of the job | **Yes** |
+| `description` | Short description of the job (go to the essential) | **Yes** |
 | `icon` | Unicode emoji character to represent the job (if you lack inspiration, you can find some in [emojipedia](https://emojipedia.org)) | **Yes** |
 | `default_stage` | Default stage of the job. You have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages). We promise you will find the one you need!  | **Yes** |
 | `maintainer` | Gitlab username of the maintainer (be proud of your work) | **Yes** |
@@ -99,14 +98,14 @@ labels:
     - Linter
     - Quality
 ```
-
+See? Short and specific! 👌
 
 ## 📚 Job documentation
 
 This file, named `README.md`, contains the documentation of a job  in `markdown` format. 
 
 !!! info
-      The documentation explains what the job does, how to use it and to customize it. A clear documentation is important: it guides the people using your job!
+      The documentation explains what the job does, how to use it and to customize it. A clear documentation is important: no one wants to use a job when you can't understand what it is for!
 
 === "Example of README.md"
 
@@ -155,8 +154,8 @@ changes provided by this version.
 
 !!! info
     * The jobs version must follow the [semantic versioning](https://semver.org/)
-    format (`MAJOR.MINOR.PATCH`)
-    * The first version for a job must be `0.1.0`
+    format (`MAJOR.MINOR.PATCH`).
+    * The first version for a job must be `0.1.0`.
 
 **Here is an example of a `versions` folder for a job 👇**
 
@@ -192,7 +191,7 @@ changes provided by this version.
 
 ## 🖼️ Job screenshots
 
-Jobs can include screenshots, or any pictures, to improve documentation and
+An image is worth a thousand words. It is why jobs can include screenshots, or any pictures, to improve documentation and
 provide an overview of what the job does.
 
 You can add as many pictures as you want in this folder, but try to add only

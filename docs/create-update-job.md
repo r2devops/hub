@@ -1,25 +1,25 @@
 # Create or update a job
 
 This page describes how to create or update a job in the
-[R2Devops/hub](https://gitlab.com/r2devops/hub/) repository.
+[R2Devops/hub](https://gitlab.com/r2devops/hub/) repository. It's the guide!
 
-In order to contribute efficiently, we recommend you to know the following topics:
+!!! info
+      In order to contribute efficiently, we recommend you to know the following topics:
 
-* [x] [R2Devops hub job structure](/job-structure/)
-* [x] [GitLab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
+      * [x] [R2Devops hub job structure](/job-structure/)
+      * [x] [GitLab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
 
 ## Contributing workflow
 
-Follow the 3 simple steps below to contribute in the hub. You'll see, it will all go smoothly! 👇
+Follow the 3 simple steps below to contribute efficiently in the hub. You'll see, it will all go smoothly! 👇
 
 ### 🍴 Step 1: Fork!
 
-The first step is to create your own copy of the
-[`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository, to be
+The first step is to create your own copy of [`r2devops/hub`](https://gitlab.com/r2devops/hub/) repository, to be
 able to work on it before merging your update in the real project.
 
 1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new).
-1. Select the group in which you want to create the fork.
+2. Select the group in which you want to create the fork.
 
 ### 💻 Step 2: Work in your fork
 
@@ -28,7 +28,7 @@ able to work on it before merging your update in the real project.
     update the CI/CD configuration file in your fork (`.gitlab-ci.yml` file).
 
     If you alter it, we will not be able to merge your job in `r2devops/hub`
-    repository. 😕
+    repository (yes, what a shame, after all your hard work...). 😕
 
 1. Create a new directory dedicated to your job in `jobs/` folder if you want to add a new job. You can use the [job
    template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
@@ -72,7 +72,7 @@ able to work on it before merging your update in the real project.
 
 Thanks a lot for your contribution 😀🎉 !
 
-Now, we will take a look at your contribution and merge it if everything is ok.
+Now, we will take a look at your work and merge it if everything is ok.
 👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR) to tell us more about your fresh new contribution.
 We love talking with our contributors and users!
 
@@ -112,7 +112,7 @@ allows to define environment variables, usable by the job script.
 
 !!! tip
     Set default values to your variables to reflect the most common use-case. 
-    This, your job will remain plug-and-play while being customizable.
+    With this, your job will remain plug-and-play while being customizable!
 
 Example of relevant situation to use variable:
 
@@ -174,7 +174,7 @@ hub](https://hub.docker.com/search?q=&type=image). You can start your research
 there with the following steps:
 
 ??? note "1. Search for an image prepared with the tool you want to run"
-    * This is the preferred situation with a ready-to-use docker image that
+    * This is the best situation: a ready-to-use docker image that
           doesn't require any additional installation.
     * *Example for `mkdocs` job:
           [`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material)*.
@@ -190,7 +190,7 @@ there with the following steps:
       [`debian`](https://hub.docker.com/_/debian),
       [`ubuntu`](https://hub.docker.com/_/ubuntu),
       [`python`](https://hub.docker.com/_/python),
-      [`node`](https://hub.docker.com/_/node)
+      [`node`](https://hub.docker.com/_/node).
 
 !!! note "3. If you decide to build your own image: the image must be stored in a publicly reachable registry, like Docker hub or Gitlab registry"
 
@@ -203,11 +203,11 @@ there with the following steps:
 * If it is not, the following points should be considered to choose an image:
     * The image must be versioned and not only with `latest` tag. ==If image
       isn't versioned: it's not usable for your job==.
-    * It should be actively maintained, with frequent updates, and contains
+    * It should be actively maintained, with frequent updates, and should contain
       recent versions.
     * The image should be small, containing only required tools.
     * The image should be efficient to run the job.
-    * A large usage of the image can be a good indicator but be aware, it
+    * A large usage of the image can be a good indicator, but be aware, it
       doesn't guarantee the quality neither the security of the image.
 
 #### 📦 Artifacts
@@ -232,7 +232,7 @@ expose results to users.
 An artifact can be configured at different level of integration in Gitlab
 interface:
 
-1. Better integration: Gitlab [`artifacts:reports`](https://docs.gitlab.com/ee/ci/yaml/#artifactsreports){:target=blank}
+1. Best integration: Gitlab [`artifacts:reports`](https://docs.gitlab.com/ee/ci/yaml/#artifactsreports){:target=blank}
 
     This is a way to integrate a report result in an user-friendly way in Gitlab's
     interface. We encourage all job contributors to adapt their job output to a
@@ -252,7 +252,7 @@ interface:
 2. Quick integration with [`artifacts:expose_as`](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target=blank}
 
     This is a way to quickly integrate any format of report in Gitlab Merge
-    Request interface. Technically, you don't have to format your report output
+    Request interface. Technically, you don't have to shape your report output
     in a specific format, but we recommend to use `HTML` format. In this way,
     the report is one-click readable from any Merge Request.
 
@@ -310,9 +310,9 @@ written inside its `README.md` file.
 !!! tip
     Don't hesitate to copy the documentation from another job as starting
     point. For example, the raw content of [openapi
-    `README.md`](https://gitlab.com/r2devops/hub/-/raw/latest/jobs/openapi/README.md)
+    `README.md`](https://gitlab.com/r2devops/hub/-/raw/latest/jobs/openapi/README.md)! 
 
-We recommend including the following sections in your documentation:
+We recommend including at least the following sections in your documentation:
 
 * Objective: describe the goal of your job.
 * How to use it: a list of steps to quickly use your job.
@@ -359,3 +359,9 @@ follow these steps:
     include:
         - local: 'my-work-in-progress-job.yml'
     ```
+
+
+!!! success "Congratulation, you did it!"
+      You went through all our guideline. 🥳
+
+      If never something feel unclear or you're having a doubt, join us on [Discord](https://discord.gg/5QKpGqR) to ask us anything! We'll be more than happy to help.

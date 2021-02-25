@@ -14,5 +14,4 @@ This page will guide you to the right place depending on the kind of contributio
   
 !!! heart "Community"
     We love talking with our contributors and users! Join our
-    [:fontawesome-brands-discord: Discord
-    community](https://discord.gg/5QKpGqR)
+    [Discord community :fontawesome-brands-discord:](https://discord.gg/5QKpGqR)
