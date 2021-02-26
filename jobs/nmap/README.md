@@ -56,3 +56,4 @@ if one of them should not be.
 | `NMAP_OPTIONS` | Additional options you may want for the scan (`man nmap`) | ` ` |
 | `NMAP_OUTPUT` | Name for the XML output file for nmap | `nmap-report.xml` |
 | `HTML_OUTPUT` | Name for the html file for the Merge Request Widget for this job | `nmap-report.html` |
+| `LIBXSLT_VERSION` | Tool's version of LibXslt | `1.1.34-r0` | 

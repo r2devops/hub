@@ -25,6 +25,13 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
+!!! note "About Hunspell"
+    Hunspell can be used as an alternative the aspell, the current spelling checker tool used. In order to have
+    a working job, we recommend you to replace `PYSPELLING_SPELLER` with the following string `hunspell=1.7.0-2`.
+
+    The above hunspell version has been tested with this job, it ensures you that this will properly work. Upgrading
+    this version can cause your job to be broken, do it at your own risks.
+
 ## Job details
 
 * Job name: `spell_check`
@@ -38,7 +45,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `PYSPELLING_LANGUAGE` <img width=100/> | Languages dictionnaries to use (separate each language by a space) <img width=175/>| `en` <img width=100/>|
-| `PYSPELLING_SPELLER`  | Speller program to use | `aspell` |
+| `PYSPELLING_SPELLER`  | Speller program to use | `aspell=0.60.7~20110707-6` |
 | `PYSPELLING_CONFIG`  | Path to your custom `.pyspelling.yml` | ` ` |
 | `PYSPELLING_OPTIONS`  | Additional options for PySpelling | ` ` |
 | `SNIPPET_VERSION` | Snippet commit tag | `4cc2af8e840aff6f599a894351de62c9b29ddc69` |
