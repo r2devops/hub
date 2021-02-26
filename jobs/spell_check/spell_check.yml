@@ -9,13 +9,14 @@ spell_check:
     allow_failure: true
     variables:
       PYSPELLING_LANGUAGE: "en"
-      PYSPELLING_SPELLER: "aspell"
+      PYSPELLING_SPELLER: "aspell=0.60.7~20110707-6"
       PYSPELLING_CONFIG: ""
       PYSPELLING_OPTIONS: ""
       SNIPPET_VERSION: "4cc2af8e840aff6f599a894351de62c9b29ddc69"
     script:
       # Installing global dependencies depending on variables
       - apt update && apt install -y ${PYSPELLING_SPELLER}
+      - export PYSPELLING_SPELLER=$(echo ${PYSPELLING_SPELLER} | cut -d'=' -f 1)
       - for i in ${PYSPELLING_LANGUAGE}; do apt install -y ${PYSPELLING_SPELLER}-$i; done
 
       # Download required files
