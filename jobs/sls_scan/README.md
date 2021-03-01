@@ -10,8 +10,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
 2. Choose a version in [version list](#versions)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
 
     ```yaml
     include:

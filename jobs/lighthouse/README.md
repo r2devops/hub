@@ -6,8 +6,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
 ## How to use it
 
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
 
     ```yaml
     include:

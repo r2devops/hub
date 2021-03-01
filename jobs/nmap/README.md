@@ -11,8 +11,7 @@ if one of them should not be.
 
 ## How to use it
 
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
    ```yaml
    include:
      - remote: 'https://jobs.r2devops.io/nmap.yml'

@@ -15,8 +15,7 @@ remote registry. The build part is done using
    [Dockerfile](https://docs.docker.com/get-started/part2/#sample-dockerfile){:target="_blank"} (by default at the root of your project)
    to containerize your application
 2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/docker_build.yml'

@@ -10,8 +10,7 @@ This job let you the possibility to change SwaggerUI version (see [versions](htt
 ## How to use it
 
 1. Have a [compatible](#description) API specification file you can use in the job
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
 
     ```yaml
     include:

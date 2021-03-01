@@ -16,8 +16,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
     /docs/      # This folder contains all your documentation markdown files
     ```
 2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
 
     ```yaml
     include:

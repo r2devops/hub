@@ -17,8 +17,7 @@ vulnerability detection capabilities are available in its official
 1. Check supported OS and packages
    [here](https://github.com/aquasecurity/trivy#vulnerability-detection){:target="_blank"}
 2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
 
     ```yaml
     include:

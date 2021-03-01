@@ -8,8 +8,7 @@ from your `package.json` file.
 1. Ensure that your project have
    [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
    file which contains the script required to build (`build` by default)
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/npm_build.yml'

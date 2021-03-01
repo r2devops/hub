@@ -8,8 +8,7 @@ from your `package.json` file.
 1. Ensure that your project have
    [`package.json`](https://classic.yarnpkg.com/en/docs/package-json/){:target="_blank"}
    file which contains the script required to build (`build` by default)
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/yarn_build.yml'

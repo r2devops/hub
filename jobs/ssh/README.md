@@ -5,8 +5,7 @@ Run a SSH command on a remote host.
 ## How to use it
 
 1. Choose a version in [version list](#changelog)
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/ssh.yml'

@@ -9,8 +9,7 @@ Other languages can be supported with additional code.
 
 
 1. Ensure that your source code is documenting using [Doxygen syntax](https://www.doxygen.nl/manual/docblocks.html){:target="_blank"}
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
 
     ```yaml
     include:

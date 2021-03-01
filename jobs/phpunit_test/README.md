@@ -6,8 +6,7 @@ Using this job you'll be able to launch PHPUnit tests.
 
 1. Put a `phpunit.xml` (check [syntax](https://phpunit.readthedocs.io/en/latest/configuration.html#the-phpunit-element){:target="_blank"}) in the root of your php project. Edit `PHPUNIT_CONFIG_FILE` (see [Variables](#variables)) to change the default behavior.
 
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
 
     ```yaml
     include:

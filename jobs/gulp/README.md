@@ -13,8 +13,7 @@ This job installs `npm` or `yarn` dependencies listed in your `package.json` and
    or
    [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#transpilation){:target="_blank"}
    file which contains your tasks
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
 
     ```yaml
     include:

@@ -8,8 +8,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
 ## How to use it
 
 1. Ensure that your package manager and/or files are handled in [File Type Analyzers](#file-type-analyzers)
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/owasp_dependency_check.yml'

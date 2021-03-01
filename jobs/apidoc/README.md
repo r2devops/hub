@@ -9,8 +9,7 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
    [apiDoc format](https://apidocjs.com/#examples){:target="_blank"} and your [apiDoc
    configuration file](https://apidocjs.com/#configuration){:target="_blank"}.
 2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
 
     ```yaml
     include:

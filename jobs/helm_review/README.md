@@ -6,8 +6,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 
 1. To use this job, you have to provide a helm chart to deploy your project. The chart location must be defined in the CHART_PATH variable. If you want to use custom values files, check the `VALUES_FILE` and `VALUES_SECRET_FILE` variables. More information about helm charts in [documentation](https://helm.sh/docs/chart_template_guide/getting_started/){:target="_blank"}
 2. Prepare the secret PGP variables (`PGP_PUBLIC` and `PGP_PRIVATE`) in your CI/CD variables (as files and not variables!) in [gitlab](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui){:target="_blank"} if you need encrypted variables
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
 
     ```yaml
     include:
