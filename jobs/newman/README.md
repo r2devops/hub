@@ -6,7 +6,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
 
 1. Add a Postman collection to your project and a globals file to use your
    variables
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
    ```yaml
    include:
         - remote: 'https://jobs.r2devops.io/newman.yml'

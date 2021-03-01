@@ -13,7 +13,7 @@ In its default state, this job will analyze your whole project for eligible file
 ## How to use it
 
 1. Have `.md`, `.html` or `.htm` files in your project
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
 
     ```yaml
     include:

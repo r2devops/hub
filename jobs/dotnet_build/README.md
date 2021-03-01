@@ -6,7 +6,7 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 ## How to use it
 
 1. Prepare your project in your repository with its `.csproj` file.
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
 
     ```yaml
     include:

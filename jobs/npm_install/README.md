@@ -10,7 +10,7 @@ This job installs `npm` dependencies listed in your `package.json` and exposes
 1. Ensure that your project have
    [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
    file which contains the requirements
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
     ```yaml
     include:
       - remote: 'https://jobs.r2devops.io/npm_install.yml'

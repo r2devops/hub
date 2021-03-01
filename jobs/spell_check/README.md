@@ -14,7 +14,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 
 1. (Optional) Configure your PySpelling config file (see [here](https://facelessuser.github.io/pyspelling/configuration/))
 2. (Optional) According to your PySpelling config, define `PYSPELLING_SPELLER` and `PYSPELLING_LANGUAGE`
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
 
     ```yaml
     include:
