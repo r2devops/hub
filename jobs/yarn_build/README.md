@@ -8,10 +8,9 @@ from your `package.json` file.
 1. Ensure that your project have
    [`package.json`](https://classic.yarnpkg.com/en/docs/package-json/){:target="_blank"}
    file which contains the script required to build (`build` by default)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/yarn_build.yml'
+      - remote: 'https://jobs.r2devops.io/latest/yarn_build.yml'
     ```
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)

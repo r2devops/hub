@@ -14,11 +14,9 @@ remote registry. The build part is done using
 1. Create a
    [Dockerfile](https://docs.docker.com/get-started/part2/#sample-dockerfile){:target="_blank"} (by default at the root of your project)
    to containerize your application
-2. Choose a version in [version list](#changelog)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/docker_build.yml'
+      - remote: 'https://jobs.r2devops.io/latest/docker_build.yml'
     ```
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)

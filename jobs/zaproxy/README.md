@@ -9,13 +9,11 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     Zaproxy is mainly used to scan web applications and web frontend. You can use the tool to try and discover
     API vulnerabilities, but this job is focused on a quick scan for a frontend service (with or without authentication)
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)) and add a `services` section. Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/zaproxy.yml'
+      - remote: 'https://jobs.r2devops.io/latest/zaproxy.yml'
     ```
-
-2. Choose a target
+1. Choose a target
 
     !!! note
         This job can be run on external services or by running a container
@@ -33,9 +31,9 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     [Container instance as Service](/use-the-hub/#container-instance-as-service))
     and set `ZAP_TARGET` as the name of your container.
 
-3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-4. Well done, your job is ready to work ! 😀
+1. Well done, your job is ready to work ! 😀
 
 ## Job details
 

@@ -8,17 +8,13 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 1. Prepare your project with API annotations in your source code following
    [apiDoc format](https://apidocjs.com/#examples){:target="_blank"} and your [apiDoc
    configuration file](https://apidocjs.com/#configuration){:target="_blank"}.
-2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/apidoc.yml'
+      - remote: 'https://jobs.r2devops.io/latest/apidoc.yml'
     ```
-
-4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-5. Well done, your job is ready to work ! 😀
+1. Well done, your job is ready to work ! 😀
 
 ## Job details
 

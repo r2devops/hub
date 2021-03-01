@@ -54,18 +54,13 @@ More than 36 languages are supported :
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/super_linter.yml'
+      - remote: 'https://jobs.r2devops.io/latest/super_linter.yml'
     ```
-
-4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-
-5. Well done, your job is ready to work ! 😀
+1. Well done, your job is ready to work ! 😀
 
 ## Job details
 

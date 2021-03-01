@@ -14,11 +14,9 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 
 1. (Optional) Configure your PySpelling config file (see [here](https://facelessuser.github.io/pyspelling/configuration/))
 2. (Optional) According to your PySpelling config, define `PYSPELLING_SPELLER` and `PYSPELLING_LANGUAGE`
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/spell_check.yml'
+      - remote: 'https://jobs.r2devops.io/latest/spell_check.yml'
     ```
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)

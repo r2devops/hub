@@ -9,14 +9,10 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-2. Choose a version in [version list](#versions)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/sls_scan.yml'
+      - remote: 'https://jobs.r2devops.io/latest/sls_scan.yml'
     ```
-
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀

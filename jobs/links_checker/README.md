@@ -13,16 +13,13 @@ In its default state, this job will analyze your whole project for eligible file
 ## How to use it
 
 1. Have `.md`, `.html` or `.htm` files in your project
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/links_checker.yml'
+      - remote: 'https://jobs.r2devops.io/latest/links_checker.yml'
     ```
-
-3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-4. Well done, your job is ready to work ! 😀
+1. Well done, your job is ready to work ! 😀
 
 ## Job details
 

@@ -10,19 +10,14 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
    described in [Mkdocs
    documentation](https://www.mkdocs.org/#getting-started){:target="_blank"}. In your repository,
    documentation files must be organized as follows:
-
     ```
     /mkdocs.yml # This is your configuration file
     /docs/      # This folder contains all your documentation markdown files
     ```
-2. Choose a version in [version list](#changelog)
-3. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting started](/use-the-hub/)). Example:
-
+3. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/mkdocs.yml'
+      - remote: 'https://jobs.r2devops.io/latest/mkdocs.yml'
     ```
-
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 

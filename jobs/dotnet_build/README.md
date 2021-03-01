@@ -6,13 +6,10 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 ## How to use it
 
 1. Prepare your project in your repository with its `.csproj` file.
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)):
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/dotnet_build.yml'
+      - remote: 'https://jobs.r2devops.io/latest/dotnet_build.yml'
     ```
-
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 
