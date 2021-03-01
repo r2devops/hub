@@ -30,8 +30,8 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
         Check [stages](#stages) section to get more information about this list
         or if you already have a configuration with different stages.
 
-2. Select Jobs you want in [jobs section](/jobs/) and add their URL at the end
-   of your `.gitlab-ci.yml` file:
+2. Select Jobs you want in [jobs section](/jobs/) and append their URL in the
+   `include` list of your `.gitlab-ci.yml` file:
 
     ```yaml
     include:
