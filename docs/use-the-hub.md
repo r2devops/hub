@@ -2,7 +2,7 @@
 
 ## 📝 Prerequisites
 
-- 🦊  Manage your project in Gitlab and understand what is [CI/CD with Giltab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
+- 🦊  Manage your project in Gitlab and understand what is [CI/CD with Gitlab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
 - ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
 - 🔫  Be aware each file modification in your project will trigger the [Pipeline](/r2bulary/#pipeline)
 - 🗝  Have access to the pipelines page in your Gitlab project to see the pipeline execution

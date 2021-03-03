@@ -179,6 +179,9 @@ job_gitlab_labels:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
+spell_check:
+  variables:
+    PYSPELLING_CONFIG: '.spell_check/.pyspelling.yml'
 
 mkdocs:
   variables:

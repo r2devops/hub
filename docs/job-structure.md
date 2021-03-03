@@ -81,8 +81,8 @@ the following fields:
 | `maintainer` | Gitlab username of the maintainer (be proud of your work) | **Yes** |
 | `license` | Open-source license for the job. You can choose between `Apache-2.0` and `MIT` | **Yes** |
 | `labels` | List of labels describing the job. It should describe a characteristic of your job. For example: Docker, PHP, Security, Quality... | No |
-| `images` | Dictionary of docker image(s) used by the job. Please entre the image name as key and the tag version as value | **Yes** |
-| `tools` | Dictionary of tool(s) installed during the job. Please entre the name as key and the version as value  | No |
+| `images` | Dictionary of docker image(s) used by the job. Please enter the image name as key and the tag version as value | **Yes** |
+| `tools` | Dictionary of tool(s) installed during the job. Please enter the name as key and the version as value  | No |
 
 **Here is an example of `job.yml` 👇**
 
@@ -102,7 +102,7 @@ See? Short and specific! 👌
 
 ## 📚 Job documentation
 
-This file, named `README.md`, contains the documentation of a job  in `markdown` format. 
+This file, named `README.md`, contains the documentation of a job  in `markdown` format.
 
 !!! info
       The documentation explains what the job does, how to use it and to customize it. A clear documentation is important: no one wants to use a job when you can't understand what it is for!

@@ -24,7 +24,7 @@ customization](/use-the-hub/#jobs-customization)
 
 ### Example of `.gitlab-ci.yml` file
 
-If you want to [change the default stage](/use-the-hub/#change-the-default-stage-of-job), or [customize your job](/use-the-hub/#global) have a look ont the example below 👇🏽
+If you want to [change the default stage](/use-the-hub/#change-the-default-stage-of-job), or [customize your job](/use-the-hub/#global) have a look on the example below 👇🏽
 
 ```yaml
 stages:
