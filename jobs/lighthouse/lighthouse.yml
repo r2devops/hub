@@ -2,7 +2,7 @@ stages:
   - dynamic_tests
 
 lighthouse:
-  image: justinribeiro/lighthouse
+  image: justinribeiro/lighthouse@sha256:4a9673d77d8480f2d641b8e4e5845897ea1f9b368eb92862321cafcc7f897c82
   stage: dynamic_tests
   variables:
     LIGHTHOUSE_TARGET: ""
@@ -11,22 +11,21 @@ lighthouse:
     OUTPUT_LOCALE: "en"
     ADDITIONAL_OPTIONS: ""
     PAGES_PATH: "website_build/"
+    SERVE_VERSION: "11.3.2"
   script:
     # Put in full lowercase OUTPUT_FORMAT to avoid problems
     - export OUTPUT_FORMAT=$(echo ${OUTPUT_FORMAT} | tr '[:upper:]' '[:lower:]')
     - export ADDITIONAL_OPTIONS="--output ${OUTPUT_FORMAT} --output-path ${OUTPUT_NAME}.${OUTPUT_FORMAT} ${ADDITIONAL_OPTIONS}"
     - export ADDITIONAL_OPTIONS="--locale ${OUTPUT_LOCALE} ${ADDITIONAL_OPTIONS}"
-    - |
-      if [ -z ${LIGHTHOUSE_TARGET} ]; then
-        if [ ! -d ${PAGES_PATH} ]; then
-          echo "[ERROR] Variable LIGHTHOUSE_TARGET must be filled, see https://r2devops.io/jobs/dynamic_tests/lighthouse/"
-          exit 1
-        fi
-
-        npm install serve
-        npx serve ${PAGES_PATH} &
-        export LIGHTHOUSE_TARGET="http://localhost:5000"
-      fi
+    - if [ -z ${LIGHTHOUSE_TARGET} ]; then
+    -   if [ ! -d ${PAGES_PATH} ]; then
+    -     echo "[ERROR] Variable LIGHTHOUSE_TARGET must be filled, see https://r2devops.io/jobs/dynamic_tests/lighthouse/"
+    -     exit 1
+    -   fi
+    -   npm install serve@${SERVE_VERSION}
+    -   npx serve ${PAGES_PATH} &
+    -   export LIGHTHOUSE_TARGET="http://localhost:5000"
+    - fi
     - lighthouse ${ADDITIONAL_OPTIONS} --chrome-flags="--headless --disable-gpu" ${LIGHTHOUSE_TARGET}
   artifacts:
     paths:
