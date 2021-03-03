@@ -51,7 +51,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
     Spell_Check is also using [`allow_failure`](https://docs.gitlab.com/ee/ci/yaml/#allow_failure) Gitlab's variable,
     which is by default true.
 
-    You can change this option to make the pipeline fails if any spelling error is detected. See [jobs cusotmization](/use-the-hub/#jobs-customization).
+    You can change this option to make the pipeline fails if any spelling error is detected. See [jobs customization](/use-the-hub/#jobs-customization).
 
 !!! info
     This job use scripts and default config files in order to be plug and play. These scripts are fetched

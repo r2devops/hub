@@ -2,7 +2,7 @@
 
 [Gitleaks](https://github.com/zricethezav/gitleaks/wiki/Scanning){:target="_blank"} is a tool
 made to detect hardcoded secrets like passwords, api keys and tokens in git
-repos. As it written in go, it is much faster than most of the
+repository. As it written in go, it is much faster than most of the
 [alternatives](https://github.com/zricethezav/gitleaks/wiki/Comparison-with-other-tools){:target="_blank"}.
 
 ## How to use it

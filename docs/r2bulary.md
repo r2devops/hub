@@ -22,8 +22,8 @@ Even job is ready to use, it's always customizable for your specific usage.
 
 ___
 ### Mono repo
-Alls job are manage in the same repository.
-In comparison to multi repo where each job has his own repository and his own git project url.
+All job are manage in the same repository.
+In comparison to multi repository where each job has his own repository and his own git project url.
 
 ---
 
