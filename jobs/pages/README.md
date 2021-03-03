@@ -20,7 +20,7 @@ from previous job named `documentation`.
     * [PHPDocumentor](/jobs/build/phpdocumentor/)
     * [OpenAPI](/jobs/build/openapi/)
 
-1. Add the job URL inside the `include` list of your `.gitlab-ci.yml` file (see
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see
    the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
       - remote: 'https://jobs.r2devops.io/pages.yml'
