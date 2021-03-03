@@ -1,7 +1,8 @@
 site/
-docs/jobs/**/*.md             
-docs/jobs/.pages 
+docs/jobs/**/*.md
+docs/jobs/.pages
 docs/images/jobs
 **/.DS_Store
 .idea
 default_logfile.log
+log

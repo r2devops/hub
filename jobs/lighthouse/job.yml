@@ -5,9 +5,9 @@ icon: 🗽
 maintainer: Protocole
 license: MIT
 images:
-  "justinribeiro/lighthouse": "latest"
+  "justinribeiro/lighthouse": "@sha256:4a9673d77d8480f2d641b8e4e5845897ea1f9b368eb92862321cafcc7f897c82"
 tools:
-  "lighthouse": "latest"
+  "lighthouse": ""
 labels:
   - GitLab
   - Testing
