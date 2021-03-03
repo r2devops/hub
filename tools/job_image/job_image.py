@@ -6,7 +6,9 @@ import logging
 import yaml
 import argparse
 
-# Import the config module
+# Import the Config module and set the path to run the script from root project
+# /!\ This instruction is only working if you run this script from the root of the project
+sys.path.insert(0, "./")
 from tools.utils.utils import Config
 utils = Config()
 

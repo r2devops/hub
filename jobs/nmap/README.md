@@ -11,11 +11,9 @@ if one of them should not be.
 
 ## How to use it
 
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
    ```yaml
-   include:
-     - remote: 'https://jobs.r2devops.io/nmap.yml'
+     - remote: 'https://jobs.r2devops.io/latest/nmap.yml'
    ```
 2. Choose a target
 
@@ -56,3 +54,4 @@ if one of them should not be.
 | `NMAP_OPTIONS` | Additional options you may want for the scan (`man nmap`) | ` ` |
 | `NMAP_OUTPUT` | Name for the XML output file for nmap | `nmap-report.xml` |
 | `HTML_OUTPUT` | Name for the html file for the Merge Request Widget for this job | `nmap-report.html` |
+| `LIBXSLT_VERSION` | Tool's version of LibXslt | `1.1.34-r0` |

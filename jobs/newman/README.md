@@ -6,11 +6,9 @@ Launch a Postman collection of requests to test your API using [newman](https://
 
 1. Add a Postman collection to your project and a globals file to use your
    variables
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
    ```yaml
-   include:
-        - remote: 'https://jobs.r2devops.io/newman.yml'
+        - remote: 'https://jobs.r2devops.io/latest/newman.yml'
    ```
 3. Choose a target
 
@@ -70,7 +68,8 @@ Launch a Postman collection of requests to test your API using [newman](https://
 | `NEWMAN_ADDITIONAL_OPTIONS` | Other [options](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/) you may want to use with Newman | ` ` |
 | `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
 | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
-
+| `NEWMAN_VERSION` | Newman version | `5.2.2` |
+| `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` |
 ### Artifact
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to

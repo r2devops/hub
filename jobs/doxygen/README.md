@@ -9,14 +9,10 @@ Other languages can be supported with additional code.
 
 
 1. Ensure that your source code is documenting using [Doxygen syntax](https://www.doxygen.nl/manual/docblocks.html){:target="_blank"}
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/doxygen.yml'
+      - remote: 'https://jobs.r2devops.io/latest/doxygen.yml'
     ```
-
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀

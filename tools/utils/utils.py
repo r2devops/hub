@@ -39,7 +39,7 @@ class Config():
         # Path to images used for the built job documentation
         self.MKDOCS_DIR_JOBS_IMAGES = "images/jobs"
         self.ARRANGE_PAGES_FILE_PATH = "docs/jobs/.pages"
-        self.TITLE_ARRANGE_PAGES = 'Jobs'
+        self.TITLE_ARRANGE_PAGES = '🚀 Jobs'
 
         # Requests variable & API Variables
         self.GITLAB_BASE_URL = "https://gitlab.com/"

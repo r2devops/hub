@@ -6,14 +6,10 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
 ## How to use it
 
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/lighthouse.yml'
+      - remote: 'https://jobs.r2devops.io/latest/lighthouse.yml'
     ```
-
 2. Choose a target
 
     !!! tip "Plug and play available !"

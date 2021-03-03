@@ -13,14 +13,10 @@ This job installs `npm` or `yarn` dependencies listed in your `package.json` and
    or
    [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#transpilation){:target="_blank"}
    file which contains your tasks
-1. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub)). Example:
-
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/gulp.yml'
+      - remote: 'https://jobs.r2devops.io/latest/gulp.yml'
     ```
-
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
 customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀

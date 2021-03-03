@@ -6,10 +6,11 @@ stages:
   - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/links_checker.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.2.0/links_checker.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.1.0/spell_check.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/lighthouse.yml?scope=0.yml'
+    #  - remote: 'https://jobs.r2devops.io/lighthouse.yml?scope=0.yml'
 
 ci_linter:
   stage: static_tests
@@ -236,8 +237,4 @@ release:
       done
     done
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-
-pages:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'

@@ -4,23 +4,20 @@ Run a SSH command on a remote host.
 
 ## How to use it
 
-1. Choose a version in [version list](#changelog)
-2. Add the corresponding URL to your `.gitlab-ci.yml` file (see [Getting
-   started](/use-the-hub/)). Example:
+1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
-    include:
-      - remote: 'https://jobs.r2devops.io/ssh.yml'
+      - remote: 'https://jobs.r2devops.io/latest/ssh.yml'
     ```
-3. Set the secret variable `SSH_PRIVATE_KEY` as CI/CD variables (it can be file
+1. Set the secret variable `SSH_PRIVATE_KEY` as CI/CD variables (it can be file
    or variable type) in [your Gitlab
    project](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui){:target="_blank"}
    if you need encrypted variables
-4. Set the variables `SSH_USER`, `TARGET_HOST` and `SHELL_COMMAND` by
+1. Set the variables `SSH_USER`, `TARGET_HOST` and `SHELL_COMMAND` by
    overriding the job or as Gitlab CI/CD variables. See [variables
    section](#variables)
-5. If you need to customize other part of the job (stage, variables, ...) 👉
+1. If you need to customize other part of the job (stage, variables, ...) 👉
    check the [jobs customization](/use-the-hub/#jobs-customization)
-6. Well done, your job is ready to work ! 😀
+1. Well done, your job is ready to work ! 😀
 
 ### Example of `.gitlab-ci.yml` file
 
