@@ -35,12 +35,13 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 
 ### Artifacts
 
-Result of documentation build is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"} `apiDoc build` in
-merge requests.
+When the job is successful, the build of your documentation is available as artifact.
 
 !!! warning
-    Exposition of artifact doesn't work currently because of [this issue from
-    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}. As soon as
-    the issue will be fixed, exposed artifacts will be available in merge
-    requests.
+    It's also [exposed as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `apiDoc Build` in merge requests.
+    Exposition of artifact currently works only if you keep `APIDOC_OUTPUT_PATH`
+    default value because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.

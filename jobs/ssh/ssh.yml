@@ -43,6 +43,9 @@ ssh:
     expose_as: "SSH output"
     paths:
       - "$SSH_OUTPUT_FILE"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/deploy/ssh/#artifacts
+      - "ssh_output.txt"
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: manual

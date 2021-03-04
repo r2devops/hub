@@ -74,34 +74,38 @@ doxygen:
 
 
     script:
-       # Initiate the project name value.
-       - if [ -z ${DOXYGEN_PROJECT_NAME} ]; then
-       -     export DOXYGEN_PROJECT_NAME="${CI_PROJECT_NAME}"
-       - fi
-       # Install doxygen
-       - apk add --no-cache doxygen==${JOB_DOXYGEN_VERSION}
-       # Include config Doxyfile and override default variables
-       - if [ ! -f "$DOXYGEN_CONFIGFILE" ]; then
-       -   touch ${DOXYGEN_CONFIGFILE}
-       -   echo 'PROJECT_NAME="'${DOXYGEN_PROJECT_NAME}'"' >> ${DOXYGEN_CONFIGFILE}
-       -   echo "INPUT=${DOXYGEN_INPUT}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "OUTPUT_DIRECTORY=${DOXYGEN_OUTPUT_DIRECTORY}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "OUTPUT_LANGUAGE=${DOXYGEN_OUTPUT_LANGUAGE}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "GENERATE_LATEX=${DOXYGEN_GENERATE_LATEX}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "LATEX_OUTPUT=${DOXYGEN_LATEX_OUTPUT}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "GENERATE_HTML=${DOXYGEN_GENERATE_HTML}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "HTML_OUTPUT=${DOXYGEN_HTML_OUTPUT}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "HTML_EXTRA_STYLESHEET=${DOXYGEN_HTML_EXTRA_STYLESHEET}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "RECURSIVE=${DOXYGEN_RECURSIVE}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "EXCLUDE=${DOXYGEN_EXCLUDE}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "EXCLUDE_PATTERNS=${DOXYGEN_EXCLUDE_PATTERNS}" >> ${DOXYGEN_CONFIGFILE}
-       -   echo "PROJECT_LOGO=${DOXYGEN_PROJECT_LOGO}" >> ${DOXYGEN_CONFIGFILE}
-       - fi
-       - doxygen ${DOXYGEN_CONFIGFILE}
+      # Initiate the project name value.
+      - if [ -z ${DOXYGEN_PROJECT_NAME} ]; then
+      -     export DOXYGEN_PROJECT_NAME="${CI_PROJECT_NAME}"
+      - fi
+      # Install doxygen
+      - apk add --no-cache doxygen==${JOB_DOXYGEN_VERSION}
+      # Include config Doxyfile and override default variables
+      - if [ ! -f "$DOXYGEN_CONFIGFILE" ]; then
+      -   touch ${DOXYGEN_CONFIGFILE}
+      -   echo 'PROJECT_NAME="'${DOXYGEN_PROJECT_NAME}'"' >> ${DOXYGEN_CONFIGFILE}
+      -   echo "INPUT=${DOXYGEN_INPUT}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "OUTPUT_DIRECTORY=${DOXYGEN_OUTPUT_DIRECTORY}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "OUTPUT_LANGUAGE=${DOXYGEN_OUTPUT_LANGUAGE}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "GENERATE_LATEX=${DOXYGEN_GENERATE_LATEX}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "LATEX_OUTPUT=${DOXYGEN_LATEX_OUTPUT}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "GENERATE_HTML=${DOXYGEN_GENERATE_HTML}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "HTML_OUTPUT=${DOXYGEN_HTML_OUTPUT}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "HTML_EXTRA_STYLESHEET=${DOXYGEN_HTML_EXTRA_STYLESHEET}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "RECURSIVE=${DOXYGEN_RECURSIVE}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "EXCLUDE=${DOXYGEN_EXCLUDE}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "EXCLUDE_PATTERNS=${DOXYGEN_EXCLUDE_PATTERNS}" >> ${DOXYGEN_CONFIGFILE}
+      -   echo "PROJECT_LOGO=${DOXYGEN_PROJECT_LOGO}" >> ${DOXYGEN_CONFIGFILE}
+      - fi
+      - doxygen ${DOXYGEN_CONFIGFILE}
 
     artifacts:
-       when: on_success
-       expose_as: "Doyxgen build"
-       paths:
-         - "$DOXYGEN_HTML_OUTPUT"
-         - "$DOXYGEN_LATEX_OUTPUT"
+      when: on_success
+      expose_as: "Doyxgen build"
+      paths:
+        - "$DOXYGEN_HTML_OUTPUT"
+        - "$DOXYGEN_LATEX_OUTPUT"
+        # Below path is a workaround to provide artifact exposition in MR if
+        # default value is used. See https://r2devops.io/jobs/build/doxygen/#artifacts
+        - "latex/"
+        - "website_build/"

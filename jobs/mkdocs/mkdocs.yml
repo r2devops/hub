@@ -20,3 +20,6 @@ mkdocs:
     expose_as: "Mkdocs build"
     paths:
       - "$MKDOCS_OUTPUT_PATH"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/build/mkdocs/#artifacts
+      - "website_build/"

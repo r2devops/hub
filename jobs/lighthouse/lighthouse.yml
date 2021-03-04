@@ -28,6 +28,9 @@ lighthouse:
     - fi
     - lighthouse ${ADDITIONAL_OPTIONS} --chrome-flags="--headless --disable-gpu" ${LIGHTHOUSE_TARGET}
   artifacts:
+    expose_as: "Lighthouse report"
     paths:
       - ${OUTPUT_NAME}.${OUTPUT_FORMAT}
-    expose_as: "Lighthouse Report"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/dynamic_tests/lighthouse/#artifacts
+      - "lighthouse.html"

@@ -33,3 +33,6 @@ yarn_build:
       - "${PROJECT_ROOT}/${YARN_BUILD_OUTPUT_FOLDER}"
       # To deploy on pages
       - "${PAGES_FOLDER}"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default value is used. See https://r2devops.io/jobs/build/yarn_build/#artifact
+      - "build/"

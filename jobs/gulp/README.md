@@ -66,3 +66,16 @@ gulp:
 | `GULP_OUTPUT_FOLDER` | If needed, path to the output produced by your scripts (path relative from the `PROJECT_ROOT`) | `build` |
 | `PAGES_DEPLOY` | If enabled, prepare your build result to be deployed on pages (require [pages job](jobs/deploy/pages/)) | `false` |
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
+
+### Artifacts
+
+When the job is successful, Gulp result is available as artifact.
+
+!!! warning
+    It's also [exposed as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `gulp artifact` in merge requests.
+    Exposition of artifact currently works only if you keep `PROJECT_ROOT` and
+    `GULP_OUTPUT_FOLDER` default value because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.

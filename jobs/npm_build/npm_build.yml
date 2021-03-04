@@ -33,3 +33,6 @@ npm_build:
       - "${PROJECT_ROOT}/${NPM_BUILD_OUTPUT_FOLDER}"
       # To deploy on pages
       - "${PAGES_FOLDER}"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/build/npm_build/#artifact
+      - "build/"

@@ -3,7 +3,7 @@ stages:
 
 gitleaks:
   stage: static_tests
-  image: 
+  image:
     name: "zricethezav/gitleaks:v6.1.2"
     entrypoint: [""]
   script:

@@ -55,3 +55,6 @@ gulp:
       - "${PROJECT_ROOT}/${GULP_OUTPUT_FOLDER}"
       # To deploy on pages
       - "${PAGES_FOLDER}"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/others/gulp/#artifacts
+      - "build/"

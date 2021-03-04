@@ -12,6 +12,7 @@ include:
   - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/lighthouse.yml?scope=0.yml'
 
+
 ci_linter:
   stage: static_tests
   image:

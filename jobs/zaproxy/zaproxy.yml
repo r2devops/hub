@@ -25,15 +25,17 @@ zaproxy:
     -   zap-cli open-url ${ZAP_TARGET}
     -   zap-cli spider ${ZAP_TARGET}
     -   if [ ! -z ${ZAP_SCANNERS}]; then
-    -     zap-cli active-scan --recursive -s $ {ZAP_SCANNERS} ${ZAP_TARGET} 
+    -     zap-cli active-scan --recursive -s $ {ZAP_SCANNERS} ${ZAP_TARGET}
     -   else
     -     zap-cli active-scan --recursive ${ZAP_TARGET}
     -   fi
     - fi
     - zap-cli report -o ${CI_PROJECT_DIR}/${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT} -f ${ZAP_REPORT_FORMAT}
   artifacts:
-    expose_as: "zap-report"
+    expose_as: "Zaproxy report"
+    when: always
     paths:
       - "${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT}"
-    expire_in: 30 days
-    when: always
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/dynamic_tests/zaproxy/#artifacts
+      - "zap-report.html"
