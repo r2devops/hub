@@ -52,3 +52,16 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 | `ZAP_TARGET` | Target for Zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
 | `ZAP_REPORT_FILE` | Filename for the zaproxy report | `zap-report` |
 | `ZAP_REPORT_FORMAT` | Format for the zaproxy report (html, xml, or json) | `html` |
+
+### Artifacts
+
+Zaproxy result is available as artifact.
+
+!!! warning
+    It's also [exposed as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `Zaproxy report` in merge requests.
+    Exposition of artifact currently works only if you keep `ZAP_REPORT_FILE`
+    and `ZAP_REPORT_FORMAT` default value because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.

@@ -4,11 +4,11 @@ stages:
   - build
 
 phpdocumentor:
-    image: 
+    image:
       name: phpdoc/phpdoc:3.1
       entrypoint: [""]
     stage: build
-    variables: 
+    variables:
       PHPDOC_OUTPUT: "website_build/"
       PHPDOC_CONFIG_FILE: ""
       PHPDOC_TITLE: ""
@@ -22,7 +22,7 @@ phpdocumentor:
     script:
       # Define verbosity
       - if [ ! -z "$PHPDOC_VERBOSITY" ]; then export PHPDOC_OPTIONS="-$PHPDOC_VERBOSITY $PHPDOC_OPTIONS"; fi
-      # Define template 
+      # Define template
       - if [ ! -z "$PHPDOC_TEMPLATE" ]; then export PHPDOC_OPTIONS="--template=$PHPDOC_TEMPLATE $PHPDOC_OPTIONS"; fi
       # Include config file
       - if [ ! -z "$PHPDOC_CONFIG_FILE" ]; then export PHPDOC_OPTIONS="--config=$CI_PROJECT_DIR$PHPDOC_CONFIG_FILE $PHPDOC_OPTIONS"; fi
@@ -32,10 +32,12 @@ phpdocumentor:
       - if [ ! "$PHPDOC_IGNORE_SYMLINKS" = "true" ]; then export PHPDOC_OPTIONS="--ignore-symlinks $PHPDOC_OPTIONS"; fi
       # Include markers
       - if [ ! "$PHPDOC_MARKERS" = "true" ]; then export PHPDOC_OPTIONS="--markers=$PHPDOC_MARKERS $PHPDOC_OPTIONS"; fi
-      
-      - /opt/phpdoc/bin/phpdoc -t ${PHPDOC_OUTPUT} -d ${CI_PROJECT_DIR}${PROJECT_ROOT} --title="$PHPDOC_TITLE" ${PHPDOC_OPTIONS} 
+      - /opt/phpdoc/bin/phpdoc -t ${PHPDOC_OUTPUT} -d ${CI_PROJECT_DIR}${PROJECT_ROOT} --title="$PHPDOC_TITLE" ${PHPDOC_OPTIONS}
     artifacts:
       when: always
-      expose_as: PHPDoc Build
+      expose_as: "PHPDoc Build"
       paths:
         - ${PHPDOC_OUTPUT}
+        # Below path is a workaround to provide artifact exposition in MR if
+        # default output value is used. See https://r2devops.io/jobs/build/phpdocumentor/#artifacts
+        - "website_build/"

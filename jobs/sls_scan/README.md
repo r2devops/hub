@@ -29,17 +29,23 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `SLS_TYPE` <img width=450/> | If you want to specify a specific scanner to use | ` ` |
+| `SLS_TYPE` | If you want to specify a specific scanner to use | ` ` |
 | `STOP_ON_VULN` | If you want the job to stop on the first vulnerability detected | `false` |
+| `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |
 
 ### Artifacts
 
-!!! info
-    Currently, sls_scan isn't integrated in a merge request widget, so we
-    create an exposed artifact containing results.
+Scan result is available as artifact.
 
-You can view the report by languages when browsing through the published
-artifact and clicking on the HTML outputs in your browser.
+!!! warning
+    It's also [exposed
+    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `ShiftLeft security scan` in merge requests.  Exposition of artifact
+    currently works only if you keep `OUTPTUT_PATH` default value because of
+    [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.
 
 ### Bundled tools
 

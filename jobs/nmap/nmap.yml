@@ -21,7 +21,10 @@ nmap:
     - nmap -oX ${NMAP_OUTPUT} ${NMAP_OPTIONS} ${NMAP_TARGET}
     - xsltproc ${NMAP_OUTPUT} -o ${HTML_OUTPUT}
   artifacts:
-    expose_as: "nmap-report"
+    expose_as: "Nmap report"
+    when: always
     paths:
       - "${HTML_OUTPUT}"
-    when: always
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/dynamic_tests/nmap/#artifacts
+      - "nmap-report.html"

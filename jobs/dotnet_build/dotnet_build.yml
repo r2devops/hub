@@ -35,6 +35,9 @@ dotnet_build:
     - dotnet publish -c ${DOTNET_CONFIG} -o ${CI_PROJECT_DIR}${DOTNET_OUTPUT} --no-restore -v ${DOTNET_VERBOSITY} --self-contained ${DOTNET_SELF_CONTAINED} -p:PublishReadyToRun=${DOTNET_READY_TO_RUN} -p:PublishSingleFile=${DOTNET_SINGLE_FILE} -p:PublishTrimmed=${DOTNET_TRIMMED} ${DOTNET_OPTIONS}
   artifacts:
     when: on_success
-    expose_as: dotNET Build
+    expose_as: "dotNET Build"
     paths:
-      - ${CI_PROJECT_DIR}${DOTNET_OUTPUT}
+      - "${CI_PROJECT_DIR}${DOTNET_OUTPUT}"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/build/dotnet_build/#artifacts
+      - "build/"

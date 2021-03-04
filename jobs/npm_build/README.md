@@ -58,13 +58,14 @@ npm_build:
 
 ### Artifact
 
-Result of  build is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
-`npm build` in merge requests.
-
+When the job is successful, the build result is available as artifact.
 
 !!! warning
-    Exposition of artifact doesn't work currently because of [this issue from
-    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}. As soon as
-    the issue will be fixed, exposed artifacts will be available in merge
-    requests.
+    It's also [exposed
+    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `npm build` in merge requests.  Exposition of artifact currently works only
+    if you keep `NPM_BUILD_OUTPUT_FOLDER` default value because of [this issue
+    from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.

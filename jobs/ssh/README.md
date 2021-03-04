@@ -63,12 +63,14 @@ ssh:
 * If remote command success: the job success with the output as artifact
 * If remote command fails: the job fails with the output as artifact
 
-Command output is [exposed
-as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
-`SSH output` in merge requests.
+Command output is available as artifact.
 
 !!! warning
-    Exposition of artifact doesn't work currently because of [this issue from
+    It's also [exposed
+    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `SSH output` in merge requests.  Exposition of artifact currently works
+    only if you keep `SSH_OUTPUT_FILE` default value because of [this issue
+    from
     Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
-    As soon as the issue will be fixed, exposed artifacts will be available in
-    merge requests.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.

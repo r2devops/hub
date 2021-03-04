@@ -7,12 +7,13 @@ sls_scan:
   variables:
     SLS_TYPE: ""
     STOP_ON_VULN: "false"
+    OUTPUT_PATH: "sls_scan_report/"
   script:
-    - mkdir public
+    - mkdir "$OUTPUT_PATH"
     - if [ ! -z ${SLS_TYPE} ]; then
-    -   scan --build -o public -t ${SLS_TYPE} | tee output
+    -   scan --build -o "$OUTPUT_PATH" -t ${SLS_TYPE} | tee output
     - else
-    -   scan --build -o public | tee output
+    -   scan --build -o "$OUTPUT_PATH" | tee output
     - fi
     - if [ ${STOP_ON_VULN} == "true" ]; then
     -   cat output | grep ❌
@@ -24,4 +25,7 @@ sls_scan:
     when: always
     expose_as: "ShiftLeft security scan"
     paths:
-      - public
+      - "$OUTPUT_PATH"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. https://r2devops.io/jobs/static_tests/sls_scan/#artifacts
+      - "sls_scan_report/"

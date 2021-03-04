@@ -66,6 +66,12 @@ This report will contain everything you need to know to improve your website's p
 
 ### Artifacts
 
-Depending on the content of the variable `OUTPUT_FORMAT`, the job will put in artifact the expected format (default: `HTML`).
+Lighthouse result is available as artifact.
 
-To see the artifact, you must go in the pipeline content and go to the tab `Jobs`. At the right of the job `Lighthouse` you will find a button to download the artifact.
+!!! warning
+    It's also [exposed as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"} `Lighthouse Report` in merge requests.
+    Exposition of artifact currently works only if you keep `OUTPUT_NAME` and
+    `OUTPUT_FORMAT` default value because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.

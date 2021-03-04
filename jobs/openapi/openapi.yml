@@ -19,4 +19,7 @@ openapi:
       when: always
       expose_as: "OpenAPI Build"
       paths:
-          - ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
+          - "${SWAGGER_OUTPUT}"
+          # Below path is a workaround to provide artifact exposition in MR if
+          # default value is used. See https://r2devops.io/jobs/build/openapi/#artifacts
+          - "website_build/"

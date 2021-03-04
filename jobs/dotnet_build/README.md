@@ -41,10 +41,13 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 
 ### Artifacts
 
-When the job is successful, the build of your project is available in an artifact. The artifact is `exposed_as` (see [expose](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}) `dotNET Build` in your merge request.
+When the job is successful, the build of your project is available as artifact.
 
 !!! warning
-    Exposition of artifact doesn't work currently because of [this issue from
-    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}. As soon as
-    the issue will be fixed, exposed artifacts will be available in merge
-    requests.
+    It's also [exposed as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `dotNET Build` in merge requests.
+    Exposition of artifact currently works only if you keep `DOTNET_OUTPUT`
+    default value because of [this issue from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.
