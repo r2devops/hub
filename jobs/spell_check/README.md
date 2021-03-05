@@ -1,10 +1,10 @@
 ## Description
 
-Spell_check is using the python program [`PySpelling`](https://github.com/facelessuser/pyspelling/) to fetch your files (by default `Markdown` files)
+Spell_check is using the python program [`PySpelling`](https://github.com/facelessuser/pyspelling/){:target="_blank"} to fetch your files (by default `Markdown` files)
  and retrieve spelling errors in it, but it won't look for **grammar errors**.
 
-PySpelling has **two alternative** spell checker to verify your files, using [`aspell`](http://aspell.net/) or [`hunspell`](https://hunspell.github.io/),
-see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to learn more.
+PySpelling has **two alternative** spell checker to verify your files, using [`aspell`](http://aspell.net/) or [`hunspell`](https://hunspell.github.io/){:target="_blank"},
+see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:target="_blank"} to learn more.
 
 !!! info
     PySpelling needs, by default, to have a configuration file. But this job will include a default configuration
@@ -12,7 +12,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 
 ## How to use it
 
-1. (Optional) Configure your PySpelling config file (see [here](https://facelessuser.github.io/pyspelling/configuration/))
+1. (Optional) Configure your PySpelling config file (see [here](#configuration))
 2. (Optional) According to your PySpelling config, define `PYSPELLING_SPELLER` and `PYSPELLING_LANGUAGE`
 1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
@@ -33,7 +33,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 
 * Job name: `spell_check`
 * Docker image:
-[`python:3.9.1`](https://hub.docker.com/_/python/)
+[`python:3.9.1`](https://hub.docker.com/_/python/){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
@@ -48,7 +48,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 | `SNIPPET_VERSION` | Snippet commit tag | `4cc2af8e840aff6f599a894351de62c9b29ddc69` |
 
 !!! info
-    Spell_Check is also using [`allow_failure`](https://docs.gitlab.com/ee/ci/yaml/#allow_failure) Gitlab's variable,
+    Spell_Check is also using [`allow_failure`](https://docs.gitlab.com/ee/ci/yaml/#allow_failure){:target="_blank"} Gitlab's variable,
     which is by default true.
 
     You can change this option to make the pipeline fails if any spelling error is detected. See [jobs customization](/use-the-hub/#jobs-customization).
@@ -56,6 +56,51 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/) to
 !!! info
     This job use scripts and default config files in order to be plug and play. These scripts are fetched
     using the commit tag in `SNIPPET_VERSION`.
+
+### Configuration
+
+#### Default configuration
+
+
+^^PySpelling can be used:^^
+
+- [x] With a default configuration (provided by the job)
+In this case, you have nothing to do, we handle everything 🤝! To do that, we use a GitLab snippet, the source code is available [here](https://gitlab.com/r2devops/hub/-/snippets/2078950){:target="_blank"}.
+
+- [x] With a custom one (local `.pyspelling` file in the project)
+In this case you can have your custom configuration file. **Don't know how to do it ?
+See [here](https://facelessuser.github.io/pyspelling/configuration/){:target="_blank"}** and you can start from our
+[snippet](https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/master/.pyspelling.yml){:target="_blank"}.
+
+#### 📖 Example to add a dictionary and personal wordlists
+This configuration allows you to have a dictionary, in order to improve the dictionary of PySpelling.
+You have to choose the option 2 above to do that.
+
+^^Then, follow these steps:^^
+
+1. If not already, download this configuration sample [here](https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/master/.pyspelling.yml){:target="_blank"} or create your own.
+1. Move it into your project
+1. Update the variable `PYSPELLING_CONFIG` with the path to your config file
+1. Create a `dictionary.txt` file containing a list of words separated by newlines, it will define your dictionary
+1. Add the highlighted block below in the configuration file and
+   replace `path/to/dictionary` by the location of your dictionary.
+```{.yaml linenums="10" hl_lines="3 4 5 6 7"}
+  aspell:
+    lang: en
+    d: en_US
+  dictionary:
+    wordlists:
+    - path/to/dictionary.txt
+    output: dictionary.dic
+  pipeline:
+  - pyspelling.filters.context:
+```
+1. Ready to run 🚀
+
+!!! info
+    If you want to custom even more your dictionary, take a look on the [official documentation](https://facelessuser.github.io/pyspelling/configuration/#dictionaries-and-personal-wordlists){:target="_blank"}
+
+
 
 ### Artifacts
 
