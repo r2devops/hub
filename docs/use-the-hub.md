@@ -199,31 +199,32 @@ nmap:
 ### 🎶 Multiple usage of the same job in your pipeline
 
 
-If you want to reuse a job on the hub, for example launching `mkdocs` to build in the same pipeline:
+If you want to reuse a job on the hub, for example launching `apiDoc` to build 2 API documentations in the same pipeline:
 
-1. 👩🏽‍💻  A technical documentation for your development team
-2. 👥  A user documentation for the end-users
+You can easily do so with Hub's jobs using ==extends== GitLab keyword.
 
-You can easily do so with Hub's jobs using `extends` GitLab keyword.
+``` yaml hl_lines="13"
 
-```yaml
-# Build the technical documentation
-mkdocs:
-  artifacts:
-    paths:
-      - "website_build/technical-documentation"
+stages:
+  - build
 
-# Build the end-users documentation
-mkdocs_user_documentation:
-  extends: mkdocs
-  artifacts:
-    paths:
-      - "website_build/end-users-documentation"
+include:
+  - remote: 'https://jobs.r2devops.io/0.2.0/apidoc.yml'
+
+apidoc:
+  variables:
+    APIDOC_CONFIG_PATH: src/doc/project1/apidoc.json
+    APIDOC_OUTPUT_PATH: website_build/apidoc/project1/
+
+apidoc_project2:
+  extends: apidoc
+  variables:
+    APIDOC_CONFIG_PATH: src/doc/project2/apidoc.json
+    APIDOC_OUTPUT_PATH: website_build/apidoc/project2/
 
 ```
 
 !!! warning
-    * Be aware to have different artifacts path not to overwrite your first artifact by the second one.
-
+    Be aware to have different artifacts path not to overwrite your first artifact by the second one.
 
 --8<-- "includes/abbreviations.md"
