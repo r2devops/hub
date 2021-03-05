@@ -195,4 +195,35 @@ nmap:
       alias: app
 ```
 
+
+### 🎶 Multiple usage of the same job in your pipeline
+
+
+If you want to reuse a job on the hub, for example launching `mkdocs` to build in the same pipeline:
+
+1. 👩🏽‍💻  A technical documentation for your development team
+2. 👥  A user documentation for the end-users
+
+You can easily do so with Hub's jobs using `extends` GitLab keyword.
+
+```yaml
+# Build the technical documentation
+mkdocs:
+  artifacts:
+    paths:
+      - "website_build/technical-documentation"
+
+# Build the end-users documentation
+mkdocs_user_documentation:
+  extends: mkdocs
+  artifacts:
+    paths:
+      - "website_build/end-users-documentation"
+
+```
+
+!!! warning
+    * Be aware to have different artifacts path not to overwrite your first artifact by the second one.
+
+
 --8<-- "includes/abbreviations.md"

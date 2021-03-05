@@ -14,8 +14,7 @@ A job is a script hosted in R2Devops Hub that can be included in CI/CD pipeline 
 
 
 *[CI]:
-Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories frequently.
-This will ensure that your application meets your criteria of quality, security, performance, after each modification of your code.
+Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories frequently. This will ensure that your application meets your criteria of quality, security, performance, after each modification of your code.
 
 *[CD]:
 Continuous delivery starts where continuous integration ends. CD philosophy is to automate the delivery of applications to the selected infrastructure environments.
