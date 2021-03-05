@@ -195,4 +195,36 @@ nmap:
       alias: app
 ```
 
+
+### 🎶 Multiple usage of the same job in your pipeline
+
+
+If you want to reuse a job on the hub, for example launching `apiDoc` to build 2 API documentations in the same pipeline:
+
+You can easily do so with Hub's jobs using ==extends== GitLab keyword.
+
+``` yaml hl_lines="13"
+
+stages:
+  - build
+
+include:
+  - remote: 'https://jobs.r2devops.io/0.2.0/apidoc.yml'
+
+apidoc:
+  variables:
+    APIDOC_CONFIG_PATH: src/doc/project1/apidoc.json
+    APIDOC_OUTPUT_PATH: website_build/apidoc/project1/
+
+apidoc_project2:
+  extends: apidoc
+  variables:
+    APIDOC_CONFIG_PATH: src/doc/project2/apidoc.json
+    APIDOC_OUTPUT_PATH: website_build/apidoc/project2/
+
+```
+
+!!! warning
+    Be aware to have different artifacts path not to overwrite your first artifact by the second one.
+
 --8<-- "includes/abbreviations.md"

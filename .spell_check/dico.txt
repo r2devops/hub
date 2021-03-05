@@ -109,6 +109,7 @@ jsp
 JSX
 jsx
 Junit
+JUnit
 junit
 kaniko
 kondo
