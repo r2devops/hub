@@ -2,10 +2,9 @@
 
 ## 📝 Prerequisites
 
-- 🦊  Manage your project in Gitlab and understand what is [CI/CD with Gitlab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
-- ✏️   Have the write access to the `.gitlab-ci.yml` file in your project
-- 🔫  Be aware each file modification in your project will trigger the [Pipeline](/r2bulary/#pipeline)
-- 🗝  Have access to the pipelines page in your Gitlab project to see the pipeline execution
+* 🦊  Manage your project in Gitlab and understand what is [CI/CD with Gitlab](https://docs.gitlab.com/ee/ci/){:target="_blank"}
+* 🔫  Be aware each file modification in your project can trigger a [Pipeline](/r2bulary/#pipeline)
+* 🗝  Have access to the pipelines page in your Gitlab project and write access to your project `.gitlab-ci.yml` file
 
 ## ⏳ Quick setup
 
@@ -47,7 +46,7 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
         each job in [jobs section](/jobs/). Description of `tag` format is
         available in [Versioning page](/versioning/).
 
-        Once your pipeline is functional, we recommend to use a specific version
+        Once your pipeline is functional, we recommend using a specific version
         for jobs in order to ensure that your pipeline will not be broken by a
         job update.
 
@@ -61,46 +60,67 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
         You can also combine jobs templates and your own jobs in
         `.gitlab-ci.yml` configuration file.
 
-### 🏳󠁵󠁳󠁴󠁸󠁿 Example
-
-An example of a full `.gitlab-ci.yml` file with:
-
-* One job template with latest version. Note that `latest/` is optional in the
-  job URL
-* One job template with specific version using tag `0.1.0`
-* Your own local `unit_tests` job
-
-``` yaml
-stages:
-  - static_tests
-  - build
-  - dynamic_tests
-  - provision
-  - review
-  - release
-  - deploy
-  - others
-
-# Jobs from g2s hub
-include:
-  - remote: 'https://jobs.r2devops.io/latest/docker_build.yml'
-  - remote: 'https://jobs.r2devops.io/0.1.0/mkdocs.yml'
-
-# You can also include your own local jobs
-unit_tests:
-  image: python:3.7-alpine3.10
-  stage: static_tests
-  before_script:
-    - pip install pipenv && pipenv --bare install --dev
-  script:
-    - make test
-```
-
 <a alt="See all jobs" href="/jobs">
     <button class="md-button border-radius-10 md-button-center" >
         See all jobs available <img alt="" class="heart" src="../images/rocket.png">
     </button>
 </a>
+
+## 🤓 Pipeline examples
+
+* Several examples of projects using the r2devops hub:
+
+    * Python flask based REST API permitting to play TicTacToe 👉 [tictactoe/grid-api](https://gitlab.com/tictac-toe/grid-api)
+    * Vue.js project providing a client to the TicTacToe API 👉 [tictactoe/grid-frontend](https://gitlab.com/tictac-toe/grid-frontend)
+    * React.js project providing our landing page 👉 [r2devops/landing-page](https://gitlab.com/r2devops/landing-page)
+
+* An example of a full `.gitlab-ci.yml` configuration using jobs from the hub 👇
+
+    !!! info "Jobs used in the example"
+        * Plug-and-play set of jobs from the hub to automatically build, test
+          and deploy static documentation website:
+            * [`mkdocs`](https://r2devops.io/jobs/build/mkdocs/) (`latest`
+              version)
+            * [`lighthouse`](https://r2devops.io/jobs/dynamic_tests/lighthouse/)
+              (`latest` version)
+            * [`pages`](https://r2devops.io/jobs/deploy/pages/) (`latest`
+              version)
+        * Plug-and-play set of jobs from the hub to automatically build, push
+          and test docker images:
+            * [`docker_build`](https://r2devops.io/jobs/build/docker_build/)
+              (version `0.3.0`)
+            * [`trivy_image`](https://r2devops.io/jobs/dynamic_tests/trivy_image/)
+              (version `0.2.0`)
+        * A custom manual job `unit_tests`
+
+    ``` yaml
+    stages:
+    - static_tests
+    - build
+    - dynamic_tests
+    - provision
+    - review
+    - release
+    - deploy
+    - others
+
+    # Jobs from r2devops.io (they don't need any configuration in standard cases)
+    include:
+    - remote: 'https://jobs.r2devops.io/latest/mkdocs.yml'
+    - remote: 'https://jobs.r2devops.io/latest/lighthouse.yml'
+    - remote: 'https://jobs.r2devops.io/latest/pages.yml'
+    - remote: 'https://jobs.r2devops.io/0.3.0/docker_build.yml'
+    - remote: 'https://jobs.r2devops.io/0.2.0/trivy_image.yml'
+
+    # Locally configured job
+    unit_tests:
+      image: python:3.9-alpine
+      stage: static_tests
+      before_script:
+        - pip install pipenv && pipenv --bare install --dev
+      script:
+        - make test
+    ```
 
 ## ▶ Stages
 
@@ -155,12 +175,15 @@ trivy_image:
     TRIVY_SEVERITY: "CRITICAL"
 ```
 
-### ✏ Change the default stage of job
+### ✏️  Use custom stage
 
 If you want to use your own stage name it's possible to do so when including
-your job.
+your job. Example:
 
 ```yaml
+stages:
+  - security
+
 include:
   - remote: 'https://jobs.r2devops.io/trivy_image.yml'
 
