@@ -10,97 +10,73 @@ Each jobs of the hub can be used independently or to create fully **customized p
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-Check the [Documentation](https://r2devops.io) 📚 and [Jobs
-index](https://r2devops.io/jobs/) 🚀
+* **🚀 Find jobs to use in your pipeline in [Jobs index](https://r2devops.io/jobs/)**
+* **📚 Understand how to use the hub in [Documentation](https://r2devops.io)**
+* **🙋 Add your own job using the [Contributing guide](https://r2devops.io/how-to-contribute/)**
 
 ## Repository
 
 This mono-repo contains several parts:
 
-* Documentation sources
-* Jobs
-* Tools
-    * Builder: build the jobs' documentation
-    * Notify: send notification about jobs' updates to our [discord server](https://discord.gg/5QKpGqR)
-    * Template: job template
+* Jobs' sources and a job template (jobs structure is described in [documentation](https://r2devops.io/job-structure/))
+* Documentation of the hub
+* Tools used in hub pipeline to check jobs
 
 ```
 .
-├── docs                            # Documentation sources
-├── jobs                            # Folder containing jobs sources
-│   ├── docker_build
-│   │   ├── docker_build.yml        # Job content
-│   │   ├── job.yml                 # Job metadata
-│   │   ├── README.md               # Job documentation
-│   │   └── versions                # Jobs changelogs
-│   │       ├── 0.1.0.md
-│   │       └── ...
+├── docs            # Documentation sources
+├── jobs            # Folder containing jobs sources
 │   └── ...
-├── mkdocs.yml                      # Documentation configuration
-├── Pipfile                         # Pipenv dependency file to build doc
+├── mkdocs.yml      # Documentation configuration
+├── Pipfile         # Pipenv dependency file to build doc
 ├── Pipfile.lock
-├── requirements.txt                # Python dependency file to build doc
-└── tools                           # Folder containing tools
-    ├── builder
-    │   ├── builder.py
-    │   ├── Pipfile
-    │   ├── Pipfile.lock
-    │   └── templates
-    ├── job_template
-    └── notify
-        ├── discord_release_notify.py
-        ├── Pipfile
-        └── Pipfile.lock
+└── tools           # Folder containing tools
+    └── ...
 ```
 
-## How to update the documentation
+### How to add or update a job
 
-### Clone the repository
+* Follow the [Contributing guide](https://r2devops.io/how-to-contribute/)
 
-Clone the repository locally
+### How to update the hub documentation
+
+As prerequisites, you need to install following dependencies on your system:
+
+* `python3`
+* `pipenv`
+
+1. Clone the repository locally
 
 ```shell
 git clone git@gitlab.com:r2devops/hub.git
 cd hub
 ```
 
-### Requirements
+2. Install requirements
 
 Documentation is built using [Mkdocs](https://www.mkdocs.org) and [Material for
 Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"}.
 
-You can use `pipenv` or `pip` to install python requirements:
+```shell
+pipenv install
+```
 
-* Using `pipenv`
-
-    ```shell
-    pipenv install
-    pipenv shell
-    ```
-
-* OR using `pip`
-
-    ```shell
-    pip install -r requirements
-    ```
-
-🚨 Take care to update both `Pipfile` and `requirements.txt` when you modify
-dependencies.
-
-### Launch Mkdocs
+3. Launch Mkdocs
 
 You can launch mkdocs in order to create a local web server with hot reload to
 see your updates in live:
 
 ```shell
-mkdocs serve
+pipenv run mkdocs serve
 ```
 
-## How to update tools
+4. See your update in live at [https://localhost:8000](https://localhost:8000)
 
-### Guidelines
+### How to update hub tools
 
-For `pyhton` tools: 
+#### Guidelines
+
+For `pyhton` tools:
 
 * Pylint note >= 9
 * Usage of logging
@@ -108,27 +84,11 @@ For `pyhton` tools:
 * [`Format`](https://docs.python.org/3/library/functions.html?highlight=format#format) must be used instead of `%s` or string concatenation with `+`
 * Docstring format compliant with [Google styleguide](https://google.github.io/styleguide/pyguide.html#244-decision)
 
-### Requirements
+#### Requirements
 
 Each tools have their own `Pipfile` in their folder to manage their
 dependencies. You must install `pipenv` to work on them:
 
 ```shell
 pip install pipenv
-```
-
-### Work on `builder`
-
-```shell
-cd tools/builder
-pipenv install
-pipenv shell
-```
-
-### Work on `notify`
-
-```shell
-cd tools/notify
-pipenv install
-pipenv shell
 ```

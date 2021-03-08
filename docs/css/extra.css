@@ -250,10 +250,6 @@ button.md-button-center:hover {
     cursor: pointer;
 }
 
-.md-typeset code {
-    font-size: .75em;
-}
-
 .codehilitetable .linenos, .highlighttable .linenos {
     font-size: .75em;
 }
