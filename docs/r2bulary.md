@@ -1,3 +1,8 @@
+---
+title: R2bulary | DevOps dictionary   
+description: Find here the useful vocabulary linked to R2Devops’ hub. All the technical terms are explained in simple and clear words!
+---
+
 # R2bulary
 
 ![r2bulary](images/r2bulary.png){: .center .small_r2bulary }

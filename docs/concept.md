@@ -1,3 +1,8 @@
+---
+title: Collaborative hub of CI/CD jobs ready to use
+description: Discover R2Devops and learn about the goal of the hub. See how CI/CD implementation can be simplified using this platform!
+---
+
 # Concept
 
 The **R2Devops hub** is a collaborative [Hub](/r2bulary/#hub) of CI & CD

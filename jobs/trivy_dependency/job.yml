@@ -1,5 +1,5 @@
 name: trivy_dependency
-description: A ready-to-use trivy job to scan your application dependencies
+description: A ready-to-use trivy job to scan the application dependencies of your code
 default_stage: static_tests
 icon: 🧱
 maintainer: FulcrandG

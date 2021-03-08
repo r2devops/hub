@@ -1,5 +1,5 @@
 name: newman
-description: A job to run a Postman collection to test your API with Newman
+description: Run a Postman collection to test your API with Newman
 default_stage: dynamic_tests
 icon: 🚀
 maintainer: FulcrandG

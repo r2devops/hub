@@ -112,6 +112,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - meta
 
 
 # Plugins (https://squidfunk.github.io/mkdocs-material/plugins/minify-html/)

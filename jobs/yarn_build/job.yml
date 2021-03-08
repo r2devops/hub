@@ -1,5 +1,5 @@
 name: yarn_build
-description: A ready to use `yarn` job to build your application
+description: A ready to use yarn job to build your application
 default_stage: build
 icon: 🧱
 maintainer: coconux

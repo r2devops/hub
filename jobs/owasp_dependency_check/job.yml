@@ -1,5 +1,5 @@
 name: owasp_dependency_check
-description: Analyze your dependencies for various packet managers
+description: Analyze your dependencies for various packet managers using Dependency-Check
 default_stage: static_tests
 icon: 👁
 maintainer: Protocole

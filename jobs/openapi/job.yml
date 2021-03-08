@@ -1,5 +1,5 @@
 name: openapi
-description: A ready-to-use job to build a web documentation from swagger/openAPI file (json/yml) using Swagger-ui
+description: A ready-to-use job building a web documentation from swagger or openAPI file (json/yml), using Swagger-ui
 default_stage: build
 icon: 📗
 maintainer: Protocole
