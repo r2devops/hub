@@ -1,5 +1,5 @@
 name: mkdocs
-description: A ready-to-use mkdocs job to build the documentation of your project from markdown files
+description: A ready-to-use MkDocs job to build the documentation of your project from markdown files
 default_stage: build
 icon: 📃
 maintainer: thomasboni

@@ -1,5 +1,5 @@
 name: docker_build
-description: A ready-to-use docker job to push the image of your project repository to the gitlab registry
+description: A ready-to-use docker job to push the image of your project repository to the GitLab registry
 default_stage: build
 icon: 🐳
 maintainer: thomasboni

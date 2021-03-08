@@ -1,5 +1,5 @@
 name: doxygen
-description: A ready to use doxygen job to build your documentation
+description: A ready-to-use job to build your documentation with doxygen syntax
 default_stage: build
 icon: 📃
 maintainer: coconux

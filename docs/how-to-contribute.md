@@ -1,3 +1,8 @@
+---
+title: How to contribute   
+description: You want to contribute to R2Devops? You are in the right place! Find out easily where to go regarding the type of contribution you want to make, and help to develop this platform.
+---
+
 # How to
 
 Welcome to the contributing guide of R2Devops hub 🥳 Glad to see you here! 😀

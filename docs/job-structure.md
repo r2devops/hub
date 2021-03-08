@@ -1,3 +1,8 @@
+---
+title: How to build a CI/CD job
+description: Discover the content of a job ! The definition, metadata, documentation, changelogs and screenshots are simply described.
+---
+
 # Structure of a job
 
 Jobs are stored in the [R2Devops hub](https://gitlab.com/r2devops/hub)

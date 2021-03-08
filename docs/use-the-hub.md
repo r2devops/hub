@@ -1,3 +1,8 @@
+---
+title: How to use the hub | Prerequisites and quick setup
+description: Discover how to use the hub! You’ll find here the prerequisites, a quick setup and how to customize a job. Those topics will have no secret for you!
+---
+
 # Use the hub
 
 ## 📝 Prerequisites

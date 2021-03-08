@@ -1,3 +1,8 @@
+---
+title: Contribution | Creating or updating a job 
+description: See all the steps to contribute in R2Devops, by creating or updating a job! You’ll be guided in contribution thanks to guidelines and best practices
+---
+
 # Create or update a job
 
 This page describes how to create or update a job in the

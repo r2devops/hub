@@ -1,3 +1,8 @@
+---
+title: Jobs versioning
+description: Have you ever wonder how versioning works? We tell you all! You will understand what latest means and how to include properly a job in your CI/CD pipeline.
+---
+
 # Versioning
 
 Each Job of the Hub are versioned using a git tag.

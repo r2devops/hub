@@ -1,5 +1,5 @@
 name: gitleaks
-description: A secret detection job using gitleaks to alert on secrets being pushed
+description: A secret detection job, using gitleaks to alert on secrets (passwords, api keys…) pushed in your code
 default_stage: static_tests
 icon: 🔐
 maintainer: FulcrandG

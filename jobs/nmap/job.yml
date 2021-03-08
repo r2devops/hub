@@ -1,5 +1,5 @@
 name: nmap
-description: A port scan job using nmap to alert on unwanted services on your server
+description: A port scan job using nmap to alert on unwanted services and open ports on your server
 default_stage: dynamic_tests
 icon: 🛡
 maintainer: FulcrandG

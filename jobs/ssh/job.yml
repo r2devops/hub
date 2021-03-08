@@ -1,5 +1,5 @@
 name: ssh
-description: A simple job to run a remote command through ssh
+description: A simple job to run a remote command through SSH
 default_stage: deploy
 icon: 🖥
 maintainer: thomasboni

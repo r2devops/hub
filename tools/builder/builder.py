@@ -48,7 +48,7 @@ def get_conf(job_path):
     """
     logging.info("Parsing conf file")
     try:
-        with open(job_path + "/" + utils.JOB_METADATA_FILE) as conf_file:
+        with open(job_path + "/" + utils.JOB_METADATA_FILE, encoding="utf-8") as conf_file:
             return full_load(conf_file)
     except YAMLError as error:
         logging.error("Failed to parse job config '%s/%s", job_path,
@@ -72,7 +72,7 @@ def get_description(job_path):
     """
     logging.info("Parsing readme for job %s", job_path)
     try:
-        with open(job_path + "/" + utils.JOB_DESCRIPTION_FILE) as readme_file:
+        with open(job_path + "/" + utils.JOB_DESCRIPTION_FILE, encoding="utf-8") as readme_file:
             return readme_file.read()
     except OSError as error:
         logging.error("Failed to open and read file README %s", job_path)
@@ -101,7 +101,7 @@ def get_changelogs(job_path, job_name):
     logging.info("Parsing changelogs for job %s", job_name)
     try:
         for version in versions:
-            with open(job_path + "/" + utils.JOB_CHANGELOG_DIR + "/" + version + utils.MARKDOWN_EXTENSION) as changelog_file:
+            with open(job_path + "/" + utils.JOB_CHANGELOG_DIR + "/" + version + utils.MARKDOWN_EXTENSION, encoding="utf-8") as changelog_file:
                 changelogs.append({
                     "version": version,
                     "url": utils.R2DEVOPS_URL + version + "/" + job_name + utils.JOBS_EXTENSION,
@@ -219,8 +219,8 @@ def get_job_raw_content(job_name):
     """
     logging.info("Parsing content of the job %s", job_name)
     try:
-        with open("{}/{job}/{job}{}".format(utils.JOBS_DIR, utils.JOBS_EXTENSION,
-                                            job=job_name), 'r') as job:
+        with open("{}/{job}/{job}{}".format(utils.JOBS_DIR, utils.JOBS_EXTENSION, 
+                                            job=job_name), 'r', encoding="utf-8") as job:
             return job.readlines()
     except FileNotFoundError :
         logging.error("File %s/%s/%s.%s not found", utils.JOBS_DIR,
@@ -319,6 +319,7 @@ def create_job_doc(job):
     job_raw_content = get_job_raw_content(job)
     job_icon = conf.get("icon")
     job_labels = conf.get("labels")
+    job_metadescription = conf.get("description")
     linked_issues, linked_issues_url, create_issue_url = get_linked_issues(job)
 
     # Write final file
@@ -327,7 +328,7 @@ def create_job_doc(job):
                  stage)
 
     try:
-        with open(mkdocs_file_path, 'w+') as doc_file:
+        with open(mkdocs_file_path, 'w+', encoding="utf-8") as doc_file:
             env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
             template = env.get_template(utils.TEMPLATE_DOC)
             doc_file.write(template.render(
@@ -349,7 +350,8 @@ def create_job_doc(job):
                 linked_issues = linked_issues,
                 linked_issues_limit = utils.ISSUES_LIMIT,
                 linked_issues_url = linked_issues_url,
-                create_issue_url = create_issue_url
+                create_issue_url = create_issue_url,
+                job_metadescription = job_metadescription
         ))
     except Exception as error:
         logging.error("Failed to create final file for job %s", job)
@@ -373,7 +375,7 @@ def create_pages_placeholder(placeholder_path,stage_key):
     # Create jobs folder destination folder in docs for the job
     makedirs(placeholder_path,0o777,True)
     # Create the .pages files mandatory to serve documentaiton and display stages
-    f = open(placeholder_path + "/.pages", "w+")
+    f = open(placeholder_path + "/.pages", "w+", encoding="utf-8")
     f.write("title: '"+ stage_key +"'")
     f.close()
 
@@ -394,7 +396,7 @@ def add_placeholder():
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
             logging.info("Creating a placeholder file for the stage %s", stage_key)
-            with open(placeholder_path + "/" + utils.MKDOCS_PLACEHOLDER_FILE, "w+") as file_handle:
+            with open(placeholder_path + "/" + utils.MKDOCS_PLACEHOLDER_FILE, "w+", encoding="utf-8") as file_handle:
                 env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
@@ -410,7 +412,7 @@ def create_arrange_pages():
     """
     stages = sorted(utils.INDEX.items(), key=lambda x: x[1]['order'])
     try:
-        with open(utils.ARRANGE_PAGES_FILE_PATH, 'w+') as doc_file:
+        with open(utils.ARRANGE_PAGES_FILE_PATH, 'w+', encoding="utf-8") as doc_file:
             env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
             template = env.get_template(utils.TEMPLATE_ARRANGE_PAGES)
             doc_file.write(template.render(
@@ -473,7 +475,7 @@ def main():
 
 
 
-    with open(utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + utils.INDEX_FILE, "w+") as index_file:
+    with open(utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + utils.INDEX_FILE, "w+", encoding="utf-8") as index_file:
         index_file.write(index_content)
 
 if __name__ == "__main__":
