@@ -1,0 +1,14 @@
+name: twig_lint
+description: twig-lint is a lint tool for your twig files.
+default_stage: static_tests
+icon: 🐘
+maintainer: melheb.younes
+license: MIT
+images:
+  "jakzal/phpqa": "7.4"
+tools:
+  "php": "7.4"
+labels:
+  - GitLab
+  - PHP
+  - Twig
