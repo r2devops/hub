@@ -76,7 +76,7 @@ pipenv run mkdocs serve
 
 #### Guidelines
 
-For `pyhton` tools:
+For `python` tools:
 
 * Pylint note >= 9
 * Usage of logging
