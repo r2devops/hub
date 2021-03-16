@@ -53,6 +53,9 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 | `OUTPUT_LOCALE` | Language of report file | `en` |
 | `ADDITIONAL_OPTIONS` | Variable to add custom options (see [options](https://github.com/GoogleChrome/lighthouse#cli-options){:target="_blank"}) | ` ` |
 | `PAGES_PATH` | Path of your static website (not used if `LIGHTHOUSE_TARGET` is filled) | `website_build/` |
+| `SERVE_VERSION` | `serve` npm module's version | `11.3.2` |
+| `LIGHTHOUSE_VERSION` | `Lighthouse` tool's version | `7.2.0`
+
 
 ### Audit configuration
 
