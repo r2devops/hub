@@ -154,6 +154,8 @@ job_image_scan:
 
 links_checker:
   variables:
+    # The following hard excluded link is due that this
+    # job will be migrated to a new tool soon (see #314)
     LICHE_EXCLUDE: ^([^http]|https://gitlab.com/r2devops/hub/-/forks/new)
     FAIL_ON_BROKEN: "true"
     LICHE_DIRECTORY: "docs/"
