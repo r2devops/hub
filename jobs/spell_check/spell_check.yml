@@ -12,7 +12,7 @@ spell_check:
       PYSPELLING_SPELLER: "aspell=0.60.7~20110707-6"
       PYSPELLING_CONFIG: ""
       PYSPELLING_OPTIONS: ""
-      SNIPPET_VERSION: "4cc2af8e840aff6f599a894351de62c9b29ddc69"
+      SNIPPET_VERSION: "7419433888dc5e6ebd1223ed05c39c6507988b69"
     script:
       # Installing global dependencies depending on variables
       - apt update && apt install -y ${PYSPELLING_SPELLER}
