@@ -154,8 +154,9 @@ job_image_scan:
 
 links_checker:
   variables:
-    LICHE_EXCLUDE: "^[^http]"
+    LICHE_EXCLUDE: ^[^http]
     FAIL_ON_BROKEN: "true"
+    LICHE_DIRECTORY: "docs/"
   allow_failure: true
 
 # See https://docs.gitlab.com/ee/api/labels.html
