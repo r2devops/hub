@@ -51,6 +51,7 @@ depscan
 detekt
 developped
 DevOps
+devops
 Devops
 dictionnaries
 DLL
@@ -269,3 +270,9 @@ YamlLint
 Yamllint
 yamllint
 zaproxy
+TicTacToe
+tictactoe
+Vue
+vue
+wordlists
+Wordlists
