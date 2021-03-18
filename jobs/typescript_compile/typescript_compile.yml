@@ -32,7 +32,7 @@ typescript_compile:
     - fi
     - tsc -p "${CI_PROJECT_DIR}/${PROJECT_ROOT}/tsconfig.json" --outDir "${CI_PROJECT_DIR}/${TARGET_OUTPUT}"
   artifacts:
-    exposer_as: "typescript compile"
+    expose_as: "typescript compile"
     paths:
       - ${CI_PROJECT_DIR}/${TARGET_OUTPUT}
     when: always
