@@ -26,12 +26,10 @@ typescript_compile:
     - if [ -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package-lock.json" ]; then npm install; fi
     # In case the user doesn't have a valid tsconfig.json
     # We use the initialize from TSC to do so
-    - |
-      if [ ! -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/tsconfig.json" ]
-      && [ ! -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/jsconfig.json" ]; then
-    -   cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
-    -   tsc --init
-    - fi
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    - if [ ! -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/tsconfig.json" ]; then tsc --init; fi
+    - if [ ! -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/jsconfig.json" ]; then tsc --init; fi
+
     - tsc -p "${CI_PROJECT_DIR}/${PROJECT_ROOT}/tsconfig.json" --outDir "${CI_PROJECT_DIR}/${TARGET_OUTPUT}"
   artifacts:
     expose_as: "typescript compile"
