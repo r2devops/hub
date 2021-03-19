@@ -19,7 +19,8 @@ A job transpiling your typescript code into JavaScript using
     ??? summary "Option 1: Choose the **plug and play** 🚀 mode"
       You don't have much to do, you can already **go to the next step**!<br/>
       In case you want the transpiler to work on a specific folder, consider 
-      updating the variable `PROJECT_ROOT` with the target folder path.
+      updating the variable `PROJECT_ROOT` with the target folder path.<br/><br/>
+      This job is using the command `tsc --init` as a **default config** file.
    
     ??? summary "Option 2: Have your own configuration"
       If you already have `tsconfig.json` or `jsconfig.json` at the root of your 
