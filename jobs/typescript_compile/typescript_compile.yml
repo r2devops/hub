@@ -34,4 +34,5 @@ typescript_compile:
     expose_as: "typescript compile"
     paths:
       - ${CI_PROJECT_DIR}/${TARGET_OUTPUT}
+      - "dist/"
     when: always
