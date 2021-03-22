@@ -276,5 +276,11 @@ Vue
 vue
 wordlists
 Wordlists
+transpiling
+Transpiling
+transpiler
+Transpiler
+transpiled
+Transpiled
 unhandled
 Unhandled

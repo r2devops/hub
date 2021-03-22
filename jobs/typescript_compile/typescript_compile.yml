@@ -1,0 +1,38 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+typescript_compile:
+  image:
+    name: alpine:3.13
+  stage: build
+  variables:
+    # The folder where is tsconfig.json
+    PROJECT_ROOT: ""
+    # Directory where the code should be
+    TARGET_OUTPUT: "dist"
+    # Node version
+    NODE_VERSION: "14.16.0-r0"
+    # Typescript package version
+    TYPESCRIPT_VERSION: "4.2.3"
+  script:
+    - apk add npm=${NODE_VERSION}
+    - npm install -g typescript@${TYPESCRIPT_VERSION}
+
+    # In case the user has a package-lock.json, install modules
+    # Necessary if the user uses Typescript environnement
+    # see: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#tsconfig-bases
+    - if [ -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package-lock.json" ]; then npm install; fi
+    # In case the user doesn't have a valid tsconfig.json
+    # We use the initialize from TSC to do so
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    - if [ ! -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/tsconfig.json" ] && [ ! -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/jsconfig.json" ]; then tsc --init; fi
+
+    - tsc -p "${CI_PROJECT_DIR}/${PROJECT_ROOT}/tsconfig.json" --outDir "${CI_PROJECT_DIR}/${TARGET_OUTPUT}"
+  artifacts:
+    expose_as: "typescript compile"
+    paths:
+      - ${CI_PROJECT_DIR}/${TARGET_OUTPUT}
+      - "dist/"
+    when: always
