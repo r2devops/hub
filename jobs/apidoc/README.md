@@ -28,10 +28,14 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `APIDOC_VERSION` <img width=250/> | Version of apiDoc to use <img width=400/> | `0.24.0` |
+| `APIDOC_VERSION` <img width=250/> | Version of apiDoc to use <img width=400/> | `0.27.1` |
 | `APIDOC_CONFIG_PATH` | Path to config file or to directory containing config file (apidoc.json or apidoc.config.js) | `.` |
 | `APIDOC_OUTPUT_PATH` | Output directory path | `website_build/` |
 | `APIDOC_TEMPLATE_PATH` | Path to template folder | `/usr/lib/node_modules/apidoc/template/` |
+| `APIDOC_SOURCE_PATH` | Path to analyzed folder  | ` ` |
+| `APIDOC_INCLUDE_FILTER` | Regex to include specific files | ` ` |
+| `APIDOC_EXCLUDE_FILTER` | Regex to exclude specific files | ` ` |
+| `APIDOC_OPTIONS` | Additional options | ` ` |
 
 ### Artifacts
 
