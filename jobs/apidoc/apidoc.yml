@@ -12,10 +12,21 @@ apidoc:
     APIDOC_CONFIG_PATH: '.'
     APIDOC_OUTPUT_PATH: 'website_build/'
     APIDOC_TEMPLATE_PATH: '/usr/local/lib/node_modules/apidoc/template/'
-    APIDOC_VERSION: '0.24.0'
+    APIDOC_VERSION: '0.27.1'
+    APIDOC_SOURCE_PATH: ""
+    APIDOC_INCLUDE_FILTER: ""
+    APIDOC_EXCLUDE_FILTER: ""
+    APIDOC_OPTIONS: ""
   script:
     - npm install apidoc@$APIDOC_VERSION -g
-    - apidoc --verbose -c "$APIDOC_CONFIG_PATH" -o "$APIDOC_OUTPUT_PATH" -t "$APIDOC_TEMPLATE_PATH"
+    # Conditions are necessary as if $filters are empty apidoc
+    # don't find any files (exclude everything)
+    - if [ ! -z "$APIDOC_INCLUDE_FILTER" ]; then APIDOC_OPTIONS="-f $APIDOC_INCLUDE_FILTER $APIDOC_OPTIONS"; fi
+    - if [ ! -z "$APIDOC_EXCLUDE_FILTER" ]; then APIDOC_OPTIONS="-e $APIDOC_EXCLUDE_FILTER $APIDOC_OPTIONS"; fi
+    - |
+      apidoc --verbose -c "$APIDOC_CONFIG_PATH" -o "${CI_PROJECT_DIR}/${APIDOC_OUTPUT_PATH}" \
+      -t "$APIDOC_TEMPLATE_PATH" -i "${CI_PROJECT_DIR}/${APIDOC_SOURCE_PATH}" \
+      ${APIDOC_OPTIONS}
   artifacts:
     when: always
     expose_as: "apiDoc build"
