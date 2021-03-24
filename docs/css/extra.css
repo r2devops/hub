@@ -316,3 +316,25 @@ opacity: .8;
 .md-header {
     z-index: 3;
 }
+
+.somethingwrong{
+
+  font-size: .64rem;
+  font-weight: initial;
+  padding: 10px;
+}
+
+
+.tellus{
+  display: inline-block;
+  padding: .625em 2em;
+  border: .01rem solid currentColor;
+  border-radius: .15rem;
+  background-color: #FFFFFF;
+  color:#000000;
+  font-size:0.55rem;
+}
+
+.tellus:hover{
+  background-color: #D9D9D9;
+}

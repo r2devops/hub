@@ -6,10 +6,11 @@ site_url: 'https://r2devops.io/'
 
 # Copyright
 copyright: '
-🍪 This website uses cookies  <br/>
 Copyright &copy; 2021 Go2Scale
 
 '
+tos: '/tos'
+privacy: '/privacy'
 
 # Repository
 repo_name: 'r2devops/hub'
@@ -43,12 +44,15 @@ extra:
       link: 'https://discord.gg/5QKpGqR'
     - icon: 'fontawesome/solid/globe'
       link: 'https://go2scale.com/'
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/Go2Scale
     - icon: 'fontawesome/brands/gitlab'
       link: 'https://gitlab.com/r2devops/'
     - icon: 'fontawesome/brands/youtube'
       link: 'https://www.youtube.com/channel/UCVt39An0xR1PJaX3_Me_zkw'
     - icon: 'fontawesome/brands/linkedin'
       link: 'https://www.linkedin.com/company/go2scale/'
+
 
 extra_css:
     - css/extra.css
@@ -122,7 +126,3 @@ plugins:
   - awesome-pages
   - minify:
       minify_html: true # minification of html
-
-google_analytics:
-  - UA-180635226-1
-  - auto
