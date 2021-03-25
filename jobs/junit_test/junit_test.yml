@@ -1,0 +1,22 @@
+stages:
+  - static_tests
+
+junit_test:
+  image:
+    name: maven:3.6.3-jdk-11
+    entrypoint: [""]
+  stage: static_tests
+  variables:
+    ARTIFACTS_DIR: ${CI_PROJECT_DIR}/artifacts
+  script:
+      - mkdir -p ${ARTIFACTS_DIR}
+      - mvn -B clean test -DartifactsDirectory=${ARTIFACTS_DIR}
+      - cat ${ARTIFACTS_DIR}/site/jacoco/jacoco.csv | awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, "instructions covered"; print 100*covered/instructions, "% covered" }'
+  artifacts: 
+    when: always
+    paths:
+      - "${ARTIFACTS_DIR}/surefire-reports/TEST-*.xml"
+    reports:
+      junit:
+        - "${ARTIFACTS_DIR}/surefire-reports/TEST-*.xml"
+  coverage: '/^(\d+.\d+\ %) covered$/'
