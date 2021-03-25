@@ -284,3 +284,17 @@ transpiled
 Transpiled
 unhandled
 Unhandled
+GDPR
+gdpr
+io
+IO
+I/O
+Devops's
+DevOps's
+devops's
+JDK
+jdk
+Jdk
+JaCoCo
+Jacoco
+jacoco
