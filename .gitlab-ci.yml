@@ -307,6 +307,7 @@ generate_job_av:
     policy: pull-push
   rules:
     - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 child_job_av:
   stage: merge_tests
@@ -317,3 +318,4 @@ child_job_av:
     strategy: depend
   rules:
     - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
