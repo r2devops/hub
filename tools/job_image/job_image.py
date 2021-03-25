@@ -24,6 +24,34 @@ def argparse_setup():
     parser.add_argument("job", help="job name to get the image from")
     return parser.parse_args()
 
+def get_image(job):
+    """Get the image of a job
+
+    Parameters
+    ----------
+    job
+        Job name
+
+    Return
+    ------
+    str
+        The string of the image of the job, or empty
+    """
+    logging.info(f"Getting the image for job {job}")
+
+    with open(f"{utils.JOBS_DIR}/{job}/{job}.yml", 'r') as file:
+        data = yaml.load(file, Loader=yaml.FullLoader)
+        if "image" in data[job].keys():
+            if isinstance(data[job]['image'], dict):
+                return data[job]['image']['name']
+            else:
+                return data[job]['image']
+        elif "extends" in data[job].keys():
+            if isinstance(data[data[job]['extends']]['image'], dict):
+                return data[data[job]['extends']]['image']['name']
+            else:
+                return data[data[job]['extends']]['image']
+
 if __name__ == "__main__":
     """Main function, get the name of the image for a job
 
@@ -81,3 +109,4 @@ if __name__ == "__main__":
         except KeyError :
             logging.warning('The job %s doesn\'t declare its image and extends a job from outside of the file, we aren\'t able to check its image vulnerabilities', args.job)
             # TODO: check images from included jobs ==> https://gitlab.com/r2devops/hub/-/issues/282
+

@@ -1,5 +1,6 @@
 stages:
   - static_tests
+  - merge_tests
   - project_setup
   - build
   - dynamic_tests
@@ -250,3 +251,69 @@ release:
     done
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+
+refresh_job_av_database:
+  image: python:3.9.1-alpine
+  stage: static_tests
+  variables:
+    PIPENV_PIPFILE: tools/job_av/Pipfile
+    PYTHONPATH: "./:${PYTHONPATH}"
+  script:
+    - apk add --no-cache python3 py3-pip clamav util-linux
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+
+    # Updating the ClamAV database to push it into the cache
+    - freshclam
+
+    # Runner cannot access /var/lib/clamav, so we need to copy it
+    # in order to cache it properly
+    - mkdir freshclam_db
+    - cp /var/lib/clamav/* freshclam_db
+  cache:
+    key: "clamav-db"
+    paths:
+      - freshclam_db
+    policy: push
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+
+generate_job_av:
+  image: python:3.9.1-alpine
+  stage: static_tests
+  variables:
+    PIPENV_PIPFILE: tools/job_av/Pipfile
+    JOB_LOGFILE: "generate_job.log"
+    GENERATED_YAML: "generated-gitlab-ci.yml"
+    PYTHONPATH: "./:${PYTHONPATH}"
+    SCANNED_IMAGES_FILE: "clamav_scanned_images.json"
+  script:
+    - if [ -f "${SCANNED_IMAGES_FILE}" ]; then cat ${SCANNED_IMAGES_FILE}; fi
+    - apk add --no-cache python3 py3-pip util-linux
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+
+    - pipenv run python3 tools/job_av/job_av.py
+    - cat $GENERATED_YAML
+  artifacts:
+    paths:
+      - ${GENERATED_YAML}
+    expire_in: 30 days
+    when: always
+  cache:
+    key: "clamav-scanned-jobs"
+    paths:
+      - clamav_scanned_images.json
+    policy: pull-push
+  rules:
+    - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+
+child_job_av:
+  stage: merge_tests
+  trigger:
+    include:
+      - artifact: generated-gitlab-ci.yml
+        job: generate_job_av
+    strategy: depend
+  rules:
+    - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
