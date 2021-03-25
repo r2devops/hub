@@ -1,0 +1,18 @@
+stages:
+  - build
+
+maven_build:
+  image:
+    name: maven:3.6.3-jdk-11
+    entrypoint: [""]
+  stage: build
+  variables:
+    ARTIFACTS_DIR: ${CI_PROJECT_DIR}/artifacts
+  script:
+      - mkdir -p ${ARTIFACTS_DIR}
+      - mvn -B clean install -DartifactsDirectory=${ARTIFACTS_DIR} -DskipTests
+  artifacts: 
+    when: always
+    expose_as: "build"
+    paths:
+      - "${ARTIFACTS_DIR}"

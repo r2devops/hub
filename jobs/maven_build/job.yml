@@ -1,0 +1,13 @@
+name: maven_build
+description: Build a Java project with maven and expose built artifacts (jar, classes, etc.)
+default_stage: build
+icon: ⚙️
+maintainer: alexlevy
+license: MIT
+labels:
+  - Java
+  - Build
+images:
+  'maven': '3.6.3-jdk-11'
+tools:
+  maven: '3.6.3'
