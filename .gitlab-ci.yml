@@ -288,13 +288,13 @@ generate_job_av:
     PYTHONPATH: "./:${PYTHONPATH}"
     SCANNED_IMAGES_FILE: "clamav_scanned_images.json"
   script:
+    - if [ $CI_CLAMAV_PIPELINE ]; then echo "" > ${SCANNED_IMAGES_FILE}; fi
     - if [ -f "${SCANNED_IMAGES_FILE}" ]; then cat ${SCANNED_IMAGES_FILE}; fi
     - apk add --no-cache python3 py3-pip util-linux
     - pip install --ignore-installed distlib pipenv
     - pipenv install
 
     - pipenv run python3 tools/job_av/job_av.py
-    - cat $GENERATED_YAML
   artifacts:
     paths:
       - ${GENERATED_YAML}
