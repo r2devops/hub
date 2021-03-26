@@ -19,21 +19,25 @@
 import logging
 import re
 import sys
+import time
 from datetime import datetime
 from distutils.version import LooseVersion
 from os import listdir, makedirs
 from shutil import copyfile
 from urllib.parse import quote, urlencode
+import argparse
+import logging
 import requests
 from yaml import full_load, YAMLError
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
-import argparse
-
+from watchdog.observers import Observer
+from watchdog.events import RegexMatchingEventHandler
 
 # Import the Config module and set the path to run the script from root project
 # /!\ This instruction is only working if you run this script from the root of the project
 sys.path.insert(0, "./")
 from tools.utils.utils import Config
+
 utils = Config()
 
 
@@ -52,14 +56,15 @@ def get_conf(job_path):
             return full_load(conf_file)
     except YAMLError as error:
         logging.error("Failed to parse job config '%s/%s", job_path,
-                      utils.JOB_METADATA_FILE )
+                      utils.JOB_METADATA_FILE)
         logging.error(error)
         sys.exit(1)
     except OSError as error:
         logging.error("Failed to open and read job config '%s/%s",
-                      job_path, utils.JOB_METADATA_FILE )
+                      job_path, utils.JOB_METADATA_FILE)
         logging.error(error)
         sys.exit(1)
+
 
 def get_description(job_path):
     """Fetch the README file from job
@@ -79,6 +84,7 @@ def get_description(job_path):
         logging.error(error)
         sys.exit(1)
 
+
 def get_changelogs(job_path, job_name):
     """Fetch the changelogs file from job
 
@@ -94,14 +100,15 @@ def get_changelogs(job_path, job_name):
     versions = [version[:-3] for version in versions]
     versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
-      "version": versions[0],
-      "url": utils.R2DEVOPS_URL + job_name + utils.JOBS_EXTENSION
+        "version": versions[0],
+        "url": utils.R2DEVOPS_URL + job_name + utils.JOBS_EXTENSION
     }
     changelogs = []
     logging.info("Parsing changelogs for job %s", job_name)
     try:
         for version in versions:
-            with open(job_path + "/" + utils.JOB_CHANGELOG_DIR + "/" + version + utils.MARKDOWN_EXTENSION, encoding="utf-8") as changelog_file:
+            with open(job_path + "/" + utils.JOB_CHANGELOG_DIR + "/" + version + utils.MARKDOWN_EXTENSION,
+                      encoding="utf-8") as changelog_file:
                 changelogs.append({
                     "version": version,
                     "url": utils.R2DEVOPS_URL + version + "/" + job_name + utils.JOBS_EXTENSION,
@@ -113,6 +120,7 @@ def get_changelogs(job_path, job_name):
         sys.exit(1)
 
     return (latest, changelogs)
+
 
 def get_license(license_name, copyright_holder):
     """Return the license file
@@ -126,19 +134,22 @@ def get_license(license_name, copyright_holder):
     """
     logging.info("Getting licence %s", license_name)
     try:
-        env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR + "/" + utils.TEMPLATE_LICENSE_DIR))
+        env = Environment(
+            loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR + "/" + utils.TEMPLATE_LICENSE_DIR))
         template = env.get_template(license_name + utils.MARKDOWN_EXTENSION + ".j2")
         license_content = template.render(
-            year = datetime.now().year,
-            copyright_holder = copyright_holder
+            year=datetime.now().year,
+            copyright_holder=copyright_holder
         ).split('\n')
-        license_content = [ line + '\n' for line in license_content]
+        license_content = [line + '\n' for line in license_content]
     except TemplateNotFound as error:
-        logging.error("Failed to fetch the template for license %s and copyright holder: %s", license_name, copyright_holder)
+        logging.error("Failed to fetch the template for license %s and copyright holder: %s", license_name,
+                      copyright_holder)
         logging.error(error)
         sys.exit(1)
 
     return license_content
+
 
 def get_screenshots(job_path, job_name):
     """Create the job directory for the job documentation
@@ -161,7 +172,8 @@ def get_screenshots(job_path, job_name):
 
     logging.info("Getting screenshots for job %s", job_name)
     # Create screenshots folder in docs for the job
-    makedirs(utils.MKDOCS_DIR+"/"+utils.MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+utils.SCREENSHOTS_DIR,0o777,True)
+    makedirs(utils.MKDOCS_DIR + "/" + utils.MKDOCS_DIR_JOBS_IMAGES + "/" + job_name + "/" + utils.SCREENSHOTS_DIR,
+             0o777, True)
 
     # Get all screenshots of the job
     regex = re.compile('(.png|.jpg|.jpeg)$')
@@ -170,9 +182,11 @@ def get_screenshots(job_path, job_name):
 
     # Copy all screenshot of the job into screenshots folder for the doc
     for screenshot in screenshot_list:
-        copyfile(job_path + "/" + utils.SCREENSHOTS_DIR+"/"+screenshot, utils.MKDOCS_DIR+ "/"+ utils.MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+utils.SCREENSHOTS_DIR+"/"+screenshot)
+        copyfile(job_path + "/" + utils.SCREENSHOTS_DIR + "/" + screenshot,
+                 utils.MKDOCS_DIR + "/" + utils.MKDOCS_DIR_JOBS_IMAGES + "/" + job_name + "/" + utils.SCREENSHOTS_DIR + "/" + screenshot)
 
-    return ("/" + utils.MKDOCS_DIR_JOBS_IMAGES+"/"+job_name+"/"+utils.SCREENSHOTS_DIR, screenshot_list)
+    return ("/" + utils.MKDOCS_DIR_JOBS_IMAGES + "/" + job_name + "/" + utils.SCREENSHOTS_DIR, screenshot_list)
+
 
 def get_user(code_owner):
     """Fetch the job maintainer Gitlab user
@@ -204,6 +218,7 @@ def get_user(code_owner):
 
     return None
 
+
 def get_job_raw_content(job_name):
     """Return the raw content of a job
 
@@ -219,15 +234,16 @@ def get_job_raw_content(job_name):
     """
     logging.info("Parsing content of the job %s", job_name)
     try:
-        with open("{}/{job}/{job}{}".format(utils.JOBS_DIR, utils.JOBS_EXTENSION, 
+        with open("{}/{job}/{job}{}".format(utils.JOBS_DIR, utils.JOBS_EXTENSION,
                                             job=job_name), 'r', encoding="utf-8") as job:
             return job.readlines()
-    except FileNotFoundError :
+    except FileNotFoundError:
         logging.error("File %s/%s/%s.%s not found", utils.JOBS_DIR,
-                                                    job_name,
-                                                    job_name,
-                                                    utils.JOBS_EXTENSION)
+                      job_name,
+                      job_name,
+                      utils.JOBS_EXTENSION)
         sys.exit(1)
+
 
 # https://docs.gitlab.com/ee/api/issues.html#list-project-issues (for the structure of the response)
 def get_linked_issues(job_name, opened=True):
@@ -272,6 +288,7 @@ def get_linked_issues(job_name, opened=True):
     create_issue_url = f"{issues_base_url}/issues/new?{quote(create_issue_payload, safe='=')}%20-%20"
     return (linked_issues, linked_issues_url, create_issue_url)
 
+
 def create_job_doc(job):
     """Create the Markdown documentation file for a job
 
@@ -293,7 +310,8 @@ def create_job_doc(job):
     stage = conf.get("default_stage")
 
     if not code_owner or not license_name or not stage:
-        logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job, utils.JOB_METADATA_FILE)
+        logging.error("Job %s is missing fields (code_owner, license_name, stage) in '%s'", job,
+                      utils.JOB_METADATA_FILE)
         sys.exit(1)
 
     utils.INDEX[stage]["content"].append(conf)
@@ -332,34 +350,34 @@ def create_job_doc(job):
             env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
             template = env.get_template(utils.TEMPLATE_DOC)
             doc_file.write(template.render(
-                job_name = job,
-                job_icon = job_icon,
-                readme = description,
-                license_name = license_name,
-                license = license_content,
-                latest = latest,
-                changelogs = changelogs,
-                gitlab_image = user["avatar_url"],
-                code_owner_name = user["name"],
-                code_owner = code_owner,
-                code_owner_url = user["web_url"],
-                screenshot_path = screenshot_path,
-                screenshots_files = screenshots_files,
-                job_raw_content = ''.join(job_raw_content),
-                job_labels = job_labels,
-                linked_issues = linked_issues,
-                linked_issues_limit = utils.ISSUES_LIMIT,
-                linked_issues_url = linked_issues_url,
-                create_issue_url = create_issue_url,
-                job_metadescription = job_metadescription
-        ))
+                job_name=job,
+                job_icon=job_icon,
+                readme=description,
+                license_name=license_name,
+                license=license_content,
+                latest=latest,
+                changelogs=changelogs,
+                gitlab_image=user["avatar_url"],
+                code_owner_name=user["name"],
+                code_owner=code_owner,
+                code_owner_url=user["web_url"],
+                screenshot_path=screenshot_path,
+                screenshots_files=screenshots_files,
+                job_raw_content=''.join(job_raw_content),
+                job_labels=job_labels,
+                linked_issues=linked_issues,
+                linked_issues_limit=utils.ISSUES_LIMIT,
+                linked_issues_url=linked_issues_url,
+                create_issue_url=create_issue_url,
+                job_metadescription=job_metadescription
+            ))
     except Exception as error:
         logging.error("Failed to create final file for job %s", job)
         logging.error(error)
         sys.exit(1)
 
 
-def create_pages_placeholder(placeholder_path,stage_key):
+def create_pages_placeholder(placeholder_path, stage_key):
     """ Create jobs folder destination folder in docs for the job and .pages fil
 
     Parameters:
@@ -373,10 +391,10 @@ def create_pages_placeholder(placeholder_path,stage_key):
     --------
     """
     # Create jobs folder destination folder in docs for the job
-    makedirs(placeholder_path,0o777,True)
+    makedirs(placeholder_path, 0o777, True)
     # Create the .pages files mandatory to serve documentaiton and display stages
     f = open(placeholder_path + "/.pages", "w+", encoding="utf-8")
-    f.write("title: '"+ stage_key +"'")
+    f.write("title: '" + stage_key + "'")
     f.close()
 
 
@@ -401,6 +419,7 @@ def add_placeholder():
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
+
 def create_arrange_pages():
     """ Create arrange .pages for mkdocs to sort the list of stage in job page
 
@@ -416,13 +435,14 @@ def create_arrange_pages():
             env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
             template = env.get_template(utils.TEMPLATE_ARRANGE_PAGES)
             doc_file.write(template.render(
-                title = utils.TITLE_ARRANGE_PAGES,
-                stages = stages
-        ))
+                title=utils.TITLE_ARRANGE_PAGES,
+                stages=stages
+            ))
     except Exception as error:
         logging.error("Failed to create arrange pages file for job %s", doc_file_path)
         logging.error(error)
         sys.exit(1)
+
 
 def argparse_setup():
     """Setup argparse
@@ -435,9 +455,47 @@ def argparse_setup():
     parser = argparse.ArgumentParser(description="Build R2Devops jobs' documentation")
 
     parser.add_argument("--job", '-j',
-    type=str, help="Build a specific R2DevOps job's name")
+                        type=str, help="Build a specific R2DevOps job's name")
+
+    parser.add_argument("--watch", help="Put in watch mode",
+                        action="store_true")
 
     return parser.parse_args()
+
+
+def create_jobs_doc(arg_job=None):
+    """Build all the jobs (or a single) doc
+    """
+    # Iterate over every directories in jobs directory to create their job.md for the documentation
+    jobs = listdir(utils.JOBS_DIR)
+
+    if arg_job and arg_job not in jobs:
+        logging.error("Job %s not found", arg_job)
+        sys.exit(1)
+
+    if arg_job:
+        create_job_doc(arg_job)
+    else:
+        for job in jobs:
+            create_job_doc(job)
+
+def run_watcher(watch_path):
+    def on_modified(event):
+        logging.info(f"New modification detected on {event.src_path}")
+        create_jobs_doc(event.src_path.split("/")[1])
+
+    event_handler = RegexMatchingEventHandler(["^.*\.md$"], ignore_directories=False, case_sensitive=True)
+    event_handler.on_modified = on_modified
+
+    observer = Observer()
+    observer.schedule(event_handler, watch_path, recursive=True)
+    observer.start()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
 
 def main():
     """
@@ -460,18 +518,15 @@ def main():
         ]
     )
 
-    # Iterate over every directories in jobs directory to create their job.md for the documentation
-    jobs = listdir(utils.JOBS_DIR)
-
-    if args.job and args.job not in jobs:
-        logging.error("Job %s not found", args.job)
-        sys.exit(1)
-
-    elif args.job:
-        create_job_doc(args.job)
+    watch_path = utils.JOBS_DIR
+    if args.job:
+        create_jobs_doc(args.job)
+        watch_path = f"{watch_path}/{args.job}"
     else:
-        for job in jobs:
-            create_job_doc(job)
+        create_jobs_doc()
+
+    if args.watch:
+        run_watcher(watch_path)
 
     # Verify that there is a .md file for every stage, or mkdocs will break
     add_placeholder()
@@ -484,11 +539,9 @@ def main():
     template = env.get_template(utils.TEMPLATE_INDEX)
     index_content = template.render(index=utils.INDEX)
 
-
-
-
     with open(utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + utils.INDEX_FILE, "w+", encoding="utf-8") as index_file:
         index_file.write(index_content)
+
 
 if __name__ == "__main__":
     main()
