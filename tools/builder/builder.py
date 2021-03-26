@@ -432,7 +432,11 @@ def argparse_setup():
     obj
         Python object with arguments parsed
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Build R2Devops jobs' documentation")
+
+    parser.add_argument("--job", '-j',
+    type=str, help="Build a specific R2DevOps job's name")
+
     return parser.parse_args()
 
 def main():
@@ -458,8 +462,16 @@ def main():
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = listdir(utils.JOBS_DIR)
-    for job in jobs:
-        create_job_doc(job)
+
+    if args.job and args.job not in jobs:
+        logging.error("Job %s not found", args.job)
+        sys.exit(1)
+
+    elif args.job:
+        create_job_doc(args.job)
+    else:
+        for job in jobs:
+            create_job_doc(job)
 
     # Verify that there is a .md file for every stage, or mkdocs will break
     add_placeholder()
