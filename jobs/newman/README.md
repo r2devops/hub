@@ -65,11 +65,12 @@ Launch a Postman collection of requests to test your API using [newman](https://
 | ---- | ----------- | ------- |
 | `NEWMAN_COLLECTION` <img width=100/> | Name of the Postman collection <img width=175/> | `postman_collection.json` <img width=100/> |
 | `NEWMAN_GLOBALS_FILE` | Name of the Postman globals file for [variables](https://learning.postman.com/docs/sending-requests/variables/) | ` ` |
+| `NEWMAN_ENVIRONMENT_FILE` | Name of the Postman environment file for variables | ` ` |
 | `NEWMAN_ADDITIONAL_OPTIONS` | Other [options](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/) you may want to use with Newman | ` ` |
 | `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
 | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
 | `NEWMAN_VERSION` | Newman version | `5.2.2` |
-| `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` |
+| `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` | 
 
 ### Artifact
 
