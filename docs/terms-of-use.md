@@ -28,31 +28,31 @@ We strive to provide as accurate information as possible on the www.r2devops.io 
 All the information indicated on the site www.r2devops.io are given as an indication, and are likely to evolve. Furthermore, the information on the site www.r2devops.io is not exhaustive. They are given subject to modifications having been made since they were put online.
 
 ### Use R2Devops HUB
-There is no limit on the use of ressources (jobs) from the HUB. However, you have to respect the Licence applied on each ressource.
+There is no limit on the use of resources (jobs) from the HUB. However, you have to respect the Licence applied on each resource.
 Jobs are free opensource and free to use.
 
 ### Contribute to R2Devops HUB
-The HUB is collaborative, you are free to contribute and propose idea on the existing ressources.
-You can also contribute by providing your own ressource to be include in the HUB [see linked repository](#contribute-by-linking-a-contributor-repository-hub)
+The HUB is collaborative, you are free to contribute and propose idea on the existing resources.
+You can also contribute by providing your own resource to be include in the HUB [see linked repository](#contribute-by-linking-a-contributor-repository-hub)
 
 #### Contribute to the official HUB repository
 Contributors can contribute in the official repository.
-All ressources hosted in the R2Devops official repository belong to the company.
-All ressources provided in the official repository undergo a specific treatement (Go2Scale integration Pipeline) to be included in the official R2Devops Hub and guarantee a high level of quality.
+All resources hosted in the R2Devops official repository belong to the company.
+All resources provided in the official repository undergo a specific treatement (Go2Scale integration Pipeline) to be included in the official R2Devops Hub and guarantee a high level of quality.
 
 #### Contribute by linking a contributor repository
 Contributors can also decide to link their own repositories to the R2Devops HUB.
-In this case, **ressources belong to the contributor?**.
-All ressources available through a linked repository don't have any mandatories quality criteria.
-It's up to the contributor to define the rules and the quality of the ressource he provides.
-The company cannot be help responsible for any issue met using a ressource from a linked repository.
+In this case, **resources belong to the contributor?**.
+All resources available through a linked repository don't have any mandatories quality criteria.
+It's up to the contributor to define the rules and the quality of the resource he provides.
+The company cannot be help responsible for any issue met using a resource from a linked repository.
 
 ## Contractual limitations on technical data
 The site uses JavaScript technology.
 The website cannot be held responsible for material damage linked to the use of the site. In addition, the user of the site agrees to access the site using recent equipment, not containing any virus and with an up-to-date latest generation browser.
 
 ## Intellectual property and counterfeits
-Some ressources are usable under licence. The visitor commits to respect the Licence of the ressource used.
+Some resources are usable under licence. The visitor commits to respect the Licence of the resource used.
 Go2Scale owns the intellectual property rights or holds the usage rights on all the elements accessible on the site, in particular the texts, images, graphics, logo, icons, sounds, software.
 Any reproduction, representation, modification, publication, adaptation of all or part of the elements of the site, whatever the means or process used, is prohibited without the prior written permission of the company.
 Any unauthorized exploitation of the site or any of the elements it contains will be considered as constituting an infringement and prosecuted in accordance with the provisions of articles L.335-2 and following of the Intellectual Property Code.
