@@ -25,7 +25,7 @@ The www.r2devops.io site contains a number of hypertext links to other sites, se
 
 – Under Internet Explorer: tool tab (cog-shaped pictogram in the upper right) / internet options. Click on Confidentiality and choose Block all cookies. Validate on Ok.
 
-– In Firefox: at the top of the browser window, click on the Firefox button, then go to the Options tab. Click on the Privacy tab.        Configure the Storage rules on: use personalized parameters for history. Finally unselect it to deactivate cookies.     
+– In Firefox: at the top of the browser window, click on the Firefox button, then go to the Options tab. Click on the Privacy tab.        Configure the Storage rules on: use personalized parameters for history. Finally uncheck it to deactivate cookies.     
 
 – In Safari: Click on the menu icon at the top right of the browser (symbolized by a cog). Select Settings. Click on Show advanced settings. In the “Confidentiality” section, click on Content settings. In the “Cookies” section, you can block cookies.
 
