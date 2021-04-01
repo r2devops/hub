@@ -25,6 +25,7 @@ checkstyle
 ChkTex
 cli
 clj
+CNIL
 CLOUDFORMATION
 CloudFormation
 CMake
@@ -89,6 +90,7 @@ Golang
 golangci
 gosec
 gradle
+Granier
 gulpfile
 Gzip
 HADOLINT
@@ -145,6 +147,8 @@ md
 minify
 Mkdocs
 mkdocs
+Montpellier
+MONTPELLIER
 musl
 natively
 newman
@@ -166,6 +170,7 @@ OpenAPI
 openapi
 OpenSSL
 opensslv
+opensource
 os
 OSS
 OWASP
@@ -205,6 +210,7 @@ repo
 RuboCop
 rubocop
 runtime
+SAS
 sast
 scala
 serverless
@@ -228,6 +234,7 @@ styleguide
 Stylelint
 stylelint
 subdirectories
+Subdelirium
 SwaggerUI
 tcp
 Tekton

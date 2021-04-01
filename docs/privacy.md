@@ -21,11 +21,11 @@ The data are stored in the GitLab repository. The website is exposed in the stat
 
 ## Hypertext links and cookies
 The www.r2devops.io site contains a number of hypertext links to other sites, set up with the authorization of Go2Scale. However, Go2Scale does not have the possibility of verifying the content of the sites thus visited, and will not therefore assume any responsibility for this fact.
-     Browsing the www.r2devops.io site may cause the installation of cookie(s) on the user’s computer. A cookie is a small file, which does not allow the identification of the user, but which records information relating to the navigation of a computer on a site. The data thus obtained are intended to facilitate subsequent navigation on the site, and are also intended to allow various measures of attendance. Those datas will allow the accounting of interactions on articles (comments and likes). Refusal to install a cookie may make it impossible to access certain services. The user can however configure his computer as follows, to refuse the installation of cookies:     
+     Browsing the www.r2devops.io site may cause the installation of cookie(s) on the user’s computer. A cookie is a small file, which does not allow the identification of the user, but which records information relating to the navigation of a computer on a site. The data thus obtained are intended to facilitate subsequent navigation on the site, and are also intended to allow various measures of attendance. Those data will allow the accounting of interactions on articles (comments and likes). Refusal to install a cookie may make it impossible to access certain services. The user can however configure his computer as follows, to refuse the installation of cookies:     
 
 – Under Internet Explorer: tool tab (cog-shaped pictogram in the upper right) / internet options. Click on Confidentiality and choose Block all cookies. Validate on Ok.
 
-– In Firefox: at the top of the browser window, click on the Firefox button, then go to the Options tab. Click on the Privacy tab.        Configure the Storage rules on: use personalized parameters for history. Finally uncheck it to deactivate cookies.     
+– In Firefox: at the top of the browser window, click on the Firefox button, then go to the Options tab. Click on the Privacy tab.        Configure the Storage rules on: use personalized parameters for history. Finally unselect it to deactivate cookies.     
 
 – In Safari: Click on the menu icon at the top right of the browser (symbolized by a cog). Select Settings. Click on Show advanced settings. In the “Confidentiality” section, click on Content settings. In the “Cookies” section, you can block cookies.
 
