@@ -199,7 +199,7 @@ mkdocs:
     PYTHONPATH: "./:$PYTHONPATH"
     JOB_LOGFILE: "builder.log"
   before_script:
-    - pip install pipenv && pipenv install
+    - pip install pipenv==2020.11.15 && pipenv install
     - pipenv run python tools/builder/builder.py
   artifacts:
     paths:
