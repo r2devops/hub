@@ -1,0 +1,14 @@
+name: npm_test
+description: Ready to use npm job that runs predefined command "test" specified in package.json
+default_stage: static_tests
+icon: 🧪
+maintainer: moha-s
+license: MIT
+images:
+    "node": "15.7-buster"
+tools:
+labels:
+    - GitLab
+    - Test
+    - NPM
+    - Utilities
