@@ -201,6 +201,8 @@ mkdocs:
   before_script:
     - pip install pipenv==2020.11.15 && pipenv install
     - pipenv run python tools/builder/builder.py
+    - unset PIPENV_PIPFILE
+    - apk add build-base
   artifacts:
     paths:
       - "${JOB_LOGFILE}"
