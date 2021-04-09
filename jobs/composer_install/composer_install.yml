@@ -9,7 +9,7 @@ cache:
     - "${PROJECT_ROOT}/vendor"
   when: "on_success"
 
-npm_install:
+composer_install:
   stage: .pre
   image:
     name: edbizarro/gitlab-ci-pipeline-php:7.3
