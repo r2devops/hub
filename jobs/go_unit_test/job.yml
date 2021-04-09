@@ -1,0 +1,16 @@
+name: go_unit_test
+description: Perform golang unit tests and integrate results with Gitlab UI
+default_stage: static_tests
+icon: 🧪
+maintainer: seanel
+license: MIT
+images:
+  "golang": "latest"
+tools:
+  "github.com/t-yuki/gocover-cobertura": "latest"
+  "github.com/jstemmer/go-junit-report": "latest"
+
+labels:
+  - GitLab
+  - Golang
+  - Test
