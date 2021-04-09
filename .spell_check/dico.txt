@@ -89,6 +89,7 @@ Golang
 golangci
 gosec
 gradle
+Gradle
 gulpfile
 Gzip
 HADOLINT
@@ -98,7 +99,10 @@ html
 HTMLHint
 ide
 IDL
+JaCoCo
 Javascript
+jdk
+JDK
 jq
 js
 JSON
@@ -116,6 +120,7 @@ kaniko
 kondo
 kotlin
 ktlint
+kts
 kube
 kubectl
 KUBERNETES
