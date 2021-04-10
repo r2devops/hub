@@ -1,0 +1,21 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+# Compilation step
+gradle_build:
+  stage: build
+  image: gradle:jdk11
+  script: gradle --build-cache assemble
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull-push
+    paths:
+      - build
+      - .gradle
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 week
+  
