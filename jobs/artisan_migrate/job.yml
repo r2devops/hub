@@ -1,0 +1,13 @@
+name: artisan_migrate
+description: A ready-to-use job for migrating your database
+default_stage: build
+icon: 🗃️
+maintainer: moha-s
+license: MIT
+images:
+    "edbizarro/gitlab-ci-pipeline-php": "7.3"
+tools:
+labels:
+    - GitLab
+    - Artisan
+    - Database
