@@ -21,3 +21,4 @@ Execute your golang unit tests and have the results fully integrated with the va
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `UT_WORK_DIR` | If for any reason (monorepo for example) your go project is not at root of project, specify the relative path to the project | `$CI_PROJECT_DIR` |
+| `UT_TEST_CMD` | Customise the test command if needed | `go test -v` |
