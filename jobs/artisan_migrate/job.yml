@@ -9,5 +9,6 @@ images:
 tools:
 labels:
     - GitLab
+    - PHP
     - Artisan
     - Database
