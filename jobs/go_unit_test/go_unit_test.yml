@@ -1,7 +1,7 @@
 stages:
     - static_tests
 
-unit-tests:
+go_unit_test:
   stage: static_tests
   image: golang:latest
   variables:
