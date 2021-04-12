@@ -12,7 +12,7 @@ go_unit_test:
     - cd "$UT_WORK_DIR"
     # Install job dependencies
     - go get -u github.com/jstemmer/go-junit-report github.com/t-yuki/gocover-cobertura
-    # Execute Unit tests to get both the junit report and a coverage file
+    # Execute Unit tests to get both the junit report and the coverage file
     - ${UT_TEST_CMD} -coverprofile=coverage.out ./... 2>&1 | go-junit-report -set-exit-code > report.xml
     # Output the coverage to stdout for coverage regex to read
     - go tool cover -func=coverage.out
