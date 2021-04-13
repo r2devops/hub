@@ -8,7 +8,7 @@ This job will allow you to migrate the database using a migration file that you 
     You can use this job with all Data Base Management Systems (MySQL, PostgreSQL ...), you just need to link your remote database in the environment variables file, so make sure that you are using the correct database credentials.
     
 
-1. Ensure that your project has a premade environment file such as `.env.testing` in example, which contains the variables that will be used by the project.
+1. Ensure that your project has a pre-made environment file such as `.env.testing` in example, which contains the variables that will be used by the project.
 2. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/artisan_migrate.yml'
