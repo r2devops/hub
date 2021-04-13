@@ -5,10 +5,10 @@ icon: 🧪
 maintainer: seanel
 license: MIT
 images:
-  "golang": "latest"
+  "golang": "1.16.3"
 tools:
-  "github.com/t-yuki/gocover-cobertura": "latest"
-  "github.com/jstemmer/go-junit-report": "latest"
+  "github.com/t-yuki/gocover-cobertura": "v0.0.0-20180217150009-aaee18c8195c"
+  "github.com/jstemmer/go-junit-report": "v0.9.1"
 
 labels:
   - GitLab
