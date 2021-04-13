@@ -16,6 +16,8 @@ bom
 bulary
 bundler
 Bzip
+cd
+CD
 cdxgen
 cfg
 cfn
@@ -23,6 +25,8 @@ changelogs
 checkov
 checkstyle
 ChkTex
+ci
+CI
 cli
 clj
 CNIL
