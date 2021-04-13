@@ -33,7 +33,7 @@ This job installs `composer` dependencies listed in your `composer.lock` or `com
 
 * Job name: `composer_install`
 * Default stage: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post){:target="_blank"}
-* Docker image: [`edbizarro/gitlab-ci-pipeline-php:7.3`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`edbizarro/gitlab-ci-pipeline-php:7.3`](https://hub.docker.com/r/edbizarro/gitlab-ci-pipeline-php){:target="_blank"}
 * When: `always`
 
 
