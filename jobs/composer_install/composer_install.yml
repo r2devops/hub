@@ -3,10 +3,10 @@
 cache:
   key:
     files:
-      - "${PROJECT_ROOT}/composer.lock"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/composer.lock"
     prefix: "composer-${CI_COMMIT_REF_SLUG}"
   paths:
-    - "${PROJECT_ROOT}/vendor"
+    - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/vendor"
   when: "on_success"
 
 composer_install:
@@ -19,6 +19,6 @@ composer_install:
     COMPOSER_INSTALL_OPTIONS: ""
   script:
     # Working directory
-    - cd $PROJECT_ROOT
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     # Run composer install
     - composer install $COMPOSER_INSTALL_OPTIONS
