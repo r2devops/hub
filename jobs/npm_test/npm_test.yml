@@ -1,0 +1,23 @@
+# Job from R2Devops hub --> r2devops.io
+
+
+stages:
+  - static_tests
+
+
+npm_test:
+  stage: static_tests
+  image:
+    name: node:15.7-buster
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    NPM_INSTALL_OPTIONS: ""
+    NPM_TEST_OPTIONS: ""
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run npm install
+    - npm install $NPM_INSTALL_OPTIONS
+    # Run npm test
+    - npm test $NPM_TEST_OPTIONS

@@ -1,0 +1,24 @@
+# Job from R2Devops hub --> r2devops.io
+
+cache:
+  key:
+    files:
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/composer.lock"
+    prefix: "composer-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/vendor"
+  when: "on_success"
+
+composer_install:
+  stage: .pre
+  image:
+    name: edbizarro/gitlab-ci-pipeline-php:7.3
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    COMPOSER_INSTALL_OPTIONS: ""
+  script:
+    # Working directory
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    # Run composer install
+    - composer install $COMPOSER_INSTALL_OPTIONS

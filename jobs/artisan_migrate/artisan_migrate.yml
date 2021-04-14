@@ -1,0 +1,26 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+artisan_migrate:
+  stage: build
+  image:
+    name: edbizarro/gitlab-ci-pipeline-php:7.3
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    ENV_NAME: ".env.testing"
+    ARTISAN_MIGRATE_OPTIONS: ""
+    ARTISAN_OUTPUT: "artisan_migration.log"
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Setup .env
+    - cp -f ${ENV_NAME} .env
+    # Run the migration
+    - php artisan migrate ${ARTISAN_MIGRATE_OPTIONS} >&1 | tee ${ARTISAN_OUTPUT}
+  artifacts:
+    expose_as: "artisan migration"
+    paths:
+      - "${ARTISAN_OUTPUT}"

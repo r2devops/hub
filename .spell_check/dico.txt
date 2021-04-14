@@ -16,6 +16,8 @@ bom
 bulary
 bundler
 Bzip
+cd
+CD
 cdxgen
 cfg
 cfn
@@ -23,8 +25,11 @@ changelogs
 checkov
 checkstyle
 ChkTex
+ci
+CI
 cli
 clj
+CNIL
 CLOUDFORMATION
 CloudFormation
 CMake
@@ -89,6 +94,8 @@ Golang
 golangci
 gosec
 gradle
+Gradle
+Granier
 gulpfile
 Gzip
 HADOLINT
@@ -98,7 +105,10 @@ html
 HTMLHint
 ide
 IDL
+JaCoCo
 Javascript
+jdk
+JDK
 jq
 js
 JSON
@@ -116,6 +126,7 @@ kaniko
 kondo
 kotlin
 ktlint
+kts
 kube
 kubectl
 KUBERNETES
@@ -145,6 +156,8 @@ md
 minify
 Mkdocs
 mkdocs
+Montpellier
+MONTPELLIER
 musl
 natively
 newman
@@ -166,6 +179,7 @@ OpenAPI
 openapi
 OpenSSL
 opensslv
+opensource
 os
 OSS
 OWASP
@@ -205,6 +219,7 @@ repo
 RuboCop
 rubocop
 runtime
+SAS
 sast
 scala
 serverless
@@ -228,6 +243,7 @@ styleguide
 Stylelint
 stylelint
 subdirectories
+Subdelirium
 SwaggerUI
 tcp
 Tekton
@@ -253,6 +269,7 @@ ttk
 TTL
 txt
 TypeScript
+uncheck
 UI
 Url
 url
