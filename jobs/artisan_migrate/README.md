@@ -21,13 +21,15 @@ This job will allow you to migrate the database using a migration file that you 
 ## Job details
 
 * Job name: `artisan_migrate`
-* Default stage: `build`
+* Default stage: `deploy`
 * Docker image: [`edbizarro/gitlab-ci-pipeline-php:7.3`](https://hub.docker.com/r/edbizarro/gitlab-ci-pipeline-php){:target="_blank"}
 * When: `always`
 
-
 ### Variables
 
+!!! info
+    If you have setup Gitlab's CI/CD variables, they will be used instead of the ones defined in `.env`, just make sure to name them exactly the same.
+    
 | Name | Default | Description |
 | ---- | ------- | --------------- |
 | `PROJECT_ROOT` | `.` | Path to the directory containing environment variables |
