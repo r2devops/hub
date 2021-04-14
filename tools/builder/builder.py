@@ -481,9 +481,24 @@ def create_jobs_doc(arg_job=None):
 
 
 def run_watcher(watch_path):
+    watched_jobs = {}
+
     def on_modified(event):
-        logging.info(f"New modification detected on {event.src_path}")
         path = event.src_path.split("/")
+        job = path[len(path) - 2]
+
+        reloaded = watched_jobs.get(job)
+
+        if reloaded is None:
+            watched_jobs[job] = 0
+
+        watched_jobs[job] = watched_jobs[job] + 1
+        if watched_jobs[job] == 2:
+            watched_jobs[job] = 0
+        else:
+            return
+
+        logging.info(f"New modification detected on {event.src_path}")
         create_jobs_doc(path[len(path) - 2])
 
     event_handler = RegexMatchingEventHandler(["^.*\.md$"], ignore_directories=False, case_sensitive=True)
