@@ -479,10 +479,12 @@ def create_jobs_doc(arg_job=None):
         for job in jobs:
             create_job_doc(job)
 
+
 def run_watcher(watch_path):
     def on_modified(event):
         logging.info(f"New modification detected on {event.src_path}")
-        create_jobs_doc(event.src_path.split("/")[1])
+        path = event.src_path.split("/")
+        create_jobs_doc(path[len(path) - 2])
 
     event_handler = RegexMatchingEventHandler(["^.*\.md$"], ignore_directories=False, case_sensitive=True)
     event_handler.on_modified = on_modified
@@ -496,6 +498,7 @@ def run_watcher(watch_path):
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
+
 
 def main():
     """
