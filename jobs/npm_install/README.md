@@ -1,22 +1,25 @@
 ## Objective
 
-This job installs `npm` dependencies listed in your `package.json` and exposes
+This job installs `npm` dependencies listed in your `package-lock.json` and exposes
 `node_modules` as cache to other jobs of your pipeline. It allows you to run
 `npm install` only once in your pipeline.
 
 
 ## How to use it
 
+!!! info
+    If you don't have `package-lock.json`, the job will look for `package.json` and use it instead
+
 1. Ensure that your project have
-   [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
-   file which contains the requirements
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+   [`package-lock.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-lock-json){:target="_blank"}
+   file which contains the requirements  
+2. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/npm_install.yml'
     ```
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-4. Well done, your job is ready to work ! 😀
+4. Well done, your job is ready to be used ! 😀
 
 
 ## Job details
@@ -38,12 +41,15 @@ This job installs `npm` dependencies listed in your `package.json` and exposes
 
 !!! note
     All paths defined in variables are relative and starts from the root of your
-    repository.
+    repository.  
+    
+    ⚠️ It's mendatory to have `package-lock.json` in order to use `npm ci`
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PROJECT_ROOT` | Path to the directory containing `package.json`  | `.` |
+| `PROJECT_ROOT` | Path to the directory containing `package-lock.json`  | `.` |
 | `NPM_INSTALL_OPTIONS` | Additional options for `npm install` | ` ` |
+| `NPM_USE_CI` | Enable usage of `npm ci` instead of classic `npm install` | `true` |
 
 
 ### Cache
