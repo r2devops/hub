@@ -1,0 +1,29 @@
+stages:
+  - static_tests
+
+# Run unit tests
+gradle_test:
+  stage: static_tests
+  image: gradle:jdk11
+  script:
+    - gradle check
+    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_CSV_LOCATION
+  variables:
+    JACOCO_CSV_LOCATION: '$CI_PROJECT_DIR/build/reports/jacoco/csv/jacoco.csv'
+    JACOCO_HTML_LOCATION: '$CI_PROJECT_DIR/build/reports/jacoco/html'
+    JACOCO_XML_LOCATION: '$CI_PROJECT_DIR/build/reports/jacoco/xml'
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+  artifacts:
+    paths:
+      - $JACOCO_CSV_LOCATION
+      - $JACOCO_HTML_LOCATION
+      - $JACOCO_XML_LOCATION
+    reports:
+      junit: 
+        - "${JACOCO_XML_LOCATION}/surefire-reports/TEST-*.xml"
+  coverage: '/^([0-9]{1,3}.[0-9]*).%.covered$/'

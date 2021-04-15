@@ -1,0 +1,14 @@
+name: gradle_test
+description: Run your unit tests with 🐘 Gradle & jUnit
+default_stage: static_tests
+icon: 🐘
+maintainer: yodamad
+license: MIT
+images:
+  "gradle": "jdk11"
+tools:
+  "Gradle": "$GRADLE_VERSION"
+labels:
+    - GitLab
+    - Gradle
+    - Test
