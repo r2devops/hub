@@ -1,10 +1,10 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - build
+  - deploy
 
 artisan_migrate:
-  stage: build
+  stage: deploy
   image:
     name: edbizarro/gitlab-ci-pipeline-php:7.3
     entrypoint: [""]
