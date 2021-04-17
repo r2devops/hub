@@ -5,10 +5,10 @@ icon: 👁
 maintainer: Protocole
 license: MIT
 images:
-  "openjdk": "16-alpine3.12"
+  "owasp": "dependency-check"
 tools:
   ".NET": "$DOTNET_VERSION"
-  "dependency-check": "6.0.3"
+  "dependency-check": "6.1.1"
 labels:
   - GitLab
   - Security
