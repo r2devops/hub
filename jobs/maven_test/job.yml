@@ -1,0 +1,14 @@
+name: maven_test
+description: Run unit tests of a Java project using Maven and JUnit
+default_stage: static_tests
+icon: 🧪
+maintainer: alexlevy
+license: MIT
+labels:
+  - Java
+  - Maven
+  - Test
+images:
+  'maven': '3.6.3-jdk-11'
+tools:
+  maven: '3.6.3'
