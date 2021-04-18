@@ -20,7 +20,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
 
 * Job name: `owasp_dependency_check`
 * Docker image:
-[`openjdk:16-alpine3.12`](https://hub.docker.com/r/_/openjdk){:target="_blank"}
+[`owasp/dependency-check:6.1.1`](https://hub.docker.com/r/owasp/dependency-check){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
