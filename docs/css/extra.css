@@ -250,8 +250,12 @@ button.md-button-center:hover {
     cursor: pointer;
 }
 
-.codehilitetable .linenos, .highlighttable .linenos {
+.codehilitetable .linenos {
     font-size: .75em;
+}
+
+.highlighttable .lineos {
+    font-size: .85em;
 }
 
 a.banner-link:hover {
