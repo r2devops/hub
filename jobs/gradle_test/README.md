@@ -2,12 +2,12 @@
 
 This job allows you to run the unit tests of 🐘 Gradle project.
 
-You can easily have a badge configure on your 🦊 Gitlab project with this regex `([0-9]{1,3}.[0-9]*).%.covered` configured in `settings/ci_cd` section. See galery for example.
+You can easily have a badge configure on your 🦊 Gitlab project with this regex `([0-9]{1,3}.[0-9]*).%.covered` configured in `settings/ci_cd` section. See gallery for example.
 
 ## How to use it
 
 1. Ensure that your project have
-   [`build.gradle.kts`](https://docs.gradle.org/current/samples/sample_building_java_applications.html){:target="_blank"} 
+   [`build.gradle.kts`](https://docs.gradle.org/current/samples/sample_building_java_applications.html){:target="_blank"}
    file
 1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
@@ -90,7 +90,7 @@ tasks.jacocoTestReport {
     xml.destination = file("${buildDir}/reports/jacoco/xml/jacoco.xml")
 
     // Enable HTML to publish on Pages
-    html.destination = file("${buildDir}/reports/jacoco/html")    
+    html.destination = file("${buildDir}/reports/jacoco/html")
 }
 
 ```

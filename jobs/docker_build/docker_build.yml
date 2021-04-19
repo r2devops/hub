@@ -6,7 +6,7 @@ stages:
 docker_build:
   stage: build
   image:
-    name: gcr.io/kaniko-project/executor:debug-v0.20.0
+    name: gcr.io/kaniko-project/executor:v1.5.1-debug
     entrypoint: [""]
   variables:
     CUSTOM_REGISTRY: ""
@@ -20,6 +20,8 @@ docker_build:
 
     DOCKER_USE_CACHE: "false"
     DOCKER_CACHE_TTL: "336h"
+
+    KANIKO_USE_NEWRUN: "true"
 
     DOCKER_VERBOSITY: "info"
     DOCKER_OPTIONS: ""
@@ -47,6 +49,10 @@ docker_build:
 
     - if [ "${DOCKER_USE_CACHE}" = "true" ]; then
     -   DOCKER_OPTIONS="--cache=true --cache-ttl=${DOCKER_CACHE_TTL} ${DOCKER_OPTIONS}"
+    - fi
+
+    - if [ "${KANIKO_USE_NEWRUN}" = "true" ]; then
+    -   DOCKER_OPTIONS="--use-new-run ${DOCKER_OPTIONS}"
     - fi
 
     - DOCKER_OPTIONS="--verbosity=${DOCKER_VERBOSITY} ${DOCKER_OPTIONS}"
