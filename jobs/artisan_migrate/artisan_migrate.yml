@@ -21,6 +21,12 @@ artisan_migrate:
     # Run the migration
     - php artisan migrate ${ARTISAN_MIGRATE_OPTIONS} >&1 | tee ${ARTISAN_OUTPUT}
   artifacts:
-    expose_as: "artisan migration"
+    expose_as: "Artisan migration"
     paths:
       - "${ARTISAN_OUTPUT}"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/deploy/artisan_migrate/#artifacts
+      - "artisan_migration.log"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual

@@ -23,7 +23,8 @@ This job will allow you to migrate the database using a migration file that you 
 * Job name: `artisan_migrate`
 * Default stage: `deploy`
 * Docker image: [`edbizarro/gitlab-ci-pipeline-php:7.3`](https://hub.docker.com/r/edbizarro/gitlab-ci-pipeline-php){:target="_blank"}
-* When: `always`
+* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).
+  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
 
 ### Variables
 
@@ -38,6 +39,16 @@ This job will allow you to migrate the database using a migration file that you 
 | `ARTISAN_OUTPUT` | `artisan_migration.log` | Name for logs file |
 
 
-### Artifact
+### Artifacts
 
-When the job is done, the command output will be available under the file name `ARTISAN_OUTPUT` as an artifact.
+When the job is done, the command's output will be available under the file name `ARTISAN_OUTPUT` as an artifact.
+
+!!! warning
+    It's also [exposed
+    as](https://docs.gitlab.com/ee/ci/yaml/#artifactsexpose_as){:target="_blank"}
+    `Artisan migration` in merge requests.  Exposition of artifact currently works
+    only if you keep `ARTISAN_OUTPUT` default value because of [this issue
+    from
+    Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
+    As soon as the issue will be fixed, exposed artifacts will be available
+    with any output location.
