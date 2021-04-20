@@ -7,7 +7,6 @@ cache:
     prefix: "composer-${CI_COMMIT_REF_SLUG}"
   paths:
     - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/vendor"
-  when: "on_success"
 
 composer_install:
   stage: .pre
