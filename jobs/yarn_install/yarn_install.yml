@@ -7,7 +7,6 @@ cache:
     prefix: "yarn-${CI_COMMIT_REF_SLUG}"
   paths:
     - "${PROJECT_ROOT}/node_modules"
-  when: "on_success"
 
 yarn_install:
   stage: .pre
