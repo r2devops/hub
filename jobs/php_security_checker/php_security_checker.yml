@@ -1,0 +1,13 @@
+stages:
+  - static_tests
+
+php_security_checker:
+    image: 
+      name: jakzal/phpqa:1.55-php7.4
+      entrypoint: [""]
+    stage: static_tests
+    variables:
+      COMPOSER_PATH: "./composer.lock"
+      FORMAT_OUTPUT: ""
+    script:
+      - local-php-security-checker  --path="${CI_PROJECT_DIR}/${COMPOSER_PATH}" $FORMAT_OUTPUT
