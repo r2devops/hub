@@ -1,0 +1,15 @@
+name: gradle_sonarqube
+description: Check your code quality with SonarQube
+default_stage: static_tests
+icon: 💅
+maintainer: yodamad
+license: MIT
+images:
+  "gradle": "jdk11"
+tools:
+  "Gradle": "$GRADLE_VERSION"
+labels:
+    - GitLab
+    - Gradle
+    - Code quality
+    - SonarQube
