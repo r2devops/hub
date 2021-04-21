@@ -1,0 +1,24 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+# Code quality with SonarQube
+gradle_sonarqube:
+  stage: static_tests
+  image: gradle:jdk11
+  script:
+    gradle sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORG -Dsonar.branch.name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.json_mode=$JSON_MODE -Dsonar.java.coveragePlugin=$COVERAGE_PLUGIN
+  variables:
+    SONAR_URL: 'https://sonarcloud.io'
+    SONAR_TOKEN: ''
+    SONAR_PROJECT: ''
+    SONAR_ORG: ''
+    COVERAGE_PLUGIN: 'jacoco'
+    JSON_MODE: CODECLIMATE
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
