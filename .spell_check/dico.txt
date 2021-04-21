@@ -333,3 +333,9 @@ Customise
 customise
 monorepo
 Monorepo
+SonarQube
+Sonarqube
+CODECLIMATE
+codeclimate
+sonarcloud
+Sonarcloud
