@@ -4,42 +4,42 @@ stages:
   - static_tests
 
 spell_check:
-    image: python:3.9.1
-    stage: static_tests
-    allow_failure: true
-    variables:
-      PYSPELLING_LANGUAGE: "en"
-      PYSPELLING_SPELLER: "aspell=0.60.7~20110707-6"
-      PYSPELLING_CONFIG: ""
-      PYSPELLING_OPTIONS: ""
-      SNIPPET_VERSION: "7419433888dc5e6ebd1223ed05c39c6507988b69"
-    script:
-      # Installing global dependencies depending on variables
-      - apt update && apt install -y ${PYSPELLING_SPELLER}
-      - export PYSPELLING_SPELLER=$(echo ${PYSPELLING_SPELLER} | cut -d'=' -f 1)
-      - for i in ${PYSPELLING_LANGUAGE}; do apt install -y ${PYSPELLING_SPELLER}-$i; done
+  image: python:3.9
+  stage: static_tests
+  allow_failure: true
+  variables:
+    PYSPELLING_LANGUAGE: "en"
+    PYSPELLING_SPELLER: "aspell=0.60.7~20110707-6"
+    PYSPELLING_CONFIG: ""
+    PYSPELLING_OPTIONS: ""
+    SNIPPET_VERSION: "7419433888dc5e6ebd1223ed05c39c6507988b69"
+  script:
+    # Installing global dependencies depending on variables
+    - apt update && apt install -y ${PYSPELLING_SPELLER} wget
+    - export PYSPELLING_SPELLER=$(echo ${PYSPELLING_SPELLER} | cut -d'=' -f 1)
+    - for i in ${PYSPELLING_LANGUAGE}; do apt install -y ${PYSPELLING_SPELLER}-$i; done
 
-      # Download required files
-      - mkdir spell_check
-      - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/Pipfile -O spell_check/Pipfile
-      - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/Pipfile.lock -O spell_check/Pipfile.lock
-      - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/spell_junit.py -O spell_check/spell_junit.py
-      - |
-        if [ -z "$PYSPELLING_CONFIG" ]; then
-         wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/.pyspelling.yml -O .pyspelling.yml
-        fi
+    # Download required files
+    - mkdir spell_check
+    - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/Pipfile -O spell_check/Pipfile
+    - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/Pipfile.lock -O spell_check/Pipfile.lock
+    - wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/spell_junit.py -O spell_check/spell_junit.py
+    - |
+      if [ -z "$PYSPELLING_CONFIG" ]; then
+       wget https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/${SNIPPET_VERSION}/.pyspelling.yml -O .pyspelling.yml
+      fi
 
-      # Installing python virtual env.
-      - pip install --ignore-installed distlib pipenv
-      - export PIPENV_PIPFILE="spell_check/Pipfile"
-      - pipenv install
+    # Installing python virtual env
+    - pip install --ignore-installed distlib pipenv
+    - export PIPENV_PIPFILE="spell_check/Pipfile"
+    - pipenv install
 
-      # Running programs
-      - (pipenv run pyspelling --config "${PYSPELLING_CONFIG}" ${PYSPELLING_OPTIONS} | tee -a .pyspellinglog) || true
-      - pipenv run python spell_check/spell_junit.py
-    artifacts:
-      when: always
-      paths:
-        - ${CI_PROJECT_DIR}/spelling_junit.xml
-      reports:
-        junit: ${CI_PROJECT_DIR}/spelling_junit.xml
+    # Running programs
+    - (pipenv run pyspelling --config "${PYSPELLING_CONFIG}" ${PYSPELLING_OPTIONS} | tee -a .pyspellinglog) || true
+    - pipenv run python spell_check/spell_junit.py
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/spelling_junit.xml
+    reports:
+      junit: ${CI_PROJECT_DIR}/spelling_junit.xml

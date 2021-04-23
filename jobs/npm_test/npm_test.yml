@@ -8,7 +8,7 @@ stages:
 npm_test:
   stage: static_tests
   image:
-    name: node:15.7-buster
+    name: node:15.14-buster
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."

@@ -5,7 +5,7 @@ stages:
 
 python_test:
   stage: static_tests
-  image: python:3.8
+  image: python:3.9
   variables:
     # Dependencies variables
     APT_PACKAGES: ""

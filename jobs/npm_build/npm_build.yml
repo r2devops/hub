@@ -6,7 +6,7 @@ stages:
 npm_build:
   stage: build
   image:
-    name: node:15.7-buster
+    name: node:15.14-buster
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."

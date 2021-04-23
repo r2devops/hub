@@ -9,7 +9,7 @@ tools:
   "aspell": "0.60.7~20110707-6"
   "hunspell": "1.7.0-2"
 images:
-  "python": "3.9.1"
+  "python": "3.9"
 labels:
   - GitLab
   - Spelling
