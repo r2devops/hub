@@ -2,7 +2,7 @@ stages:
   - dynamic_tests
 
 newman:
-  image: node:15.12.0
+  image: node:15.14-buster
   stage: dynamic_tests
   variables:
     NEWMAN_COLLECTION: "postman_collection.json"
@@ -17,13 +17,13 @@ newman:
   script:
     - npm install -g newman@${NEWMAN_VERSION} newman-reporter-junitfull@${NEWMAN_JUNIT_VERSION}
     - if [[ ! -z ${NEWMAN_ENVIRONMENT_FILE} ]]; then
-    -   NEWMAN_ADDITIONAL_OPTIONS+=" -e ${NEWMAN_ENVIRONMENT_FILE}"
+    -   export NEWMAN_ADDITIONAL_OPTIONS="${NEWMAN_ADDITIONAL_OPTIONS} -e ${NEWMAN_ENVIRONMENT_FILE}"
     - fi
     - if [[ ! -z ${NEWMAN_GLOBALS_FILE} ]]; then
-    -   NEWMAN_ADDITIONAL_OPTIONS+=" -g ${NEWMAN_GLOBALS_FILE}"
+    -   export NEWMAN_ADDITIONAL_OPTIONS="${NEWMAN_ADDITIONAL_OPTIONS} -g ${NEWMAN_GLOBALS_FILE}"
     - fi
     - if [[ ! ${NEWMAN_FAIL_ON_ERROR} == "true" ]]; then
-    -   NEWMAN_ADDITIONAL_OPTIONS+=" --suppress-exit-code"
+    -   export NEWMAN_ADDITIONAL_OPTIONS="${NEWMAN_ADDITIONAL_OPTIONS} --suppress-exit-code"
     - fi
     - |
       newman run ${NEWMAN_COLLECTION} -r cli,junitfull \

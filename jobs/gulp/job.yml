@@ -5,7 +5,7 @@ icon: 💡
 maintainer: coconux
 license: MIT
 images:
-  "node": "15.7-buster"
+  "node": "15.14-buster"
 tools:
   "Gulp": "$GULP_VERSION"
 labels:
