@@ -16,7 +16,7 @@
 #             ├── 0.1.0.md
 #             └──...
 
-import logging
+import os.path
 import re
 import sys
 import time
@@ -77,7 +77,7 @@ def get_description(job_path):
     """
     logging.info("Parsing readme for job %s", job_path)
     try:
-        with open(job_path + "/" + utils.JOB_DESCRIPTION_FILE, encoding="utf-8") as readme_file:
+        with open("{}/{}".format(job_path, utils.JOB_DESCRIPTION_FILE), encoding="utf-8") as readme_file:
             return readme_file.read()
     except OSError as error:
         logging.error("Failed to open and read file README %s", job_path)
@@ -96,22 +96,22 @@ def get_changelogs(job_path, job_name):
         latest (dict): data about latest version
         changelogs (list): list of data about each versions
     """
-    versions = listdir(job_path + "/" + utils.JOB_CHANGELOG_DIR)
+    versions = listdir("{}/{}".format(job_path, utils.JOB_CHANGELOG_DIR))
     versions = [version[:-3] for version in versions]
     versions = sorted(versions, key=LooseVersion, reverse=True)
     latest = {
         "version": versions[0],
-        "url": utils.R2DEVOPS_URL + job_name + utils.JOBS_EXTENSION
+        "url": "{}{}{}".format(utils.R2DEVOPS_URL, job_name, utils.JOBS_EXTENSION)
     }
     changelogs = []
     logging.info("Parsing changelogs for job %s", job_name)
     try:
         for version in versions:
-            with open(job_path + "/" + utils.JOB_CHANGELOG_DIR + "/" + version + utils.MARKDOWN_EXTENSION,
+            with open("{}/{}/{}{}".format(job_path, utils.JOB_CHANGELOG_DIR, version, utils.MARKDOWN_EXTENSION),
                       encoding="utf-8") as changelog_file:
                 changelogs.append({
                     "version": version,
-                    "url": utils.R2DEVOPS_URL + version + "/" + job_name + utils.JOBS_EXTENSION,
+                    "url": "{}{}/{}{}".format(utils.R2DEVOPS_URL, version, job_name, utils.JOBS_EXTENSION),
                     "changelog": changelog_file.readlines()
                 })
     except OSError as error:
@@ -135,8 +135,8 @@ def get_license(license_name, copyright_holder):
     logging.info("Getting licence %s", license_name)
     try:
         env = Environment(
-            loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR + "/" + utils.TEMPLATE_LICENSE_DIR))
-        template = env.get_template(license_name + utils.MARKDOWN_EXTENSION + ".j2")
+            loader=FileSystemLoader("{}/{}/{}".format(utils.BUILDER_DIR, utils.TEMPLATE_DIR, utils.TEMPLATE_LICENSE_DIR)))
+        template = env.get_template("{}{}.j2".format(license_name, utils.MARKDOWN_EXTENSION))
         license_content = template.render(
             year=datetime.now().year,
             copyright_holder=copyright_holder
@@ -171,21 +171,27 @@ def get_screenshots(job_path, job_name):
     """
 
     logging.info("Getting screenshots for job %s", job_name)
+    path = "/{}/{}/{}".format(
+        utils.MKDOCS_DIR_JOBS_IMAGES,
+        job_name, utils.SCREENSHOTS_DIR)
     # Create screenshots folder in docs for the job
-    makedirs(utils.MKDOCS_DIR + "/" + utils.MKDOCS_DIR_JOBS_IMAGES + "/" + job_name + "/" + utils.SCREENSHOTS_DIR,
+    makedirs(utils.MKDOCS_DIR + path,
              0o777, True)
 
     # Get all screenshots of the job
     regex = re.compile('(.png|.jpg|.jpeg)$')
-    screenshot_list = listdir(job_path + "/" + utils.SCREENSHOTS_DIR)
-    screenshot_list = list(filter(regex.search, screenshot_list))
+    screenshot_list = []
 
-    # Copy all screenshot of the job into screenshots folder for the doc
-    for screenshot in screenshot_list:
-        copyfile(job_path + "/" + utils.SCREENSHOTS_DIR + "/" + screenshot,
-                 utils.MKDOCS_DIR + "/" + utils.MKDOCS_DIR_JOBS_IMAGES + "/" + job_name + "/" + utils.SCREENSHOTS_DIR + "/" + screenshot)
+    if os.path.isdir("{}/{}".format(job_path, utils.SCREENSHOTS_DIR)):
+        screenshot_list = listdir("{}/{}".format(job_path, utils.SCREENSHOTS_DIR))
+        screenshot_list = list(filter(regex.search, screenshot_list))
 
-    return ("/" + utils.MKDOCS_DIR_JOBS_IMAGES + "/" + job_name + "/" + utils.SCREENSHOTS_DIR, screenshot_list)
+        # Copy all screenshot of the job into screenshots folder for the doc
+        for screenshot in screenshot_list:
+            copyfile("{}/{}/{}".format(job_path, utils.SCREENSHOTS_DIR, screenshot),
+                     "{}{}/{}".format(utils.MKDOCS_DIR, path, screenshot))
+
+    return path, screenshot_list
 
 
 def get_user(code_owner):
@@ -197,7 +203,7 @@ def get_user(code_owner):
     Returns:
         (dict): user data
     """
-    url = utils.GITLAB_API_URL + "users?username=" + code_owner
+    url = "{}users?username={}".format(utils.GITLAB_API_URL, code_owner)
 
     response = requests.request("GET", url)
 
@@ -265,15 +271,15 @@ def get_linked_issues(job_name, opened=True):
     str
         Url to create a new issue for the job
     """
-    logging.info(f"Getting list of linked issues for job %s", job_name)
+    logging.info("Getting list of linked issues for job %s", job_name)
     linked_issues = []
     base_url = f"{utils.GITLAB_API_URL}/projects/{quote(utils.PROJECT_NAME, safe='')}/issues"
     url = f"{base_url}?labels={utils.JOBS_SCOPE_LABEL}{job_name}"
     if opened:
         url += "&state=opened"
-    r = requests.get(url)
+    request = requests.get(url)
 
-    for issue in r.json():
+    for issue in request.json():
         linked_issues.append({
             "name": issue['title'],
             "url": issue['web_url'],
@@ -301,7 +307,7 @@ def create_job_doc(job):
     --------
     nothing
     """
-    job_path = utils.JOBS_DIR + "/" + job
+    job_path = "{}/{}".format(utils.JOBS_DIR, job)
 
     # Getting conf for indexing
     conf = get_conf(job_path)
@@ -393,7 +399,7 @@ def create_pages_placeholder(placeholder_path, stage_key):
     # Create jobs folder destination folder in docs for the job
     makedirs(placeholder_path, 0o777, True)
     # Create the .pages files mandatory to serve documentaiton and display stages
-    f = open(placeholder_path + "/.pages", "w+", encoding="utf-8")
+    f = open("{}/.pages".format(placeholder_path), "w+", encoding="utf-8")
     f.write("title: '" + stage_key + "'")
     f.close()
 
@@ -410,12 +416,15 @@ def add_placeholder():
     nothing
     """
     for stage_key, _ in utils.INDEX.items():
-        placeholder_path = utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + stage_key
+        placeholder_path = "{}/{}/{}".format(
+                                  utils.MKDOCS_DIR,
+                                  utils.JOBS_DIR,
+                                  stage_key)
         if len(listdir(placeholder_path)) == 1:
             # There is only the .pages file, so mkdocs will break
             logging.info("Creating a placeholder file for the stage %s", stage_key)
-            with open(placeholder_path + "/" + utils.MKDOCS_PLACEHOLDER_FILE, "w+", encoding="utf-8") as file_handle:
-                env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+            with open("{}/{}".format(placeholder_path, utils.MKDOCS_PLACEHOLDER_FILE), "w+", encoding="utf-8") as file_handle:
+                env = Environment(loader=FileSystemLoader("{}/{}".format(utils.BUILDER_DIR, utils.TEMPLATE_DIR)))
                 template = env.get_template(utils.TEMPLATE_PLACEHOLDER)
                 file_handle.write(template.render())
 
@@ -432,7 +441,7 @@ def create_arrange_pages():
     stages = sorted(utils.INDEX.items(), key=lambda x: x[1]['order'])
     try:
         with open(utils.ARRANGE_PAGES_FILE_PATH, 'w+', encoding="utf-8") as doc_file:
-            env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+            env = Environment(loader=FileSystemLoader(f"{utils.BUILDER_DIR}/{utils.TEMPLATE_DIR}"))
             template = env.get_template(utils.TEMPLATE_ARRANGE_PAGES)
             doc_file.write(template.render(
                 title=utils.TITLE_ARRANGE_PAGES,
@@ -498,7 +507,7 @@ def run_watcher(watch_path):
         else:
             return
 
-        logging.info(f"New modification detected on {event.src_path}")
+        logging.info("New modification detected on %s", event.src_path)
         create_jobs_doc(path[len(path) - 2])
 
     event_handler = RegexMatchingEventHandler(["^.*\.md$"], ignore_directories=False, case_sensitive=True)
@@ -553,11 +562,11 @@ def main():
 
     # Using jinja2 with a template to create the index
     logging.info("Creating index of jobs")
-    env = Environment(loader=FileSystemLoader(utils.BUILDER_DIR + "/" + utils.TEMPLATE_DIR))
+    env = Environment(loader=FileSystemLoader(f"{utils.BUILDER_DIR}/{utils.TEMPLATE_DIR}"))
     template = env.get_template(utils.TEMPLATE_INDEX)
     index_content = template.render(index=utils.INDEX)
 
-    with open(utils.MKDOCS_DIR + "/" + utils.JOBS_DIR + "/" + utils.INDEX_FILE, "w+", encoding="utf-8") as index_file:
+    with open(f"{utils.MKDOCS_DIR}/{utils.JOBS_DIR}/{utils.INDEX_FILE}", "w+", encoding="utf-8") as index_file:
         index_file.write(index_content)
 
 
