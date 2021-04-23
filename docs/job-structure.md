@@ -20,7 +20,7 @@ follow this standardized structure:
         ├── versions              # Jobs changelogs
         │   ├── 0.1.0.md
         │   └── ...
-        └── screenshots           # Job screenshots
+        └── screenshots           # (Optional) Job screenshots
             ├── job_picture.png
             └── ...
 ```
@@ -205,6 +205,6 @@ be included in the documentation.
 
 Supported format: `.png`, `.jpeg`, `.jpg`
 
-!!! warning
-    If you don't want to add any pictures, you have to add at least an empty
-    file named `.gitkeep` to ensure the folder presence in git!
+!!! tip
+    If you don't want to add pictures, you don't have to, it's only 
+    a bonus to ease the understanding of your new job!

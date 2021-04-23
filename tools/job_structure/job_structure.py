@@ -10,11 +10,18 @@ from yaml import full_load, YAMLError
 # /!\ This instruction is only working if you run this script from the root of the project
 sys.path.insert(0, "./")
 from tools.utils.utils import Config
+
 utils = Config()
 
 # List of available labels for jobs
-labels_list = ["GitLab","Build","Container","Docker","PHP", "Testing","Utilities","Yarn", "Dependency scan", "Security","Python","API", "Documentation","Quality","SAST","Linter","Helm","DAST","Kubernetes","NPM"]
+labels_list = ["GitLab", "Build", "Container", "Docker", "PHP", "Testing", "Utilities",
+               "Yarn", "Dependency scan", "Security", "Python", "API", "Documentation",
+               "Quality", "SAST", "Linter", "Helm", "DAST", "Kubernetes",
+               "NPM"]
+# A list of paths where the file / directory is considered as not mandatory
+optional_paths=["job_name/screenshots", "job_name/screenshots/.gitkeep"]
 set_labels_list = set(labels_list)
+
 
 def get_conf(job_path):
     """Parse the YAML config of the job
@@ -30,12 +37,12 @@ def get_conf(job_path):
             return full_load(conf_file)
     except YAMLError as error:
         logging.error("Failed to parse job config '%s/%s", job_path,
-                      utils.JOB_YAML )
+                      utils.JOB_YAML)
         logging.error(error)
         sys.exit(1)
     except OSError as error:
         logging.error("Failed to open and read job config '%s/%s",
-                      job_path, utils.JOB_YAML )
+                      job_path, utils.JOB_YAML)
         logging.error(error)
         sys.exit(1)
 
@@ -53,20 +60,18 @@ def check_job_labels(job):
 
     ret = utils.EXIT_SUCCESS
     # Getting conf for indexing
-    conf = get_conf(utils.JOBS_DIR+"/"+job)
+    conf = get_conf(utils.JOBS_DIR + "/" + job)
     job_labels = conf.get("labels")
-
 
     # If job has no label
     if job_labels is None:
         logging.warning(' 🚫 🏷  Missing label(s) for job Job label: "%s"',
-             job)
+                        job)
     # Check if job lable are weel knonw
     else:
         difference_labels = [label for label in job_labels if label not in set_labels_list]
         if difference_labels != []:
-            logging.warning(' ⚠️  🏷  Label(s) unknown: "%s"',difference_labels)
-
+            logging.warning(' ⚠️  🏷  Label(s) unknown: "%s"', difference_labels)
 
 
 def check_job_yaml(job):
@@ -86,7 +91,9 @@ def check_job_yaml(job):
     """
     ret = utils.EXIT_SUCCESS
 
-    with open(f"{utils.TOOLS_DIR}/{utils.JOB_TEMPLATE_DIR}/{utils.JOB_DIR}/{utils.JOB_YAML}", "r") as template_yml, open(f"{utils.JOBS_DIR}/{job}/{utils.JOB_YAML}", "r") as job_yml:
+    with open(f"{utils.TOOLS_DIR}/{utils.JOB_TEMPLATE_DIR}/{utils.JOB_DIR}/{utils.JOB_YAML}",
+              "r") as template_yml, open(f"{utils.JOBS_DIR}/{job}/{utils.JOB_YAML}", "r") \
+            as job_yml:
         template_content = yaml.load(template_yml, Loader=yaml.FullLoader)
         job_content = yaml.load(job_yml, Loader=yaml.FullLoader)
 
@@ -99,6 +106,7 @@ def check_job_yaml(job):
         else:
             logging.info("%s for job %s is complete", utils.JOB_YAML, job)
     return ret
+
 
 def check_directory_structure(template_structure, job):
     """Verify every file and directories in template to be sure they are present in the job
@@ -119,9 +127,12 @@ def check_directory_structure(template_structure, job):
     """
 
     # Change "job_name" in template for the actual job name for comparison
-    template_structure_tmp = [obj.replace("job_name", f"{job}") for obj in template_structure]
+    template_structure_tmp = set(template_structure).symmetric_difference(optional_paths)
+    template_structure_tmp = [obj.replace("job_name", f"{job}") for obj in template_structure_tmp]
 
-    job_structure = [os.path.join(parent, name) for (parent, subdirs, files) in os.walk(f"{utils.JOBS_DIR}/{job}") for name in files + subdirs]
+    job_structure = [os.path.join(parent, name) for (parent, subdirs, files)
+                     in os.walk(f"{utils.JOBS_DIR}/{job}")
+                     for name in files + subdirs]
     # Adding the job directory
     job_structure.append(f"{job}")
 
@@ -139,7 +150,9 @@ def check_directory_structure(template_structure, job):
                 logging.error("Directory %s for job %s is empty", item, job)
 
     ret = utils.EXIT_SUCCESS
-    if len(set(template_structure_tmp).intersection(job_structure)) != len(template_structure_tmp):
+    current_len = len(set(template_structure_tmp).intersection(job_structure))
+
+    if current_len != len(template_structure_tmp):
         # Not every file and directories in template_structure_tmp matched the job structure
         logging.error("Job structure of %s does not match the template:", job)
         for item in set(template_structure_tmp) - set(template_structure_tmp).intersection(job_structure):
@@ -151,7 +164,7 @@ def check_directory_structure(template_structure, job):
 
 
 if __name__ == "__main__":
-    """Main function, iterating over job structures to compare to the tempale one
+    """Main function, iterating over job structures to compare to the template one
 
     Returns
     -------
@@ -173,7 +186,8 @@ if __name__ == "__main__":
 
     # Iterate over every directories in jobs directory to create their job.md for the documentation
     jobs = os.listdir(utils.JOBS_DIR)
-    template_structure = [os.path.join(parent, name) for (parent, subdirs, files) in os.walk(f"{utils.TOOLS_DIR}/{utils.JOB_TEMPLATE_DIR}") for name in files + subdirs]
+    template_structure = [os.path.join(parent, name) for (parent, subdirs, files) in
+                          os.walk(f"{utils.TOOLS_DIR}/{utils.JOB_TEMPLATE_DIR}") for name in files + subdirs]
     # Clear the first 2 directories
     template_structure = [obj[obj.find('/') + 1:] for obj in template_structure]
     template_structure = [obj[obj.find('/') + 1:] for obj in template_structure]
