@@ -1,0 +1,14 @@
+name: jest
+description: Ready to run jest job to expose your code coverage and do your tests
+default_stage: static_tests
+icon: 🔄
+maintainer: Protocole
+license: MIT
+images:
+    "node": "node:15.14-buster"
+tools:
+labels:
+    - GitLab
+    - Test
+    - NPM
+    - Utilities

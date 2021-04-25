@@ -1,0 +1,30 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+jest:
+  image: node:15.14-buster
+  stage: static_tests
+  variables:
+    PROJECT_ROOT: "."
+    JEST_INCREMENTAL: "false"
+    ADDITIONAL_OPTIONS: ""
+  script:
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    - |
+      if [ -f "yarn.lock" ]; then
+        yarn add -D jest-junit
+      else
+        npm install --save-dev jest-junit
+      fi
+
+    - npm run test -- --coverage --ci --reporters=default --reporters=jest-junit --lastCommit=${JEST_INCREMENTAL} ${ADDITIONAL_OPTIONS}
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/junit.xml
+      - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/coverage/
+    reports:
+      junit: ${CI_PROJECT_DIR}/${PROJECT_ROOT}/junit.xml
