@@ -19,7 +19,7 @@ labels_list = ["GitLab", "Build", "Container", "Docker", "PHP", "Testing", "Util
                "Quality", "SAST", "Linter", "Helm", "DAST", "Kubernetes",
                "NPM"]
 # A list of paths where the file / directory is considered as not mandatory
-optional_paths=["job_name/screenshots", "job_name/screenshots/.gitkeep"]
+optional_paths=["r2_jobname/screenshots", "r2_jobname/screenshots/.gitkeep"]
 set_labels_list = set(labels_list)
 
 
@@ -126,9 +126,9 @@ def check_directory_structure(template_structure, job):
         If at least a file/directory is missing
     """
 
-    # Change "job_name" in template for the actual job name for comparison
+    # Change "r2_jobname" in template for the actual job name for comparison
     template_structure_tmp = set(template_structure).symmetric_difference(optional_paths)
-    template_structure_tmp = [obj.replace("job_name", f"{job}") for obj in template_structure_tmp]
+    template_structure_tmp = [obj.replace("r2_jobname", f"{job}") for obj in template_structure_tmp]
 
     job_structure = [os.path.join(parent, name) for (parent, subdirs, files)
                      in os.walk(f"{utils.JOBS_DIR}/{job}")
