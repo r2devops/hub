@@ -8,7 +8,7 @@ Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/deployer.yml'
     ```
-1. Set the secret variable `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS`as CI/CD variables in [your Gitlab project](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui){:target="_blank"}
+1. Set the secret variable `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS`as CI/CD variables in [your Gitlab project](https://docs.gitlab.com/ee/ci/variables/README.html#project-cicd-variables){:target="_blank"}
    if you need encrypted variables
 1. Make sure that you have the deployer config file (`deploy.php` or `deploy.yaml`) in the root folder of your project, More info in [this guide](https://deployer.org/docs/getting-started.html){:target="_blank"}
 1. If you need to customize other part of the job (stage, variables, ...) 👉
@@ -69,7 +69,7 @@ task('deploy', [
 
 !!! info
     All variables can be set using [Gitlab CI/CD
-    variables](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui) to
+    variables](https://docs.gitlab.com/ee/ci/variables/README.html#project-cicd-variables) to
     avoid exposing them in clear text in your `.gitlab-ci.yml`. This is recommended
     for sensitive parameters such as `SSH_KNOWN_HOSTS` and it's **HIGHLY**
     recommended for secret variable `SSH_PRIVATE_KEY`.
