@@ -1,0 +1,14 @@
+name: deployer
+description: A ready-to-use job to deploy PHP projects using Deployer
+default_stage: deploy
+icon: 🚚
+maintainer: moha-s
+license: MIT
+images:
+  "edbizarro/gitlab-ci-pipeline-php": "7.3-alpine"
+tools:
+labels:
+  - GitLab
+  - Utilities
+  - PHP
+  - Deploy
