@@ -35,12 +35,22 @@ able to work on it before merging your update in the real project.
     If you alter it, we will not be able to merge your job in `r2devops/hub`
     repository (yes, what a shame, after all your hard work...). 😕
 
-1. Create a new directory dedicated to your job in `jobs/` folder if you want to add a new job. You can use the [job
-   template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
-   as starting point. If you want to modify an existing job, you don't have to create a new directory.
-2. Be sure to respect the rules we describe in this guide.
-3. Do not update the CI/CD configuration file `.gitlab-ci.yml`.
-4. Test your job and ensure it works!
+1. Make sure that you have NPM installed, more about that [here](https://nodejs.org/en/download/){:target=blank}
+2. Install the package `Cookicutter` by executing this command:
+    ```shell
+      $ npm install -g cookiecutter
+    ```
+3. In the `hub` folder, run this command and input the necessary information:
+    ```shell
+      $ npx cookiecutter
+    ```
+
+    !!! info
+        Alternatively, you can do the last steps manually by creating a new directory dedicated to your job in `jobs/` folder if you want to add a new job. You can use the [job template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/r2_jobname) as a starting point. If you want to modify an existing job, you don't have to create a new directory.
+
+4. Be sure to respect the rules we describe in this guide.
+5. Do not update the CI/CD configuration file `.gitlab-ci.yml`.
+6. Test your job and ensure it works!
 
 ### 🚀 Step 3: Merge request
 
