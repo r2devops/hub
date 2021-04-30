@@ -21,7 +21,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 * Job name: `sls_scan`
 * Docker image:
-[`shiftleft/sast-scan`](https://hub.docker.com/r/_/shiftleft/sast-scan){:target="_blank"}
+[`shiftleft/sast-scan`](https://hub.docker.com/r/shiftleft/sast-scan){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
@@ -29,6 +29,8 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
+| `SCAN_OPTIONS` | If you want to add [additional arguments](https://slscan.io/en/latest/getting-started/#command-line-arguments) for `scan` | ` ` |
+| `ENABLE_BUILD` | The option to use `--build` with the `scan` command | `true` |
 | `SLS_TYPE` | If you want to specify a specific scanner to use | ` ` |
 | `STOP_ON_VULN` | If you want the job to stop on the first vulnerability detected | `false` |
 | `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |

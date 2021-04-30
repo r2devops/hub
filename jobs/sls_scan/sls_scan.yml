@@ -2,19 +2,23 @@ stages:
   - static_tests
 
 sls_scan:
-  image: shiftleft/sast-scan:v1.9.29
+  image: shiftleft/sast-scan:v1.15.1
   stage: static_tests
   variables:
+    SCAN_OPTIONS: ""
+    ENABLE_BUILD: "true"
     SLS_TYPE: ""
     STOP_ON_VULN: "false"
     OUTPUT_PATH: "sls_scan_report/"
   script:
     - mkdir "$OUTPUT_PATH"
-    - if [ ! -z ${SLS_TYPE} ]; then
-    -   scan --build -o "$OUTPUT_PATH" -t ${SLS_TYPE} | tee output
-    - else
-    -   scan --build -o "$OUTPUT_PATH" | tee output
+    - if [ ${ENABLE_BUILD} == "true" ]; then
+    -   SCAN_OPTIONS="--build ${SCAN_OPTIONS}"
     - fi
+    - if [ ! -z ${SLS_TYPE} ]; then
+    -   SCAN_OPTIONS="${SCAN_OPTIONS} -t ${SLS_TYPE}"
+    - fi
+    - scan ${SCAN_OPTIONS} -o "$OUTPUT_PATH" | tee output
     - if [ ${STOP_ON_VULN} == "true" ]; then
     -   cat output | grep ❌
     -   if [ $? -eq 0 ]; then
