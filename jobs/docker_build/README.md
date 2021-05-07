@@ -1,8 +1,7 @@
 ## Objective
 
 Build a [docker](https://www.docker.com/){:target="_blank"} image of your application
-from a Dockerfile at the root of your project, and push it to a
-remote registry. The build part is done using
+from a Dockerfile at the root of your project, and push it to a remote registry or multiple ones. The build part is done using
 [kaniko](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}.
 
 !!! info
@@ -25,7 +24,7 @@ remote registry. The build part is done using
 ## Job details
 
 * Job name: `docker_build`
-* Docker image: [`gcr.io/kaniko-project/executor:debug-v0.20.0`](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}
+* Docker image: [`gcr.io/kaniko-project/executor:v1.5.1-debug`](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}
 * Default stage: `build`
 
 ### Build behavior
@@ -37,24 +36,20 @@ remote registry. The build part is done using
 
 The registry and tag of the resulting Docker image follow this behavior:
 
-| `CUSTOM_REGISTRY` used ? <img width=10/> | `CUSTOM_TAG` used ? | Are you pushing git tag ? | Registry where image is pushed | Docker tag applied to the image |
-|:-|:-|:-|:-|:-
-| No  | No  | No  | Gitlab project registry | Last commit SHA |
-| No  | No  | Yes | Gitlab project registry | Git tag name    |
-| No  | Yes | No  | Gitlab project registry | `CUSTOM_TAG`    |
-| No  | Yes | Yes | Gitlab project registry | `CUSTOM_TAG`    |
-| Yes | No  | No  | `CUSTOM_REGISTRY`       | Last commit SHA |
-| Yes | No  | Yes | `CUSTOM_REGISTRY`       | Git tag name    |
-| Yes | Yes | No  | `CUSTOM_REGISTRY`       | `CUSTOM_TAG`    |
-| Yes | Yes | Yes | `CUSTOM_REGISTRY`       | `CUSTOM_TAG`    |
+| `CUSTOM_TAG` used ? | Are you pushing git tag ? | Registry where image is pushed | Docker tag applied to the image |
+|:-|:-|:-|:-
+| No  | No  | Gitlab project registry | Last commit SHA |
+| No  | Yes | Gitlab project registry | Git tag name    |
+| Yes | No  | Gitlab project registry | `CUSTOM_TAG`    |
+| Yes | Yes | Gitlab project registry | `CUSTOM_TAG`    |
+
+!!! info
+    In order to use custom registries, you need to provide the file `config.json` that contains the auths, you can do that by passing it as a [CI/CD file](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} named `CONFIG_FILE` (see example below)
 
 ### Variables
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
-| `CUSTOM_REGISTRY` <img width=100/> | If you want to use another registry than the Gitlab one | ` ` |
-| `REGISTRY_USER` | To authenticate with the `CUSTOM_REGISTRY` | ` ` |
-| `REGISTRY_PASSWORD` | To authenticate with the `CUSTOM_REGISTRY` | ` ` |
 | `CUSTOM_TAG` | If you want a specific tag for your image | ` ` |
 | `COMMIT_CREATE_LATEST` | In a commit context, also update `latest` tag | `false` |
 | `TAG_CREATE_LATEST` | In a tag context, also update `latest` tag | `true` |
@@ -64,3 +59,20 @@ The registry and tag of the resulting Docker image follow this behavior:
 | `KANIKO_USE_NEWRUN` | Enable Kaniko option [`--use-new-run`](https://github.com/GoogleContainerTools/kaniko#--use-new-run) | `true` |
 | `DOCKER_VERBOSITY` | Set the verbosity of the build in job's log (see [levels](https://github.com/GoogleContainerTools/kaniko#--verbosity){:target="_blank"})  |  `info` |
 | `DOCKER_OPTIONS`   | If you want to use additional [options](https://github.com/GoogleContainerTools/kaniko#additional-flags){:target="_blank"} | ` ` |
+| `CUSTOM_REGISTRIES_DESTINATIONS` | the list of your remote registries + image tags (see example below) | ` ` |
+| `CONFIG_FILE` | CI variable file that contains the auths for kaniko | ` ` |
+
+* Example of variable `CUSTOM_REGISTRIES_DESTINATIONS`:
+    ```
+    --destination registry.hub.docker.com/admin/myimages:latest --destination containerregistry.azurecr.io/admin/myimages:1.6.9-lite
+    ```
+
+* Example of file `CONFIG_FILE`:
+    ```json
+    {"auths":
+        {
+        "registry.hub.docker.com":{"username":"admin","password":"secret"},
+        "containerregistry.azurecr.io":{"username":"admin","password":"password"}
+        }
+    }
+    ```
