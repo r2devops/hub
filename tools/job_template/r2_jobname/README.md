@@ -17,7 +17,7 @@ r2_jobdescription
 
 * Job name: `r2_jobname`
 * Docker image:
-[`r2_imagename`](https://hub.docker.com/r/_/r2_imagename)
+[`r2_imagename:r2_imagetag`](https://hub.docker.com/r/_/r2_imagename)
 * Default stage: `r2_stage`
 * When: `always`
 

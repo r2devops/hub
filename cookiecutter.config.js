@@ -28,7 +28,7 @@ module.exports = [
         },
         {
           templateVariable: "r2_imagename",
-          question: "What is the Docker image that you will use? (just the name)"
+          question: "What is the Docker image that you will use? (just the name, Without version)"
         },
         {
           templateVariable: "r2_imagetag",
