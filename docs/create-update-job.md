@@ -14,6 +14,9 @@ This page describes how to create or update a job in the
       * [x] [R2Devops hub job structure](/job-structure/)
       * [x] [GitLab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
 
+!!! tip
+      If you are hesitant about what job to create/update, you can get inspired by our pre-made job issues on Gitlab under the label `Easy first step`, click [here](https://gitlab.com/r2devops/hub/-/issues?label_name%5B%5D=Contributing%3A%3AEasy+first+step){:target=blank} to see.  
+     
 ## Contributing workflow
 
 Follow the 3 simple steps below to contribute efficiently in the hub. You'll see, it will all go smoothly! 👇
