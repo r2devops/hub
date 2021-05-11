@@ -4,12 +4,13 @@ stages:
 sls_scan:
   image: shiftleft/sast-scan:v1.15.1
   stage: static_tests
+
   variables:
     SCAN_OPTIONS: ""
     ENABLE_BUILD: "true"
     SLS_TYPE: ""
-    STOP_ON_VULN: "false"
     OUTPUT_PATH: "sls_scan_report/"
+
   script:
     - mkdir "$OUTPUT_PATH"
     - if [ ${ENABLE_BUILD} == "true" ]; then
@@ -19,17 +20,20 @@ sls_scan:
     -   SCAN_OPTIONS="${SCAN_OPTIONS} -t ${SLS_TYPE}"
     - fi
     - scan ${SCAN_OPTIONS} -o "$OUTPUT_PATH" | tee output
-    - if [ ${STOP_ON_VULN} == "true" ]; then
-    -   cat output | grep ❌
-    -   if [ $? -eq 0 ]; then
-    -     exit 1
-    -   fi
-    - fi
+
+  after_script:
+    - touch 1_COMPLETE_REPORT.html && cd $OUTPUT_PATH
+    - for report in *.html; do
+    -   cat $report >> ../1_COMPLETE_REPORT.html
+    - done
+
   artifacts:
     when: always
     expose_as: "ShiftLeft security scan"
     paths:
+      - "1_COMPLETE_REPORT.html"
       - "$OUTPUT_PATH"
+      - output
       # Below path is a workaround to provide artifact exposition in MR if
       # default output value is used. https://r2devops.io/jobs/static_tests/sls_scan/#artifacts
       - "sls_scan_report/"
