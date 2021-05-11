@@ -1,0 +1,15 @@
+name: yarn_test
+description: Ready to use yarn job that runs predefined command "test" specified in package.json
+default_stage: static_tests
+icon: 🧪
+maintainer: Totara-thib
+license: MIT
+images:
+    "node": "16.0-buster"
+tools:
+    "yarn": "1.22.5"
+labels:
+    - GitLab
+    - Test
+    - Yarn
+    - Utilities

@@ -1,0 +1,23 @@
+# Job from R2Devops hub --> r2devops.io
+
+
+stages:
+  - static_tests
+
+
+yarn_test:
+  stage: static_tests
+  image:
+    name: node:16.0-buster
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    YARN_INSTALL_OPTIONS: ""
+    YARN_TEST_OPTIONS: ""
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run yarn install
+    - yarn install $YARN_INSTALL_OPTIONS
+    # Run yarn test
+    - yarn test $YARN_TEST_OPTIONS
