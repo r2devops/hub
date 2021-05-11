@@ -1,0 +1,9 @@
+name: r2_jobname
+description: r2_jobdescription
+default_stage: r2_stage
+icon: r2_icon
+maintainer: r2_maintainer
+license: r2_license
+images:
+  r2_imagename:r2_imagetag
+tools:

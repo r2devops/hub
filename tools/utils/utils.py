@@ -17,7 +17,7 @@ class Config():
         self.JOBS_DIR = "jobs"
         self.TOOLS_DIR = "tools"
         self.JOB_TEMPLATE_DIR = "job_template"
-        self.JOB_DIR = "job_name"
+        self.JOB_DIR = "r2_jobname"
         self.JOB_YAML = "job.yml"
         self.JOB_DESCRIPTION_FILE = "README.md"
         self.JOB_METADATA_FILE = "job.yml"
