@@ -39,11 +39,11 @@ able to work on it before merging your update in the real project.
       1. Make sure that you have NPM installed, more about that [here](https://nodejs.org/en/download/){:target=blank}
       2. Install the package `Cookicutter` by executing this command:
         ```shell
-         $ npm install -g cookiecutter
+        npm install -g cookiecutter
         ```
       3. In the `hub` folder, run this command and input the necessary information:
         ```shell
-         $ npx cookiecutter
+        npx cookiecutter
         ```
 
     !!! info
