@@ -25,6 +25,7 @@ super_linter:
     RUN_LOCAL: "true"
     DEFAULT_WORKSPACE: $CI_PROJECT_DIR
     DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
+    LINTER_RULES_PATH: ".linters"
     OUTPUT_FORMAT: "tap"
     OUTPUT_DETAILS: "detailed"
     OUTPUT_FOLDER: "super-linter.report"
