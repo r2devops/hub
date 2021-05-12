@@ -95,7 +95,6 @@ Now, we will take a look at your work and merge it if everything is ok.
 👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR) to tell us more about your fresh new contribution.
 We love talking with our contributors and users!
 
-
 ## Guidelines (Required)
 
 !!! warning
