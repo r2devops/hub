@@ -339,3 +339,6 @@ CODECLIMATE
 codeclimate
 sonarcloud
 Sonarcloud
+deployer
+Deployer
+jobdescription

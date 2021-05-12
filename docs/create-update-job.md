@@ -14,6 +14,9 @@ This page describes how to create or update a job in the
       * [x] [R2Devops hub job structure](/job-structure/)
       * [x] [GitLab CI/CD](https://docs.gitlab.com/ee/ci/){:target=blank}
 
+!!! tip
+      If you are hesitant about what job to create/update, you can get inspired by our pre-made job issues on Gitlab under the label `Easy first step`, click [here](https://gitlab.com/r2devops/hub/-/issues?label_name%5B%5D=Contributing%3A%3AEasy+first+step){:target=blank} to see.  
+     
 ## Contributing workflow
 
 Follow the 3 simple steps below to contribute efficiently in the hub. You'll see, it will all go smoothly! 👇
@@ -24,7 +27,7 @@ The first step is to create your own copy of [`r2devops/hub`](https://gitlab.com
 able to work on it before merging your update in the real project.
 
 1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new).
-2. Select the group in which you want to create the fork.
+1. Select the group in which you want to create the fork.
 
 ### 💻 Step 2: Work in your fork
 
@@ -37,11 +40,11 @@ able to work on it before merging your update in the real project.
 
 1. If you want to create a new job:
       1. Make sure that you have NPM installed, more about that [here](https://nodejs.org/en/download/){:target=blank}
-      2. Install the package `Cookicutter` by executing this command:
+      1. Install the package `Cookicutter` by executing this command:
         ```shell
         npm install -g cookiecutter
         ```
-      3. In the `hub` folder, run this command and input the necessary information:
+      1. In the `hub` folder, run this command and input the necessary information:
         ```shell
         npx cookiecutter
         ```
@@ -49,9 +52,9 @@ able to work on it before merging your update in the real project.
     !!! info
         Alternatively, you can do the last steps manually by creating a new directory dedicated to your job in `jobs/` folder if you want to add a new job. You can use the [job template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/r2_jobname) as a starting point. If you want to modify an existing job, you don't have to create a new directory.
 
-4. Be sure to respect the rules we describe in this guide.
-5. Do not update the CI/CD configuration file `.gitlab-ci.yml`.
-6. Test your job and ensure it works!
+1. Be sure to respect the rules we describe in this guide.
+1. Do not update the CI/CD configuration file `.gitlab-ci.yml`.
+1. Test your job and ensure it works!
 
 ### 🚀 Step 3: Merge request
 

@@ -17,11 +17,22 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
+!!! info
+    By default, the job will fail if it finds minimum the following number of vulnerabilities:  
+        ```python
+        build_break_rules = {
+        "default": {"max_critical": 0, "max_high": 2, "max_medium": 5},
+        "Secrets Audit": {"max_critical": 0, "max_high": 0, "max_medium": 1},
+        "depscan": {"max_critical": 0,"max_high": 2,"max_medium": 5},
+        }
+        ```
+    More about this [here](https://github.com/ShiftLeftSecurity/sast-scan/blob/6ee41bdc7ae3462e909a745ef7c8463c5229e5ef/lib/config.py#L1339){:target="_blank"}
+
 ## Job details
 
 * Job name: `sls_scan`
 * Docker image:
-[`shiftleft/sast-scan`](https://hub.docker.com/r/_/shiftleft/sast-scan){:target="_blank"}
+[`shiftleft/sast-scan`](https://hub.docker.com/r/shiftleft/sast-scan){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
@@ -29,13 +40,14 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
+| `SCAN_OPTIONS` | If you want to add [additional arguments](https://slscan.io/en/latest/getting-started/#command-line-arguments) for `scan` | ` ` |
+| `ENABLE_BUILD` | The option to use `--build` with the `scan` command | `true` |
 | `SLS_TYPE` | If you want to specify a specific scanner to use | ` ` |
-| `STOP_ON_VULN` | If you want the job to stop on the first vulnerability detected | `false` |
 | `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |
 
 ### Artifacts
 
-Scan result is available as artifact.
+Scan result is available as artifact, and all HTML reports are merged into one single HTML report
 
 !!! warning
     It's also [exposed
