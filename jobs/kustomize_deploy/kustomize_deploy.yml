@@ -1,0 +1,35 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+kustomize_deploy:
+  image: nekottyo/kustomize-kubeval:latest
+  stage: deploy
+  variables:
+    PROJECT_ROOT: "."
+    KUBECONFIG: ""
+    KUSTOMIZATION_DIR: ""
+    NAMESPACE: ""
+    DEPLOYMENT_NAME: ""
+    CONTAINER_NAME: ""
+    IMAGE_NAME: ""
+    IMAGE_TAG: "latest"
+    KUSTOMIZE_OPTIONS: ""
+
+
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Deploy the cluster
+    - kubectl apply -k $KUSTOMIZATION_DIR $KUSTOMIZE_OPTIONS >> output.log
+    # Set the current namespace
+    - kubectl config set-context --current --namespace=$NAMESPACE
+    # Set new image
+    - kubectl set image deployment/$DEPLOYMENT_NAME ${CONTAINER_NAME}=${IMAGE_NAME}:${IMAGE_TAG} >> output.log
+
+
+  artifacts:
+    expose_as: "Kustomize job output"
+    paths:
+      - output.log
