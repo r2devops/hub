@@ -342,6 +342,8 @@ Sonarcloud
 deployer
 Deployer
 jobdescription
+templating
+Templating
 auths
 Kustomize
 namespace
