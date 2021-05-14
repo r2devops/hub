@@ -27,7 +27,7 @@ The first step is to create your own copy of [`r2devops/hub`](https://gitlab.com
 able to work on it before merging your update in the real project.
 
 1. Go on the fork page creation: [`r2devops/hub`](https://gitlab.com/r2devops/hub/-/forks/new).
-2. Select the group in which you want to create the fork.
+1. Select the group in which you want to create the fork.
 
 ### 💻 Step 2: Work in your fork
 
@@ -42,11 +42,11 @@ able to work on it before merging your update in the real project.
       1. Make sure that you have NPM installed, more about that [here](https://nodejs.org/en/download/){:target=blank}
       1. Install the package `Cookicutter` by executing this command:
         ```shell
-         $ npm install -g cookiecutter
+        npm install -g cookiecutter
         ```
       1. In the `hub` folder, run this command and input the necessary information:
         ```shell
-         $ npx cookiecutter
+        npx cookiecutter
         ```
 
     !!! info
@@ -94,7 +94,6 @@ Thanks a lot for your contribution 😀🎉 !
 Now, we will take a look at your work and merge it if everything is ok.
 👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR) to tell us more about your fresh new contribution.
 We love talking with our contributors and users!
-
 
 ## Guidelines (Required)
 

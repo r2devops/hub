@@ -105,7 +105,7 @@ customize its behavior.
 | **DOCKERFILE_HADOLINT_FILE_NAME** | Filename for [hadolint configuration](https://github.com/hadolint/hadolint){:target="_blank"} (ex: `.hadolintlintrc.yaml`)                                                                   | `.hadolint.yml`      |
 | **ERROR_ON_MISSING_EXEC_BIT**     | If set to `false`, the `bash-exec` linter will report a warning if a shell script is not executable. If set to `true`, the `bash-exec` linter will report an arror instead.| `false`              |
 | **JAVASCRIPT_ES_CONFIG_FILE**     | Filename for [eslint configuration](https://eslint.org/docs/user-guide/configuring#configuration-file-formats){:target="_blank"} (ex: `.eslintrc.yml`, `.eslintrc.json`)                     | `.eslintrc.yml`      |
-| **LINTER_RULES_PATH**             | Directory for all linter configuration rules.                                                                                                                              | `.github/linters`    |
+| **LINTER_RULES_PATH**             | Directory for all linter configuration rules.                                                                                                                              | `.linters`    |
 | **MARKDOWN_CONFIG_FILE**          | Filename for [Markdownlint configuration](https://github.com/DavidAnson/markdownlint#optionsconfig){:target="_blank"} (ex: `.markdown-lint.yml`, `.markdownlint.json`, `.markdownlint.yaml`) | `.markdown-lint.yml` |
 | **PYTHON_PYLINT_CONFIG_FILE**     | Filename for [pylint configuration](https://pylint.pycqa.org/en/latest/user_guide/run.html?highlight=rcfile#command-line-options){:target="_blank"} (ex: `.python-lint`, `.pylintrc`)        | `.python-lint`       |
 | **PYTHON_FLAKE8_CONFIG_FILE**     | Filename for [flake8 configuration](https://flake8.pycqa.org/en/latest/user/configuration.html){:target="_blank"} (ex: `.flake8`, `tox.ini`)                                                 | `.flake8`            |
@@ -114,6 +114,12 @@ customize its behavior.
 | **SNAKEMAKE_SNAKEFMT_CONFIG_FILE**| Filename for [Snakemake configuration](https://github.com/snakemake/snakefmt#configuration){:target="_blank"} (ex: `pyproject.toml`, `.snakefmt.toml`)                                       | `.snakefmt.toml`     |
 | **TYPESCRIPT_ES_CONFIG_FILE**     | Filename for [eslint configuration](https://eslint.org/docs/user-guide/configuring#configuration-file-formats){:target="_blank"} (ex: `.eslintrc.yml`, `.eslintrc.json`)                     | `.eslintrc.yml`      |
 | **YAML_CONFIG_FILE**              | Filename for [Yamllint configuration](https://yamllint.readthedocs.io/en/stable/configuration.html){:target="_blank"} (ex: `.yaml-lint.yml`, `.yamllint.yml`)                                | `.yaml-lint.yml`     |
+
+!!! warning
+    Please be aware that any config file specified is relative to `$LINTER_RULES_PATH`, so you have to put **all your
+    templating** under the path specified. If you are curious to know what are the *default templates* files for your
+    linters, they are all available in the [`TEMPLATES`](https://github.com/github/super-linter/tree/master/TEMPLATES) 
+    folder
 
 #### Enable or disable linters
 
