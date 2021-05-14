@@ -24,7 +24,7 @@ This job will deploy your cluster using Kustomize and set a new image for the de
 ### Variables
 
 !!! important
-    There are some mendatory variables that **you have to provide**, the most important one being `$KUBECONFIG`, you can do that by passing them as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} so that your data can stay confidential.
+    There are some mandatory variables that **you have to provide**, the most important one being `$KUBECONFIG`, you can do that by passing them as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} so that your data can stay confidential.
 
 | Name | Description | Mandatory | Default |
 | ---- | ----------- | --------- | ------- |
