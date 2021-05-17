@@ -13,8 +13,9 @@ trivy_image:
       command: ["dockerd-entrypoint.sh"]
 
   variables:
-    TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
-    TRIVY_EXIT_CODE: 1
+    TRIVY_SEVERITY: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+    TRIVY_EXIT_ON_SEVERITY: "MEDIUM,HIGH,CRITICAL"
+    TRIVY_EXIT_CODE: 0
     TRIVY_VULN_TYPE: "os,library"
     TRIVY_NO_PROGRESS: "false"
     TRIVY_OUTPUT: "junit-report.xml"
@@ -25,6 +26,7 @@ trivy_image:
     TRIVY_CLEAR_CACHE: "false"
     TRIVY_IGNORE_UNFIXED: "false"
     TRIVY_DEBUG: "false"
+    TRIVY_OPTIONS: ""
 
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
@@ -57,12 +59,21 @@ trivy_image:
     - fi
 
     - if [ ! -z ${CUSTOM_TAG} ]; then
-    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CUSTOM_TAG
+    -   IMAGE="$REGISTRY_IMAGE:$CUSTOM_TAG"
     - elif [ ! -z ${CI_COMMIT_TAG} ]; then
-    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CI_COMMIT_TAG
+    -   IMAGE="$REGISTRY_IMAGE:$CI_COMMIT_TAG"
     - else
-    -   ./trivy --template "@$TEMPLATE_NAME" -o $TRIVY_OUTPUT $REGISTRY_IMAGE:$CI_COMMIT_SHA
+    -   IMAGE="$REGISTRY_IMAGE:$CI_COMMIT_SHA"
     - fi
+
+    - if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
+    -   TRIVY_OPTIONS="--exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS}"
+    - else
+        TRIVY_OPTIONS="--output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS}"
+    - fi
+
+    - ./trivy --template "@${TEMPLATE_NAME}" ${TRIVY_OPTIONS} $IMAGE
+
   cache:
     paths:
       - "$TRIVY_CACHE_DIR"
@@ -72,4 +83,3 @@ trivy_image:
       junit: "$TRIVY_OUTPUT"
     expire_in: 30 days
     when: always
-
