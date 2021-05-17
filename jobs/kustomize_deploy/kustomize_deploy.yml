@@ -10,17 +10,24 @@ kustomize_deploy:
     PROJECT_ROOT: "."
     KUBECONFIG: ""
     KUSTOMIZATION_DIR: ""
-    NAMESPACE: ""
+    NAMESPACE: "$KUBE_NAMESPACE"
     DEPLOYMENT_NAME: ""
     CONTAINER_NAME: ""
-    IMAGE_NAME: ""
-    IMAGE_TAG: "latest"
+    IMAGE_NAME: "$CI_REGISTRY_IMAGE"
+    IMAGE_TAG: ""
     KUSTOMIZE_OPTIONS: ""
 
 
   script:
     # Working directory
     - cd $PROJECT_ROOT
+    - if [ -z ${IMAGE_TAG} ]; then
+    -   if [ ! -z ${CI_COMMIT_TAG} ]; then
+    -     IMAGE_TAG=${CI_COMMIT_TAG}
+    -   else
+    -     IMAGE_TAG=${CI_COMMIT_SHA}
+    -   fi
+    - fi
     # Deploy the cluster
     - kubectl apply -k $KUSTOMIZATION_DIR $KUSTOMIZE_OPTIONS >> output.log
     # Set the current namespace
@@ -33,3 +40,6 @@ kustomize_deploy:
     expose_as: "Kustomize job output"
     paths:
       - output.log
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

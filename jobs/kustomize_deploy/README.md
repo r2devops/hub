@@ -19,7 +19,8 @@ This job will deploy your cluster using Kustomize and set a new image for the de
 * Docker image:
 [`nekottyo/kustomize-kubeval:latest`](https://hub.docker.com/r/nekottyo/kustomize-kubeval)
 * Default stage: `deploy`
-* When: `always`
+* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).  
+  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
 
 ### Variables
 
@@ -31,11 +32,11 @@ This job will deploy your cluster using Kustomize and set a new image for the de
 | `PROJECT_ROOT` | path to the root of the project | no | `.`
 | `KUBECONFIG` | the config file for kubectl | yes | ` `
 | `KUSTOMIZATION_DIR` | the folder that contains the `kustomization.yaml` file | yes | ` `
-| `NAMESPACE` | The namespace to use for deployment | yes | ` `
+| `NAMESPACE` | The namespace to use for deployment | yes | `$KUBE_NAMESPACE`
 | `DEPLOYMENT_NAME` | name of deployment to use | yes | ` `
 | `CONTAINER_NAME` | name of the containers to update | yes | ` `
 | `IMAGE_NAME` | name of the new image to use | yes | ` `
-| `IMAGE_TAG` | the tag to use for the new image | yes | `latest`
+| `IMAGE_TAG` | the tag to use for the new image | yes | ` `
 | `KUSTOMIZE_OPTIONS` | Additional options for `kubectl` command | no | ` `
 
 ### Artifacts
