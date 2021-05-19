@@ -133,6 +133,8 @@ job_image_scan:
 
     - mkdir ${OUTPUT_DIR}
   script:
+    # We force database download once so we don't do much GitHub Api calls
+    - ./trivy image --download-db-only --template "@${TEMPLATE_NAME}"
     - for JOB in $(ls -A jobs); do
     -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
     -   if [ ! -z ${IMAGE} ]; then
