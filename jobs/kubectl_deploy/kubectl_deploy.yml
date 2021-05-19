@@ -1,0 +1,25 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+kubectl_deploy:
+  image: devth/helm:v3.5.4
+  stage: deploy
+  variables:
+    FILES_LOCATION: ""
+    KUBECTL_OPTIONS: ""
+
+  script:
+  - kubectl apply -f $FILES_LOCATION $KUBECTL_OPTIONS >> output.log
+
+  environment:
+      name: review/${CI_COMMIT_REF_SLUG}
+
+  artifacts:
+    expose_as: "Kubectl job output"
+    paths:
+      - output.log
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
