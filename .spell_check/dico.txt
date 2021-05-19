@@ -345,3 +345,4 @@ jobdescription
 templating
 Templating
 auths
+kubeconfig
