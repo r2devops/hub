@@ -1,10 +1,12 @@
 ## Objective
 
-This job will deploy your cluster using Kustomize and set a new image for the deployment.
+This job will deploy manifests to your cluster using Kustomize and set a new image for the deployment, the cluster can be either linked to Gitlab or no.
 
 ## How to use it
 
-1. Make sure to add a CI/CD file variable containing your [`kubeconfig`](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/){:target="_blank"} file, more info [here](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"}
+1. Make sure that you have a Kubernetes cluster, you have two options:
+      1. Use a linked cluster with your Gitlab project, get more info [here](https://docs.gitlab.com/ee/user/project/clusters/){:target="_blank"}
+      1. Provide a kubeconfig file through the variable `KUBECONFIG`, check [THIS](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} guide to see how
 1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/kustomize_deploy.yml'
