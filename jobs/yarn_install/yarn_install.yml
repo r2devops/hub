@@ -3,8 +3,8 @@
 cache:
   key:
     files:
+      - "${PROJECT_ROOT}/yarn.lock"
       - "${PROJECT_ROOT}/package.json"
-    prefix: "yarn-${CI_COMMIT_REF_SLUG}"
   paths:
     - "${PROJECT_ROOT}/node_modules"
 
