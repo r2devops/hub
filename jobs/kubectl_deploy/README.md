@@ -19,7 +19,7 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 
 * Job name: `kubectl_deploy`
 * Docker image:
-[`nekottyo/kustomize-kubeval:latest`](https://hub.docker.com/r/nekottyo/kustomize-kubeval)
+[`devth/helm:v3.5.4`](https://hub.docker.com/r/devth/helm/)
 * Default stage: `deploy`
 * When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).  
   To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)

@@ -4,7 +4,7 @@ stages:
   - deploy
 
 kubectl_deploy:
-  image: nekottyo/kustomize-kubeval:latest
+  image: devth/helm:v3.5.4
   stage: deploy
   variables:
     FILES_LOCATION: ""
@@ -14,7 +14,7 @@ kubectl_deploy:
   - kubectl apply -f $FILES_LOCATION $KUBECTL_OPTIONS | tee -a output.log
 
   environment:
-      name: main/${CI_COMMIT_REF_SLUG}
+      name: ${CI_COMMIT_REF_SLUG}
 
   artifacts:
     expose_as: "Kubectl job output"
