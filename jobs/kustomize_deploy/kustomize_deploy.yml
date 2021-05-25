@@ -12,7 +12,7 @@ kustomize_deploy:
     KUSTOMIZATION_DIR: ""
     NAMESPACE: "$KUBE_NAMESPACE"
     DEPLOYMENT_NAME: ""
-    CONTAINER_NAME: ""
+    POD_NAME: ""
     IMAGE_NAME: "$CI_REGISTRY_IMAGE"
     IMAGE_TAG: ""
     KUSTOMIZE_OPTIONS: ""
@@ -33,7 +33,7 @@ kustomize_deploy:
     # Set the current namespace
     - kubectl config set-context --current --namespace=$NAMESPACE
     # Set new image
-    - kubectl set image deployment/$DEPLOYMENT_NAME ${CONTAINER_NAME}=${IMAGE_NAME}:${IMAGE_TAG} >> output.log
+    - kubectl set image deployment/$DEPLOYMENT_NAME ${POD_NAME}=${IMAGE_NAME}:${IMAGE_TAG} >> output.log
 
 
   artifacts:

@@ -36,7 +36,7 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 | `KUSTOMIZATION_DIR` | the folder that contains the `kustomization.yaml` file | yes | ` `
 | `NAMESPACE` | The namespace to use for deployment | yes | `$KUBE_NAMESPACE`
 | `DEPLOYMENT_NAME` | name of deployment to use | yes | ` `
-| `CONTAINER_NAME` | name of the containers to update | yes | ` `
+| `POD_NAME` | name of the pods to update | yes | ` `
 | `IMAGE_NAME` | name of the new image to use | yes | ` `
 | `IMAGE_TAG` | the tag to use for the new image | yes | ` `
 | `KUSTOMIZE_OPTIONS` | Additional options for `kubectl` command | no | ` `

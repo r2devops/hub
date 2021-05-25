@@ -347,3 +347,4 @@ Templating
 auths
 Kustomize
 namespace
+kubeconfig
