@@ -5,7 +5,7 @@ icon: 🌌
 maintainer: moha-s
 license: Apache-2.0
 images:
-  devth/helm:v3.5.4
+  bitnami/kubectl:1.19.11
 tools:
 labels:
   - GitLab

@@ -4,6 +4,10 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 
 ## How to use it
 
+!!! important
+    If you want to deploy multiple YAML files, you need to provide the name of the folder containing the files in the variable `FILES_LOCATION`.
+    If also you have subfolders, you need to add `--recursive` in `$KUBECTL_OPTIONS`
+
 1. Make sure that you have a Kubernetes cluster, you have two options:
       1. Use a linked cluster with your Gitlab project, get more info [here](https://docs.gitlab.com/ee/user/project/clusters/){:target="_blank"}
       1. Provide a kubeconfig file through the variable `KUBECONFIG`, check [THIS](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} guide to see how
@@ -19,7 +23,7 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 
 * Job name: `kubectl_deploy`
 * Docker image:
-[`devth/helm:v3.5.4`](https://hub.docker.com/r/devth/helm/)
+[`bitnami/kubectl:1.19.11`](https://hub.docker.com/r/bitnami/kubectl)
 * Default stage: `deploy`
 * When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).  
   To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)

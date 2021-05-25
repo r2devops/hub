@@ -4,7 +4,9 @@ stages:
   - deploy
 
 kubectl_deploy:
-  image: devth/helm:v3.5.4
+  image: 
+    name: bitnami/kubectl:1.19.11
+    entrypoint: [""]
   stage: deploy
   variables:
     FILES_LOCATION: ""
