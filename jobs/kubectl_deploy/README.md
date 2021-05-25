@@ -31,5 +31,5 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `FILES_LOCATION` | Folder name or file name that contains the manifests | ` ` |
+| `FILES_LOCATION` | Folder name, if multiple .yaml files; Or file name that contains the manifests | ` ` |
 | `KUBECTL_OPTIONS` | Additional options for the command kubectl | ` ` |
