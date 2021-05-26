@@ -15,6 +15,7 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/kubectl_deploy.yml'
     ```
+1. Provide the value of the variable `FILES_LOCATION`, check [**Variables**](#variables)
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
@@ -37,3 +38,9 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 | ---- | ----------- | ------- |
 | `FILES_LOCATION` | Folder name, if multiple .yaml files; Or file name that contains the manifests | ` ` |
 | `KUBECTL_OPTIONS` | Additional options for the command kubectl | ` ` |
+
+!!! info
+    Here is an example of what you can put in `FILES_LOCATION` if you have multiple files but not in the same folder  
+        ```yaml
+        FILES_LOCATION: "myfile1.yaml -f myfile2.yaml -f myfile3.yml"
+        ```

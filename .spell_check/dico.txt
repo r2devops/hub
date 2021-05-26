@@ -346,3 +346,4 @@ templating
 Templating
 auths
 kubeconfig
+subfolders
