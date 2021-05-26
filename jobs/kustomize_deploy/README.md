@@ -11,6 +11,7 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/kustomize_deploy.yml'
     ```
+1. Set the mandatory variables for your job, check [**Variables**](#variables)
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
@@ -19,7 +20,7 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 
 * Job name: `kustomize_deploy`
 * Docker image:
-[`nekottyo/kustomize-kubeval:latest`](https://hub.docker.com/r/nekottyo/kustomize-kubeval)
+[`line/kubectl-kustomize:1.21.1-4.1.3`](https://hub.docker.com/r/line/kubectl-kustomize)
 * Default stage: `deploy`
 * When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).  
   To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
@@ -34,11 +35,11 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 | `PROJECT_ROOT` | path to the root of the project | no | `.`
 | `KUBECONFIG` | the config file for kubectl | yes | ` `
 | `KUSTOMIZATION_DIR` | the folder that contains the `kustomization.yaml` file | yes | ` `
-| `NAMESPACE` | The namespace to use for deployment | yes | `$KUBE_NAMESPACE`
-| `DEPLOYMENT_NAME` | name of deployment to use | yes | ` `
-| `POD_NAME` | name of the pods to update | yes | ` `
-| `IMAGE_NAME` | name of the new image to use | yes | ` `
-| `IMAGE_TAG` | the tag to use for the new image | yes | ` `
+| `CHANGE_IMAGE` | ability to change image of deployment | no | `true`
+| `NAMESPACE` | The namespace to use for deployment | no | `$KUBE_NAMESPACE`
+| `POD_NAME` | name of the pods to update | yes, only if `CHANGE_IMAGE` is `true` | ` `
+| `IMAGE_NAME` | name of the new image to use | yes, only if `CHANGE_IMAGE` is `true` | `$CI_REGISTRY_IMAGE`
+| `IMAGE_TAG` | the tag to use for the new image | yes, only if `CHANGE_IMAGE` is `true` | ` `
 | `KUSTOMIZE_OPTIONS` | Additional options for `kubectl` command | no | ` `
 
 ### Artifacts

@@ -5,7 +5,7 @@ icon: ⚙️
 maintainer: moha-s
 license: Apache-2.0
 images:
-  nekottyo/kustomize-kubeval:latest
+  line/kubectl-kustomize:1.21.1-4.1.3
 tools:
 labels:
     - GitLab
