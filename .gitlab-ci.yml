@@ -134,14 +134,14 @@ job_image_scan:
     - mkdir ${OUTPUT_DIR}
   script:
     # We force database download once so we don't do much GitHub Api calls
-    - ./trivy image --download-db-only --template "@${TEMPLATE_NAME}"
+    - ./trivy --cache-dir ${TRIVY_CACHE_DIR} image --download-db-only
     - for JOB in $(ls -A jobs); do
     -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
     -   if [ ! -z ${IMAGE} ]; then
     -     NAME=$(basename ${IMAGE})
-    -     ./trivy --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
+    -     ./trivy --skip-update --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
     -     if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
-    -       ./trivy --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
+    -       ./trivy --skip-update --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
     -     fi
     -   fi
     -   IMAGE=""
