@@ -346,3 +346,6 @@ templating
 Templating
 auths
 severities
+Kustomize
+namespace
+kubeconfig

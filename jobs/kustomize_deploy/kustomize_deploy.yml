@@ -1,0 +1,52 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+kustomize_deploy:
+  image: 
+    name: line/kubectl-kustomize:1.21.1-4.1.3
+    entrypoint: [""]
+  stage: deploy
+  variables:
+    PROJECT_ROOT: "."
+    KUBECONFIG: ""
+    CHANGE_IMAGE: "true"
+    KUSTOMIZATION_DIR: ""
+    NAMESPACE: "$KUBE_NAMESPACE"
+    POD_NAME: ""
+    IMAGE_NAME: "$CI_REGISTRY_IMAGE"
+    IMAGE_TAG: ""
+    KUSTOMIZE_OPTIONS: ""
+
+
+  script:
+    # Working directory
+    - cd ${PROJECT_ROOT}/${KUSTOMIZATION_DIR}
+    # Image tag to use
+    - if [ -z ${IMAGE_TAG} ]; then
+    -   if [ ! -z ${CI_COMMIT_TAG} ]; then
+    -     IMAGE_TAG=${CI_COMMIT_TAG}
+    -   else
+    -     IMAGE_TAG=${CI_COMMIT_SHA}
+    -   fi
+    - fi
+    - if [ "${CHANGE_IMAGE}" = "true" ]; then
+    -   kustomize edit set image ${POD_NAME}=${IMAGE_NAME}:${IMAGE_TAG} | tee -a ../output.log
+    - fi
+    # Set the namespace
+    - kubectl config set-context --current --namespace=$NAMESPACE
+    # Deploy
+    - kubectl apply -k . $KUSTOMIZE_OPTIONS | tee -a ../output.log
+
+
+  environment:
+      name: ${CI_COMMIT_REF_SLUG}
+
+  artifacts:
+    expose_as: "Kustomize job output"
+    paths:
+      - output.log
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
