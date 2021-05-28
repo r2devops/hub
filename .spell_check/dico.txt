@@ -347,3 +347,7 @@ Templating
 auths
 kubeconfig
 subfolders
+severities
+Kustomize
+namespace
+kubeconfig

@@ -7,10 +7,10 @@ vulnerability detection capabilities are available in its official
 [README](https://github.com/aquasecurity/trivy#vulnerability-detection){:target="_blank"}
 
 !!! warning
-    With the default configuration, this job will fail if errors are detected.
+    With the default configuration, this job will fail if detected errors are in severity `MEDIUM`,`HIGH`,`CRITICAL`.
     It's the recommended configuration to reduce security risks in your
-    software. You can disable this behavior by setting the value `0` to the
-    variable `TRIVY_EXIT_CODE`.
+    software. You can disable this behaviour by emptying the value of the
+    variable `TRIVY_EXIT_ON_SEVERITY`.
 
 ## How to use it
 
@@ -71,8 +71,10 @@ documentation](https://github.com/aquasecurity/trivy#application-dependencies){:
 |:-|:-|:-
 | `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.12.0` |
 | `TRIVY_SEVERITY` | Severity of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
-| `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 1 |
+| `TRIVY_EXIT_ON_SEVERITY` | Severities of vulnerabilities for the job to fail at | `MEDIUM`,`HIGH`,`CRITICAL`|
+| `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | 0 |
 | `TRIVY_VULN_TYPE` | List of vulnerability types | os,library |
+| `TRIVY_OPTIONS` | Options for command `trivy` | ` ` |
 | `TRIVY_OUTPUT` | Output file name | junit-report.xml |
 | `TRIVY_IGNOREFILE` | Specify .trivyignore file | .trivyignore |
 | `TRIVY_CACHE_DIR` | cache directory | .trivycache/
