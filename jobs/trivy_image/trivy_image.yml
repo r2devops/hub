@@ -66,13 +66,13 @@ trivy_image:
     -   IMAGE="$REGISTRY_IMAGE:$CI_COMMIT_SHA"
     - fi
 
+    # Build report
+    - ./trivy --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS} $IMAGE
+    # Fail on severe vulnerabilities
     - if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
-    -   TRIVY_OPTIONS="--exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS}"
-    - else
-        TRIVY_OPTIONS="--output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS}"
+    -   ./trivy --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output failed.${TRIVY_OUTPUT} ${TRIVY_OPTIONS} $IMAGE
     - fi
 
-    - ./trivy --template "@${TEMPLATE_NAME}" ${TRIVY_OPTIONS} $IMAGE
 
   cache:
     paths:

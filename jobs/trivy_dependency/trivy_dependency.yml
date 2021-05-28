@@ -11,7 +11,8 @@ trivy_dependency:
     entrypoint: [""]
   variables:
     TRIVY_SEVERITY: "LOW,MEDIUM,HIGH,CRITICAL"
-    TRIVY_EXIT_CODE: 1
+    TRIVY_EXIT_ON_SEVERITY: "MEDIUM,HIGH,CRITICAL"
+    TRIVY_EXIT_CODE: 0
     TRIVY_VULN_TYPE: "library"
     TRIVY_NO_PROGRESS: "false"
     TRIVY_OUTPUT: "junit-report.xml"
@@ -23,12 +24,18 @@ trivy_dependency:
     TRIVY_CLEAR_CACHE: "false"
     TRIVY_IGNORE_UNFIXED: "false"
     TRIVY_DEBUG: "false"
+    TRIVY_OPTIONS: ""
 
     TRIVY_VERSION: "0.12.0"
     TRIVY_REMOTE: ""
     TRIVY_SKIP_UPDATE: "false"
   script:
-    - trivy fs --template "@${TRIVY_TEMPLATE_DIRECTORY}/${TEMPLATE_NAME}" -o ${TRIVY_OUTPUT} ./
+    # Build report
+    - trivy fs --template "@${TRIVY_TEMPLATE_DIRECTORY}/${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS} ./
+    # Fail on severe vulnerabilities
+    - if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
+    -   trivy fs --exit-code 1 --template "@${TRIVY_TEMPLATE_DIRECTORY}/${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --severity ${TRIVY_EXIT_ON_SEVERITY} --output failed.${TRIVY_OUTPUT} ${TRIVY_OPTIONS} ./
+    - fi
   cache:
     paths:
       - "${TRIVY_CACHE_DIR}"
