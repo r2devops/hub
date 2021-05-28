@@ -1,0 +1,27 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+kubectl_deploy:
+  image: 
+    name: bitnami/kubectl:1.19.11
+    entrypoint: [""]
+  stage: deploy
+  variables:
+    FILES_LOCATION: ""
+    KUBECTL_OPTIONS: ""
+
+  script:
+  - kubectl apply -f $FILES_LOCATION $KUBECTL_OPTIONS | tee -a output.log
+
+  environment:
+      name: ${CI_COMMIT_REF_SLUG}
+
+  artifacts:
+    expose_as: "Kubectl job output"
+    paths:
+      - output.log
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

@@ -345,6 +345,8 @@ jobdescription
 templating
 Templating
 auths
+kubeconfig
+subfolders
 severities
 Kustomize
 namespace
