@@ -1,0 +1,13 @@
+name: serverless_deploy
+description: This job will deploy your serverless resources to AWS
+default_stage: deploy
+icon: 🌫️
+maintainer: moha-s
+license: Apache-2.0
+images:
+  node:15.14-buster
+tools:
+labels:
+  - AWS
+  - GitLab
+  - Deploy
