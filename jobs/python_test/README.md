@@ -41,7 +41,7 @@ Allow you to launch unit tests from your python project. The default variables w
 If you want for example to change your test framework from pytest to nosetests, you just have to override the `TEST_FRAMEWORK` variable as such in your `gitlab-ci.yml`, after including the job:
 
 ```yaml
-python_tests:
+python_test:
   variables:
     TEST_FRAMEWORK: "nosetests"
 ```

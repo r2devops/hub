@@ -364,8 +364,8 @@ follow these steps:
    that will run it on your project, you can mount the repository folder inside
    the container:
       ```shell
-      # Example if your job will use node:15.7-buster as Docker image docker run -v
-      /path/to/your/repo:/mnt --entrypoint "/bin/sh" -it node:15.7-buster
+      # Example if your job will use node:15.7-buster as Docker image
+      docker run -v /path/to/your/repo:/mnt --entrypoint "/bin/sh" -it node:15.7-buster
       ```
 
 2. Create your job configuration in a repository and test it locally using
