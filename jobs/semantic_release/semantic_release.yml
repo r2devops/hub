@@ -1,0 +1,55 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - release
+
+semantic_release:
+  image: node:16.2
+  stage: release
+  variables:
+    SEMANTIC_CONFIG_DIR: "/"
+    SEMANTIC_DRY_RUN: "false"
+    SEMANTIC_RELEASE_VERSION: "17.4.3"
+    SEMANTIC_GITLAB_VERSION: "6.1.0"
+    SEMANTIC_GIT_VERSION: "9.0.0"
+    SEMANTIC_CHANGELOG_VERSION: "5.0.1"
+    SEMANTIC_EXEC_VERSION: "5.0.0"
+    SEMANTIC_APM_VERSION: "3.0.0"
+    SEMANTIC_RELEASE_OPTIONS: ""
+    SEMANTIC_ADDITIONAL_PACKAGES: ""
+  script:
+    - if [ ! -d ${CI_PROJECT_DIR}/${SEMANTIC_CONFIG_DIR} ]; then
+    -   echo '${SEMANTIC_CONFIG_DIR} leads to an invalid directory'
+    -   exit 1
+    - fi
+    - cd ${CI_PROJECT_DIR}/${SEMANTIC_CONFIG_DIR}
+    # We install all official packages, so we support the wildest range of users
+    - |
+      npm install --save-dev semantic-release@${SEMANTIC_RELEASE_VERSION} \
+      @semantic-release/gitlab@${SEMANTIC_GITLAB_VERSION} \
+      @semantic-release/git@${SEMANTIC_GIT_VERSION} \
+      @semantic-release/changelog@${SEMANTIC_CHANGELOG_VERSION} \
+      @semantic-release/exec@${SEMANTIC_EXEC_VERSION} \
+      @semantic-release/apm@${SEMANTIC_APM_VERSION}
+
+    - if [ ! -z ${SEMANTIC_ADDITIONAL_PACKAGES} ]; then
+    -   npm install --save-dev ${SEMANTIC_ADDITIONAL_PACKAGES}
+    - fi
+
+    - if [ "$SEMANTIC_RELEASE_OPTIONS" = "true" ]; then
+    -   export SEMANTIC_RELEASE_OPTIONS="-d $SEMANTIC_RELEASE_OPTIONS"
+    - fi
+
+    - npx semantic-release $SEMANTIC_RELEASE_OPTIONS | tee -a output.log
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: always
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}-semantic-release"
+    paths:
+      - ${CI_PROJECT_DIR}/${SEMANTIC_CONFIG_DIR}/node_modules/
+  artifacts:
+    when: always
+    expose_as: "semantic-release logs"
+    paths:
+      - output.log
