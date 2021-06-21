@@ -37,35 +37,37 @@ from a Dockerfile at the root of your project, and push it to a remote registry 
 The registry and tag of the resulting Docker image follow this behavior:
 
 | `CUSTOM_TAG` used ? | Are you pushing git tag ? | Registry where image is pushed | Docker tag applied to the image |
-|:-|:-|:-|:-
-| No  | No  | Gitlab project registry | Last commit SHA |
-| No  | Yes | Gitlab project registry | Git tag name    |
-| Yes | No  | Gitlab project registry | `CUSTOM_TAG`    |
-| Yes | Yes | Gitlab project registry | `CUSTOM_TAG`    |
+|:--------------------|:--------------------------|:-------------------------------|:--------------------------------|
+| No                  | No                        | Gitlab project registry        | Last commit SHA                 |
+| No                  | Yes                       | Gitlab project registry        | Git tag name                    |
+| Yes                 | No                        | Gitlab project registry        | `CUSTOM_TAG`                    |
+| Yes                 | Yes                       | Gitlab project registry        | `CUSTOM_TAG`                    |
 
 !!! info
     In order to use custom registries, you need to provide the file `config.json` that contains the auths, you can do that by passing it as a [CI/CD file](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} named `CONFIG_FILE` (see example below)
 
 ### Variables
 
-| VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
-|:-|:-|:-
-| `CUSTOM_TAG` | If you want a specific tag for your image | ` ` |
-| `COMMIT_CREATE_LATEST` | In a commit context, also update `latest` tag | `false` |
-| `TAG_CREATE_LATEST` | In a tag context, also update `latest` tag | `true` |
-| `DOCKERFILE_PATH` | Path to Dockerfile from the repository root | `Dockerfile` |
-| `DOCKER_USE_CACHE` | Cache Dockerfile layers. Cached layers are stored in the [container registry](https://docs.gitlab.com/ee/user/packages/container_registry/){:target="_blank"} in `/cache` repository | `false` |
-| `DOCKER_CACHE_TTL` | Cached layers TTL | `336h` |
-| `KANIKO_USE_NEWRUN` | Enable Kaniko option [`--use-new-run`](https://github.com/GoogleContainerTools/kaniko#--use-new-run) | `true` |
-| `DOCKER_VERBOSITY` | Set the verbosity of the build in job's log (see [levels](https://github.com/GoogleContainerTools/kaniko#--verbosity){:target="_blank"})  |  `info` |
-| `DOCKER_OPTIONS`   | If you want to use additional [options](https://github.com/GoogleContainerTools/kaniko#additional-flags){:target="_blank"} | ` ` |
-| `CUSTOM_REGISTRIES_DESTINATIONS` | the list of your remote registries + image tags (see example below) | ` ` |
-| `CONFIG_FILE` | CI variable file that contains the auths for kaniko | ` ` |
+| VARIABLE NAME                    | DESCRIPTION                                                                                                                                                                          | DEFAULT VALUE |
+|:---------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------|
+| `CUSTOM_TAG`                     | If you want a specific tag for your image                                                                                                                                            | ` `           |
+| `COMMIT_CREATE_LATEST`           | In a commit context, also update `latest` tag                                                                                                                                        | `false`       |
+| `TAG_CREATE_LATEST`              | In a tag context, also update `latest` tag                                                                                                                                           | `true`        |
+| `DOCKER_CONTEXT_PATH`            | Path of build context from to repository root                                                                                                                                        | ` `           |
+| `DOCKERFILE_PATH`                | Path to Dockerfile from the build context (see `DOCKER_CONTEXT_PATH`)                                                                                                                | `Dockerfile`  |
+| `DOCKER_USE_CACHE`               | Cache Dockerfile layers. Cached layers are stored in the [container registry](https://docs.gitlab.com/ee/user/packages/container_registry/){:target="_blank"} in `/cache` repository | `false`       |
+| `DOCKER_CACHE_TTL`               | Cached layers TTL                                                                                                                                                                    | `336h`        |
+| `KANIKO_USE_NEWRUN`              | Enable Kaniko option [`--use-new-run`](https://github.com/GoogleContainerTools/kaniko#--use-new-run)                                                                                 | `true`        |
+| `DOCKER_VERBOSITY`               | Set the verbosity of the build in job's log (see [levels](https://github.com/GoogleContainerTools/kaniko#--verbosity){:target="_blank"})                                             | `info`        |
+| `DOCKER_OPTIONS`                 | If you want to use additional [options](https://github.com/GoogleContainerTools/kaniko#additional-flags){:target="_blank"}                                                           | ` `           |
+| `CUSTOM_REGISTRIES_DESTINATIONS` | the list of your remote registries + image tags (see example below)                                                                                                                  | ` `           |
+| `CONFIG_FILE`                    | CI variable file that contains the auths for kaniko                                                                                                                                  | ` `           |
 
 * Example of variable `CUSTOM_REGISTRIES_DESTINATIONS`:
     ```
     --destination registry.hub.docker.com/admin/myimages:latest --destination containerregistry.azurecr.io/admin/myimages:1.6.9-lite
     ```
+
 
 * Example of file `CONFIG_FILE`:
     ```json
