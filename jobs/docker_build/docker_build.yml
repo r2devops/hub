@@ -11,6 +11,7 @@ docker_build:
   variables:
     CUSTOM_REGISTRIES_DESTINATIONS: ""
     CONFIG_FILE: ""
+    DOCKER_CONTEXT_PATH: ""
     
     CUSTOM_TAG: ""
     COMMIT_CREATE_LATEST: "false"
@@ -47,17 +48,19 @@ docker_build:
     -   DOCKER_OPTIONS="--use-new-run ${DOCKER_OPTIONS}"
     - fi
 
+    - DOCKER_CONTEXT_PATH=${CI_PROJECT_DIR}/${DOCKER_CONTEXT_PATH}
+
     - DOCKER_OPTIONS="--verbosity=${DOCKER_VERBOSITY} ${DOCKER_OPTIONS}"
 
     - if [ ! -z "$CUSTOM_REGISTRIES_DESTINATIONS" ]; then
     -   cp -rf $CONFIG_FILE /kaniko/.docker/config.json
     -   DOCKER_OPTIONS="${DOCKER_OPTIONS} $CUSTOM_REGISTRIES_DESTINATIONS"
-    -   /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} ${DOCKER_OPTIONS}
+    -   /kaniko/executor --context ${DOCKER_CONTEXT_PATH} --dockerfile ${DOCKER_CONTEXT_PATH}/${DOCKERFILE_PATH} ${DOCKER_OPTIONS}
     - else
     -   echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     -     if [ ! -z ${CUSTOM_TAG} ]; then
-    -       /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${CI_REGISTRY_IMAGE}:${CUSTOM_TAG} ${DOCKER_OPTIONS}
+    -       /kaniko/executor --context ${DOCKER_CONTEXT_PATH} --dockerfile ${DOCKER_CONTEXT_PATH}/${DOCKERFILE_PATH} --destination ${CI_REGISTRY_IMAGE}:${CUSTOM_TAG} ${DOCKER_OPTIONS}
     -     else
-    -       /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_PATH} --destination ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG} ${DOCKER_OPTIONS}
+    -       /kaniko/executor --context ${DOCKER_CONTEXT_PATH} --dockerfile ${DOCKER_CONTEXT_PATH}/${DOCKERFILE_PATH} --destination ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ${OPTIONAL_TAG} ${DOCKER_OPTIONS}
     -     fi
     - fi
