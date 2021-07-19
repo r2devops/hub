@@ -36,24 +36,24 @@ This job installs `yarn` dependencies listed in your `package.json` and exposes
 
 ### Variables
 
-!!! note
-    All paths defined in variables are relative and starts from the root of your
-    repository.
-
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PROJECT_ROOT` | Path to the directory containing `package.json`  | `.` |
+| `PROJECT_ROOT` | Relative path to the directory containing `package.json` (**see warning below**)  | ` ` |
 | `YARN_INSTALL_OPTIONS` | Additional options for `yarn install` | ` ` |
 
+!!! warning
+    In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache, 
+    consider making this variable a global variable in the root of your `.gitlab-ci.yml`. Learn how
+    easy it is [here](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-cicd-variable-in-the-gitlab-ciyml-file).
 
 ### Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
 
-* Shared between all jobs and pipelines on the same branch
-* Contains folder `$PROJECT_ROOT/node_modules`
-* If `yarn install` produces different result than the cached content
+* Each branch has its own version
+* Cached directory is `$PROJECT_ROOT/node_modules`
+* If `package.json` or `yarn.lock` is edited, the cache is updated
 
 More information on Gitlab caching mechanism in [Gitlab CI/CD caching
 documentation](https://docs.gitlab.com/ee/ci/caching/index.html).

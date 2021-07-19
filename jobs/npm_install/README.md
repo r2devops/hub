@@ -39,27 +39,26 @@ This job installs `npm` dependencies listed in your `package-lock.json` and expo
 
 ### Variables
 
-!!! note
-    All paths defined in variables are relative and starts from the root of your
-    repository.  
-    
-    ⚠️ It's mendatory to have `package-lock.json` in order to use `npm ci`
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PROJECT_ROOT` | Path to the directory containing `package-lock.json`  | `.` |
+| `PROJECT_ROOT` | Relative path to the directory containing `package.json` (**see warning below**)  | ` ` |
 | `NPM_INSTALL_OPTIONS` | Additional options for `npm install` | ` ` |
 | `NPM_USE_CI` | Enable usage of `npm ci` instead of classic `npm install` | `true` |
 
+!!! warning
+    In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache,
+    consider making this variable a global variable in the root of your `.gitlab-ci.yml`. Learn how
+    easy it is [here](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-cicd-variable-in-the-gitlab-ciyml-file).
 
 ### Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
 
-* Shared between all jobs and pipelines on the same branch
-* Contains folder `$PROJECT_ROOT/node_modules`
-* If `npm install` produces different result than the cached content
+* Each branch has its own version
+* Cached directory is `$PROJECT_ROOT/node_modules`
+* If `package.json` or `package-lock.json` is edited, the cache is updated
 
 More information on Gitlab caching mechanism in [Gitlab CI/CD caching
 documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
