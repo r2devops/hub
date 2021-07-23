@@ -1,0 +1,80 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+mega_linter:
+  stage: static_tests
+  # You can override Mega-Linter flavor used to have faster performances
+  # More info at https://nvuillam.github.io/mega-linter/flavors/
+  image:
+    name: nvuillam/mega-linter:v4
+    entrypoint: [""]
+  script:
+    - FAILED=false
+    - |
+      if /entrypoint.sh true; then
+        echo "Mega-Linter seemed not to have found any issue!"
+      else
+        FAILED=true
+      fi
+
+    - if [ "${OUTPUT_FORMAT}" = "tap" ]; then
+
+    -   npm install -g tap-junit@${TAP_JUNIT_VERSION}
+
+    -   mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+    -   cd ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/tap
+
+    -   for report in *; do
+    # workaround for https://github.com/dhershman1/tap-junit/issues/30#issuecomment-744462006
+    -     'sed -i "s/message: \*\+/message: /g" $report'
+    # Some message got comments with # which are ignored by tap-junit, so we escape it
+    -     'sed -i -E "s/(^|[ ]+)(#)[a-zA-Z]*/\1\/\//g" $report'
+    # Converting TAP files into xml files with JUnit5 format
+    -     cat $report | tap-junit -p -s "${REPORT_SUITE_TEST_NAME}" > ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/${report}.xml
+    # Remove escaping on newlines for readability
+    -     sed -i 's/\\n/\n/g' ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/${report}.xml
+    # Replace ANSI colors as they are illegal characters
+    -     sed -i 's/\x1b\[[0-9;]*m//g' ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/${report}.xml
+    -   done
+    - fi
+
+    - '[ FAILED="true" ] && exit 1'
+  variables:
+    # All available variables are described in documentation
+    # https://nvuillam.github.io/mega-linter/configuration/
+    DEFAULT_WORKSPACE: "${CI_PROJECT_DIR}"
+    DEFAULT_BRANCH: "${CI_DEFAULT_BRANCH}"
+    # Exclude files based on a regex
+    FILTER_REGEX_EXCLUDE: "none"
+    # Directory in which your linters configuration are
+    LINTER_RULES_PATH: ".linters"
+    # Your mega linter config file if any
+    MEGALINTER_CONFIG: ".mega-linter.yml"
+    # If set to false will only scan diff files from previous commit
+    VALIDATE_ALL_CODEBASE: "true"
+    # MegaLinter added exporter
+    OUTPUT_FORMAT: "tap"
+    # Amount of details in the report
+    OUTPUT_DETAIL: "detailed"
+    # Directory in which every report is filed
+    REPORT_OUTPUT_FOLDER: "report"
+    # End folder where reports are held
+    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
+    # Tool tap-junit version, please don't use 5.0.0 until below issue is fixed
+    # https://github.com/dhershman1/tap-junit/issues/39
+    TAP_JUNIT_VERSION: "4.2.0"
+    # Name of the test suite in JUnit
+    REPORT_SUITE_TEST_NAME: "mega_linter"
+    # List of disabled linters in every case, this linter is deactivated due to
+    # its time of processing (~10 minutes on tested projects)
+    DISABLE_LINTERS: SPELL_CSPELL
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/tap/*.tap
+    expire_in: 1 week
+    reports:
+      junit: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/*.xml"
+  allow_failure: true
