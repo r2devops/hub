@@ -3,10 +3,11 @@
 cache:
   key:
     files:
-      - "${PROJECT_ROOT}/yarn.lock"
-      - "${PROJECT_ROOT}/package.json"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/yarn.lock"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package.json"
+    prefix: "yarn-${CI_COMMIT_REF_SLUG}"
   paths:
-    - "${PROJECT_ROOT}/node_modules"
+    - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/node_modules"
 
 yarn_install:
   stage: .pre
@@ -14,10 +15,12 @@ yarn_install:
     name: node:15.14-buster
     entrypoint: [""]
   variables:
-    PROJECT_ROOT: "."
     YARN_INSTALL_OPTIONS: ""
   script:
     # Working directory
-    - cd $PROJECT_ROOT
+    # PROJECT_ROOT doesn't have a default value, as we want it to be a global CI variable.
+    # See more about variable precedence here: https://shorturl.at/hirHY
+    - |
+      [ ! -z "${PROJECT_ROOT}" ] && cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     # Run yarn install
     - yarn install $YARN_INSTALL_OPTIONS

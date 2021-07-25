@@ -3,11 +3,11 @@
 cache:
   key:
     files:
-      - "${PROJECT_ROOT}/package-lock.json"
-      - "${PROJECT_ROOT}/package.json"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package-lock.json"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package.json"
     prefix: "npm-${CI_COMMIT_REF_SLUG}"
   paths:
-    - "${PROJECT_ROOT}/node_modules"
+    - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/node_modules"
 
 npm_install:
   stage: .pre
@@ -15,16 +15,18 @@ npm_install:
     name: node:15.14-buster
     entrypoint: [""]
   variables:
-    PROJECT_ROOT: "."
     NPM_INSTALL_OPTIONS: ""
     NPM_USE_CI: "true"
   script:
     # Working directory
-    - cd $PROJECT_ROOT
-    # NPM_USE_CI is true
-    - if [ ${NPM_USE_CI} == "true" ]; then
-    -   npm ci
-    - else
-    # NPM_USE_CI is false
-    -   npm install $NPM_INSTALL_OPTIONS
-    - fi
+    # PROJECT_ROOT doesn't have a default value, as we want it to be a global CI variable.
+    # See more about variable precedence here: https://shorturl.at/hirHY
+    - |
+      [ ! -z "${PROJECT_ROOT}" ] && cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    # Run npm ci if package-lock.json is available & variable is truthy
+    - |
+      if [ -f "package-lock.json" ]; then
+        [[ ${NPM_USE_CI} == "true" ]] && npm ci || npm install $NPM_INSTALL_OPTIONS
+      else
+        npm install $NPM_INSTALL_OPTIONS
+      fi
