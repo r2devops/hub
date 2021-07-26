@@ -100,7 +100,26 @@ function hotjar(h,o,t,j,a,r){
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
 }
-if (document.cookie.split(";").indexOf("allow-cookies=true") > -1) {
+
+/**
+ * Explicit consent has been given
+ */
+const consent = function(state) {
+    console.log("Cookie consent has been given");
     hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
 }
+
+function consentUpdate() {
+    const item = localStorage.getItem("tibrrCookieConsent");
+    if (item && new Date().getDate() < parseInt(item))
+        hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
+}
+
+const cookieButtons = document.getElementsByClassName("tibrr-cookie-consent-button");
+for (let item of cookieButtons) {
+    item.addEventListener('click', () => consent(true), false);
+}
+
+// We check whether the user has already something in the localStorage for it & so fetch needed plugins
+consentUpdate();
 <!-- End HotJar -->
