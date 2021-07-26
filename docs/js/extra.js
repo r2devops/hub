@@ -115,10 +115,12 @@ function consentUpdate() {
         hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
 }
 
-const cookieButtons = document.getElementsByClassName("tibrr-cookie-consent-button");
-for (let item of cookieButtons) {
-    item.addEventListener('click', () => consent(true), false);
-}
+window.addEventListener('load', () => {
+    const cookieButtons = document.getElementsByClassName("tibrr-cookie-consent-button");
+    for (let item of cookieButtons) {
+        item.addEventListener('click', () => consent(true), false);
+    }
+});
 
 // We check whether the user has already something in the localStorage for it & so fetch needed plugins
 consentUpdate();
