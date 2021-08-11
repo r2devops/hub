@@ -36,7 +36,7 @@ extra:
 
   # Landing page
   landing_page:
-    title: 'Create powerful CI/CD pipelines, easily'
+    title: 'With R2Devops, create your CI/CD pipeline in 3 clicks'
     description: 'Benefit from our collection of ready-to-use jobs to quickly create amazing pipelines for your projects. The setup will only take you 3 clicks: just select the jobs and enjoy your CI/CD !'
 
   social:

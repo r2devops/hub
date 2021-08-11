@@ -18,10 +18,18 @@
           <h1>{{ config.extra.landing_page.title }}</h1>
           <p>{{ config.extra.landing_page.description }}</p>
           <div class="tx-hero_buttons">
-            <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
-              Get started
+            <a
+                    href="https://pipeline.r2devops.io/" title="R2Devops Pipeline" class="md-button md-button&#45;&#45;primary"
+                    style="padding-left: 12px; padding-right: 12px; border-radius: 10px"
+                    target="_blank"
+            >
+              Try our generator
             </a>
-            <a href="https://discord.gg/5QKpGqR" title="{{ page.next_page.title | e }}" class="md-button">
+            <!--<a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button&#45;&#45;primary">
+              Get started
+            </a>-->
+            <a target="_blank"
+               href="https://discord.gg/5QKpGqR" title="Join R2Devops community on discord" class="md-button" style="border-radius: 10px">
                 <span class="twemoji">{% include ".icons/fontawesome/brands/discord.svg" %}</span> Join Community
             </a>
           </div>
