@@ -379,3 +379,7 @@ javascript
 salesforce
 schemas
 Jenkinsfile
+Hotjar
+Hotjar's
+pseudonymized
+de
