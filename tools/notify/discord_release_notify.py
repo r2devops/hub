@@ -15,7 +15,7 @@ import yaml
 
 ROOT_DIR = os.getenv("CI_PROJECT_DIR", "../")
 QUOTES_URL = "https://gitlab.com/r2devops/hub/-/snippets/2046463/raw/master/snippetfile1.txt" # Link to snippet
-AVATAR_URL = "https://go2scale.io/wp-content/uploads/2020/07/cropped-favicon_bleu-192x192.png" # Avatar of the author showed in the footer also
+AVATAR_URL = "https://go2scale.io/wp-content/uploads/2021/08/R2_Plan-de-travail-1-05.png" # Avatar of the author showed in the footer also
 USERNAME = "R2" # Message's author
 EMBED_COLOR = 1127128 # Trailing color at left of message
 EMBED_TITLE = "A new job version is available for " # Title of the message
