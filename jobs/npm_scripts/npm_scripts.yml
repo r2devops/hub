@@ -1,0 +1,36 @@
+  # Job from R2Devops hub --> r2devops.io
+
+
+stages:
+  - others
+
+
+npm_scripts:
+  stage: others
+  image:
+    name: node:16.8-buster
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    NPM_SCRIPTS: ""
+    NPM_OUTPUT: ""
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Save default IFS
+    - oldIFS=$IFS
+    # Modifying IFS
+    - export IFS=";"
+    # Loop for launching any script specified in $NPM_SCRIPTS separated by ;
+    - for script in $NPM_SCRIPTS; do
+        # Restore to default IFS
+    -   IFS=$oldIFS
+        # Run the script
+    -   npm run $script
+        # Modifying IFS for the next loop
+    -   export IFS=";"
+    - done
+  artifacts:
+    paths:
+      # Output directory
+      - $NPM_OUTPUT
