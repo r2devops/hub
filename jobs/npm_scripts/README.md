@@ -35,7 +35,7 @@ This job will permits users to run several scripts from their `package.json` fil
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` | Path to the directory containing `package.json`  | `.` |
-| `NPM_SCRIPTS` | Value of the differents scripts specified in `package.json` that can be separated by `;` | ` ` |
+| `NPM_SCRIPTS` | Value of several scripts specified in `package.json` that can be separated by `;` | ` ` |
 | `NPM_OUTPUT` | Path to the output send by script specified in `package.json` | ` ` |
 
 
