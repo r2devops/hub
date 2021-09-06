@@ -53,7 +53,7 @@ deployment using this job:
     "lint": "ng lint"
   }
 ```
-#### .gitlab-ci.yml
+#### .gitlab-ci
 ```yaml
 stages:
   - others
