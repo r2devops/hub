@@ -12,11 +12,14 @@ npm_scripts:
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
+    NPM_INSTALL_OPTIONS: ""
     NPM_SCRIPTS: ""
     NPM_OUTPUT: ""
   script:
     # Working directory
     - cd $PROJECT_ROOT
+    # install project dependencies
+    - npm install $NPM_INSTALL_OPTIONS
     # Save default IFS
     - oldIFS=$IFS
     # Modifying IFS
