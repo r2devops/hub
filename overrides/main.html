@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block announce %}
-📢 Signup for a free session to discover R2Devops using your project 👉
-<a href="https://calendly.com/r2devops/introduction" data-analytics="Meeting" class="banner-link">
+    📢 Signup for a free session to discover R2Devops using your project 👉
+<a href="https://calendly.com/r2devops/introduction" onclick="plausible('Meeting')" class="banner-link">
     I book my meeting
 </a>
-🔥
+    🔥
 {% endblock %}
 
 
@@ -13,48 +13,4 @@
 <!-- Plausible -->
 <script async defer data-domain="r2devops.io" src="https://plausible.io/js/plausible.js"></script>
 <!-- End Plausible -->
-<script>
-    // Handle link events - those that have data-analytics
-    let elements = document.querySelectorAll("a[data-analytics]");
-    registerAnalyticsEvents(elements, handleLinkEvent);
-
-    function registerAnalyticsEvents(elements, callback) {
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].addEventListener('click', callback);
-            elements[i].addEventListener('auxclick', callback);
-        }
-    }
-
-    function handleLinkEvent(event) {
-        var link = event.target;
-        var middle = event.type == "auxclick" && event.which == 2;
-        var click = event.type == "click";
-        while (link && (typeof link.tagName == 'undefined' || link.tagName.toLowerCase() != 'a' || !link.href)) {
-            link = link.parentNode;
-        }
-
-        if (middle || click)
-            registerEvent(link.getAttribute('data-analytics'));
-
-        // Delay navigation so that Plausible is notified of the click
-        if (!link.target) {
-            if (!(event.ctrlKey || event.metaKey || event.shiftKey) && click) {
-                setTimeout(function () {
-                    location.href = link.href;
-                }, 150);
-                event.preventDefault();
-            }
-        }
-    }
-
-    function registerEvent(data) {
-        // break into array
-        let attributes = data.split(/,(.+)/);
-
-        // Parse it to object
-        let events = [JSON.parse(attributes[0]), JSON.parse(attributes[1] || '{}')];
-
-        plausible(...events);
-    }
-</script>
 {% endblock %}
