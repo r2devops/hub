@@ -39,4 +39,4 @@ from previous job named `documentation`.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PAGES_BUILD_PATH` | Path to folder which contains documentation build | `website_build/` |
+| `PAGES_BUILD_PATH` | Path to folder which contains the static website files to publish | `website_build/` |
