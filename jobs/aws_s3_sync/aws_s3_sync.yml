@@ -15,7 +15,7 @@ aws_s3_sync:
     AWS_ENDPOINT: " "
     SYNC_DIR: "build"
     BUCKET_NAME: " "
-    AWS_ACL: " " #TODO
+    AWS_ACL: " "
     ADDITIONAL_OPTIONS: ""
 
   script:
@@ -39,4 +39,11 @@ aws_s3_sync:
     - aws configure set default.s3.multipart_threshold 50MB
     - aws configure set default.s3.multipart_chunksize 10MB
     - aws configure set default.s3api.endpointurl https://s3.nl-ams.scw.cloud
+
+    #update the ACL with the AWS json input
+    - if [ ! -z ${BUCKET_NAME} ]; then
+    -   aws s3api get-bucket-acl --bucket ${BUCKET_NAME} --cli-input-json ${AWS_ACL}
+    - fi
+
+    #sync to the specified bucket
     - aws s3 sync $SYNC_DIR s3://${BUCKET_NAME}
