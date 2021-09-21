@@ -1,0 +1,42 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - others
+
+aws_s3_sync:
+  stage: others
+  image:
+    name: bitnami/aws-cli:2.2.39
+    entrypoint: [""]
+  variables:
+    AWS_ACCESS_KEY_ID: " "
+    AWS_SECRET_ACCESS_KEY: " "
+    AWS_DEFAULT_REGION: "eu-west-1"
+    AWS_ENDPOINT: " "
+    SYNC_DIR: "build"
+    BUCKET_NAME: " "
+    AWS_ACL: " " #TODO
+    ADDITIONAL_OPTIONS: ""
+
+  script:
+
+    - pip3 install awscli-plugin-endpoint
+
+    - touch new_config_aws
+    - export AWS_CONFIG_FILE=new_config_aws
+
+    - aws configure set plugins.endpoint awscli_plugin_endpoint
+
+    - aws configure set region $AWS_DEFAULT_REGION
+    # set custom endpoint if populated
+    - if [ ! -z ${AWS_ENDPOINT} ]; then
+    -   aws configure set default.s3.endpoint_url ${AWS_ENDPOINT}
+    - fi
+
+    - aws configure set default.s3.signature_version s3v4  
+    - aws configure set default.s3.max_concurrent_requests 100
+    - aws configure set default.s3.max_queue_size 1000
+    - aws configure set default.s3.multipart_threshold 50MB
+    - aws configure set default.s3.multipart_chunksize 10MB
+    - aws configure set default.s3api.endpointurl https://s3.nl-ams.scw.cloud
+    - aws s3 sync $SYNC_DIR s3://${BUCKET_NAME}

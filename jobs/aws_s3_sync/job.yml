@@ -1,0 +1,15 @@
+name: aws_s3_sync
+description: A ready-to-use AWS S3 job to sync a local directory into a bucket. This Job is compatible with Scaleway's API.
+default_stage: others
+icon: 🅰️
+maintainer: GridexX
+license: MIT
+images: 
+  "bitnami/aws-cli": '2.2.39'
+tools:
+  AWS CLI: "1.20.44"
+  Python: "3.7.12"
+labels:
+ - GitLab
+ - AWS
+ - S3
