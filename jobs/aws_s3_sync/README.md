@@ -12,7 +12,7 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
 2. Fill the variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_DEFAULT_REGION` with yours. See the [documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html).
     ??? summary "Need a custom Endpoint ⚓ ?"
         Just type your custom url in the variable `AWS_ENDPOINT`
-        For example, you can find the custom endpoint url for Scaleway on thir [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+        For example, you can find the custom endpoint url for Scaleway on their [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
