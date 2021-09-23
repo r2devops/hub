@@ -1,0 +1,25 @@
+# Job from R2Devops hub --> r2devops.io
+stages: 
+- static_tests
+
+cache:
+  key:
+    files:
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package-lock.json"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package.json"
+    prefix: "npm-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/node_modules"
+
+npm_lint:
+  stage: static_tests
+  image: 
+      name: node:16.8-buster
+      entrypoint: [""]
+  variables:
+    NPM_INSTALL_OPTIONS: ""
+    NPM_LINT_OPTIONS: ""
+  script:
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    - npm install ${NPM_INSTALL_OPTIONS}
+    - npm run lint ${NPM_LINT_OPTIONS}
