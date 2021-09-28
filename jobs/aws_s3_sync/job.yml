@@ -5,7 +5,7 @@ icon: 🅰️
 maintainer: GridexX
 license: MIT
 images: 
-  "bitnami/aws-cli": '2.2.39'
+  "bitnami/aws-cli": '2.2.41'
 tools:
   AWS CLI: "1.20.44"
   Python: "3.7.12"

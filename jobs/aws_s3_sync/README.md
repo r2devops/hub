@@ -1,6 +1,6 @@
 ## Objective
 
-This job uses the AWS CLI (v1 for now) in order to sync files between a directory and a target S3 bucket. See changes between the two versions [here](https://docs.aws.amazon.com/cli/latest/userguide/cliv2-migration.html).
+This job uses the AWS CLI (v1 for now) in order to sync files between a directory and a target S3 bucket. See changes between the two versions [here](https://docs.aws.amazon.com/cli/latest/userguide/cliv2-migration.html){:target="_blank"}.
 
 [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"} is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
 
@@ -9,10 +9,11 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/aws_s3_sync.yml'
     ```
-2. Fill the variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_DEFAULT_REGION` with yours. See the [documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html).
+2. Fill the variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_DEFAULT_REGION` with yours (see the [documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html){:target="_blank"} ).
+
     ??? summary "Need a custom Endpoint ⚓ ?"
-        Just type your custom url in the variable `AWS_ENDPOINT`
-        For example, you can find the custom endpoint url for Scaleway on their [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+      Just type your custom url in the variable `AWS_ENDPOINT`
+      For example, you can find the custom endpoint url for Scaleway [here](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/){:target="_blank"}.
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
@@ -20,7 +21,7 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
 
 ## Job details
 * Job name: `aws_s3_sync`
-* Docker image: [bitnami/aws-cli:2.2.39](https://hub.docker.com/r/bitnami/aws-cli){:target="blank"}
+* Docker image: [bitnami/aws-cli:2.2.41](https://hub.docker.com/r/bitnami/aws-cli){:target="blank"}
 * Default stage: `others`
 
 ### Variables

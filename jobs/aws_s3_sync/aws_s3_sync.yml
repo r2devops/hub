@@ -6,7 +6,7 @@ stages:
 aws_s3_sync:
   stage: others
   image:
-    name: bitnami/aws-cli:2.2.39
+    name: bitnami/aws-cli:2.2.41
     entrypoint: [""]
   variables:
     AWS_ACCESS_KEY_ID: " "
@@ -41,7 +41,7 @@ aws_s3_sync:
     - aws configure set default.s3api.endpointurl https://s3.nl-ams.scw.cloud
 
     #update the ACL with the AWS json input
-    - if [ ! -z ${BUCKET_NAME} ]; then
+    - if [ ! -z ${AWS_ACL} ]; then
     -   aws s3api get-bucket-acl --bucket ${BUCKET_NAME} --cli-input-json ${AWS_ACL}
     - fi
 
