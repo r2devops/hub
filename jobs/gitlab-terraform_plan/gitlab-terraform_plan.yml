@@ -1,0 +1,38 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages: 
+ - provision
+
+cache:
+  key:
+    files:
+    - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform.lock.hcl"
+  paths:
+    - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform"
+
+gitlab-terraform_plan:
+  stage: provision
+  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.19.1
+
+  variables:
+    TF_ADDRESS: ""
+    PLAN_JSON: ""
+    INIT_OPTIONS: ""
+
+  script:
+    - cd ${CI_PROJECT_DIR}/${TF_ROOT}
+    - gitlab-terraform init ${INIT_OPTIONS} | tee -a output.log
+    - gitlab-terraform validate | tee -a output.log
+    - gitlab-terraform plan | tee -a output.log
+    - if [ ${PLAN_JSON} == "true" ]; then
+    -   gitlab-terraform plan-json | tee -a plan.json
+    - fi
+
+  artifacts:
+    when: always
+    expose_as: "Terraform Plan artifact"
+    paths:
+      - plan.cache
+      - "${CI_PROJECT_DIR}/${TF_ROOT}/output.log"
+    reports:
+      terraform: plan.json
