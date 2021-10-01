@@ -115,7 +115,7 @@ This file, named `README.md`, contains the documentation of a job  in `markdown`
 === "Example of README.md"
 
     ```md
-    ## Description
+    ## Objective
 
     Creates a versioned HTML documentation from API annotations in your source
     code using [apiDoc](https://www.apidocjs.com/).
