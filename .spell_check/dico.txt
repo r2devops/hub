@@ -351,6 +351,9 @@ severities
 Kustomize
 namespace
 kubeconfig
+init
+backend
+backends
 CLIPPY
 CPP
 CPPLINT

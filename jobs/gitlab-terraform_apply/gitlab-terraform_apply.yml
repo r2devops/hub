@@ -1,0 +1,29 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages: 
+ - deploy
+
+cache:
+  key:
+    files:
+    - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform.lock.hcl"
+  paths:
+    - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform"
+
+gitlab-terraform_apply:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.19.1
+
+  variables:
+    TF_ADDRESS: ""
+
+  script:
+    - cd ${CI_PROJECT_DIR}/${TF_ROOT}
+    - gitlab-terraform apply
+
+  artifacts:
+    when: always
+    expose_as: "Terraform Apply artifact"
+    paths:
+      - plan.cache
+      - "${CI_PROJECT_DIR}/${TF_ROOT}/output.log"

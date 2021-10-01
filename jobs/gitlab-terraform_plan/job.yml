@@ -1,0 +1,13 @@
+name: gitlab-terraform_plan
+description: This job will initialize a working directory containing Terraform configuration files and plan the changes
+default_stage: provision
+icon: 🔷
+maintainer: totara-thib
+license: MIT
+images:
+  registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.19.1
+tools:
+labels:
+  - GitLab
+  - Terraform
+  - Configuration
