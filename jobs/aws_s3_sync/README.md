@@ -1,6 +1,6 @@
 ## Objective
 
-This job uses the AWS CLI (v1 for now) in order to sync files between a directory and a target S3 bucket. See changes between the two versions [here](https://docs.aws.amazon.com/cli/latest/userguide/cliv2-migration.html){:target="_blank"}.
+This job uses the AWS CLI (v1 for now) in order to sync files between a directory and a target S3 bucket. It's compatible with all s3 object storage (not only AWS).
 
 [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"} is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
 
@@ -22,7 +22,7 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
 ## Job details
 * Job name: `aws_s3_sync`
 * Docker image: [bitnami/aws-cli:2.2.41](https://hub.docker.com/r/bitnami/aws-cli){:target="blank"}
-* Default stage: `others`
+* Default stage: `deploy`
 
 ### Variables
 
