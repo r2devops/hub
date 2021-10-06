@@ -39,7 +39,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
 * Job name: `lighthouse`
 * Docker image:
-[`justinribeiro/lighthouse`](https://hub.docker.com/r/justinribeiro/lighthouse)
+[`zenika/alpine-chrome:89-with-node`](https://hub.docker.com/r/zenika/alpine-chrome){:target="_blank"}
 * Default stage: `dynamic_tests`
 * When: `always`
 
