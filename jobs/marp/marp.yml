@@ -1,0 +1,40 @@
+#Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+marp:
+  image:
+    name: zenika/alpine-chrome:89-with-node-14
+    entrypoint: [""]
+  stage: build
+  variables:
+    MARP_OUTPUT_PATH: 'website_build/'
+    MARP_INPUT_PATH: 'slides/'
+    GENERATE_PDF: 'true'
+    MARP_ADDITIONNAL_OPTIONS: ' '
+
+    #Custom installation directory for npm in order to use marp command
+    NPM_INSTALL_DIR: ".npm-global"
+    #Custom path is needed to avoid permission error on generating pdf
+    CHROME_PATH: "/usr/bin/chromium-browser"
+  script:
+    - mkdir ${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}
+    - npm config set prefix '${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}'
+
+    - export PATH=${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}/bin:$PATH
+
+    - npm install -g @marp-team/marp-cli@1.4.1 
+
+    - marp ${MARP_ADDITIONNAL_OPTIONS} -I $MARP_INPUT_PATH -o ${CI_PROJECT_DIR}/${MARP_OUTPUT_PATH}
+    - if [ $GENERATE_PDF == "true" ]; then
+    -   marp ${MARP_ADDITIONNAL_OPTIONS} --pdf -I $MARP_INPUT_PATH -o ${CI_PROJECT_DIR}/${MARP_OUTPUT_PATH}
+    - fi
+  artifacts:
+    when: always
+    expose_as: "marp build"
+    paths:
+      - "$MARP_OUTPUT_PATH"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/build/mkdocs/#artifacts
+      - "website_build/"

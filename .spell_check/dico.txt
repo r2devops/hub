@@ -150,6 +150,8 @@ LUA
 Lua
 lua
 luacheck
+Marp
+marp
 Markdownlint
 markdownlint
 md
@@ -183,6 +185,8 @@ opensource
 os
 OSS
 OWASP
+PDF
+pdf
 perlcritic
 php
 PHPCS
@@ -386,3 +390,4 @@ Hotjar
 Hotjar's
 pseudonymized
 de
+
