@@ -5,7 +5,7 @@ icon: 🛡
 maintainer: FulcrandG
 license: MIT
 images:
-  "instrumentisto/nmap": "7.91"
+  "instrumentisto/nmap": "7.92"
 tools:
   "xsltproc": "latest"
   "nmap": "latest"

@@ -41,7 +41,7 @@ if one of them should not be.
 
 * Job name: `nmap`
 * Docker image:
-[`instrumentisto/nmap`](https://hub.docker.com/r/instrumentisto/nmaps)
+[`instrumentisto/nmap`](https://hub.docker.com/r/instrumentisto/nmap)
 * Default stage: `dynamic_tests`
 * When: `always`
 
@@ -54,7 +54,7 @@ if one of them should not be.
 | `NMAP_OPTIONS` | Additional options you may want for the scan (`man nmap`) | ` ` |
 | `NMAP_OUTPUT` | Name for the XML output file for nmap | `nmap-report.xml` |
 | `HTML_OUTPUT` | Name for the html file for the Merge Request Widget for this job | `nmap-report.html` |
-| `LIBXSLT_VERSION` | Tool's version of LibXslt | `1.1.34-r0` |
+| `LIBXSLT_VERSION` | Tool's version of LibXslt | `1.1.34-r1` |
 
 ### Artifacts
 
