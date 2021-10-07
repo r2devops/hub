@@ -17,6 +17,12 @@ aws_s3_sync:
     BUCKET_NAME: " "
     AWS_ACL: " "
 
+    S3_SIGNATURE_VERSION: "s3v4"
+    S3_MAX_CONCURRENT_REQUESTS: "100"
+    S3_MAX_QUEUE_SIZE: "1000"
+    S3_MULTIPART_THRESHOLD: "50MB"
+    S3_MULTIPART_CHUNCKSIZE: "10MB"
+    S3API_ENDPOINTURL: " "
 
   script:
 
@@ -33,9 +39,20 @@ aws_s3_sync:
     -   aws configure set default.s3.endpoint_url ${AWS_ENDPOINT}
     - fi
 
-    #update the ACL with the AWS json input
-    - if [ ! -z ${AWS_ACL} ]; then
-    -   aws s3api get-bucket-acl --bucket ${BUCKET_NAME} --cli-input-json ${AWS_ACL}
+    - aws configure set default.s3.signature_version ${S3_SIGNATURE_VERSION}
+    - aws configure set default.s3.max_concurrent_requests ${S3_MAX_CONCURRENT_REQUESTS}
+    - aws configure set default.s3.max_queue_size ${S3_MAX_QUEUE_SIZE}
+    - aws configure set default.s3.multipart_threshold ${S3_MULTIPART_THRESHOLD}
+    - aws configure set default.s3.multipart_chunksize ${S3_MULTIPART_CHUNCKSIZE}
+
+    - if [ ! -z ${S3API_ENDPOINTURL} ]; then
+    -   aws configure set default.s3api.endpointurl ${S3API_ENDPOINTURL}
+    - fi
+
+
+    #update the ACL
+    - if [ ! -z "$AWS_ACL" ]; then
+    -   aws s3api put-bucket-acl $AWS_ACL
     - fi
 
     #sync to the specified bucket
