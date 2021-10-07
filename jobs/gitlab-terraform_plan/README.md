@@ -20,7 +20,7 @@ This job will initialize a working directory containing Terraform configuration 
 
 * Job name: `gitlab-terraform_plan`
 * Docker image:
-[`registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.19.1`](https://gitlab.com/gitlab-org/terraform-images)
+[`registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0`](https://gitlab.com/gitlab-org/terraform-images)
 * Default stage: `provision`
 * When: `always`
 
