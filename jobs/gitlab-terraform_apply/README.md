@@ -21,7 +21,7 @@ This job will apply all the changes set by `gitlab-terraform_plan` in the file `
 
 * Job name: `gitlab-terraform_apply`
 * Docker image:
-[`registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.19.1`](https://gitlab.com/gitlab-org/terraform-images)
+[`registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0`](https://gitlab.com/gitlab-org/terraform-images)
 * Default stage: `deploy`
 * When: `always`
 

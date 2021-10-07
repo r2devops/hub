@@ -5,7 +5,7 @@ icon: 🔷
 maintainer: totara-thib
 license: MIT
 images:
-  registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.19.1
+  registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0
 tools:
 labels:
   - GitLab

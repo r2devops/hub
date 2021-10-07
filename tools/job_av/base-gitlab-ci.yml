@@ -31,7 +31,7 @@ job_av:
     - cp freshclam_db/* /var/lib/clamav/
     # Add cut of `@` for specific image tags (eg: `lighthouse@sha...`)
     - JOB=$(basename ${IMAGE} | cut -d':' -f1 | cut -d'@' -f1)
-    - docker create --name ${JOB} ${IMAGE}
+    - docker create --name ${JOB} ${IMAGE} echo r2devops.io
     - docker export ${JOB} > ${JOB}.tar
     - mkdir ${JOB}
     - tar -xf ${JOB}.tar -C ${JOB}
