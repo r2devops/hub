@@ -1,0 +1,15 @@
+name: aws_s3_sync
+description: A ready-to-use AWS S3 job to sync a local directory into a bucket. This Job is compatible with all S3 Object storage.
+default_stage: deploy
+icon: 🪣
+maintainer: GridexX
+license: MIT
+images: 
+  "bitnami/aws-cli": '2.2.41'
+tools:
+  AWS CLI: "1.20.44"
+  Python: "3.7.12"
+labels:
+ - GitLab
+ - AWS
+ - S3

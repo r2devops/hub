@@ -11,7 +11,10 @@ args
 arror
 aspell
 aws
+acl
+ACL
 behaviour
+bitnami
 bom
 bulary
 bundler
@@ -365,6 +368,7 @@ ISORT
 LWC
 MYPY
 SCALAFIX
+Scaleway
 SFDX
 SQLFLUFF
 SWIFTLINT
