@@ -80,6 +80,7 @@ ENV
 eslint
 exe
 fka
+fmt
 fontawesome
 Fortran
 frontend
@@ -93,6 +94,8 @@ Gitleaks
 gitleaks
 glibc
 globals
+Gofmt
+gofmt
 Golang
 golangci
 gosec
@@ -394,4 +397,3 @@ Hotjar
 Hotjar's
 pseudonymized
 de
-
