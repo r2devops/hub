@@ -1,0 +1,33 @@
+stages:
+  - static_tests
+
+gofmt:
+    image: golang:1.17-alpine3.14
+    stage: static_tests
+    variables:
+        # List of option to pass to the cmdline
+        GOFMT_OPTIONS: ""
+        # Path to run gofmt tool
+        PROJECT_ROOT: "."
+        #  Print diffs to standard output -d
+        GOFMT_PRINT_DIFF: "true"
+        # Print filenames to standard output -l
+        GOFMT_PRINT_FILENAME: "false"
+        # Generate a temporary file as an output.
+        GOFMT_OUTPUT_FILE: "gofmt_output_file"
+
+
+    script:
+      - if [ "$GOFMT_PRINT_DIFF" == "true" ]; then
+      -      GOFMT_OPTIONS="$GOFMT_OPTIONS -d"
+      - fi
+      - if [ "$GOFMT_PRINT_FILENAME" == "true" ]; then
+      -     GOFMT_OPTIONS="$GOFMT_OPTIONS -l"
+      - fi
+      - cd $PROJECT_ROOT
+      - gofmt $GOFMT_OPTIONS . >> $GOFMT_OUTPUT_FILE
+      - cat $GOFMT_OUTPUT_FILE
+      - value=$( cat $GOFMT_OUTPUT_FILE | wc -l )
+      - if [ $value -gt 1 ]; then
+      -     exit 1
+      - fi

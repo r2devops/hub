@@ -1,0 +1,12 @@
+name: gofmt
+description: Gofmt formats Go programs. It uses tabs for indentation and blanks for alignment. Alignment assumes that an editor is using a fixed-width font.
+default_stage: static_tests
+icon: 📃
+maintainer: coconux
+license: MIT
+images:
+  golang:1.17-alpine3.14
+tools:
+labels:
+    - Go
+    - Lint
