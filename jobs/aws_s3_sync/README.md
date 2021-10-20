@@ -1,6 +1,6 @@
 ## Objective
 
-This job uses the AWS CLI (v1 for now) in order to sync files between a directory and a target S3 bucket. It's compatible with all s3 object storage (not only AWS).
+This job uses the latest AWS CLI version (v2 for now) in order to sync files between a directory and a target S3 bucket. It's compatible with all s3 object storage (not only AWS).
 
 [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"} is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
 
@@ -9,7 +9,7 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/aws_s3_sync.yml'
     ```
-1. Set your crendentials variables in the Gitlab CI/CD variables section of your project (see the [S3 documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html){:target="_blank"} about credentials) .
+1. Set your credentials variables in the Gitlab CI/CD variables section of your project (see the [S3 documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html){:target="_blank"} about credentials) .
 
     ??? summary "Need a custom Endpoint ⚓ ?"
       Just type your custom url in the variable `AWS_ENDPOINT`
@@ -21,7 +21,7 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
 
 ## Job details
 * Job name: `aws_s3_sync`
-* Docker image: [bitnami/aws-cli:2.2.41](https://hub.docker.com/r/bitnami/aws-cli){:target="blank"}
+* Docker image: [alpine:3.13.6](https://hub.docker.com/_/alpinei){:target="blank"}
 * Default stage: `deploy`
 
 ### Variables
@@ -31,13 +31,8 @@ This job uses the AWS CLI (v1 for now) in order to sync files between a director
 | `AWS_ACCESS_KEY_ID` | Access key | ` ` |
 | `AWS_SECRET_ACCESS_KEY` | Secret key | ` ` |
 | `AWS_DEFAULT_REGION` | Region used | ` ` |
+| `AWS_BUCKET_NAME`| The name of the bucket | ` ` |
 | `AWS_ENDPOINT` | Custom endpoint if needed | ` ` |
 | `AWS_ACL` | If you want to add an ACL (e.g. `public-read`) | ` ` |
 | `SYNC_DIR` | Directory to sync | `build` |
-| `BUCKET_NAME`| The name of the bucket | ` ` |
-| `S3_SIGNATURE_VERSION` | S3 signature version | `s3v4` |
-| `S3_MAX_CONCURRENT_REQUESTS` | The maximum concurrent requests' number | `100` |
-| `S3_MAX_QUEUE_SIZE` | The maximum queue's size | `1000` |
-| `S3_MULTIPART_THRESHOLD` | The multipart threshold (MB at end) | `50MB` |
-| `S3_MULTIPART_CHUNCKSIZE` | The multipart chuncksize (MB at end) | `10MB` |
-| `S3API_ENDPOINTURL` | The S3 endpoint URL | ` ` |
+| `DELETE_OLD_FILE` | Delete files that exist in the destination but not in the source  | `false` |
