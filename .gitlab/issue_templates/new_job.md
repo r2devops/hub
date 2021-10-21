@@ -57,3 +57,6 @@ logs, and code as it's very hard to read otherwise.
 
 ## Possible stages or labels for this job
 <!-- Identify Stages and Labels available by checking [the documentation](https://r2devops.io/jobs/) -->
+
+## Project sample to test this job
+<!-- Identify a public project to verify your job is working -->
