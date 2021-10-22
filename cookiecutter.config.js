@@ -33,10 +33,6 @@ module.exports = [
         {
           templateVariable: "r2_imagetag",
           question: "What is the tag of this image?",
-          errorMessage: "Must be a specific tag",
-          isValid(val) {
-            return val !== "latest";
-          }
         },
         {
           templateVariable: "r2_icon",
