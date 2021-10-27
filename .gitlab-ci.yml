@@ -146,6 +146,8 @@ job_image_scan:
     -   fi
     -   IMAGE=""
     - done
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
   cache:
     paths:
       - "$TRIVY_CACHE_DIR"
