@@ -92,7 +92,7 @@ able to work on it before merging your update in the real project.
 Thanks a lot for your contribution 😀🎉 !
 
 Now, we will take a look at your work and merge it if everything is ok.
-👀 Meanwhile, you can join our [Discord community](https://discord.gg/5QKpGqR) to tell us more about your fresh new contribution.
+👀 Meanwhile, you can join our [Discord community](https://discord.r2devops.io/?utm_medium=website&utm_source=r2devops&utm_campaign=footer) to tell us more about your fresh new contribution.
 We love talking with our contributors and users!
 
 ## Guidelines (Required)
@@ -382,4 +382,4 @@ follow these steps:
 !!! success "Congratulation, you did it!"
       You went through all our guideline. 🥳
 
-      If never something feel unclear or you're having a doubt, join us on [Discord](https://discord.gg/5QKpGqR) to ask us anything! We'll be more than happy to help.
+      If never something feel unclear or you're having a doubt, join us on [Discord](https://discord.r2devops.io/?utm_medium=website&utm_source=r2devops&utm_campaign=footer) to ask us anything! We'll be more than happy to help.
