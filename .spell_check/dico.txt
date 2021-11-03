@@ -45,8 +45,6 @@ Coffeescript
 CONFIG
 config
 credscan
-credentials
-chunksize
 CSHARP
 css
 customizable
