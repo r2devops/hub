@@ -39,7 +39,7 @@ aws_s3_sync:
     # Generating the options
     - options=""
     - $([ ! -z ${AWS_ENDPOINT} ]) && options="${options} --endpoint-url ${AWS_ENDPOINT}"
-    - $([ ! -z ${AWS_ACL} ]) && options="${options} --AWS_ACL ${AWS_ACL}"
+    - $([ ! -z ${AWS_ACL} ]) && options="${options} --acl ${AWS_ACL}"
     - $([ ${DELETE_OLD_FILE} == "true" ]) && options="${options} --delete"
     # Synchronise the directory
     - aws s3 sync ${SYNC_DIR} s3://${AWS_BUCKET_NAME}/ ${options}
