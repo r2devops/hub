@@ -19,4 +19,4 @@ This page will guide you to the right place depending on the kind of contributio
   
 !!! heart "Community"
     We love talking with our contributors and users! Join our
-    [Discord community :fontawesome-brands-discord:](https://discord.r2devops.io/?utm_medium=website&utm_source=r2devops)
+    [Discord community :fontawesome-brands-discord:](https://discord.gg/5QKpGqR)
