@@ -1,0 +1,72 @@
+stages:
+  - dynamic_tests
+
+testssl:
+    image:
+       name: drwetter/testssl.sh:3.0
+       entrypoint: [""]
+    stage: dynamic_tests
+    variables:
+      # Path to the script inside the docker image
+      TESTSSL_PATH: "/home/testssl/testssl.sh"
+      # URL to test
+      TESTSSL_URL: "gitlab.com"
+      # List of options to pass to testssl
+      TESTSSL_OPTIONS:  ""
+      # Enable HTML export
+      TESTSSL_EXPORT_HTML: "true"
+      # Name of the HTML export
+      TESTSSL_EXPORT_HTML_FILENAME: "report.html"
+      # Enable JSON export
+      TESTSSL_EXPORT_JSON: "true"
+      # Name of the HTML export
+      TESTSSL_EXPORT_JSON_FILENAME: "report.json"
+      # By default, all mass tests are done in serial mode, you can enable parallel testing (--parallel)
+      TESTSSL_PARALLEL_MODE: "true"
+      # Checks each local cipher remotely -e
+      TESTSSL_CHECK_LOCAL_CIPHER_REMOTELY: "true"
+      # Omits some checks: using openssl for all ciphers, show only first preferred cipher (-e)
+      TESTSSL_FAST: "true"
+      # Checks TLS/SSL protocols (including SPDY/HTTP2) (-p)
+      TESTSSL_TLS_SSL: "true"
+      # Test all the vulnerabilities (-U)
+      TESTSSL_VULNERABILITY: "true"
+
+    script:
+      # Enable options
+      - if [ "$TESTSSL_EXPORT_HTML" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS --htmlfile $TESTSSL_EXPORT_HTML_FILENAME"
+      - fi
+      - if [ "$TESTSSL_EXPORT_JSON" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS --jsonfile $TESTSSL_EXPORT_JSON_FILENAME"
+      - fi
+      - if [ "$TESTSSL_PARALLEL_MODE" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS --parallel"
+      - fi
+      - if [ "$TESTSSL_CHECK_LOCAL_CIPHER_REMOTELY" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS -e"
+      - fi
+      - if [ "$TESTSSL_TLS_SSL" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS -p"
+      - fi
+      - if [ "$TESTSSL_VULNERABILITY" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS -U"
+      - fi
+      - if [ "$TESTSSL_FAST" == "true" ]; then
+      -      TESTSSL_OPTIONS=" $TESTSSL_OPTIONS --fast"
+      - fi
+      # Run the script
+      - $TESTSSL_PATH $TESTSSL_OPTIONS $TESTSSL_URL
+
+
+    artifacts:
+      when: always
+      expose_as: "Testssl report"
+      paths:
+        - "$TESTSSL_EXPORT_HTML_FILENAME"
+        - "$TESTSSL_EXPORT_JSON_FILENAME"
+        # Below path is a workaround to provide artifact exposition in MR if
+        # default output value is used.
+        - "report.html"
+        - "report.json"
+
