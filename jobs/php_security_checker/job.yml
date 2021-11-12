@@ -1,7 +1,7 @@
 name: php_security_checker
 description: PHP security-checker is a job that checks if your PHP application depends on PHP packages with known security vulnerabilities.
 default_stage: static_tests
-icon: 👮‍♂️
+icon: 👮
 maintainer: melheb.younes
 license: MIT
 images:
