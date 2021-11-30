@@ -89,39 +89,3 @@ function loadListeners() {
     tabbed_2.onchange = resizeFirst;
     window.onresize = resizeListener;
 }
-
-
-<!-- HotJar -->
-function hotjar(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:2507435,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-}
-
-/**
- * Explicit consent has been given
- */
-const consent = function(state) {
-    console.log("Cookie consent has been given");
-    hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
-}
-
-function consentUpdate() {
-    const item = localStorage.getItem("tibrrCookieConsent");
-    if (item && new Date().getDate() < parseInt(item))
-        hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
-}
-
-window.addEventListener('load', () => {
-    const cookieButtons = document.getElementsByClassName("tibrr-cookie-consent-button");
-    for (let item of cookieButtons) {
-        item.addEventListener('click', () => consent(true), false);
-    }
-});
-
-// We check whether the user has already something in the localStorage for it & so fetch needed plugins
-consentUpdate();
-<!-- End HotJar -->
