@@ -2,9 +2,9 @@ cargo_doc:
     image: rust:1.57-buster
     stage: build
     variables:
-      ONLY_LIB: false
+      ONLY_LIB: 'false'
       PROJECT_ROOT: '.'
-      RELEASE_MODE: true
+      RELEASE_MODE: 'true'
       OUTPUT_FOLDER: "website_build"
       ADDITIONAL_OPTIONS: ''
     script:
