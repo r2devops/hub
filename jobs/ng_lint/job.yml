@@ -1,0 +1,16 @@
+name: ng_lint
+description: This job checks your code quality inside your Angular application. It uses a custom lint scipt of your choices.
+default_stage: static_tests
+icon: 🔍
+maintainer: valentin.guyon.vg
+license: Apache-2.0
+images:
+  "node": "16.13.1-buster"
+tools:
+labels:
+  - GitLab
+  - Linter
+  - Quality
+  - NPM
+  - Utilities
+  - Angular
