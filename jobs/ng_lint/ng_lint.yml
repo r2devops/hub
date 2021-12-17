@@ -1,0 +1,28 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+ng_lint:
+
+  image:
+    name: node:16.13.1-buster
+    entrypoint: [""]
+
+  stage: static_tests
+
+  variables:
+    PROJECT_ROOT: "."
+    PROJECT_NAME: ""
+    NG_LINT_OPTIONS: ""
+    NG_LINT_PACKAGE: ""
+
+  script:
+    - cd ${PROJECT_ROOT}
+    - npm install
+    - npm install -g @angular/cli
+    - |
+      if [[ ${NG_LINT_PACKAGE} != "" ]]; then
+      ng add ${NG_LINT_PACKAGE}
+      fi
+    - ng lint ${PROJECT_NAME} ${NG_LINT_OPTIONS}
