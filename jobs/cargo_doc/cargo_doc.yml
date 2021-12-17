@@ -1,6 +1,3 @@
-stages:
-  - build
-
 cargo_doc:
     image: rust:1.57-buster
     stage: build
