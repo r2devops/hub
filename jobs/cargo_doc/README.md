@@ -25,4 +25,8 @@ Cargo_doc aims to generate rustdoc for your project
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `VARIABLE` <img width=100/> | A general variable for this job <img width=175/>| `Hello R2` <img width=100/>|
+| ONLY_LIB | Generate documentation of current library only | `false` | 
+| PROJECT_ROOT | Relative to root of your repository, it is the path to your rust project | `.` | 
+| RELEASE_MODE | Generate documentation with optimization for release | `true` | 
+| OUTPUT_FOLDER | Directory where are outputed files | `website_build` | 
+| ADDITIONAL_OPTIONS | Possibility to add more options into the command | ` ` | 
