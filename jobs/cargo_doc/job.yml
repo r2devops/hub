@@ -1,7 +1,7 @@
 name: cargo_doc
 description: Cargo_doc aims to generate rustdoc for your project
 default_stage: build
-icon: icon: 🧠
+icon: 🧠
 maintainer: DjNaGuRo
 license: MIT
 images:
