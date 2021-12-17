@@ -299,12 +299,14 @@ RetireJS
 RuboCop
 rubocop
 runtime
+rustdoc
 salesforce
 SAS
 sast
 scala
 SCALAFIX
 scalafix
+Scaleway
 schemas
 serverless
 Severities
