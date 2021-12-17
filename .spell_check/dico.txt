@@ -248,7 +248,7 @@ openssl
 opensslv
 os
 OSS
-outputed
+output
 OWASP
 PDF
 pdf
