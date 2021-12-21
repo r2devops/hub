@@ -87,6 +87,7 @@ DevOps's
 Devops's
 devops's
 dictionnaries
+dir
 DLL
 dll
 DocBlocks
