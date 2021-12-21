@@ -28,7 +28,7 @@ cypress_run:
       - else
       -   npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_RECORDER} ${ADDITIONAL_OPTIONS}
       - fi
-      artifacts:
+    artifacts:
         when: always
         paths:
           - cypress/videos/**/*.mp4
