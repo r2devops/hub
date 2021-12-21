@@ -22,13 +22,12 @@ cypress_run:
       # start de server in the background
       - npm run start:ci &
       # run Cypress tests
-      - >
-        if [[${CYPRESS_RECORD_KEY} != ""]]; then
-          export CYPRESS_RECORD_KEY=${CYPRESS_RECORD_KEY}
-          npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_RECORDER} ${ADDITIONAL_OPTIONS} --record
-        else
-          npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_RECORDER} ${ADDITIONAL_OPTIONS}
-        fi
+      - if [[${CYPRESS_RECORD_KEY} != ""]]; then
+      -   export CYPRESS_RECORD_KEY=${CYPRESS_RECORD_KEY}
+      -   npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_RECORDER} ${ADDITIONAL_OPTIONS} --record
+      - else
+      -   npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_RECORDER} ${ADDITIONAL_OPTIONS}
+      - fi
       artifacts:
         when: always
         paths:
