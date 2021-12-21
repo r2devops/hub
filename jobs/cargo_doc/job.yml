@@ -1,9 +1,0 @@
-name: cargo_doc
-description: Cargo_doc aims to generate rustdoc for your project
-default_stage: build
-icon: 🧠
-maintainer: DjNaGuRo
-license: MIT
-images:
-  rust:1.57-buster
-tools:
