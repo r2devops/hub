@@ -23,6 +23,10 @@ A job to run end-to-end test
 
 ### Variables
 
-| Name | Description | Default |
+| Name | Description | Default | 
 | ---- | ----------- | ------- |
-| `VARIABLE` <img width=100/> | A general variable for this job <img width=175/>| `Hello R2` <img width=100/>|
+| `CYPRESS_CONFIG_FILE` | Specify a config file to use | `cypress.json` |
+| `CYPRESS_PROJECT_PATH` | Path to project dir | ` ` |
+| `CYPRESS_RECORD_KEY` | Specify a record key in order to get a video of tests | ` ` |
+| `CYPRESS_RECORDER` | Name of the reporter used | `spec` |
+| `ADDITIONAL_OPTIONS` | Additional options to the run | ` ` |
