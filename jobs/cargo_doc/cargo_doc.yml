@@ -9,7 +9,13 @@ cargo_doc:
       ADDITIONAL_OPTIONS: ''
     script:
       - cd $PROJECT_ROOT
-      - cargo doc --target-dir ${OUTPUT_FOLDER} --lib=$ONLY_LIB --release=$RELEASE_MODE $ADDITIONAL_OPTIONS
+      - if [ ${ONLY_LIB} == "true" ]; then
+      -   ADDITIONAL_OPTIONS += " ${ONLY_LIB}"
+      - fi
+      - if [ ${RELEASE_MODE} == "true" ]; then
+      -   ADDITIONAL_OPTIONS += " ${RELEASE_MODE}"
+      - fi
+      - cargo doc --target-dir ${OUTPUT_FOLDER} $ADDITIONAL_OPTIONS
     artifacts:
       when: always
       expose_as: "Cargo_doc build"
