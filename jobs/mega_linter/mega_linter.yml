@@ -40,7 +40,10 @@ mega_linter:
     -   done
     - fi
 
-    - '[ FAILED="true" ] && exit 1'
+    - if [ "$FAILED" = true ]; then
+    -   exit 1
+    - fi
+    - exit 0
   variables:
     # All available variables are described in documentation
     # https://nvuillam.github.io/mega-linter/configuration/
