@@ -10,10 +10,10 @@ cargo_doc:
     script:
       - cd $PROJECT_ROOT
       - if [ ${ONLY_LIB} == "true" ]; then
-      -   ADDITIONAL_OPTIONS += " ${ONLY_LIB}"
+      -   ADDITIONAL_OPTIONS+=" --lib"
       - fi
       - if [ ${RELEASE_MODE} == "true" ]; then
-      -   ADDITIONAL_OPTIONS += " ${RELEASE_MODE}"
+      -   ADDITIONAL_OPTIONS+=" --release"
       - fi
       - cargo doc --target-dir ${OUTPUT_FOLDER} $ADDITIONAL_OPTIONS
     artifacts:
@@ -21,3 +21,4 @@ cargo_doc:
       expose_as: "Cargo_doc build"
       paths:
         - $OUTPUT_FOLDER
+
