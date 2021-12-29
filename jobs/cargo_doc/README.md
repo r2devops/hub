@@ -1,10 +1,9 @@
 ## Objective
 
-Build a package's documentation for your project. Check the doc here 👉 [cargo-doc](https://doc.rust-lang.org/cargo/commands/cargo-doc.html#exit-status)
-
+Build a package's documentation for local package and all dependencies. Check the doc here 👉 [cargo-doc](https://doc.rust-lang.org/cargo/commands/cargo-doc.html)
 ## How to use it
 
-1. Ensure that your project has Cargo.toml manifest.
+1. Ensure that your project has `Cargo.toml` file.
 1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/cargo_doc.yml'
