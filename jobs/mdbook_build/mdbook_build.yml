@@ -1,0 +1,32 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+mdbook_build:
+
+  image:
+    name: rust:1.57-buster
+    entrypoint: [""]
+
+  stage: build
+
+  variables:
+    PROJECT_ROOT: "."
+    DOCUMENTATION_OUTPUT: "website_build"
+    MDBOOK_VERSION: ""
+
+  script:
+    - cd ${PROJECT_ROOT}
+    - |
+        if [[ ${MDBOOK_VERSION} != "" ]]; then
+            cargo install mdbook --vers "${MDBOOK_VERSION}"
+        else
+            cargo install mdbook
+        fi
+    - mdbook build --dest-dir ${CI_PROJECT_DIR}/${DOCUMENTATION_OUTPUT}
+
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${DOCUMENTATION_OUTPUT}
