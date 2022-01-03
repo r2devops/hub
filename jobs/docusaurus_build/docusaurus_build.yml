@@ -1,0 +1,27 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+docusaurus_build:
+
+  image:
+    name: node:16.13.1-buster
+    entrypoint: [""]
+
+  stage: build
+
+  variables:
+    PROJECT_ROOT: "."
+    DOCUSAURUS_OUTPUT_PATH: "website_build/"
+
+  script:
+    - cd ${PROJECT_ROOT}
+    - npm install
+    - npm install docusaurus
+    - npx docusaurus build --out-dir ${CI_PROJECT_DIR}/${DOCUSAURUS_OUTPUT_PATH}
+
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${DOCUSAURUS_OUTPUT_PATH}
