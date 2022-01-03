@@ -405,8 +405,9 @@ YamlLint
 Yamllint
 yamllint
 zaproxy
+mdBook
+mdbook
 Docusaurus
 MDX
-mdBook
 webpack
 Webpack
