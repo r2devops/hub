@@ -1,0 +1,14 @@
+name: docusaurus_build
+description: Build HTML documentation from Markdown source using Docusaurus, and can even embed JSX components into your Markdown thanks to MDX.
+default_stage: build
+icon: 🧱
+maintainer: valentin.guyon.vg
+license: Apache-2.0
+images:
+  "node": "16.13.1-buster"
+tools:
+labels:
+  - GitLab
+  - NPM
+  - Build
+  - Docusaurus
