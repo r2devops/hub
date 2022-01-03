@@ -25,9 +25,11 @@ This job checks your code quality inside your Angular application. It uses a cus
 
 ### Variables
 
-!!! info If you already have a package that will be used by the `ng lint` command, you don't have to override the `NG_LINT_PACKAGE` variable.
+!!! info
+    If you already have a package that will be used by the `ng lint` command, you don't have to override the `NG_LINT_PACKAGE` variable.
 
-!!! info If you don't have a `defaultProject` value in your `angular.json` file, you have to override the `PROJECT_NAME` variable.
+!!! info
+    If you don't have a `defaultProject` value in your `angular.json` file, you have to override the `PROJECT_NAME` variable.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
