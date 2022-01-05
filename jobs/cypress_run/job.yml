@@ -1,0 +1,9 @@
+name: cypress_run
+description: A job to run end-to-end test
+default_stage: dynamic_tests
+icon: 🧠
+maintainer: DjNaGuRo
+license: MIT
+images:
+  cypress/browsers:node16.5.0-chrome94-ff93
+tools:
