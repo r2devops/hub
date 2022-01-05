@@ -5,10 +5,14 @@ This job test your front end web application by running tests headlessly in a CI
 
 ## How to use it
 
-1. Ensure that your project is set to use Cypress. You can refer to the [Cypress Getting Started](https://docs.cypress.io/guides/getting-started/installing-cypress). You can see your job record on the Cypress Dashboard by connecting your GitLab account and set the `CYPRESS_RECORD_KEY` variable. See how to [Set up your project to record](https://docs.cypress.io/guides/dashboard/projects#Set-up-a-project-to-record) and [Connect GitLab with Cypress Dashboard](https://docs.cypress.io/guides/dashboard/gitlab-integration#Installing-the-GitLab-integration).
-!!! warning You must override `CYPRESS_BASE_URL` variable.
+!!! warning 
+    You must override `CYPRESS_BASE_URL` variable.
     To ensure that the job work you have to specify the URL of your server (Example: `http://localhost:4200` for Angular web Application, `http://localhost:3000` for React, etc.).
     It's used to     prevent Cypress runs before your web sever is up and available. You can see more [here](https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server)
+    
+
+1. Ensure that your project is set to use Cypress. You can refer to the [Cypress Getting Started](https://docs.cypress.io/guides/getting-started/installing-cypress). You can see your job record on the Cypress Dashboard by connecting your GitLab account and set the `CYPRESS_RECORD_KEY` variable. See how to [Set up your project to record](https://docs.cypress.io/guides/dashboard/projects#Set-up-a-project-to-record) and [Connect GitLab with Cypress Dashboard](https://docs.cypress.io/guides/dashboard/gitlab-integration#Installing-the-GitLab-integration).
+
 1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
     ```yaml
       - remote: 'https://jobs.r2devops.io/latest/cypress_run.yml'
