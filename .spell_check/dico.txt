@@ -87,6 +87,7 @@ DevOps's
 Devops's
 devops's
 dictionnaries
+dir
 DLL
 dll
 DocBlocks
@@ -137,6 +138,7 @@ Gzip
 HADOLINT
 hadolint
 hardcoded
+headlessly
 Hotjar
 Hotjar's
 html
@@ -216,6 +218,7 @@ md
 minify
 Mkdocs
 mkdocs
+Mocka
 Monorepo
 monorepo
 MONTPELLIER
@@ -248,6 +251,7 @@ openssl
 opensslv
 os
 OSS
+output
 OWASP
 PDF
 pdf
@@ -299,12 +303,14 @@ RetireJS
 RuboCop
 rubocop
 runtime
+rustdoc
 salesforce
 SAS
 sast
 scala
 SCALAFIX
 scalafix
+Scaleway
 schemas
 serverless
 Severities

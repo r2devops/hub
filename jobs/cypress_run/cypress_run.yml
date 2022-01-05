@@ -1,0 +1,45 @@
+stages:
+  - dynamic_tests
+
+cypress_run:
+    image: cypress/browsers:node16.5.0-chrome94-ff93
+    stage: dynamic_tests
+
+    cache:
+      key: ${CI_COMMIT_REF_SLUG}
+      paths:
+        - .npm/
+        - ~/.cache
+
+    variables:
+      CYPRESS_CONFIG_FILE : "cypress.json"
+      CYPRESS_PROJECT_PATH : "."
+      CYPRESS_RECORD_KEY : ""
+      CYPRESS_REPORTER : "spec"
+      CYPRESS_BASE_URL : ""
+      ADDITIONAL_OPTIONS : ""
+
+    script:
+      # install dependencies
+      - npm ci
+      # install module wait-on to ensure that cypress will run after the serve start
+      - npm i -g wait-on
+      # start the server in the background and pause Cypress until the server is running
+      - if [ ! -z ${CYPRESS_BASE_URL} ]; then
+      -   npm start --no-clipboard & wait-on ${CYPRESS_BASE_URL}
+      - else
+      -   echo "Variable CYPRESS_BASE_URL is MANDATORY. You must fill it !"
+      -   exit 1
+      - fi
+      # run Cypress tests
+      - if [ ! -z ${CYPRESS_RECORD_KEY} ]; then
+      -   npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_REPORTER} ${ADDITIONAL_OPTIONS} --record
+      - else
+      -   npx cypress run -P ${CYPRESS_PROJECT_PATH} -C ${CYPRESS_CONFIG_FILE} -r ${CYPRESS_REPORTER} ${ADDITIONAL_OPTIONS}
+      - fi
+      
+    artifacts:
+        when: always
+        paths:
+          - cypress/videos/**/*.mp4
+          - cypress/screenshots/**/*.png
