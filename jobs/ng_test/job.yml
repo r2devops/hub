@@ -1,0 +1,13 @@
+name: ng_test
+description: Ready to use job on Angular project that runs `test` specified on options.
+default_stage: static_tests
+icon: 🧪
+maintainer: alexiaognard
+license: Apache-2.0
+images:
+  timbru31/node-chrome:latest
+tools:
+labels:
+    - GitLab
+    - Test
+    - Angular
