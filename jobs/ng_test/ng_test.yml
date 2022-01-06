@@ -1,0 +1,35 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+ng_test:
+  image:
+    name: timbru31/node-chrome:latest
+    entrypoint: [""]
+
+  stage: static_tests
+
+  variables:
+    PROJECT_ROOT: "."
+    PROJECT_NAME: ""
+    NG_TEST_OPTIONS: ""
+    NG_CODE_COVERAGE: "true"
+
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run npm install
+    - npm install
+    # Install angular dependencies
+    - npm install -g @angular/cli
+    # Run ng test
+    - ng test $PROJECT_NAME $NG_TEST_OPTIONS --code-coverage=$NG_CODE_COVERAGE
+
+  artifacts:
+    when: always
+    paths:
+      - ${PROJECT_ROOT}/coverage/index.html
+    reports:
+      junit: ${PROJECT_ROOT}/coverage/index.html
+
