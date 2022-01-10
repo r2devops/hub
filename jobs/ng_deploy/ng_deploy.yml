@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+ng_deploy:
+    image: node:15.14-buster
+    stage: deploy
+    variables:
+      VARIABLE: "Hello R2"
+    script:
+      - echo "${VARIABLE}"

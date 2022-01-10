@@ -1,0 +1,9 @@
+name: ng_deploy
+description: Deploy your Angular projects to any target (Firebase, Azure, GitHub pages, ...)
+default_stage: deploy
+icon: :brain:
+maintainer: DjNaGuRo
+license: MIT
+images:
+  node:15.14-buster
+tools:
