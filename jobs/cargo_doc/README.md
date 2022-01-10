@@ -1,6 +1,6 @@
 ## Objective
 
-Build a package's documentation for local package and all dependencies. Check the doc here 👉 [cargo-doc](https://doc.rust-lang.org/cargo/commands/cargo-doc.html)
+Build a package's documentation for local package and all dependencies. Check the doc here 👉 [cargo-doc](https://doc.rust-lang.org/cargo/commands/cargo-doc.html) for more information.
 ## How to use it
 
 1. Ensure that your project has `Cargo.toml` file and its members folders are hierarchically below the workspace root.
