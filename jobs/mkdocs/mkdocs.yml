@@ -5,15 +5,29 @@ stages:
 
 mkdocs:
   image:
-    name: squidfunk/mkdocs-material:6.1.7
+    name: squidfunk/mkdocs-material:8.1.4
     entrypoint: [""]
   stage: build
   variables:
     MKDOCS_OUTPUT_PATH: 'website_build/'
+    MKDOCS_ADDITIONAL_PLUGINS: 'mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin'
+
   script:
-    - pip3 install mkdocs-awesome-pages-plugin==2.4.0
-    - pip3 install mkdocs-git-revision-date-localized-plugin==0.7.2
-    - pip3 install mkdocs-macros-plugin==0.5.0
+    - |
+      if [[ ${MKDOCS_ADDITIONAL_PLUGINS} != "" ]]; then
+    # Save default IFS
+    - oldIFS=$IFS
+    # Modifying IFS
+    - export IFS=";"
+    - for plugin in $MKDOCS_ADDITIONAL_PLUGINS; do
+        # Restore to default IFS
+    -   IFS=$oldIFS
+        # Run the script
+    -   pip3 install $plugin
+        # Modifying IFS for the next loop
+    -   export IFS=";"
+    - done
+      fi
     - mkdocs build -d "$MKDOCS_OUTPUT_PATH"
   artifacts:
     when: always
