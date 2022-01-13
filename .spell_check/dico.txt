@@ -38,6 +38,7 @@ CI
 ci
 cli
 CLIPPY
+Clippy
 clippy
 clj
 CLOUDFORMATION
@@ -95,6 +96,7 @@ DOCKERFILE
 Dockerfile
 dockerfilelint
 Docstring
+Docusaurus
 DoD
 dotenv
 dotnet
@@ -215,6 +217,9 @@ markdownlint
 Marp
 marp
 md
+mdBook
+mdbook
+MDX
 minify
 Mkdocs
 mkdocs
@@ -401,6 +406,8 @@ vm
 Vue
 vue
 vulns
+webpack
+Webpack
 webserver
 Wordlists
 wordlists
@@ -411,9 +418,3 @@ YamlLint
 Yamllint
 yamllint
 zaproxy
-mdBook
-mdbook
-Docusaurus
-MDX
-webpack
-Webpack
