@@ -1,0 +1,21 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+cargo_clippy:
+
+  image:
+    name: rust:1.57-buster
+    entrypoint: [""]
+
+  stage: static_tests
+
+  variables:
+    PROJECT_ROOT: "."
+    ADDITIONAL_OPTIONS: "-- -W clippy::all"
+
+  script:
+    - cd ${PROJECT_ROOT}
+    - rustup component add clippy
+    - cargo clippy ${ADDITIONAL_OPTIONS}
