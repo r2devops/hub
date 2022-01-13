@@ -1,0 +1,14 @@
+name: cargo_build
+description: This job will compile local packages and all of their dependencies on Rust project
+default_stage: build
+icon: 🧱
+maintainer: alexiaognard
+license: Apache-2.0
+images:
+  rust:1.57-buster
+tools:
+labels:
+  - GitLab
+  - Build
+  - Cargo
+  - Rust

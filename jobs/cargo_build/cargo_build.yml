@@ -1,0 +1,35 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+cargo_build:
+  image:
+    name: rust:1.57-buster
+    entrypoint: [""]
+
+  stage: build
+
+  variables:
+    RELEASE_MODE: "true"
+    CARGO_EXCLUDE: ""
+    CARGO_INCLUDE: ""
+    PROJECT_ROOT: "."
+    CARGO_WORKSPACE: "false"
+    OUTPUT_DIR: "target"
+    ADDITIONAL_OPTIONS: ""
+
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    - if [[ (${CARGO_WORKSPACE} == "true") ]]; then CARGO_WORKSPACE="--workspace"; else CARGO_WORKSPACE=""; fi
+    - if [[ (${CARGO_INCLUDE} != "") ]]; then CARGO_INCLUDE="--package $CARGO_INCLUDE"; fi
+    - if [[ (${CARGO_EXCLUDE} != "") ]]; then CARGO_EXCLUDE="--exclude $CARGO_EXCLUDE" CARGO_WORKSPACE="--workspace"; fi
+    - if [[ ($RELEASE_MODE) ]]; then RELEASE_MODE="--release"; else RELEASE_MODE=""; fi
+
+    - cargo build $RELEASE_MODE $CARGO_WORKSPACE $CARGO_INCLUDE $CARGO_EXCLUDE $ADDITIONAL_OPTIONS --target-dir ${OUTPUT_DIR}
+
+  artifacts:
+    when: always
+    paths:
+      - $PROJECT_ROOT/$OUTPUT_DIR
