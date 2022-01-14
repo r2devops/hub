@@ -5,7 +5,7 @@ icon: 🧪
 maintainer: moha-s
 license: MIT
 images:
-    "node": "15.14-buster"
+    "node": "17-buster"
 tools:
 labels:
     - GitLab

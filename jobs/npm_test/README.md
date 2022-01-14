@@ -21,7 +21,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 
 * Job name: `npm_test`
 * Default stage: `static_tests`
-* Docker image: [`node:15.7-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:17-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 
