@@ -4,12 +4,12 @@ stages:
   - static_tests
 
 spell_check:
-  image: python:3.9
+  image: python:3.10-buster
   stage: static_tests
   allow_failure: true
   variables:
     PYSPELLING_LANGUAGE: "en"
-    PYSPELLING_SPELLER: "aspell=0.60.7~20110707-6"
+    PYSPELLING_SPELLER: "aspell=0.60.7~20110707-6+deb10u1"
     PYSPELLING_CONFIG: ""
     PYSPELLING_OPTIONS: ""
     SNIPPET_VERSION: "7419433888dc5e6ebd1223ed05c39c6507988b69"

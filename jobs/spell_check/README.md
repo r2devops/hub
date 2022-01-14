@@ -25,7 +25,6 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 !!! note "About Hunspell"
     Hunspell can be used as an alternative the aspell, the current spelling checker tool used. In order to have
     a working job, we recommend you to replace `PYSPELLING_SPELLER` with the following string `hunspell=1.7.0-2`.
-
     The above hunspell version has been tested with this job, it ensures you that this will properly work. Upgrading
     this version can cause your job to be broken, do it at your own risks.
 
@@ -33,7 +32,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 
 * Job name: `spell_check`
 * Docker image:
-[`python:3.9.1`](https://hub.docker.com/_/python/){:target="_blank"}
+[`python:3.10-buster`](https://hub.docker.com/_/python/){:target="_blank"}
 * Default stage: `static_tests`
 * When: `always`
 
@@ -42,7 +41,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `PYSPELLING_LANGUAGE` <img width=100/> | Languages dictionnaries to use (separate each language by a space) <img width=175/>| `en` <img width=100/>|
-| `PYSPELLING_SPELLER`  | Speller program to use | `aspell=0.60.7~20110707-6` |
+| `PYSPELLING_SPELLER`  | Speller program to use | `aspell=0.60.7~20110707-6+deb10u1` |
 | `PYSPELLING_CONFIG`  | Path to your custom `.pyspelling.yml` | ` ` |
 | `PYSPELLING_OPTIONS`  | Additional options for PySpelling | ` ` |
 | `SNIPPET_VERSION` | Snippet commit tag | `4cc2af8e840aff6f599a894351de62c9b29ddc69` |
@@ -50,7 +49,6 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 !!! info
     Spell_Check is also using [`allow_failure`](https://docs.gitlab.com/ee/ci/yaml/#allow_failure){:target="_blank"} Gitlab's variable,
     which is by default true.
-
     You can change this option to make the pipeline fails if any spelling error is detected. See [jobs customization](/use-the-hub/#jobs-customization).
 
 !!! info
@@ -82,9 +80,9 @@ You have to choose the option 2 above to do that.
 1. Move it into your project
 1. Update the variable `PYSPELLING_CONFIG` with the path to your config file
 1. Create a `dictionary.txt` file containing a list of words separated by newlines, it will define your dictionary
-1. Add the highlighted block below in the configuration file and
-   replace `path/to/dictionary` by the location of your dictionary.
-```{.yaml linenums="10" hl_lines="3 4 5 6 7"}
+1. Add this block below in the configuration file and replace `path/to/dictionary` by the location of your dictionary.
+
+```yaml
   aspell:
     lang: en
     d: en_US
