@@ -145,6 +145,7 @@ Hotjar
 Hotjar's
 html
 HTMLHint
+hunspell
 I/O
 ide
 IDL
