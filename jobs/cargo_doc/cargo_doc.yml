@@ -19,7 +19,7 @@ cargo_doc:
       - if [ ${RELEASE_MODE} == "true" ]; then
       -   ADDITIONAL_OPTIONS+=" --release"
       - fi
-      - if [ ${CI_PROJECT_DIR} != ${PROJECT_ROOT} ]; then
+      - if [ ! ${CI_PROJECT_DIR} -ef ${PROJECT_ROOT} ]; then
       -   OUTPUT_FOLDER="${CI_PROJECT_DIR}/${OUTPUT_FOLDER}"
       - fi
       - cargo doc --target-dir ${OUTPUT_FOLDER} $ADDITIONAL_OPTIONS
