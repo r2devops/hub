@@ -1,0 +1,30 @@
+cargo_doc:
+    image: rust:1.57-buster
+    stage: build
+    variables:
+      ONLY_LIB: 'false'
+      PROJECT_ROOT: '.'
+      RELEASE_MODE: 'true'
+      OUTPUT_FOLDER: "website_build"
+      ADDITIONAL_OPTIONS: ''
+    script:
+      - cd $PROJECT_ROOT
+      - if [ ! -f "Cargo.toml" ]; then
+      -   echo "ERROR --> Any Cargo.toml file isn't present in the given folder $PROJECT_ROOT"
+      -   exit 1
+      - fi
+      - if [ ${ONLY_LIB} == "true" ]; then
+      -   ADDITIONAL_OPTIONS+=" --lib"
+      - fi
+      - if [ ${RELEASE_MODE} == "true" ]; then
+      -   ADDITIONAL_OPTIONS+=" --release"
+      - fi
+      - if [ ! ${CI_PROJECT_DIR} -ef ${PROJECT_ROOT} ]; then
+      -   OUTPUT_FOLDER="${CI_PROJECT_DIR}/${OUTPUT_FOLDER}"
+      - fi
+      - cargo doc --target-dir ${OUTPUT_FOLDER} $ADDITIONAL_OPTIONS
+    artifacts:
+      when: always
+      expose_as: "Cargo_doc build"
+      paths:
+        - $OUTPUT_FOLDER
