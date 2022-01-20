@@ -1,0 +1,31 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+hugo:
+
+  image:
+    name: golang:1.17.6-buster
+    entrypoint: [""]
+
+  stage: build
+
+  variables:
+    PROJECT_ROOT: "."
+    HUGO_VERSION: "0.92.0"
+    HUGO_SOURCE: "website"
+    HUGO_OUTPUT: "public/"
+    ADDITIONAL_OPTIONS: ""
+
+  script:
+    - cd ${PROJECT_ROOT}
+    - curl -SL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -o /tmp/hugo.tar.gz
+    - tar -xzf /tmp/hugo.tar.gz -C /tmp
+    - mv /tmp/hugo /usr/local/bin/
+    - hugo -s ${HUGO_SOURCE} -d ${CI_PROJECT_DIR}/${HUGO_OUTPUT} ${ADDITIONAL_OPTIONS}
+
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${HUGO_OUTPUT}
