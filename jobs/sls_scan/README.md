@@ -5,7 +5,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 !!! info
     There are 27 different languages supported(👉 [full list](https://github.com/ShiftLeftSecurity/sast-scan#bundled-tools){:target="_blank"})
 
-!!! summary
+!!! summary "sls_scan license"
     [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} tool is distributed under the [GPL-3.0-or-later license](https://github.com/ShiftLeftSecurity/sast-scan/blob/master/LICENSE)
 
 ## How to use it
