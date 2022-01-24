@@ -1,0 +1,25 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+pylint:
+  image: python:3.10-buster
+  stage: static_tests
+  variables:
+    PROJECT_ROOT: "."
+    PYLINT_OPTIONS: ""
+    PYLINT_OUTPUT: "report_pylint.xml"
+    PYLINT_EXIT_ZERO: "true"
+  script:
+    - cd $PROJECT_ROOT
+    - pip install pylint pylint_junit
+    - options="--output-format=pylint_junit.JUnitReporter --output=$PYLINT_OUTPUT"
+    - $([ ${PYLINT_EXIT_ZERO} == "true" ]) && options="${options} --exit-zero"
+    - pylint ${options} $PYLINT_OPTIONS $(find -type f -name "*.py" ! -path "**/.venv/**")
+  artifacts:
+      when: always
+      paths:
+        - ${PROJECT_ROOT}/${PYLINT_OUTPUT}
+      reports:
+        junit: ${PROJECT_ROOT}/${PYLINT_OUTPUT}
