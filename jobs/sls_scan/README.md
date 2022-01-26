@@ -5,6 +5,9 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 !!! info
     There are 27 different languages supported(👉 [full list](https://github.com/ShiftLeftSecurity/sast-scan#bundled-tools){:target="_blank"})
 
+!!! summary "sls_scan license"
+    [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecurity/sast-scan){:target="_blank"} tool is distributed under the [GPL-3.0-or-later license](https://github.com/ShiftLeftSecurity/sast-scan/blob/master/LICENSE)
+
 ## How to use it
 
 1. The job can be run "out of the box". If you need to personalize its
@@ -18,7 +21,7 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 5. Well done, your job is ready to work ! 😀
 
 !!! info
-    By default, the job will fail if it finds minimum the following number of vulnerabilities:  
+    By default, the job will fail if it finds minimum the following number of vulnerabilities:
         ```python
         build_break_rules = {
         "default": {"max_critical": 0, "max_high": 2, "max_medium": 5},
