@@ -36,7 +36,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `MKDOCS_OUTPUT_PATH` | Output directory path | `website_build/` |
-| `MKDOCS_ADDITIONAL_PLUGINS` | Value of several (plugins)[https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins] to install before the build. They have to be separated by `;` | `mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin` |
+| `MKDOCS_ADDITIONAL_PLUGINS` | Value of several [plugins](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins) to install before the build. They have to be separated by `;` | `mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin` |
 
 !!! info
     By default `MKDOCS_ADDITIONAL_PLUGINS` variable contains 3 plugins for `Material for mkdocs`
