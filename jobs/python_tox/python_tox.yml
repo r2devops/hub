@@ -1,0 +1,23 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+python_tox:
+  image:
+    name: vicamo/pyenv:slim-focal
+    entrypoint: [""]
+
+  stage: static_tests
+
+  variables:
+    PROJECT_ROOT: "."
+    PYTHON_ENV: ""
+    ADDITIONAL_OPTIONS: ""
+
+  script:
+    - cd $PROJECT_ROOT
+        # Install tox
+    - pip install tox
+    - if [[ (${PYTHON_ENV} != "") ]]; then PYTHON_ENV="-e $PYTHON_ENV"; else PYTHON_ENV=""; fi
+    - tox $PYTHON_ENV $ADDITIONAL_OPTIONS
