@@ -1,0 +1,13 @@
+name: sphinx_build
+description: Sphinx is a tool that makes it easy to create intelligent and beautiful documentation for python projects.
+default_stage: build
+icon: 📃
+maintainer: valentin.guyon.vg
+license: Apache-2.0
+images:
+  "python": "3.10-buster"
+tools:
+labels:
+  - GitLab
+  - Documentation
+  - Build
