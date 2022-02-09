@@ -1,0 +1,37 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - build
+
+sphinx_build:
+  image:
+    name: python:3.10-buster
+    entrypoint: [""]
+
+  stage: build
+
+  variables:
+    PROJECT_ROOT: "."
+    SPHINX_THEME: ""
+    SPHINX_BUILDER: "html"
+    SPHINX_SOURCE: "docs/"
+    SPHINX_OUTPUT: "website_build/"
+    SPHINX_OPTIONS: ""
+    APIDOC_SOURCE: ""
+    APIDOC_OUTPUT: "docs/reference/source/"
+    APIDOC_OPTIONS: ""
+
+  script:
+    - cd ${PROJECT_ROOT}
+    - pip install Sphinx ${SPHINX_THEME} .
+    - if [[ ${APIDOC_SOURCE} != "" ]]; then
+    -   sphinx-apidoc ${APIDOC_OPTIONS} -o ${APIDOC_OUTPUT} ${APIDOC_SOURCE}
+    - fi
+    - sphinx-build -b ${SPHINX_BUILDER} ${SPHINX_SOURCE} ${SPHINX_OUTPUT} ${SPHINX_OPTIONS}
+
+  artifacts:
+    paths:
+      - ${SPHINX_OUTPUT}
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
