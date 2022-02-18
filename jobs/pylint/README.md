@@ -30,3 +30,4 @@ This job will use the tool [pylint](https://pylint.pycqa.org/en/latest/intro.htm
 | `PYLINT_OPTIONS` | [Additional options](https://pylint.pycqa.org/en/latest/user_guide/run.html) for `pylint` | `` |
 | `PYLINT_OUTPUT` | Output file | `report_pylint.xml` |
 | `PYLINT_EXIT_ZERO` | Returns a non-zero status code. If the option is specified, and Pylint runs successfully, it will exit with 0 regardless of the number of lint issues detected. | `true` |
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexiaognard](https://gitlab.com/alexiaognard)

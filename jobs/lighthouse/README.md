@@ -78,3 +78,5 @@ Lighthouse result is available as artifact.
     Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
     As soon as the issue will be fixed, exposed artifacts will be available
     with any output location.
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

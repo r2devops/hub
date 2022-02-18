@@ -18,3 +18,5 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 | Name | Description | Default |
 | ---- | ------------| ------- |
 | `ARTIFACTS_DIR` | Customize the path where the artifacts will be created | `${CI_PROJECT_DIR}/artifacts` |
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

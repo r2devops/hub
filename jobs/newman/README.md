@@ -77,3 +77,5 @@ Launch a Postman collection of requests to test your API using [newman](https://
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to
 display error report directly in pipeline `Test` tab and in merge request
 widget.
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

@@ -78,3 +78,6 @@ The registry and tag of the resulting Docker image follow this behavior:
         }
     }
     ```
+
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

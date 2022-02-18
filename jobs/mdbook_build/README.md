@@ -29,3 +29,5 @@ This job would build the documentation of a mdBook project.
 | `PROJECT_ROOT` <img width=100/> | Relative path in your repository to your mdBook project. <img width=175/>| `.` <img width=100/>|
 | `DOCUMENTATION_OUTPUT` <img width=100/> | Relative path in your repository to the output produced by the `mdbook` build script. <img width=175/>| `website_build` <img width=100/>|
 | `MDBOOK_VERSION` <img width=100/> | Version of `mdBook` used, by default the job will use the latest stable version of `mdBook`. <img width=175/>| ` ` <img width=100/>|
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

@@ -62,3 +62,5 @@ applied, cache behavior is the following:
 
 More information on Gitlab caching mechanism in [Gitlab CI/CD caching
 documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

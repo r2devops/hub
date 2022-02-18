@@ -65,3 +65,4 @@ When the job is done, it will provide an artifact containing the output from Dus
 * `storage/logs`
 
 We also use Junit's XML report to display error report directly in pipeline `Tests` tab and in merge request widget. The report defined as `dusk_junit.xml` is also available directly in the artifact.
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

@@ -49,3 +49,5 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 Secrets files are encrypted with the helm plugin [secrets](https://github.com/zendesk/helm-secrets){:target="_blank"}.
 It will allow encrypting or decrypting any yaml files that you have in your `${VALUES_PATH}` so you can push values that will be decrypted at runtime but not seen from the source code.
 For example, you can `helm secrets enc review.yaml` to encrypt it to a `secret.review.yaml`, so you will have some public variables in a `review.yalm` file and a password for example in `secrets.review.yaml`.
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

@@ -26,3 +26,5 @@ This job check if there are any errors on the twig templates
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `TEMPLATE_PATH` <img width=100/> | A general variable for this job <img width=175/>| `./templates` <img width=100/>|
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@melheb.younes](https://gitlab.com/melheb.younes)

@@ -76,3 +76,5 @@ You will be able to directly see all the dependencies analyzed and, when there i
 <!--
     `OWASP Dependency-Check` will analyze itself to see if there are any vulnerabilities, so the report will contain the dependencies linked to the tool used.
 -->
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)
