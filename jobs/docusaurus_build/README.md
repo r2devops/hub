@@ -30,3 +30,5 @@ In order to build Docusaurus, the user must `init` a Docusaurus project, checkou
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` <img width=100/> | Relative path in your repository to your Docusaurus project. <img width=175/>| `.` <img width=100/>|
 | `DOCUSAURUS_OUTPUT_PATH` <img width=100/> | Directory who contains the result of the Docusaurus build. <img width=175/>| `website_build` <img width=100/>|
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

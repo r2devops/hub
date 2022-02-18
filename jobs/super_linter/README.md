@@ -198,3 +198,5 @@ customize its behavior.
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

@@ -30,3 +30,5 @@ Gofmt formats Go programs. It uses tabs for indentation and blanks for alignment
 | `PROJECT_ROOT` <img width=100/> | Path to the directory containing your Go project root| `.` |
 | `GOFMT_PRINT_DIFF` <img width=100/> | Print diffs to standard output| `true` |
 | `GOFMT_PRINT_FILENAME` <img width=100/> | Print filenames to standard output| `false` |
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

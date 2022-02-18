@@ -28,3 +28,5 @@ Clippy runs a format check onto your Rust project and logs any unexpected lintin
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` <img width=100/> | Relative to root of your repository, it is the path to your rust project <img width=175/>| `.` <img width=100/>|
 | `ADDITIONAL_OPTIONS` <img width=100/> | Possibility to add more options into the command <img width=175/>| `-- -W clippy::all` <img width=100/>|
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

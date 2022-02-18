@@ -31,3 +31,5 @@ of the repository, you can do that by adding this to your `.gitlab-ci.yml`
 gitleaks:
   allow_failure: true
 ```
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

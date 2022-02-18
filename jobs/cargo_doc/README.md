@@ -29,3 +29,5 @@ Build a package's documentation for local package and all dependencies. Check th
 | RELEASE_MODE | Generate documentation with optimization for release. See the release profile here [release profile](https://doc.rust-lang.org/cargo/reference/profiles.html#release) | `true` | 
 | OUTPUT_FOLDER | Directory where are output files | `website_build` | 
 | ADDITIONAL_OPTIONS | Possibility to add more options into the command | ` ` | 
+
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

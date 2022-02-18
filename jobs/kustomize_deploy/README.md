@@ -45,3 +45,4 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 ### Artifacts
 
 * If the job is successful, the output of the commands will be available as an artifact exposed as `Kustomize job output`
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)
