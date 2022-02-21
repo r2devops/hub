@@ -8,10 +8,9 @@ stages:
 
 include:
   - remote: 'https://jobs.r2devops.io/0.2.0/links_checker.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/0.2.0/spell_check.yml?scope=0.yml'
+  - remote: 'https://jobs.r2devops.io/0.2.1/spell_check.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
   - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/lighthouse.yml?scope=0.yml'
 
 workflow:
   rules:
