@@ -364,7 +364,7 @@ box-shadow: -1px 4px 11px -2px #000000;
 .banner-link {
     text-decoration: underline;
     font-weight: bold;
-    font-size: 1.0rem;
+    font-size: 1rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
@@ -377,10 +377,18 @@ box-shadow: -1px 4px 11px -2px #000000;
     margin-bottom: 10px;
 }
 .banner-icon, .banner-icon-2 {
-    font-size: 1.0rem;
+    font-size: 1rem;
     margin-top: 0.1rem;
 }
 
 .banner-icon {
     padding-left: 0.5rem;
 }
+
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    [class*="banner-link"] {
+        font-size: 0.8rem;
+
+    }
+  }
