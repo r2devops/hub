@@ -19,7 +19,7 @@ mega_linter:
         FAILED=true
       fi
 
-    - if [ "${OUTPUT_FORMAT}" = "tap" ]; then
+    - if [ "${OUTPUT_FORMAT}" = "tap" ] && [[ -d "${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/tap" ]]; then
 
     -   npm install -g tap-junit@${TAP_JUNIT_VERSION}
 
