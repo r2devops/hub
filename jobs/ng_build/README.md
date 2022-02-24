@@ -34,4 +34,7 @@ The application builder uses the webpack build tool, with default configuration 
 | `NG_BUILD_OPTIONS` <img width=100/> | Additional options available for the user, they are added at the end of build command. Check the different options in the official [documentation](https://angular.io/cli/build){:target="_blank"}. <img width=175/> | ` ` <img width=100/> |
 | `OUTPUT_PATH` <img width=100/> | Path to the output produced by the `ng` build script used (path relative from the `PROJECT_ROOT`) <img width=175/>                                                                                                   | `website_build/` <img width=100/> |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

@@ -75,4 +75,7 @@ Command output is available as artifact.
     As soon as the issue will be fixed, exposed artifacts will be available
     with any output location.
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

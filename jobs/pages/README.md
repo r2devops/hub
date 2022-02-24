@@ -41,4 +41,7 @@ from previous job named `documentation`.
 | ---- | ----------- | ------- |
 | `PAGES_BUILD_PATH` | Path to folder which contains the static website files to publish | `website_build/` |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

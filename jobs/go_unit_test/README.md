@@ -23,4 +23,7 @@ Execute your golang unit tests and have the results fully integrated with the va
 | `UT_WORK_DIR` | If for any reason (monorepo for example) your go project is not at root of project, specify the relative path to the project | `$CI_PROJECT_DIR` |
 | `UT_TEST_CMD` | Customise the test command if needed | `go test -v` |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@seanel](https://gitlab.com/seanel)

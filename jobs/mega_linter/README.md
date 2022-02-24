@@ -159,4 +159,7 @@ mega_linter:
 We use [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in 
 merge request widget.
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@protocole](https://gitlab.com/Protocole)

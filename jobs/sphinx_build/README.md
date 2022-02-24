@@ -36,4 +36,7 @@
 | `APIDOC_OUTPUT` | Output directory path produced by the `sphinx-apidoc`. | `docs/reference/source/` |
 | `APIDOC_OPTIONS` | Possibility to add more [options](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#options){:target="_blank"} into the `sphinx-apidoc` command. | ` ` |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

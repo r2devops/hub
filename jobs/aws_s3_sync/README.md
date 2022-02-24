@@ -21,7 +21,7 @@ This job uses the latest AWS CLI version (v2 for now) in order to sync files bet
 
 ## Job details
 * Job name: `aws_s3_sync`
-* Docker image: [alpine:3.13.6](https://hub.docker.com/_/alpinei){:target="blank"}
+* Docker image: [alpine:3.13.6](https://hub.docker.com/_/alpinei){:target="_blank"}
 * Default stage: `deploy`
 
 ### Variables
@@ -37,4 +37,7 @@ This job uses the latest AWS CLI version (v2 for now) in order to sync files bet
 | `SYNC_DIR` | Directory to sync | `build` |
 | `DELETE_OLD_FILE` | Delete files that exist in the destination but not in the source  | `false` |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

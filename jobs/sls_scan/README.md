@@ -94,4 +94,7 @@ Scan result is available as artifact, and all HTML reports are merged into one s
 | Apache Velocity (vm) | pmd                                 |
 | yaml                 | yamllint                            |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)
