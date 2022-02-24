@@ -52,4 +52,7 @@ When the job is done, the command's output will be available under the file name
     Gitlab](https://gitlab.com/gitlab-org/gitlab/-/issues/37129){:target="_blank"}.
     As soon as the issue will be fixed, exposed artifacts will be available
     with any output location.
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

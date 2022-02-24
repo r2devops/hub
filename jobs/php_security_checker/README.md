@@ -29,4 +29,7 @@ This job checks if your PHP application depends on PHP packages with known secur
 | `COMPOSER_PATH` <img width=100/> | A general variable for this job <img width=175/>| `./composer.lock` <img width=100/>|
 | `FORMAT_OUTPUT` <img width=100/> | A variable for the format of the output<img width=175/>| ` ` <img width=100/>|
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@melheb.younes](https://gitlab.com/melheb.younes)

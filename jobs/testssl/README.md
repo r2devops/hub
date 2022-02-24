@@ -39,4 +39,7 @@ Tool to check SSL/TLS related vulnerabilities of an URL
 | `TESTSSL_TLS_SSL` | Checks TLS/SSL protocols (including SPDY/HTTP2) (-p) | `true`|
 | `TESTSSL_VULNERABILITY` | Test all the vulnerabilities (-U) | `true`|
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

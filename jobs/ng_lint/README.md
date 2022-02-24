@@ -38,4 +38,7 @@ This job checks your code quality inside your Angular application. It uses a cus
 | `NG_LINT_OPTIONS` <img width=100/> | Additional options for `ng lint`. <img width=175/>| ` ` <img width=100/>|
 | `NG_LINT_PACKAGE` <img width=100/> | Name of the package used by the `ng lint` command in order to lint the project <img width=175/>| ` ` <img width=100/>|
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

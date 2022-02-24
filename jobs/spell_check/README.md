@@ -106,4 +106,7 @@ We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to disp
 directly in pipeline `Test` tab and in merge request widget.
 The report defined as `spelling_junit.xml` is also available directly in the artifacts.
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

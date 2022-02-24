@@ -30,4 +30,7 @@ Build a package's documentation for local package and all dependencies. Check th
 | OUTPUT_FOLDER | Directory where are output files | `website_build` | 
 | ADDITIONAL_OPTIONS | Possibility to add more options into the command | ` ` | 
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

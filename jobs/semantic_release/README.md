@@ -70,4 +70,7 @@ job will always try to be as fast as possible! 🚀
 This job will expose an artifact will the result from `semantic-release` and is exposed as `semantic-release logs`, 
 it is also available directly in the job's logs.
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

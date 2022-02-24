@@ -31,4 +31,7 @@
 | `HUGO_OUTPUT` <img width=100/> | Directory name of the Hugo output. <img width=175/>| `public/` <img width=100/>|
 | `ADDITIONAL_OPTIONS` <img width=100/> | Possibility to add more options into the Hugo command. <img width=175/>| ` ` <img width=100/>|
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

@@ -40,4 +40,7 @@ This job test your front end web application by running tests headlessly in a CI
 | `CYPRESS_BASE_URL`  | **(MANDATORY)** The base URL of your server | ` `|
 | `ADDITIONAL_OPTIONS` | Additional options to the run | ` ` |
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

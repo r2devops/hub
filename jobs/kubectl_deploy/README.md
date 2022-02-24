@@ -45,4 +45,7 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
         FILES_LOCATION: "myfile1.yaml -f myfile2.yaml -f myfile3.yml"
         ```
 
+
+
+### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)
