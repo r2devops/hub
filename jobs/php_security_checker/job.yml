@@ -5,9 +5,9 @@ icon: 👮
 maintainer: melheb.younes
 license: MIT
 images:
-  "jakzal/phpqa": "1.55-php7.4"
+  "jakzal/phpqa": "php7.4-alpine"
 tools:
-  "php": "1.55-php7.4"
+  "php": "php7.4-alpine"
 labels:
   - GitLab
   - PHP

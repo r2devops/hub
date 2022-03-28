@@ -3,7 +3,7 @@ stages:
 
 php_security_checker:
     image: 
-      name: jakzal/phpqa:1.55-php7.4
+      name: jakzal/phpqa:php7.4-alpine
       entrypoint: [""]
     stage: static_tests
     variables:
