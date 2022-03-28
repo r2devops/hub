@@ -1,0 +1,9 @@
+name: ansible_playbook
+description: This job will run an `ansible-playbook` command to automate deployments.
+default_stage: deploy
+icon: 📦
+maintainer: GridexX
+license: MIT
+images:
+  alpine:3.15.1
+tools:

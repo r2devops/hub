@@ -1,0 +1,51 @@
+stages:
+  - deploy
+
+
+ansible_playbook:
+  image:
+    name: alpine:3.15.1
+    entrypoint: [""]
+  stage: deploy
+  variables:
+    ANSIBLE_WORKSPACE : "."
+    ANSIBLE_INVENTORY_FILE: ""
+    SSH_PRIVATE_KEY_FILE: ""
+    ADDITIONAL_OPTIONS: ''
+  before_script:
+
+    # Warn user if variable not set
+    - if [ -z $SSH_PRIVATE_KEY_FILE ]; then
+    -   echo "You should fulfill the variable SSH_PRIVATE_KEY_FILE with your key to use this job."
+    -   exit 1
+    - fi
+    - apk add --no-cache ansible openssh
+
+  script:
+
+    # Installation and options setup
+    - cd ${CI_PROJECT_DIR}/${ANSIBLE_PLAYBOOK}
+    - cat $SSH_PRIVATE_KEY_FILE > id_rsa
+    - chmod 600 id_rsa
+    - cat $ANSIBLE_INVENTORY_FILE > inventory
+    - options="-i inventory --private-key=id_rsa"
+
+    - for extension in ".yml" ".yaml"; do
+    -   file="requirements${extension}"
+    # Check for write access and file not empty
+    -   if [ -r ${file} ] && [ -s ${file} ]; then
+          #could be used for installing some roles
+    -     apk add --no-cache git
+    -     ansible-galaxy install -r ${file}
+    -     break
+    -   fi
+    - done
+
+    - for extension in ".yml" ".yaml"; do
+    -   file="main${extension}"
+    -   if [ -r ${file} ] && [ -s ${file} ]; then
+    -     ansible-playbook $options $ADDITIONAL_OPTIONS $file
+          # Stop the jobs with success
+    -     break
+    -   fi
+    - done
