@@ -6,7 +6,7 @@ stages:
 super_linter:
   stage: static_tests
   image:
-    name: github/super-linter:v3.14.3
+    name: github/super-linter:v4.9.0
     entrypoint: [""]
   script:
     - /action/lib/linter.sh
