@@ -18,7 +18,7 @@ This job checks if your PHP application depends on PHP packages with known secur
 
 * Job name: `php_security_checker`
 * Docker image:
-[`1.55-php7.4`](https://hub.docker.com/r/jakzal/phpqa/)
+[`php7.4-alpine`](https://hub.docker.com/r/jakzal/phpqa/)
 * Default stage: `static_tests`
 * When: `always`
 
