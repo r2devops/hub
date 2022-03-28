@@ -55,7 +55,7 @@ package your jar a different way and the job will still work and expose your shi
 ## Job details
 
 * Job name: `maven_build`
-* Docker image: [maven:3.6.3-jdk-11](https://hub.docker.com/_/maven)
+* Docker image: [maven:3.8.4-jdk-11](https://hub.docker.com/_/maven)
 * Default stage: `build`
 * When: `always`
 

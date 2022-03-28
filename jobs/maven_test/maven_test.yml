@@ -3,7 +3,7 @@ stages:
 
 maven_test:
   image:
-    name: maven:3.6.3-jdk-11
+    name: maven:3.8.4-jdk-11
     entrypoint: [""]
   stage: static_tests
   variables:
