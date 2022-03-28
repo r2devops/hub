@@ -10,7 +10,7 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 ## Job details
 
 * Job name: `junit_test`
-* Docker image: [maven:3.6.3-jdk-11](https://hub.docker.com/_/maven)
+* Docker image: [maven:3.8.4-jdk-11](https://hub.docker.com/_/maven)
 * Default stage: `static_tests`
 * When: `always`
 
