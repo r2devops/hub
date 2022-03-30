@@ -8,10 +8,7 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 2. Use the provided `pom.xml` in the example below to get you started. You are then free to customize your `pom.xml`
 depending on your needs. You can also use this job along with the `maven_build` job on the R2DevOps hub for a completely
 automated Java pipeline.
-3. Add the job URL inside the `include` list of your `.gitlab-ci.yml` file  (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/maven_test.yml'
-    ```
+3. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) check the [jobs-customization](/use-the-hub/#jobs-customization)
 5. Grab a ☕ while the job is running !
 

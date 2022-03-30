@@ -12,25 +12,22 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/sls_scan.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
 !!! info
     By default, the job will fail if it finds minimum the following number of vulnerabilities:
-        ```python
-        build_break_rules = {
-        "default": {"max_critical": 0, "max_high": 2, "max_medium": 5},
-        "Secrets Audit": {"max_critical": 0, "max_high": 0, "max_medium": 1},
-        "depscan": {"max_critical": 0,"max_high": 2,"max_medium": 5},
-        }
-        ```
     More about this [here](https://github.com/ShiftLeftSecurity/sast-scan/blob/6ee41bdc7ae3462e909a745ef7c8463c5229e5ef/lib/config.py#L1339){:target="_blank"}
 
+```python
+build_break_rules = {
+    "default": {"max_critical": 0, "max_high": 2, "max_medium": 5},
+    "Secrets Audit": {"max_critical": 0, "max_high": 0, "max_medium": 1},
+    "depscan": {"max_critical": 0,"max_high": 2,"max_medium": 5},
+}
+```
 ## Job details
 
 * Job name: `sls_scan`

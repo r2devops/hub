@@ -4,10 +4,7 @@ Run a SSH command on a remote host.
 
 ## How to use it
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/ssh.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Set the secret variable `SSH_PRIVATE_KEY` as CI/CD variables (it can be file
    or variable type) in [your Gitlab
    project](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui){:target="_blank"}

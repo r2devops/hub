@@ -8,10 +8,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
 ## How to use it
 
 1. Ensure that your package manager and/or files are handled in [File Type Analyzers](#file-type-analyzers)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/owasp_dependency_check.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
@@ -45,7 +42,6 @@ OWASP dependency-check has several file type analyzers that can detect security 
 
 !!! info
     OWASP Dependency-Check has some experimental analyzers that can be enabled by setting `true` to the variable `DEPCHECK_EXPERIMENTALS`. Be aware that these analyzers can still have some false positive alerts.
-
     To know the list of experimental analyzers click [here](https://jeremylong.github.io/DependencyCheck/analyzers/index.html){:target="_blank"}.
 
 ### Variables
@@ -63,7 +59,6 @@ OWASP dependency-check has several file type analyzers that can detect security 
 
 !!! warning
     The variable `DEPCHECK_CVSS_SCORE_FAIL` is set to 11 (CVSS Score goes from 0 to 10, see more [here](https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System){:target="_blank"}). By default, the job will never fail because of a vulnerability. So it is recommended to customize this variable.
-
     Also, it is recommended to leave `DEPCHECK_JUNIT_CVSS_FAIL` to `0` to always show the security issues found.
 
 ### Artifacts

@@ -66,10 +66,7 @@ More than 45 languages are supported, for each of them you have specific variabl
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/mega_linter.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
@@ -92,8 +89,14 @@ This job can be used without configuration. By default, it will detect files in
 your repository and run relevant linter on them. You can also use variables to
 customize its behavior.
 
-* [General configuration](#general-configuration)
-* [Optimize Mega-Linter](#optimize-mega-linter)
+- [Objective](#objective)
+- [How to use it](#how-to-use-it)
+- [Job details](#job-details)
+  - [Variables](#variables)
+    - [General configuration](#general-configuration)
+  - [Optimize Mega-Linter](#optimize-mega-linter)
+  - [Artifacts](#artifacts)
+  - [Author](#author)
 
 #### General configuration
 

@@ -54,10 +54,7 @@ More than 36 languages are supported :
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/super_linter.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
@@ -80,9 +77,15 @@ This job can be used without configuration. By default, it will detect files in
 your repository and run relevant linter on them. You can also use variables to
 customize its behavior.
 
-* [General configuration](#general-configuration)
-* [Use specific configuration for linters](#linters-configuration)
-* [Enable or disable some linters](#enable-or-disable-linters)
+- [Objective](#objective)
+- [How to use it](#how-to-use-it)
+- [Job details](#job-details)
+  - [Variables](#variables)
+    - [General configuration](#general-configuration)
+    - [Linters configuration](#linters-configuration)
+    - [Enable or disable linters](#enable-or-disable-linters)
+  - [Artifacts](#artifacts)
+  - [Author](#author)
 
 #### General configuration
 
@@ -123,14 +126,13 @@ customize its behavior.
 
 #### Enable or disable linters
 
-!!! info "Note about `VALIDATE_[LANGUAGE]` variables from super-linter [README](https://github.com/github/super-linter#environment-variables){:target="_blank"}"
+!!! info
+    Note: about VALIDATE_[LANGUAGE] variables from super-linter [README](https://github.com/github/super-linter#environment-variables){:target="_blank"}
     Note: All the `VALIDATE_[LANGUAGE]` variables behave in a very specific way:
-
     * If none of them are passed, then they all default to true.
     * If any one of the variables are set to true, we default to leaving any unset variable to false (only validate those languages).
     * If any one of the variables are set to false, we default to leaving any unset variable to true (only exclude those languages).
     * If there are VALIDATE_[LANGUAGE] variables set to both true and false. It will fail.
-
     This means that if you run the linter "out of the box", all languages will be checked. But if you wish to select or exclude specific linters, we give you full control to choose which linters are run, and won't run anything unexpected.
 
 

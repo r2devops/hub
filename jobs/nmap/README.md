@@ -11,10 +11,7 @@ if one of them should not be.
 
 ## How to use it
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-   ```yaml
-     - remote: 'https://jobs.r2devops.io/latest/nmap.yml'
-   ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 2. Choose a target
 
     !!! note
@@ -22,20 +19,20 @@ if one of them should not be.
         instance of your software. **You need to choose between two following
         options**.
 
-    * Option 1: external service
+    - Option 1: external service
 
     Add the IP address or the domain name of the service in `NMAP_TARGET`
     (see [jobs customization](http://localhost:8000/use-the-hub/#jobs-customization))
 
-    *  Option 2: container instance
+    - Option 2: container instance
 
     Add the target container instance as a service (see
     [Container instance as Service](/use-the-hub/#container-instance-as-service))
     and set `NMAP_TARGET` as the name of your container.
 
-4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-5. Well done, your job is ready to work ! 😀
+4. Well done, your job is ready to work ! 😀
 
 ## Job details
 
