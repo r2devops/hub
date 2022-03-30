@@ -8,10 +8,7 @@ Build your Java project using [Apache Maven](http://maven.apache.org/) and JDK 1
 2. _(Recommended)_ Use the provided `pom.xml` in the example section below to get started. You are then free to customize your `pom.xml`
 as you wish. For instance you can choose to use the [Spring Boot](https://spring.io/projects/spring-boot) framework that will
 package your jar a different way and the job will still work and expose your shiny jars.
-3. Add the job URL inside the `include` list of your `.gitlab-ci.yml` file  (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/maven_build.yml'`
-    ```
+3. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) check the [jobs-customization](/use-the-hub/#jobs-customization)
 5. Grab a ☕ while the job is running !
 

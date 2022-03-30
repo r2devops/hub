@@ -11,10 +11,7 @@ This job tests your final project by using Laravel Dusk, this will run tests tha
     !!! warning
         There are some modifications which **you need to apply** (especially adding `--no-sandbox` in $options for driver), these changes should not affect your local dev environment, otherwise there might be something else wrong with your project. 
 
-3. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/dusk_test.yml'
-    ```
+3. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀

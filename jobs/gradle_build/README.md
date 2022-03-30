@@ -8,10 +8,7 @@ from your `build.gradle.kts` or `build.gradle` file.
 1. Ensure that your project have
    [`build.gradle.kts`](https://docs.gradle.org/current/samples/sample_building_java_applications.html){:target="_blank"} 
    file
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/gradle_build.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Well done, your job is ready to work ! 😀
 
 🔗 Here is an example of a complete pipeline using this step : [fun_with_gitlab-ci](https://gitlab.com/fun_with/fun-with-gitlab-ci/-/blob/master/.gitlab-ci.yml)

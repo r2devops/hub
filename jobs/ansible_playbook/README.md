@@ -4,13 +4,10 @@ This job will run an [`ansible-playbook`](https://docs.ansible.com/ansible/lates
 
 ## How to use it
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/ansible_playbook.yml'
-    ```
-1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`. 
+2. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-1. Well done, your job is ready to work ! 😀
+3. Well done, your job is ready to work ! 😀
 
 ## Job details
 
@@ -22,9 +19,9 @@ This job will run an [`ansible-playbook`](https://docs.ansible.com/ansible/lates
 
 ### Variables
 
-| Name | Description | Default |
-| ---- | ----------- | ------- |
-| `ANSIBLE_WORKSPACE` <img width=100/> | The path where is located your ansible project <img width=175/>| `.` <img width=100/>|
-| `ANSIBLE_INVENTORY_FILE` <img width=100/> | The inventory file where are described roles and groups. This variable should be specified in `Gitalb > CI/CD Settings` as file. <img width=175/>| `` <img width=100/>|
-| `SSH_PRIVATE_KEY_FILE` <img width=100/> | ⚠️ Mandatory variable. The name of your private SSH key. his variable should be specified in `Gitalb > CI/CD Settings` as file. <img width=175/>| `` <img width=100/>|
-| `ADDITIONAL_OPTIONS` <img width=100/> | Other [options](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html#common-options) you may want to use<img width=175/>| `` <img width=100/>|
+| Name                                      | Description                                                                                                                                       | Default              |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `ANSIBLE_WORKSPACE` <img width=100/>      | The path where is located your ansible project <img width=175/>                                                                                   | `.` <img width=100/> |
+| `ANSIBLE_INVENTORY_FILE` <img width=100/> | The inventory file where are described roles and groups. This variable should be specified in `Gitalb > CI/CD Settings` as file. <img width=175/> | ` ` <img width=100/>  |
+| `SSH_PRIVATE_KEY_FILE` <img width=100/>   | ⚠️ Mandatory variable. The name of your private SSH key. his variable should be specified in `Gitalb > CI/CD Settings` as file. <img width=175/>   | ` ` <img width=100/>  |
+| `ADDITIONAL_OPTIONS` <img width=100/>     | Other [options](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html#common-options) you may want to use<img width=175/>             | ` ` <img width=100/>  |

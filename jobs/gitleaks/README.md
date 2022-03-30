@@ -8,10 +8,7 @@ repository. As it written in go, it is much faster than most of the
 ## How to use it
 
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/gitleaks.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 2. Well done, your job is ready to work ! 😀
 
 ## Job details
@@ -27,7 +24,7 @@ repository. As it written in go, it is much faster than most of the
 If you want for this job not to fail upon discovering a secret in the commits
 of the repository, you can do that by adding this to your `.gitlab-ci.yml`
 
-```
+```yaml
 gitleaks:
   allow_failure: true
 ```

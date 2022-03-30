@@ -7,10 +7,7 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 1. Make sure that you have a Kubernetes cluster, you have two options:
       1. Use a linked cluster with your Gitlab project, get more info [here](https://docs.gitlab.com/ee/user/project/clusters/){:target="_blank"}
       1. Provide a kubeconfig file through the variable `KUBECONFIG`, check [THIS](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} guide to see how
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/kustomize_deploy.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Set the mandatory variables for your job, check [**Variables**](#variables)
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)

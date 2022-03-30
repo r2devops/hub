@@ -8,10 +8,7 @@ This job will run a predefined `lint` script in your `package.json` which will c
 1. Make sure that your project has 
    [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
    file which contains the required `lint` command in the `scripts` object
-2. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/npm_lint.yml'
-    ```
+2. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. You are done, the job is ready to use ! 😉

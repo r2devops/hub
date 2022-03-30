@@ -6,10 +6,7 @@ This job will use the tool [pylint](https://pylint.pycqa.org/en/latest/intro.htm
 
 1. Make sure that your project has [`__init__.py`](https://docs.python.org/3/tutorial/modules.html){:target="_blank"} 
 1. You can use a pylintrc file on your project or use [environment variable](https://pylint.pycqa.org/en/latest/user_guide/run.html), to specify options for `pylint`.
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/pylint.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀

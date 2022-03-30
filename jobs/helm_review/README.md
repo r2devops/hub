@@ -6,10 +6,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 
 1. To use this job, you have to provide a helm chart to deploy your project. The chart location must be defined in the CHART_PATH variable. If you want to use custom values files, check the `VALUES_FILE` and `VALUES_SECRET_FILE` variables. More information about helm charts in [documentation](https://helm.sh/docs/chart_template_guide/getting_started/){:target="_blank"}
 1. Prepare the secret PGP variables (`PGP_PUBLIC` and `PGP_PRIVATE`) in your CI/CD variables (as files and not variables!) in [gitlab](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui){:target="_blank"} if you need encrypted variables
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/helm_review.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀

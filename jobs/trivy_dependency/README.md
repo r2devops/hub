@@ -16,10 +16,7 @@ vulnerability detection capabilities are available in its official
 
 1. Ensure that your dependency manager is supported in [dependencies check
    section](#dependencies-check)
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/trivy_dependency.yml'
-    ```
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
@@ -36,7 +33,6 @@ Trivy runs dependencies analysis using the **lock files** of dependency
 managers.
 
 !!! info
-
     A lock file in development is an auto built file by your dependency
     manager which describes **exactly** all dependencies used with their
     precise version. It's complementary with your classical requirement file
@@ -44,11 +40,11 @@ managers.
     dependencies versions. Goal is to ensure that your application will always
     behave the same way, without any changes that may break a feature.
 
+!!! info
     It is
     [recommended](https://myers.io/2019/01/13/what-is-the-purpose-of-a-lock-file-for-package-managers/){:target="_blank"} to
     have these files in your version control system, to ensure everyone will
     get the same behavior from your dependencies.
-
     More details about lock files in [this
     post](https://myers.io/2019/01/13/what-is-the-purpose-of-a-lock-file-for-package-managers/){:target="_blank"}
 

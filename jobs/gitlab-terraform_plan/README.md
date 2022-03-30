@@ -8,10 +8,7 @@ This job will initialize a working directory containing Terraform configuration 
 
 1. Make sure that you have your terraform files in your repository
 2. Make sure to add your necessary credentials
-3. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/gitlab-terraform_plan.yml'
-    ```
+3. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀

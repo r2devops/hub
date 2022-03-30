@@ -6,28 +6,22 @@ from previous job named `documentation`.
 ## How to use it
 
 !!! note "Requirements"
-
     You have to use a job which build your documentation in a previous stage.
     We recommend you to use a documentation job available on the hub in [build
     📦 stage](/jobs/#build). They build documentation and publish it as
     artifact in `website_build/` folder.
 
-    **Documentation jobs list:**
-
+!!! note "Documentation jobs list:"
     * [ApiDoc](/jobs/build/apidoc/)
     * [Mkdocs](/jobs/build/mkdocs/)
     * [Doxygen](/jobs/build/doxygen/)
     * [PHPDocumentor](/jobs/build/phpdocumentor/)
     * [OpenAPI](/jobs/build/openapi/)
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see
-   the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/pages.yml'
-    ```
-1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+2. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
-1. Well done, your job is ready to work ! 😀
+3. Well done, your job is ready to work ! 😀
 
 
 ## Job details
