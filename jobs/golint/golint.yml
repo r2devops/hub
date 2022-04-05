@@ -1,0 +1,25 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+golint:
+  image: golangci/golangci-lint:v1.43.0
+  stage: static_tests
+  variables:
+    PROJECT_ROOT: "."
+    CONFIG_LOCATION: ""
+    ADDITIONAL_OPTIONS: ""
+    GOLINT_OUTPUT: "report-golint.xml"
+
+  script:
+    - cd $PROJECT_ROOT
+    - $([ ${CONFIG_LOCATION} != "" ]) && CONFIG_LOCATION="--config $CONFIG_LOCATION"
+    - golangci-lint run $(find -type f -name "*.go" ) $ADDITIONAL_OPTIONS $CONFIG_LOCATION --out-format "junit-xml" > $GOLINT_OUTPUT
+
+  artifacts:
+    when: always
+    paths:
+    - ${PROJECT_ROOT}/$GOLINT_OUTPUT
+    reports:
+      junit: ${PROJECT_ROOT}/$GOLINT_OUTPUT
