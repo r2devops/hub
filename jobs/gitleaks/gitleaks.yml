@@ -4,10 +4,10 @@ stages:
 gitleaks:
   stage: static_tests
   image:
-    name: "zricethezav/gitleaks:v6.1.2"
+    name: "zricethezav/gitleaks:v8.6.0"
     entrypoint: [""]
   script:
-    - gitleaks -v --pretty --repo-path . --commit-from=$CI_COMMIT_SHA --commit-to=$CI_COMMIT_BEFORE_SHA --branch=$CI_COMMIT_BRANCH --report gitleaks-report.json
+    - gitleaks detect -v -r gitleaks-report.json
   artifacts:
     expose_as: "gitleaks-report"
     paths: ["gitleaks-report.json"]

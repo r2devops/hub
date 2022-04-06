@@ -5,9 +5,9 @@ icon: 🔐
 maintainer: FulcrandG
 license: MIT
 images:
-  "zricethezav/gitleaks": "v6.1.2"
+  "zricethezav/gitleaks": "v8.6.0"
 tools:
-  "gitleaks": "6.1.2"
+  "gitleaks": "8.6.0"
 
 labels:
   - GitLab
