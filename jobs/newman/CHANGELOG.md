@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.1] - 2022-04-06
+* Change old link in the README
+
 ## [0.3.0] - 2021-04-23
 * Upgrade image `node` from `15.4` to `15.14`
 

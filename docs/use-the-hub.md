@@ -84,17 +84,17 @@ Follows these steps to setup your CI/CD pipeline in less than 5 minutes !
     !!! info "Jobs used in the example"
         * Plug-and-play set of jobs from the hub to automatically build, test
           and deploy static documentation website:
-            * [`mkdocs`](https://r2devops.io/jobs/build/mkdocs/) (`latest`
+            * [`mkdocs`](https://r2devops.io/_/r2devops-bot/mkdocs/) (`latest`
               version)
-            * [`lighthouse`](https://r2devops.io/jobs/dynamic_tests/lighthouse/)
+            * [`lighthouse`](https://r2devops.io/_/r2devops-bot/lighthouse/)
               (`latest` version)
-            * [`pages`](https://r2devops.io/jobs/deploy/pages/) (`latest`
+            * [`pages`](https://r2devops.io/_/r2devops-bot/pages/) (`latest`
               version)
         * Plug-and-play set of jobs from the hub to automatically build, push
           and test docker images:
-            * [`docker_build`](https://r2devops.io/jobs/build/docker_build/)
+            * [`docker_build`](https://r2devops.io/_/r2devops-bot/docker_build)
               (version `0.3.0`)
-            * [`trivy_image`](https://r2devops.io/jobs/dynamic_tests/trivy_image/)
+            * [`trivy_image`](https://r2devops.io/_/r2devops-bot/trivy_image/)
               (version `0.2.0`)
         * A custom manual job `unit_tests`
 
@@ -205,7 +205,7 @@ to a job: [`services`](https://docs.gitlab.com/ee/ci/yaml/#services).
 
 To use this option, you must have access to an image of the container you want
 to run as a service. For example, if you are using our
-[docker_build](https://r2devops.io/jobs/build/docker_build/) job to build an
+[docker_build](https://r2devops.io/_/r2devops-bot/docker_build) job to build an
 image of your application, and you want to test this image using the
 [nmap](/jobs/dynamic_tests/nmap/) job, just add the following configuration in
 your `.gitlab-ci.yml` file:

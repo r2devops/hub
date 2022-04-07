@@ -35,5 +35,5 @@ mkdocs:
     paths:
       - "$MKDOCS_OUTPUT_PATH"
       # Below path is a workaround to provide artifact exposition in MR if
-      # default output value is used. See https://r2devops.io/jobs/build/mkdocs/#artifacts
+      # default output value is used. See https://r2devops.io/_/r2devops-bot/mkdocs/
       - "website_build/"
