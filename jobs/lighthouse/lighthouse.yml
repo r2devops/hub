@@ -23,7 +23,7 @@ lighthouse:
     - export CHROME_PATH="/usr/bin/chromium-browser"
     -  if [ -z ${LIGHTHOUSE_TARGET} ]; then
     -    if [ ! -d ${PAGES_PATH} ]; then
-    -      echo "[ERROR] Variable LIGHTHOUSE_TARGET must be filled, see https://r2devops.io/jobs/dynamic_tests/lighthouse/"
+    -      echo "[ERROR] Variable LIGHTHOUSE_TARGET must be filled, see https://r2devops.io/_/r2devops-bot/lighthouse/"
     -      exit 1
     -    fi
     -    npm install serve@${SERVE_VERSION}
@@ -37,5 +37,5 @@ lighthouse:
     paths:
       - ${OUTPUT_NAME}.${OUTPUT_FORMAT}
       # Below path is a workaround to provide artifact exposition in MR if
-      # default output value is used. See https://r2devops.io/jobs/dynamic_tests/lighthouse/#artifacts
+      # default output value is used. See https://r2devops.io/_/r2devops-bot/lighthouse/
       - "lighthouse.html"

@@ -68,7 +68,7 @@ able to work on it before merging your update in the real project.
         * Click on `Compare branches and continue`.
     1. In `Title`: add short description of your contribution.
     1. In `Description`:
-        * Do not remove the default content, this is the [Definition of Done (DoD)](https://go2scale.io/definition-of-done-a-recipe-for-optimal-results/)!
+        * Do not remove the default content, this is the Definition of Done (DoD)
         * Add a description of your contribution with all information
           permitting us to understand what you have done and why. If your
           contribution is related to an existing issue, add a reference:

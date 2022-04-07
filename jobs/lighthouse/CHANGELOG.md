@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.1] - 2022-04-06
+* Change old link in the job code
+
 ## [0.3.0] - 2021-03-16
 * Update the docker image used 
 * Fix version of lighthouse

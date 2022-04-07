@@ -33,5 +33,5 @@ apidoc:
     paths:
       - "$APIDOC_OUTPUT_PATH"
       # Below path is a workaround to provide artifact exposition in MR if
-      # default output value is used. See https://r2devops.io/jobs/build/apidoc/#artifacts
+      # default output value is used. See https://r2devops.io/_/r2devops-bot/apidoc/
       - "website_build/"

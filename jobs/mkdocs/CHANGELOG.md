@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.5.1] - 2022-04-06
+* Change old link in the job code
+
 ## [1.5.0] - 2022-01-11
 * Update `material for mkdocs` image version to 8.1.4
 * Remove `mkdocs-awesome-pages-plugin`,`mkdocs-git-revision-date-localized-plugin`, `mkdocs-macros-plugin` plugins

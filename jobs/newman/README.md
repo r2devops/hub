@@ -28,7 +28,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
 
     To use this option, you must have access to a container image of your
     software. For example, if you are using our
-    [docker_build](https://r2devops.io/jobs/build/docker_build/) job, just
+    [docker_build](https://r2devops.io/_/r2devops-bot/docker_build/) job, just
     add the following configuration in your `.gitlab-ci.yml` file:
     ```yaml
     newman:

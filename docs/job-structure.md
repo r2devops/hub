@@ -48,7 +48,7 @@ Job definition usually contains the following fields:
 * **[`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables){:target="_blank"}**: in this field, you will find all the variables used by the `script` of the job. This is where you customize its behavior.
 * **[`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts){:target="_blank"}**: it specifies the result of the job that should be exposed to the user through classic artifact or Gitlab reports.
 
-**Here is an example of job definition [`apidoc.yml`](https://r2devops.io/jobs/build/apidoc/) 👇**
+**Here is an example of job definition [`apidoc.yml`](https://r2devops.io/_/r2devops-bot/apidoc/) 👇**
 
 ```yaml
 apidoc:
