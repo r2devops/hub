@@ -1,0 +1,15 @@
+name: yarn_lint
+description: A ready-to-use linter, to help validate the quality of your source code. It uses available node_modules if there are any from yarn_install job. 
+default_stage: static_tests
+icon: 🔍
+maintainer: GridexX
+license: MIT
+images:
+  "node": "17.8.0-buster-slim"
+tools:
+labels:
+  - GitLab
+  - Linter
+  - Quality
+  - Yarn
+  - Utilities
