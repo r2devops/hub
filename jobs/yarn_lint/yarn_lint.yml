@@ -1,0 +1,25 @@
+# Job from R2Devops hub --> r2devops.io
+stages: 
+- static_tests
+
+cache:
+  key:
+    files:
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/yarn.lock"
+      - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package.json"
+    prefix: "yarn-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/node_modules"
+
+yarn_lint:
+  stage: static_tests
+  image: 
+      name: node:17.8.0-buster-slim
+      entrypoint: [""]
+  variables:
+    YARN_INSTALL_OPTIONS: ""
+    YARN_LINT_OPTIONS: ""
+  script:
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    - yarn install ${YARN_INSTALL_OPTIONS}
+    - yarn lint ${YARN_LINT_OPTIONS}
