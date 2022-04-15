@@ -1,11 +1,11 @@
 stages:
-  - static_tests
+  - tests
 
 owasp_dependency_check:
   image:
     name: owasp/dependency-check:6.1.1
     entrypoint: [ "" ]
-  stage: static_tests
+  stage: tests
   variables:
     DEPCHECK_NO_UPDATE: "false"
     DEPCHECK_OPTIONS: ""

@@ -1,11 +1,11 @@
 stages:
-  - static_tests
+  - tests
 
 twig_lint:
     image: 
       name: jakzal/phpqa:php7.4
       entrypoint: [""]
-    stage: static_tests
+    stage: tests
     variables:
       TEMPLATE_PATH: "./templates"
     script:

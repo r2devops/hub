@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - dynamic_tests
+  - tests
 
 # Run trivy on any commit
 trivy_image:
-  stage: dynamic_tests
+  stage: tests
   image: docker:19.03
   services:
     - name: docker:19.03-dind

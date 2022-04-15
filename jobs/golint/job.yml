@@ -1,6 +1,6 @@
 name: golint
 description: A ready-to-use job to lint a project written in Golang
-default_stage: static_tests
+default_stage: tests
 icon: 🔎
 maintainer: alexiaognard
 license: Apache-2.0

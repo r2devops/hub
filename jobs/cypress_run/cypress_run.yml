@@ -1,9 +1,9 @@
 stages:
-  - dynamic_tests
+  - tests
 
 cypress_run:
     image: cypress/browsers:node16.5.0-chrome94-ff93
-    stage: dynamic_tests
+    stage: tests
 
     cache:
       key: ${CI_COMMIT_REF_SLUG}

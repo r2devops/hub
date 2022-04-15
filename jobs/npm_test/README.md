@@ -17,7 +17,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 ## Job details
 
 * Job name: `npm_test`
-* Default stage: `static_tests`
+* Default stage: `tests`
 * Docker image: [`node:17-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
@@ -37,7 +37,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 
 ### Cache
 
-To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](/jobs/others/npm_install/#cache)
+To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](https://r2devops.io/_/r2devops-bot/npm_install)
 
 
 ### Author

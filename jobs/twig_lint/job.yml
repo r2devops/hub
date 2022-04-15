@@ -1,6 +1,6 @@
 name: twig_lint
 description: twig-lint is a lint tool for your twig files.
-default_stage: static_tests
+default_stage: tests
 icon: 🐘
 maintainer: melheb.younes
 license: MIT

@@ -30,7 +30,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 * Job name: `spell_check`
 * Docker image:
 [`python:3.10-buster`](https://hub.docker.com/_/python/){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

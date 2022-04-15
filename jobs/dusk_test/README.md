@@ -20,7 +20,7 @@ This job tests your final project by using Laravel Dusk, this will run tests tha
 ## Job details
 
 * Job name: `dusk_test`
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 * Docker image: [`chilio/laravel-dusk-ci:php-8.0`](https://hub.docker.com/r/chilio/laravel-dusk-ci){:target="_blank"}
 * When: `always`
 

@@ -1,6 +1,6 @@
 name: dusk_test
 description: A ready to use Laravel Dusk job to test your project
-default_stage: dynamic_tests
+default_stage: tests
 icon: 🌙
 maintainer: moha-s
 license: MIT

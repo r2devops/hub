@@ -1,8 +1,8 @@
 stages:
-    - static_tests
+    - tests
 
 go_unit_test:
-  stage: static_tests
+  stage: tests
   image: golang:1.16.3
   variables:
     UT_WORK_DIR: $CI_PROJECT_DIR

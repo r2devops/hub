@@ -1,11 +1,11 @@
 stages:
-  - dynamic_tests
+  - tests
 
 testssl:
     image:
        name: drwetter/testssl.sh:3.0
        entrypoint: [""]
-    stage: dynamic_tests
+    stage: tests
     variables:
       # Path to the script inside the docker image
       TESTSSL_PATH: "/home/testssl/testssl.sh"

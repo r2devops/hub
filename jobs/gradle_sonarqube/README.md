@@ -14,7 +14,7 @@ This job allows you to check your code with SonarQube plugin in a 🐘 Gradle pr
 ## Job details
 
 * Job name: `gradle_sonarqube`
-* Default stage: `static_tests`
+* Default stage: `tests`
 * Docker image: [`gradle:jdk11`](https://hub.docker.com/_/gradle){:target="_blank"}
 * When: `always`
 

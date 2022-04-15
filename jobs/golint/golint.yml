@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 golint:
   image: golangci/golangci-lint:v1.43.0
-  stage: static_tests
+  stage: tests
   variables:
     PROJECT_ROOT: "."
     CONFIG_LOCATION: ""

@@ -1,6 +1,6 @@
 name: trivy_dependency
 description: A ready-to-use trivy job to scan the application dependencies of your code
-default_stage: static_tests
+default_stage: tests
 icon: 🧱
 maintainer: FulcrandG
 license: Apache-2.0

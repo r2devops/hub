@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.0] - 2022-04-14
+* Change the default stage into `tests`
+
 ## [0.3.0] - 2021-05-11
 * New logic for failing jobs
 * HTML reports are merged into one file

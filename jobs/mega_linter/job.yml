@@ -1,6 +1,6 @@
 name: mega_linter
 description: A ready-to-use combination of various linters forked from super_linter, to help validate the quality of your source code
-default_stage: static_tests
+default_stage: tests
 icon: 🔎
 maintainer: protocole
 license: MIT

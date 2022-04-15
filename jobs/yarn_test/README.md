@@ -17,7 +17,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 ## Job details
 
 * Job name: `yarn_test`
-* Default stage: `static_tests`
+* Default stage: `tests`
 * Docker image: [`node:16.0-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 

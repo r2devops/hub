@@ -1,10 +1,10 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 mega_linter:
-  stage: static_tests
+  stage: tests
   # You can override Mega-Linter flavor used to have faster performances
   # More info at https://nvuillam.github.io/mega-linter/flavors/
   image:

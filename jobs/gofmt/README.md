@@ -16,7 +16,7 @@ Gofmt formats Go programs. It uses tabs for indentation and blanks for alignment
 * Job name: `gofmt`
 * Docker image:
 [`golang:1.17-alpine3.14`](https://hub.docker.com/layers/golang/library/golang/1.17-alpine3.14/images/sha256-0bf16905b2757f1dcf6e78b1d14c223a38ade123c97bdd61a5cfcc4e77136040)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

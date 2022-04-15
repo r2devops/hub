@@ -1,7 +1,7 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 cargo_clippy:
 
@@ -9,7 +9,7 @@ cargo_clippy:
     name: rust:1.57-buster
     entrypoint: [""]
 
-  stage: static_tests
+  stage: tests
 
   variables:
     PROJECT_ROOT: "."

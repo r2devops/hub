@@ -1,6 +1,6 @@
 name: super_linter
 description: A ready-to-use combination of various linters, to help validate the quality of your source code
-default_stage: static_tests
+default_stage: tests
 icon: 🔎
 maintainer: thomasboni
 license: MIT

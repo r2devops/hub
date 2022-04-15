@@ -1,6 +1,6 @@
 name: gradle_sonarqube
 description: Check your code quality with SonarQube
-default_stage: static_tests
+default_stage: tests
 icon: 💅
 maintainer: yodamad
 license: MIT

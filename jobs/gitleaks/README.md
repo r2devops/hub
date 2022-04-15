@@ -16,7 +16,7 @@ secrets like passwords, api keys and tokens in git repository. As it written in 
 * Job name: `gitleaks`
 * Docker image:
 [`zricethezav/gitleaks:v8.6.0`](https://hub.docker.com/r/zricethezav/gitleaks)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ## Allowing Failure

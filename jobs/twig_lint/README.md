@@ -15,7 +15,7 @@ This job check if there are any errors on the twig templates
 * Job name: `twig_lint`
 * Docker image:
 [`twig_lint`](https://hub.docker.com/r/jakzal/phpqa/)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

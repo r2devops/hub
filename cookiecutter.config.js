@@ -15,7 +15,7 @@ module.exports = [
         {
           templateVariable: "r2_stage",
           question: "What is the default stage of your job?",
-          choices: ["static_tests", "build", "dynamic_tests", "provision", "review", "release", "deploy", "others"]
+          choices: ["build", "tests", "provision", "review", "release", "deploy", "others"]
         },
         {
           templateVariable: "r2_maintainer",

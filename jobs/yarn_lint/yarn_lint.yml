@@ -1,6 +1,6 @@
 # Job from R2Devops hub --> r2devops.io
 stages: 
-- static_tests
+- tests
 
 cache:
   key:
@@ -12,7 +12,7 @@ cache:
     - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/node_modules"
 
 yarn_lint:
-  stage: static_tests
+  stage: tests
   image: 
       name: node:17.8.0-buster-slim
       entrypoint: [""]

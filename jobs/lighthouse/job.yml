@@ -1,6 +1,6 @@
 name: lighthouse
 description: A job using Google Lighthouse to do various tests on a website, and giving you a comprehensive report
-default_stage: dynamic_tests
+default_stage: tests
 icon: 🗽
 maintainer: Protocole
 license: MIT

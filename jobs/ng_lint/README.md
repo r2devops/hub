@@ -17,7 +17,7 @@ This job checks your code quality inside your Angular application. It uses a cus
 * Job name: `ng_lint`
 * Docker image:
 [`node:16.13.1-buster`](https://hub.docker.com/r/_/node){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

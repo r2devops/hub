@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.0] - 2022-04-14
+* Change the default stage into `tests`
+
 ## [0.2.0] - 2021-05-28
 * Add ability to exit on a particular severity
 * Add possibility to append options for command `trivy`

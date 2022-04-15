@@ -18,7 +18,7 @@ You can easily have a badge configure on your 🦊 Gitlab project with this rege
 ## Job details
 
 * Job name: `gradle_test`
-* Default stage: `static_tests`
+* Default stage: `tests`
 * Docker image: [`gradle:jdk11`](https://hub.docker.com/_/gradle){:target="_blank"}
 * When: `always`
 
@@ -153,7 +153,7 @@ tasks.jacocoTestReport {
 
 ```yaml
 stages:
-  - static_tests
+  - tests
   - deploy
 
 include:

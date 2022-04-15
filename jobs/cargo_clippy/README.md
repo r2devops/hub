@@ -16,7 +16,7 @@ Clippy runs a format check onto your Rust project and logs any unexpected lintin
 * Job name: `cargo_clippy`
 * Docker image:
 [`rust:1.57-buster`](https://hub.docker.com/r/_/rust){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

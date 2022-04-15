@@ -37,7 +37,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 * Job name: `zaproxy`
 * Docker image:
 [`owasp/zap2docker-stable:2.9.0`](https://hub.docker.com/r/owasp/zap2docker-stable)
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

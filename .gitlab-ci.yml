@@ -7,10 +7,10 @@ stages:
   - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/0.2.0/links_checker.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/0.2.1/spell_check.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/1.4.0/mkdocs.yml?scope=0.yml'
-  - remote: 'https://jobs.r2devops.io/0.3.0/pages.yml?scope=0.yml'
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/links_checker/0.2.0.yml?ignore=true.yml'
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/spell_check/0.2.1.yml?ignore=true.yml'
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/mkdocs/1.4.0.yml?ignore=true.yml'
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pages/0.3.0.yml?ignore=true.yml'
 
 workflow:
   rules:
@@ -165,7 +165,7 @@ links_checker:
   variables:
     # The following hard excluded link is due that this
     # job will be migrated to a new tool soon (see #314)
-    LICHE_EXCLUDE: ^([^http]|https://gitlab.com/r2devops/hub/-/forks/new)|^([^http]|https://r2devops.io/.+)
+    LICHE_EXCLUDE: ^([^http]|https://gitlab.com/r2devops/hub/-/forks/new)|^([^http]|https://r2devops.io/.+)|^([^http]|https://api.r2devops.io/.+)
     FAIL_ON_BROKEN: "true"
     LICHE_DIRECTORY: "docs/"
   allow_failure: true

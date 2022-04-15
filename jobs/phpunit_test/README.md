@@ -16,7 +16,7 @@ Using this job you'll be able to launch PHPUnit tests.
 * Job name: `phpunit_test`
 * Docker image:
 [`lorisleiva/laravel-docker:7.3`](https://hub.docker.com/r/lorisleiva/laravel-docker){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 

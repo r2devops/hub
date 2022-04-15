@@ -1,9 +1,9 @@
 ## Objective
 
-**This job has been moved to [`maven_test`](/jobs/static_tests/maven_test/).
+**This job has been moved to [`maven_test`](https://r2devops.io/_/r2devops-bot/maven_test).
 This version is kept to avoid breaking users pipelines but it's now deprecated
 and it will no longer be maintained.  Use
-[`maven_test`](/jobs/static_tests/maven_test/) instead.**
+[`maven_test`](https://r2devops.io/_/r2devops-bot/maven_test) instead.**
 
 Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, JaCoCo and Surefire Maven plugins for code coverage and tests report directly in your merge requests.
 
@@ -11,7 +11,7 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 
 * Job name: `junit_test`
 * Docker image: [maven:3.8.4-jdk-11](https://hub.docker.com/_/maven)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

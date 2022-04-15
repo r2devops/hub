@@ -1,6 +1,6 @@
 name: junit_test
 description: Run unit tests of a Java project using Maven and JUnit
-default_stage: static_tests
+default_stage: tests
 icon: 🧪
 maintainer: alexlevy
 license: MIT

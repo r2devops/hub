@@ -1,6 +1,6 @@
 name: cargo_clippy
 description: Run a format check onto your Rust project and prevent the pipeline to pass if there is any unexpected linting warning / error in your project.
-default_stage: static_tests
+default_stage: tests
 icon: 📎
 maintainer: valentin.guyon.vg
 license: Apache-2.0

@@ -15,7 +15,7 @@ Tool to check SSL/TLS related vulnerabilities of an URL
 * Job name: `testssl`
 * Docker image:
 [`drwetter/testssl.sh:3.0`](https://hub.docker.com/r/_/drwetter/testssl.sh:3.0)
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

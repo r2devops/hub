@@ -1,6 +1,6 @@
 name: "spell_check"
 description: "Analyze your `.md` files to find spelling mistakes"
-default_stage: "static_tests"
+default_stage: "tests"
 icon: "🎤"
 maintainer: "Protocole"
 license: "MIT"

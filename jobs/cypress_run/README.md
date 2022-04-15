@@ -23,7 +23,7 @@ This job test your front end web application by running tests headlessly in a CI
 * Job name: `cypress_run`
 * Docker image:
 [`cypress/browsers:node16.5.0-chrome94-ff93`](https://hub.docker.com/r/cypress/browsers)
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

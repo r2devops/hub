@@ -1,14 +1,14 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 ng_test:
   image:
     name: timbru31/node-chrome:latest
     entrypoint: [""]
 
-  stage: static_tests
+  stage: tests
 
   variables:
     PROJECT_ROOT: "."

@@ -1,9 +1,9 @@
 stages:
-  - static_tests
+  - tests
 
 # Run unit tests
 gradle_test:
-  stage: static_tests
+  stage: tests
   image: gradle:jdk11
   script:
     - gradle check

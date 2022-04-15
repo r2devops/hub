@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.0] - 2022-04-14
+* Change the default stage into `tests`
+
 ## [0.1.2] - 2021-03-04
 * Enable `artifact:expose_as` option to display job result in merge request
 

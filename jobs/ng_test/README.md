@@ -17,7 +17,7 @@ This job allows you to run the units tests on Angular project. The `ng test` com
 * Job name: `ng_test`
 * Docker image:
 [`timbru31/node-chrome:latest`](https://hub.docker.com/r/timbru31/node-chrome/)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

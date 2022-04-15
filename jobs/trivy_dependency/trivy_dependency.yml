@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 # Run trivy on local dependencies
 trivy_dependency:
-  stage: static_tests
+  stage: tests
   image:
     name: aquasec/trivy:0.12.0
     entrypoint: [""]
