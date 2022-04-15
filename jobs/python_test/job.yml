@@ -1,6 +1,6 @@
 name: python_test
 description: A ready-to-use pipenv and pytest environment to launch your unit tests
-default_stage: static_tests
+default_stage: tests
 icon: 🐍
 maintainer: FulcrandG
 license: MIT

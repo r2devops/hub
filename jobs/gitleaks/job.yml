@@ -1,6 +1,6 @@
 name: gitleaks
 description: A secret detection job, using gitleaks to alert on secrets (passwords, api keys…) pushed in your code
-default_stage: static_tests
+default_stage: tests
 icon: 🔐
 maintainer: FulcrandG
 license: MIT

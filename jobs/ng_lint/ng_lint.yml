@@ -1,7 +1,7 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 ng_lint:
 
@@ -9,7 +9,7 @@ ng_lint:
     name: node:16.13.1-buster
     entrypoint: [""]
 
-  stage: static_tests
+  stage: tests
 
   variables:
     PROJECT_ROOT: "."

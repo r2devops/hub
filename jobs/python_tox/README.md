@@ -17,7 +17,7 @@ Tox aims to automate and standardize testing in Python. It is part of a larger v
 * Job name: `python_tox`
 * Docker image:
 [`vicamo/pyenv:slim-focal`](https://hub.docker.com/r/vicamo/pyenv)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

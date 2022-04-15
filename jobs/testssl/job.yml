@@ -1,6 +1,6 @@
 name: testssl
 description: Tool to check SSL/TLS related vulnerabilities
-default_stage: dynamic_tests
+default_stage: tests
 icon: 🔒
 maintainer: coconux
 license: MIT

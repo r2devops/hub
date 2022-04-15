@@ -17,7 +17,7 @@ A ready-to-use job to lint your Golang project. It includes a lot of linters suc
 * Job name: `golint`
 * Docker image:
 [`golangci/golangci-lint:v1.43.0`](https://hub.docker.com/r/golangci/golangci-lint)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

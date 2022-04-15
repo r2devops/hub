@@ -1,8 +1,8 @@
 stages:
-  - static_tests
+  - tests
 
 gitleaks:
-  stage: static_tests
+  stage: tests
   image:
     name: "zricethezav/gitleaks:v8.6.0"
     entrypoint: [""]

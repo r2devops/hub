@@ -2,7 +2,7 @@
 
 This job uses the [Mega-Linter](https://github.com/nvuillam/mega-linter/){:target="_blank"}
 which is a combination of various linters to help validate the quality
-of your files. This tool is a fork of [super_linter](https://r2devops.io/jobs/static_tests/super_linter/),
+of your files. This tool is a fork of [super_linter](https://r2devops.io/_/r2devops-bot/super_linter/),
 and is popular for being more efficient 
 (a deeper understanding on why it is more efficient is [available](https://nvuillam.github.io/mega-linter/mega-linter-vs-super-linter/))
 
@@ -76,7 +76,7 @@ More than 45 languages are supported, for each of them you have specific variabl
 * Job name: `mega_linter`
 * Docker image:
 [`nvuillam/mega-linter`](https://hub.docker.com/r/nvuillam/mega-linter){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

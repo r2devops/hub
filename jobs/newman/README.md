@@ -53,7 +53,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
 * Job name: `newman`
 * Docker image:
 [`node:15.0.4`](https://hub.docker.com/r/_/node)
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

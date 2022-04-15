@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.0] - 2022-04-14
+* Change the default stage into `tests`
+
 ## [0.2.1] - 2022-01-14
 * Upgrade `python` image from `3.9` to `3.10-buster`
 * Fix `aspell` version from `0.60.7~20110707-6` to `0.60.7~20110707-6+deb10u1`

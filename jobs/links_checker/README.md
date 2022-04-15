@@ -23,7 +23,7 @@ In its default state, this job will analyze your whole project for eligible file
 * Job name: `links_checker`
 * Docker image:
 [`peterevans/liche:1.1.1`](https://hub.docker.com/r/peterevans/liche){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

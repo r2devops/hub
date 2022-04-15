@@ -29,7 +29,7 @@ On top of rolling your tests for you, it will create you a coverage report
 ## Job details
 
 * Job name: `jest`
-* Default stage: `static_tests`
+* Default stage: `tests`
 * Docker image: [`node:15.14-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 

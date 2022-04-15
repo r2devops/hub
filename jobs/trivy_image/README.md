@@ -25,7 +25,7 @@ vulnerability detection capabilities are available in its official
 
 * Job name: `trivy_image`
 * Docker image: [`docker`](https://hub.docker.com/_/docker){:target="_blank"}
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 
 ### Variables
 

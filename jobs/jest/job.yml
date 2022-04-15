@@ -1,6 +1,6 @@
 name: jest
 description: Ready to run jest job to expose your code coverage and do your tests
-default_stage: static_tests
+default_stage: tests
 icon: 🔄
 maintainer: Protocole
 license: MIT

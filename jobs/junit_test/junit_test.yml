@@ -1,11 +1,11 @@
 stages:
-  - static_tests
+  - tests
 
 junit_test:
   image:
     name: maven:3.8.4-jdk-11
     entrypoint: [""]
-  stage: static_tests
+  stage: tests
   variables:
     ARTIFACTS_DIR: ${CI_PROJECT_DIR}/artifacts
   script:

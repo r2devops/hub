@@ -1,9 +1,9 @@
 stages:
-  - dynamic_tests
+  - tests
 
 zaproxy:
   image: owasp/zap2docker-stable:2.9.0
-  stage: dynamic_tests
+  stage: tests
   variables:
     ZAP_SCANNERS: ""
     ZAP_CONTEXT: ""
@@ -37,5 +37,5 @@ zaproxy:
     paths:
       - "${ZAP_REPORT_FILE}.${ZAP_REPORT_FORMAT}"
       # Below path is a workaround to provide artifact exposition in MR if
-      # default output value is used. See https://r2devops.io/jobs/dynamic_tests/zaproxy/#artifacts
+      # default output value is used. See https://r2devops.io/_/r2devops-bot/zaproxy
       - "zap-report.html"

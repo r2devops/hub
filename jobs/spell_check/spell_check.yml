@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 spell_check:
   image: python:3.10-buster
-  stage: static_tests
+  stage: tests
   allow_failure: true
   variables:
     PYSPELLING_LANGUAGE: "en"

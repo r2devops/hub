@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 phpunit_test:
     image: lorisleiva/laravel-docker:7.3
-    stage: static_tests
+    stage: tests
     variables:
       PHPUNIT_OUTPUT: "report_phpunit.xml"
       PHPUNIT_CONFIG_FILE: "phpunit.xml"

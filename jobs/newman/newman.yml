@@ -1,9 +1,9 @@
 stages:
-  - dynamic_tests
+  - tests
 
 newman:
   image: node:15.14-buster
-  stage: dynamic_tests
+  stage: tests
   variables:
     NEWMAN_COLLECTION: "postman_collection.json"
     NEWMAN_GLOBALS_FILE: ""

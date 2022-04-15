@@ -64,7 +64,7 @@ More than 36 languages are supported :
 * Job name: `super_linter`
 * Docker image:
 [`github/super-linter`](https://hub.docker.com/r/github/super-linter){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

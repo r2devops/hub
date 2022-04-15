@@ -1,9 +1,9 @@
 stages:
-  - dynamic_tests
+  - tests
 
 lighthouse:
   image: zenika/alpine-chrome:89-with-node
-  stage: dynamic_tests
+  stage: tests
   variables:
     LIGHTHOUSE_TARGET: ""
     OUTPUT_NAME: "lighthouse"

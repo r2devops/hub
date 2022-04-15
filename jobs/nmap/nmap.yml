@@ -1,11 +1,11 @@
 stages:
-  - dynamic_tests
+  - tests
 
 nmap:
   image:
     name: instrumentisto/nmap:7.92
     entrypoint: [""]
-  stage: dynamic_tests
+  stage: tests
   variables:
     NMAP_TARGET: "app"
     NMAP_SCRIPTS: ""
@@ -26,5 +26,5 @@ nmap:
     paths:
       - "${HTML_OUTPUT}"
       # Below path is a workaround to provide artifact exposition in MR if
-      # default output value is used. See https://r2devops.io/jobs/dynamic_tests/nmap/#artifacts
+      # default output value is used. See https://r2devops.io/_/r2devops-bot/nmap
       - "nmap-report.html"

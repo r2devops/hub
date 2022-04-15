@@ -1,6 +1,6 @@
 name: python_tox
 description: A ready-to-use Tox job to test your Python project
-default_stage: static_tests
+default_stage: tests
 icon: 🐍
 maintainer: alexiaognard
 license: Apache-2.0

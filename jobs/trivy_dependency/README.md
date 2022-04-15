@@ -25,7 +25,7 @@ vulnerability detection capabilities are available in its official
 
 * Job name: `trivy_dependency`
 * Docker image: [`aquasec/trivy`](https://hub.docker.com/r/aquasec/trivy/){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 
 ### Dependencies check
 

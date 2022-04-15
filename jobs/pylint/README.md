@@ -16,7 +16,7 @@ This job will use the tool [pylint](https://pylint.pycqa.org/en/latest/intro.htm
 * Job name: `pylint`
 * Docker image:
 [`python:3.10-buster`](https://hub.docker.com/r/_/python)
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

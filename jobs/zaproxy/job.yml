@@ -1,6 +1,6 @@
 name: zaproxy
 description: A ready-to-use job to run a Dynamic Application Security Testing using Zaproxy
-default_stage: dynamic_tests
+default_stage: tests
 icon: 🔎
 maintainer: FulcrandG
 license: MIT

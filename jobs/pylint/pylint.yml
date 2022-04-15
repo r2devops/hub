@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 pylint:
   image: python:3.10-buster
-  stage: static_tests
+  stage: tests
   variables:
     PROJECT_ROOT: "."
     PYLINT_OPTIONS: ""

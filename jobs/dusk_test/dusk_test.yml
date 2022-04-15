@@ -1,7 +1,7 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - dynamic_tests
+  - tests
 
 cache:
   key:
@@ -13,7 +13,7 @@ cache:
     - "${CI_PROJECT_DIR}/${PROJECT_ROOT}/vendor"
 
 dusk_test:
-  stage: dynamic_tests
+  stage: tests
   image: chilio/laravel-dusk-ci:php-8.0
   variables:
     PROJECT_ROOT: .

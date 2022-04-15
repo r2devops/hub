@@ -1,9 +1,9 @@
 stages:
-  - static_tests
+  - tests
 
 sls_scan:
   image: shiftleft/sast-scan:v1.15.1
-  stage: static_tests
+  stage: tests
 
   variables:
     SCAN_OPTIONS: ""
@@ -35,5 +35,5 @@ sls_scan:
       - "$OUTPUT_PATH"
       - output
       # Below path is a workaround to provide artifact exposition in MR if
-      # default output value is used. https://r2devops.io/jobs/static_tests/sls_scan/#artifacts
+      # default output value is used. https://r2devops.io/_/r2devops-bot/sls_scan
       - "sls_scan_report/"

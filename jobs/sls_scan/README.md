@@ -33,7 +33,7 @@ build_break_rules = {
 * Job name: `sls_scan`
 * Docker image:
 [`shiftleft/sast-scan`](https://hub.docker.com/r/shiftleft/sast-scan){:target="_blank"}
-* Default stage: `static_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables

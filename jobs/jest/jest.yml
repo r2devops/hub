@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 jest:
   image: node:15.14-buster
-  stage: static_tests
+  stage: tests
   variables:
     PROJECT_ROOT: "."
     JEST_INCREMENTAL: "false"

@@ -17,7 +17,7 @@ This job will run a predefined `lint` script in your `package.json` which will c
 ## Job details
 
 * Job name: `yarn_lint`
-* Default stage: `static_tests`
+* Default stage: `tests`
 * Docker image: [`node:17.8.0-buster-slim`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 

@@ -1,13 +1,13 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-    - static_tests
+    - tests
   
 links_checker:
     image: 
         name: peterevans/liche:1.1.1
         entrypoint: [""]
-    stage: static_tests
+    stage: tests
     variables:
         # Variables relative to LICHE tool
         ## Defines in which directory LICHE is looking for files

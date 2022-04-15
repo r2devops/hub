@@ -1,6 +1,6 @@
 name: links_checker
 description: A job that helps you find broken links in your Markdown and HTML files
-default_stage: static_tests
+default_stage: tests
 icon: 🔗
 maintainer: Protocole
 license: MIT

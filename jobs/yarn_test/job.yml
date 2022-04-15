@@ -1,6 +1,6 @@
 name: yarn_test
 description: Ready to use yarn job that runs predefined command `test` specified in package.json
-default_stage: static_tests
+default_stage: tests
 icon: 🧪
 maintainer: Totara-thib
 license: MIT

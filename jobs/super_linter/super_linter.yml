@@ -1,10 +1,10 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 super_linter:
-  stage: static_tests
+  stage: tests
   image:
     name: github/super-linter:v4.9.0
     entrypoint: [""]

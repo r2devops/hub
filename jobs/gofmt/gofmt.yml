@@ -1,9 +1,9 @@
 stages:
-  - static_tests
+  - tests
 
 gofmt:
     image: golang:1.17-alpine3.14
-    stage: static_tests
+    stage: tests
     variables:
         # List of option to pass to the cmdline
         GOFMT_OPTIONS: ""

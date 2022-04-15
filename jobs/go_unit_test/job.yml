@@ -1,6 +1,6 @@
 name: go_unit_test
 description: Perform golang unit tests and integrate results with Gitlab UI
-default_stage: static_tests
+default_stage: tests
 icon: 🧪
 maintainer: seanel
 license: MIT

@@ -1,11 +1,11 @@
 stages:
-  - static_tests
+  - tests
 
 php_security_checker:
     image: 
       name: jakzal/phpqa:php7.4-alpine
       entrypoint: [""]
-    stage: static_tests
+    stage: tests
     variables:
       COMPOSER_PATH: "./composer.lock"
       FORMAT_OUTPUT: ""

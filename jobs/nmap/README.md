@@ -39,7 +39,7 @@ if one of them should not be.
 * Job name: `nmap`
 * Docker image:
 [`instrumentisto/nmap`](https://hub.docker.com/r/instrumentisto/nmap)
-* Default stage: `dynamic_tests`
+* Default stage: `tests`
 * When: `always`
 
 ### Variables
