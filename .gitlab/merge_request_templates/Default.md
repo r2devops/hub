@@ -6,25 +6,25 @@
 
 ### Field: Create or update a job
 
-* [ ] Ensure that the job contain all required files in order to fit [the template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name)
+* [ ] Ensure that the job contain all required files in order to fit [the template](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/r2_jobname)
 * [ ] Ensure that the jobs is working
 * [ ] Create a new change-log file (initial version must be `0.1.0`)
 * [ ] Update the documentation (`README.md` file)
-* [ ] Check if your job follows our [guidelines](https://r2devops.io/create-update-job/#guidelines-required) and [best practices](https://r2devops.io/create-update-job/#best-practices-optional)
+* [ ] Check if your job follows our [guidelines](https://docs.r2devops.io/contribute/#guidelines-required) and [best practices](https://docs.r2devops.io/contribute/#best-practices-optional)
 * [ ] Ensure pipeline doesn't fail
 * [ ] Update the dictionary if the job `spell_check` fails, and it's not a typo  
 
 ### Field: Update the documentation
 
 * [ ] Check the documentation result is rendered properly in pipeline `MkDocs` artifact
-* [ ] Check if your job follows our [guidelines](https://r2devops.io/create-update-job/#guidelines-required) and [best practices](https://r2devops.io/create-update-job/#best-practices-optional)
+* [ ] Check if your job follows our [guidelines](https://docs.r2devops.io/contribute/#guidelines-required) and [best practices](https://docs.r2devops.io/contribute/#best-practices-optional)
 * [ ] Ensure pipeline doesn't fail
 * [ ] Update the dictionary if the job `spell_check` fails, and it's not a typo  
 * [ ] Fix the broken links if any is prompted by the `links_checker` job
 
 ### Field: Update one of the hub tools
 
-* [ ] Check if your job follows our [guidelines](https://r2devops.io/create-update-job/#guidelines-required) and [best practices](https://r2devops.io/create-update-job/#best-practices-optional)
+* [ ] Check if your job follows our [guidelines](https://docs.r2devops.io/contribute/#guidelines-required) and [best practices](https://docs.r2devops.io/contribute/#best-practices-optional)
 * [ ] Ensure the tool is working properly locally 
 * [ ] Ensure the tool is working properly in the pipeline 
 * [ ] If needed, update `Pipfile` (and `Pipfile.lock`) dedicated to the tool
@@ -35,7 +35,7 @@
 
 ### Field: Update hub's pipeline 
 
-* [ ] Check if it follows our [guidelines](https://r2devops.io/create-update-job/#guidelines-required) and [best practices](https://r2devops.io/create-update-job/#best-practices-optional)
+* [ ] Check if it follows our [guidelines](https://docs.r2devops.io/contribute/#guidelines-required) and [best practices](https://docs.r2devops.io/contribute/#best-practices-optional)
 * [ ] Check if the new pipeline is working properly in a fork
 
 ## When I'm done
