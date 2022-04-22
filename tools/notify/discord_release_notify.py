@@ -21,30 +21,8 @@ EMBED_COLOR = 1127128 # Trailing color at left of message
 EMBED_TITLE = "A new job version is available for " # Title of the message
 EMBED_DESCRIPTION = "Wanna see what's new ? :point_down:" # Content of the message (body)
 DOC_LINK = "https://r2devops.io/jobs/"
-
-def get_yaml_property(file_path, property_name):
-    """Fetch a yaml property from a specified file
-
-    Args:
-        file_path (str): Path to the yaml file
-        property_name (str): Property name we want
-    """
-
-    if not os.path.exists(file_path):
-        logging.error("[ERROR] Could not find the following yaml property's path %s", file_path)
-        sys.exit(1)
-
-    with open(file_path, "r") as file:
-        try:
-            content = yaml.safe_load(file)
-            return content[property_name]
-        except yaml.YAMLError as expt:
-            logging.error("[ERROR] Failed to parse YAML file %s", file_path)
-            logging.error("[ERROR] Error content: %s", expt)
-            sys.exit(1)
-        except IndexError:
-            logging.error("[ERROR] Property %s not found in file %s", property_name, file_path)
-            sys.exit(1)
+API_JOBS_LINK = "https://api.r2devops.io/job/"
+R2_BOT_USER = "r2devops-bot"
 
 def get_random_quote():
     """Retrieve a random quote from R2Devops Snippet
@@ -56,31 +34,33 @@ def get_random_quote():
         data = response.json()
         return random.choice(data)
 
-def generate_data(name: str, version: str):
+def generate_data(name: str, version: str, changelog: str, stage: str):
     """Generate the body of the request
 
     Args:
         name (str): Name of the job
         version (str): Version of the job
-
+        changelog (str): Changelog of the job
+        stage (str): Stage of the job
     Returns:
         object: Describe the format and content of discord notification
     """
 
     logging.debug("generateData(%s, %s)", name, version)
 
-    job_path = "{0}/jobs/{1}/job.yml".format(ROOT_DIR, name.lower())
-    icon = get_yaml_property(job_path, "icon")
-    stage = get_yaml_property(job_path, "default_stage")
+    job_path = "{0}/jobs/{1}/{1}.yml".format(ROOT_DIR, name.lower())
+    logging.debug(job_path) 
 
-    changelog_path = "{0}/jobs/{1}/versions/{2}.md".format(ROOT_DIR, name.lower(), version)
-    logging.debug("Changelog path is %s", changelog_path)
+    #send an http GET request to the quotes url
+    job_url="{0}{1}/{2}".format(API_JOBS_LINK, R2_BOT_USER, name.lower())
+    job_metadata_request=requests.get(job_url)
 
-    if not os.path.exists(changelog_path):
-        logging.error("[ERROR] Could not find the following changelog %s", changelog_path)
+    if job_metadata_request.status_code != 200:
+        logging.error("[ERROR] Job %s not found for user %s with request %s", name.lower(), R2_BOT_USER, job_url)
         sys.exit(1)
 
-    changelog = open(changelog_path, "r").read()
+    icon = job_metadata_request.json()["icon"]
+
     data_format = {
         "username": USERNAME,
         "avatar_url": AVATAR_URL,
@@ -132,9 +112,9 @@ def send_message(web_hook: str, data_format: object):
     result = requests.post(web_hook, json=data_format)
 
     if result.status_code != 204:
-        logging.error("[ERROR] A problem occured when sending discord message for this release")
-        logging.error("[ERROR] Result body: %s", result.text)
-        sys.exit(1)
+       logging.error("[ERROR] A problem occured when sending discord message for this release")
+       logging.error("[ERROR] Result body: %s", result.text)
+       sys.exit(1)
 
     logging.info("Discord notification sent successfully")
 
@@ -149,6 +129,12 @@ def main():
     parser.add_argument("--version", "-v",
     type=str, required=True, help="R2DevOps job's version")
 
+    parser.add_argument("--changelog", "-c",
+    type=str, required=True, help="R2DevOps job's changelog")
+
+    parser.add_argument("--stage", "-s",
+    type=str, required=True, help="R2DevOps job's stage")
+
     parser.add_argument("--webhook", "-w",
     type=str, default=os.getenv("DISCORD_RELEASE_WEBHOOK"),
     help="Custom Discord WebHook (default: {})".format(os.getenv("DISCORD_RELEASE_WEBHOOK")))
@@ -160,7 +146,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level=args.loglevel)
 
-    data_format = generate_data(args.name, args.version)
+    data_format = generate_data(args.name, args.version, args.changelog, args.stage)
     send_message(args.webhook, data_format)
 
 if __name__ == "__main__":

@@ -1,9 +1,0 @@
-name: testssl
-description: Tool to check SSL/TLS related vulnerabilities
-default_stage: tests
-icon: 🔒
-maintainer: coconux
-license: MIT
-images:
-  drwetter/testssl.sh:3.0
-tools:
