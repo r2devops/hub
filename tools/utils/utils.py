@@ -18,11 +18,8 @@ class Config():
         self.TOOLS_DIR = "tools"
         self.JOB_TEMPLATE_DIR = "job_template"
         self.JOB_DIR = "r2_jobname"
-        self.JOB_YAML = "job.yml"
         self.JOB_DESCRIPTION_FILE = "README.md"
-        self.JOB_METADATA_FILE = "job.yml"
         self.JOBS_EXTENSION = ".yml"
-        self.JOB_CHANGELOG_DIR = "versions"
         # Directory name to use for the jobs screenshot
         self.SCREENSHOTS_DIR = "screenshots"
         self.ISSUES_LIMIT = 5

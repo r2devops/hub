@@ -9,8 +9,6 @@ stages:
 include:
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/links_checker/0.2.0.yml?ignore=true.yml'
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/spell_check/0.2.1.yml?ignore=true.yml'
-  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/mkdocs/1.4.0.yml?ignore=true.yml'
-  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pages/0.3.0.yml?ignore=true.yml'
 
 workflow:
   rules:
@@ -196,20 +194,6 @@ spell_check:
   variables:
     PYSPELLING_CONFIG: '.spell_check/.pyspelling.yml'
 
-mkdocs:
-  variables:
-    PIPENV_PIPFILE: tools/builder/Pipfile
-    PYTHONPATH: "./:$PYTHONPATH"
-    JOB_LOGFILE: "builder.log"
-  before_script:
-    - pip install pipenv==2020.11.15 && pipenv install
-    - pipenv run python tools/builder/builder.py
-    - unset PIPENV_PIPFILE
-    - apk add build-base
-  artifacts:
-    paths:
-      - "${JOB_LOGFILE}"
-      - "website_build/"
 
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
@@ -230,13 +214,19 @@ release:
 
     for JOB in jobs/*; do
       JOB=$(basename ${JOB})
-      for VERSION in jobs/${JOB}/versions/*; do
-        VERSION=$(basename ${VERSION} .md)
+      # Retrieve all versions of the job inside the CHANGELOG file, ## [(0.2.0)] - 2021-04-20 => get only this part ()
+      VERSIONS=$(sed -rn 's/^##\s*\[\s*([^\ ]*)\s*\]\s*-\s*[0-9]{4}-[0-9]{2}-[0-9]{2}\s*/\1/p' jobs/${JOB}/CHANGELOG.md)
+      for VERSION in ${VERSIONS}; do
+        #Retrieve the changes between two versions
+        CHANGELOG=$(sed -n "/^##\s*\[\s*${VERSION}\s*\]/,/^##/p" jobs/${JOB}/CHANGELOG.md | sed -e '/^$/d' | head -n -1 | tail -n +2)
+        #For initial version, we don't have a previous version, so set to default message
+        [ -z "${CHANGELOG}" ] && CHANGELOG=$(sed -n "/^##\s*\[\s*$VERSION\s*\]/,/^[^##]/p" jobs/${JOB}/CHANGELOG.md | sed -e '/^$/d' | tail -n +2)
+        STAGE=$(sed -rn 's/^\s*stage\s*:\s*([a-z]*)/\1/p' jobs/${JOB}/${JOB}.yml )
         result=$(http --ignore-stdin POST https://gitlab.com/api/v4/projects/$PROJECT_ENCODED/releases \
           "JOB-TOKEN: ${CI_JOB_TOKEN}" \
           tag_name=${JOB}-${VERSION} \
           ref=${CI_COMMIT_SHA} \
-          "description=$(cat jobs/${JOB}/versions/${VERSION}.md)" \
+          "description=${CHANGELOG}" \
           'assets:={"links": [{"name": "Hub link", "url": "https://jobs.r2devops.io/'"${VERSION}/${JOB}"'.yml"}]}')
 
           if [ $(echo $result | grep "Release already exists\|${JOB}-${VERSION}" | wc -l) -eq 0 ]; then
@@ -245,8 +235,8 @@ release:
             exit 1;
           else
             if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
-              echo "New version detected for $JOB, sending notification to discord"
-              pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION}
+              echo "New version detected for $JOB-$VERSION, sending notification to discord"
+              pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}" -s ${STAGE}
             fi
 
             echo "Processed ${JOB}-${VERSION} : ${result}";
@@ -255,7 +245,7 @@ release:
       done
     done
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 refresh_job_av_database:
   image: python:3.9.1-alpine
