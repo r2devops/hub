@@ -26,4 +26,4 @@ ng_build:
     artifacts:
       when: always
       paths:
-        - ${CI_PROJECT_DIR}/${DOCUMENTATION_OUTPUT}
+        - ${CI_PROJECT_DIR}/${OUTPUT_PATH}
