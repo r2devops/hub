@@ -31,4 +31,6 @@ go_unit_test:
     when: always
     reports:
       junit: report.xml
-      coverage_report: cobertura.xml
+      coverage_report: 
+        coverage_format: cobertura
+        path: cobertura.xml
