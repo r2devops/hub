@@ -3,7 +3,7 @@ stages:
 
 go_unit_test:
   stage: tests
-  image: golang:1.16.3
+  image: golang:1.18
   variables:
     UT_WORK_DIR: $CI_PROJECT_DIR
     UT_TEST_CMD: "go test -v"
@@ -11,7 +11,8 @@ go_unit_test:
     # Switch to working directory
     - cd "$UT_WORK_DIR"
     # Install job dependencies
-    - go get -u github.com/jstemmer/go-junit-report@v0.9.1 github.com/t-yuki/gocover-cobertura@v0.0.0-20180217150009-aaee18c8195c
+    - go get -u github.com/jstemmer/go-junit-report@v1.0.0 github.com/t-yuki/gocover-cobertura@v0.0.0-20180217150009-aaee18c8195c
+    - go install github.com/jstemmer/go-junit-report github.com/t-yuki/gocover-cobertura
     # Execute Unit tests to get both the junit report and the coverage file
     - ${UT_TEST_CMD} -coverprofile=coverage.out ./... 2>&1 | go-junit-report -set-exit-code > report.xml
     # Output the coverage to stdout for coverage regex to read
@@ -20,6 +21,7 @@ go_unit_test:
     - gocover-cobertura < coverage.out > cobertura.xml
     # Capture coverage in HTML format for humans
     - go tool cover -html=coverage.out -o code-coverage.html
+
   # Regex below tells gitlab what to capture from job's stdout as a coverage figure
   coverage: '/total:\s+\(statements\)\s+(\d+.\d+%)/'
   artifacts:
@@ -29,4 +31,6 @@ go_unit_test:
     when: always
     reports:
       junit: report.xml
-      cobertura: cobertura.xml
+      coverage_report: 
+        coverage_format: cobertura
+        path: cobertura.xml
