@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.2] - 2022-05-09
+* Update docker image to node:18.1-alpine3.14
+
 ## [0.3.1] - 2022-04-06
 * Change old link in the job code
 
