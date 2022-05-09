@@ -4,7 +4,7 @@ stages:
   - tests
 
 jest:
-  image: node:15.14-buster
+  image: node:18.1-alpine3.14
   stage: tests
   variables:
     PROJECT_ROOT: "."
