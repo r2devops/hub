@@ -5,7 +5,7 @@ stages:
 
 apidoc:
   image:
-    name: node:12.18.3-alpine3.12
+    name: node:18.1-alpine3.14
     entrypoint: [""]
   stage: build
   variables:

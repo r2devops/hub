@@ -17,7 +17,7 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 
 * Job name: `apidoc`
 * Docker image:
-[`node`](https://hub.docker.com/r/_/node){:target="_blank"}
+[`node:18.1-alpine3.14`](https://hub.docker.com/r/_/node){:target="_blank"}
 * Default stage: `build`
 * When: `always`
 
