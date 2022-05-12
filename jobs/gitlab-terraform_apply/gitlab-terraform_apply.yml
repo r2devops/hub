@@ -1,6 +1,6 @@
 # Job from R2Devops hub --> r2devops.io
 
-stages: 
+stages:
  - deploy
 
 cache:
@@ -13,17 +13,15 @@ cache:
 gitlab-terraform_apply:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0
-
   variables:
-    TF_ADDRESS: ""
-
+    TF_ROOT: "terraform"
+    TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main
   script:
     - cd ${CI_PROJECT_DIR}/${TF_ROOT}
     - gitlab-terraform apply
-
   artifacts:
     when: always
-    expose_as: "Terraform Apply artifact"
+    expose_as: "Terraform apply artifact"
     paths:
-      - plan.cache
       - "${CI_PROJECT_DIR}/${TF_ROOT}/output.log"
+  when: manual

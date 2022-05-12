@@ -1,6 +1,6 @@
 # Job from R2Devops hub --> r2devops.io
 
-stages: 
+stages:
  - provision
 
 cache:
@@ -13,26 +13,23 @@ cache:
 gitlab-terraform_plan:
   stage: provision
   image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0
-
   variables:
-    TF_ADDRESS: ""
-    PLAN_JSON: ""
+    TF_ROOT: "terraform"
+    TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main
     INIT_OPTIONS: ""
-
   script:
     - cd ${CI_PROJECT_DIR}/${TF_ROOT}
-    - gitlab-terraform init ${INIT_OPTIONS} | tee -a output.log
+    - gitlab-terraform init ${INIT_OPTIONS} | tee output.log
     - gitlab-terraform validate | tee -a output.log
     - gitlab-terraform plan | tee -a output.log
-    - if [ ${PLAN_JSON} == "true" ]; then
-    -   gitlab-terraform plan-json | tee -a plan.json
-    - fi
-
+    - gitlab-terraform plan-json | tee -a plan.json
+    - mkdir ${CI_PROJECT_DIR}/terraform_def
+    - "(cd ${TF_ROOT}; tar cvf - .) | (cd ${CI_PROJECT_DIR}/terraform_def; tar xvf -)"
   artifacts:
     when: always
-    expose_as: "Terraform Plan artifact"
+    expose_as: "Terraform plan artifact"
     paths:
-      - plan.cache
-      - "${CI_PROJECT_DIR}/${TF_ROOT}/output.log"
+      - "${TF_ROOT}/plan.cache"
+      - "${CI_PROJECT_DIR}/terraform_def"
     reports:
-      terraform: plan.json
+      terraform: "${TF_ROOT}/plan.json"

@@ -1,6 +1,6 @@
 ## Objective
 
-This job will apply all the changes set by `gitlab-terraform_plan` in the file `plan.cache` 
+This job will apply all the changes set by `gitlab-terraform_plan` in the file `plan.cache`
 
 !!! info
     By default, this job will run using the default `local` backend, but if you want to use other [remote backends](https://www.terraform.io/docs/language/settings/backends/index.html){:target="_blank"} instead, you need to configure it in advance, check [this](https://www.terraform.io/docs/language/settings/backends/remote.html){:target="_blank"} for more information
@@ -33,7 +33,7 @@ This job will apply all the changes set by `gitlab-terraform_plan` in the file `
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `TF_ROOT` | Directory path to terraform files | `terraform` |
-| `TF_ADDRESS` | Directory path to terraform state files | `terraform` |
+| `TF_ADDRESS` | Address to terraform state backend | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 
 ### Artifacts
 
