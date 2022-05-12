@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
-## [0.3.0] - 2021-10-07
+## [0.4.0] - 2022-05-12
+* Update default value of `TF_ROOT` to make job plug and play
+
+## [0.3.0] - 2022-05-12
 * Fix default values of variables
 
 ## [0.2.0] - 2021-10-07

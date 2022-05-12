@@ -31,7 +31,7 @@ This job will initialize a working directory containing Terraform configuration 
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `TF_ROOT` | Directory path to terraform files | `terraform` |
+| `TF_ROOT` | Directory path to terraform files | `${CI_PROJECT_DIR}/terraform` |
 | `TF_ADDRESS` | Address to terraform state backend | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 | `INIT_OPTIONS` | Additional options to terraform CLI init | ` ` |
 

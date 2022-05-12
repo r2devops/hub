@@ -14,21 +14,23 @@ gitlab-terraform_plan:
   stage: provision
   image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0
   variables:
-    TF_ROOT: "terraform"
+    TF_ROOT: ${CI_PROJECT_DIR}/terraform
     TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main
     INIT_OPTIONS: ""
   script:
-    - cd ${CI_PROJECT_DIR}/${TF_ROOT}
+    - cd ${TF_ROOT}
+    - terraform fmt -check -diff ${TF_ROOT}
     - gitlab-terraform init ${INIT_OPTIONS} | tee output.log
     - gitlab-terraform validate | tee -a output.log
     - gitlab-terraform plan | tee -a output.log
-    - gitlab-terraform plan-json | tee -a plan.json
+    - gitlab-terraform plan-json | tee -a output.log
     - mkdir ${CI_PROJECT_DIR}/terraform_def
     - "(cd ${TF_ROOT}; tar cvf - .) | (cd ${CI_PROJECT_DIR}/terraform_def; tar xvf -)"
   artifacts:
     when: always
     expose_as: "Terraform plan artifact"
     paths:
+      - "${TF_ROOT}/output.log"
       - "${TF_ROOT}/plan.cache"
       - "${CI_PROJECT_DIR}/terraform_def"
     reports:

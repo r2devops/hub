@@ -32,7 +32,7 @@ This job will apply all the changes set by `gitlab-terraform_plan` in the file `
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `TF_ROOT` | Directory path to terraform files | `terraform` |
+| `TF_ROOT` | Directory path to terraform files | `${CI_PROJECT_DIR}/terraform` |
 | `TF_ADDRESS` | Address to terraform state backend | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 
 ### Artifacts
