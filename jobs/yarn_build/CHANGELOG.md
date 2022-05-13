@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.0] - 2022-05-13
+* Update `node` image to `18-buster`
+
 ## [0.2.0] - 2021-04-23
 * Upgrade image `node` to `15.14`
 
