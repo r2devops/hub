@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.1] - 2022-05-09
+* Update docker image to node:18.1-alpine3.14
+
 ## [1.0.0] - 2022-04-14
 * Change the default stage into `tests`
 

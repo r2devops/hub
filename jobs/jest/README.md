@@ -30,7 +30,7 @@ On top of rolling your tests for you, it will create you a coverage report
 
 * Job name: `jest`
 * Default stage: `tests`
-* Docker image: [`node:15.14-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:18.1-alpine3.14`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 
