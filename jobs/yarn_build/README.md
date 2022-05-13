@@ -18,7 +18,7 @@ from your `package.json` file.
 
 * Job name: `yarn_build`
 * Default stage: `build`
-* Docker image: [`node:15.7-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 
