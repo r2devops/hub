@@ -1,84 +1,113 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-    - tests
-  
+  - tests
+
 links_checker:
-    image: 
-        name: peterevans/liche:1.1.1
-        entrypoint: [""]
-    stage: tests
-    variables:
-        # Variables relative to LICHE tool
-        ## Defines in which directory LICHE is looking for files
-        LICHE_DIRECTORY: ""
-        ## Defines which files it should check
-        LICHE_FILES: ""
-        ## Exclude links based on regex pattern
-        LICHE_EXCLUDE: ""
-        ## Add in the report the link which are fine
-        LICHE_PRINT_OK: "false"
-        ## Custom options
-        LICHE_OPTIONS: ""
-        ## For a directory defined, search in sub folders for files
-        LICHE_RECURSIVE: "true"
-        ## Fails the pipeline if LICHE finds a broken link
-        FAIL_ON_BROKEN: "false"
-        ##
-        ROOT_DIRECTORY: ""
+  image: 
+    name: lycheeverse/lychee:0.9
+    entrypoint: [""]
+  stage: tests
+  variables:
+    # Variables relative to LYCHEE tool
+    ## Defines in which directory LYCHEE is looking for files
+    LYCHEE_DIRECTORY: "."
+    ## Defines which files it should check, works with a pattern
+    LYCHEE_FILES: ""
+    ## Exclude links based on regex pattern
+    LYCHEE_EXCLUDE_LINKS: ""
+    ## Exclude a list of files or directory to exclude from the lychee directory
+    LYCHEE_EXCLUDE: ""
+    ## Add in the report corrects links
+    ## TODO Add ok and skipped links in tests report
+    LYCHEE_PRINT_OK: "false"
+    ## Custom options
+    LYCHEE_OPTIONS: ""
+    ## Fails the pipeline if LYCHEE finds a broken link
+    FAIL_ON_BROKEN: "true"
 
-        # Defines the name of the report
-        REPORT_OUTPUT: "junit-report.xml"
-    script:
-        - mkdir /liche && cd /liche
-        - apk add --update nodejs npm curl && npm install junit-report-builder
+    ## Base URL or website root directory to check relative URLs
+    ROOT_DIRECTORY: ""
 
-        - add_option() { export LICHE_OPTIONS="${LICHE_OPTIONS} ${1}"; }
-        - |
-            generate_report() {
-                cat ${CI_PROJECT_DIR}/linkchecker_logs
-                echo "EOF" >> ${CI_PROJECT_DIR}/linkchecker_logs
-                curl -s -o /liche/main.cjs https://gitlab.com/r2devops/hub/-/snippets/2044617/raw/master/main.cjs
-                node main.cjs "${CI_PROJECT_DIR}" "${CI_PROJECT_DIR}/linkchecker_logs" "${REPORT_OUTPUT}"
-                mv ${REPORT_OUTPUT} ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
-            }
+    ## Defines the name of the report, if empty, doesn't generate a report 
+    REPORT_OUTPUT: "junit-report.xml"
+  script:
+    - | 
+        if [ ! -z ${REPORT_OUTPUT} ]; then
+          apt update && apt upgrade -y && apt install -y curl nodejs npm && npm install junit-report-builder  
+        fi
 
-        - | 
-            if [ ! -d ${CI_PROJECT_DIR}/${LICHE_DIRECTORY} ]; then
-                echo "Directory specified ${CI_PROJECT_DIR}/${LICHE_DIRECTORY} does not exist, exit"
-                exit 1
-            fi
-            if [ -z ${ROOT_DIRECTORY} ]; then
-                export ROOT_DIRECTORY=${LICHE_DIRECTORY}
-            fi
-            add_option "${CI_PROJECT_DIR}/${LICHE_DIRECTORY} -d ${CI_PROJECT_DIR}/${ROOT_DIRECTORY}"; 
-        - |
-            if [ ! -z "${LICHE_FILES}" ]; then
-                for i in ${LICHE_FILES}; do
-                    if [ ! -f ${i} ]; then
-                        echo "File ${i} does not exist, exit";
-                        exit 1;
-                    fi
+    - add_option() { export LYCHEE_OPTIONS2="${LYCHEE_OPTIONS2} ${1}"; }
+    - export ERROR_FILE=${CI_PROJECT_DIR}/errors
+    # Output errors to another file, remove the white line and add EOF parse the file
+    - |
+        generate_report() {
+          file=$(sed -e '/^$/d' ${ERROR_FILE} | tail -n +2 | head -n -1)
+          echo -e "${file}\nEOF" > ${ERROR_FILE}
+          curl -s -o main.cjs https://gitlab.com/r2devops/hub/-/snippets/2318077/raw/main/main.cjs
+          node main.cjs "${CI_PROJECT_DIR}" "${ERROR_FILE}" "${REPORT_OUTPUT}"
+          mv ${REPORT_OUTPUT} ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
+        }
 
-                    add_option "${CI_PROJECT_DIR}/${i}"
-                done
-            fi
-        - if [ ! -z ${LICHE_EXCLUDE} ]; then add_option "-x ${LICHE_EXCLUDE}"; fi
-        - if [ ${LICHE_PRINT_OK} = "true" ]; then add_option "-v"; fi
-        - if [ ${LICHE_RECURSIVE} = "true" ]; then add_option "-r"; fi
-        
-        - |
-            if liche ${LICHE_OPTIONS} > ${CI_PROJECT_DIR}/linkchecker_logs 2>&1; then
-                generate_report;
-                echo "No errors so far in in the checked files";
+    - | 
+        if [ ! -d ${LYCHEE_DIRECTORY} ]; then
+          echo "Directory specified ${LYCHEE_DIRECTORY} does not exist, exit"
+          exit 1
+        else
+          cd ${LYCHEE_DIRECTORY}
+        fi
+
+    # exclude files from files to scan, works with directory and file pattern
+    - |
+        if [ ! -z "${LYCHEE_EXCLUDE}" ]; then 
+          FILES=""
+          if [ ! -z "${LYCHEE_FILES}" ]; then
+            FILES=$(find ${LYCHEE_FILES})
+          else
+            FILES=$(find . -type f)
+          fi
+          for file_exclude in ${LYCHEE_EXCLUDE}; do
+            FILES=$(echo "${FILES}" | grep -v "${file_exclude}")
+          done
+          add_option "${FILES}"
+
+          else
+            if [ ! -z "${LYCHEE_FILES}" ]; then
+              add_option "${LYCHEE_FILES}"
             else
-                generate_report;
-                echo "Errors found in checked files";
-                if [ ${FAIL_ON_BROKEN} = "true" ]; then exit 1; fi
+                add_option "."
             fi
-    artifacts:
-        when: always
-        paths:
-            - ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
-        reports:
-            junit: ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
+        fi
+
+
+    - $([ "${LYCHEE_PRINT_OK}" == "true" ]) && add_option "-v"
+    - $([ ! -z "${LYCHEE_EXCLUDE_LINKS}" ]) && add_option "--exclude ${LYCHEE_EXCLUDE_LINKS}"
+    - $([ ! -z "${ROOT_DIRECTORY}" ]) && add_option "-b ${ROOT_DIRECTORY}"
+    - add_option "${LYCHEE_OPTIONS}"
+    - echo "${LYCHEE_OPTIONS2}"
+
+    - | 
+        ARE_LINKS_VALID="false"
+        if lychee ${LYCHEE_OPTIONS2} 2> ${CI_PROJECT_DIR}/logs 1> ${ERROR_FILE}; then
+          echo "No errors so far in the checked files";
+          ARE_LINKS_VALID="true"
+        fi
+        if [ "${LYCHEE_PRINT_OK}" == "true" ]; then
+          cat ${CI_PROJECT_DIR}/logs
+        fi
+        cat ${ERROR_FILE}
+        if [ ! -z ${REPORT_OUTPUT} ]; then 
+          generate_report
+        fi
+        if [ ${ARE_LINKS_VALID} == "false" ]; then
+          echo "Errors found in the checked files";
+          if [ ${FAIL_ON_BROKEN} == "true" ]; then
+            exit 1;
+          fi
+        fi
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
+    reports:
+      junit: ${CI_PROJECT_DIR}/${REPORT_OUTPUT}

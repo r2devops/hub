@@ -2,7 +2,7 @@
 
 Using this job you will be able to detect most (see [here](#types-of-link-verified)) broken links in your **Markdown** or **HTML** files.
 
-It uses the tool [`Liche`](https://github.com/raviqqe/liche){:target="_blank"} in [Go](https://golang.org/){:target="_blank"}
+It uses the tool [`Lychee`](https://github.com/lycheeverse/lychee){:target="_blank"} in [Rust](https://rust-lang.org){:target="_blank"}
 to test and find the links in your documents.
 In its default state, this job will analyze your whole project for eligible files to verify.
 
@@ -22,7 +22,7 @@ In its default state, this job will analyze your whole project for eligible file
 
 * Job name: `links_checker`
 * Docker image:
-[`peterevans/liche:1.1.1`](https://hub.docker.com/r/peterevans/liche){:target="_blank"}
+[`lycheeverse/lychee:0.9`](https://hub.docker.com/r/lycheeverse/lychee){:target="_blank"}
 * Default stage: `tests`
 * When: `always`
 
@@ -30,20 +30,26 @@ In its default state, this job will analyze your whole project for eligible file
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `LICHE_DIRECTORY` <img width=450/> | Path to the directory to be scanned | ` ` |
-| `LICHE_FILES` | A list of files (separated with spaces) to scan. It can be used with `LICHE_DIRECTORY` | ` ` |
-| `LICHE_EXCLUDE` | A [regular expression](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"} to exclude a pattern of link | ` ` |
-| `LICHE_PRINT_OK` | In addition to broken links, it will add not-broken links in the report (see [artifacts](#artifacts)) | `false` |
-| `LICHE_RECURSIVE` | When `LICHE_DIRECTORY` is filled it will search for files recursively  | `true` |
+| `LYCHEE_DIRECTORY` <img width=450/> | Path to the directory to be scanned | ` ` |
+| `LYCHEE_FILES` | A list of files (separated with spaces) to scan. It can be used with `LYCHEE_DIRECTORY` | ` ` |
+| `LYCHEE_EXCLUDE_LINKS` | A [regular expression](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"} to exclude a pattern of link | ` ` |
+| `LYCHEE_EXCLUDE` | A [regular expression](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"} to exclude files or directory matching a pattern | ` ` |
+| `LYCHEE_PRINT_OK` | Display in the console the output | `false` |
 | `FAIL_ON_BROKEN` | Make your pipeline fails when a broken link is found | `false` |
 | `ROOT_DIRECTORY` | Used for absolute paths, it defines the root of HTML projects | ` ` |
-| `LICHE_OPTIONS` | Additional options (see [options](https://github.com/raviqqe/liche){:target="_blank"}) | ` ` |
-| `REPORT_OUTPUT` | Report file's name | `junit-report.xml` |
+| `LYCHEE_OPTIONS` | Additional options (see [options](https://github.com/lycheeverse/lychee#commandline-parameters){:target="_blank"}) | ` ` |
+| `ROOT_DIRECTORY` | Used for absolute paths, it defines the root of HTML projects | ` ` |
+| `REPORT_OUTPUT` | Report file's name(see [artifacts](#artifacts)). Is not generated if empty (can increase jobs speed) | `junit-report.xml` |
+
+!!! warning
+    As this job is still in development, some behavior could be unexpected.
+    For example, avoid using `LYCHEE_EXCLUDE` and `--include <link>` options together as include has preference over all excludes and `LYCHEE_EXCLUDE` uses a hand-written  `find` command. 
+
 
 ### Types of link verified
 
 This tool will check for links in a specific context, and so in your project some link formats may not be checked. However,
-here is (a non-exhaustive) list of what `Liche` can or can't identify:
+here is (a non-exhaustive) list of what `Lychee` can identify:
 
 **In HTML files (`.html`, `.htm`):**
 ```HTML
@@ -54,9 +60,6 @@ Can identify:
 * <a href="mailto:contact@google.com"></a>
 * <img src="../images/logo.png"/>
 * <img src="logo.png"/>
-
-Can't identify:
-
 * <div onClick="redirect('https://www.google.com')"></div>
 * <script type="text/javascript">
       window.location.href = "https://www.google.com"
@@ -81,7 +84,16 @@ Can identify:
 If you are using absolute paths in your HTML documents, be sure to fill the variable `ROOT_DIRECTORY`. If you don't, by default, the variable will be filled with the same path as `LICHE_DIRECTORY`.
 
 If you use URL rewriting in your static website, using this job, most of the internal links will be considered as broken. To avoid that, you can define that you
-only want to check external links, by using `LICHE_EXCLUDE: "^[^http]"` (see [regex](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"})
+only want to check external links, by using `LYCHEE_EXCLUDE_LINKS: "^[^https?]"` (see [regex](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"})
+
+### Filtering status code and authentication 
+
+There are several method to authenticate into website with Lychee. As multiple methods are available, you need to choose your own and override the `LYCHEE_OPTIONS` variable to define it. Here are some case of authentication :
+For basic authentication like username:password`, use option `--basic-auth`.
+If you need to access an URL that require some Header token to authenticate, like Bearer, you could use this syntax : ` --headers 'Authorization: 'Bearer <token>'`
+Last, you can avoid rate limiting on GitHub links by using this syntax : `--github-token <github-token>`.
+
+If you are still issuing some 503 status code which requires authentication, you can ignore them by setting `LYCHEE_OPTIONS` to `-a 503`. 
 
 ### Artifacts
 
@@ -91,4 +103,4 @@ directly in pipeline `Test` tab and in merge request widget.
 
 
 ### Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole). Was updated by [@GridexX](https://gitlab.com/GridexX) on May 2022 with a better tool.
