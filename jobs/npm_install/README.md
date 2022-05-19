@@ -31,7 +31,7 @@ This job installs `npm` dependencies listed in your `package-lock.json` and expo
 
 * Job name: `npm_install`
 * Default stage: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post)
-* Docker image: [`node:15.7-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 

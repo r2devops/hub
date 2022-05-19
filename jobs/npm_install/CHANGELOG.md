@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.2] - 2022-05-20
+* Update image to node:18-buster
+
 ## [0.3.1] - 2021-07-25
 * Fix cache relative paths
 

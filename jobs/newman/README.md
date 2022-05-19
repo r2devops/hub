@@ -52,7 +52,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
 
 * Job name: `newman`
 * Docker image:
-[`node:15.0.4`](https://hub.docker.com/r/_/node)
+[`node:18-buster`](https://hub.docker.com/r/_/node)
 * Default stage: `tests`
 * When: `always`
 
@@ -68,6 +68,20 @@ Launch a Postman collection of requests to test your API using [newman](https://
 | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
 | `NEWMAN_VERSION` | Newman version | `5.2.2` |
 | `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` | 
+
+If you want to use some secret variables for your collection, and want to hide them from the `collection.json` file, you can specify them in a File variable called `NEWMAN_VARIABLE_FILE` inside you're `CI/CD Variables` in GitLab (Settings > CI/CD > Variables). Then add the following script for the job :
+
+```yml
+
+before_script:
+  - apk update && apk add gettext
+  - source $NEWMAN_VARIABLE_FILE
+  - export $(cut -d= -f1 $NEWMAN_VARIABLE_FILE)
+  - cp ${NEWMAN_COLLECTION} ${NEWMAN_COLLECTION}.back
+  - envsubst < ${NEWMAN_COLLECTION}.back > ${NEWMAN_COLLECTION}
+```
+
+This method was inspired by this [website](https://carolinafernandez.github.io/devops/2020/05/12/Environment-variable-substitution-in-Linux).
 
 ### Artifact
 

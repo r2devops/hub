@@ -18,7 +18,7 @@ This job will help you deploy your serverless resources to AWS using the framewo
 
 * Job name: `serverless_deploy`
 * Docker image:
-[`node:15.14-buster`](https://hub.docker.com/r/_/node)
+[`node:18-buster`](https://hub.docker.com/r/_/node)
 * Default stage: `deploy`
 * When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).
   To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)

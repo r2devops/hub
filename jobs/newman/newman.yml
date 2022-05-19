@@ -2,7 +2,7 @@ stages:
   - tests
 
 newman:
-  image: node:15.14-buster
+  image: node:18-buster
   stage: tests
   variables:
     NEWMAN_COLLECTION: "postman_collection.json"
@@ -12,7 +12,7 @@ newman:
     NEWMAN_JUNIT_REPORT: "newman-report.xml"
     NEWMAN_FAIL_ON_ERROR: "true"
     NEWMAN_ITERATIONS_NUMBER: "2"
-    NEWMAN_VERSION: "5.2.2"
+    NEWMAN_VERSION: "5.3.2"
     NEWMAN_JUNIT_VERSION: "1.1.1"
   script:
     - npm install -g newman@${NEWMAN_VERSION} newman-reporter-junitfull@${NEWMAN_JUNIT_VERSION}

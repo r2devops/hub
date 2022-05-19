@@ -2,7 +2,7 @@ stages:
   - deploy
 
 serverless_deploy:
-    image: node:15.14-buster
+    image: node:18-buster
     stage: deploy
     variables:
       SERVERLESS_YAML_DIR: "."

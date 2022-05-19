@@ -42,7 +42,7 @@ gulp:
 
 * Job name: `gulp`
 * Default stage: `others`
-* Docker image: [`node:15.7-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 

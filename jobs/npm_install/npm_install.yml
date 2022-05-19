@@ -12,7 +12,7 @@ cache:
 npm_install:
   stage: .pre
   image:
-    name: node:15.14-buster
+    name: node:18-buster
     entrypoint: [""]
   variables:
     NPM_INSTALL_OPTIONS: ""
