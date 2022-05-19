@@ -26,7 +26,7 @@ JOB_DIR = "job_av"
 SCANNED_IMAGES_FILE = os.getenv("SCANNED_IMAGES_FILE")
 SCANNED_IMAGES = []
 
-BLACKLIST = ["github/super-linter:v3.14.3", "shiftleft/sast-scan:v1.9.29", "nvuillam/mega-linter:v4"]
+BLACKLIST = ["github/super-linter:v3.14.3", "shiftleft/sast-scan:v1.9.29", "nvuillam/mega-linter:v4", "github/super-linter:v4.9.0"]
 
 
 def argparse_setup():
