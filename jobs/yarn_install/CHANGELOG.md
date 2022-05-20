@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.5.0] - 2022-05-13
+* Update image `node` to `18`
+
 ## [0.4.1] - 2021-07-25
 * Fix cache relative paths
 * Add prefix to cache

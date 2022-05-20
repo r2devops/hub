@@ -12,7 +12,7 @@ cache:
 yarn_install:
   stage: .pre
   image:
-    name: node:15.14-buster
+    name: node:18-buster
     entrypoint: [""]
   variables:
     YARN_INSTALL_OPTIONS: ""
