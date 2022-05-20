@@ -3,7 +3,7 @@ stages:
 
 owasp_dependency_check:
   image:
-    name: owasp/dependency-check:6.1.1
+    name: owasp/dependency-check:7.1.0
     entrypoint: [ "" ]
   stage: tests
   variables:

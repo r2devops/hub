@@ -17,7 +17,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
 
 * Job name: `owasp_dependency_check`
 * Docker image:
-[`owasp/dependency-check:6.1.1`](https://hub.docker.com/r/owasp/dependency-check){:target="_blank"}
+[`owasp/dependency-check:7.1.0`](https://hub.docker.com/r/owasp/dependency-check){:target="_blank"}
 * Default stage: `tests`
 * When: `always`
 
