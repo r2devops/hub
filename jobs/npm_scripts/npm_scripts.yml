@@ -8,7 +8,7 @@ stages:
 npm_scripts:
   stage: others
   image:
-    name: node:16.8-buster
+    name: node:18-buster
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."

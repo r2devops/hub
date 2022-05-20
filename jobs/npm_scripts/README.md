@@ -21,7 +21,7 @@ This job allows users to run several scripts from their `package.json` file usin
 
 * Job name: `npm_scripts`
 * Default stage: `others`
-* Docker image: [`node:16.8-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 

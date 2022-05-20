@@ -17,7 +17,7 @@ In order to build Docusaurus, the user must `init` a Docusaurus project, checkou
 
 * Job name: `docusaurus_build`
 * Docker image:
-[`node:16.13.1-buster`](https://hub.docker.com/r/_/node)
+[`node:18-buster`](https://hub.docker.com/r/_/node)
 * Default stage: `build`
 * When: `always`
 

@@ -18,7 +18,7 @@ This job will run a predefined `lint` script in your `package.json` which will c
 
 * Job name: `npm_lint`
 * Default stage: `tests`
-* Docker image: [`node:16.8-buster`](https://hub.docker.com/_/node){:target="_blank"}
+* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
 * When: `always`
 
 

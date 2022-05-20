@@ -14,7 +14,7 @@ cache:
 npm_lint:
   stage: tests
   image: 
-      name: node:16.8-buster
+      name: node:18-buster
       entrypoint: [""]
   variables:
     NPM_INSTALL_OPTIONS: ""

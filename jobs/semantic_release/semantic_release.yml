@@ -4,7 +4,7 @@ stages:
   - release
 
 semantic_release:
-  image: node:16.2
+  image: node:18-buster
   stage: release
   variables:
     SEMANTIC_CONFIG_DIR: "/"

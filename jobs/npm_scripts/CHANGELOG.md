@@ -1,5 +1,8 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.0] - 2022-05-20
+* Update image to node:18-buster
+
 ## [0.1.0] - 2021-09-13
 * Initial version

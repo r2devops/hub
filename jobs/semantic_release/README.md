@@ -31,7 +31,7 @@ version of the software is needed, and the content of your release note. Learn m
 ## Job details
 
 * Job name: `semantic_release`
-* Docker image: [`node:16.2`](https://hub.docker.com/r/_/node){:target="_blank"}
+* Docker image: [`node:18-buster`](https://hub.docker.com/r/_/node){:target="_blank"}
 * Default stage: `release`
 * When: `${CI_COMMIT_BRANCH} == ${CI_DEFAULT_BRANCH}`
 

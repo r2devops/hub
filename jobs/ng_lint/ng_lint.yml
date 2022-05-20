@@ -6,7 +6,7 @@ stages:
 ng_lint:
 
   image:
-    name: node:16.13.1-buster
+    name: node:18-buster
     entrypoint: [""]
 
   stage: tests

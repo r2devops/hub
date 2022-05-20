@@ -14,7 +14,7 @@ cache:
 yarn_lint:
   stage: tests
   image: 
-      name: node:17.8.0-buster-slim
+      name: node:18-buster
       entrypoint: [""]
   variables:
     YARN_INSTALL_OPTIONS: ""
