@@ -19,7 +19,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 
 * Job name: `phpdocumentor`
 * Docker image:
-[`phpdoc/phpdoc:3.1`](https://hub.docker.com/r/phpdoc/phpdoc){:target="_blank"}
+[`phpdoc/phpdoc:3.3`](https://hub.docker.com/r/phpdoc/phpdoc){:target="_blank"}
 * Default stage: `build`
 * When: `always`
 

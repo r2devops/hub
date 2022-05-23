@@ -5,7 +5,7 @@ stages:
 
 phpdocumentor:
     image:
-      name: phpdoc/phpdoc:3.1
+      name: phpdoc/phpdoc:3.3
       entrypoint: [""]
     stage: build
     variables:
