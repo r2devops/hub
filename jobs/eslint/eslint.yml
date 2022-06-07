@@ -1,0 +1,27 @@
+stages:
+  - tests
+
+eslint:
+    image: node:18-buster
+    stage: tests
+    variables:
+      PROJECT_ROOT: "."
+      ESLINT_SOURCE: "./src"
+      ESLINT_VERSION: "8.17.0"
+      REPORT_OUTPUT: "junit-report.xml"
+      ADDITIONAL_OPTIONS: ""
+    script:
+      - cd ${PROJECT_ROOT}
+      - if [ ! -z ${REPORT_OUTPUT} ]; then
+      -    npm i eslint-junit
+      -    curl -s -o script.sh https://gitlab.com/r2devops/hub/-/snippets/2345798/raw/main/script.sh
+      -    bash ./script.sh
+      -    ADDITIONAL_OPTIONS="${ADDITIONAL_OPTIONS} -f ./node_modules/eslint-junit/index.js"
+      - fi
+      - npx -y eslint@${ESLINT_VERSION} ${ESLINT_SOURCE} ${ADDITIONAL_OPTIONS}
+    artifacts:
+      when: always
+      paths:
+        - ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
+      reports:
+        junit: ${CI_PROJECT_DIR}/${REPORT_OUTPUT}
