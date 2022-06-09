@@ -15,7 +15,12 @@ prettier_check:
       - npm install --location=global prettier@${PRETTIER_VERSION}
       - if [ ! -z ${OUTPUT_DIRECTORY} ]; then
       -    mkdir -p "${OUTPUT_DIRECTORY}"
-      -    prettier ${ADDITIONAL_OPTIONS} -l ${PRETTIER_SOURCE} > "${OUTPUT_DIRECTORY}/prettier-report.txt"
+      -    if prettier ${ADDITIONAL_OPTIONS} -l ${PRETTIER_SOURCE} > "${OUTPUT_DIRECTORY}/prettier-report.txt"; then
+      -       echo "Prettier check passed"
+      -    else
+      -       echo "Prettier check failed"
+      -       prettier ${ADDITIONAL_OPTIONS} -c ${PRETTIER_SOURCE}
+      -    fi
       - else
       -    prettier ${ADDITIONAL_OPTIONS} -c ${PRETTIER_SOURCE}
       - fi
