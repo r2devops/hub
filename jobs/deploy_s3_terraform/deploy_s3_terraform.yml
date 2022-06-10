@@ -1,0 +1,99 @@
+stages:
+  - deploy
+
+cache:
+  key:
+    files:
+    - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform.lock.hcl"
+  paths:
+    - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform"
+
+deploy_s3_terraform:
+  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.2:v0.40.0
+  stage: deploy
+  variables: 
+    AWS_ACCESS_KEY_ID: ""
+    AWS_SECRET_ACCESS_KEY: ""
+    AWS_DEFAULT_REGION: "eu-west-1"
+    AWS_BUCKET_NAME: ""
+    AWS_ENDPOINT: ""
+    AWS_ACL: ""
+    AWS_SYNC_DIR: "website_build"
+    AWS_DELETE_OLD_FILE: "true"
+    AWS_BUCKET_POLICY_FILE: ""
+    AWS_DEPLOY_WEBSITE: "true"
+    AWS_WEBSITE_HOMEPAGE: "index.html"
+    AWS_WEBSITE_ERRORPAGE: "error.html"
+    AWS_CLI_VERSION: "2.7.7"
+    TF_ADDRESS: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main"
+    TF_ROOT: "${CI_PROJECT_DIR}/terraform"
+
+  script:
+    - |
+      apk --no-cache add \
+        curl \
+        && GLIBC_VER="2.34-r0" \
+      && curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub \
+      && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk \
+      && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
+      && apk add --no-cache --force-overwrite \
+        glibc-${GLIBC_VER}.apk \
+        glibc-bin-${GLIBC_VER}.apk \
+        unzip \
+      && wget -O awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip \
+      && unzip -qq awscliv2.zip \
+      && aws/install
+
+    # Checking and Applying terraform state
+    - export TF_VAR_website_homepage=${AWS_WEBSITE_HOMEPAGE} TF_VAR_website_errorpage=${AWS_WEBSITE_ERRORPAGE}
+    - cd ${TF_ROOT}
+    - if terraform fmt -check -diff ${TF_ROOT}; then
+    -   echo "Terraform files are OK"
+    - else
+    -   echo "Terraform files are not OK. you should launch \`terraform fmt\` to fix them"
+    -   exit 1
+    - fi
+    - gitlab-terraform init | tee output.log
+    - gitlab-terraform validate | tee -a output.log
+    - gitlab-terraform plan | tee -a output.log
+    - gitlab-terraform plan-json | tee -a output.log
+    - mkdir ${TF_ROOT}_def
+    - "(cd ${TF_ROOT}; tar cvf - .) | (cd ${TF_ROOT}_def; tar xvf -)"
+    - gitlab-terraform apply
+
+    # Set Endpoint URL
+    - cd ${CI_PROJECT_DIR}
+    - ENDPOINT_URL=""
+    - if [ ! -z ${AWS_ENDPOINT} ]; then
+    -   ENDPOINT_URL="--endpoint-url ${AWS_ENDPOINT}"
+    - fi
+
+    # Deploying website
+    - if [ ${AWS_DEPLOY_WEBSITE} == "true" ]; then
+    -   aws s3 website s3://${TF_VAR_bucket_name}/ --index-document ${AWS_WEBSITE_HOMEPAGE} \
+        --error-document ${AWS_WEBSITE_ERRORPAGE} ${ENDPOINT_URL}
+    - fi
+
+    # Configuring policy and substitute variables
+    - if [ -n ${AWS_BUCKET_POLICY_FILE} ]; then
+    -   apk update && apk add gettext
+    -   cat ${AWS_BUCKET_POLICY_FILE} > tmp_bucket_policy.json
+    -   envsubst < tmp_bucket_policy.json > bucket-policy.json
+    -   aws s3api put-bucket-policy --bucket ${TF_VAR_bucket_name} --policy file://bucket-policy.json ${ENDPOINT_URL}
+    - fi
+
+    # Syncing website
+    - AWS_OPTIONS="${ENDPOINT_URL}"
+    - $([ ! -z ${AWS_ACL} ]) && AWS_OPTIONS="${AWS_OPTIONS} --acl ${AWS_ACL}"
+    - $([ ${AWS_DELETE_OLD_FILE} == "true" ]) && AWS_OPTIONS="${AWS_OPTIONS} --delete"
+    - aws s3 sync ${AWS_SYNC_DIR} s3://${TF_VAR_bucket_name}/ ${AWS_OPTIONS}
+    
+  artifacts:
+    when: always
+    expose_as: "Terraform artifact"
+    paths:
+      - "${TF_ROOT}/output.log"
+      - "${TF_ROOT}/plan.cache"
+      - "${TF_ROOT}_def"
+    reports:
+      terraform: "${TF_ROOT}/plan.json"
