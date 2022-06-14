@@ -1,0 +1,31 @@
+stages:
+  - tests
+
+prettier_check:
+    image: node:18-buster
+    stage: tests
+    variables:
+      PROJECT_ROOT: "."
+      PRETTIER_SOURCE: "./src"
+      PRETTIER_VERSION: "2.6.2"
+      OUTPUT_DIRECTORY: "prettier-report"
+      ADDITIONAL_OPTIONS: ""
+    script:
+      - cd "${PROJECT_ROOT}"
+      - npm install --location=global prettier@${PRETTIER_VERSION}
+      - if [ ! -z ${OUTPUT_DIRECTORY} ]; then
+      -    mkdir -p "${OUTPUT_DIRECTORY}"
+      -    if prettier ${ADDITIONAL_OPTIONS} -l ${PRETTIER_SOURCE} > "${OUTPUT_DIRECTORY}/prettier-report.txt"; then
+      -       echo "Prettier check passed"
+      -    else
+      -       echo "Prettier check failed"
+      -       prettier ${ADDITIONAL_OPTIONS} -c ${PRETTIER_SOURCE}
+      -    fi
+      - else
+      -    prettier ${ADDITIONAL_OPTIONS} -c ${PRETTIER_SOURCE}
+      - fi
+    artifacts:
+      when: always
+      paths:
+        - ${PROJECT_ROOT}/${OUTPUT_DIRECTORY}/prettier-report.txt
+
