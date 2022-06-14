@@ -35,6 +35,7 @@ This job allows you to run the units tests on Angular project. The `ng test` com
 | `PROJECT_NAME` | Project name specified in the `projects` section of the `angular.json` workspace configuration file. | ` ` |
 | `NG_TEST_OPTIONS` | Additional options available for the user, they are added just after the test command | ` ` |
 | `NG_CODE_COVERAGE` | 	Boolean which define if the script will output a code coverage report. | `true` |
+| `IMAGE_TAG` | The default tag for the docker image | `latest`  |
 
 
 ### Cache

@@ -36,7 +36,7 @@ This job test your front end web application by running tests headlessly in a CI
 | `CYPRESS_REPORTER` | Name of the [Mocka reporter](https://docs.cypress.io/guides/tooling/reporters) used| `spec` |
 | `CYPRESS_BASE_URL`  | **(MANDATORY)** The base URL of your server | ` `|
 | `ADDITIONAL_OPTIONS` | Additional options to the run | ` ` |
-
+| `IMAGE_TAG` | The default tag for the docker image | `node16.5.0-chrome94-ff93`  |
 
 
 ### Author

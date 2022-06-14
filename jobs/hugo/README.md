@@ -27,6 +27,7 @@
 | `HUGO_SOURCE` <img width=100/> | Directory name of the source files to build the Hugo website. <img width=175/>| `website` <img width=100/>|
 | `HUGO_OUTPUT` <img width=100/> | Directory name of the Hugo output. <img width=175/>| `public/` <img width=100/>|
 | `ADDITIONAL_OPTIONS` <img width=100/> | Possibility to add more options into the Hugo command. <img width=175/>| ` ` <img width=100/>|
+| `IMAGE_TAG` | The default tag for the docker image | `1.17.6-buster`  |
 
 
 

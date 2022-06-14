@@ -44,6 +44,7 @@ Build HTML slides form Markdown using [Marp](https://marp.app/){:target="_blank"
 | `MARP_ADDITIONNAL_OPTIONS` | Other [options](https://github.com/marp-team/marp-cli#by-cli-option){:target="_blank"} you may want to use with Marp | ` ` |
 | `NPM_INSTALL_DIR` | Custom installation directory for `npm` | `.npm-global/` |
 | `CHROME_PATH` | Custom path for chromium (needed to avoid permission error on generating pdf) | `/usr/bin/chromium-browser` |
+| `IMAGE_TAG` | The default tag for the docker image | `89-with-node-14`  |
 
 
 ### Artifacts

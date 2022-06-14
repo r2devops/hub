@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `16.13.1-buster`  |
 ## Objective
 
 Compiles an Angular app into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.

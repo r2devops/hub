@@ -35,6 +35,7 @@ Tool to check SSL/TLS related vulnerabilities of an URL
 | `TESTSSL_FAST` | omits some checks: using openssl for all ciphers (-e), show only first preferred cipher (--fast) | `true`|
 | `TESTSSL_TLS_SSL` | Checks TLS/SSL protocols (including SPDY/HTTP2) (-p) | `true`|
 | `TESTSSL_VULNERABILITY` | Test all the vulnerabilities (-U) | `true`|
+| `IMAGE_TAG` | The default tag for the docker image | `3.0`  |
 
 
 

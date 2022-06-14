@@ -11,11 +11,12 @@ cache:
 composer_install:
   stage: .pre
   image:
-    name: edbizarro/gitlab-ci-pipeline-php:7.3
+    name: edbizarro/gitlab-ci-pipeline-php:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
     COMPOSER_INSTALL_OPTIONS: ""
+    IMAGE_TAG: "7.3"
   script:
     # Working directory
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}

@@ -14,11 +14,12 @@ cache:
 npm_lint:
   stage: tests
   image: 
-      name: node:18-buster
+      name: node:${IMAGE_TAG}
       entrypoint: [""]
   variables:
     NPM_INSTALL_OPTIONS: ""
     NPM_LINT_OPTIONS: ""
+    IMAGE_TAG: "18-buster"
   script:
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     - npm install ${NPM_INSTALL_OPTIONS}

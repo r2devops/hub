@@ -6,7 +6,7 @@ stages:
 docusaurus_build:
 
   image:
-    name: node:18-buster
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: build
@@ -14,7 +14,7 @@ docusaurus_build:
   variables:
     PROJECT_ROOT: "."
     DOCUSAURUS_OUTPUT_PATH: "website_build/"
-
+    IMAGE_TAG: "18-buster"
   script:
     - cd ${PROJECT_ROOT}
     - npm install

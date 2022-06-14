@@ -6,7 +6,7 @@ stages:
 npm_build:
   stage: build
   image:
-    name: node:18-buster
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
@@ -16,6 +16,7 @@ npm_build:
     NPM_BUILD_OUTPUT_FOLDER: "build"
     PAGES_DEPLOY: "false"
     PAGES_FOLDER: "./website_build"
+    IMAGE_TAG: "18-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

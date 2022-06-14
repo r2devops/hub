@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `0.12.0`  |
 ## Objective
 
 Run a security issue detection in your local dependencies using

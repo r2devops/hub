@@ -30,6 +30,7 @@ Using this job you'll be able to launch PHPUnit tests.
 | `PHPUNIT_OPTIONS` | Custom user options for phpunit | ` ` |
 | `PHPUNIT_MEMORY_LIMIT` | Memory available for PHPUnit (see [more](#php-memory-limit)) | `512M` |
 | `PROJECT_ROOT` | PHP Project location | `/` |
+| `IMAGE_TAG` | The default tag for the docker image | `7.3`  |
 
 !!! note
     All paths defined in variables are starting from the root of your repository.

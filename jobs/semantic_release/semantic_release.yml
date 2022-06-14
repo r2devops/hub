@@ -4,7 +4,7 @@ stages:
   - release
 
 semantic_release:
-  image: node:18-buster
+  image: node:${IMAGE_TAG}
   stage: release
   variables:
     SEMANTIC_CONFIG_DIR: "/"
@@ -17,6 +17,7 @@ semantic_release:
     SEMANTIC_APM_VERSION: "3.0.0"
     SEMANTIC_RELEASE_OPTIONS: ""
     SEMANTIC_ADDITIONAL_PACKAGES: ""
+    IMAGE_TAG: "18-buster"
   script:
     - if [ ! -d ${CI_PROJECT_DIR}/${SEMANTIC_CONFIG_DIR} ]; then
     -   echo '${SEMANTIC_CONFIG_DIR} leads to an invalid directory'

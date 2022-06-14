@@ -63,6 +63,7 @@ gulp:
 | `GULP_OUTPUT_FOLDER` | If needed, path to the output produced by your scripts (path relative from the `PROJECT_ROOT`) | `build` |
 | `PAGES_DEPLOY` | If enabled, prepare your build result to be deployed on pages (require [pages job](jobs/deploy/pages/)) | `false` |
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 ### Artifacts
 

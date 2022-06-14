@@ -4,12 +4,13 @@ stages:
   - deploy
 
 deployer:
-  image: edbizarro/gitlab-ci-pipeline-php:7.3-alpine
+  image: edbizarro/gitlab-ci-pipeline-php:${IMAGE_TAG}
   stage: deploy
   variables:
     PROJECT_ROOT: .
     DEPLOY_OPTIONS: ''
     DEPLOYER_OUTPUT: 'deployer_output.txt'
+    IMAGE_TAG: "7.3-alpine"
   script:
     # Check if mandatory variables are set
     - if [ -z "$SSH_PRIVATE_KEY" ]; then

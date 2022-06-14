@@ -8,12 +8,13 @@ stages:
 yarn_test:
   stage: tests
   image:
-    name: node:18-buster
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
     YARN_INSTALL_OPTIONS: ""
     YARN_TEST_OPTIONS: ""
+    IMAGE_TAG: "18-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

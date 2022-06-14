@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.2.1] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [1.1.1] - 2022-05-18
 * Update docker image from owasp/dependency-check:6.1.1 to owasp/dependency-check:7.1.0
 

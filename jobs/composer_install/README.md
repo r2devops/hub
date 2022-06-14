@@ -44,6 +44,7 @@ This job installs `composer` dependencies listed in your `composer.lock` or `com
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` | Path to the directory containing `composer.lock`  | `.` |
 | `COMPOSER_INSTALL_OPTIONS` | Additional options for `composer install` | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `7.3`  |
 
 
 ### Cache

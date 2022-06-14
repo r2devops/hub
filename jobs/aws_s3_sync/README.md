@@ -33,6 +33,7 @@ This job uses the latest AWS CLI version (v2 for now) in order to sync files bet
 | `AWS_ACL` | If you want to add an ACL (e.g. `public-read`) | ` ` |
 | `SYNC_DIR` | Directory to sync | `build` |
 | `DELETE_OLD_FILE` | Delete files that exist in the destination but not in the source  | `false` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.13.6`  |
 
 
 

@@ -3,7 +3,7 @@ stages:
 
 owasp_dependency_check:
   image:
-    name: owasp/dependency-check:7.1.0
+    name: owasp/dependency-check:${IMAGE_TAG}
     entrypoint: [ "" ]
   stage: tests
   variables:
@@ -15,6 +15,7 @@ owasp_dependency_check:
     DOTNET_DLL_ANALYZE: "false"
     DOTNET_VERSION: "3.1"
     PROJECT_ROOT: "/"
+    IMAGE_TAG: "7.1.0"
   script:
     # Installing Dotnet if needed
     - |

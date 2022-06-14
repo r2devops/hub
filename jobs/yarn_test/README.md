@@ -33,6 +33,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 | `PROJECT_ROOT` | Path to the directory containing `package.json`  | `.` |
 | `YARN_INSTALL_OPTIONS` | Additional options for `yarn install` | ` ` |
 | `YARN_TEST_OPTIONS` | Additional options for `yarn test` | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 
 ### Cache

@@ -2,7 +2,7 @@ stages:
   - tests
 
 lighthouse:
-  image: zenika/alpine-chrome:89-with-node
+  image: zenika/alpine-chrome:${IMAGE_TAG}
   stage: tests
   variables:
     LIGHTHOUSE_TARGET: ""
@@ -13,6 +13,7 @@ lighthouse:
     PAGES_PATH: "website_build/"
     SERVE_VERSION: "11.3.2"
     LIGHTHOUSE_VERSION: "7.2.0"
+    IMAGE_TAG: "89-with-node"
   script:
     # Put in full lowercase OUTPUT_FORMAT to avoid problems
     - export OUTPUT_FORMAT=$(echo ${OUTPUT_FORMAT} | tr '[:upper:]' '[:lower:]')

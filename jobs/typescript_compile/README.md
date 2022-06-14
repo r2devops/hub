@@ -45,6 +45,7 @@ A job transpiling your typescript code into JavaScript using
 | `TARGET_OUTPUT` | The output directory of the transpiled code | `dist` |
 | `NODE_VERSION` | The used version of `Node` (see [versions](https://nodejs.org/en/download/releases/)) | `14.16.0-r0` |
 | `TYPESCRIPT_VERSION` | The used version of `TypeScript` (see [versions](https://www.npmjs.com/package/typescript)) | `4.2.3` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.13`  |
 
 ### Artifacts
 

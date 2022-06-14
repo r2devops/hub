@@ -41,6 +41,7 @@ Other languages can be supported with additional code.
 | `DOXYGEN_EXCLUDE`               | Specify files and/or directories that should be excluded from the INPUT source files| ` `|
 | `DOXYGEN_EXCLUDE_PATTERNS`               | If the value of the INPUT tag contains directories, you can use the EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude certain files from those directories.| ` `|
 | `DOXYGEN_PROJECT_LOGO`               | The path of the logo (max-height:55px, max-width:200px) to include in your documentation generated| ` `|
+| `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
 
 
 !!! note

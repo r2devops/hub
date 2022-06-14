@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [2.1.0] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [2.0.0] - 2022-05-15
 * 🚨 **BREAKING CHANGE**: Deleting `liche` related variable for `lynchee` variables. Please refer to `1.0` to keep deprecated behavior. 
 * Change tool to lychee instead of deprecated liche 

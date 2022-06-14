@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.2] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [0.2.2] - 2022-15-18
 * Update docker image to phpdoc/phpdoc:3.3
 

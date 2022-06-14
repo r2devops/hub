@@ -28,3 +28,4 @@ A ready-to-use job to lint your Golang project. It includes a lot of linters suc
 | `PROJECT_ROOT` | Path to the root of project to lint | `.` |
 | `ADDITIONAL_OPTIONS` | [Additional options](https://golangci-lint.run/usage/configuration/) available for the user, they are added at the end of test command | ` ` |
 | `GOLINT_OUTPUT` | Name of the output file | `report-golint.xml` |
+| `IMAGE_TAG` | The default tag for the docker image | `v1.43.0`  |

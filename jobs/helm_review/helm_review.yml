@@ -6,7 +6,7 @@ stages:
 
 .helm:
   image:
-    name: lachlanevenson/k8s-helm:v3.4.2
+    name: lachlanevenson/k8s-helm:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     CHART_PATH: "./charts/$CI_PROJECT_NAME"
@@ -19,7 +19,7 @@ stages:
     HELMSECRETS_VERSION: "v3.4.0"
     STABLE_REPO_URL: "https://charts.helm.sh/stable"
     HELM_ADDITIONAL_OPTIONS: ""
-
+    IMAGE_TAG: "v3.4.2"
 helm_review:
   extends: .helm
   stage: review

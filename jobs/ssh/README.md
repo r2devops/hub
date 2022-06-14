@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `3`  |
 ## Objective
 
 Run a SSH command on a remote host.

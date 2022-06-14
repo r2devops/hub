@@ -2,7 +2,7 @@ stages:
   - tests
 
 sls_scan:
-  image: shiftleft/sast-scan:v1.15.1
+  image: shiftleft/sast-scan:${IMAGE_TAG}
   stage: tests
 
   variables:
@@ -11,6 +11,7 @@ sls_scan:
     SLS_TYPE: ""
     OUTPUT_PATH: "sls_scan_report/"
 
+    IMAGE_TAG: "v1.15.1"
   script:
     - mkdir "$OUTPUT_PATH"
     - if [ ${ENABLE_BUILD} == "true" ]; then

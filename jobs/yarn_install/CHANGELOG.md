@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.6.0] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [0.5.0] - 2022-05-13
 * Update image `node` to `18`
 

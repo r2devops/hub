@@ -30,6 +30,7 @@ You can easily have a badge configure on your 🦊 Gitlab project with this rege
 | JACOCO_CSV_LOCATION | Path to CSV file containing report | ${CI_PROJECT_DIR}/reports/jacoco/csv/jacoco.csv |
 | JACOCO_HTML_LOCATION | Folder containing report as a HTML website | ${CI_PROJECT_DIR}/reports/jacoco/html |
 | JACOCO_XML_LOCATION | Folder containing report as XML file | ${CI_PROJECT_DIR}/reports/jacoco/xml |
+| `IMAGE_TAG` | The default tag for the docker image | `jdk11`  |
 
 ⚠️ These paths are defined within `build.gradle` file.
 

@@ -4,14 +4,15 @@ stages:
 # Run unit tests
 gradle_test:
   stage: tests
-  image: gradle:jdk11
-  script:
-    - gradle check
-    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_CSV_LOCATION
+  image: gradle:${IMAGE_TAG}
   variables:
     JACOCO_CSV_LOCATION: '$CI_PROJECT_DIR/build/reports/jacoco/csv/jacoco.csv'
     JACOCO_HTML_LOCATION: '$CI_PROJECT_DIR/build/reports/jacoco/html'
     JACOCO_XML_LOCATION: '$CI_PROJECT_DIR/build/reports/jacoco/xml'
+    IMAGE_TAG: "jdk11"
+  script:
+    - gradle check
+    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_CSV_LOCATION
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull

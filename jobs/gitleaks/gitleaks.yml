@@ -4,8 +4,10 @@ stages:
 gitleaks:
   stage: tests
   image:
-    name: "zricethezav/gitleaks:v8.6.0"
+    name: zricethezav/gitleaks:${IMAGE_TAG}
     entrypoint: [""]
+  variables:
+    IMAGE_TAG: "v8.6.0"
   script:
     - gitleaks detect -v -r gitleaks-report.json
   artifacts:

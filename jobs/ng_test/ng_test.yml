@@ -5,7 +5,7 @@ stages:
 
 ng_test:
   image:
-    name: timbru31/node-chrome:latest
+    name: timbru31/node-chrome:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: tests
@@ -16,6 +16,7 @@ ng_test:
     NG_TEST_OPTIONS: ""
     NG_CODE_COVERAGE: "true"
 
+    IMAGE_TAG: "latest"
   script:
     # Working directory
     - cd $PROJECT_ROOT

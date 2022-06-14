@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.6.1] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [1.5.1] - 2022-04-06
 * Change old link in the job code
 

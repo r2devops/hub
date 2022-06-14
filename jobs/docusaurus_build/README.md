@@ -27,6 +27,7 @@ In order to build Docusaurus, the user must `init` a Docusaurus project, checkou
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` <img width=100/> | Relative path in your repository to your Docusaurus project. <img width=175/>| `.` <img width=100/>|
 | `DOCUSAURUS_OUTPUT_PATH` <img width=100/> | Directory who contains the result of the Docusaurus build. <img width=175/>| `website_build` <img width=100/>|
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 
 

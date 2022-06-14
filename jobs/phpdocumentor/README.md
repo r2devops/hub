@@ -37,6 +37,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 | `PHPDOC_MARKERS` | Custom comment [markers](https://docs.phpdoc.org/3.0/guide/guides/running-phpdocumentor.html#Markers){:target="_blank"} | ` ` |
 | `PHPDOC_OPTIONS` | Additional custom options  | ` ` |
 | `PROJECT_ROOT` | PHP Project location in your repository | `/` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.3`  |
 
 ### Artifacts
 

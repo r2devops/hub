@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.4.0] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [0.3.0] - 2021-01-29
 * Update default output location from `documentation_build/` to `website_build/`
 * Update `rules` section to enable the job on `$CI_DEFAULT_BRANCH` branch

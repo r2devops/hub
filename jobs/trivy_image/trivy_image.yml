@@ -6,9 +6,9 @@ stages:
 # Run trivy on any commit
 trivy_image:
   stage: tests
-  image: docker:19.03
+  image: docker:${IMAGE_TAG}
   services:
-    - name: docker:19.03-dind
+    - name: docker:${IMAGE_TAG}-dind
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
 
@@ -45,6 +45,7 @@ trivy_image:
     REGISTRY_PASSWORD: ""
     CUSTOM_TAG: ""
 
+    IMAGE_TAG: "19.03"
   script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz

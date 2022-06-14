@@ -6,9 +6,8 @@ stages:
 # Code quality with SonarQube
 gradle_sonarqube:
   stage: tests
-  image: gradle:jdk11
-  script:
-    gradle sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORG -Dsonar.branch.name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.json_mode=$JSON_MODE -Dsonar.java.coveragePlugin=$COVERAGE_PLUGIN
+
+  image: gradle:${IMAGE_TAG}
   variables:
     SONAR_URL: 'https://sonarcloud.io'
     SONAR_TOKEN: ''
@@ -16,6 +15,10 @@ gradle_sonarqube:
     SONAR_ORG: ''
     COVERAGE_PLUGIN: 'jacoco'
     JSON_MODE: CODECLIMATE
+    IMAGE_TAG: "jdk11"
+  script:
+    gradle sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORG -Dsonar.branch.name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.json_mode=$JSON_MODE -Dsonar.java.coveragePlugin=$COVERAGE_PLUGIN
+  
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull

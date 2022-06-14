@@ -4,7 +4,7 @@ stages:
   - build
 
 dotnet_build:
-  image: alpine:3.12.1
+  image: alpine:${IMAGE_TAG}
   stage: build
   variables:
     DOTNET_OUTPUT: "/build"
@@ -17,6 +17,7 @@ dotnet_build:
     DOTNET_SELF_CONTAINED: "false"
     DONTET_OPTIONS: ""
     PROJECT_ROOT: "/"
+    IMAGE_TAG: "3.12.1"
   script:
     # Installing necessary stuff
     - apk add curl autoconf bash build-base clang clang-dev cmake curl-dev gcc gettext-dev git icu-dev krb5-dev libtool linux-headers llvm make zlib-dev

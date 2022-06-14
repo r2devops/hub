@@ -44,6 +44,7 @@ build_break_rules = {
 | `ENABLE_BUILD` | The option to use `--build` with the `scan` command | `true` |
 | `SLS_TYPE` | If you want to specify a specific scanner to use | ` ` |
 | `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |
+| `IMAGE_TAG` | The default tag for the docker image | `v1.15.1`  |
 
 ### Artifacts
 

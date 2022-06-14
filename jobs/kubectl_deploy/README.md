@@ -35,6 +35,7 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 | ---- | ----------- | ------- |
 | `FILES_LOCATION` | Folder name, if multiple .yaml files; Or file name that contains the manifests | ` ` |
 | `KUBECTL_OPTIONS` | Additional options for the command kubectl | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `1.19.11`  |
 
 !!! info
     Here is an example of what you can put in `FILES_LOCATION` if you have multiple files but not in the same folder  

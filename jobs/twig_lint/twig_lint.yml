@@ -2,11 +2,12 @@ stages:
   - tests
 
 twig_lint:
-    image: 
-      name: jakzal/phpqa:php7.4
-      entrypoint: [""]
-    stage: tests
-    variables:
-      TEMPLATE_PATH: "./templates"
-    script:
-      - twig-lint lint $TEMPLATE_PATH
+  image: 
+    name: jakzal/phpqa:${IMAGE_TAG}
+    entrypoint: [""]
+  stage: tests
+  variables:
+    TEMPLATE_PATH: "./templates"
+    IMAGE_TAG: "php7.4"
+  script:
+    - twig-lint lint $TEMPLATE_PATH

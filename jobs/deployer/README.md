@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `7.3-alpine`  |
 ## Objective
 
 Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"}

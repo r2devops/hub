@@ -33,6 +33,7 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 | `APIDOC_INCLUDE_FILTER` | Regex to include specific files | ` ` |
 | `APIDOC_EXCLUDE_FILTER` | Regex to exclude specific files | ` ` |
 | `APIDOC_OPTIONS` | Additional options | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `18.1-alpine3.14`  |
 
 ### Artifacts
 

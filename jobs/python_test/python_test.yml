@@ -5,7 +5,7 @@ stages:
 
 python_test:
   stage: tests
-  image: python:3.9
+  image: python:${IMAGE_TAG}
   variables:
     # Dependencies variables
     APT_PACKAGES: ""
@@ -16,6 +16,7 @@ python_test:
     TEST_FRAMEWORK: "pytest"
     OPTIONS: ""
     TEST_PATH: "tests/unit"
+    IMAGE_TAG: "3.9"
   before_script:
     - if ! [ -z "${APT_PACKAGES}" ]; then apt install -y ${APT_PACKAGES}; fi
     - eval ${PYTHON_SETUP}

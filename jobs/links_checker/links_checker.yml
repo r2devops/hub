@@ -5,7 +5,7 @@ stages:
 
 links_checker:
   image: 
-    name: lycheeverse/lychee:0.9
+    name: lycheeverse/lychee:${IMAGE_TAG}
     entrypoint: [""]
   stage: tests
   variables:
@@ -31,6 +31,7 @@ links_checker:
 
     ## Defines the name of the report, if empty, doesn't generate a report 
     REPORT_OUTPUT: "junit-report.xml"
+    IMAGE_TAG: "0.9"
   script:
     - | 
         if [ ! -z ${REPORT_OUTPUT} ]; then

@@ -4,13 +4,14 @@ stages:
   - tests
 
 pylint:
-  image: python:3.10-buster
+  image: python:${IMAGE_TAG}
   stage: tests
   variables:
     PROJECT_ROOT: "."
     PYLINT_OPTIONS: ""
     PYLINT_OUTPUT: "report_pylint.xml"
     PYLINT_EXIT_ZERO: "true"
+    IMAGE_TAG: "3.10-buster"
   script:
     - cd $PROJECT_ROOT
     - pip install pylint pylint_junit

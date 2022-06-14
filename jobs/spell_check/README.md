@@ -42,6 +42,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 | `PYSPELLING_CONFIG`  | Path to your custom `.pyspelling.yml` | ` ` |
 | `PYSPELLING_OPTIONS`  | Additional options for PySpelling | ` ` |
 | `SNIPPET_VERSION` | Snippet commit tag | `4cc2af8e840aff6f599a894351de62c9b29ddc69` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.10-buster`  |
 
 !!! info
     Spell_Check is also using [`allow_failure`](https://docs.gitlab.com/ee/ci/yaml/#allow_failure){:target="_blank"} Gitlab's variable,

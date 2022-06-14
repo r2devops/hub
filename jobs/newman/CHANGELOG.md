@@ -1,5 +1,8 @@
 # Changelog
 All notable changes to this job will be documented in this file.
+
+## [2.1.0] - 2022-06-13
+* Add docker image tag in variable 
 ## [2.0.0] - 2022-05-20
 * Upgrade newman version form `5.2.2` to `5.3.2`
 * Update docker image to node:18-buster

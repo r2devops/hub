@@ -60,6 +60,7 @@ package your jar a different way and the job will still work and expose your shi
 | Name | Description | Default |
 | ---- | ------------| ------- |
 | `ARTIFACTS_DIR` | Customize the path where the artifacts will be created | `${CI_PROJECT_DIR}/artifacts` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.6.3-jdk-11`  |
 
 
 

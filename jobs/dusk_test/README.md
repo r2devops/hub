@@ -38,6 +38,7 @@ This job tests your final project by using Laravel Dusk, this will run tests tha
 | `COMPOSER_INSTALL_OPTIONS` | Additional options for `composer install` | ` ` |
 | `CHROME_DRIVER_VERSION` | Specific ChromeDriver version to use | `88` |
 | `DUSK_OPTIONS` | Additional options for `php artisan dusk` | `--log-junit dusk_junit.xml` |
+| `IMAGE_TAG` | The default tag for the docker image | `php-8.0`  |
 
 
 ### Cache

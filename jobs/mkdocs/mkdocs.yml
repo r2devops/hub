@@ -5,13 +5,14 @@ stages:
 
 mkdocs:
   image:
-    name: squidfunk/mkdocs-material:8.1.4
+    name: squidfunk/mkdocs-material:${IMAGE_TAG}
     entrypoint: [""]
   stage: build
   variables:
     MKDOCS_OUTPUT_PATH: 'website_build/'
     MKDOCS_ADDITIONAL_PLUGINS: 'mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin'
 
+    IMAGE_TAG: "8.1.4"
   script:
     - |
       if [[ ${MKDOCS_ADDITIONAL_PLUGINS} != "" ]]; then

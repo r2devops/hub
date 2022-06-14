@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
 ## Objective
 
 Builds a .NET Core project with the different versions available, and makes it ready to run.

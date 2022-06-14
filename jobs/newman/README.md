@@ -68,6 +68,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
 | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
 | `NEWMAN_VERSION` | Newman version | `5.2.2` |
 | `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` | 
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 If you want to use some secret variables for your collection, and want to hide them from the `collection.json` file, you can specify them in a File variable called `NEWMAN_VARIABLE_FILE` inside you're `CI/CD Variables` in GitLab (Settings > CI/CD > Variables). Then add the following script for the job :
 

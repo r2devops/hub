@@ -33,6 +33,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 | `HELMSECRETS_VERSION` | Version of kubectl secrets plugin | `v3.4.0` | Only if the secret file `VALUES_SECRET_FILE` exists |
 | `STABLE_REPO_URL` | Url of stable repo to add to helm | `https://charts.helm.sh/stable ` | Yes |
 | `HELM_ADDITIONAL_OPTIONS` | Additional settings to give to helm for deployment | ` ` | No |
+| `IMAGE_TAG` | The default tag for the docker image | `v3.4.2`  | Yes |
 
 **Gitlab CI/CD variables:**
 

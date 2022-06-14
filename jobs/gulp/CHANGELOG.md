@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.1] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [0.2.1] - 2022-05-20
 * Upgrade image from `15.14` to `node:18-buster`
 ## [0.2.0] - 2021-04-23

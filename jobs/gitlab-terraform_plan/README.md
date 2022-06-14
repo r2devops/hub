@@ -34,6 +34,7 @@ This job will initialize a working directory containing Terraform configuration 
 | `TF_ROOT` | Directory path to terraform files | `${CI_PROJECT_DIR}/terraform` |
 | `TF_ADDRESS` | Address to terraform state backend | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 | `INIT_OPTIONS` | Additional options to terraform CLI init | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `v0.20.0`  |
 
 ### Artifacts
 

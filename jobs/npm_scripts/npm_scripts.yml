@@ -8,13 +8,14 @@ stages:
 npm_scripts:
   stage: others
   image:
-    name: node:18-buster
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
     NPM_INSTALL_OPTIONS: ""
     NPM_SCRIPTS: ""
     NPM_OUTPUT: ""
+    IMAGE_TAG: "18-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

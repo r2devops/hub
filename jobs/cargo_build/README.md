@@ -33,6 +33,7 @@ This job will compile local packages and all of their dependencies on Rust proje
 | `CARGO_WORKSPACE` | Build all members in the workspace | `false` |
 | `OUTPUT_DIR` | Directory for all generated artifacts and intermediate files | `target` | 
 | `ADDITIONAL_OPTIONS` | [Additional options](https://doc.rust-lang.org/cargo/commands/cargo-build.html) available for the user, they are added just after the build command | ` ` | 
+| `IMAGE_TAG` | The default tag for the docker image | `1.57-buster`  |
 
 
 
