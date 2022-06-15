@@ -1,0 +1,92 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+s3_sync:
+  stage: deploy
+  image:
+    name: amazon/aws-cli:${IMAGE_TAG}
+    entrypoint: [""]
+  variables:
+    S3_PROVIDER: "aws"
+    S3_ENDPOINT: ""
+    S3_ACCESS_KEY_ID: ""
+    S3_SECRET_ACCESS_KEY: ""
+    S3_REGION: "us-west-1"
+    S3_SYNC_DIR: "website_build"
+    S3_BUCKET_NAME: "$CI_PROJECT_PATH_SLUG"
+    S3_ACL: "public-read"
+    S3_OPTIONS: ""
+    S3_DELETE_OLD_FILE: "true"
+    S3_BUCKET_POLICY_FILE: ""
+    S3_DEPLOY_WEBSITE: "true"
+    S3_WEBSITE_HOMEPAGE: "index.html"
+    S3_WEBSITE_ERRORPAGE: "error.html"
+    S3_SNIPPET_POLICY_LINK: "https://gitlab.com/r2devops/hub/-/snippets/2351961/raw/main"
+    IMAGE_TAG: "2.7.12"
+    AWS_ACCESS_KEY_ID: "$S3_ACCESS_KEY_ID"
+    AWS_SECRET_ACCESS_KEY: "$S3_SECRET_ACCESS_KEY"
+  script:
+
+      # Check provider
+    - |
+      if [ -z ${S3_PROVIDER} ]; then
+        echo "S3_PROVIDER not set, will use default AWS provider"
+        S3_PROVIDER="aws"
+      fi
+
+      # Set some variables
+    - |
+      S3_OPTIONS="--region ${S3_REGION} ${S3_OPTIONS}"
+      if [ -z ${CI_ENVIRONMENT_SLUG} ]; then
+        S3_ENV="production"
+      fi
+      S3_BUCKET_NAME="${S3_BUCKET_NAME}-${S3_ENV}"
+
+      # Set Endpoint URL
+    - |
+      if [ ! -z ${S3_ENDPOINT} ]; then
+        S3_OPTIONS="--endpoint-url ${S3_ENDPOINT} ${S3_OPTIONS}"
+      fi
+
+      # Create the bucket if doesn't exists
+    - |
+      if aws s3 ls ${S3_OPTIONS} | awk '{print $3}' | egrep "^${S3_BUCKET_NAME}$"; then
+        echo "Bucket ${S3_BUCKET_NAME} already exists"
+      else
+        echo "Creating bucket ${S3_BUCKET_NAME}"
+        aws s3 mb s3://${S3_BUCKET_NAME} ${S3_OPTIONS} 2>&1 > ./bucket_creation.log
+        echo "✅ Bucket ${S3_BUCKET_NAME} successfully created"
+      fi
+
+      # Enable website mode
+    - |
+      if [ ${S3_DEPLOY_WEBSITE} == "true" ]; then
+        aws s3 website s3://${S3_BUCKET_NAME}/ --index-document ${S3_WEBSITE_HOMEPAGE} \
+        --error-document ${S3_WEBSITE_ERRORPAGE} ${S3_OPTIONS}
+      fi
+
+      # Configuring policy and substitute variables
+    - |
+      if [ -z ${S3_BUCKET_POLICY_FILE} ]; then
+        echo "No bucket policy file provided, use the default file for ${S3_PROVIDER}"
+        S3_BUCKET_POLICY_FILE="${S3_PROVIDER}.json"
+        curl -L -o $S3_BUCKET_POLICY_FILE ${S3_SNIPPET_POLICY_LINK}/${S3_BUCKET_POLICY_FILE} || (echo "S3 provider ${S3_PROVIDER} not yet supported" && exit 1)
+      fi
+      yum install -y gettext
+      envsubst < $S3_BUCKET_POLICY_FILE > bucket-policy.json
+      aws s3api put-bucket-policy --bucket ${S3_BUCKET_NAME} --policy file://bucket-policy.json ${S3_OPTIONS}
+      echo "✅ Bucket policy file successfully created and applied : "
+
+      # Syncing website
+    - |
+      $([ ! -z ${S3_ACL} ]) && S3_OPTIONS="${S3_OPTIONS} --acl ${S3_ACL}"
+      $([ ${S3_DELETE_OLD_FILE} == "true" ]) && S3_OPTIONS="${S3_OPTIONS} --delete"
+      aws s3 sync ${S3_SYNC_DIR} s3://${S3_BUCKET_NAME}/ ${S3_OPTIONS}
+      if [ ${S3_PROVIDER} == "scaleway" ]; then
+        WEBSITE_URL="https://${S3_BUCKET_NAME}.s3-website.${S3_REGION}.scw.cloud"
+      else
+        WEBSITE_URL="http://${S3_BUCKET_NAME}.s3-website-${S3_REGION}.amazonaws.com"
+      fi
+      echo "✅ Website successfully deployed on ${WEBSITE_URL}"

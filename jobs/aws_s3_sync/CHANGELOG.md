@@ -2,7 +2,7 @@
 All notable changes to this job will be documented in this file.
 
 ## [0.3.0] - 2022-06-13
-* Add docker image tag in variable 
+* Add docker image tag in variable
 
 ## [0.2.0] - 2021-10-20
 * Updating aws CLI to v2
