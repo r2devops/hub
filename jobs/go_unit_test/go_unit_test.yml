@@ -3,10 +3,11 @@ stages:
 
 go_unit_test:
   stage: tests
-  image: golang:1.18
+  image: golang:${IMAGE_TAG}
   variables:
     UT_WORK_DIR: $CI_PROJECT_DIR
     UT_TEST_CMD: "go test -v"
+    IMAGE_TAG: "1.18"
   script:
     # Switch to working directory
     - cd "$UT_WORK_DIR"

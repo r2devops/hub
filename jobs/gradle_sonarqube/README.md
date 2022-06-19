@@ -29,6 +29,7 @@ This job allows you to check your code with SonarQube plugin in a 🐘 Gradle pr
 | SONAR_PROJECT | Project name in Sonar instance | |
 | COVERAGE_PLUGIN | Plugin to use for code coverage analysis | jacoco |
 | JSON_MODE | Format to publish report to integrated with Gitlab MR for instance | CODECLIMATE |
+| `IMAGE_TAG` | The default tag for the docker image | `jdk11`  |
 
 ### Example of build.gradle.kts file
 

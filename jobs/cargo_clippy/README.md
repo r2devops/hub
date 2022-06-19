@@ -25,6 +25,7 @@ Clippy runs a format check onto your Rust project and logs any unexpected lintin
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` <img width=100/> | Relative to root of your repository, it is the path to your rust project <img width=175/>| `.` <img width=100/>|
 | `ADDITIONAL_OPTIONS` <img width=100/> | Possibility to add more options into the command <img width=175/>| `-- -W clippy::all` <img width=100/>|
+| `IMAGE_TAG` | The default tag for the docker image | `1.57-buster`  |
 
 
 

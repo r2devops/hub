@@ -4,7 +4,7 @@ stages:
 
 ansible_playbook:
   image:
-    name: alpine:3.15.1
+    name: alpine:${IMAGE_TAG}
     entrypoint: [""]
   stage: deploy
   variables:
@@ -12,6 +12,7 @@ ansible_playbook:
     ANSIBLE_INVENTORY_FILE: ""
     SSH_PRIVATE_KEY_FILE: ""
     ADDITIONAL_OPTIONS: ''
+    IMAGE_TAG: "3.15.1"
   before_script:
 
     # Warn user if variable not set

@@ -35,6 +35,7 @@ This job will help you deploy your serverless resources to AWS using the framewo
 | `SERVERLESS_OPTIONS` | Additional options for the command `serverless` | no | `--verbose` |
 | `DEPLOY_STAGE` | The stage to where you want to deploy | no | ` ` |
 | `AWS_REGION` | The specific region to where you want to deploy | no | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 ### Artifacts
 

@@ -59,6 +59,7 @@ The registry and tag of the resulting Docker image follow this behavior:
 | `DOCKER_OPTIONS`                 | If you want to use additional [options](https://github.com/GoogleContainerTools/kaniko#additional-flags){:target="_blank"}                                                           | ` `           |
 | `CUSTOM_REGISTRIES_DESTINATIONS` | the list of your remote registries + image tags (see example below)                                                                                                                  | ` `           |
 | `CONFIG_FILE`                    | CI variable file that contains the auths for kaniko                                                                                                                                  | ` `           |
+| `IMAGE_TAG`                    | The default tag for the docker image                                                                                                                                  | `1.21.1-4.1.3`           |
 
 * Example of variable `CUSTOM_REGISTRIES_DESTINATIONS`:
     ```

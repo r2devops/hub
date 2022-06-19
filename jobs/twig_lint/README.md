@@ -23,6 +23,7 @@ This job check if there are any errors on the twig templates
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `TEMPLATE_PATH` <img width=100/> | A general variable for this job <img width=175/>| `./templates` <img width=100/>|
+| `IMAGE_TAG` | The default tag for the docker image | `php7.4`  |
 
 
 

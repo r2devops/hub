@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `7.3`  |
 ## Objective
 
 This job will allow you to migrate the database using a migration file that you already have in `database/migrations`, and it provides an artifact with all the logs at the end

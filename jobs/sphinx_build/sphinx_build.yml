@@ -5,7 +5,7 @@ stages:
 
 sphinx_build:
   image:
-    name: python:3.10-buster
+    name: python:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: build
@@ -21,6 +21,7 @@ sphinx_build:
     APIDOC_OUTPUT: "docs/reference/source/"
     APIDOC_OPTIONS: ""
 
+    IMAGE_TAG: "3.10-buster"
   script:
     - cd ${PROJECT_ROOT}
     - pip install Sphinx ${SPHINX_THEME} .

@@ -6,7 +6,7 @@ stages:
 cargo_clippy:
 
   image:
-    name: rust:1.57-buster
+    name: rust:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: tests
@@ -15,6 +15,7 @@ cargo_clippy:
     PROJECT_ROOT: "."
     ADDITIONAL_OPTIONS: "-- -W clippy::all"
 
+    IMAGE_TAG: "1.57-buster"
   script:
     - cd ${PROJECT_ROOT}
     - rustup component add clippy

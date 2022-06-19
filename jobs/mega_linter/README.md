@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `v4`  |
 ## Objective
 
 This job uses the [Mega-Linter](https://github.com/nvuillam/mega-linter/){:target="_blank"}

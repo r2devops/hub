@@ -2,43 +2,43 @@ stages:
   - deploy
 
 serverless_deploy:
-    image: node:18-buster
-    stage: deploy
-    variables:
-      SERVERLESS_YAML_DIR: "."
-      SERVERLESS_OPTIONS: "--verbose"
-      DEPLOY_STAGE: "dev"
-      AWS_REGION: "us-east-2"
+  image: node:${IMAGE_TAG}
+  stage: deploy
+  variables:
+    SERVERLESS_YAML_DIR: "."
+    SERVERLESS_OPTIONS: "--verbose"
+    DEPLOY_STAGE: "dev"
+    AWS_REGION: "us-east-2"
+    IMAGE_TAG: "18-buster"
+  script:
+    # Check if mandatory variables are set
+    - if [ -z "$AWS_ACCESS_KEY_ID" ]; then
+    -   echo '[ERROR] You must provide a variable $AWS_ACCESS_KEY_ID. See documentation -> https://r2devops.io/jobs/deployment/serverless_deploy/'
+    -   exit 1
+    - fi
+    - if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+    -   echo '[ERROR] You must provide a variable $AWS_SECRET_ACCESS_KEY. See documentation -> https://r2devops.io/jobs/deployment/serverless_deploy/'
+    -   exit 1
+    - fi
+    # Install serverless cli
+    - npm install -g serverless
+    # Working directory
+    - cd $SERVERLESS_YAML_DIR
+    # serverless deploy
+    - if [ ! -z "$DEPLOY_STAGE" ]; then
+    -   SERVERLESS_OPTIONS="--stage $DEPLOY_STAGE $SERVERLESS_OPTIONS"
+    - fi
+    - if [ ! -z "$AWS_REGION" ]; then
+    -   SERVERLESS_OPTIONS="--region $AWS_REGION $SERVERLESS_OPTIONS"
+    - fi
+    - serverless deploy $SERVERLESS_OPTIONS | tee -a output.log
 
-    script:
-      # Check if mandatory variables are set
-      - if [ -z "$AWS_ACCESS_KEY_ID" ]; then
-      -   echo '[ERROR] You must provide a variable $AWS_ACCESS_KEY_ID. See documentation -> https://r2devops.io/jobs/deployment/serverless_deploy/'
-      -   exit 1
-      - fi
-      - if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
-      -   echo '[ERROR] You must provide a variable $AWS_SECRET_ACCESS_KEY. See documentation -> https://r2devops.io/jobs/deployment/serverless_deploy/'
-      -   exit 1
-      - fi
-      # Install serverless cli
-      - npm install -g serverless
-      # Working directory
-      - cd $SERVERLESS_YAML_DIR
-      # serverless deploy
-      - if [ ! -z "$DEPLOY_STAGE" ]; then
-      -   SERVERLESS_OPTIONS="--stage $DEPLOY_STAGE $SERVERLESS_OPTIONS"
-      - fi
-      - if [ ! -z "$AWS_REGION" ]; then
-      -   SERVERLESS_OPTIONS="--region $AWS_REGION $SERVERLESS_OPTIONS"
-      - fi
-      - serverless deploy $SERVERLESS_OPTIONS | tee -a output.log
-
-    artifacts:
-      when: always
-      expose_as: "Serverless artifact"
-      paths:
-        - $SERVERLESS_YAML_DIR/.serverless
-        - $SERVERLESS_YAML_DIR/output.log
-    rules:
-      - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-        when: manual
+  artifacts:
+    when: always
+    expose_as: "Serverless artifact"
+    paths:
+      - $SERVERLESS_YAML_DIR/.serverless
+      - $SERVERLESS_YAML_DIR/output.log
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual

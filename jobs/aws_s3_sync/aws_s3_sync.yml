@@ -6,7 +6,7 @@ stages:
 aws_s3_sync:
   stage: deploy
   image: 
-    name: alpine:3.13.6
+    name: alpine:${IMAGE_TAG}
   variables:
     AWS_ACCESS_KEY_ID: " "
     AWS_SECRET_ACCESS_KEY: " "
@@ -17,6 +17,7 @@ aws_s3_sync:
     SYNC_DIR: "build"
     DELETE_OLD_FILE: "false"
     
+    IMAGE_TAG: "3.13.6"
   script:
     # Installing AWS CLI
     - |

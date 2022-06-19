@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `3.15.1`  |
 ## Objective
 
 This job will run an [`ansible-playbook`](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html) command to automate deployments. You can install multiple roles from a `requirements.yml` file, see the [documentation](https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-multiple-roles-from-a-file).

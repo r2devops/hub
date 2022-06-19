@@ -6,7 +6,9 @@ stages:
 # Compilation step
 gradle_build:
   stage: build
-  image: gradle:jdk11
+  image: gradle:${IMAGE_TAG}
+  variables:
+    IMAGE_TAG: "jdk11"
   script: gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"

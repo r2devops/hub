@@ -18,6 +18,7 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 | Name | Description | Default |
 | ---- | ------------| ------- |
 | `ARTIFACTS_DIR` | Customize the path where the artifacts will be created | `${CI_PROJECT_DIR}/artifacts` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.8.4-jdk-11`  |
 
 
 

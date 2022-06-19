@@ -27,6 +27,7 @@ Tox aims to automate and standardize testing in Python. It is part of a larger v
 | `PROJECT_ROOT` <img width=100/> | Relative to root of your repository, it is the path to your python project <img width=175/>| `.` <img width=100/>|
 | `PYTHON_ENV` | Restrict the test to run on a specific environnement of Python, if none is specified `Tox` will run the test on all environnement listed in the `tox.ini` file. | ` ` |
 | `ADDITIONAL_OPTIONS` | [Additional options](https://tox.wiki/en/latest/config.html?result-json#tox) for tox command | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `slim-focal`  |
 
 
 

@@ -5,7 +5,7 @@ stages:
 
 apidoc:
   image:
-    name: node:18.1-alpine3.14
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
   stage: build
   variables:
@@ -17,6 +17,7 @@ apidoc:
     APIDOC_INCLUDE_FILTER: ""
     APIDOC_EXCLUDE_FILTER: ""
     APIDOC_OPTIONS: ""
+    IMAGE_TAG: "18.1-alpine3.14"
   script:
     - npm install apidoc@$APIDOC_VERSION -g
     # Conditions are necessary as if $filters are empty apidoc

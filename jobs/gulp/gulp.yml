@@ -6,7 +6,7 @@ stages:
 gulp:
   stage: others
   image:
-    name: node:18-buster
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
@@ -19,6 +19,7 @@ gulp:
     # Deploy on pages
     PAGES_DEPLOY: "false"
     PAGES_FOLDER: "./website_build"
+    IMAGE_TAG: "18-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

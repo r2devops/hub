@@ -4,26 +4,22 @@ stages:
   - build
 
 ng_build:
-
-    image:
-      name: node:16.13.1-buster
-      entrypoint: [""]
-
-    stage: build
-
-    variables:
-      PROJECT_ROOT: "."
-      PROJECT_NAME: ""
-      NG_BUILD_OPTIONS: ""
-      OUTPUT_PATH: "website_build/"
-
-    script:
+  image:
+    name: node:${IMAGE_TAG}
+    entrypoint: [""]
+  stage: build
+  variables:
+    PROJECT_ROOT: "."
+    PROJECT_NAME: ""
+    NG_BUILD_OPTIONS: ""
+    OUTPUT_PATH: "website_build/"
+    IMAGE_TAG: "16.13.1-buster"
+  script:
       - cd ${PROJECT_ROOT}
       - npm install
       - npm install -g @angular/cli
       - ng build ${PROJECT_NAME} ${NG_BUILD_OPTIONS} --output-path ${OUTPUT_PATH}
-
-    artifacts:
-      when: always
-      paths:
-        - ${CI_PROJECT_DIR}/${OUTPUT_PATH}
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${OUTPUT_PATH}

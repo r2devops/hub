@@ -6,8 +6,20 @@ stages:
 super_linter:
   stage: tests
   image:
-    name: github/super-linter:v4.9.0
+    name: github/super-linter:${IMAGE_TAG}
     entrypoint: [""]
+  variables:
+    RUN_LOCAL: "true"
+    DEFAULT_WORKSPACE: $CI_PROJECT_DIR
+    DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
+    LINTER_RULES_PATH: ".linters"
+    OUTPUT_FORMAT: "tap"
+    OUTPUT_DETAILS: "detailed"
+    OUTPUT_FOLDER: "super-linter.report"
+    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
+    TAP_JUNIT_VERSION: "4.0.0"
+    REPORT_SUITE_TEST_NAME: "super_linter"
+    IMAGE_TAG: "v4.9.0"
   script:
     - /action/lib/linter.sh
   after_script:
@@ -21,17 +33,6 @@ super_linter:
     -     sed -i 's/\\n/\n/g' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # add real newlines
     -     sed -i ':begin;$!N;s/<\/failure>\n<\/failure>/<\/failure>/;tbegin;P;D' ../${CONVERTED_OUTPUT_FOLDER}/${report}.xml # remove double </failure> that break the syntax in some reports
     - done
-  variables:
-    RUN_LOCAL: "true"
-    DEFAULT_WORKSPACE: $CI_PROJECT_DIR
-    DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
-    LINTER_RULES_PATH: ".linters"
-    OUTPUT_FORMAT: "tap"
-    OUTPUT_DETAILS: "detailed"
-    OUTPUT_FOLDER: "super-linter.report"
-    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
-    TAP_JUNIT_VERSION: "4.0.0"
-    REPORT_SUITE_TEST_NAME: "super_linter"
   artifacts:
     paths:
       - "${OUTPUT_FOLDER}/*.tap"

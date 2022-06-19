@@ -56,6 +56,7 @@ OWASP dependency-check has several file type analyzers that can detect security 
 | `DOTNET_VERSION` | If `DOTNET_DLL_ANALYZE` is enabled, sets the version of .NET Core (It uses script in [.NET Build](https://r2devops.io/jobs/build/dotnet_build/#variables)) | `3.1` |
 | `DEPCHECK_NO_UPDATE` | Force `OWASP_dependency_check` to not update its local vulnerabilities database | `false` |
 | `PROJECT_ROOT` | Root of the project to scan in your repository | `/` |
+| `IMAGE_TAG` | The default tag for the docker image | `7.1.0`  |
 
 !!! warning
     The variable `DEPCHECK_CVSS_SCORE_FAIL` is set to 11 (CVSS Score goes from 0 to 10, see more [here](https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System){:target="_blank"}). By default, the job will never fail because of a vulnerability. So it is recommended to customize this variable.

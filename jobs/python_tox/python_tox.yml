@@ -5,7 +5,7 @@ stages:
 
 python_tox:
   image:
-    name: vicamo/pyenv:slim-focal
+    name: vicamo/pyenv:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: tests
@@ -15,6 +15,7 @@ python_tox:
     PYTHON_ENV: ""
     ADDITIONAL_OPTIONS: ""
 
+    IMAGE_TAG: "slim-focal"
   script:
     - cd $PROJECT_ROOT
         # Install tox

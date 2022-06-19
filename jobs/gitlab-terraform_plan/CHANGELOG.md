@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.5.0] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [0.4.0] - 2022-05-12
 * Update default value of `TF_ROOT` to make job plug and play
 

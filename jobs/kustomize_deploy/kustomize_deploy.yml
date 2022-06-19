@@ -5,7 +5,7 @@ stages:
 
 kustomize_deploy:
   image: 
-    name: line/kubectl-kustomize:1.21.1-4.1.3
+    name: line/kubectl-kustomize:${IMAGE_TAG}
     entrypoint: [""]
   stage: deploy
   variables:
@@ -15,24 +15,23 @@ kustomize_deploy:
     KUSTOMIZATION_DIR: ""
     NAMESPACE: "$KUBE_NAMESPACE"
     POD_NAME: ""
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE"
-    IMAGE_TAG: ""
+    POD_IMAGE_NAME: "$CI_REGISTRY_IMAGE"
+    POD_IMAGE_TAG: ""
     KUSTOMIZE_OPTIONS: ""
-
-
+    IMAGE_TAG: "1.21.1-4.1.3"
   script:
     # Working directory
     - cd ${PROJECT_ROOT}/${KUSTOMIZATION_DIR}
     # Image tag to use
-    - if [ -z ${IMAGE_TAG} ]; then
+    - if [ -z ${POD_IMAGE_TAG} ]; then
     -   if [ ! -z ${CI_COMMIT_TAG} ]; then
-    -     IMAGE_TAG=${CI_COMMIT_TAG}
+    -     POD_IMAGE_TAG=${CI_COMMIT_TAG}
     -   else
-    -     IMAGE_TAG=${CI_COMMIT_SHA}
+    -     POD_IMAGE_TAG=${CI_COMMIT_SHA}
     -   fi
     - fi
     - if [ "${CHANGE_IMAGE}" = "true" ]; then
-    -   kustomize edit set image ${POD_NAME}=${IMAGE_NAME}:${IMAGE_TAG} | tee -a ../output.log
+    -   kustomize edit set image ${POD_NAME}=${POD_IMAGE_NAME}:${POD_IMAGE_TAG} | tee -a ../output.log
     - fi
     # Set the namespace
     - kubectl config set-context --current --namespace=$NAMESPACE

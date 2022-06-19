@@ -26,6 +26,7 @@ Build a package's documentation for local package and all dependencies. Check th
 | RELEASE_MODE | Generate documentation with optimization for release. See the release profile here [release profile](https://doc.rust-lang.org/cargo/reference/profiles.html#release) | `true` | 
 | OUTPUT_FOLDER | Directory where are output files | `website_build` | 
 | ADDITIONAL_OPTIONS | Possibility to add more options into the command | ` ` | 
+| `IMAGE_TAG` | The default tag for the docker image | `1.57-buster`  |
 
 
 

@@ -40,6 +40,7 @@ In its default state, this job will analyze your whole project for eligible file
 | `LYCHEE_OPTIONS` | Additional options (see [options](https://github.com/lycheeverse/lychee#commandline-parameters){:target="_blank"}) | ` ` |
 | `ROOT_DIRECTORY` | Used for absolute paths, it defines the root of HTML projects | ` ` |
 | `REPORT_OUTPUT` | Report file's name(see [artifacts](#artifacts)). Is not generated if empty (can increase jobs speed) | `junit-report.xml` |
+| `IMAGE_TAG` | The default tag for the docker image | `0.9`  |
 
 !!! warning
     As this job is still in development, some behavior could be unexpected.

@@ -6,7 +6,7 @@ stages:
 ng_lint:
 
   image:
-    name: node:18-buster
+    name: node:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: tests
@@ -17,6 +17,7 @@ ng_lint:
     NG_LINT_OPTIONS: ""
     NG_LINT_PACKAGE: ""
 
+    IMAGE_TAG: "18-buster"
   script:
     - cd ${PROJECT_ROOT}
     - npm install

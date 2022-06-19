@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.2.1] - 2022-06-13
+* Add docker image tag in variable 
+
 ## [0.1.1] - 2022-03-24
 * Upgrade image to 3.8.4-jdk-11
 

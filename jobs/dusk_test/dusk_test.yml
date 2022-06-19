@@ -14,7 +14,7 @@ cache:
 
 dusk_test:
   stage: tests
-  image: chilio/laravel-dusk-ci:php-8.0
+  image: chilio/laravel-dusk-ci:${IMAGE_TAG}
   variables:
     PROJECT_ROOT: .
     ENV_NAME: ".env.testing"
@@ -22,6 +22,7 @@ dusk_test:
     CHROME_DRIVER_VERSION: "88"
     DUSK_OPTIONS: "--log-junit dusk_junit.xml"
 
+    IMAGE_TAG: "php-8.0"
   script:
     # Navigate to working directory
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}

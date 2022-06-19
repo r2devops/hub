@@ -49,6 +49,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 | `ZAP_TARGET` | Target for Zaproxy to scan, default using alias of the docker image used as a service | `http://app` |
 | `ZAP_REPORT_FILE` | Filename for the zaproxy report | `zap-report` |
 | `ZAP_REPORT_FORMAT` | Format for the zaproxy report (html, xml, or json) | `html` |
+| `IMAGE_TAG` | The default tag for the docker image | `2.9.0`  |
 
 ### Artifacts
 

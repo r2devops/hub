@@ -2,7 +2,7 @@ stages:
   - tests
 
 zaproxy:
-  image: owasp/zap2docker-stable:2.9.0
+  image: owasp/zap2docker-stable:${IMAGE_TAG}
   stage: tests
   variables:
     ZAP_SCANNERS: ""
@@ -10,6 +10,7 @@ zaproxy:
     ZAP_TARGET: "http://app"
     ZAP_REPORT_FILE: "zap-report"
     ZAP_REPORT_FORMAT: "html"
+    IMAGE_TAG: "2.9.0"
   script:
     - zap-cli start --start-options '-config api.disablekey=true'
     - if [ ! -z ${ZAP_CONTEXT} ]; then

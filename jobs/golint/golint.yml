@@ -4,7 +4,7 @@ stages:
   - tests
 
 golint:
-  image: golangci/golangci-lint:v1.43.0
+  image: golangci/golangci-lint:${IMAGE_TAG}
   stage: tests
   variables:
     PROJECT_ROOT: "."
@@ -12,6 +12,7 @@ golint:
     ADDITIONAL_OPTIONS: ""
     GOLINT_OUTPUT: "report-golint.xml"
 
+    IMAGE_TAG: "v1.43.0"
   script:
     - cd $PROJECT_ROOT
     - $([ ${CONFIG_LOCATION} != "" ]) && CONFIG_LOCATION="--config $CONFIG_LOCATION"

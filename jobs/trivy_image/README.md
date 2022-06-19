@@ -1,3 +1,4 @@
+| `IMAGE_TAG` | The default tag for the docker image | `19.03-dind`  |
 ## Objective
 
 Run a security issue detection in a docker image using
@@ -57,6 +58,7 @@ vulnerability detection capabilities are available in its official
 | `REGISTRY_USER` | User to use for authenticating `CUSTOM_REGISTRY` | ` ` |
 | `REGISTRY_PASSWORD` | Password to use for authenticating `CUSTOM_REGISTRY` | ` ` |
 | `CUSTOM_TAG` | If you want to use another tag beside `CI_COMMIT_SHA` or `CI_COMMIT_TAG` | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `19.03`  |
 
 ### Artifacts
 

@@ -12,11 +12,12 @@ cache:
 
 gitlab-terraform_plan:
   stage: provision
-  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0
+  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:${IMAGE_TAG}
   variables:
     TF_ROOT: ${CI_PROJECT_DIR}/terraform
     TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main
     INIT_OPTIONS: ""
+    IMAGE_TAG: "v0.20.0"
   script:
     - cd ${TF_ROOT}
     - terraform fmt -check -diff ${TF_ROOT}

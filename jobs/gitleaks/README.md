@@ -29,5 +29,11 @@ gitleaks:
   allow_failure: true
 ```
 
+### Variables
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+
 ### Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

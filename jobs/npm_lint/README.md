@@ -33,6 +33,7 @@ This job will run a predefined `lint` script in your `package.json` which will c
 | `PROJECT_ROOT` | Relative path to the directory containing `package.json` (**see warning below**)  | ` ` |
 | `NPM_INSTALL_OPTIONS` | Additional options for `npm install` | ` ` |
 | `NPM_LINT_OPTIONS` | Additional options for `npm run lint` | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 !!! warning
     In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache,

@@ -35,9 +35,10 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 | `CHANGE_IMAGE` | ability to change image of deployment | no | `true`
 | `NAMESPACE` | The namespace to use for deployment | no | `$KUBE_NAMESPACE`
 | `POD_NAME` | name of the pods to update | yes, only if `CHANGE_IMAGE` is `true` | ` `
-| `IMAGE_NAME` | name of the new image to use | yes, only if `CHANGE_IMAGE` is `true` | `$CI_REGISTRY_IMAGE`
-| `IMAGE_TAG` | the tag to use for the new image | yes, only if `CHANGE_IMAGE` is `true` | ` `
+| `POD_IMAGE_NAME` | name of the new image to use | yes, only if `CHANGE_IMAGE` is `true` | `$CI_REGISTRY_IMAGE`
+| `POD_IMAGE_TAG` | the tag to use for the new image | yes, only if `CHANGE_IMAGE` is `true` | ` `
 | `KUSTOMIZE_OPTIONS` | Additional options for `kubectl` command | no | ` `
+| `IMAGE_TAG` | The default tag for the docker image | `1.21.1-4.1.3`  |
 
 ### Artifacts
 

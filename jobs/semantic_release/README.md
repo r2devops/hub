@@ -54,6 +54,7 @@ version of the software is needed, and the content of your release note. Learn m
 | `SEMANTIC_CHANGELOG_VERSION` | `@semantic-release/changelog` version | `5.0.1` | 
 | `SEMANTIC_EXEC_VERSION` | `@semantic-release/exec` version | `5.0.0` |
 | `SEMANTIC_APM_VERSION` | `@semantic-release/apm` version | `3.0.0`
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 ### Cache
 

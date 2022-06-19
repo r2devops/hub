@@ -34,6 +34,7 @@ This job will apply all the changes set by `gitlab-terraform_plan` in the file `
 | ---- | ----------- | ------- |
 | `TF_ROOT` | Directory path to terraform files | `${CI_PROJECT_DIR}/terraform` |
 | `TF_ADDRESS` | Address to terraform state backend | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
+| `IMAGE_TAG` | The default tag for the docker image | `v0.20.0`  |
 
 ### Artifacts
 

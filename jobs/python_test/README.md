@@ -32,6 +32,7 @@ Allow you to launch unit tests from your python project. The default variables w
 | `TEST_FRAMEWORK` | Command to launch your testing framework | `pytest` |
 | `OPTIONS` | Options to add to your testing framework | ` ` |
 | `TEST_PATH` | Path to test folder | `/tests/unit` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.9`  |
 
 #### Changing the test framework
 

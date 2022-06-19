@@ -26,6 +26,7 @@ from your `build.gradle.kts` or `build.gradle` file.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
+| `IMAGE_TAG` | The default tag for the docker image | `jdk11`  |
 
 
 ### Example of build.gradle.kts file

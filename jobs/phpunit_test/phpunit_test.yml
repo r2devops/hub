@@ -4,28 +4,29 @@ stages:
   - tests
 
 phpunit_test:
-    image: lorisleiva/laravel-docker:7.3
-    stage: tests
-    variables:
-      PHPUNIT_OUTPUT: "report_phpunit.xml"
-      PHPUNIT_CONFIG_FILE: "phpunit.xml"
-      PHPUNIT_COLORS: "never"
-      PHPUNIT_OPTIONS: ""
-      PHPUNIT_MEMORY_LIMIT: "512M"
-      PROJECT_ROOT: "/"
-    script:
-      # Installing globally PHPUnit if not already
-      - composer global require "phpunit/phpunit"
-      # Going to the root of php project
-      - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
-      # Running Unit testing
-      - phpunit \
-        -d memory_limit=${PHPUNIT_MEMORY_LIMIT} --configuration ${PHPUNIT_CONFIG_FILE} \
-        --coverage-text --colors=${PHPUNIT_COLORS} \
-        --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS} 
-    artifacts:
-      when: always
-      paths:
-        - ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
-      reports:
-        junit: ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
+  image: lorisleiva/laravel-docker:${IMAGE_TAG}
+  stage: tests
+  variables:
+    PHPUNIT_OUTPUT: "report_phpunit.xml"
+    PHPUNIT_CONFIG_FILE: "phpunit.xml"
+    PHPUNIT_COLORS: "never"
+    PHPUNIT_OPTIONS: ""
+    PHPUNIT_MEMORY_LIMIT: "512M"
+    PROJECT_ROOT: "/"
+    IMAGE_TAG: "7.3"
+  script:
+    # Installing globally PHPUnit if not already
+    - composer global require "phpunit/phpunit"
+    # Going to the root of php project
+    - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
+    # Running Unit testing
+    - phpunit \
+      -d memory_limit=${PHPUNIT_MEMORY_LIMIT} --configuration ${PHPUNIT_CONFIG_FILE} \
+      --coverage-text --colors=${PHPUNIT_COLORS} \
+      --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS} 
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}
+    reports:
+      junit: ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT}

@@ -6,7 +6,7 @@ stages:
 mdbook_build:
 
   image:
-    name: rust:1.57-buster
+    name: rust:${IMAGE_TAG}
     entrypoint: [""]
 
   stage: build
@@ -16,6 +16,7 @@ mdbook_build:
     DOCUMENTATION_OUTPUT: "website_build"
     MDBOOK_VERSION: ""
 
+    IMAGE_TAG: "1.57-buster"
   script:
     - cd ${PROJECT_ROOT}
     - |

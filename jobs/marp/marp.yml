@@ -5,7 +5,7 @@ stages:
 
 marp:
   image:
-    name: zenika/alpine-chrome:89-with-node-14
+    name: zenika/alpine-chrome:${IMAGE_TAG}
     entrypoint: [""]
   stage: build
   variables:
@@ -18,6 +18,7 @@ marp:
     NPM_INSTALL_DIR: ".npm-global"
     #Custom path is needed to avoid permission error on generating pdf
     CHROME_PATH: "/usr/bin/chromium-browser"
+    IMAGE_TAG: "89-with-node-14"
   script:
     - mkdir ${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}
     - npm config set prefix '${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}'

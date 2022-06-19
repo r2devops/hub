@@ -4,7 +4,7 @@ stages:
   - tests
 
 spell_check:
-  image: python:3.10-buster
+  image: python:${IMAGE_TAG}
   stage: tests
   allow_failure: true
   variables:
@@ -13,6 +13,7 @@ spell_check:
     PYSPELLING_CONFIG: ""
     PYSPELLING_OPTIONS: ""
     SNIPPET_VERSION: "7419433888dc5e6ebd1223ed05c39c6507988b69"
+    IMAGE_TAG: "3.10-buster"
   script:
     # Installing global dependencies depending on variables
     - apt update && apt install -y ${PYSPELLING_SPELLER} wget

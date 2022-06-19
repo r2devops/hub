@@ -3,11 +3,12 @@ stages:
 
 maven_test:
   image:
-    name: maven:3.8.4-jdk-11
+    name: maven:${IMAGE_TAG}
     entrypoint: [""]
   stage: tests
   variables:
     ARTIFACTS_DIR: ${CI_PROJECT_DIR}/artifacts
+    IMAGE_TAG: "3.8.4-jdk-11"
   script:
       - mkdir -p ${ARTIFACTS_DIR}
       - mvn -B clean test -DartifactsDirectory=${ARTIFACTS_DIR}

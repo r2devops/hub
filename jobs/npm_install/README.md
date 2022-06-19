@@ -43,6 +43,7 @@ This job installs `npm` dependencies listed in your `package-lock.json` and expo
 | `PROJECT_ROOT` | Relative path to the directory containing `package.json` (**see warning below**)  | ` ` |
 | `NPM_INSTALL_OPTIONS` | Additional options for `npm install` | ` ` |
 | `NPM_USE_CI` | Enable usage of `npm ci` instead of classic `npm install` | `true` |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 !!! warning
     In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache,

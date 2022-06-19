@@ -4,7 +4,7 @@ stages:
   - deploy
 
 ssh:
-  image: alpine:3
+  image: alpine:${IMAGE_TAG}
   stage: deploy
   variables:
     TARGET_HOST: ''
@@ -12,6 +12,7 @@ ssh:
     SSH_USER: ''
     SSH_PORT: '22'
     SSH_OUTPUT_FILE: 'ssh_output.txt'
+    IMAGE_TAG: "3"
   script:
     # Check if mandatory variables are set
     - if [ -z "$SSH_PRIVATE_KEY" ]; then

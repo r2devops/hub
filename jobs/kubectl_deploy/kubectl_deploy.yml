@@ -5,13 +5,14 @@ stages:
 
 kubectl_deploy:
   image: 
-    name: bitnami/kubectl:1.19.11
+    name: bitnami/kubectl:${IMAGE_TAG}
     entrypoint: [""]
   stage: deploy
   variables:
     FILES_LOCATION: ""
     KUBECTL_OPTIONS: ""
 
+    IMAGE_TAG: "1.19.11"
   script:
   - kubectl apply -f $FILES_LOCATION $KUBECTL_OPTIONS | tee -a output.log
 

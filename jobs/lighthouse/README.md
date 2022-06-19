@@ -52,6 +52,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 | `PAGES_PATH` | Path of your static website (not used if `LIGHTHOUSE_TARGET` is filled) | `website_build/` |
 | `SERVE_VERSION` | `serve` npm module's version | `11.3.2` |
 | `LIGHTHOUSE_VERSION` | `Lighthouse` tool's version | `7.2.0`
+| `IMAGE_TAG` | The default tag for the docker image | `89-with-node`  |
 
 
 ### Audit configuration

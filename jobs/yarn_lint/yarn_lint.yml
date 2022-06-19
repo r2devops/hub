@@ -14,11 +14,12 @@ cache:
 yarn_lint:
   stage: tests
   image: 
-      name: node:18-buster
+      name: node:${IMAGE_TAG}
       entrypoint: [""]
   variables:
     YARN_INSTALL_OPTIONS: ""
     YARN_LINT_OPTIONS: ""
+    IMAGE_TAG: "18-buster"
   script:
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     - yarn install ${YARN_INSTALL_OPTIONS}

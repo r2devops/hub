@@ -6,13 +6,14 @@ stages:
 artisan_migrate:
   stage: deploy
   image:
-    name: edbizarro/gitlab-ci-pipeline-php:7.3
+    name: edbizarro/gitlab-ci-pipeline-php:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     PROJECT_ROOT: "."
     ENV_NAME: ".env.testing"
     ARTISAN_MIGRATE_OPTIONS: ""
     ARTISAN_OUTPUT: "artisan_migration.log"
+    IMAGE_TAG: "7.3"
   script:
     # Working directory
     - cd $PROJECT_ROOT
