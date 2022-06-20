@@ -157,13 +157,26 @@ if __name__ == "__main__":
 
     # If image isn't specified in the job but extends is
     elif "extends" in data[args.job].keys():
+        variables = {}
+
+        if "variables" in job_data:
+            variables = job_data['variables']
 
         try:
+            # if the job extends another one, we fetch the extension variables
+            # and update them
             if isinstance(data[data[args.job]['extends']]['image'], dict):
-                output_image = raw_or_replace_tag(data[data[args.job]['extends']]['image']['name'],
-                                                  job_data['variables'])
+                extension = data[data[args.job]['extends']]
+                if "variables" in extension:
+                    variables.update(extension['variables'])
+                output_image = raw_or_replace_tag(extension['image']['name'],
+                                                  variables)
             else:
-                output_image = raw_or_replace_tag(data[data[args.job]['extends']]['image'], job_data['variables'])
+                extension = data[data[args.job]['extends']]
+                if "variables" in extension:
+                    variables.update(extension['variables'])
+
+                output_image = raw_or_replace_tag(data[data[args.job]['extends']]['image'], variables)
         # If the extended job isn't in the file, it produce a KeyError
         except KeyError:
             logging.warning(
