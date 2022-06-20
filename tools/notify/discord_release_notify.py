@@ -49,17 +49,19 @@ def generate_data(name: str, version: str, changelog: str, stage: str):
     logging.debug("generateData(%s, %s)", name, version)
 
     job_path = "{0}/jobs/{1}/{1}.yml".format(ROOT_DIR, name.lower())
-    logging.debug(job_path) 
+    logging.debug(job_path)
 
     #send an http GET request to the quotes url
     job_url="{0}{1}/{2}".format(API_JOBS_LINK, R2_BOT_USER, name.lower())
     job_metadata_request=requests.get(job_url)
+    icon = "🏷"
 
     if job_metadata_request.status_code != 200:
-        logging.error("[ERROR] Job %s not found for user %s with request %s", name.lower(), R2_BOT_USER, job_url)
-        sys.exit(1)
+        logging.error("[WARN] Job %s not found for user %s with request %s", name.lower(), R2_BOT_USER, job_url)
+        logging.error("[WARN] In order to proceed, we are replacing the job icon by default: 🏷")
+    else:
+        icon = job_metadata_request.json()["icon"]
 
-    icon = job_metadata_request.json()["icon"]
 
     data_format = {
         "username": USERNAME,
@@ -113,6 +115,7 @@ def send_message(web_hook: str, data_format: object):
 
     if result.status_code != 204:
        logging.error("[ERROR] A problem occured when sending discord message for this release")
+       logging.error("[ERROR] Returned error code: %d", result.status_code)
        logging.error("[ERROR] Result body: %s", result.text)
        sys.exit(1)
 
