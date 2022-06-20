@@ -47,19 +47,34 @@ def get_image(job):
 
     with open(f"{utils.JOBS_DIR}/{job}/{job}.yml", 'r') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
+        current_data = data[job]
+        variables = {}
+
+        if "variables" in current_data:
+            variables = current_data["variables"]
+
         if "image" in data[job].keys():
             if isinstance(data[job]['image'], dict):
-                return data[job]['image']['name']
+                image = current_data['image']['name']
+                return raw_or_replace_tag(image, variables)
             else:
-                return data[job]['image']
+                image = current_data['image']
+                return raw_or_replace_tag(image, variables)
         elif "extends" in data[job].keys():
+            extension = data[current_data['extends']]
+            #In case the extension has variable, we take in consideration for the parsing
+            if "variables" in extension:
+                variables.update(extension['variables'])
+
             if isinstance(data[data[job]['extends']]['image'], dict):
-                return data[data[job]['extends']]['image']['name']
+                image = data[current_data['extends']]['image']['name']
+                return raw_or_replace_tag(image, variables)
             else:
-                return data[data[job]['extends']]['image']
+                image = data[current_data['extends']]['image']
+                return raw_or_replace_tag(image, variables)
 
 
-def print_or_replace(image, variables):
+def raw_or_replace_tag(image, variables):
     """ Check whether the image tag given is composed of environment variable
     If it's the case, it will fetch the default value from variables in CI
 
@@ -75,19 +90,21 @@ def print_or_replace(image, variables):
 
     if match_pattern is None:
         # If image tag / name is raw without env var, we print it & end the function
-        print(image)
-        return
+        return image
 
     # We can assume pattern group is fulfilled as match_pattern isn't None
     env_var_name = match_pattern.groups()[0]
-    env_var_value = variables[env_var_name]
+    env_var_value = None
+
+    if env_var_name in variables:
+        env_var_value = variables[env_var_name]
 
     if env_var_value is None:
         print("Environment variable for {} is not available in variables {}", image, variables)
         sys.exit(1)
 
     image = re.sub(IMAGE_TAG_REGEX, env_var_value, image)
-    print(image)
+    return image
 
 
 if __name__ == "__main__":
@@ -129,25 +146,29 @@ if __name__ == "__main__":
         data = yaml.load(file, Loader=yaml.FullLoader)
 
     job_data = data[args.job]
+    output_image = "UNKNOWN"
 
     # If image option is directly specified in the job
     if "image" in data[args.job].keys():
         if isinstance(data[args.job]['image'], dict):
-            print_or_replace(job_data['image']['name'], job_data["variables"])
+            output_image = raw_or_replace_tag(job_data['image']['name'], job_data["variables"])
         else:
-            print_or_replace(job_data['image'], job_data['variables'])
+            output_image = raw_or_replace_tag(job_data['image'], job_data['variables'])
 
     # If image isn't specified in the job but extends is
     elif "extends" in data[args.job].keys():
 
         try:
             if isinstance(data[data[args.job]['extends']]['image'], dict):
-                print_or_replace(data[data[args.job]['extends']]['image']['name'], job_data['variables'])
+                output_image = raw_or_replace_tag(data[data[args.job]['extends']]['image']['name'],
+                                                  job_data['variables'])
             else:
-                print_or_replace(data[data[args.job]['extends']]['image'], job_data['variables'])
+                output_image = raw_or_replace_tag(data[data[args.job]['extends']]['image'], job_data['variables'])
         # If the extended job isn't in the file, it produce a KeyError
         except KeyError:
             logging.warning(
                 'The job %s doesn\'t declare its image and extends a job from outside of the file, we aren\'t able to check its image vulnerabilities',
                 args.job)
             # TODO: check images from included jobs ==> https://gitlab.com/r2devops/hub/-/issues/282
+
+    print(output_image)
