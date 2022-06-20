@@ -146,7 +146,7 @@ if __name__ == "__main__":
         data = yaml.load(file, Loader=yaml.FullLoader)
 
     job_data = data[args.job]
-    output_image = "UNKNOWN"
+    output_image = ""
 
     # If image option is directly specified in the job
     if "image" in data[args.job].keys():
