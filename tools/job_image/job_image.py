@@ -3,6 +3,7 @@
 import os
 import sys
 import logging
+import re
 import yaml
 import argparse
 
@@ -10,7 +11,11 @@ import argparse
 # /!\ This instruction is only working if you run this script from the root of the project
 sys.path.insert(0, "./")
 from tools.utils.utils import Config
+
 utils = Config()
+
+IMAGE_TAG_REGEX = "\${([a-zA-Z_-]+)}"
+
 
 def argparse_setup():
     """Setup argparse
@@ -23,6 +28,7 @@ def argparse_setup():
     parser = argparse.ArgumentParser()
     parser.add_argument("job", help="job name to get the image from")
     return parser.parse_args()
+
 
 def get_image(job):
     """Get the image of a job
@@ -51,6 +57,38 @@ def get_image(job):
                 return data[data[job]['extends']]['image']['name']
             else:
                 return data[data[job]['extends']]['image']
+
+
+def print_or_replace(image, variables):
+    """ Check whether the image tag given is composed of environment variable
+    If it's the case, it will fetch the default value from variables in CI
+
+    Finally, it will print the sanitized image tag in stdout
+
+    :param image: Image tag to check (python:1.0.0 or python:${IMAGE_VERSION})
+    :param variables: The list of variables that are available in the job
+
+    :return It returns nothing
+    """
+
+    match_pattern = re.search(IMAGE_TAG_REGEX, image)
+
+    if match_pattern is None:
+        # If image tag / name is raw without env var, we print it & end the function
+        print(image)
+        return
+
+    # We can assume pattern group is fulfilled as match_pattern isn't None
+    env_var_name = match_pattern.groups()[0]
+    env_var_value = variables[env_var_name]
+
+    if env_var_value is None:
+        print("Environment variable for {} is not available in variables {}", image, variables)
+        sys.exit(1)
+
+    image = re.sub(IMAGE_TAG_REGEX, env_var_value, image)
+    print(image)
+
 
 if __name__ == "__main__":
     """Main function, get the name of the image for a job
@@ -90,23 +128,26 @@ if __name__ == "__main__":
     with open(f"{utils.JOBS_DIR}/{args.job}/{args.job}{utils.JOBS_EXTENSION}", 'r') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
 
+    job_data = data[args.job]
+
     # If image option is directly specified in the job
     if "image" in data[args.job].keys():
         if isinstance(data[args.job]['image'], dict):
-            print(data[args.job]['image']['name'])
+            print_or_replace(job_data['image']['name'], job_data["variables"])
         else:
-            print(data[args.job]['image'])
+            print_or_replace(job_data['image'], job_data['variables'])
 
     # If image isn't specified in the job but extends is
     elif "extends" in data[args.job].keys():
 
         try:
             if isinstance(data[data[args.job]['extends']]['image'], dict):
-                print(data[data[args.job]['extends']]['image']['name'])
+                print_or_replace(data[data[args.job]['extends']]['image']['name'], job_data['variables'])
             else:
-                print(data[data[args.job]['extends']]['image'])
+                print_or_replace(data[data[args.job]['extends']]['image'], job_data['variables'])
         # If the extended job isn't in the file, it produce a KeyError
-        except KeyError :
-            logging.warning('The job %s doesn\'t declare its image and extends a job from outside of the file, we aren\'t able to check its image vulnerabilities', args.job)
+        except KeyError:
+            logging.warning(
+                'The job %s doesn\'t declare its image and extends a job from outside of the file, we aren\'t able to check its image vulnerabilities',
+                args.job)
             # TODO: check images from included jobs ==> https://gitlab.com/r2devops/hub/-/issues/282
-
