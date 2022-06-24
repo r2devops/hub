@@ -1,0 +1,14 @@
+stages:
+  - deploy
+
+heroku_deploy:
+    image: ruby:${IMAGE_TAG}
+    stage: deploy
+    variables:
+      HEROKU_APP: ""
+      HEROKU_API_KEY: ""
+      ADDITIONAL_OPTIONS: ""
+      IMAGE_TAG: 3.2-rc-buster
+    script:
+      - gem install dpl
+      - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY ${ADDITIONAL_OPTIONS}

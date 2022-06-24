@@ -276,6 +276,8 @@ refresh_job_av_database:
 generate_job_av:
   image: python:3.9.1-alpine
   stage: static_tests
+  dependencies:
+    - refresh_job_av_database
   variables:
     PIPENV_PIPFILE: tools/job_av/Pipfile
     JOB_LOGFILE: "generate_job.log"
