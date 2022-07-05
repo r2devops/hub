@@ -41,6 +41,8 @@ s3_sync:
       S3_OPTIONS="--region ${S3_REGION} ${S3_OPTIONS}"
       if [ -z ${CI_ENVIRONMENT_SLUG} ]; then
         S3_ENV="production"
+      else
+        S3_ENV="${CI_ENVIRONMENT_SLUG}"
       fi
       S3_BUCKET_NAME="${S3_BUCKET_NAME}-${S3_ENV}"
 
