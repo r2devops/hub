@@ -1,0 +1,28 @@
+# Job from R2Devops hub --> r2devops.io
+
+default:
+  cache:
+    key:
+      files:
+        - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/pnpm-lock.yaml
+      prefix: "pnpm-${CI_COMMIT_REF_SLUG}"
+    paths:
+      - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store
+
+pnpm_install:
+  stage: .pre
+  image: node:${IMAGE_TAG}
+  variables:
+    IMAGE_TAG: "18-buster"
+    PNPM_INSTALL_OPTIONS: ""
+    PROJECT_ROOT: "."
+  before_script:
+      - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+      - pnpm config set store-dir ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store
+      
+  script:
+    - |
+      cd ${PROJECT_ROOT}
+      if [ -f "pnpm-lock.yaml" ]; then
+        pnpm install ${PNPM_INSTALL_OPRIONS}
+      fi
