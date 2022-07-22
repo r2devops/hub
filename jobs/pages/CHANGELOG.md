@@ -1,6 +1,8 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.5.0] - 2022-07-22
+* Add variable `PAGES_REDIRECTION_FILE`
 ## [0.4.0] - 2022-06-13
 * Add docker image tag in variable 
 
