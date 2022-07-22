@@ -1,0 +1,38 @@
+# Job from R2Devops hub --> r2devops.io
+
+pnpm_build:
+  stage: build
+  image: node:${IMAGE_TAG}
+  variables:
+    IMAGE_TAG: "18-buster"
+    PNPM_INSTALL_OPTIONS: ""
+    PNPM_BUILD_SCRIPT_NAME: "build"
+    PNPM_BUILD_OPTIONS: ""
+    PNPM_BUILD_OUTPUT_FOLDER: "dist"
+    PAGES_DEPLOY: "false"
+    PAGES_FOLDER: "./website_build"
+    PROJECT_ROOT: "."
+  
+  before_script:
+      - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+      - pnpm config set store-dir ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store
+  
+  script:
+    - cd ${PROJECT_ROOT}
+    - pnpm install ${PNPM_INSTALL_OPTIONS}
+    - pnpm run ${PNPM_BUILD_SCRIPT_NAME} ${PNPM_BUILD_OPTIONS}
+    # To deploy on pages
+    - if [ "$PAGES_DEPLOY" == "true" ]; then
+        # Pages folder must to be at the root of the repo
+    -   cd $CI_PROJECT_DIR
+    -   cp -r ${PROJECT_ROOT}/${PNPM_BUILD_OUTPUT_FOLDER} ${CI_PROJECT_DIR}/${PAGES_FOLDER}
+    - fi
+
+  artifacts:
+    expose_as: "pnpm build"
+    paths:
+      - ${PROJECT_ROOT}/${PNPM_BUILD_OUTPUT_FOLDER}
+      - "${PAGES_FOLDER}"
+      # Below path is a workaround to provide artifact exposition in MR if
+      # default output value is used. See https://r2devops.io/jobs/build/npm_build/#artifact
+      - "build/"
