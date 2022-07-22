@@ -4,7 +4,7 @@ stages:
   - r2_stage
 
 r2_jobname:
-  image: r2_imagename:r2_imagetag
+  image: r2_imagename:${IMAGE_TAG}
   stage: r2_stage
   variables:
     VARIABLE: "Hello R2"
