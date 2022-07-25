@@ -1,0 +1,24 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - tests
+
+pnpm_test:
+  stage: tests
+  image: node:${IMAGE_TAG}
+  variables:
+    PROJECT_ROOT: "."
+    PNPM_INSTALL_OPTIONS: ""
+    PNPM_TEST_COMMAND: "test"
+    PNPM_TEST_OPTIONS: ""
+    IMAGE_TAG: "18-buster"
+  before_script:
+      - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+      - pnpm config set store-dir ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # Run pnpm install
+    - pnpm install ${PNPM_INSTALL_OPTIONS}
+    # Run pnpm test
+    - pnpm run ${PNPM_TEST_COMMAND} ${PNPM_TEST_OPTIONS}
