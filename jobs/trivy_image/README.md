@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `19.03-dind`  |
 ## Objective
 
 Run a security issue detection in a docker image using
