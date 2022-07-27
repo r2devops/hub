@@ -25,14 +25,15 @@ Deploy your static website on following S3-compatible cloud-providers:
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `S3_PROVIDER` | Name of the Provider, could be `aws` or `scaleway`  | `aws` |
+| `S3_PROVIDER` | Name of the Provider, could be `aws` or `scaleway` | `aws` |
 | `S3_ACCESS_KEY_ID` | Access key | ` ` |
 | `S3_SECRET_ACCESS_KEY` | Secret key | ` ` |
 | `S3_REGION` | Region used | `us-west-1` |
 | `S3_SYNC_DIR` | Directory to sync | `website_build` |
 | `S3_BUCKET_NAME`| The name of the bucket | `$CI_PROJECT_PATH_SLUG` |
+| `S3_ENV` | Name of the development environment. Is used to suffixed bucket's name if it is sets and not equal to `production`. | `$CI_ENVIRONMENT_SLUG` |
 | `S3_ACL` | Use custom ACL ([from this list](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl)) | `public-read` |
-| `S3_ENDPOINT` | Custom endpoint if needed | ` ` |
+| `S3_ENDPOINT` | Custom endpoint if needed. If not set use `https://s3.fr-par.scw.cloud` for `scaleway` provider. | ` ` |
 | `S3_DELETE_OLD_FILE` | Delete files that exist in the destination but not in the source  | `true` |
 | `S3_BUCKET_POLICY_FILE` | The policy applied to the bucket. If not set will apply `${S3_SNIPPET_POLICY_LINK}/bucket_policy-${S3_PROVIDER}.json`. Otherwise, it should be declared in Gitlab CI/CD variables section as `file` | ` ` |
 | `S3_DEPLOY_WEBSITE` | Should deploy a static website on the bucket | `true` |

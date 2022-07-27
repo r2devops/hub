@@ -3,7 +3,7 @@
 stages:
   - deploy
 
-s3_sync:
+s3_deploy:
   stage: deploy
   image:
     name: amazon/aws-cli:${IMAGE_TAG}
@@ -16,6 +16,7 @@ s3_sync:
     S3_REGION: "us-west-1"
     S3_SYNC_DIR: "website_build"
     S3_BUCKET_NAME: "$CI_PROJECT_PATH_SLUG"
+    S3_ENV: "$CI_ENVIRONMENT_SLUG"
     S3_ACL: "public-read"
     S3_OPTIONS: ""
     S3_DELETE_OLD_FILE: "true"
@@ -31,24 +32,27 @@ s3_sync:
 
       # Check provider
     - |
-      if [ -z ${S3_PROVIDER} ]; then
+      if [ -z "${S3_PROVIDER}" ]; then
         echo "S3_PROVIDER not set, will use default AWS provider"
         S3_PROVIDER="aws"
       fi
 
-      # Set some variables
+      # Set default endpoint for scaleway
+    - |
+      if [ "${S3_PROVIDER}" == "scaleway" ] && [ -z "${S3_ENDPOINT}" ]; then
+        S3_ENDPOINT="https://s3.fr-par.scw.cloud"
+      fi
+
+      # Add options and setup environment name
     - |
       S3_OPTIONS="--region ${S3_REGION} ${S3_OPTIONS}"
-      if [ -z ${CI_ENVIRONMENT_SLUG} ]; then
-        S3_ENV="production"
-      else
-        S3_ENV="${CI_ENVIRONMENT_SLUG}"
+      if [ "${S3_ENV}" != "production" ] && [ ! -z "${S3_ENV}" ]; then
+        S3_BUCKET_NAME="${S3_BUCKET_NAME}-${S3_ENV}"
       fi
-      S3_BUCKET_NAME="${S3_BUCKET_NAME}-${S3_ENV}"
 
       # Set Endpoint URL
     - |
-      if [ ! -z ${S3_ENDPOINT} ]; then
+      if [ ! -z "${S3_ENDPOINT}" ]; then
         S3_OPTIONS="--endpoint-url ${S3_ENDPOINT} ${S3_OPTIONS}"
       fi
 
@@ -62,11 +66,10 @@ s3_sync:
         echo "✅ Bucket ${S3_BUCKET_NAME} successfully created"
       fi
 
-      # Enable website mode
+    # Enable website mode with index and error document
     - |
       if [ ${S3_DEPLOY_WEBSITE} == "true" ]; then
-        aws s3 website s3://${S3_BUCKET_NAME}/ --index-document ${S3_WEBSITE_HOMEPAGE} \
-        --error-document ${S3_WEBSITE_ERRORPAGE} ${S3_OPTIONS}
+        aws s3 website s3://${S3_BUCKET_NAME}/ --index-document ${S3_WEBSITE_HOMEPAGE} --error-document ${S3_WEBSITE_ERRORPAGE} ${S3_OPTIONS}
       fi
 
       # Configuring policy and substitute variables
@@ -86,9 +89,23 @@ s3_sync:
       $([ ! -z ${S3_ACL} ]) && S3_OPTIONS="${S3_OPTIONS} --acl ${S3_ACL}"
       $([ ${S3_DELETE_OLD_FILE} == "true" ]) && S3_OPTIONS="${S3_OPTIONS} --delete"
       aws s3 sync ${S3_SYNC_DIR} s3://${S3_BUCKET_NAME}/ ${S3_OPTIONS}
-      if [ ${S3_PROVIDER} == "scaleway" ]; then
-        WEBSITE_URL="https://${S3_BUCKET_NAME}.s3-website.${S3_REGION}.scw.cloud"
+      if [ ${S3_DEPLOY_WEBSITE} == "true" ]; then
+        if [ ${S3_PROVIDER} == "scaleway" ]; then
+          WEBSITE_URL="https://${S3_BUCKET_NAME}.s3-website.${S3_REGION}.scw.cloud"
+        else
+          WEBSITE_ENDPOINT=${S3_BUCKET_NAME}.s3-website.${S3_REGION}.amazonaws.com
+          yum install -y jq
+          DOMAIN_NAME=$(aws cloudfront list-distributions | jq ".DistributionList.Items[]|select(.Origins.Items[].DomainName==\"${WEBSITE_ENDPOINT}\")" | jq '.DomainName' | tr -d \")
+          if [ ! -z $DOMAIN_NAME ]; then
+            echo "🌐 Domain name already exists for the website : https://${DOMAIN_NAME}"
+          else
+            AWS_CLOUDFRONT_COMMAND=$(aws cloudfront create-distribution --origin-domain-name ${WEBSITE_ENDPOINT} --default-root-object ${S3_WEBSITE_HOMEPAGE})
+            DOMAIN_NAME=$(echo ${AWS_CLOUDFRONT_COMMAND} | jq '.Distribution.DomainName' | tr -d \")
+            echo "🌐 Domain name is being created at https://${DOMAIN_NAME} for the website"
+            WEBSITE_URL="http://${WEBSITE_ENDPOINT}"
+          fi
+        fi
+        echo "✅ Website successfully deployed on ${WEBSITE_URL}"
       else
-        WEBSITE_URL="http://${S3_BUCKET_NAME}.s3-website-${S3_REGION}.amazonaws.com"
+        echo "✅ Files successfully synced on ${S3_BUCKET_NAME}"
       fi
-      echo "✅ Website successfully deployed on ${WEBSITE_URL}"
