@@ -1,0 +1,33 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+clever_deploy:
+  image: 
+    name: node:${IMAGE_TAG}
+    entrypoint: [""]
+  stage: deploy
+  variables:
+    CLEVER_BUILD_PATH: "website_build"
+    CLEVER_APP: "$CI_PROJECT_PATH_SLUG"
+    CLEVER_TOKEN: ""
+    CLEVER_SECRET: ""
+    CLEVER_PACKAGE_VERSION: "2.9.1"
+    IMAGE_TAG: "18-buster"
+  script:
+    # Clone the remote repository with a full depth to be compatible with clever deploy 
+    - git fetch --depth=2147483647
+    - git remote set-branches origin '*'
+    - git fetch -v
+
+    - npm i -g clever-tools@${CLEVER_PACKAGE_VERSION}
+    - clever login --token ${CLEVER_TOKEN} --secret ${CLEVER_SECRET}
+    # Create the application and configure the static website with domain name and https
+    - clever create --type static-apache ${CLEVER_APP}
+    - clever config set force-https enabled
+    - clever env set CC_WEBROOT /${CLEVER_BUILD_PATH}
+    - DOMAIN=${CLEVER_APP}.cleverapps.io
+    - clever domain add ${DOMAIN} || true
+    - clever deploy -f
+    - echo "✅ Website successfully deployed on https://${DOMAIN}"
