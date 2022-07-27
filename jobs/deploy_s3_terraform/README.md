@@ -12,7 +12,7 @@ Deploy a static website on a S3 bucket provided by a Terraform state. It is a fu
 1. Set your AWS credentials variables in the `Gitlab CI/CD` variables section of your project (see the [S3 documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html){:target="_blank"} about credentials) .
 
     ??? summary "Need a custom Endpoint ⚓ ?"
-      Just type your custom url in the variable `AWS_ENDPOINT`.  
+      Just type your custom url in the variable `AWS_ENDPOINT`.
       For example, you can find the custom endpoint url for Scaleway [here](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/){:target="_blank"}.
 
     ??? info "Set up a bucket policy 👮"
@@ -23,17 +23,9 @@ Deploy a static website on a S3 bucket provided by a Terraform state. It is a fu
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
+## Variables
 
-* Job name: `deploy_s3_terraform`
-* Docker image:
-[`registry.gitlab.com/gitlab-org/terraform-images/releases/1.2:v0.40.0`](https://gitlab.com/gitlab-org/terraform-images/container_registry/3083041)
-* Default stage: `deploy`
-* When: `always`
-
-### Variables
-
-!!! warning 
+!!! warning
     Some variable are required to let the job work. Many of them are *secrets*, they should be define in the `CI/CD > Variables` section in [GitLab](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensitive credential variables such as cloud providers tokens and passwords.
 
 | Name | Description | Required | Secrets | Default |
@@ -54,14 +46,14 @@ Deploy a static website on a S3 bucket provided by a Terraform state. It is a fu
 | `TF_ADDRESS` | Address to terraform state backend | ✅ | ❌ | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 | `TF_ROOT` | The root directory for Terraform | ✅ | ❌ | `terraform` |
 
-### Configuring Terraform
+## Configuring Terraform
 
 To works well with Terraform, variable should be defined in the `CI/CD > Variables` section in [GitLab](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project).
 
 
-### Here is an working example of deploying a website on a S3 bucket hosted by Scaleway
+## Here is an working example of deploying a website on a S3 bucket hosted by Scaleway
 
-Structure : 
+Structure :
 ```sh
 build/ #Directory where the website is built
 terraform/

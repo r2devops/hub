@@ -1,6 +1,6 @@
 ## Objective
 
-Deploy your front-end application to [Netlify](https://netlify.com). It is an all-in-one platform for automating modern web projects. Replace your hosting infrastructure, continuous integration, and deployment pipeline with a single workflow.   
+Deploy your front-end application to [Netlify](https://netlify.com). It is an all-in-one platform for automating modern web projects. Replace your hosting infrastructure, continuous integration, and deployment pipeline with a single workflow.
 See the [documentation](https://docs.netlify.com/) for more information.
 
 ## How to use it
@@ -10,15 +10,7 @@ See the [documentation](https://docs.netlify.com/) for more information.
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `netlify_deploy`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `deploy`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -28,9 +20,9 @@ See the [documentation](https://docs.netlify.com/) for more information.
 | `NETLIFY_CLI_VERSION` | The version of Netlify CLI | `10.5.0` |
 
 !!! info
-    A token can be generated on Netlify in the section `User settings > Applications`, see the [documentation](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui). Or you could create one via the command [`netlify login`](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui).  
+    A token can be generated on Netlify in the section `User settings > Applications`, see the [documentation](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui). Or you could create one via the command [`netlify login`](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui).
     A deployment can be created from the dashboard or with the command [`netlify init`](https://docs.netlify.com/cli/get-started/#automated-setup).
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

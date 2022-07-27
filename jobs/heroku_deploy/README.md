@@ -1,6 +1,6 @@
 ## Objective
 
-Deploy your application to Heroku. You can use custom buildpacks depending on our needs, please check out the documentation [here](https://devcenter.heroku.com/articles/buildpacks). It use [`dpl`](https://github.com/travis-ci/dpl), which is a command line tool for deploying code, html, packages, or build artifacts to various service providers. 
+Deploy your application to Heroku. You can use custom buildpacks depending on our needs, please check out the documentation [here](https://devcenter.heroku.com/articles/buildpacks). It use [`dpl`](https://github.com/travis-ci/dpl), which is a command line tool for deploying code, html, packages, or build artifacts to various service providers.
 
 ## How to use it
 
@@ -11,15 +11,7 @@ Deploy your application to Heroku. You can use custom buildpacks depending on ou
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `heroku_deploy`
-* Docker image:
-[`ruby:3.2-rc-buster`](https://hub.docker.com/r/_/ruby)
-* Default stage: `deploy`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -28,5 +20,5 @@ Deploy your application to Heroku. You can use custom buildpacks depending on ou
 | `ADDITIONAL_OPTIONS` | Additional [options](https://github.com/travis-ci/dpl#heroku-api) for `dpl` command | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `3.2-rc-buster`  |
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

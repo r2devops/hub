@@ -4,22 +4,14 @@ This job will use the tool [pylint](https://pylint.pycqa.org/en/latest/intro.htm
 
 ## How to use it
 
-1. Make sure that your project has [`__init__.py`](https://docs.python.org/3/tutorial/modules.html){:target="_blank"} 
+1. Make sure that your project has [`__init__.py`](https://docs.python.org/3/tutorial/modules.html){:target="_blank"}
 1. You can use a pylintrc file on your project or use [environment variable](https://pylint.pycqa.org/en/latest/user_guide/run.html), to specify options for `pylint`.
 1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `pylint`
-* Docker image:
-[`python:3.10-buster`](https://hub.docker.com/r/_/python)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -30,5 +22,5 @@ This job will use the tool [pylint](https://pylint.pycqa.org/en/latest/intro.htm
 | `IMAGE_TAG` | The default tag for the docker image | `3.10-buster`  |
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexiaognard](https://gitlab.com/alexiaognard)

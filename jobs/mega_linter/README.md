@@ -4,12 +4,12 @@
 This job uses the [Mega-Linter](https://github.com/nvuillam/mega-linter/){:target="_blank"}
 which is a combination of various linters to help validate the quality
 of your files. This tool is a fork of [super_linter](https://r2devops.io/_/r2devops-bot/super_linter/),
-and is popular for being more efficient 
+and is popular for being more efficient
 (a deeper understanding on why it is more efficient is [available](https://nvuillam.github.io/mega-linter/mega-linter-vs-super-linter/))
 
-More than 45 languages are supported, for each of them you have specific variables that can be customized, see the table below. 
+More than 45 languages are supported, for each of them you have specific variables that can be customized, see the table below.
 
-* Clicking on any of the language below will show you variables available for applied to linters of this language. 
+* Clicking on any of the language below will show you variables available for applied to linters of this language.
 * Clicking on one of the linters will show you the variables available for it.
 
 | Language                                                                                                                    | Linter                                                                                                                           | Configuration key                                                                                                                           |
@@ -72,15 +72,7 @@ More than 45 languages are supported, for each of them you have specific variabl
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `mega_linter`
-* Docker image:
-[`nvuillam/mega-linter`](https://hub.docker.com/r/nvuillam/mega-linter){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 !!! info
     This section describes the most significant variables [from this full
@@ -90,22 +82,13 @@ This job can be used without configuration. By default, it will detect files in
 your repository and run relevant linter on them. You can also use variables to
 customize its behavior.
 
-- [Objective](#objective)
-- [How to use it](#how-to-use-it)
-- [Job details](#job-details)
-  - [Variables](#variables)
-    - [General configuration](#general-configuration)
-  - [Optimize Mega-Linter](#optimize-mega-linter)
-  - [Artifacts](#artifacts)
-  - [Author](#author)
-
-#### General configuration
+## General configuration
 
 | Name                              | Description                                                                 | Default                       |
 | --------------------------------- | --------------------------------------------------------------------------- | ----------------------------- |
 | `DEFAULT_WORKSPACE`               | Directory where the linter will work                                        | `${CI_PROJECT_DIR}`           |
 | `DEFAULT_BRANCH`                  | Default branch of your project                                              | `${CI_DEFAULT_BRANCH}`        |
-| `FILTER_REGEX_EXCLUDE`            | Regex in order to exclude specific files                                    | `none`                        |  
+| `FILTER_REGEX_EXCLUDE`            | Regex in order to exclude specific files                                    | `none`                        |
 | `LINTER_RULES_PATH`               | Directory where are stored linters configuration                            | `.linters`                    |
 | `MEGALINTER_CONFIG`               | Mega-Linter configuration file location                                     | `.mega_linter.yml`            |
 | `VALIDATE_ALL_CODEBASE`           | Whether linters should only go through **edited** or **new** files          | `true`                        |
@@ -120,16 +103,16 @@ customize its behavior.
 !!! warning
     Please be aware that any config file specified is relative to `$LINTER_RULES_PATH`, so you have to put **all your
     templating** under the path specified. If you are curious to know what are the *default templates* files for your
-    linters, they are all available in the [`TEMPLATES`](https://github.com/nvuillam/mega-linter/tree/master/TEMPLATES) 
+    linters, they are all available in the [`TEMPLATES`](https://github.com/nvuillam/mega-linter/tree/master/TEMPLATES)
     folder
 
-### Optimize Mega-Linter
+## Optimize Mega-Linter
 
 Mega-Linter provides flavored images with pre-defined linters for most of your projects, you will find the complete
 list below ([source](https://github.com/nvuillam/mega-linter#flavors)).
 
-Using a flavor instead of the default image, you'll be able to optimize the docker image size and your pipeline. 
-If any of the flavors is matching your project type, all you have to do is overriding the image used 
+Using a flavor instead of the default image, you'll be able to optimize the docker image size and your pipeline.
+If any of the flavors is matching your project type, all you have to do is overriding the image used
 in the job, like this:
 
 ```yaml
@@ -158,12 +141,12 @@ mega_linter:
 | <img src="https://github.com/nvuillam/mega-linter/raw/master/docs/assets/icons/terraform.ico" alt="" height="32px" class="megalinter-icon"></a>           | [terraform](https://github.com/nvuillam/mega-linter/tree/master/docs/flavors/terraform.md#readme)         | Optimized for TERRAFORM based projects                                 | 43               | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/nvuillam/mega-linter-terraform/v4) ![Docker Pulls](https://img.shields.io/docker/pulls/nvuillam/mega-linter-terraform)         |
 
 
-### Artifacts
+## Artifacts
 
-We use [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in 
+We use [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in
 merge request widget.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@protocole](https://gitlab.com/Protocole)

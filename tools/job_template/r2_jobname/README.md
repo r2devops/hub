@@ -10,14 +10,6 @@ r2_jobdescription
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `r2_jobname`
-* Docker image:
-[`r2_imagename:r2_imagetag`](https://hub.docker.com/r/_/r2_imagename)
-* Default stage: `r2_stage`
-* When: `always`
-
 ### Variables
 
 | Name | Description | Default |

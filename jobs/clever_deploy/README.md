@@ -11,15 +11,7 @@ Deploy your static website on a Clever Cloud application.
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `clever_deploy`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `deploy`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -30,5 +22,5 @@ Deploy your static website on a Clever Cloud application.
 | `CLEVER_PACKAGE_VERSION` | The version of the npm packages [clever-tools](https://gitlab.com/r2devops/hub/-/blob/latest/npmjs.com/package/clever-tools) | `2.9.1` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster` |
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

@@ -13,15 +13,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `owasp_dependency_check`
-* Docker image:
-[`owasp/dependency-check:7.1.0`](https://hub.docker.com/r/owasp/dependency-check){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### File Type Analyzers
+## File Type Analyzers
 
 OWASP dependency-check has several file type analyzers that can detect security issues in your project.
 
@@ -44,7 +36,7 @@ OWASP dependency-check has several file type analyzers that can detect security 
     OWASP Dependency-Check has some experimental analyzers that can be enabled by setting `true` to the variable `DEPCHECK_EXPERIMENTALS`. Be aware that these analyzers can still have some false positive alerts.
     To know the list of experimental analyzers click [here](https://jeremylong.github.io/DependencyCheck/analyzers/index.html){:target="_blank"}.
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -62,7 +54,7 @@ OWASP dependency-check has several file type analyzers that can detect security 
     The variable `DEPCHECK_CVSS_SCORE_FAIL` is set to 11 (CVSS Score goes from 0 to 10, see more [here](https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System){:target="_blank"}). By default, the job will never fail because of a vulnerability. So it is recommended to customize this variable.
     Also, it is recommended to leave `DEPCHECK_JUNIT_CVSS_FAIL` to `0` to always show the security issues found.
 
-### Artifacts
+## Artifacts
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.
@@ -75,5 +67,5 @@ You will be able to directly see all the dependencies analyzed and, when there i
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

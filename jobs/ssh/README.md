@@ -17,7 +17,7 @@ Run a SSH command on a remote host.
    check the [jobs customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-### Example of `.gitlab-ci.yml` file
+## Example of `.gitlab-ci.yml` file
 
 ```yaml
 include:
@@ -30,15 +30,7 @@ ssh:
     SHELL_COMMAND: echo "Hello world !"
 ```
 
-## Job details
-
-* Job name: `ssh`
-* Docker image: [`alpine:3`](https://hub.docker.com/_/alpine){:target="_blank"}
-* Default stage: `deploy`
-* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).
-  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
-
-### Variables
+## Variables
 
 !!! info
     All variables can be set using [Gitlab CI/CD
@@ -56,7 +48,7 @@ ssh:
 | `SSH_PORT` | SSH server port on target host | no | `22`
 | `SSH_OUTPUT_FILE` | File that will be used to store SSH output | no | `ssh_output.txt `
 
-### Artifacts
+## Artifacts
 
 * If remote command success: the job success with the output as artifact
 * If remote command fails: the job fails with the output as artifact
@@ -75,5 +67,5 @@ Command output is available as artifact.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

@@ -28,15 +28,7 @@ build_break_rules = {
     "depscan": {"max_critical": 0,"max_high": 2,"max_medium": 5},
 }
 ```
-## Job details
-
-* Job name: `sls_scan`
-* Docker image:
-[`shiftleft/sast-scan`](https://hub.docker.com/r/shiftleft/sast-scan){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -46,7 +38,7 @@ build_break_rules = {
 | `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |
 | `IMAGE_TAG` | The default tag for the docker image | `v1.15.1`  |
 
-### Artifacts
+## Artifacts
 
 Scan result is available as artifact, and all HTML reports are merged into one single HTML report
 
@@ -60,7 +52,7 @@ Scan result is available as artifact, and all HTML reports are merged into one s
     As soon as the issue will be fixed, exposed artifacts will be available
     with any output location.
 
-### Bundled tools
+## Bundled tools
 
 | Programming Language | Tools                               |
 | -------------------- | ----------------------------------- |
@@ -94,5 +86,5 @@ Scan result is available as artifact, and all HTML reports are merged into one s
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

@@ -22,14 +22,6 @@ vulnerability detection capabilities are available in its official
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `trivy_dependency`
-* Docker image: [`aquasec/trivy`](https://hub.docker.com/r/aquasec/trivy/){:target="_blank"}
-* Default stage: `tests`
-
-### Dependencies check
-
 Trivy runs dependencies analysis using the **lock files** of dependency
 managers.
 
@@ -62,7 +54,7 @@ List of supported lock files :
 To get more information, see [trivy
 documentation](https://github.com/aquasecurity/trivy#application-dependencies){:target="_blank"}.
 
-### Variables
+## Variables
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
@@ -83,12 +75,12 @@ documentation](https://github.com/aquasecurity/trivy#application-dependencies){:
 | `TRIVY_SKIP_UPDATE` | Skip vulnerability database update | false |
 | `TRIVY_REMOVED_PKGS` | Detect vulns of Alpine removed packages | false |
 
-### Artifacts
+## Artifacts
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

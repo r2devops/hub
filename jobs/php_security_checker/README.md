@@ -11,15 +11,7 @@ This job checks if your PHP application depends on PHP packages with known secur
   `--format=json`
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `php_security_checker`
-* Docker image:
-[`php7.4-alpine`](https://hub.docker.com/r/jakzal/phpqa/)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -29,5 +21,5 @@ This job checks if your PHP application depends on PHP packages with known secur
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@melheb.younes](https://gitlab.com/melheb.younes)

@@ -10,15 +10,7 @@ This jobs will run a `prettier --check` command. It's an opinionated code format
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `prettier_check`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |

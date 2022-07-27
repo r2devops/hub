@@ -16,12 +16,7 @@ This job uses the latest AWS CLI version (v2 for now) in order to sync files bet
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-* Job name: `aws_s3_sync`
-* Docker image: [alpine:3.13.6](https://hub.docker.com/_/alpinei){:target="_blank"}
-* Default stage: `deploy`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -37,5 +32,5 @@ This job uses the latest AWS CLI version (v2 for now) in order to sync files bet
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

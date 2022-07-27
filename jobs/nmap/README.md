@@ -34,15 +34,7 @@ if one of them should not be.
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `nmap`
-* Docker image:
-[`instrumentisto/nmap`](https://hub.docker.com/r/instrumentisto/nmap)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -54,7 +46,7 @@ if one of them should not be.
 | `LIBXSLT_VERSION` | Tool's version of LibXslt | `1.1.34-r1` |
 | `IMAGE_TAG` | The default tag for the docker image | `7.92`  |
 
-### Artifacts
+## Artifacts
 
 Nmap result is available as artifact.
 
@@ -69,5 +61,5 @@ Nmap result is available as artifact.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

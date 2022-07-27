@@ -11,15 +11,7 @@ Gofmt formats Go programs. It uses tabs for indentation and blanks for alignment
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `gofmt`
-* Docker image:
-[`golang:1.17-alpine3.14`](https://hub.docker.com/layers/golang/library/golang/1.17-alpine3.14/images/sha256-0bf16905b2757f1dcf6e78b1d14c223a38ade123c97bdd61a5cfcc4e77136040)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -31,5 +23,5 @@ Gofmt formats Go programs. It uses tabs for indentation and blanks for alignment
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

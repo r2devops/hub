@@ -14,9 +14,9 @@ package your jar a different way and the job will still work and expose your shi
 
 ## Example pom.xml
 ```xml
-<project xmlns = "http://maven.apache.org/POM/4.0.0" 
+<project xmlns = "http://maven.apache.org/POM/4.0.0"
   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 
+  xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
   http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
 <groupId>com.myorg.myproject</groupId>
@@ -49,13 +49,6 @@ package your jar a different way and the job will still work and expose your shi
 </project>
 ```
 
-## Job details
-
-* Job name: `maven_build`
-* Docker image: [maven:3.8.4-jdk-11](https://hub.docker.com/_/maven)
-* Default stage: `build`
-* When: `always`
-
 ## Variables
 | Name | Description | Default |
 | ---- | ------------| ------- |
@@ -64,5 +57,5 @@ package your jar a different way and the job will still work and expose your shi
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

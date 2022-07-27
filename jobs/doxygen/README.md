@@ -14,15 +14,7 @@ Other languages can be supported with additional code.
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `doxygen`
-* Docker image: [`alpine:3.12.1`](https://hub.docker.com/_/alpine){:target="_blank"}
-* Default stage: `build`
-* When: `always`
-
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -47,7 +39,7 @@ Other languages can be supported with additional code.
 !!! note
     All paths defined in variables are starting from the root of your repository.
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the build of your documentation is available as artifact.
 
@@ -63,5 +55,5 @@ When the job is successful, the build of your documentation is available as arti
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

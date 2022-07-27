@@ -6,7 +6,7 @@ Build HTML slides form Markdown using [Marp](https://marp.app/){:target="_blank"
 ## How to use it
 
 1. Prepare your project with markdown files (.md files) under a default `slides` root directory (it could be another folder, but the name must be change in the `$MARP_INPUT_PATH` variable).
-    
+
     !!! warning
         if the directory specified doesn't exists or is empty, the job will fails.
 
@@ -16,23 +16,15 @@ Build HTML slides form Markdown using [Marp](https://marp.app/){:target="_blank"
    customization](/use-the-hub/#jobs-customization)
 
 4. Well done, your job is ready to work ! 😀
-    
 
 
-## Job details
-
-* Job name: `marp`
-* Docker image:
-[`zenika/alpine-chrome:89-with-node-14`](https://hub.docker.com/r/zenika/alpine-chrome){:target="_blank"}
-* Default stage: `build`
-* When: `always`
 
 
-### Variables
+## Variables
 
 !!! note
     `MARP_INPUT_PATH` is relative and start from the root of your
-    repository.  
+    repository.
     `MARP_OUTPUT_PATH` depends on the environment variable `CI_PROJECT_DIR`
 
 
@@ -47,7 +39,7 @@ Build HTML slides form Markdown using [Marp](https://marp.app/){:target="_blank"
 | `IMAGE_TAG` | The default tag for the docker image | `89-with-node-14`  |
 
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the build of your documentation is available as artifact.
 
@@ -62,5 +54,5 @@ When the job is successful, the build of your documentation is available as arti
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

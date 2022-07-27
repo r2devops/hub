@@ -59,15 +59,7 @@ More than 36 languages are supported :
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `super_linter`
-* Docker image:
-[`github/super-linter`](https://hub.docker.com/r/github/super-linter){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 !!! info
     This section describes the most significant variables [from this full
@@ -77,17 +69,7 @@ This job can be used without configuration. By default, it will detect files in
 your repository and run relevant linter on them. You can also use variables to
 customize its behavior.
 
-- [Objective](#objective)
-- [How to use it](#how-to-use-it)
-- [Job details](#job-details)
-  - [Variables](#variables)
-    - [General configuration](#general-configuration)
-    - [Linters configuration](#linters-configuration)
-    - [Enable or disable linters](#enable-or-disable-linters)
-  - [Artifacts](#artifacts)
-  - [Author](#author)
-
-#### General configuration
+## General configuration
 
 | Name | Description | Default |
 | --------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -100,7 +82,7 @@ customize its behavior.
 | **REPORT_SUITE_TEST_NAME**        | Name of test suite inside test report                   | `super_linter`       |
 | `IMAGE_TAG` | The default tag for the docker image | `v4.9.0`  |
 
-#### Linters configuration
+### Linters configuration
 
 | Name | Description | Default |
 | --------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -122,10 +104,10 @@ customize its behavior.
 !!! warning
     Please be aware that any config file specified is relative to `$LINTER_RULES_PATH`, so you have to put **all your
     templating** under the path specified. If you are curious to know what are the *default templates* files for your
-    linters, they are all available in the [`TEMPLATES`](https://github.com/github/super-linter/tree/master/TEMPLATES) 
+    linters, they are all available in the [`TEMPLATES`](https://github.com/github/super-linter/tree/master/TEMPLATES)
     folder
 
-#### Enable or disable linters
+### Enable or disable linters
 
 !!! info
     Note: about VALIDATE_[LANGUAGE] variables from super-linter [README](https://github.com/github/super-linter#environment-variables){:target="_blank"}
@@ -197,12 +179,12 @@ customize its behavior.
 | **VALIDATE_YAML**                 | Flag to enable or disable the linting process of the YAML language.                                                                                                        | `true`               |
 
 
-### Artifacts
+## Artifacts
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

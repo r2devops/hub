@@ -18,15 +18,7 @@ In its default state, this job will analyze your whole project for eligible file
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `links_checker`
-* Docker image:
-[`lycheeverse/lychee:0.9`](https://hub.docker.com/r/lycheeverse/lychee){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -44,10 +36,10 @@ In its default state, this job will analyze your whole project for eligible file
 
 !!! warning
     As this job is still in development, some behavior could be unexpected.
-    For example, avoid using `LYCHEE_EXCLUDE` and `--include <link>` options together as include has preference over all excludes and `LYCHEE_EXCLUDE` uses a hand-written  `find` command. 
+    For example, avoid using `LYCHEE_EXCLUDE` and `--include <link>` options together as include has preference over all excludes and `LYCHEE_EXCLUDE` uses a hand-written  `find` command.
 
 
-### Types of link verified
+## Types of link verified
 
 This tool will check for links in a specific context, and so in your project some link formats may not be checked. However,
 here is (a non-exhaustive) list of what `Lychee` can identify:
@@ -87,21 +79,21 @@ If you are using absolute paths in your HTML documents, be sure to fill the vari
 If you use URL rewriting in your static website, using this job, most of the internal links will be considered as broken. To avoid that, you can define that you
 only want to check external links, by using `LYCHEE_EXCLUDE_LINKS: "^[^https?]"` (see [regex](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"})
 
-### Filtering status code and authentication 
+### Filtering status code and authentication
 
 There are several method to authenticate into website with Lychee. As multiple methods are available, you need to choose your own and override the `LYCHEE_OPTIONS` variable to define it. Here are some case of authentication :
 For basic authentication like username:password`, use option `--basic-auth`.
 If you need to access an URL that require some Header token to authenticate, like Bearer, you could use this syntax : ` --headers 'Authorization: 'Bearer <token>'`
 Last, you can avoid rate limiting on GitHub links by using this syntax : `--github-token <github-token>`.
 
-If you are still issuing some 503 status code which requires authentication, you can ignore them by setting `LYCHEE_OPTIONS` to `-a 503`. 
+If you are still issuing some 503 status code which requires authentication, you can ignore them by setting `LYCHEE_OPTIONS` to `-a 503`.
 
-### Artifacts
+## Artifacts
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole). Was updated by [@GridexX](https://gitlab.com/GridexX) on May 2022 with a better tool.

@@ -12,14 +12,12 @@ This job installs `npm` dependencies listed in your `package-lock.json` and expo
 
 1. Ensure that your project have
    [`package-lock.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-lock-json){:target="_blank"}
-   file which contains the requirements  
+   file which contains the requirements
 2. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to be used ! 😀
 
-
-## Job details
 
 !!! info
     On Gitlab, this job will be run in the default first stage of your
@@ -29,13 +27,7 @@ This job installs `npm` dependencies listed in your `package-lock.json` and expo
     For this reason, using only this job in your pipeline will not trigger a pipeline in Gitlab.
     You have to add additional jobs.
 
-* Job name: `npm_install`
-* Default stage: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post)
-* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 
 | Name | Description | Default |
@@ -50,7 +42,7 @@ This job installs `npm` dependencies listed in your `package-lock.json` and expo
     consider making this variable a global variable in the root of your `.gitlab-ci.yml`. Learn how
     easy it is [here](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-cicd-variable-in-the-gitlab-ciyml-file).
 
-### Cache
+## Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
@@ -64,5 +56,5 @@ documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

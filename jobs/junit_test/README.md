@@ -7,20 +7,11 @@ and it will no longer be maintained.  Use
 
 Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, JaCoCo and Surefire Maven plugins for code coverage and tests report directly in your merge requests.
 
-## Job details
-
-* Job name: `junit_test`
-* Docker image: [maven:3.8.4-jdk-11](https://hub.docker.com/_/maven)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 | Name | Description | Default |
 | ---- | ------------| ------- |
 | `ARTIFACTS_DIR` | Customize the path where the artifacts will be created | `${CI_PROJECT_DIR}/artifacts` |
 | `IMAGE_TAG` | The default tag for the docker image | `3.8.4-jdk-11`  |
 
-
-
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

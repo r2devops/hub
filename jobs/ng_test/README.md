@@ -4,7 +4,7 @@ This job allows you to run the units tests on Angular project. The `ng test` com
 
 ## How to use it
 
-1. Ensure sure that your project has 
+1. Ensure sure that your project has
    [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
 1. You should specify your project name in the `PROJECT_NAME` variable, you can find it in your `angular.json` file under the `projects` section. You don't have to go through this step if there is a `defaultProject` value in your `angular.json` because the `ng test` command will be executed on the  `defaultProject`.
 1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
@@ -12,15 +12,7 @@ This job allows you to run the units tests on Angular project. The `ng test` com
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `ng_test`
-* Docker image:
-[`timbru31/node-chrome:latest`](https://hub.docker.com/r/timbru31/node-chrome/)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 !!! info
     If no `PROJECT_NAME` have been specified it will execute the `ng test` command on the `defaultProject` specified in the `angular.json` file.
@@ -38,11 +30,11 @@ This job allows you to run the units tests on Angular project. The `ng test` com
 | `IMAGE_TAG` | The default tag for the docker image | `latest`  |
 
 
-### Cache
+## Cache
 
 To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](/jobs/others/npm_install/#cache)
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexiaognard](https://gitlab.com/alexiaognard)

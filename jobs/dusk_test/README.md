@@ -9,7 +9,7 @@ This job tests your final project by using Laravel Dusk, this will run tests tha
 2. Make sure your `DuskTestCase` class in `/tests/DuskTestCase.php` matches all attributes, like drive options, host url, and port, like in this example [DuskTestCase.php](https://github.com/chilio/laravel-dusk-ci/blob/master/examples/DuskTestCase.php){:target="_blank"}
 
     !!! warning
-        There are some modifications which **you need to apply** (especially adding `--no-sandbox` in $options for driver), these changes should not affect your local dev environment, otherwise there might be something else wrong with your project. 
+        There are some modifications which **you need to apply** (especially adding `--no-sandbox` in $options for driver), these changes should not affect your local dev environment, otherwise there might be something else wrong with your project.
 
 3. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -17,15 +17,7 @@ This job tests your final project by using Laravel Dusk, this will run tests tha
 5. Well done, your job is ready to work ! 😀
 
 
-## Job details
-
-* Job name: `dusk_test`
-* Default stage: `tests`
-* Docker image: [`chilio/laravel-dusk-ci:php-8.0`](https://hub.docker.com/r/chilio/laravel-dusk-ci){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 !!! note
     All paths defined in variables are relative and starts from the root of your
@@ -41,7 +33,7 @@ This job tests your final project by using Laravel Dusk, this will run tests tha
 | `IMAGE_TAG` | The default tag for the docker image | `php-8.0`  |
 
 
-### Cache
+## Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
@@ -54,7 +46,7 @@ More information on Gitlab caching mechanism in [Gitlab CI/CD caching
 documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
 
 
-### Artifact
+## Artifact
 
 When the job is done, it will provide an artifact containing the output from Dusk tests under these folders:
 
@@ -65,5 +57,5 @@ When the job is done, it will provide an artifact containing the output from Dus
 We also use Junit's XML report to display error report directly in pipeline `Tests` tab and in merge request widget. The report defined as `dusk_junit.xml` is also available directly in the artifact.
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

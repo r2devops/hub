@@ -15,14 +15,7 @@ This job let you the possibility to change SwaggerUI version (see [versions](htt
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `openapi`
-* Docker image: [`alpine:3.12.1`](https://hub.docker.com/_/alpine/){:target="_blank"}
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -31,7 +24,7 @@ This job let you the possibility to change SwaggerUI version (see [versions](htt
 | `SWAGGERUI_VERSION` | Version of SwaggerUI (see [versions](https://github.com/swagger-api/swagger-ui#compatibility){:target="_blank"}) | `v3.37.0` |
 | `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the documentation build result is available as artifact.
 
@@ -47,5 +40,5 @@ When the job is successful, the documentation build result is available as artif
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

@@ -14,15 +14,7 @@ This job will apply all the changes set by `gitlab-terraform_plan` in the file `
    customization](/use-the-hub/#jobs-customization)
 6. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `gitlab-terraform_apply`
-* Docker image:
-[`registry.gitlab.com/gitlab-org/terraform-images/releases/1.0:v0.20.0`](https://gitlab.com/gitlab-org/terraform-images)
-* Default stage: `deploy`
-* When: `always`
-
-### Variables
+## Variables
 
 !!! info
     All variables can be set using [Gitlab CI/CD variables](https://docs.gitlab.com/ee/ci/variables/README.html) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensitive credential variables such as cloud providers tokens and passwords
@@ -36,11 +28,11 @@ This job will apply all the changes set by `gitlab-terraform_plan` in the file `
 | `TF_ADDRESS` | Address to terraform state backend | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 | `IMAGE_TAG` | The default tag for the docker image | `v0.20.0`  |
 
-### Artifacts
+## Artifacts
 
 * The output of the commands will be available as an artifact exposed as `Terraform Apply artifact`
 
-### Cache
+## Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
@@ -53,5 +45,5 @@ documentation](https://docs.gitlab.com/ee/ci/caching/index.html){:target="_blank
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@totara-thib](https://gitlab.com/Totara-thib)

@@ -21,7 +21,7 @@ Deploy your static website on following S3-compatible cloud-providers:
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -44,7 +44,7 @@ Deploy your static website on following S3-compatible cloud-providers:
 | `S3_OPTIONS` | Additional option(s) to use in AWS CLI | ` ` |
 | `IMAGE_TAG` | The default tag for the image | `2.7.12` |
 
-### Author
+## Author
 
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)**
 added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by

@@ -15,15 +15,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
     This job allows you to use a configuration file named `phpdoc.dist.xml` (see [syntax](https://docs.phpdoc.org/3.0/guide/references/configuration.html){:target="_blank"}).
     By default, PHPDoc will search for a configuration file in `PROJECT_ROOT` and will use it if the file does exist. But you can customize the location to `phpdoc.dist.xml` by editing `PHPDOC_CONFIG_FILE`.
 
-## Job details
-
-* Job name: `phpdocumentor`
-* Docker image:
-[`phpdoc/phpdoc:3.3`](https://hub.docker.com/r/phpdoc/phpdoc){:target="_blank"}
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -39,7 +31,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 | `PROJECT_ROOT` | PHP Project location in your repository | `/` |
 | `IMAGE_TAG` | The default tag for the docker image | `3.3`  |
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the documentation build result is available as artifact.
 
@@ -54,5 +46,5 @@ When the job is successful, the documentation build result is available as artif
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@protocole](https://gitlab.com/Protocole)

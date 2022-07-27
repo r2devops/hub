@@ -14,15 +14,7 @@ from your `package.json` file.
 1. Well done, your job is ready to work ! 😀
 
 
-## Job details
-
-* Job name: `yarn_build`
-* Default stage: `build`
-* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -35,7 +27,7 @@ from your `package.json` file.
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Example to deploy on pages
+## Example to deploy on pages
 
 Following example of `.gitlab-ci.yml` file describes how to enable Gitlab pages
 deployment using this job:
@@ -54,7 +46,7 @@ yarn_build:
     PAGES_DEPLOY: "true"
 ```
 
-### Artifact
+## Artifact
 
 When the job is successful, the build of your documentation is available as artifact.
 
@@ -69,5 +61,5 @@ When the job is successful, the build of your documentation is available as arti
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

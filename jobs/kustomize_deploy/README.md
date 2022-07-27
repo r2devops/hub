@@ -13,16 +13,8 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
 
-* Job name: `kustomize_deploy`
-* Docker image:
-[`line/kubectl-kustomize:1.21.1-4.1.3`](https://hub.docker.com/r/line/kubectl-kustomize)
-* Default stage: `deploy`
-* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).  
-  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
-
-### Variables
+## Variables
 
 !!! important
     There are some mandatory variables that **you have to provide**, the most important one being `$KUBECONFIG`, you can do that by passing them as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} so that your data can stay confidential.
@@ -40,10 +32,10 @@ This job will deploy manifests to your cluster using Kustomize and set a new ima
 | `KUSTOMIZE_OPTIONS` | Additional options for `kubectl` command | no | ` `
 | `IMAGE_TAG` | The default tag for the docker image | `1.21.1-4.1.3`  |
 
-### Artifacts
+## Artifacts
 
 * If the job is successful, the output of the commands will be available as an artifact exposed as `Kustomize job output`
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

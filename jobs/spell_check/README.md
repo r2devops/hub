@@ -25,15 +25,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
     The above hunspell version has been tested with this job, it ensures you that this will properly work. Upgrading
     this version can cause your job to be broken, do it at your own risks.
 
-## Job details
-
-* Job name: `spell_check`
-* Docker image:
-[`python:3.10-buster`](https://hub.docker.com/_/python/){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -53,9 +45,9 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
     This job use scripts and default config files in order to be plug and play. These scripts are fetched
     using the commit tag in `SNIPPET_VERSION`.
 
-### Configuration
+## Configuration
 
-#### Default configuration
+### Default configuration
 
 
 ^^PySpelling can be used:^^
@@ -68,7 +60,7 @@ In this case you can have your custom configuration file. **Don't know how to do
 See [here](https://facelessuser.github.io/pyspelling/configuration/){:target="_blank"}** and you can start from our
 [snippet](https://gitlab.com/r2devops/hub/-/snippets/2078950/raw/master/.pyspelling.yml){:target="_blank"}.
 
-#### 📖 Example to add a dictionary and personal wordlists
+### 📖 Example to add a dictionary and personal wordlists
 This configuration allows you to have a dictionary, in order to improve the dictionary of PySpelling.
 You have to choose the option 2 above to do that.
 
@@ -98,7 +90,7 @@ You have to choose the option 2 above to do that.
 
 
 
-### Artifacts
+## Artifacts
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget.
@@ -106,5 +98,5 @@ The report defined as `spelling_junit.xml` is also available directly in the art
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

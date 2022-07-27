@@ -20,21 +20,13 @@ This job installs `composer` dependencies listed in your `composer.lock` or `com
 4. Well done, your job is ready to work ! 😀
 
 
-## Job details
-
 !!! info
     On Gitlab, this job will be run in the default first stage of your
     pipeline: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post)
     For this reason, using only this job in your pipeline will not trigger a pipeline in Gitlab.
     You have to add additional jobs.
 
-* Job name: `composer_install`
-* Default stage: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post){:target="_blank"}
-* Docker image: [`edbizarro/gitlab-ci-pipeline-php:7.3`](https://hub.docker.com/r/edbizarro/gitlab-ci-pipeline-php){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 !!! note
     All paths defined in variables are relative and starts from the root of your
@@ -47,7 +39,7 @@ This job installs `composer` dependencies listed in your `composer.lock` or `com
 | `IMAGE_TAG` | The default tag for the docker image | `7.3`  |
 
 
-### Cache
+## Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
@@ -61,5 +53,5 @@ documentation](https://docs.gitlab.com/ee/ci/caching/index.html){:target="_blank
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

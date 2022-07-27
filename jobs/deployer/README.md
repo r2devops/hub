@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `7.3-alpine`  |
 ## Objective
 
 Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"}
@@ -7,17 +6,17 @@ Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"
 
 1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Set the secret variable `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS`as CI/CD variables in [your Gitlab project](https://docs.gitlab.com/ee/ci/variables/README.html#project-cicd-variables){:target="_blank"}
-   if you need encrypted variables.  
+   if you need encrypted variables.
 
-    !!! info  
-        `SSH_KNOWN_HOSTS` needs to contain the same data that we find in the file `.ssh/known_hosts`, this step is needed so that the SSH connection doesn't ask to add the server to `.ssh/known_hosts` as you wouldn't be able to interact with the terminal.  
+    !!! info
+        `SSH_KNOWN_HOSTS` needs to contain the same data that we find in the file `.ssh/known_hosts`, this step is needed so that the SSH connection doesn't ask to add the server to `.ssh/known_hosts` as you wouldn't be able to interact with the terminal.
 
 1. Make sure that you have the deployer config file (`deploy.php` or `deploy.yaml`) in the root folder of your project, More info in [this guide](https://deployer.org/docs/getting-started.html){:target="_blank"}
 1. If you need to customize other part of the job (stage, variables, ...) 👉
    check the [jobs customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-### Example of `deploy.php` file
+## Example of `deploy.php` file
 
 ```php
 <?php
@@ -50,7 +49,7 @@ task('deploy', [
     'deploy:writable',
     'artisan:storage:link', // |
     'artisan:view:cache',   // |
-    'artisan:config:cache', // | Laravel specific steps 
+    'artisan:config:cache', // | Laravel specific steps
     'artisan:optimize',     // |
     'artisan:migrate',      // |
     'deploy:symlink',
@@ -59,15 +58,7 @@ task('deploy', [
 ]);
 ```
 
-## Job details
-
-* Job name: `deployer`
-* Docker image: [`edbizarro/gitlab-ci-pipeline-php:7.3-alpine`](https://hub.docker.com/r/edbizarro/gitlab-ci-pipeline-php){:target="_blank"}
-* Default stage: `deploy`
-* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).
-  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
-
-### Variables
+## Variables
 
 !!! info
     All variables can be set using [Gitlab CI/CD
@@ -84,7 +75,7 @@ task('deploy', [
 | `DEPLOY_OPTIONS` | Additional options for command `dep deploy` | no | ` ` |
 | `DEPLOYER_OUTPUT` | Name for logs file | no | `deployer_output.txt` |
 
-### Artifacts
+## Artifacts
 
 * If deployment succeeds: the job succeeds with the output as artifact
 * If deployment fails: the job fails with the output as artifact
@@ -101,7 +92,5 @@ task('deploy', [
     As soon as the issue will be fixed, exposed artifacts will be available
     with any output location.
 
-
-
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

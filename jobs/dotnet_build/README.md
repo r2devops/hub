@@ -13,13 +13,7 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 
 4. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `dotnet_build`
-* Docker image: [`alpine:3.12.1`](https://hub.docker.com/_/alpine){:target="_blank"}
-* Default stage: `build`
-
-### Variables
+## Variables
 
 | VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
 |:-|:-|:-
@@ -37,7 +31,7 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 !!! warning
     Since **version 5.0** of .NET is still in **release-candidate** at this time, the format of `DOTNET_VERSION` is slightly different from just `3.1` or `2.1`. See [Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script#options){:target="_blank"} (*argument `-Channel`*) to see how to specify this new version.
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the build of your project is available as artifact.
 
@@ -52,5 +46,5 @@ When the job is successful, the build of your project is available as artifact.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

@@ -48,15 +48,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `newman`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -67,7 +59,7 @@ Launch a Postman collection of requests to test your API using [newman](https://
 | `NEWMAN_FAIL_ON_ERROR` | Fail job on a request/test error | `true` |
 | `NEWMAN_ITERATIONS_NUMBER` | Number of Newman iterations to run (see [documentation](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/#misc)) | `2` |
 | `NEWMAN_VERSION` | Newman version | `5.2.2` |
-| `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` | 
+| `NEWMAN_JUNIT_VERSION` | Newman JUnit reporter tool's version | `1.1.1` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 If you want to use some secret variables for your collection, and want to hide them from the `collection.json` file, you can specify them in a File variable called `NEWMAN_VARIABLE_FILE` inside you're `CI/CD Variables` in GitLab (Settings > CI/CD > Variables). Then add the following script for the job :
@@ -84,7 +76,7 @@ before_script:
 
 This method was inspired by this [website](https://carolinafernandez.github.io/devops/2020/05/12/Environment-variable-substitution-in-Linux).
 
-### Artifact
+## Artifact
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to
 display error report directly in pipeline `Test` tab and in merge request
@@ -92,5 +84,5 @@ widget.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

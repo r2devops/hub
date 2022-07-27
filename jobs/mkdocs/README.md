@@ -20,15 +20,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
 
 5. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `mkdocs`
-* Docker image:
-[`squidfunk/mkdocs-material`](https://hub.docker.com/r/squidfunk/mkdocs-material){:target="_blank"}
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -41,7 +33,7 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
     If you don't override this variable, it will install those 3 plugins `mkdocs-awesome-pages-plugin`,
     `mkdocs-git-revision-date-localized-plugin`, `mkdocs-macros-plugin`
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the build of your documentation is available as artifact.
 
@@ -56,5 +48,5 @@ When the job is successful, the build of your documentation is available as arti
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

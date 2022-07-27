@@ -11,15 +11,7 @@ Clippy runs a format check onto your Rust project and logs any unexpected lintin
    customization](/use-the-hub/#jobs-customization){:target="_blank"}
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `cargo_clippy`
-* Docker image:
-[`rust:1.57-buster`](https://hub.docker.com/r/_/rust){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -29,5 +21,5 @@ Clippy runs a format check onto your Rust project and logs any unexpected lintin
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

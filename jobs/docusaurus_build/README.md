@@ -1,7 +1,7 @@
 ## Objective
 
 Build HTML documentation form Markdown source using Docusaurus, and can even embed JSX components into your Markdown thanks to MDX.
-In order to build Docusaurus, the user must `init` a Docusaurus project, checkout the [documentation](https://docusaurus.io/docs/installation){:target="_blank"}. 
+In order to build Docusaurus, the user must `init` a Docusaurus project, checkout the [documentation](https://docusaurus.io/docs/installation){:target="_blank"}.
 
 ## How to use it
 
@@ -13,15 +13,7 @@ In order to build Docusaurus, the user must `init` a Docusaurus project, checkou
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `docusaurus_build`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -31,5 +23,5 @@ In order to build Docusaurus, the user must `init` a Docusaurus project, checkou
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

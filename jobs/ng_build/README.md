@@ -2,7 +2,7 @@
 ## Objective
 
 Compiles an Angular app into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.
-The application builder uses the webpack build tool, with default configuration options specified in the workspace configuration file (angular.json) or with a named alternative configuration. Check the [Angular documentation](https://angular.io/cli/build){:target="_blank"} if you need more information. 
+The application builder uses the webpack build tool, with default configuration options specified in the workspace configuration file (angular.json) or with a named alternative configuration. Check the [Angular documentation](https://angular.io/cli/build){:target="_blank"} if you need more information.
 
 ## How to use it
 
@@ -15,15 +15,7 @@ The application builder uses the webpack build tool, with default configuration 
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `ng_build`
-* Docker image:
-[`node:16.13.1-buster`](https://hub.docker.com/r/_/node){:target="_blank"}
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description                                                                                                                                                                                                          | Default              |
 | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
@@ -34,5 +26,5 @@ The application builder uses the webpack build tool, with default configuration 
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

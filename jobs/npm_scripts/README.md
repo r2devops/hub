@@ -5,7 +5,7 @@ This job allows users to run several scripts from their `package.json` file usin
 
 ## How to use it
 
-1. Make sure that your project has 
+1. Make sure that your project has
    [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
    file which contains predefined command in the `scripts` object
 1. If you want the job to run scripts make sure to add them inside the `variable` `NPM_SCRIPTS` and separate every command with `;`
@@ -17,15 +17,7 @@ This job allows users to run several scripts from their `package.json` file usin
 1. You are done, the job is ready to use ! 😉
 
 
-## Job details
-
-* Job name: `npm_scripts`
-* Default stage: `others`
-* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 !!! note
     All paths defined in variables are relative and start from the root of your
@@ -39,19 +31,19 @@ This job allows users to run several scripts from their `package.json` file usin
 | `NPM_OUTPUT` | Path to the output send by script specified in `package.json` | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Example to use several scripts
+## Example to use several scripts
 
 Following example of `.gitlab-ci.yml` file describes how to enable Gitlab pages
 deployment using this job:
 
-#### Scripts in Package.json
+### Scripts in Package.json
 ```yaml
   "scripts": {
     "build": "ng build",
     "lint": "ng lint"
   }
 ```
-#### .gitlab-ci
+### .gitlab-ci
 ```yaml
 stages:
   - others
@@ -64,11 +56,11 @@ npm_scripts:
     NPM_SCRIPTS: "build;lint"
 ```
 
-### Cache
+## Cache
 
 To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](/jobs/others/npm_install/#cache)
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@totara-thib](https://gitlab.com/Totara-thib)

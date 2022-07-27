@@ -10,15 +10,7 @@ Tool to check SSL/TLS related vulnerabilities of an URL
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `testssl`
-* Docker image:
-[`drwetter/testssl.sh:3.0`](https://hub.docker.com/r/_/drwetter/testssl.sh:3.0)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 
 
@@ -39,5 +31,5 @@ Tool to check SSL/TLS related vulnerabilities of an URL
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

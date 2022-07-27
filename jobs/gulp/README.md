@@ -19,7 +19,7 @@ customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
 
-### Example of `.gitlab-ci.yml` file
+## Example of `.gitlab-ci.yml` file
 
 If you want to [change the default stage](/use-the-hub/#use-custom-stage), or [customize your job](/use-the-hub/#global) have a look on the example below 👇🏽
 
@@ -38,15 +38,7 @@ gulp:
     GULPFILE_PATH: "config/gulpfile.js"
 ```
 
-## Job details
-
-* Job name: `gulp`
-* Default stage: `others`
-* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 !!! note
     All paths defined in variables are relative and starts from the root of your
@@ -65,7 +57,7 @@ gulp:
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Artifacts
+## Artifacts
 
 When the job is successful, Gulp result is available as artifact.
 
@@ -80,5 +72,5 @@ When the job is successful, Gulp result is available as artifact.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

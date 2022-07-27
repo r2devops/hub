@@ -17,16 +17,7 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `kubectl_deploy`
-* Docker image:
-[`bitnami/kubectl:1.19.11`](https://hub.docker.com/r/bitnami/kubectl)
-* Default stage: `deploy`
-* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).  
-  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
-
-### Variables
+## Variables
 
 !!! important
     If you want to provide a kubeconfig file, please create a file variable named `$KUBECONFIG`, you can do that by passing them as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} so that your data can stay confidential.
@@ -38,12 +29,12 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 | `IMAGE_TAG` | The default tag for the docker image | `1.19.11`  |
 
 !!! info
-    Here is an example of what you can put in `FILES_LOCATION` if you have multiple files but not in the same folder  
+    Here is an example of what you can put in `FILES_LOCATION` if you have multiple files but not in the same folder
         ```yaml
         FILES_LOCATION: "myfile1.yaml -f myfile2.yaml -f myfile3.yml"
         ```
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

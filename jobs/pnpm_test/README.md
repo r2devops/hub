@@ -10,7 +10,7 @@ This job will run a predifined `test` command specified in the scripts section o
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
-### Variables
+## Variables
 
 !!! note
     All paths defined in variables are relative and start from the root of your
@@ -24,5 +24,5 @@ This job will run a predifined `test` command specified in the scripts section o
 | `PNPM_TEST_OPTIONS` | Additional options for `pnpm test` | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

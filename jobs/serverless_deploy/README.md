@@ -14,15 +14,7 @@ This job will help you deploy your serverless resources to AWS using the framewo
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `serverless_deploy`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `deploy`
-* When: `manual`, only when running on default branch (`$CI_DEFAULT_BRANCH`).
-  To update this behavior, see [job customization](https://r2devops.io/use-the-hub/#global) to override [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rulesif)
-### Variables
+## Variables
 
 !!! info
     All variables can be set using [Gitlab CI/CD variables](https://docs.gitlab.com/ee/ci/variables/README.html) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensible variables such as `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
@@ -37,10 +29,10 @@ This job will help you deploy your serverless resources to AWS using the framewo
 | `AWS_REGION` | The specific region to where you want to deploy | no | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Artifacts
+## Artifacts
 
 This job will produce an artifact containing the command's output and the folder `.serverless` which has stack events during deployment.
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

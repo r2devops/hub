@@ -13,15 +13,7 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `apidoc`
-* Docker image:
-[`node:18.1-alpine3.14`](https://hub.docker.com/r/_/node){:target="_blank"}
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -35,7 +27,7 @@ code using [apiDoc](https://apidocjs.com/){:target="_blank"}.
 | `APIDOC_OPTIONS` | Additional options | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `18.1-alpine3.14`  |
 
-### Artifacts
+## Artifacts
 
 When the job is successful, the build of your documentation is available as artifact.
 
@@ -50,5 +42,5 @@ When the job is successful, the build of your documentation is available as arti
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

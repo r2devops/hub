@@ -13,7 +13,7 @@ from your `package.json` file. For more information see [the doc]('https://pnpm.
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -26,7 +26,7 @@ from your `package.json` file. For more information see [the doc]('https://pnpm.
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Example to deploy on pages
+## Example to deploy on pages
 
 Following example of `.gitlab-ci.yml` file describes how to enable Gitlab pages
 deployment using this job:
@@ -38,7 +38,7 @@ stages:
 
 include:
   # It's recommanded to use fixed version of jobs instead of larest. Here is only for example.
-  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pnpm_build/latest.yml' 
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pnpm_build/latest.yml'
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pages/latest.yaml'
 
 pnpm_build:
@@ -46,7 +46,7 @@ pnpm_build:
     PAGES_DEPLOY: "true"
 ```
 
-### Artifact
+## Artifact
 
 When the job is successful, the build result is available as artifact.
 
@@ -60,5 +60,5 @@ When the job is successful, the build result is available as artifact.
     As soon as the issue will be fixed, exposed artifacts will be available
     with any output location.
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

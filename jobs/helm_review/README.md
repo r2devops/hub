@@ -11,15 +11,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `helm_review`, `cleanup_helm_review`
-* Docker image:
-[`lachlanevenson/k8s-helm:v3.4.2`](https://hub.docker.com/r/lachlanevenson/k8s-helm/){:target="_blank"}
-* Default stage: `review`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default | Mandatory |
 | ---- | ----------- | ------- | --------- |
@@ -42,7 +34,7 @@ Deploy your [helm](https://helm.sh/docs/intro/quickstart/){:target="_blank"} cha
 | `PGP_PUBLIC` | PGP public key used to encrypt secret file | File | Only if the secret file `VALUES_SECRET_FILE` exists |
 | `PGP_PRIVATE` | PGP private key used to encrypt secret file | File | Only if the secret file `VALUES_SECRET_FILE` exists |
 
-### Secrets
+## Secrets
 
 Secrets files are encrypted with the helm plugin [secrets](https://github.com/zendesk/helm-secrets){:target="_blank"}.
 It will allow encrypting or decrypting any yaml files that you have in your `${VALUES_PATH}` so you can push values that will be decrypted at runtime but not seen from the source code.
@@ -50,5 +42,5 @@ For example, you can `helm secrets enc review.yaml` to encrypt it to a `secret.r
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

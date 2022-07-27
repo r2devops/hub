@@ -18,13 +18,7 @@ from a Dockerfile at the root of your project, and push it to a remote registry 
    customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `docker_build`
-* Docker image: [`gcr.io/kaniko-project/executor:v1.5.1-debug`](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}
-* Default stage: `build`
-
-### Build behavior
+## Build behavior
 
 !!! info
     This build will use Gitlab CI predefined [environment variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html){:target="_blank"}
@@ -43,7 +37,7 @@ The registry and tag of the resulting Docker image follow this behavior:
 !!! info
     In order to use custom registries, you need to provide the file `config.json` that contains the auths, you can do that by passing it as a [CI/CD file](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} named `CONFIG_FILE` (see example below)
 
-### Variables
+## Variables
 
 | VARIABLE NAME                    | DESCRIPTION                                                                                                                                                                          | DEFAULT VALUE |
 |:---------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------|
@@ -80,5 +74,5 @@ The registry and tag of the resulting Docker image follow this behavior:
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

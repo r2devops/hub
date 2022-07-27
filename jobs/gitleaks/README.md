@@ -11,14 +11,6 @@ secrets like passwords, api keys and tokens in git repository. As it written in 
    specify [a fixed version](/versioning/) instead of `latest`.
 2. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `gitleaks`
-* Docker image:
-[`zricethezav/gitleaks:v8.6.0`](https://hub.docker.com/r/zricethezav/gitleaks)
-* Default stage: `tests`
-* When: `always`
-
 ## Allowing Failure
 
 If you want for this job not to fail upon discovering a secret in the commits of the repository, you can do that by
@@ -29,11 +21,11 @@ gitleaks:
   allow_failure: true
 ```
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

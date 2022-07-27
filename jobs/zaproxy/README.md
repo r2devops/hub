@@ -32,15 +32,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `zaproxy`
-* Docker image:
-[`owasp/zap2docker-stable:2.9.0`](https://hub.docker.com/r/owasp/zap2docker-stable)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -51,7 +43,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
 | `ZAP_REPORT_FORMAT` | Format for the zaproxy report (html, xml, or json) | `html` |
 | `IMAGE_TAG` | The default tag for the docker image | `2.9.0`  |
 
-### Artifacts
+## Artifacts
 
 Zaproxy result is available as artifact.
 
@@ -66,5 +58,5 @@ Zaproxy result is available as artifact.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

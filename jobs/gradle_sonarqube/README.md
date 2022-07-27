@@ -5,21 +5,13 @@ This job allows you to check your code with SonarQube plugin in a 🐘 Gradle pr
 ## How to use it
 
 1. Ensure that your project have
-   [`build.gradle.kts`](https://docs.gradle.org/current/samples/sample_building_java_applications.html){:target="_blank"} 
+   [`build.gradle.kts`](https://docs.gradle.org/current/samples/sample_building_java_applications.html){:target="_blank"}
    file
 1. Configure the [SonarQube plugin](https://plugins.gradle.org/plugin/org.sonarqube){:target="_blank"} in your `build.gradle` file
 1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `gradle_sonarqube`
-* Default stage: `tests`
-* Docker image: [`gradle:jdk11`](https://hub.docker.com/_/gradle){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -31,7 +23,7 @@ This job allows you to check your code with SonarQube plugin in a 🐘 Gradle pr
 | JSON_MODE | Format to publish report to integrated with Gitlab MR for instance | CODECLIMATE |
 | `IMAGE_TAG` | The default tag for the docker image | `jdk11`  |
 
-### Example of build.gradle.kts file
+## Example of build.gradle.kts file
 
 Following example of `build.gradle.kts` file describes a very simple example of project configuration.
 This can easily be generated with the `gradle init` command.
@@ -44,7 +36,7 @@ import org.gradle.api.JavaVersion.VERSION_11
 plugins {
     java
     // Quality control
-    id("org.sonarqube") version "3.1.1"    
+    id("org.sonarqube") version "3.1.1"
 }
 
 group = "io.r2devops"
@@ -92,5 +84,5 @@ dependencies {
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@yodamad](https://gitlab.com/yodamad)

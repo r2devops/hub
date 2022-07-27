@@ -12,15 +12,7 @@ A ready-to-use job to lint your Golang project. It includes a lot of linters suc
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `golint`
-* Docker image:
-[`golangci/golangci-lint:v1.43.0`](https://hub.docker.com/r/golangci/golangci-lint)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |

@@ -24,12 +24,7 @@ from previous job named `documentation`.
 3. Well done, your job is ready to work ! 😀
 
 
-## Job details
-
-* Job name: `pages`
-* Docker image: [`ruby`](https://hub.docker.com/_/ruby){:target="_blank"}
-* Stage: `deploy`
-* When: only run on `master` branch
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -37,5 +32,5 @@ from previous job named `documentation`.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

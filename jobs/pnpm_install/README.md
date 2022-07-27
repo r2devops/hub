@@ -17,7 +17,7 @@ This job will install pnpm packages based on pnpm-lock.yaml file. Here the [doc 
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -30,7 +30,7 @@ This job will install pnpm packages based on pnpm-lock.yaml file. Here the [doc 
     consider making this variable a global variable in the root of your `.gitlab-ci.yml`. Learn how
     easy it is [here](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-cicd-variable-in-the-gitlab-ciyml-file).
 
-### Cache
+## Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
@@ -42,5 +42,5 @@ applied, cache behavior is the following:
 More information on Gitlab caching mechanism in [Gitlab CI/CD caching
 documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

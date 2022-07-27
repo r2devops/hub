@@ -13,14 +13,7 @@ ESLint statically analyzes your code to quickly find problems in your JavaScript
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `eslint`
-* Docker image: [`node:18-buster`](https://hub.docker.com/r/_/node)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -30,14 +23,14 @@ ESLint statically analyzes your code to quickly find problems in your JavaScript
 | `REPORT_OUTPUT` <img width=100/> | Output file used for Junit tests. None if empty <img width=175/>| `junit-report.xml` <img width=100/>|
 | `ADDITIONAL_OPTIONS` <img width=100/> | Additional [options](https://eslint.org/docs/user-guide/command-line-interface) for ESLint <img width=175/>| ` ` <img width=100/>|
 
-### Configuration file
+## Configuration file
 
-YOu should write your configuration in a file called `.eslintrc` in the root of your project.
+You should write your configuration in a file called `.eslintrc` in the root of your project.
 They are plenty of plugins available for ESLint, you can choose the right one depending of your configuration. In top of that, the [Airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is one of the most popular and used as a base for your configuration.
 
 Here are some example of configuration files for some technologies:
 
-#### React:
+### React:
 
 ```json
 {
@@ -65,7 +58,7 @@ Here are some example of configuration files for some technologies:
 }
 ```
 
-#### NextJS:
+### NextJS:
 
 ```json
 {
@@ -85,6 +78,7 @@ Here are some example of configuration files for some technologies:
 
 
 ### Docusaurus:
+
 ```js
 module.exports = {
   env: {

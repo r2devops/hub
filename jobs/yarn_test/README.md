@@ -14,15 +14,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 4. Well done, your job is ready to work ! 😀
 
 
-## Job details
-
-* Job name: `yarn_test`
-* Default stage: `tests`
-* Docker image: [`node:18-buster`](https://hub.docker.com/_/node){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 !!! note
     All paths defined in variables are relative and start from the root of your
@@ -36,11 +28,11 @@ This job will run a predefined `test` command that can be specified in the `pack
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 
-### Cache
+## Cache
 
 To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](/jobs/others/npm_install/#cache)
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Totara-thib](https://gitlab.com/Totara-thib)

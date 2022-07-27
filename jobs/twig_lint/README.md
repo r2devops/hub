@@ -10,15 +10,7 @@ This job check if there are any errors on the twig templates
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `twig_lint`
-* Docker image:
-[`twig_lint`](https://hub.docker.com/r/jakzal/phpqa/)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -27,5 +19,5 @@ This job check if there are any errors on the twig templates
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@melheb.younes](https://gitlab.com/melheb.younes)

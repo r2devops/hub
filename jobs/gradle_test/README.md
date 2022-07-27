@@ -15,15 +15,7 @@ You can easily have a badge configure on your 🦊 Gitlab project with this rege
 🔗 Here is an example of a complete pipeline using this step : [fun_with_gitlab-ci](https://gitlab.com/fun_with/fun-with-gitlab-ci/-/blob/master/.gitlab-ci.yml)
 
 
-## Job details
-
-* Job name: `gradle_test`
-* Default stage: `tests`
-* Docker image: [`gradle:jdk11`](https://hub.docker.com/_/gradle){:target="_blank"}
-* When: `always`
-
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -34,7 +26,7 @@ You can easily have a badge configure on your 🦊 Gitlab project with this rege
 
 ⚠️ These paths are defined within `build.gradle` file.
 
-### Example of build.gradle.kts file
+## Example of build.gradle.kts file
 
 Following example of `build.gradle.kts` file describes a very simple example of project configuration.
 This can easily be generated with the `gradle init` command.
@@ -150,7 +142,7 @@ tasks.jacocoTestReport {
 
 ```
 
-### Example to deploy HTML report to pages
+## Example to deploy HTML report to pages
 
 ```yaml
 stages:
@@ -179,5 +171,5 @@ pages:
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@yodamad](https://gitlab.com/yodamad)

@@ -4,7 +4,7 @@ This job checks your code quality inside your Angular application. It uses a cus
 
 ## How to use it
 
-1. Make sure that your project has 
+1. Make sure that your project has
       [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
 1. If you don't already have a lint package installed in your project, you must specified the `NG_LINT_PACKAGE` variable.
 1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
@@ -12,15 +12,7 @@ This job checks your code quality inside your Angular application. It uses a cus
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `ng_lint`
-* Docker image:
-[`node:18-buster`](https://hub.docker.com/r/_/node){:target="_blank"}
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 
 !!! info
     If you already have a package that will be used by the `ng lint` command, you don't have to override the `NG_LINT_PACKAGE` variable.
@@ -38,5 +30,5 @@ This job checks your code quality inside your Angular application. It uses a cus
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

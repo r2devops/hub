@@ -101,25 +101,18 @@ automated Java pipeline.
 </project>
 ```
 
-## Job details
-
-* Job name: `maven_test`
-* Docker image: [maven:3.8.4-jdk-11](https://hub.docker.com/_/maven)
-* Default stage: `tests`
-* When: `always`
-
-### Variables
+## Variables
 | Name | Description | Default |
 | ---- | ------------| ------- |
 | `ARTIFACTS_DIR` | Customize the path where the artifacts will be created | `${CI_PROJECT_DIR}/artifacts` |
 | `IMAGE_TAG` | The default tag for the docker image | `3.8.4-jdk-11`  |
 
-### Artifacts
+## Artifacts
 
 We use [Junit](https://junit.org/junit5/){:target="_blank"}'s XML report to display error report
 directly in pipeline `Test` tab and in merge request widget. It's also available directly in the artifacts.
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

@@ -21,5 +21,5 @@ Execute your golang unit tests and have the results fully integrated with the va
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@seanel](https://gitlab.com/seanel)

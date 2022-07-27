@@ -9,26 +9,18 @@ Build a package's documentation for local package and all dependencies. Check th
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-## Job details
-
-* Job name: `cargo_doc`
-* Docker image:
-[`rust:1.57-buster`](https://hub.docker.com/r/_/rust)
-* Default stage: `build`
-* When: `always`
-
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| ONLY_LIB | Generate documentation of current library only | `false` | 
-| PROJECT_ROOT | Relative to root of your repository, it is the path to your rust project | `.` | 
-| RELEASE_MODE | Generate documentation with optimization for release. See the release profile here [release profile](https://doc.rust-lang.org/cargo/reference/profiles.html#release) | `true` | 
-| OUTPUT_FOLDER | Directory where are output files | `website_build` | 
-| ADDITIONAL_OPTIONS | Possibility to add more options into the command | ` ` | 
+| ONLY_LIB | Generate documentation of current library only | `false` |
+| PROJECT_ROOT | Relative to root of your repository, it is the path to your rust project | `.` |
+| RELEASE_MODE | Generate documentation with optimization for release. See the release profile here [release profile](https://doc.rust-lang.org/cargo/reference/profiles.html#release) | `true` |
+| OUTPUT_FOLDER | Directory where are output files | `website_build` |
+| ADDITIONAL_OPTIONS | Possibility to add more options into the command | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `1.57-buster`  |
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

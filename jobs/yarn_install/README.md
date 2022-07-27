@@ -16,14 +16,6 @@ This job installs `yarn` dependencies listed in your `package.json` and exposes
 4. Well done, your job is ready to work ! 😀
 
 
-## Job details
-
-!!! info
-    On Gitlab, this job will be run in the default first stage of your
-    pipeline: [`.pre`](https://docs.gitlab.com/ee/ci/yaml/#pre-and-post)
-
-!!! warning
-    For this reason, using only this job in your pipeline will not trigger a pipeline in Gitlab.
     You have to add additional jobs.
 
 * Job name: `yarn_install`
@@ -32,7 +24,7 @@ This job installs `yarn` dependencies listed in your `package.json` and exposes
 * When: `always`
 
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -41,11 +33,11 @@ This job installs `yarn` dependencies listed in your `package.json` and exposes
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 !!! warning
-    In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache, 
+    In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache,
     consider making this variable a global variable in the root of your `.gitlab-ci.yml`. Learn how
     easy it is [here](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-cicd-variable-in-the-gitlab-ciyml-file).
 
-### Cache
+## Cache
 
 This job creates a global cache configuration. Regarding the configuration
 applied, cache behavior is the following:
@@ -59,5 +51,5 @@ documentation](https://docs.gitlab.com/ee/ci/caching/index.html).
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)
