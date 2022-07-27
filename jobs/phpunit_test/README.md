@@ -6,7 +6,7 @@ Using this job you'll be able to launch PHPUnit tests.
 
 1. Put a `phpunit.xml` (check [syntax](https://phpunit.readthedocs.io/en/latest/configuration.html#the-phpunit-element){:target="_blank"}) in the root of your php project. Edit `PHPUNIT_CONFIG_FILE` (see [Variables](#variables)) to change the default behavior.
 
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀

@@ -8,7 +8,7 @@ The complete list is available [here](https://jeremylong.github.io/DependencyChe
 ## How to use it
 
 1. Ensure that your package manager and/or files are handled in [File Type Analyzers](#file-type-analyzers)
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀

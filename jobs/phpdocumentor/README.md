@@ -5,7 +5,7 @@ Build a complete HTML documentation based on a PHP Project using [DocBlocks](htt
 ## How to use it
 
 1. Have a PHP Project with well documented files (see [how](https://docs.phpdoc.org/3.0/guide/guides/docblocks.html){:target="_blank"}).
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 

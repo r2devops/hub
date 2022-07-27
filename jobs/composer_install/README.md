@@ -14,7 +14,7 @@ This job installs `composer` dependencies listed in your `composer.lock` or `com
 1. Ensure that your project has
    [`composer.lock`](https://getcomposer.org/doc/01-basic-usage.md#installing-with-composer-lock){:target="_blank"}
    file which contains the dependencies and their exact versions
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 4. Well done, your job is ready to work ! 😀

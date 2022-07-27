@@ -5,7 +5,7 @@ This job will compile local packages and all of their dependencies on Rust proje
 ## How to use it
 
 1. Ensure that your project have a [`cargo.toml`](https://doc.rust-lang.org/cargo/reference/manifest.html){:target="_blank"} file which contains the requirements.
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀

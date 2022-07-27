@@ -9,7 +9,7 @@ using [Zaproxy](https://www.zaproxy.org/), the OWASP web app scanner.
     Zaproxy is mainly used to scan web applications and web frontend. You can use the tool to try and discover
     API vulnerabilities, but this job is focused on a quick scan for a frontend service (with or without authentication)
 
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Choose a target
 
     !!! note

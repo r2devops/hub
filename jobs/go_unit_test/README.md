@@ -6,7 +6,7 @@ Execute your golang unit tests and have the results fully integrated with the va
 
 1. The job of course assumes that you have written your tests 
 2. Choose a version in [version list](#changelog)
-3. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+3. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the
    [jobs customization](/use-the-hub/#jobs-customization)
 5. Well done, your job is ready to work ! 😀

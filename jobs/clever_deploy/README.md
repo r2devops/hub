@@ -6,7 +6,7 @@ Deploy your static website on a Clever Cloud application.
 
 1. On your computer, install the Clever Cli and login into your account by following the [documentation](https://www.clever-cloud.com/doc/getting-started/cli/) .
 1. Retrieve your secret in the file `~/.config/clever-cloud` and set variables `CLEVER_TOKEN` and `CLEVER_SECRET` in the GitLab CI/CD variables section of your project.
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
