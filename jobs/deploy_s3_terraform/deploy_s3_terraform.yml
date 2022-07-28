@@ -9,7 +9,7 @@ cache:
     - "${CI_PROJECT_DIR}/${TF_ROOT}/.terraform"
 
 deploy_s3_terraform:
-  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.2:v0.40.0
+  image: registry.gitlab.com/gitlab-org/terraform-images/releases/${IMAGE_TAG}
   stage: deploy
   variables: 
     AWS_ACCESS_KEY_ID: ""
@@ -27,7 +27,7 @@ deploy_s3_terraform:
     AWS_CLI_VERSION: "2.7.7"
     TF_ADDRESS: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main"
     TF_ROOT: "${CI_PROJECT_DIR}/terraform"
-
+    IMAGE_TAG: "1.2:v0.40.0"
   script:
     - |
       apk --no-cache add \

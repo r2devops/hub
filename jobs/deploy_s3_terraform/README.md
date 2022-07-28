@@ -45,6 +45,7 @@ Deploy a static website on a S3 bucket provided by a Terraform state. It is a fu
 | `AWS_CLI_VERSION` | The version of the AWS console | ✅ | ❌ | `2.7.7` |
 | `TF_ADDRESS` | Address to terraform state backend | ✅ | ❌ | `${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/main` |
 | `TF_ROOT` | The root directory for Terraform | ✅ | ❌ | `terraform` |
+| `IMAGE_TAG` | The default tag for the docker image | `1.2:v0.40.0`  |
 
 ## Configuring Terraform
 
@@ -157,3 +158,7 @@ For more information here are some useful links :
 **Documentation 📕**
 - [Terraform with Scaleway](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs)
 - [Bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html)
+
+
+## Author
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

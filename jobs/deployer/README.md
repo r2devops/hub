@@ -74,6 +74,7 @@ task('deploy', [
 | `PROJECT_ROOT` | Path to the directory containing `deploy.php` or `deploy.yaml` | no | `.` |
 | `DEPLOY_OPTIONS` | Additional options for command `dep deploy` | no | ` ` |
 | `DEPLOYER_OUTPUT` | Name for logs file | no | `deployer_output.txt` |
+| `IMAGE_TAG` | The default tag for the docker image | `7.3-alpine`  |
 
 ## Artifacts
 
