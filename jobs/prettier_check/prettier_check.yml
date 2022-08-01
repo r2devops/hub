@@ -2,7 +2,7 @@ stages:
   - tests
 
 prettier_check:
-    image: node:18-buster
+    image: node:${IMAGE_TAG}
     stage: tests
     variables:
       PROJECT_ROOT: "."
@@ -10,6 +10,7 @@ prettier_check:
       PRETTIER_VERSION: "2.6.2"
       OUTPUT_DIRECTORY: "prettier-report"
       ADDITIONAL_OPTIONS: ""
+      IMAGE_TAG: "18-buster"
     script:
       - cd "${PROJECT_ROOT}"
       - npm install --location=global prettier@${PRETTIER_VERSION}

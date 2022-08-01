@@ -19,3 +19,7 @@ This jobs will run a `prettier --check` command. It's an opinionated code format
 | `PRETTIER_VERSION` <img width=100/> | Version of Prettier <img width=175/>| `2.6.2` <img width=100/>|
 | `OUTPUT_DIRECTORY` <img width=100/> | Output directory where to save files checked. None if empty <img width=175/>| `prettier-report` <img width=100/>|
 | `ADDITIONAL_OPTIONS` <img width=100/> | Additional options for Prettier <img width=175/>| ` ` <img width=100/>|
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+
+## Author
+This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

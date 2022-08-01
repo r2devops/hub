@@ -18,6 +18,7 @@ See the [documentation](https://docs.netlify.com/) for more information.
 | `NETLIFY_SITE_ID` | ⚠️ Mandatory variable. The site id. This variable should be specified in `Gitlab > CI/CD Settings`. | ` ` |
 | `NETLIFY_BUILD_DIRECTORY` | Directory to deploy | `build` |
 | `NETLIFY_CLI_VERSION` | The version of Netlify CLI | `10.5.0` |
+| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 !!! info
     A token can be generated on Netlify in the section `User settings > Applications`, see the [documentation](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui). Or you could create one via the command [`netlify login`](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui).

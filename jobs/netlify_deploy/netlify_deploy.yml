@@ -2,13 +2,14 @@ stages:
   - deploy
 
 netlify_deploy:
-  image: node:18-buster
+  image: node:${IMAGE_TAG}
   stage: deploy
   variables:
     NETLIFY_AUTH_TOKEN: ""
     NETLIFY_SITE_ID: ""
     NETLIFY_BUILD_DIRECTORY: "build"
     NETLIFY_CLI_VERSION: "10.5.0"
+    IMAGE_TAG: "18-buster"
   script:
     - npm i -g netlify-cli@${NETLIFY_CLI_VERSION}
     - netlify deploy --site ${NETLIFY_SITE_ID} --auth ${NETLIFY_AUTH_TOKEN} --prod --dir ${NETLIFY_BUILD_DIRECTORY}

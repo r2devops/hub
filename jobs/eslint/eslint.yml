@@ -2,7 +2,7 @@ stages:
   - tests
 
 eslint:
-    image: node:18-buster
+    image: node:${IMAGE_TAG}
     stage: tests
     variables:
       PROJECT_ROOT: "."
@@ -10,6 +10,7 @@ eslint:
       ESLINT_VERSION: "8.17.0"
       REPORT_OUTPUT: "junit-report.xml"
       ADDITIONAL_OPTIONS: ""
+      IMAGE_TAG: "18-buster"
     script:
       - cd ${PROJECT_ROOT}
       - if [ ! -z ${REPORT_OUTPUT} ]; then
