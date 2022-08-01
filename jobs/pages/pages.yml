@@ -7,12 +7,15 @@ pages:
   stage: deploy
   variables:
     PAGES_BUILD_PATH: 'website_build/'
+    PAGES_REDIRECTION_FILE: ""
   script:
     - if [ "$PAGES_BUILD_PATH" != "public" -a "$PAGES_BUILD_PATH" != "public/" ]; then
     -   if [ -d "public" ]; then rm -rf public; fi
     -   mv "$PAGES_BUILD_PATH" public
     - fi
-
+    - if [ ! -z $PAGES_REDIRECTION_FILE ]; then
+    -   cat $PAGES_REDIRECTION_FILE > public/_redirects
+    - fi
     - if [ ! -d "public" ]; then echo "Nothing to deploy"; exit 1; fi
   artifacts:
     paths:
