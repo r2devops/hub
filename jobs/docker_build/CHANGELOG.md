@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [2.0.0] - 2022-07-29
+* 🚨 **BREAKING CHANGE**
+  Variable `DOCKER_TAG` updated to `DOCKER_TAGS` to use multiple tags in image building. 
+* Add new variable `DOCKER_SNAPSHOT_MODE` to modify the filesystem's snapshot
+* Update kaniko image to `v1.8.1`
+
 ## [1.2.0] - 2022-06-13
 * Add docker image tag in variable 
 
