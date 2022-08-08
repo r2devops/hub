@@ -1,0 +1,38 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - static_tests
+
+venom:
+
+  image:
+    name: golang:1.17.6-buster
+    entrypoint: [""]
+
+  stage: static_tests
+
+  variables:
+    PROJECT_ROOT: "."
+    VENOM_VERSION: "1.0.1"
+    VENOM_TESTS: ""
+    REPORT_FORMAT: "xml"
+    OUTPUT_DIRECTORY: "dist"
+    ADDITIONAL_OPTIONS: ""
+
+  script:
+    - if [[ ${VENOM_TESTS} = "" ]]; then
+    -   echo "[ERROR] You must specified a test suite for Venom to run."
+    -   exit 1;
+    - fi
+    - cd ${PROJECT_ROOT}
+    - wget https://github.com/ovh/venom/releases/download/v${VENOM_VERSION}/venom.linux-amd64
+    - chmod u+x venom.linux-amd64
+    - ./venom.linux-amd64 run ${VENOM_TESTS} --format=${REPORT_FORMAT} --output-dir=${OUTPUT_DIRECTORY} ${ADDITIONAL_OPTIONS}
+
+  artifacts:
+    reports:
+      junit: ${OUTPUT_DIRECTORY}/*.xml
+    paths:
+      - ${CI_PROJECT_DIR}/${OUTPUT_DIRECTORY}
+    when: always
+    expire_in: 30 days
