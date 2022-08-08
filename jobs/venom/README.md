@@ -1,6 +1,6 @@
 ## Objective
 
-Runs your [Venom](https://github.com/ovh/venom) tests
+Run your [Venom](https://github.com/ovh/venom) tests
 
 ## How to use it
 
