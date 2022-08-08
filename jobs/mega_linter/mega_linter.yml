@@ -5,14 +5,14 @@ stages:
 
 mega_linter:
   stage: tests
-  # You can override Mega-Linter flavor used to have faster performances
-  # More info at https://nvuillam.github.io/mega-linter/flavors/
+  # You can override MegaLinter flavor used to have faster performances
+  # More info at https://github.com/oxsecurity/megalinter#flavors
   image:
-    name: nvuillam/mega-linter:${IMAGE_TAG}
+    name: oxsecurity/megalinter:${IMAGE_TAG}
     entrypoint: [""]
   variables:
     # All available variables are described in documentation
-    # https://nvuillam.github.io/mega-linter/configuration/
+    # https://github.com/oxsecurity/megalinter#configuration
     DEFAULT_WORKSPACE: "${CI_PROJECT_DIR}"
     DEFAULT_BRANCH: "${CI_DEFAULT_BRANCH}"
     # Exclude files based on a regex
@@ -25,26 +25,26 @@ mega_linter:
     VALIDATE_ALL_CODEBASE: "true"
     # MegaLinter added exporter
     OUTPUT_FORMAT: "tap"
-    # Amount of details in the report
-    OUTPUT_DETAIL: "detailed"
     # Directory in which every report is filed
     REPORT_OUTPUT_FOLDER: "report"
     # End folder where reports are held
     CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
     # Tool tap-junit version, please don't use 5.0.0 until below issue is fixed
     # https://github.com/dhershman1/tap-junit/issues/39
-    TAP_JUNIT_VERSION: "4.2.0"
+    TAP_JUNIT_VERSION: "5.0.2"
     # Name of the test suite in JUnit
     REPORT_SUITE_TEST_NAME: "mega_linter"
     # List of disabled linters in every case, this linter is deactivated due to
     # its time of processing (~10 minutes on tested projects)
     DISABLE_LINTERS: SPELL_CSPELL
-    IMAGE_TAG: "v4"
+    IMAGE_TAG: "v6.3.0"
+    TAP_REPORTER_OUTPUT_DETAIL: "detailed"
+    OUTPUT_DETAIL: "detailed"
   script:
     - FAILED=false
     - |
       if /entrypoint.sh true; then
-        echo "Mega-Linter seemed not to have found any issue!"
+        echo "MegaLinter seemed not to have found any issue!"
       else
         FAILED=true
       fi

@@ -1,8 +1,13 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.2.0] - 2022-08-16
+* Use new image: `oxsecurity/megalinter`
+* Bump megalinter version to `v6.3.0`
+* Bump tap-junit version to `v5.0.2`
+
 ## [1.1.0] - 2022-06-13
-* Add docker image tag in variable 
+* Add docker image tag in variable
 
 ## [1.0.0] - 2022-04-14
 * Change the default stage into `tests`
