@@ -20,7 +20,7 @@ jest:
         npm install --save-dev jest-junit
       fi
 
-    - npm run test -- --coverage --ci --reporters=default --reporters=jest-junit --lastCommit=${JEST_INCREMENTAL} ${ADDITIONAL_OPTIONS}
+    - npm run test -- --coverage --ci --reporters=default --reporters=jest-junit --passWithNoTests --lastCommit=${JEST_INCREMENTAL} ${ADDITIONAL_OPTIONS}
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   artifacts:
     when: always
