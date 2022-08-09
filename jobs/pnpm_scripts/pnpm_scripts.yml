@@ -3,8 +3,7 @@
 stages:
   - others
 
-
-npm_scripts:
+pnpm_scripts:
   stage: others
   image:
     name: node:${IMAGE_TAG}
