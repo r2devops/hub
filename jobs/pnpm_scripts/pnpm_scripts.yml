@@ -1,0 +1,41 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - others
+
+pnpm_scripts:
+  stage: others
+  image:
+    name: node:${IMAGE_TAG}
+    entrypoint: [""]
+  variables:
+    PROJECT_ROOT: "."
+    PNPM_INSTALL_OPTIONS: ""
+    PNPM_SCRIPTS: ""
+    PNPM_OUTPUT: ""
+    IMAGE_TAG: "18-buster"
+  before_script:
+    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+    - pnpm config set store-dir ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store
+  script:
+    # Working directory
+    - cd $PROJECT_ROOT
+    # install project dependencies
+    - pnpm install $PNPM_INSTALL_OPTIONS
+    # Save default IFS
+    - oldIFS=$IFS
+    # Modifying IFS
+    - export IFS=";"
+    # Loop for launching any script specified in $PNPM_SCRIPTS separated by ;
+    - for script in $PNPM_SCRIPTS; do
+        # Restore to default IFS
+    -   IFS=$oldIFS
+        # Run the script
+    -   pnpm run $script
+        # Modifying IFS for the next loop iteration
+    -   export IFS=";"
+    - done
+  artifacts:
+    paths:
+      # Output directory
+      - $PNPM_OUTPUT
