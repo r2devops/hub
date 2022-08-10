@@ -36,6 +36,7 @@ On top of rolling your tests for you, it will create you a coverage report
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` | Path to the directory containing `package.json`  | `.` |
 | `JEST_INCREMENTAL` | Run tests that only are relevant based on last commit changes | `false` |
+| `PASS_WITH_NO_TESTS` | If set to true, the job will not fail if no tests are present | `true` |
 | `ADDITIONAL_OPTIONS` | Additional options for your `jest` | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `18.1-alpine3.14`  |
 
