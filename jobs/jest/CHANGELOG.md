@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
-## [1.2.0] - 2022-06-13
+## [1.2.0] - 2022-08-12
 * Add --passWithNoTests option with a boolean variable to activate it
 
 ## [1.1.1] - 2022-06-13
