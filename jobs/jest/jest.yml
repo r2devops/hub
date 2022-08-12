@@ -10,6 +10,7 @@ jest:
     PROJECT_ROOT: "."
     JEST_INCREMENTAL: "false"
     ADDITIONAL_OPTIONS: ""
+    PASS_WITH_NO_TESTS: "true"
     IMAGE_TAG: "18.1-alpine3.14"
   script:
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
@@ -20,7 +21,7 @@ jest:
         npm install --save-dev jest-junit
       fi
 
-    - npm run test -- --coverage --ci --reporters=default --reporters=jest-junit --lastCommit=${JEST_INCREMENTAL} ${ADDITIONAL_OPTIONS}
+    - npm run test -- --coverage --ci --reporters=default --reporters=jest-junit --passWithNoTests=${PASS_WITH_NO_TESTS} --lastCommit=${JEST_INCREMENTAL} ${ADDITIONAL_OPTIONS}
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   artifacts:
     when: always
