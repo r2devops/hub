@@ -37,7 +37,7 @@ mega_linter:
     # List of disabled linters in every case, this linter is deactivated due to
     # its time of processing (~10 minutes on tested projects)
     DISABLE_LINTERS: SPELL_CSPELL
-    IMAGE_TAG: "v6.3.0"
+    IMAGE_TAG: "v6.6.0"
     TAP_REPORTER_OUTPUT_DETAIL: "detailed"
     OUTPUT_DETAIL: "detailed"
   script:

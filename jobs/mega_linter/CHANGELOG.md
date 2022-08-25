@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.3.0] - 2022-08-25
+* Bump megalinter version to `v6.6.0`
+
 ## [1.2.0] - 2022-08-16
 * Use new image: `oxsecurity/megalinter`
 * Bump megalinter version to `v6.3.0`
