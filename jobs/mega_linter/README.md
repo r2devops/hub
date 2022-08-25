@@ -1,11 +1,10 @@
 ## Objective
 
 Lint all your files using
-[MegaLinter](https://github.com/oxsecurity/megalinter/){:target="_blank"}
-. It supports [49 languages, 22 formats, 20 tooling
+[MegaLinter](https://github.com/oxsecurity/megalinter/){:target="_blank"}. It
+supports [49 languages, 22 formats, 20 tooling
 formats](https://github.com/oxsecurity/megalinter#supported-linters) and ready
-to use out of the box, as a GitHub action or any CI system highly configurable
-and free for all uses.
+to use out of the box.
 
 ## How to use it
 
