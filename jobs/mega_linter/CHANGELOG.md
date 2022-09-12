@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+
+## [1.4.0] - 2022-09-28
+* Default output format is now `sarif` instead of `tap`(deprecated)
+* Add CodeClimate output format for `sarif` output
+* Bump megalinter version to `v6.8.0`
+
 ## [1.3.0] - 2022-08-25
 * Bump megalinter version to `v6.6.0`
 
