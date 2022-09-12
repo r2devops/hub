@@ -2,7 +2,7 @@
 
 Lint all your files using
 [MegaLinter](https://github.com/oxsecurity/megalinter/){:target="_blank"}. It
-supports [49 languages, 22 formats, 20 tooling
+supports [50 languages, 22 formats, 20 tooling
 formats](https://github.com/oxsecurity/megalinter#supported-linters) and ready
 to use out of the box.
 
@@ -15,6 +15,13 @@ to use out of the box.
    behavior, check the [variables section](#variables)
 1. Well done, your job is ready to work ! 😀
 
+## Behavior
+
+By default, this job will run MegaLinter on your project and lint all the files.
+The default output defined by the `OUTPUT_FORMAT` variable is `sarif`. With this output, you will see the result of the linter in the Test section of the merge request and also have a code review with performed with [CodeClimate](https://codeclimate.com/quality).
+
+!!! info "TAP report format 🗃️" 
+   For changing the output format to TAP, the `OUTPUT_FORMAT` variable should be edited. ⚠️ This format is **DEPRECATED** and is not recommended for use.
 ## Variables
 
 !!! info
@@ -27,21 +34,21 @@ customize its behavior.
 
 ## General configuration
 
-| Name                              | Description                                                                 | Default                       |
-| --------------------------------- | --------------------------------------------------------------------------- | ----------------------------- |
-| `DEFAULT_WORKSPACE`               | Directory where the linter will work                                        | `${CI_PROJECT_DIR}`           |
-| `DEFAULT_BRANCH`                  | Default branch of your project                                              | `${CI_DEFAULT_BRANCH}`        |
-| `FILTER_REGEX_EXCLUDE`            | Regex in order to exclude specific files                                    | `none`                        |
-| `LINTER_RULES_PATH`               | Directory where are stored linters configuration                            | `.linters`                    |
-| `MEGALINTER_CONFIG`               | MegaLinter configuration file location                                     | `.mega_linter.yml`            |
-| `VALIDATE_ALL_CODEBASE`           | Whether linters should only go through **edited** or **new** files          | `true`                        |
-| `REPORT_OUTPUT_FOLDER`            | Folder where are stored all the reports                                     | `${DEFAULT_WORKSPACE}/report` |
-| `OUTPUT_FORMAT`                   | Additional format to be converted into JUnit report                         | `tap`                         |
-| `CONVERTED_OUTPUT_FOLDER`         | Folder where are stored `JUnit` reports                                     | `converted-xml.report`        |
-| `TAP_JUNIT_VERSION`               | [`tap-junit`](https://www.npmjs.com/package/tap-junit) tool version         | `4.2.0`                       |
-| `REPORT_SUITE_TEST_NAME`          | `JUnit` report suites name                                                  | `mega_linter`                 |
-| `DISABLE_LINTERS`                 | Comma separated list of linters to be disabled                              | `SPELL_CSPELL`                |
-| `IMAGE_TAG`                       | The default tag for the docker image                                        | `v6.3.0`                      |
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `DEFAULT_WORKSPACE` <img width=100/> | Directory where the linter will work <img width=175/>| `${CI_PROJECT_DIR}` <img width=100/>|
+| `DEFAULT_BRANCH`| Default branch of your project | `${CI_DEFAULT_BRANCH}` |
+| `FILTER_REGEX_EXCLUDE` | Regex in order to exclude specific files | `none` |
+| `LINTER_RULES_PATH` | Directory where are stored linters configuration | `.linters` |
+| `MEGALINTER_CONFIG` | MegaLinter configuration file location | `.mega_linter.yml` |
+| `VALIDATE_ALL_CODEBASE` | Whether linters should only go through **edited** or **new** files | `true` |
+| `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `${DEFAULT_WORKSPACE}/report` |
+| `OUTPUT_FORMAT` | Additional format to be converted into JUnit report : `sarif` or `tap`(DEPRECATED) | `sarif` |
+| `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `JUnit` or `CodeClimate` reports | `converted-xml.report` |
+| `TAP_JUNIT_VERSION` | [`tap-junit`](https://www.npmjs.com/package/tap-junit) tool version | `4.2.0` |
+| `REPORT_SUITE_TEST_NAME` | `JUnit` report suites name | `mega_linter` |
+| `DISABLE_LINTERS` | Comma separated list of linters to be disabled | `SPELL_CSPELL` |
+| `IMAGE_TAG` | The default tag for the docker image | `v6.8.0` |
 
 ## Optimize MegaLinter
 
@@ -62,10 +69,19 @@ mega_linter:
 
 ## Artifacts
 
-We use [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in
+Two formats are available for the artifacts:
+- [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in
 merge request widget.
+- [CodeClimate](https://codeclimate.com/quality)'s JSON report to display error report directly in merge request widget.
+⚠️ This report is only available if the variable `OUTPUT_FORMAT` is set to `sarif`.
 
+## Dependencies
+The job uses the following dependencies for converting the `output` to `JUnit` or `CodeClimate`:
+- [tap-junit](https://www.npmjs.com/package/tap-junit) tool to convert `TAP` to `JUnit`
+- [sarif-junit](https://www.npmjs.com/package/sarif-junit) tool to convert `SARIF` to `JUnit`
+- [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) tool to convert `SARIF` to `CodeClimate`
 
-
-## Author
+## Author and contributors
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@protocole](https://gitlab.com/Protocole)
+
+It was updated in september 2022 by [@GridexX](https://gitlab.com/GridexX) with the help of [@nvuillam](https://github.com/nvuillam)

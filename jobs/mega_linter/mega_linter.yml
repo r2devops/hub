@@ -24,7 +24,7 @@ mega_linter:
     # If set to false will only scan diff files from previous commit
     VALIDATE_ALL_CODEBASE: "true"
     # MegaLinter added exporter
-    OUTPUT_FORMAT: "tap"
+    OUTPUT_FORMAT: "sarif"
     # Directory in which every report is filed
     REPORT_OUTPUT_FOLDER: "report"
     # End folder where reports are held
@@ -37,10 +37,13 @@ mega_linter:
     # List of disabled linters in every case, this linter is deactivated due to
     # its time of processing (~10 minutes on tested projects)
     DISABLE_LINTERS: SPELL_CSPELL
-    IMAGE_TAG: "v6.6.0"
+    IMAGE_TAG: "v6.8.0"
     TAP_REPORTER_OUTPUT_DETAIL: "detailed"
     OUTPUT_DETAIL: "detailed"
   script:
+    - if [ "${OUTPUT_FORMAT}" = "sarif"  ]; then
+    -   export SARIF_REPORTER="true"
+    - fi
     - FAILED=false
     - |
       if /entrypoint.sh true; then
@@ -70,6 +73,14 @@ mega_linter:
     -   done
     - fi
 
+    - if [ "${OUTPUT_FORMAT}" = "sarif" ]; then 
+    -   mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+    -   cp ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/megalinter-report.sarif ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+    -   cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+    -   npx -y sarif-codeclimate@1.0.1 -i megalinter-report.sarif -o code-climate.json
+    -   npx -y sarif-junit@1.1.0 -i megalinter-report.sarif -o junit.xml --test-suite ${REPORT_SUITE_TEST_NAME}
+    - fi
+
     - if [ "$FAILED" = true ]; then
     -   exit 1
     - fi
@@ -78,7 +89,9 @@ mega_linter:
     when: always
     paths:
       - ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/tap/*.tap
+      - ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}
     expire_in: 1 week
     reports:
       junit: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/*.xml"
+      codequality: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/code-climate.json"
   allow_failure: true
