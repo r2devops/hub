@@ -108,7 +108,7 @@ A scheduled pipeline is triggered at 8 pm each day to launch a full antivirus sc
 This pipeline triggers 3 jobs :  
 
 1. `refresh_job_av_database`   
-Refresh antivirus definition's with `freshclam` command. See the [english documentation(https://help.ubuntu.com/community/ClamAV)(english) or [french documentation](https://doc.ubuntu-fr.org/clamav) for moreinformation.
+Refresh antivirus definition's with `freshclam` command. See the [english documentation(https://help.ubuntu.com/community/ClamAV)(english) or [french documentation](https://doc.ubuntu-fr.org/clamav) for more information.
 2. `generate_job_av`  
 This job is only trigger when a branch is being merged or on a schedule pipeline. Iterates over the jobs to get their image and write a .gitlab-ci.yml that can run a child pipeline in order to use ClamAV for virus detection. The generated .gitlab-ci.yml is launched in the next job.
 3. `child_job_av`   

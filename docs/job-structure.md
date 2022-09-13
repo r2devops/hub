@@ -14,18 +14,15 @@ follow this standardized structure:
 .
 └── jobs
     └── <job_name>
-        ├── <job_name>.yml        # Job definition
+        ├── CHANGELOG.md          # Changelog of the job
         ├── job.yml               # Job metadata
         ├── README.md             # Job documentation
-        ├── versions              # Jobs changelogs
-        │   ├── 0.1.0.md
-        │   └── ...
         └── screenshots           # (Optional) Job screenshots
             ├── job_picture.png
             └── ...
 ```
 
-*A template of job is available in the [R2Devops hub repository](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/job_name).*
+*A template of job is available in the [R2Devops hub repository](https://gitlab.com/r2devops/hub/-/tree/latest/tools/job_template/r2_jobname).*
 
 ## 🤖 Job definition
 
@@ -71,39 +68,6 @@ apidoc:
       - "$APIDOC_OUTPUT_PATH"
 ```
 
-
-## 🗂 Job metadata
-
-In this file, named `job.yml`, you find the job metadata in `yaml` format with
-the following fields:
-
-| Name | Description | Mandatory |
-| ---- | ----------- | --------- |
-| `name` <img width=120/> | Name of the job, must be unique | **Yes** |
-| `description` | Short description of the job (go to the essential) | **Yes** |
-| `icon` | Unicode emoji character to represent the job (if you lack inspiration, you can find some in [emojipedia](https://emojipedia.org)) | **Yes** |
-| `default_stage` | Default stage of the job. You have to choose the most relevant stage from our [default stage list](/use-the-hub/#stages). We promise you will find the one you need!  | **Yes** |
-| `maintainer` | Gitlab username of the maintainer (be proud of your work) | **Yes** |
-| `license` | Open-source license for the job. You can choose between `Apache-2.0` and `MIT` | **Yes** |
-| `labels` | List of labels describing the job. It should describe a characteristic of your job. For example: Docker, PHP, Security, Quality... | No |
-| `images` | Dictionary of docker image(s) used by the job. Please enter the image name as key and the tag version as value | **Yes** |
-| `tools` | Dictionary of tool(s) installed during the job. Please enter the name as key and the version as value  | No |
-
-**Here is an example of `job.yml` 👇**
-
-```yaml
-name: super_linter
-description: Simple combination of various linters, to help validate the quality of your source code
-default_stage: static_tests
-icon: 🔎
-maintainer: thomasboni
-license: MIT
-labels:
-    - GitLab
-    - Linter
-    - Quality
-```
-See? Short and specific! 👌
 
 ## 📚 Job documentation
 
@@ -153,46 +117,29 @@ This file, named `README.md`, contains the documentation of a job  in `markdown`
 
 ## 🏗 Job changelogs
 
-Jobs keep their changelogs in one folder, named `versions`. This folder contains several
-`markdown` files, each of them representing a version and containing a list of
-changes provided by this version.
+Jobs keep their changelogs in one file named `CHANGELOG.md`. This file contains all changes made to the job since its creation.It uses the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/){:target="_blank"} format.
 
 !!! info
     * The jobs version must follow the [semantic versioning](https://semver.org/)
     format (`MAJOR.MINOR.PATCH`).
     * The first version for a job must be `0.1.0`.
 
-**Here is an example of a `versions` folder for a job 👇**
+**Here is an example of `CHANGELOG.md` file for a `docker_build` 👇**
 
-```shell
-.
-└── versions
-    ├── 0.1.0.md
-    ├── 0.2.0.md
-    └── 0.3.0.md
+```md
+## [0.3.0] - 2020-11-25
+* New variable `DOCKER_USE_CACHE` to be able to cache layers of build
+* New variable `DOCKER_CACHE_TTL` to define time to live of cache
+* New variable `DOCKER_VERBOSITY` to set the verbosity of the build
+* New variable `DOCKER_OPTIONS` to be able to add additional options
+
+## [0.2.0] - 2020-11-02
+* Add variable `DOCKERFILE_PATH` which permits specifying custom path to
+  Dockerfile
+
+## [0.1.0] - 2020-10-21
+* Initial version
 ```
-
-=== "📃 0.1.0.md"
-
-    ```md
-    * Initial version
-    ```
-
-=== "📃 0.2.0.md"
-
-    ```md
-    * Add variable `DOCKERFILE_PATH` which permits specifying custom path to Dockerfile
-    ```
-
-=== "📃 0.3.0.md"
-
-    ```md
-    * New variable `DOCKER_USE_CACHE` to be able to cache layers of build
-    * New variable `DOCKER_CACHE_TTL` to define time to live of cache
-    * New variable `DOCKER_VERBOSITY` to set the verbosity of the build
-    * New variable `DOCKER_OPTIONS` to be able to add additional options
-    ```
-
 
 ## 🖼️ Job screenshots
 

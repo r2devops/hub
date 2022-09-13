@@ -1,6 +1,6 @@
 ## Objective
 
-This job will run a predifined `test` command specified in the scripts section of the `package.json` configuration file
+This job will run a predefined `test` command specified in the scripts section of the `package.json` configuration file
 
 ## How to use it
 

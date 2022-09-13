@@ -1,5 +1,5 @@
 # "Helm review" jobs
-# See https://gitlab.com/r2devops/jobs/ for more informations
+# See https://gitlab.com/r2devops/jobs/ for more information
 
 stages:
   - review

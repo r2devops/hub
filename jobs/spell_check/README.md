@@ -1,5 +1,9 @@
 ## Description
 
+!!! error "This job is deprecated 🚨"
+    This job has been moved to [`codespell`](https://r2devops.io/_/r2devops-bot/codespell) and must be use instead.
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 Spell_check is using the python program [`PySpelling`](https://github.com/facelessuser/pyspelling/){:target="_blank"} to fetch your files (by default `Markdown` files)
  and retrieve spelling errors in it, but it won't look for **grammar errors**.
 
@@ -29,7 +33,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `PYSPELLING_LANGUAGE` <img width=100/> | Languages dictionnaries to use (separate each language by a space) <img width=175/>| `en` <img width=100/>|
+| `PYSPELLING_LANGUAGE` <img width=100/> | Languages dictionaries to use (separate each language by a space) <img width=175/>| `en` <img width=100/>|
 | `PYSPELLING_SPELLER`  | Speller program to use | `aspell=0.60.7~20110707-6+deb10u1` |
 | `PYSPELLING_CONFIG`  | Path to your custom `.pyspelling.yml` | ` ` |
 | `PYSPELLING_OPTIONS`  | Additional options for PySpelling | ` ` |
