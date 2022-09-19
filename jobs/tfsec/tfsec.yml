@@ -47,7 +47,7 @@ tfsec:
 
     - SEVERITY_OPTION="-m ${TFSEC_MIN_SEVERITY}"
     - REGO_OPTION=""
-    - if [ ! -z ${TFSEC_REGO_DIR} ]; then
+    - if [ ! -z ${TFSEC_REGO_DIR} ] && [ -d ${TFSEC_REGO_DIR} ]; then
     -   REGO_OPTION="--rego-policy-dir ${TFSEC_REGO_DIR}"
     - fi 
 
