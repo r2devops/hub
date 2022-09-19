@@ -72,6 +72,62 @@ pipenv run mkdocs serve
 
 4. See your update in live at [https://localhost:8000](https://localhost:8000)
 
+### CI/CD Pipeline
+
+This file aims to explain all jobs used on the CI/CD pipeline.
+
+#### Jobs & stages
+
+There are several jobs used on the CI/CD pipeline. The following list shows all jobs and their purpose. The jobs are executed in the order they are listed.
+
+##### Static_tests
+
+
+1. `ci_linter`  
+This jobs use the [CI lint API](https://docs.gitlab.com/ee/api/lint.html) to validate the configuration of each jobs.yaml file. 
+
+2. `job_structure`  
+This job written in Python ensures every files respect the structure we want. It checks that every file has the right name, the right path and the right content. 
+
+3. `job_customs`  
+This job written in Python ensures every script of the jobs doesn't made modifications on the repository. It checks that every script doesn't use `git commit` or `git push`.
+
+4. `job_image_scan`  
+Runs only on the default branch. And uses some cache for the images.
+This job uses [trivy](https://aquasecurity.github.io/trivy/) to scan all images used in the jobs. It checks that the image doesn't have any vulnerability.
+
+5. `code_spell`
+This job uses codespell to check the spelling of the code. It checks that the code doesn't have any spelling mistake.
+
+6. `links_checker`
+This job ensures all links are valid in the documentation.
+
+#### merge_test & scheduled pipeline
+
+A scheduled pipeline is triggered at 8 pm each day to launch a full antivirus scan on each jobs. 
+This pipeline triggers 3 jobs :  
+
+1. `refresh_job_av_database`   
+Refresh antivirus definition's with `freshclam` command. See the [english documentation(https://help.ubuntu.com/community/ClamAV)(english) or [french documentation](https://doc.ubuntu-fr.org/clamav) for moreinformation.
+2. `generate_job_av`  
+This job is only trigger when a branch is being merged or on a schedule pipeline. Iterates over the jobs to get their image and write a .gitlab-ci.yml that can run a child pipeline in order to use ClamAV for virus detection. The generated .gitlab-ci.yml is launched in the next job.
+3. `child_job_av`   
+It is launched by the previous job and scan the docker image and warn if they are know virus listed in the database.
+
+#### project_setup
+
+1.`job_gitlab_labels`   
+This job retrieve all labels in the project and see if each job has it's own label. If not, it creates it and assign it to the job.
+
+
+#### deploy
+
+1. `release`  
+This job is like a swiss knife ⚒️ and performs many action.  
+First, it creates a new release within GitLab and print the `CHANGELOG` of the created/updated job in the release description.  
+Then, it sends a discord notification to the `#updates` channel.  
+
+
 ### How to update hub tools
 
 #### Guidelines
