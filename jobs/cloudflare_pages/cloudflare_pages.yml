@@ -1,0 +1,129 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+cloudflare_pages:
+  image: 
+    name: node:${IMAGE_TAG}
+  stage: deploy
+  variables:
+    PAGES_BUILD_PATH: "build"
+    PROJECT_NAME: "$CI_PROJECT_PATH_SLUG" 
+    PRODUCTION_BRANCH: $CI_DEFAULT_BRANCH
+    DEPLOY_PRODUCTION: "true"
+    DOMAIN_NAME: ""
+    CLOUDFLARE_API_TOKEN: ""
+    CLOUDFLARE_ACCOUNT_ID: ""
+    CLOUDFLARE_ZONE_ID: ""
+    CLOUDFLARE_API: "https://api.cloudflare.com/client/v4"
+    WRANGLER_VERSION: "2.1.1"
+    IMAGE_TAG: "18-alpine"
+  script:
+    - |
+      apk add --no-cache -q curl jq gettext
+      npm i -g wrangler@$WRANGLER_VERSION 
+    # Create the pages project 
+    - "PAGES_DOMAINS=$(curl -sX GET \"${CLOUDFLARE_API}/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PROJECT_NAME}/domains\" -H 'Content-Type: application/json' -H \"Authorization: Bearer $CLOUDFLARE_API_TOKEN\")"
+    
+    - |
+      ERROR=$(echo $PAGES_DOMAINS | jq '.errors[0]')
+      if [ "$ERROR" != "null" ]; then
+        ERROR_PAGES_DOMAIN=true
+     
+        #Handle Authentication error 
+        if [ $(echo $ERROR | jq '.code') -eq 10000 ]; then
+          ERROR_MESSAGE=$(echo $ERROR | jq '.message')
+          echo -e "\e[31mError with Cloudflare API ${ERROR_MESSAGE}\e[0m"
+          exit 1
+        fi
+        #Handle project not found error and create one
+        if [ $(echo $ERROR | jq '.code') -eq 8000007 ]; then
+          wrangler pages project create ${PROJECT_NAME} --production-branch="main"
+        fi
+      fi
+     
+    # Function for printing custom state
+    - |
+      function print_domain_state() {
+        DOMAIN_NAME=$1
+        DOMAIN_STATUS=$2
+        echo -e "\e[33m🔄 Domain name '\e[1m${DOMAIN_NAME}\e[0m\e[33m' is '\e[1m${DOMAIN_STATUS}\e[0m\e[33m', please wait for the validation\e[0m"
+        echo -e "   When activated, your site will be available from : \e[1mhttps://${DOMAIN_NAME}\e[0m"
+      }
+     
+    # Link all domains to the project
+    - |
+      SUBDOMAIN=$(curl -sX GET "${CLOUDFLARE_API}/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PROJECT_NAME}" -H 'Content-Type: application/json' -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN")
+      export SUBDOMAIN=$(echo $SUBDOMAIN | jq '.result.subdomain' | tr -d '"')
+      if [ ! -z "${DOMAIN_NAME}" ]; then
+        if [ -z "${CLOUDFLARE_ZONE_ID}" ]; then
+          echo -e \"\e[31m'CLOUDFLARE_ZONE_ID' is not set and is needed to add a custom domain name\e[0m\"
+          exit 1
+        fi
+        if [ $ERROR_PAGES_DOMAIN = true ]; then
+          DOMAIN_NAME_STATUS="inactive"
+        else
+          DOMAIN_NAME_STATUS=$(echo $PAGES_DOMAINS | jq '.result[] | select(.name == "'${DOMAIN_NAME}'") | .status' | tr -d '"')
+        fi
+        if [ "${DOMAIN_NAME_STATUS}" == "active" ]; then
+          echo -e "\e[32m✅ Domain name '\e[1m${DOMAIN_NAME}\e[0m\e[32m' is \e[1mactive\e[0m\e[32m! Check out \e[1mhttps://${DOMAIN_NAME}\e[0m"
+        fi
+        if [ "${DOMAIN_NAME_STATUS}" != "active" ] && [ ! -z ${DOMAIN_NAME_STATUS} ] && [ $ERROR_PAGES_DOMAIN != true ]; then
+        # Domain name is pending or other but defined in the project
+          print_domain_state $DOMAIN_NAME $DOMAIN_NAME_STATUS
+        fi
+        if [ "${DOMAIN_NAME_STATUS}" != "active" ] && [ "${DOMAIN_NAME_STATUS}" != "pending" ]; then # activate the domain name
+        # Add a new DNS entry
+          echo '{"type":"CNAME","name":"${DOMAIN_NAME}","content":"${SUBDOMAIN}","ttl":1,"priority":10,"proxied":true}' > data_incomplete.json
+          envsubst < data_incomplete.json > data.json
+          DATA=$(cat data.json)
+          POST_DOMAIN_RESPONSE=$(curl -sX POST "${CLOUDFLARE_API}/zones/${CLOUDFLARE_ZONE_ID}/dns_records" -H 'Content-Type: application/json' -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --data $DATA  )
+          ERROR=$(echo $POST_DOMAIN_RESPONSE | jq '.errors[0]')
+       
+          if [ "$ERROR" != "null" ]; then
+            ERROR_MESSAGE=$(echo $ERROR | jq '.message')
+            ERROR_CODE=$(echo $ERROR | jq '.code')
+            echo -e "\e[31mError while adding the record for the domain name ${DOMAIN_NAME} : ${ERROR_MESSAGE} code(${ERROR_CODE})\e[0m"
+          # Handle authentication error
+            if [ $ERROR_CODE -eq 10000 ]; then
+              echo -e "\e[31mThe provided token hasn't the right to edit the DNS Zone.\e[0m\nPlease check the documentation(https://r2devops.io/_/r2devops-bot/cloudflare_pages) and update it in the \e[1mCLOUDFLARE_API_TOKEN\e[0m variable"
+            fi
+          # Handle incorrect zone id
+            if [ $ERROR_CODE -eq 7003 ]; then
+            echo -e "\e[31mThe provided zone id, doesn't correspond to domain name  \e[1m${DOMAIN_NAME}\e[0m\nPlease check the documentation(https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/find-account-and-zone-ids/) and update it in the \e[1mCLOUDFLARE_ZONE_IDS\e[0m variable"
+            fi
+            exit 1
+          fi
+
+          # Add the domain name in pages
+          echo '{"name":"${DOMAIN_NAME}"}' > data_incomplete.json
+          envsubst < data_incomplete.json > data.json
+          DATA=$(cat data.json)
+          POST_DOMAIN_PAGES_RESPONSE=$(curl -sX POST "${CLOUDFLARE_API}/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PROJECT_NAME}/domains" -H 'Content-Type: application/json' -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --data $DATA )
+          echo -e "Adding domain \e[1m${DOMAIN_NAME}\e[0m for the project \e[1m${PROJECT_NAME}\e[0m"
+          ERROR=$(echo $POST_DOMAIN_PAGES_RESPONSE | jq '.errors[0]')
+          
+          if [ "$ERROR" != "null" ]; then
+            ERROR_MESSAGE=$(echo $ERROR | jq '.message')
+            ERROR_CODE=$(echo $ERROR | jq '.code')
+            echo -e "\e[31mError while adding the domain ${DOMAIN_NAME} in the project ${PROJECT_NAME} : ${ERROR_MESSAGE} code(${ERROR_CODE})\e[0m"
+          # Checking for domain status and inform the user
+          else
+            DOMAIN_NAME_STATUS=$(echo $POST_DOMAIN_PAGES_RESPONSE | jq '.result.validation_data.status' | tr -d '"')
+            if [ "${DOMAIN_STATUS}" != "active" ]; then
+              print_domain_state $DOMAIN_NAME $DOMAIN_NAME_STATUS
+            fi
+          fi
+        fi
+      fi
+    # Deploy the directory to Pages
+    - |
+      OPTION=""
+      if [ ${DEPLOY_PRODUCTION} == "true" ]; then
+        OPTION="--branch=${PRODUCTION_BRANCH}"
+      fi
+      wrangler pages publish "${PAGES_BUILD_PATH}" --project-name="${PROJECT_NAME}" ${OPTION}
+      if [ ${DEPLOY_PRODUCTION} == "true" ]; then
+        echo -e "\e[32m✅ Website successfully deployed on \e[1mhttps://${SUBDOMAIN}\e[0m"
+      fi
