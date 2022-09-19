@@ -1,0 +1,82 @@
+stages:
+  - tests
+
+tfsec:
+  stage: tests
+  image:
+    name: node:${IMAGE_TAG}
+    pull_policy: always
+    entrypoint: [""]
+  variables:
+    TFSEC_CHECK_DIR: "terraform"
+    TFSEC_CONFIG_FILE: "tfsec.config.yml"
+    TFSEC_FORMATS: "sarif"
+    TFSEC_MIN_SEVERITY: "LOW"
+    TFSEC_REGO_DIR: "rego_policies"
+    TFSEC_VERSION: "1.27.6"
+    ADDITIONAL_OPTIONS: ""
+    IMAGE_TAG: "18-alpine"
+
+  script:
+    # Install packages
+    - wget -qO tfsec.tar.gz https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec_${TFSEC_VERSION}_linux_amd64.tar.gz
+    - tar -xf tfsec.tar.gz
+    - mv ${CI_PROJECT_DIR}/tfsec /bin
+
+    # Create folder for artifacts and reports
+    - mkdir ${CI_PROJECT_DIR}/reports
+    - mkdir ${CI_PROJECT_DIR}/artifacts
+
+    # Check if the config is fulfill and if it should search for a remote a or local configuration file
+    - CONFIG_OPTION=""
+    - if [ ! -z ${TFSEC_CONFIG_FILE} ]; then
+    -   if [[ ${TFSEC_CONFIG_FILE} = "https://"* ]] || [[ ${TFSEC_CONFIG_FILE} = "http://"* ]] || [[ ${TFSEC_CONFIG_FILE} = "www."* ]]; then
+    -     CONFIG_OPTION="--config-file-url ${TFSEC_CONFIG_FILE}"
+    -   else
+    -     CONFIG_OPTION="--config-file ${CI_PROJECT_DIR}/${TFSEC_CONFIG_FILE}"
+    -   fi
+    - fi
+    
+    # Add always the lovely format at the beginning if not present
+    # It will print this format to the console and save the result into a file
+    # See the output option below
+    - if [[ ${TFSEC_FORMATS} != *"lovely"* ]]; then
+    -    TFSEC_FORMATS="lovely,${TFSEC_FORMATS}"
+    - fi
+    - FORMAT_OPTION="-f ${TFSEC_FORMATS}"
+
+    - SEVERITY_OPTION="-m ${TFSEC_MIN_SEVERITY}"
+    - REGO_OPTION=""
+    - if [ ! -z ${TFSEC_REGO_DIR} ]; then
+    -   REGO_OPTION="--rego-policy-dir ${TFSEC_REGO_DIR}"
+    - fi 
+
+    # Save to the file with given format according to the variable
+    - RESULT_FILE="${CI_PROJECT_DIR}/artifacts/tfsec-result"
+    - OUTPUT_OPTION="-O ${RESULT_FILE}"
+
+    - OPTIONS="${CONFIG_OPTION} ${FORMAT_OPTION} ${SEVERITY_OPTION} ${REGO_OPTION} ${OUTPUT_OPTION}"
+    - FAILED=true
+    - if tfsec ${CI_PROJECT_DIR}/${TFSEC_CHECK_DIR} ${OPTIONS} ${ADDITIONAL_OPTIONS}; then
+    -   FAILED=false
+    - fi
+
+    # Generates reports for SARIF files
+    - if [[ "${TFSEC_FORMATS}" = *"sarif"* ]]; then
+    -   cp ${RESULT_FILE}.sarif.json ${CI_PROJECT_DIR}/reports
+    -   cd ${CI_PROJECT_DIR}/reports
+    -   npx -y sarif-codeclimate@1.0.1 -i ${RESULT_FILE}.sarif.json -o code-climate.json
+    -   npx -y sarif-junit@1.1.2 -i ${RESULT_FILE}.sarif.json -o junit.xml --test-suite TfsecTestSuite
+    - fi
+
+    - if [ "$FAILED" = true ]; then
+    -   exit 1
+    - fi
+    - exit 0
+  artifacts:
+    when: always
+    paths: 
+      - ${CI_PROJECT_DIR}/artifacts
+    reports:
+      junit: "${CI_PROJECT_DIR}/reports/junit.xml"
+      codequality: "${CI_PROJECT_DIR}/reports/code-climate.json"
