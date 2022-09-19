@@ -5,7 +5,7 @@ stages:
 
 cloudflare_pages:
   image: 
-    name: node:$IMAGE_TAG
+    name: node:${IMAGE_TAG}
   stage: deploy
   variables:
     PAGES_BUILD_PATH: "build"
