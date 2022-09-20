@@ -22,7 +22,6 @@ from your `package.json` file. For more information see [the doc]('https://pnpm.
 | `PNPM_BUILD_SCRIPT_NAME` | The build script in the `package.json` that you want to run | `build` |
 | `PNPM_BUILD_OPTIONS` | Options passed to your build script | ` ` |
 | `PNPM_BUILD_OUTPUT_FOLDER` | Path to the output produced by the `pnpm` build script used (path relative from the `PROJECT_ROOT`) | `dist` |
-| `PAGES_DEPLOY` | Prepare your build result to be deployed on pages (require [pages job](jobs/deploy/pages/)) | `false` |
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
@@ -37,13 +36,8 @@ stages:
   - deploy
 
 include:
-  # It's recommanded to use fixed version of jobs instead of larest. Here is only for example.
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pnpm_build/latest.yml'
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pages/latest.yaml'
-
-pnpm_build:
-  variables:
-    PAGES_DEPLOY: "true"
 ```
 
 ## Artifact

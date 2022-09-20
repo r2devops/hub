@@ -23,7 +23,6 @@ from your `package.json` file.
 | `NPM_BUILD_SCRIPT_NAME` | The build script in the `package.json` that you want to run | `build` |
 | `NPM_BUILD_OPTIONS` | Options passed to your build script | ` ` |
 | `NPM_BUILD_OUTPUT_FOLDER` | Path to the output produced by the `npm` build script used (path relative from the `PROJECT_ROOT`) | `build` |
-| `PAGES_DEPLOY` | Prepare your build result to be deployed on pages (require [pages job](jobs/deploy/pages/)) | `false` |
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
@@ -38,12 +37,8 @@ stages:
   - deploy
 
 include:
-  - remote: 'https://jobs.r2devops.io/npm_build.yml'
-  - remote: 'https://jobs.r2devops.io/pages.yml'
-
-npm_build:
-  variables:
-    PAGES_DEPLOY: "true"
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/pages/latest.yml'
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/npm_build/latest.yml'
 ```
 
 ## Artifact
