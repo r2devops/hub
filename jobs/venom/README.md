@@ -10,16 +10,16 @@ Run your [Venom](https://github.com/ovh/venom) tests
    customization](https://docs.r2devops.io/get-started-use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-### Variables
+## Variables
 
-| Name | Description                                                                                                                                                                       | Default |
-| ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| `PROJECT_ROOT` | Relative path in your repository to your project.                                                                                                                       | `.`     |
-| `VENOM_VERSION` | The Venom version to install and execute.                                                                                                                              | `1.0.1` |
-| `VENOM_TESTS` | Relative path to a single `yml` file which contains your test suite.                                                                                                     | ` `     |
-| `REPORT_FORMAT` | Format of the Venom report, available formats are  JUnit (xml), json, yaml and tap.                                                                                    | `xml`   |
-| `OUTPUT_DIRECTORY` | Directory path to the Venom reports output.                                                                                                                         | `dist`  |
-| `ADDITIONAL_OPTIONS` | Possibility to add [more options](https://github.com/ovh/venom#executors){:target="_blank"} into the Venom command, like changing the default executor and more.  | ` `     |
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `PROJECT_ROOT` <img width=100/> | Relative path in your repository to your project. <img width=175/> | `.` <img width=100/> |
+| `VENOM_VERSION` | The Venom version to install and execute. | `1.0.1` |
+| `VENOM_TESTS` | Relative path to a single `yml` file which contains your test suite. | ` `     |
+| `REPORT_FORMAT` | Format of the Venom report, available formats are  JUnit (xml), json, yaml and tap. | `xml` |
+| `OUTPUT_DIRECTORY` | Directory path to the Venom reports. | `dist` |
+| `ADDITIONAL_OPTIONS` | Possibility to add [more options](https://github.com/ovh/venom#executors){:target="_blank"} into the Venom command, like changing the default executor and more. | ` ` |
 
 ## Author
 

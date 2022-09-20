@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
 ## Objective
 
 Builds a .NET Core project with the different versions available, and makes it ready to run.
@@ -15,9 +14,9 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 
 ## Variables
 
-| VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
-|:-|:-|:-
-| `DOTNET_OUTPUT` <img width=230/> | Path to the output build (used as artifact) <img width=175/>| `/build` <img width=100/>|
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `DOTNET_OUTPUT` <img width=100/> | Path to the output build (used as artifact) <img width=175/>| `/build` <img width=100/>|
 | `DOTNET_VERSION` | .NET version used to build. You have the choice between multiples versions (see [versions](https://github.com/dotnet/installer#installers-and-binaries){:target="_blank"}). | `3.1` |
 | `DOTNET_VERBOSITY` | Prints more or less logs (*Types available*: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]` and `diag[nostic]`) | `m` |
 | `DOTNET_CONFIG` | Configuration profile used to build | `Debug` |
@@ -27,6 +26,7 @@ It is using the scripted installation provided from Microsoft, see [here](https:
 | `DOTNET_SELF_CONTAINED` | Publish the .NET Core runtime along with the build | `false`
 | `DOTNET_OPTIONS` | Additional options from user | ` `
 | `PROJECT_ROOT` | The location of the .NET project in your repository | `/` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
 
 !!! warning
     Since **version 5.0** of .NET is still in **release-candidate** at this time, the format of `DOTNET_VERSION` is slightly different from just `3.1` or `2.1`. See [Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script#options){:target="_blank"} (*argument `-Channel`*) to see how to specify this new version.

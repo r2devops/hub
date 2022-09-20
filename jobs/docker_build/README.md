@@ -43,7 +43,7 @@ The registry and tag of the resulting Docker image follow this behavior:
 !!! info
     In order to use custom registries, you need to provide the file `config.json` that contains the auths, you can do that by passing it as a [CI/CD file](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} named `CONFIG_FILE` (see example below)
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
@@ -81,5 +81,5 @@ The registry and tag of the resulting Docker image follow this behavior:
 
 
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

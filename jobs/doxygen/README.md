@@ -18,21 +18,21 @@ Other languages can be supported with additional code.
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `INPUT` <img width=650px>               | Input directory of your source files <img width=125>| `.` <img width=300>|
-| `DOXYGEN_CONFIGFILE`               | Name of your Doxygen configuration file| `Doxyfile`|
-| `DOXYGEN_PROJECT_NAME`               | Name of your Doxygen project, for the documentation title| `$CI_PROJECT_NAME`  (Gitlab project name) |
-| `DOXYGEN_INPUT`               | The path to your documented source files| `.`|
-| `DOXYGEN_OUTPUT_DIRECTORY`               | The path of your documentation generated| `.`|
-| `DOXYGEN_OUTPUT_LANGUAGE`               | The language in which your documentation is written| `English`|
-| `DOXYGEN_GENERATE_LATEX`               | Set to YES if you want to generate LaTeX documentation | `YES`|
-| `DOXYGEN_LATEX_OUTPUT`               | The path of your LaTeX documentation generated| `latex/`|
-| `DOXYGEN_GENERATE_HTML`               | Set to YES if you want to generate HTML documentation | `YES`|
-| `DOXYGEN_HTML_OUTPUT`               | The path of your LaTeX documentation generated| `website_build/`|
-| `DOXYGEN_HTML_EXTRA_STYLESHEET`               | The path of additional user-defined cascading style sheets [CSS](https://www.w3schools.com/css/)| ` `|
-| `DOXYGEN_RECURSIVE`               | Specify whether or not subdirectories should be searched for input files as well| `NO`|
-| `DOXYGEN_EXCLUDE`               | Specify files and/or directories that should be excluded from the INPUT source files| ` `|
-| `DOXYGEN_EXCLUDE_PATTERNS`               | If the value of the INPUT tag contains directories, you can use the EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude certain files from those directories.| ` `|
-| `DOXYGEN_PROJECT_LOGO`               | The path of the logo (max-height:55px, max-width:200px) to include in your documentation generated| ` `|
+| `INPUT` <img width=100> | Input directory of your source files <img width=175> | `.` <img width=100> |
+| `DOXYGEN_CONFIGFILE` | Name of your Doxygen configuration file| `Doxyfile`|
+| `DOXYGEN_PROJECT_NAME` | Name of your Doxygen project, for the documentation title| `$CI_PROJECT_NAME`  (Gitlab project name) |
+| `DOXYGEN_INPUT` | The path to your documented source files| `.`|
+| `DOXYGEN_OUTPUT_DIRECTORY` | The path of your documentation generated| `.`|
+| `DOXYGEN_OUTPUT_LANGUAGE` | The language in which your documentation is written| `English`|
+| `DOXYGEN_GENERATE_LATEX` | Set to YES if you want to generate LaTeX documentation | `YES`|
+| `DOXYGEN_LATEX_OUTPUT` | The path of your LaTeX documentation generated| `latex/`|
+| `DOXYGEN_GENERATE_HTML` | Set to YES if you want to generate HTML documentation | `YES`|
+| `DOXYGEN_HTML_OUTPUT` | The path of your LaTeX documentation generated| `website_build/`|
+| `DOXYGEN_HTML_EXTRA_STYLESHEET` | The path of additional user-defined cascading style sheets [CSS](https://www.w3schools.com/css/)| ` `|
+| `DOXYGEN_RECURSIVE` | Specify whether or not subdirectories should be searched for input files as well| `NO`|
+| `DOXYGEN_EXCLUDE` | Specify files and/or directories that should be excluded from the INPUT source files| ` `|
+| `DOXYGEN_EXCLUDE_PATTERNS` | If the value of the INPUT tag contains directories, you can use the EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude certain files from those directories.| ` `|
+| `DOXYGEN_PROJECT_LOGO` | The path of the logo (max-height:55px, max-width:200px) to include in your documentation generated| ` `|
 | `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
 
 

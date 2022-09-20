@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `3`  |
 ## Objective
 
 Run a SSH command on a remote host.
@@ -47,6 +46,7 @@ ssh:
 | `SHELL_COMMAND` | Shell command to run on `TARGET_HOST` | yes | ` `
 | `SSH_PORT` | SSH server port on target host | no | `22`
 | `SSH_OUTPUT_FILE` | File that will be used to store SSH output | no | `ssh_output.txt `
+| `IMAGE_TAG` | The default tag for the docker image | yes | `3`
 
 ## Artifacts
 

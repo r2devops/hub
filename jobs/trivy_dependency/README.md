@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `0.12.0`  |
 ## Objective
 
 Run a security issue detection in your local dependencies using
@@ -56,8 +55,8 @@ documentation](https://github.com/aquasecurity/trivy#application-dependencies){:
 
 ## Variables
 
-| VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
-|:-|:-|:-
+| Name | Description | Default |
+| ---- | ----------- | ------- |
 | `TRIVY_VERSION` | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.12.0` |
 | `TRIVY_SEVERITY` | Severity of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_ON_SEVERITY` | Severities of vulnerabilities for the job to fail at | `MEDIUM`,`HIGH`,`CRITICAL`|
@@ -74,6 +73,7 @@ documentation](https://github.com/aquasecurity/trivy#application-dependencies){:
 | `TRIVY_DEBUG` | Debug mode | false |
 | `TRIVY_SKIP_UPDATE` | Skip vulnerability database update | false |
 | `TRIVY_REMOVED_PKGS` | Detect vulns of Alpine removed packages | false |
+| `IMAGE_TAG` | The default tag for the docker image | `0.12.0`  |
 
 ## Artifacts
 

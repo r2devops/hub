@@ -10,12 +10,12 @@ r2_jobdescription
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
 
-### Variables
+## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `VARIABLE` <img width=100/> | A general variable for this job <img width=175/>| `Hello R2` <img width=100/>|
+| `VARIABLE` <img width=100/> | A general variable for this job <img width=175/> | `Hello R2` <img width=100/> |
 | `IMAGE_TAG` | The default tag for the docker image | `r2_imagetag` |
 
-### Author
+## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@r2_maintainer](https://gitlab.com/r2_maintainer)
