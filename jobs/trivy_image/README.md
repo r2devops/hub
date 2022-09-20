@@ -23,8 +23,8 @@ vulnerability detection capabilities are available in its official
 
 ## Variables
 
-| VARIABLE NAME | DESCRIPTION | DEFAULT VALUE |
-|:-|:-|:-
+| Name | Description | Default |
+| ---- | ----------- | ------- |
 | `TRIVY_VERSION` <img width=450/> | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.9.2` |
 | `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_ON_SEVERITY` | Severities of vulnerabilities for the job to fail at | `MEDIUM`,`HIGH`,`CRITICAL`|

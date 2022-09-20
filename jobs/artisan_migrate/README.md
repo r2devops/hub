@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `7.3`  |
 ## Objective
 
 This job will allow you to migrate the database using a migration file that you already have in `database/migrations`, and it provides an artifact with all the logs at the end
@@ -27,7 +26,7 @@ This job will allow you to migrate the database using a migration file that you 
 | `ENV_NAME` | `.env.testing` | Name of the environment variables file to use |
 | `ARTISAN_MIGRATE_OPTIONS` | ` ` | Options for command `php artisan migrate` |
 | `ARTISAN_OUTPUT` | `artisan_migration.log` | Name for logs file |
-
+| `IMAGE_TAG` | The default tag for the docker image | `7.3`  |
 
 ## Artifacts
 

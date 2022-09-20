@@ -1,4 +1,3 @@
-| `IMAGE_TAG` | The default tag for the docker image | `16.13.1-buster`  |
 ## Objective
 
 Compiles an Angular app into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.
@@ -17,14 +16,13 @@ The application builder uses the webpack build tool, with default configuration 
 
 ## Variables
 
-| Name | Description                                                                                                                                                                                                          | Default              |
-| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| `PROJECT_ROOT` <img width=100/> | Path to the root of project. <img width=175/>                                                                                                                                                                        | `.` <img width=100/> |
-| `PROJECT_NAME` <img width=100/> | Project name specified in the `projects` section of the `angular.json` workspace configuration file. If no `PROJECT_NAME` have been specified it will execute the `ng build` command on the `defaultProject` specified in the `angular.json` file. <img width=175/>                                                                                                | ` ` <img width=100/> |
-| `NG_BUILD_OPTIONS` <img width=100/> | Additional options available for the user, they are added at the end of build command. Check the different options in the official [documentation](https://angular.io/cli/build){:target="_blank"}. <img width=175/> | ` ` <img width=100/> |
-| `OUTPUT_PATH` <img width=100/> | Path to the output produced by the `ng` build script used (path relative from the `PROJECT_ROOT`) <img width=175/>                                                                                                   | `website_build/` <img width=100/> |
-
-
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `PROJECT_ROOT` <img width=100/> | Path to the root of project. <img width=175/> | `.` <img width=100/> |
+| `PROJECT_NAME`  | Project name specified in the `projects` section of the `angular.json` workspace configuration file. If no `PROJECT_NAME` have been specified it will execute the `ng build` command on the `defaultProject` specified in the `angular.json` file. | ` `  |
+| `NG_BUILD_OPTIONS`  | Additional options available for the user, they are added at the end of build command. Check the different options in the official [documentation](https://angular.io/cli/build){:target="_blank"}.  | ` `  |
+| `OUTPUT_PATH`  | Path to the output produced by the `ng` build script used (path relative from the `PROJECT_ROOT`) | `website_build/`  |
+| `IMAGE_TAG` | The default tag for the docker image | `16.13.1-buster`  |
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)
