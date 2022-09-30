@@ -17,7 +17,7 @@ from tools.utils.utils import Config
 utils = Config()
 
 def get_labels(project_name, with_counts=False, include_ancestor_groups=True, search=""):
-    """Get labels of the project, can also serach for a specific label with search filter
+    """Get labels of the project, can also search for a specific label with search filter
 
     Parameters:
     -----------

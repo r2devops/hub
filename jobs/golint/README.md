@@ -1,6 +1,6 @@
 ## Objective
 
-A ready-to-use job to lint your Golang project. It includes a lot of linters such as gosimple, errcheck, ... For more informations, check the [documentation](https://golangci-lint.run/usage/linters/)
+A ready-to-use job to lint your Golang project. It includes a lot of linters such as gosimple, errcheck, ... For more information, check the [documentation](https://golangci-lint.run/usage/linters/)
 
 ## How to use it
 

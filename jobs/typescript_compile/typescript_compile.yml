@@ -22,7 +22,7 @@ typescript_compile:
     - npm install -g typescript@${TYPESCRIPT_VERSION}
 
     # In case the user has a package-lock.json, install modules
-    # Necessary if the user uses Typescript environnement
+    # Necessary if the user uses Typescript environment
     # see: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#tsconfig-bases
     - if [ -f "${CI_PROJECT_DIR}/${PROJECT_ROOT}/package-lock.json" ]; then npm install; fi
     # In case the user doesn't have a valid tsconfig.json

@@ -115,7 +115,7 @@ variable "SCW_SECRET_KEY" {
 
 variable "project_id" {
   type        = string
-  description = "Scaleway Organisation or project id used"
+  description = "Scaleway Organization or project id used"
 }
 
 variable "bucket_name" {
@@ -131,7 +131,7 @@ variable "region" {
 variable "enabled_bucket_versioning" {
   type        = bool
   default     = false
-  description = "Should the buket be versionned"
+  description = "Should the bucket be versioned"
 }
 
 variable "acl" {

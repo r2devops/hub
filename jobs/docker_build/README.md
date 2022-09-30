@@ -47,7 +47,7 @@ The registry and tag of the resulting Docker image follow this behavior:
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `CUSTOM_TAGS` <img width=100/> | Add one or mor specific tag for your image. each tag are separated with space. <img width=175/>| ` ` <img width=100/>|
+| `CUSTOM_TAGS` <img width=100/> | Add one or more specific tag for your image. each tag are separated with space. <img width=175/>| ` ` <img width=100/>|
 | `COMMIT_CREATE_LATEST` | In a commit context, also update `latest` tag | `false` |
 | `TAG_CREATE_LATEST` | In a tag context, also update `latest` tag | `true` |
 | `DOCKER_CONTEXT_PATH` | Path of build context from to repository root | ` ` |

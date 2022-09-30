@@ -114,7 +114,7 @@ def send_message(web_hook: str, data_format: object):
     result = requests.post(web_hook, json=data_format)
 
     if result.status_code != 204:
-       logging.error("[ERROR] A problem occured when sending discord message for this release")
+       logging.error("[ERROR] A problem occurred when sending discord message for this release")
        logging.error("[ERROR] Returned error code: %d", result.status_code)
        logging.error("[ERROR] Result body: %s", result.text)
        sys.exit(1)

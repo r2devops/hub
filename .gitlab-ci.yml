@@ -6,7 +6,7 @@ stages:
 
 include:
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/links_checker/0.2.0.yml?ignore=true.yml'
-  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/spell_check/0.2.1.yml?ignore=true.yml'
+  - remote: 'https://api.r2devops.io/job/r/r2devops-bot/codespell/0.1.0.yml?ignore=true.yml'
 
 variables:
   IMAGE_TAG_PYTHON_ALPINE: "alpine3.16"
@@ -192,9 +192,13 @@ job_gitlab_labels:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
-spell_check:
+codespell:
+  stage: static_tests
   variables:
-    PYSPELLING_CONFIG: '.spell_check/.pyspelling.yml'
+    CODESPELL_DICTIONARY: ".codespell/dictionary.txt"
+    #separate each file to ignore with a space
+    CODESPELL_IGNORE_FILES: "./jobs/doxygen/test/src/sample.cpp"
+
 
 
 # See https://docs.gitlab.com/ee/api/releases/
