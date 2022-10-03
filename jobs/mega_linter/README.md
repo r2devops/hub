@@ -1,9 +1,9 @@
 ## Objective
 
-Lint all your files using
-[MegaLinter](https://github.com/oxsecurity/megalinter/){:target="_blank"}. It
-supports [50 languages, 22 formats, 20 tooling
-formats](https://github.com/oxsecurity/megalinter#supported-linters) and ready
+MegaLinter is an Open-Source tool for CI/CD workflows that analyzes the consistency of your code, IAC, configuration, and scripts in your repository sources, to ensure all your projects sources are clean and formatted whatever IDE/toolbox is used by their developers, powered by [OX security](https://www.ox.security/?ref=r2devops).
+
+[MegaLinter](https://github.com/oxsecurity/megalinter/){:target="_blank"} supports [50 languages, 22 formats, 20 tooling
+formats](https://github.com/oxsecurity/megalinter#supported-linters) and it's ready
 to use out of the box.
 
 ## How to use it
@@ -17,16 +17,16 @@ to use out of the box.
 
 ## Behavior
 
-By default, this job will run MegaLinter on your project and lint all the files.
-The default output defined by the `OUTPUT_FORMAT` variable is `sarif`. With this output, you will see the result of the linter in the Test section of the merge request and also have a code review with performed with [CodeClimate](https://codeclimate.com/quality).
+By default, this job will run MegaLinter on your project, lint all the files and perform a code review with [CodeClimate](https://codeclimate.com/quality).
 
-!!! info "TAP report format 🗃️" 
-   For changing the output format to TAP, the `OUTPUT_FORMAT` variable should be edited. ⚠️ This format is **DEPRECATED** and is not recommended for use.
+!!! info "How can i see errors in the report?" 
+   While working on a merge_request, the `mega_linter` report summary will be displayed on the overview page inside the `Test summary` and `Code Quality` tabs.
+   MegaLinter could also write comments directly in the merge request comments section (see `GITLAB_COMMENT_REPORTER` variable).
 ## Variables
 
 !!! info
     This section describes the most significant variables [from this full
-    list](https://github.com/oxsecurity/megalinter/#common-variables){:target="_blank"}.
+    list](https://oxsecurity.github.io/megalinter/latest/configuration/){:target="_blank"}.
 
 This job can be used without configuration. By default, it will detect files in
 your repository and run relevant linter on them. You can also use variables to
@@ -38,17 +38,16 @@ customize its behavior.
 | ---- | ----------- | ------- |
 | `DEFAULT_WORKSPACE` <img width=100/> | Directory where the linter will work <img width=175/>| `${CI_PROJECT_DIR}` <img width=100/>|
 | `DEFAULT_BRANCH`| Default branch of your project | `${CI_DEFAULT_BRANCH}` |
-| `FILTER_REGEX_EXCLUDE` | Regex in order to exclude specific files | `none` |
+| `FILTER_REGEX_EXCLUDE` | Regex in order to exclude specific files | ` ` |
 | `LINTER_RULES_PATH` | Directory where are stored linters configuration | `.linters` |
 | `MEGALINTER_CONFIG` | MegaLinter configuration file location | `.mega_linter.yml` |
 | `VALIDATE_ALL_CODEBASE` | Whether linters should only go through **edited** or **new** files | `true` |
-| `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `${DEFAULT_WORKSPACE}/report` |
-| `OUTPUT_FORMAT` | Additional format to be converted into JUnit report : `sarif` or `tap`(DEPRECATED) | `sarif` |
+| `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `megalinter-reports` |
 | `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `JUnit` or `CodeClimate` reports | `converted-xml.report` |
-| `TAP_JUNIT_VERSION` | [`tap-junit`](https://www.npmjs.com/package/tap-junit) tool version | `4.2.0` |
+|`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/){:target="_blank"}) | `true` |
 | `REPORT_SUITE_TEST_NAME` | `JUnit` report suites name | `mega_linter` |
-| `DISABLE_LINTERS` | Comma separated list of linters to be disabled | `SPELL_CSPELL` |
-| `IMAGE_TAG` | The default tag for the docker image | `v6.8.0` |
+| `DISABLE_LINTERS` | Comma separated list of linters to be disabled | ` ` |
+| `IMAGE_TAG` | The default tag for the docker image | `v6.11.1` |
 
 ## Optimize MegaLinter
 
@@ -57,7 +56,7 @@ projects, you will find the complete list
 [here](https://github.com/oxsecurity/megalinter#flavors).
 
 By using a flavor instead of the default image, you'll be able to optimize the
-docker image size and your pipeline.  If any of the flavors is matching your
+docker image size and your pipeline. If any of the flavors is matching your
 project type, all you have to do is overriding the image used in the job, like
 this:
 
@@ -73,11 +72,9 @@ Two formats are available for the artifacts:
 - [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in
 merge request widget.
 - [CodeClimate](https://codeclimate.com/quality)'s JSON report to display error report directly in merge request widget.
-⚠️ This report is only available if the variable `OUTPUT_FORMAT` is set to `sarif`.
 
 ## Dependencies
 The job uses the following dependencies for converting the `output` to `JUnit` or `CodeClimate`:
-- [tap-junit](https://www.npmjs.com/package/tap-junit) tool to convert `TAP` to `JUnit`
 - [sarif-junit](https://www.npmjs.com/package/sarif-junit) tool to convert `SARIF` to `JUnit`
 - [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) tool to convert `SARIF` to `CodeClimate`
 
