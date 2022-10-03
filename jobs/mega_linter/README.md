@@ -21,7 +21,10 @@ By default, this job will run MegaLinter on your project, lint all the files and
 
 !!! info "How can i see errors in the report?" 
    While working on a merge_request, the `mega_linter` report summary will be displayed on the overview page inside the `Test summary` and `Code Quality` tabs.
-   MegaLinter could also write comments directly in the merge request comments section (see `GITLAB_COMMENT_REPORTER` variable).
+   
+!!! info "How can i get results summary directly in the merge request comments?"    
+   MegaLinter could also write comments directly in the merge request comments section (see `GITLAB_COMMENT_REPORTER` variable). 
+   ⚠️ You need to configure an access token between GitLab and MegaLinter, see the [documentation](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}.
 ## Variables
 
 !!! info
@@ -44,7 +47,7 @@ customize its behavior.
 | `VALIDATE_ALL_CODEBASE` | Whether linters should only go through **edited** or **new** files | `true` |
 | `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `megalinter-reports` |
 | `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `JUnit` or `CodeClimate` reports | `converted-xml.report` |
-|`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/){:target="_blank"}) | `true` |
+|`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}) | `true` |
 | `REPORT_SUITE_TEST_NAME` | `JUnit` report suites name | `mega_linter` |
 | `DISABLE_LINTERS` | Comma separated list of linters to be disabled | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `v6.11.1` |
