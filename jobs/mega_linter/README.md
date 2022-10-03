@@ -22,7 +22,7 @@ By default, this job will run MegaLinter on your project, lint all the files and
 !!! info "How can i see errors in the report?" 
    While working on a merge_request, the `mega_linter` report summary will be displayed on the overview page inside the `Test summary` and `Code Quality` tabs.
    
-!!! info "How can i get results summary directly in the merge request comments?"    
+!!! info "How can i get results summary directly in the merge request comments?"
    MegaLinter could also write comments directly in the merge request comments section (see `GITLAB_COMMENT_REPORTER` variable). 
    ⚠️ You need to configure an access token between GitLab and MegaLinter, see the [documentation](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}.
 ## Variables
