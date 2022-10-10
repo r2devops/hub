@@ -19,8 +19,8 @@ trivy_image:
     TRIVY_VULN_TYPE: "os,library"
     TRIVY_NO_PROGRESS: "false"
     TRIVY_OUTPUT: "junit-report.xml"
-    TRIVY_IGNOREFILE: .trivyignore
-    TRIVY_CACHE_DIR: .trivycache/
+    TRIVY_IGNOREFILE: ".trivyignore"
+    TRIVY_CACHE_DIR: ".trivycache/"
     TRIVY_FORMAT: "template"
     TEMPLATE_NAME: "junit.tpl"
     TRIVY_CLEAR_CACHE: "false"
@@ -31,7 +31,7 @@ trivy_image:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    TRIVY_VERSION: "0.9.2"
+    TRIVY_VERSION: "0.32.1"
     TRIVY_REMOTE: ""
     TRIVY_TIMEOUT: ""
     TRIVY_LIGHT: "false"
@@ -45,7 +45,7 @@ trivy_image:
     REGISTRY_PASSWORD: ""
     CUSTOM_TAG: ""
 
-    IMAGE_TAG: "19.03"
+    IMAGE_TAG: "20.10"
   script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
@@ -68,10 +68,10 @@ trivy_image:
     - fi
 
     # Build report
-    - ./trivy --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS} $IMAGE
+    - ./trivy image --format template --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS} $IMAGE
     # Fail on severe vulnerabilities
     - if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
-    -   ./trivy --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} --template "@${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output failed.${TRIVY_OUTPUT} ${TRIVY_OPTIONS} $IMAGE
+    -   ./trivy image --exit-code 1 --severity ${TRIVY_EXIT_ON_SEVERITY} --template "@contrib/${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output failed.${TRIVY_OUTPUT} ${TRIVY_OPTIONS} $IMAGE
     - fi
 
 
