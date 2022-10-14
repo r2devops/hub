@@ -1,0 +1,50 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+ 
+job_release:
+  stage: deploy
+  image:
+    name: alpine/httpie:${IMAGE_TAG}
+    entrypoint: [""]
+  variables:
+    JOBS_DIRECTORY: "jobs"
+    IMAGE_TAG: "3.2.1"
+    GITLAB_API_URL: "gitlab.com"
+  before_script:
+    - apk update && apk add --no-cache bash
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
+    
+  script: >
+    PROJECT_ENCODED=$(/bin/bash -c "$(http --ignore-stdin --body https://gist.githubusercontent.com/cdown/1163649/raw/8a35c36fdd24b373788a7057ed483a5bcd8cd43e/gistfile1.sh) && _encode '$CI_PROJECT_PATH'");
+
+    for JOB in ${JOBS_DIRECTORY}/*; do
+      JOB=$(basename ${JOB})
+      # Retrieve all versions of the job inside the CHANGELOG file, ## [(0.2.0)] - 2021-04-20 => get only this part ()
+      VERSIONS=$(sed -rn 's/^##\s*\[\s*([^\ ]*)\s*\]\s*-\s*[0-9]{4}-[0-9]{2}-[0-9]{2}\s*/\1/p' ${JOBS_DIRECTORY}/${JOB}/CHANGELOG.md)
+      for VERSION in ${VERSIONS}; do
+        #Retrieve the changes between two versions
+        CHANGELOG=$(sed -n "/^##\s*\[\s*${VERSION}\s*\]/,/^##/p" ${JOBS_DIRECTORY}/${JOB}/CHANGELOG.md | sed -e '/^$/d' | head -n -1 | tail -n +2)
+        #For initial version, we don't have a previous version, so set to default message
+        [ -z "${CHANGELOG}" ] && CHANGELOG=$(sed -n "/^##\s*\[\s*$VERSION\s*\]/,/^[^##]/p" ${JOBS_DIRECTORY}/${JOB}/CHANGELOG.md | sed -e '/^$/d' | tail -n +2)
+        result=$(http --ignore-stdin POST https://${GITLAB_API_URL}/api/v4/projects/$PROJECT_ENCODED/releases \
+          "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+          tag_name=${JOB}-${VERSION} \
+          ref=${CI_COMMIT_SHA} \
+          "description=${CHANGELOG}")
+          if [ $(echo $result | grep "Release already exists\|${JOB}-${VERSION}" | wc -l) -eq 0 ]; then
+            echo "[ERROR] Problem when attempting to create release ${JOB}-${VERSION}"
+            echo "[ERROR] ${result}"
+            exit 1;
+          else
+            if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
+              echo "New version detected for $JOB-$VERSION"
+            fi
+            echo "Processed ${JOB}-${VERSION} : ${result}";
+          fi
+      done
+    done
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
