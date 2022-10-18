@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.5.0] - 2022-10-03
+* Add `GITLAB_COMMENT_REPORTER` variable to displays errors in the comments section of merge requests
+* Remove the `tap-junit` output conversion and use `sarif` by default
+* Bump megalinter version to `v6.11.1`
+* Remove `OUTPUT_FORMAT` and `OUTPUT_DETAIL` variables
+* Activate `CSPELL` lint
+* Remove default value of `FILTER_REGEX_EXCLUDE` variable
+* Change the default value of `REPORT_OUTPUT_FOLDER` variable into `megalinter-reports`
 
 ## [1.4.0] - 2022-09-28
 * Default output format is now `sarif` instead of `tap`(deprecated)
