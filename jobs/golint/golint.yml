@@ -8,19 +8,45 @@ golint:
   stage: tests
   variables:
     PROJECT_ROOT: "."
-    CONFIG_LOCATION: ""
+    GOLINT_CONFIG: ""
+    GOLINT_REPORTS_DIRECTORY: "reports"
+    GOLINT_OUTPUT_FORMAT: "junit-xml" 
     ADDITIONAL_OPTIONS: ""
-    GOLINT_OUTPUT: "report-golint.xml"
-
-    IMAGE_TAG: "v1.43.0"
+    IMAGE_TAG: "v1.50.1"
   script:
-    - cd $PROJECT_ROOT
-    - $([ ${CONFIG_LOCATION} != "" ]) && CONFIG_LOCATION="--config $CONFIG_LOCATION"
-    - golangci-lint run $(find -type f -name "*.go" ) $ADDITIONAL_OPTIONS $CONFIG_LOCATION --out-format "junit-xml" > $GOLINT_OUTPUT
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
+    - mkdir ${GOLINT_REPORTS_DIRECTORY}
+    - touch ${GOLINT_REPORTS_DIRECTORY}/report-golint.xml
+    - touch ${GOLINT_REPORTS_DIRECTORY}/report-golint.json
+    - REPORTS_FILES="${GOLINT_REPORTS_DIRECTORY}-files"
+    - mkdir ${REPORTS_FILES}
+    - CONFIG_OPTIONS=""
+    - $([ "${GOLINT_CONFIG}" != "" ]) && CONFIG_OPTIONS="--config ${GOLINT_CONFIG}"
+    - FORMAT_OPTIONS=""
+    - if [ "${GOLINT_OUTPUT_FORMAT}" != "colored-line-number" ]; then
+    -   FORMAT_OPTIONS="--out-format ${GOLINT_OUTPUT_FORMAT}"
+    - fi
+    - EXTENSION_REPORT=""
+    - if [ "${GOLINT_OUTPUT_FORMAT}" == "junit-xml" ]; then
+    -   EXTENSION_REPORT="xml"
+    - fi
+    - if [ "${GOLINT_OUTPUT_FORMAT}" == "code-climate" ]; then
+    -   EXTENSION_REPORT="json"
+    - fi
+    - if [ ! -z "${EXTENSION_REPORT}" ]; then
+    -   if ! golangci-lint run -v ${ADDITIONAL_OPTIONS} ${CONFIG_OPTIONS} ${FORMAT_OPTIONS} > ${REPORTS_FILES}/report-golint.${EXTENSION_REPORT}; then
+    -     cp ${REPORTS_FILES}/* ${CI_PROJECT_DIR}/${PROJECT_ROOT}/${GOLINT_REPORTS_DIRECTORY}
+    -     exit 1
+    -   fi
+    - else
+    -   golangci-lint run -v ${ADDITIONAL_OPTIONS} ${CONFIG_OPTIONS} ${FORMAT_OPTIONS}
+    - fi
+
 
   artifacts:
     when: always
     paths:
-    - ${PROJECT_ROOT}/$GOLINT_OUTPUT
+    - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/${GOLINT_REPORTS_DIRECTORY}
     reports:
-      junit: ${PROJECT_ROOT}/$GOLINT_OUTPUT
+      junit: ${CI_PROJECT_DIR}/${PROJECT_ROOT}/${GOLINT_REPORTS_DIRECTORY}/report-golint.xml
+      codequality: ${CI_PROJECT_DIR}/${PROJECT_ROOT}/${GOLINT_REPORTS_DIRECTORY}/report-golint.json

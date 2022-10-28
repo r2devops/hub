@@ -22,7 +22,7 @@ if one of them should not be.
     - Option 1: external service
 
     Add the IP address or the domain name of the service in `NMAP_TARGET`
-    (see [jobs customization](http://localhost:8000/use-the-hub/#jobs-customization))
+    (see [jobs customization](/use-the-hub/#jobs-customization))
 
     - Option 2: container instance
 

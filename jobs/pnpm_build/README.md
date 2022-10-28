@@ -1,7 +1,7 @@
 ## Objective
 
 This job allows you to build your project with `pnpm` using a script (`build` by default)
-from your `package.json` file. For more information see [the doc]('https://pnpm.io/cli/run')
+from your `package.json` file. For more information see [the doc]('https://pnpm.io/cli/run)
 
 ## How to use it
 

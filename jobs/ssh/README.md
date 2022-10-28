@@ -7,7 +7,7 @@ Run a SSH command on a remote host.
 1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
 1. Set the secret variable `SSH_PRIVATE_KEY` as CI/CD variables (it can be file
    or variable type) in [your Gitlab
-   project](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui){:target="_blank"}
+   project](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project){:target="_blank"}
    if you need encrypted variables
 1. Set the variables `SSH_USER`, `TARGET_HOST` and `SHELL_COMMAND` by
    overriding the job or as Gitlab CI/CD variables. See [variables
@@ -33,7 +33,7 @@ ssh:
 
 !!! info
     All variables can be set using [Gitlab CI/CD
-    variables](https://docs.gitlab.com/12.10/ee/ci/variables/#via-the-ui) to
+    variables](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project) to
     avoid exposing them in clear in your `.gitlab-ci.yml`. This is recommended
     for sensible parameters as `SSH_USER` or `TARGET_HOST` and it's **HIGHLY**
     recommended for secret variable `SSH_PRIVATE_KEY`.

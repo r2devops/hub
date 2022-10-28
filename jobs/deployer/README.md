@@ -11,7 +11,7 @@ Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"
     !!! info
         `SSH_KNOWN_HOSTS` needs to contain the same data that we find in the file `.ssh/known_hosts`, this step is needed so that the SSH connection doesn't ask to add the server to `.ssh/known_hosts` as you wouldn't be able to interact with the terminal.
 
-1. Make sure that you have the deployer config file (`deploy.php` or `deploy.yaml`) in the root folder of your project, More info in [this guide](https://deployer.org/docs/getting-started.html){:target="_blank"}
+1. Make sure that you have the deployer config file (`deploy.php` or `deploy.yaml`) in the root folder of your project, More info in [this guide](https://deployer.org/docs/7.x/getting-started){:target="_blank"}
 1. If you need to customize other part of the job (stage, variables, ...) 👉
    check the [jobs customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
