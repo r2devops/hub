@@ -5,12 +5,11 @@ ESLint statically analyzes your code to quickly find problems in your JavaScript
 ## How to use it
 
 
-1. Add this job URL inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-    ```yaml
-      - remote: 'https://jobs.r2devops.io/latest/eslint.yml'
-    ```
-1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the
+   [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed
+   version](#changelog) instead of `latest`.
+1. The job can be run "out of the box". If you need to personalize its
+   behavior, check the [variables section](#variables)
 1. Well done, your job is ready to work ! 😀
 
 ## Variables

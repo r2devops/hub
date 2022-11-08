@@ -166,7 +166,7 @@ links_checker:
     # job will be migrated to a new tool soon (see #314)
     LICHE_EXCLUDE: ^([^http]|https://gitlab.com/r2devops/hub/-/forks/new)|^([^http]|https://r2devops.io/.+)|^([^http]|https://api.r2devops.io/.+)
     FAIL_ON_BROKEN: "true"
-    LICHE_DIRECTORY: "docs/"
+    LICHE_DIRECTORY: "jobs/"
   allow_failure: true
 
 # See https://docs.gitlab.com/ee/api/labels.html
