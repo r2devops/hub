@@ -7,7 +7,7 @@ go_unit_test:
   variables:
     UT_WORK_DIR: $CI_PROJECT_DIR
     UT_TEST_CMD: "go test -v"
-    IMAGE_TAG: "1.18"
+    IMAGE_TAG: "1.19.3"
   script:
     # Switch to working directory
     - cd "$UT_WORK_DIR"
@@ -15,7 +15,9 @@ go_unit_test:
     - go get -u github.com/jstemmer/go-junit-report@v1.0.0 github.com/t-yuki/gocover-cobertura@v0.0.0-20180217150009-aaee18c8195c
     - go install github.com/jstemmer/go-junit-report github.com/t-yuki/gocover-cobertura
     # Execute Unit tests to get both the junit report and the coverage file
-    - ${UT_TEST_CMD} -coverprofile=coverage.out ./... 2>&1 | go-junit-report -set-exit-code > report.xml
+    - ${UT_TEST_CMD} -coverprofile=coverage.out ./... 2>&1 | tee test_report
+    # Convert output to junit
+    - cat test_report | go-junit-report -set-exit-code > report.xml
     # Output the coverage to stdout for coverage regex to read
     - go tool cover -func=coverage.out
     # Capture coverage in cobertura format for MR highlighting
@@ -32,6 +34,6 @@ go_unit_test:
     when: always
     reports:
       junit: report.xml
-      coverage_report: 
+      coverage_report:
         coverage_format: cobertura
         path: cobertura.xml
