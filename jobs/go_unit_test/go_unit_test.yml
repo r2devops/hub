@@ -7,7 +7,7 @@ go_unit_test:
   variables:
     UT_WORK_DIR: $CI_PROJECT_DIR
     UT_TEST_CMD: "go test -v"
-    IMAGE_TAG: "1.18"
+    IMAGE_TAG: "1.19.3"
   script:
     # Switch to working directory
     - cd "$UT_WORK_DIR"
