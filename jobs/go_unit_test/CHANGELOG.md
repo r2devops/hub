@@ -3,9 +3,10 @@ All notable changes to this job will be documented in this file.
 
 ## [1.3.0] - 2022-11-08
 * Update docker image version into golang 1.19.3
+* Improve job output
 
 ## [1.2.0] - 2022-06-13
-* Add docker image tag in variable 
+* Add docker image tag in variable
 
 ## [1.1.0] - 2022-04-14
 * Rename GitLab report from `cobertura` to `coverage_report`
