@@ -26,10 +26,10 @@ trivy_dependency:
     TRIVY_DEBUG: "false"
     TRIVY_OPTIONS: ""
 
-    TRIVY_VERSION: "0.12.0"
+    TRIVY_VERSION: "0.34.0"
     TRIVY_REMOTE: ""
     TRIVY_SKIP_UPDATE: "false"
-    IMAGE_TAG: "0.12.0"
+    IMAGE_TAG: "0.34.0"
   script:
     # Build report
     - trivy fs --template "@${TRIVY_TEMPLATE_DIRECTORY}/${TEMPLATE_NAME}" --cache-dir ${TRIVY_CACHE_DIR} --output ${TRIVY_OUTPUT} ${TRIVY_OPTIONS} ./
