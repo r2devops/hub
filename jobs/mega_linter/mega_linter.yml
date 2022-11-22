@@ -35,7 +35,7 @@ mega_linter:
     # List of disabled linters in every case, this linter is deactivated due to
     # its time of processing (~10 minutes on tested projects)
     DISABLE_LINTERS: SPELL_CSPELL
-    IMAGE_TAG: "v6.11.1"
+    IMAGE_TAG: "v6.13.0"
   script:
     - FAILED=false
     - |

@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.3.0] - 2022-11-22
+* Update trivy and docker images versions
+
 ## [1.2.0] - 2022-10-10
 * Update trivy and docker images versions
 

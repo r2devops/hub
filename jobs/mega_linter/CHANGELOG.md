@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.6.0] - 2022-11-22
+* Bump megalinter version to v6.13.0
+
 ## [1.5.0] - 2022-10-03
 * Add `GITLAB_COMMENT_REPORTER` variable to displays errors in the comments section of merge requests
 * Remove the `tap-junit` output conversion and use `sarif` by default

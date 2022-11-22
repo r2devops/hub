@@ -22,7 +22,7 @@ This job let you the possibility to change SwaggerUI version (see [versions](htt
 | `API_DEF_LOCATION` <img width=250/> | Path to your OpenAPI file in your repository <img width=400/> | `openapi.json` |
 | `SWAGGER_OUTPUT` | Output directory path | `website_build/` |
 | `SWAGGERUI_VERSION` | Version of SwaggerUI (see [versions](https://github.com/swagger-api/swagger-ui#compatibility){:target="_blank"}) | `v3.37.0` |
-| `IMAGE_TAG` | The default tag for the docker image | `3.12.1`  |
+| `IMAGE_TAG` | The default tag for the docker image | `3.16.2`  |
 
 ## Artifacts
 

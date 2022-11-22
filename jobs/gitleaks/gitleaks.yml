@@ -7,7 +7,7 @@ gitleaks:
     name: zricethezav/gitleaks:${IMAGE_TAG}
     entrypoint: [""]
   variables:
-    IMAGE_TAG: "v8.6.0"
+    IMAGE_TAG: "v8.15.0"
   script:
     - gitleaks detect -v -r gitleaks-report.json
   artifacts:

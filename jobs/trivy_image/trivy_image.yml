@@ -31,7 +31,7 @@ trivy_image:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    TRIVY_VERSION: "0.32.1"
+    TRIVY_VERSION: "0.34.0"
     TRIVY_REMOTE: ""
     TRIVY_TIMEOUT: ""
     TRIVY_LIGHT: "false"
@@ -45,7 +45,7 @@ trivy_image:
     REGISTRY_PASSWORD: ""
     CUSTOM_TAG: ""
 
-    IMAGE_TAG: "20.10"
+    IMAGE_TAG: "20.10.21"
   script:
     - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
     - tar zxvf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz

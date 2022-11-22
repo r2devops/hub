@@ -23,7 +23,7 @@ gitleaks:
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `v8.15.0`  |
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

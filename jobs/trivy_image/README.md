@@ -25,7 +25,7 @@ vulnerability detection capabilities are available in its official
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `TRIVY_VERSION` <img width=450/> | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.32.1` |
+| `TRIVY_VERSION` <img width=450/> | Version of trivy to use. Releases version are available [here](https://github.com/aquasecurity/trivy/releases){:target="_blank"} | `0.34.0` |
 | `TRIVY_SEVERITY` | Severities of vulnerabilities to be displayed | `UNKNOWN`,`LOW`,`MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_ON_SEVERITY` | Severities of vulnerabilities for the job to fail at | `MEDIUM`,`HIGH`,`CRITICAL`|
 | `TRIVY_EXIT_CODE` | Exit code when vulnerabilities were found | `0` |
@@ -51,7 +51,7 @@ vulnerability detection capabilities are available in its official
 | `REGISTRY_USER` | User to use for authenticating `CUSTOM_REGISTRY` | ` ` |
 | `REGISTRY_PASSWORD` | Password to use for authenticating `CUSTOM_REGISTRY` | ` ` |
 | `CUSTOM_TAG` | If you want to use another tag beside `CI_COMMIT_SHA` or `CI_COMMIT_TAG` | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `20.10`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20.10.21`  |
 
 ## Artifacts
 
