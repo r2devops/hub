@@ -15,7 +15,7 @@ gofmt:
     GOFMT_PRINT_FILENAME: "false"
     # Generate a temporary file as an output.
     GOFMT_OUTPUT_FILE: "gofmt_output_file"
-    IMAGE_TAG: "1.17-alpine3.14"
+    IMAGE_TAG: "1.19-alpine3.16"
   script:
     - if [ "$GOFMT_PRINT_DIFF" == "true" ]; then
     -      GOFMT_OPTIONS="$GOFMT_OPTIONS -d"

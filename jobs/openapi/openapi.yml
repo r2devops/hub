@@ -8,7 +8,7 @@ openapi:
     API_DEF_LOCATION: "openapi.json"
     SWAGGER_OUTPUT: "website_build/"
     SWAGGERUI_VERSION: "v3.37.0"
-    IMAGE_TAG: "3.12.1"
+    IMAGE_TAG: "3.16.2"
   script:
     - apk add git
     - git clone --depth 1 --branch ${SWAGGERUI_VERSION} https://github.com/swagger-api/swagger-ui.git ./swaggerui

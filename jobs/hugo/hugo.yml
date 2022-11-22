@@ -18,7 +18,7 @@ hugo:
     HUGO_OUTPUT: "public/"
     ADDITIONAL_OPTIONS: ""
 
-    IMAGE_TAG: "1.17.6-buster"
+    IMAGE_TAG: "1.19-buster"
   script:
     - cd ${PROJECT_ROOT}
     - curl -SL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -o /tmp/hugo.tar.gz

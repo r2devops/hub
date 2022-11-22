@@ -12,7 +12,7 @@ mkdocs:
     MKDOCS_OUTPUT_PATH: 'website_build/'
     MKDOCS_ADDITIONAL_PLUGINS: 'mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin'
 
-    IMAGE_TAG: "8.1.4"
+    IMAGE_TAG: "8.5.10"
   script:
     - |
       if [[ ${MKDOCS_ADDITIONAL_PLUGINS} != "" ]]; then
