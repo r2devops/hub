@@ -13,7 +13,8 @@ Fix common misspellings inside your code with [codespell](https://github.com/cod
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `CODESPELL_DICTIONARY` <img width=100/> | The dictionary file to ignore some words from the analyze. Check the behavior below 👇 <img width=175/> | `dictionary.txt` <img width=100/> |
+| `CODESPELL_DIRECTORY` <img width=100/> | Path to the directory to be analyzed <img width=175/> | `.` <img width=100/> |
+| `CODESPELL_DICTIONARY` | The dictionary file to ignore some words from the analyze. Check the behavior below 👇 | `dictionary.txt` |
 | `CODESPELL_IGNORE_FILES` | Ignore files from the analyze. Separate each file with a space | ` ` |
 | `CODESPELL_VERSION` | The version of codespell to install. Check out the [releases](https://github.com/codespell-project/codespell/releases) | `3.10-alpine3.16` |
 | `IMAGE_TAG` | The default tag for the docker image | `3.10-alpine3.16` |
