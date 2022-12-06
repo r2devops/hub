@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.0] - 2022-12-06
+* Fix the dry-run mode
+* Allow to specify full configuration path
+* Update versions of all tools used in the job
+* BREAKING CHANGE: update some variables names to be compliant with another jobs
+
 ## [0.4.0] - 2022-09-20
 * Run this job only if previous stages are successful
 
