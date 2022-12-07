@@ -7,41 +7,43 @@ semantic_release:
   image: node:${IMAGE_TAG}
   stage: release
   variables:
-    SEMANTIC_CONFIG_DIR: "/"
+    GITLAB_TOKEN: ""
+    SEMANTIC_CONF_PATH: ".releaserc"
     SEMANTIC_DRY_RUN: "false"
-    SEMANTIC_RELEASE_VERSION: "17.4.3"
-    SEMANTIC_GITLAB_VERSION: "6.1.0"
-    SEMANTIC_GIT_VERSION: "9.0.0"
-    SEMANTIC_CHANGELOG_VERSION: "5.0.1"
-    SEMANTIC_EXEC_VERSION: "5.0.0"
-    SEMANTIC_APM_VERSION: "3.0.0"
-    SEMANTIC_RELEASE_OPTIONS: ""
     SEMANTIC_ADDITIONAL_PACKAGES: ""
+    SEMANTIC_ADDITIONAL_OPTIONS : ""
+    SEMANTIC_RELEASE_VERSION: "19.0.5"
+    SEMANTIC_GITLAB_VERSION: "9.5.0"
+    SEMANTIC_GIT_VERSION: "10.0.1"
+    SEMANTIC_CHANGELOG_VERSION: "6.0.2"
+    SEMANTIC_EXEC_VERSION: "6.0.2"
+    SEMANTIC_APM_VERSION: "4.0.2"
+    SEMANTIC_CONVENTIONALCOMITS_VERSION: "5.0.0"
     IMAGE_TAG: "18-buster"
   script:
-    - if [ ! -d ${CI_PROJECT_DIR}/${SEMANTIC_CONFIG_DIR} ]; then
-    -   echo '${SEMANTIC_CONFIG_DIR} leads to an invalid directory'
-    -   exit 1
-    - fi
-    - cd ${CI_PROJECT_DIR}/${SEMANTIC_CONFIG_DIR}
-    # We install all official packages, so we support the wildest range of users
+    # We install all official packages, so we support a widest range of users
     - |
-      npm install --save-dev semantic-release@${SEMANTIC_RELEASE_VERSION} \
+      npm install semantic-release@${SEMANTIC_RELEASE_VERSION} \
       @semantic-release/gitlab@${SEMANTIC_GITLAB_VERSION} \
       @semantic-release/git@${SEMANTIC_GIT_VERSION} \
       @semantic-release/changelog@${SEMANTIC_CHANGELOG_VERSION} \
       @semantic-release/exec@${SEMANTIC_EXEC_VERSION} \
-      @semantic-release/apm@${SEMANTIC_APM_VERSION}
+      @semantic-release/apm@${SEMANTIC_APM_VERSION} \
+      conventional-changelog-conventionalcommits@${SEMANTIC_CONVENTIONALCOMITS_VERSION}
+
+    - if [ "$SEMANTIC_CONF_PATH" != ".releaserc" ]; then
+    -   cp $SEMANTIC_CONF_PATH .releaserc
+    - fi
 
     - if [ ! -z ${SEMANTIC_ADDITIONAL_PACKAGES} ]; then
-    -   npm install --save-dev ${SEMANTIC_ADDITIONAL_PACKAGES}
+    -   npm install ${SEMANTIC_ADDITIONAL_PACKAGES}
     - fi
 
-    - if [ "$SEMANTIC_RELEASE_OPTIONS" = "true" ]; then
-    -   export SEMANTIC_RELEASE_OPTIONS="-d $SEMANTIC_RELEASE_OPTIONS"
+    - if [ "$SEMANTIC_DRY_RUN" = "true" ]; then
+    -   export SEMANTIC_ADDITIONAL_OPTIONS="-d $SEMANTIC_ADDITIONAL_OPTIONS"
     - fi
 
-    - npx semantic-release $SEMANTIC_RELEASE_OPTIONS | tee -a output.log
+    - npx semantic-release $SEMANTIC_ADDITIONAL_OPTIONS | tee -a semantic-output.log
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   cache:
@@ -52,4 +54,4 @@ semantic_release:
     when: always
     expose_as: "semantic-release logs"
     paths:
-      - output.log
+      - semantic-output.log

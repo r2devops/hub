@@ -15,15 +15,8 @@ version of the software is needed, and the content of your release note. Learn m
     [Configuration file](https://semantic-release.gitbook.io/semantic-release/usage/configuration#configuration-file){:target="_blank"}
     can be written through different format, be sure to use a valid one (e.o. in `package.json` or `.releaserc`).
 
-1. Have a valid `semantic-release` configuration in your repository, and update `SEMANTIC_CONFIG_DIR` with its path
-1. *Optional*: If you are using [`@semantic-release/gitlab`](https://github.com/semantic-release/gitlab#environment-variables){:target="_blank"},
-   add a [CI/CD variable](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project){:target="_blank"}
-   named `GITLAB_TOKEN` containing a GitLab
-   [personal access token](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html){:target="_blank"}.
-1. *Optional*: If you are using a plugin which is not listed in
-   [official plugins](https://github.com/semantic-release/semantic-release/blob/master/docs/extending/plugins-list.md#plugins-list){:target="_blank"},
-   update `SEMANTIC_ADDITIONAL_PACKAGES` with the plugins you need.
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Have a valid `semantic-release` configuration stored in a file `./releaserc`  (use `SEMANTIC_CONFIG_PATH` if path is different)
+1. Add a [CI/CD variable](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project) named `GITLAB_TOKEN` containing a GitLab access token with `api` access and `Maintainer` role on the project to release
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](/use-the-hub/#jobs-customization)
 1. Well done, your job is ready to work ! 😀
@@ -37,16 +30,18 @@ version of the software is needed, and the content of your release note. Learn m
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `SEMANTIC_CONFIG_DIR` | Direction where `semantic-release` config is available | `/` |
-| `SEMANTIC_DRY_RUN` | Run the tool in [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing)){:target="_blank"} |
-| `SEMANTIC_RELEASE_OPTIONS` | Additional options to run on `semantic-release` command | ` ` |
+| `SEMANTIC_CONF_PATH` | Direction where `semantic-release` config is available | `.releaserc` |
+| `SEMANTIC_DRY_RUN` | Run the tool in [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing)){:target="_blank"} | `false` |
+| `GITLAB_TOKEN` | Authentication token to create the release (do not write in in clear, add it as project [CI/CD variable](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project))  | ` ` |
+| `SEMANTIC_ADDITIONAL_OPTIONS` | Additional options to run on `semantic-release` command | ` ` |
 | `SEMANTIC_ADDITIONAL_PACKAGES` | Additional packages to install needed to match your config (this job already installs all [official plugins](https://github.com/semantic-release/semantic-release/blob/master/docs/extending/plugins-list.md#plugins-list){:target="_blank"}) | ` ` |
-| `SEMANTIC_RELEASE_VERSION` | `semantic-release` version | `17.4.3` |
-| `SEMANTIC_GITLAB_VERSION` | `@semantic-release/gitlab` version | `6.1.0` |
-| `SEMANTIC_GIT_VERSION` | `@semantic-release/git` version | `9.0.0` |
-| `SEMANTIC_CHANGELOG_VERSION` | `@semantic-release/changelog` version | `5.0.1` |
-| `SEMANTIC_EXEC_VERSION` | `@semantic-release/exec` version | `5.0.0` |
-| `SEMANTIC_APM_VERSION` | `@semantic-release/apm` version | `3.0.0`
+| `SEMANTIC_RELEASE_VERSION` | `semantic-release` version | `19.0.5` |
+| `SEMANTIC_GITLAB_VERSION` | `@semantic-release/gitlab` version | `9.5.0` |
+| `SEMANTIC_GIT_VERSION` | `@semantic-release/git` version | `10.0.1` |
+| `SEMANTIC_CHANGELOG_VERSION` | `@semantic-release/changelog` version | `6.0.2` |
+| `SEMANTIC_EXEC_VERSION` | `@semantic-release/exec` version | `6.0.2` |
+| `SEMANTIC_APM_VERSION` | `@semantic-release/apm` version | `4.0.2`
+| `SEMANTIC_CONVENTIONALCOMITS_VERSION` | `conventional-changelog-conventionalcommits` version | `5.0.0`
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 ## Cache
@@ -60,8 +55,6 @@ job will always try to be as fast as possible! 🚀
 
 This job will expose an artifact will the result from `semantic-release` and is exposed as `semantic-release logs`,
 it is also available directly in the job's logs.
-
-
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)
