@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.7.0] - 2022-12-11
+* Set `SARIF_REPORTER` to true to enable the SARIF reporter
+* Use name in `artifact:paths` instead of variable because they are not expanded there
+* Separate MegaLinter variables from custom variables
+* Add color to echo commands
+
 ## [1.6.0] - 2022-11-22
 * Bump megalinter version to v6.13.0
 
