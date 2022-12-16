@@ -13,6 +13,7 @@ mega_linter:
   variables:
     # All available variables are described in documentation
     # https://github.com/oxsecurity/megalinter#configuration
+    ### MegaLinter variables
     DEFAULT_WORKSPACE: "${CI_PROJECT_DIR}"
     DEFAULT_BRANCH: "${CI_DEFAULT_BRANCH}"
     # Exclude files based on a regex
@@ -25,23 +26,27 @@ mega_linter:
     VALIDATE_ALL_CODEBASE: "true"
     # Directory in which every report is filed
     REPORT_OUTPUT_FOLDER: "megalinter-reports"
-    # End folder where reports are held
-    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
     # Posts Mega-Linter results summary in the comments of the related merge request (if existing)
     # https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/
     GITLAB_COMMENT_REPORTER: "true"
-    # Name of the test suite in JUnit
-    REPORT_SUITE_TEST_NAME: "mega_linter"
     # List of disabled linters in every case, this linter is deactivated due to
     # its time of processing (~10 minutes on tested projects)
     DISABLE_LINTERS: SPELL_CSPELL
+    # Activate the SARIF reporter
+    SARIF_REPORTER: "true"
+    ### Custom variables
+    # End folder where reports are held
+    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
+    # Name of the test suite in JUnit
+    REPORT_SUITE_TEST_NAME: "mega_linter"
     IMAGE_TAG: "v6.13.0"
   script:
     - FAILED=false
     - |
       if /entrypoint.sh true; then
-        echo "MegaLinter seemed not to have found any issue!"
+        echo -e "\e[32mMegaLinter seemed not to have found any issue!"
       else
+        echo -e "\e[31mMegaLinter found some issues. Check this job log and the artifact reports."
         FAILED=true
       fi
 
@@ -50,15 +55,13 @@ mega_linter:
     - cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
     - npx -y sarif-codeclimate@1.0.2 -i megalinter-report.sarif -o code-climate.json
     - npx -y sarif-junit@1.1.3 -i megalinter-report.sarif -o junit.xml --test-suite ${REPORT_SUITE_TEST_NAME}
-
     - if [ "$FAILED" = true ]; then
     -   exit 1
     - fi
-    - exit 0
   artifacts:
     when: always
     paths:
-      - ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}
+      - megalinter-reports
     expire_in: 1 week
     reports:
       junit: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/*.xml"
