@@ -1,13 +1,12 @@
 # Job from R2Devops hub --> r2devops.io
 
-default:
-  cache:
-    key:
-      files:
-        - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/pnpm-lock.yaml
-      prefix: "pnpm-${CI_COMMIT_REF_SLUG}"
-    paths:
-      - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store
+cache:
+  key:
+    files:
+      - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/pnpm-lock.yaml
+    prefix: "pnpm-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - ${CI_PROJECT_DIR}/${PROJECT_ROOT}/.pnpm-store  
 
 pnpm_install:
   stage: .pre
