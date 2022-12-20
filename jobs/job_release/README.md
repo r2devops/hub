@@ -46,13 +46,15 @@ A `CHANGELOG.md` is required to create the releases
 * Initial version
 ```
 
+!!! question "Can i use a self-hosted GitLab?"
+   This job automatically utilize the host specified by the `CI_SERVER_HOST` GitLab predefined CI/CD variable inside the `GITLAB_API_URL` variable
 ## Variables
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `JOBS_DIRECTORY` | The root directory containing the job folders | `.` |
 | `IMAGE_TAG` | The default tag for the docker image [alpine/httpie](https://hub.docker.com/r/alpine/httpie) | `3.2.1` |
-| `GITLAB_API_URL` | The domain of GitLab instance. ⚠️ It should be changed if you using a self-hosted version | `gitlab.com` |
+| `GITLAB_API_URL` | The host name of the GitLab instance | `${CI_SERVER_HOST}` |
 | `CHANGELOG_FILE` | The name of changelog files (case insensitive) | `CHANGELOG.md` |
 
 ## Author

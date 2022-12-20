@@ -11,7 +11,7 @@ job_release:
   variables:
     JOBS_DIRECTORY: "."
     IMAGE_TAG: "3.2.1"
-    GITLAB_API_URL: "gitlab.com"
+    GITLAB_API_URL: "${CI_SERVER_HOST}"
     CHANGELOG_FILE: "CHANGELOG.md"
   before_script:
     - apk update && apk add --no-cache bash
