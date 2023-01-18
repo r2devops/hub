@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.8.0] - 2023-01-18
+* Bump megalinter image version to v6.18.0
+* Remove Junit reports
+
 ## [1.7.0] - 2022-12-11
 * Set `SARIF_REPORTER` to true to enable the SARIF reporter
 * Use name in `artifact:paths` instead of variable because they are not expanded there
