@@ -38,7 +38,7 @@ mega_linter:
     # End folder where reports are held
     CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
     # Image tag of the MegaLinter image used in this job
-    IMAGE_TAG: "v6.18.0"
+    IMAGE_TAG: "v6.13.0"
   script:
     - FAILED=false
     - |
