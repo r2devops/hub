@@ -36,7 +36,7 @@ mega_linter:
     SARIF_REPORTER: "true"
     ### Custom variables
     # End folder where reports are held
-    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
+    CONVERTED_OUTPUT_FOLDER: "converted.report"
     # Image tag of the MegaLinter image used in this job
     IMAGE_TAG: "v6.18.0"
     # Version tag of the sarif-codeclimate package to convert sarif reports
@@ -63,8 +63,8 @@ mega_linter:
     when: always
     paths:
       - megalinter-reports
+      - ${CONVERTED_OUTPUT_FOLDER}
     expire_in: 1 week
     reports:
-      junit: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/*.xml"
       codequality: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/code-climate.json"
   allow_failure: true
