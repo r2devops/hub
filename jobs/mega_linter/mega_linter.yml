@@ -46,7 +46,7 @@ mega_linter:
     - FAILED=false
     - |
       if /entrypoint.sh true; then
-        echo -e "\e[32mMegaLinter seemed not to have found any issue!"
+        echo -e "\e[32mMegaLinter haven't found any issue!"
       else
         echo -e "\e[31mMegaLinter found some issues. Check this job log and the artifact reports."
         FAILED=true
