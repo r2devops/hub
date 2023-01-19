@@ -39,6 +39,9 @@ mega_linter:
     CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
     # Image tag of the MegaLinter image used in this job
     IMAGE_TAG: "v6.18.0"
+    # Version tag of the sarif-codeclimate package to convert sarif reports
+    # https://www.npmjs.com/package/sarif-codeclimate
+    SARIF_CODECLIMATE_VERSION: "1.0.2"
   script:
     - FAILED=false
     - |
@@ -52,7 +55,7 @@ mega_linter:
     - mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
     - cp ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/megalinter-report.sarif ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
     - cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
-    - npx -y sarif-codeclimate@1.0.2 -i megalinter-report.sarif -o code-climate.json
+    - npx -y sarif-codeclimate@${SARIF_CODECLIMATE_VERSION} -i megalinter-report.sarif -o code-climate.json
     - if [ "$FAILED" = true ]; then
     -   exit 1
     - fi
