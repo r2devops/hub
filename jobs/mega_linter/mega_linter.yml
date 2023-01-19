@@ -63,7 +63,6 @@ mega_linter:
     when: always
     paths:
       - megalinter-reports
-      - ${CONVERTED_OUTPUT_FOLDER}
     expire_in: 1 week
     reports:
       codequality: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/code-climate.json"

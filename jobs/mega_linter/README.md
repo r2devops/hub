@@ -46,7 +46,7 @@ customize its behavior.
 | `MEGALINTER_CONFIG` | MegaLinter configuration file location | `.mega_linter.yml` |
 | `VALIDATE_ALL_CODEBASE` | Whether linters should only go through **edited** or **new** files | `true` |
 | `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `megalinter-reports` |
-| `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `CodeClimate` reports | `converted-xml.report` |
+| `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `CodeClimate` reports | `converted.report` |
 |`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}) | `true` |
 | `DISABLE_LINTERS` | Comma separated list of linters to be disabled | ` ` |
 | `IMAGE_TAG` | The default tag for the docker image | `v6.18.0` |
