@@ -46,11 +46,12 @@ customize its behavior.
 | `MEGALINTER_CONFIG` | MegaLinter configuration file location | `.mega_linter.yml` |
 | `VALIDATE_ALL_CODEBASE` | Whether linters should only go through **edited** or **new** files | `true` |
 | `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `megalinter-reports` |
-| `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `JUnit` or `CodeClimate` reports | `converted-xml.report` |
+| `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `CodeClimate` reports | `converted.report` |
 |`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}) | `true` |
-| `REPORT_SUITE_TEST_NAME` | `JUnit` report suites name | `mega_linter` |
 | `DISABLE_LINTERS` | Comma separated list of linters to be disabled | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `v6.13.0` |
+| `IMAGE_TAG` | The default tag for the docker image | `v6.18.0` |
+| `SARIF_CODECLIMATE_VERSION` | Version tag of the [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) package to convert sarif reports | `1.0.2` |
+
 
 ## Optimize MegaLinter
 
@@ -71,14 +72,10 @@ mega_linter:
 
 ## Artifacts
 
-Two formats are available for the artifacts:
-- [JUnit](https://junit.org/junit5/)'s XML report to display error report directly in pipeline `Test` tab and in
-merge request widget.
 - [CodeClimate](https://codeclimate.com/quality)'s JSON report to display error report directly in merge request widget.
 
 ## Dependencies
-The job uses the following dependencies for converting the `output` to `JUnit` or `CodeClimate`:
-- [sarif-junit](https://www.npmjs.com/package/sarif-junit) tool to convert `SARIF` to `JUnit`
+The job uses the following dependencies for converting the `output` to `CodeClimate`:
 - [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) tool to convert `SARIF` to `CodeClimate`
 
 ## Author and contributors

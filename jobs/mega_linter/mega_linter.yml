@@ -36,15 +36,17 @@ mega_linter:
     SARIF_REPORTER: "true"
     ### Custom variables
     # End folder where reports are held
-    CONVERTED_OUTPUT_FOLDER: "converted-xml.report"
-    # Name of the test suite in JUnit
-    REPORT_SUITE_TEST_NAME: "mega_linter"
-    IMAGE_TAG: "v6.13.0"
+    CONVERTED_OUTPUT_FOLDER: "converted.report"
+    # Image tag of the MegaLinter image used in this job
+    IMAGE_TAG: "v6.18.0"
+    # Version tag of the sarif-codeclimate package to convert sarif reports
+    # https://www.npmjs.com/package/sarif-codeclimate
+    SARIF_CODECLIMATE_VERSION: "1.0.2"
   script:
     - FAILED=false
     - |
       if /entrypoint.sh true; then
-        echo -e "\e[32mMegaLinter seemed not to have found any issue!"
+        echo -e "\e[32mMegaLinter haven't found any issue!"
       else
         echo -e "\e[31mMegaLinter found some issues. Check this job log and the artifact reports."
         FAILED=true
@@ -53,8 +55,7 @@ mega_linter:
     - mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
     - cp ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/megalinter-report.sarif ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
     - cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
-    - npx -y sarif-codeclimate@1.0.2 -i megalinter-report.sarif -o code-climate.json
-    - npx -y sarif-junit@1.1.3 -i megalinter-report.sarif -o junit.xml --test-suite ${REPORT_SUITE_TEST_NAME}
+    - npx -y sarif-codeclimate@${SARIF_CODECLIMATE_VERSION} -i megalinter-report.sarif -o code-climate.json
     - if [ "$FAILED" = true ]; then
     -   exit 1
     - fi
@@ -64,6 +65,5 @@ mega_linter:
       - megalinter-reports
     expire_in: 1 week
     reports:
-      junit: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/*.xml"
       codequality: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/code-climate.json"
   allow_failure: true
