@@ -1,7 +1,7 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - static_tests
+  - tests
 
 venom:
 
@@ -9,7 +9,7 @@ venom:
     name: golang:${IMAGE_TAG}
     entrypoint: [""]
 
-  stage: static_tests
+  stage: tests
 
   variables:
     PROJECT_ROOT: "."
