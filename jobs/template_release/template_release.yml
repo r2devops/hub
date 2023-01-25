@@ -1,0 +1,103 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+template_release:
+  stage: deploy
+  image:
+    name: alpine/httpie:${IMAGE_TAG}
+    entrypoint: [""]
+  variables:
+    IMAGE_TAG: "3.2.1"
+    GITLAB_API_URL: "${CI_SERVER_HOST}"
+    METADATA_FILE_EXTENSION: ".r2.yml"
+  before_script:
+    - apk update && apk add --no-cache bash
+  script:
+    # Url encode the project name
+    - PROJECT_ENCODED=$(/bin/bash -c "$(http --ignore-stdin --body https://gitlab.com/r2devops/hub/-/snippets/2462394/raw/92c7e820e5b7ce468d8031748e1a57c24c67f6a4/_encode.sh) && _encode '$CI_PROJECT_PATH'")
+    # Search for all changelog files
+    - METADATA_JOBS="$(find . -iname "*$METADATA_FILE_EXTENSION")"
+    - for METADATA_JOB in $METADATA_JOBS; do
+    # Get back to the project root
+    -   cd ${CI_PROJECT_DIR}
+    # Find the changelog file entry (if any)
+    # Get only the part after the colon
+    # Remove leading and trailing spaces, optional quotes and optional comments
+    -   if CHANGELOG_PATH=$(grep "changelog:" $METADATA_JOB | cut -d ":" -f 2 | sed -e 's/#.*$//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/"//g' -e "s/'//g" ); then
+    -     echo "Changelog entry found for $METADATA_JOB with path $CHANGELOG_PATH"
+    -  else
+    -     echo "No changelog entry found for $METADATA_JOB"
+    -     continue
+    -   fi
+    
+    -   if JOB_PATH_WITH_EXTENSION=$(grep "template:" $METADATA_JOB | cut -d ":" -f 2 | sed -e 's/#.*$//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/"//g' -e "s/'//g" -e 's/^\.\///'); then
+    -     echo "Template entry found for $METADATA_JOB with path $JOB_PATH_WITH_EXTENSION"
+    -   else
+    -     echo "No template entry found for $METADATA_JOB"
+    -     continue
+    -   fi
+    
+    -   JOB_PATH=$(echo $JOB_PATH_WITH_EXTENSION | sed -e 's/\.ya*ml$//')
+
+    # Go to the directory of the metadata file
+    -   cd $(dirname $METADATA_JOB)
+
+    # Check if the defined changelog and job_template files exists
+    -   if [ -z "$CHANGELOG_PATH" ]; then
+    -     echo "Changelog entry empty for $METADATA_JOB with path $CHANGELOG_PATH"
+          continue
+    -   fi
+
+    -   if [ -f "$CHANGELOG_PATH" ]; then
+    -     echo "Changelog file found for $METADATA_JOB with path $CHANGELOG_PATH"
+    -   else
+    -     echo "Changelog file not found for $METADATA_JOB with path $CHANGELOG_PATH"
+    -   fi
+
+    -   if [ -z "$JOB_PATH_WITH_EXTENSION" ]; then
+    -     echo "Template entry empty for $METADATA_JOB with path $JOB_PATH_WITH_EXTENSION"
+    -     continue
+    -   fi
+
+    -   if [ -f "$JOB_PATH_WITH_EXTENSION" ]; then
+    -     echo "Template file found for $METADATA_JOB with path $JOB_PATH_WITH_EXTENSION"
+    -   else
+    -     echo "Template file not found for $METADATA_JOB with path $JOB_PATH_WITH_EXTENSION"
+    -     continue
+    -   fi
+        # Extract the job path
+        # Extract the job name from the path
+    -   JOB_NAME=$(basename $JOB_PATH)
+
+      # Retrieve all versions of the job inside the CHANGELOG file, ## [(0.2.0)] - 2021-04-20 => get only this part ()
+    -   VERSIONS=$(sed -rn 's/^##\s*\[\s*([^\ ]*)\s*\]\s*-\s*[0-9]{4}-[0-9]{2}-[0-9]{2}\s*/\1/p' ${CHANGELOG_PATH})
+    -   for VERSION in ${VERSIONS}; do
+          #Retrieve the changes between two versions
+    -     CHANGELOG=$(sed -n "/^##\s*\[\s*${VERSION}\s*\]/,/^##/p" $CHANGELOG_PATH | sed -e '/^$/d' | head -n -1 | tail -n +2)
+          #For initial version, we don't have a previous version, so set to default message
+    -   |
+          [ -z "${CHANGELOG}" ] && CHANGELOG=$(sed -n "/^##\s*\[\s*$VERSION\s*\]/,/^[^##]/p" $CHANGELOG_PATH | sed -e '/^$/d' | tail -n +2)
+          TEMPLATE_PATH=$(echo $METADATA_JOB | sed -e "s/${METADATA_FILE_EXTENSION=}//g" -e 's/\.\///g' )
+          JOB_RELEASE="${TEMPLATE_PATH}@${VERSION}"
+          result=$(http --ignore-stdin POST https://${GITLAB_API_URL}/api/v4/projects/$PROJECT_ENCODED/releases \
+            "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+            tag_name=${JOB_RELEASE} \
+            ref=${CI_COMMIT_SHA} \
+            "description=${CHANGELOG}")
+    -         if [ $(echo $result | grep "Release already exists\|${JOB_RELEASE}" | wc -l) -eq 0 ]; then
+    -           echo "[ERROR] Problem when attempting to create release ${JOB_RELEASE}"
+    -           echo "[ERROR] ${result}"
+    -           exit 1;
+    -         else
+    -           if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
+    -             echo "New version detected for $JOB_NAME-$VERSION"
+    -           fi
+    -   |
+              echo "Processed ${JOB_RELEASE} : ${result}"
+    -         fi
+    -   done
+    - done
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
