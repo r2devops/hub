@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.9.0] - 2023-01-27
+* Bump sarif-codeclimate version to 2.1.1
+
 ## [1.8.0] - 2023-01-18
 * Bump megalinter image version to v6.18.0
 * Remove Junit reports
