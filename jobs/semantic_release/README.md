@@ -31,7 +31,7 @@ version of the software is needed, and the content of your release note. Learn m
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `SEMANTIC_CONF_PATH` | Direction where `semantic-release` config is available | `.releaserc` |
-| `SEMANTIC_DRY_RUN` | Run the tool in [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing)){:target="_blank"} | `false` |
+| `SEMANTIC_DRY_RUN` | Run the tool in [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing\)){:target="_blank"} | `false` |
 | `GITLAB_TOKEN` | Authentication token to create the release (do not write in in clear, add it as project [CI/CD variable](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project))  | ` ` |
 | `SEMANTIC_ADDITIONAL_OPTIONS` | Additional options to run on `semantic-release` command | ` ` |
 | `SEMANTIC_ADDITIONAL_PACKAGES` | Additional packages to install needed to match your config (this job already installs all [official plugins](https://github.com/semantic-release/semantic-release/blob/master/docs/extending/plugins-list.md#plugins-list){:target="_blank"}) | ` ` |

@@ -1,5 +1,9 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    This job has been moved to [`s3_deploy`](https://r2devops.io/_/r2devops-bot/s3_deploy) and must be use instead.
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 Deploy a static website on a S3 bucket provided by a Terraform state. It is a fusion of [gitlab-terraform_apply](https://r2devops.io/_/r2devops-bot/gitlab-terraform_apply) and  [aws_s3_sync](https://r2devops.io/_/r2devops-bot/aws_s3_sync).
 
 ## How to use it
