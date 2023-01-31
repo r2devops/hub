@@ -17,13 +17,13 @@ ng_lint:
     NG_LINT_OPTIONS: ""
     NG_LINT_PACKAGE: ""
 
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "18-alpine"
   script:
     - cd ${PROJECT_ROOT}
     - npm install
     - npm install -g @angular/cli
     - |
-      if [[ ${NG_LINT_PACKAGE} != "" ]]; then
-      ng add ${NG_LINT_PACKAGE}
+      if [ ! -z ${NG_LINT_PACKAGE}  ]; then
+        ng add ${NG_LINT_PACKAGE}
       fi
     - ng lint ${PROJECT_NAME} ${NG_LINT_OPTIONS}

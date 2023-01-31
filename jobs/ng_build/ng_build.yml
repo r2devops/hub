@@ -13,7 +13,7 @@ ng_build:
     PROJECT_NAME: ""
     NG_BUILD_OPTIONS: ""
     OUTPUT_PATH: "website_build/"
-    IMAGE_TAG: "16.13.1-buster"
+    IMAGE_TAG: "18-alpine"
   script:
       - cd ${PROJECT_ROOT}
       - npm install

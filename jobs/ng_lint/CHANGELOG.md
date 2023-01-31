@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.3.0] - 2023-03-03
+* Change `IMAGE_TAG` to `18-alpine`
+
 ## [1.2.1] - 2023-02-28
 * Fix broken documentation links
 

@@ -22,7 +22,7 @@ The application builder uses the webpack build tool, with default configuration 
 | `PROJECT_NAME`  | Project name specified in the `projects` section of the `angular.json` workspace configuration file. If no `PROJECT_NAME` have been specified it will execute the `ng build` command on the `defaultProject` specified in the `angular.json` file. | ` `  |
 | `NG_BUILD_OPTIONS`  | Additional options available for the user, they are added at the end of build command. Check the different options in the official [documentation](https://angular.io/cli/build){:target="_blank"}.  | ` `  |
 | `OUTPUT_PATH`  | Path to the output produced by the `ng` build script used (path relative from the `PROJECT_ROOT`) | `website_build/`  |
-| `IMAGE_TAG` | The default tag for the docker image | `16.13.1-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `18-alpine`  |
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@valentin.guyon.vg](https://gitlab.com/valentin.guyon.vg)

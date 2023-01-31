@@ -26,7 +26,7 @@ This job checks your code quality inside your Angular application. It uses a cus
 | `PROJECT_NAME` <img width=100/> | Project name specified in the `projects` section of the `angular.json` workspace configuration file. <img width=175/>| ` ` <img width=100/>|
 | `NG_LINT_OPTIONS` <img width=100/> | Additional options for `ng lint`. <img width=175/>| ` ` <img width=100/>|
 | `NG_LINT_PACKAGE` <img width=100/> | Name of the package used by the `ng lint` command in order to lint the project <img width=175/>| ` ` <img width=100/>|
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `18-alpine`  |
 
 
 
