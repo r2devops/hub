@@ -19,7 +19,7 @@ This job will use the tool [pylint](https://pylint.pycqa.org/en/latest/intro.htm
 | `PYLINT_OPTIONS` | [Additional options](https://pylint.pycqa.org/en/latest/user_guide/run.html) for `pylint` | `` |
 | `PYLINT_OUTPUT` | Output file | `report_pylint.xml` |
 | `PYLINT_EXIT_ZERO` | Returns a non-zero status code. If the option is specified, and Pylint runs successfully, it will exit with 0 regardless of the number of lint issues detected. | `true` |
-| `IMAGE_TAG` | The default tag for the docker image | `3.10-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `3.11-alpine`  |
 
 
 ## Author

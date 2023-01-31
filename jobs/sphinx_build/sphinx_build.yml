@@ -14,7 +14,7 @@ sphinx_build:
     PROJECT_ROOT: "."
     SPHINX_THEME: ""
     SPHINX_BUILDER: "html"
-    SPHINX_SOURCE: "docs/"
+    SPHINX_SOURCE: "docs/source/"
     SPHINX_OUTPUT: "website_build/"
     SPHINX_OPTIONS: ""
     APIDOC_SOURCE: ""
@@ -24,7 +24,7 @@ sphinx_build:
     IMAGE_TAG: "3.10-buster"
   script:
     - cd ${PROJECT_ROOT}
-    - pip install Sphinx ${SPHINX_THEME} .
+    - pip install -U sphinx ${SPHINX_THEME}
     - if [[ ${APIDOC_SOURCE} != "" ]]; then
     -   sphinx-apidoc ${APIDOC_OPTIONS} -o ${APIDOC_OUTPUT} ${APIDOC_SOURCE}
     - fi

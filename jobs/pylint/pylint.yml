@@ -11,7 +11,7 @@ pylint:
     PYLINT_OPTIONS: ""
     PYLINT_OUTPUT: "report_pylint.xml"
     PYLINT_EXIT_ZERO: "true"
-    IMAGE_TAG: "3.10-buster"
+    IMAGE_TAG: "3.11-alpine"
   script:
     - cd $PROJECT_ROOT
     - pip install pylint pylint_junit

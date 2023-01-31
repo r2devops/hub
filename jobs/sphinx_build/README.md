@@ -18,13 +18,13 @@
 | `PROJECT_ROOT` | Relative to root of your repository, it is the path to your project. | `.` |
 | `SPHINX_THEME` | HTML theme builder to download, sphinx comes with [builtin themes](https://www.sphinx-doc.org/en/master/usage/theming.html#builtin-themes){:target="_blank"}. Check this [site](https://sphinx-themes.org/){:target="_blank"} to download third party themes | ` ` |
 | `SPHINX_BUILDER` | Builder used for site generation, check the [builder list](https://www.sphinx-doc.org/en/master/man/sphinx-build.html#options){:target="_blank"}.| `html` |
-| `SPHINX_SOURCE` | Directory name of the source files to build the Sphinx website.  | `docs/` |
+| `SPHINX_SOURCE` | Directory name of the source files to build the Sphinx website.  | `docs/source/` |
 | `SPHINX_OUTPUT` | Output directory path produced by the `sphinx-build`. | `website_build/` |
 | `SPHINX_OPTIONS` | Possibility to add more [options](https://www.sphinx-doc.org/en/master/man/sphinx-build.html#options){:target="_blank"} into the `sphinx-build` command. | ` ` |
 | `APIDOC_SOURCE` | Directory name of the source files to build the Sphinx sources automatically, check the `sphinx-apidoc` [documentation](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html){:target="_blank"} to learn more. Leave this variable empty if you don't want to execute this command. | ` ` |
 | `APIDOC_OUTPUT` | Output directory path produced by the `sphinx-apidoc`. | `docs/reference/source/` |
 | `APIDOC_OPTIONS` | Possibility to add more [options](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#options){:target="_blank"} into the `sphinx-apidoc` command. | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `3.10-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `3.11-alpine`  |
 
 
 
