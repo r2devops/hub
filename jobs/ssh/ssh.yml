@@ -1,11 +1,11 @@
 # Job from R2Devops hub --> r2devops.io
 
 stages:
-  - deploy
+  - others
 
 ssh:
   image: alpine:${IMAGE_TAG}
-  stage: deploy
+  stage: others
   variables:
     TARGET_HOST: ''
     SHELL_COMMAND: ''
