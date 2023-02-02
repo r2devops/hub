@@ -41,7 +41,7 @@ mega_linter:
     IMAGE_TAG: "v6.18.0"
     # Version tag of the sarif-codeclimate package to convert sarif reports
     # https://www.npmjs.com/package/sarif-codeclimate
-    SARIF_CODECLIMATE_VERSION: "1.0.2"
+    SARIF_CODECLIMATE_VERSION: "2.1.1"
   script:
     - FAILED=false
     - |
