@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.0] - 2023-01-28
+* Change the stage from `deploy` to `others`
+
 ## [0.2.1] - 2022-06-13
 * Add docker image tag in variable 
 
