@@ -1,5 +1,9 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    This job has been moved to [`template_release`](https://r2devops.io/_/r2devops-bot/template_release) and must be use instead.
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 Retrieve all job templates from a repository and create GitLab release (and git tag) for each versions listed in `CHANGELOG.md`
 
 ## How to use it
