@@ -1,5 +1,9 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    This job has been moved to [`s3_deploy`](https://r2devops.io/_/r2devops-bot/s3_deploy) and must be use instead.
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 This job uses the latest AWS CLI version (v2 for now) in order to sync files between a directory and a target S3 bucket. It's compatible with all s3 object storage (not only AWS).
 
 [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"} is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.

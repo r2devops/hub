@@ -11,6 +11,7 @@ include:
 variables:
   IMAGE_TAG_PYTHON_ALPINE: "alpine3.16"
   IMAGE_TAG_HTTPIE_ALPINE: "3.2.1"
+  JOB_FILES_EXTENSION: ".yml"
 
 workflow:
   rules:
@@ -23,28 +24,43 @@ ci_linter:
     name: alpine/httpie:${IMAGE_TAG_HTTPIE_ALPINE}
     entrypoint: [""]
   variables:
-    GITLAB_CI_LINT_URL: "https://gitlab.gnome.org/api/v4/ci/lint?include_merged_yaml=true"
-    JOB_FILES_EXTENSION: ".yml"
+    GITLAB_CI_LINT_URLS: "https://gitlab.gnome.org https://git.pleroma.social https://0xacab.org https://git.silence.dev"
+    GITLAB_API_POSTFIX: "/api/v4/ci/lint?include_merged_yaml=true"
   script:
-    - apk add --no-cache jq
+    - apk add --no-cache jq git
     - mkdir ci_linter_reports
-    - for JOB_PATH in jobs/*; do
-    -   echo "Start checking ${JOB_PATH}/${JOB} using Gitlab CI linter API"
+    # Get all changed files that match templates yaml in the current branch
+    - git fetch
+    - JOBS_TEMPLATE_CHANGED=$(git diff-tree --no-commit-id --name-only -r origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME -r $CI_COMMIT_SHA | tr ' ' '\n' | grep "jobs/.*${JOB_FILES_EXTENSION}$" | tr '\n' ' ')
+    - for JOB_PATH in $JOBS_TEMPLATE_CHANGED; do
+    -   echo "Start checking ${JOB_PATH} using Gitlab CI linter API"
     -   JOB=$(basename ${JOB_PATH})
-    -   jq --null-input --arg yaml "$(cat ${JOB_PATH}/${JOB}${JOB_FILES_EXTENSION})" '.content=$yaml' | http --print 'b' --check-status "$GITLAB_CI_LINT_URL" Content-Type:"application/json" > ci_linter_reports/${JOB}.json
-    -   if [ $(jq -r '.status' ci_linter_reports/${JOB}.json) == "valid" ]; then
-    -     echo "👍 job ${JOB_PATH}/${JOB} is valid"
-    -   else
-    -     echo "👎 job ${JOB_PATH}/${JOB} is invalid"
-    -     jq '.' ci_linter_reports/${JOB}.json
-    -     exit 1
-    -   fi
+      # Loop over all GitLab CI linter API URLs until one of them is working
+    -   for CI_URL in ${GITLAB_CI_LINT_URLS}; do
+    -     GITLAB_CI_LINT_URL="${CI_URL}${GITLAB_API_POSTFIX}"
+    -     if jq --null-input --arg yaml "$(cat ${JOB_PATH})" '.content=$yaml' | http --print 'b' --check-status "$GITLAB_CI_LINT_URL" Content-Type:"application/json" > ci_linter_reports/${JOB}.json; then
+    -       if [ $(jq -r '.status' ci_linter_reports/${JOB}.json) == "valid" ]; then
+    -         echo "👍 job ${JOB_PATH} is valid"
+    -       else
+    -         echo "👎 job ${JOB_PATH} is invalid"
+    -         jq '.' ci_linter_reports/${JOB}.json
+    -         exit 1
+    -       fi
+          # If the API URL is working, stop the loop
+    -       break
+    -     fi
+    -   done
     - done
   artifacts:
     expose_as: "job_ci_lint"
     paths:
       - ci_linter_reports/
     when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
+    - changes: 
+      - "jobs/**/*${JOB_FILES_EXTENSION}"
 
 job_structure:
   image: python:${IMAGE_TAG_PYTHON_ALPINE}
@@ -63,6 +79,9 @@ job_structure:
     paths:
       - ${JOB_LOGFILE}
     when: always
+  rules:
+    - changes: 
+      - jobs/**/*
 
 job_customs:
   image: python:${IMAGE_TAG_PYTHON_ALPINE}
@@ -80,8 +99,11 @@ job_customs:
     expose_as: "jobs_customs"
     paths:
       - ${JOB_LOGFILE}
+  rules:
+    - changes: 
+      - jobs/**/*
 
-job_image_scan:
+.job_image_scan:
   image: docker:20.10
   stage: static_tests
   services:
@@ -111,7 +133,7 @@ job_image_scan:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    TRIVY_VERSION: "0.31.3"
+    TRIVY_VERSION: "0.36.1"
     TRIVY_REMOTE: ""
     TRIVY_TIMEOUT: ""
     TRIVY_LIGHT: "false"
@@ -120,8 +142,9 @@ job_image_scan:
     TRIVY_QUIET: "false"
     TRIVY_SKIP_UPDATE: "false"
 
+    SCAN_ALL_IMAGES: "false"
   before_script:
-    - apk add --no-cache python3 py3-pip
+    - apk add --no-cache python3 py3-pip git
     - pip install --ignore-installed distlib pipenv
     - pipenv install
 
@@ -130,10 +153,18 @@ job_image_scan:
     - wget -O $TEMPLATE_NAME https://github.com/aquasecurity/trivy/raw/v${TRIVY_VERSION}/contrib/junit.tpl
 
     - mkdir ${OUTPUT_DIR}
+
   script:
     # We force database download once so we don't do much GitHub Api calls
     - ./trivy --cache-dir ${TRIVY_CACHE_DIR} image --download-db-only
-    - for JOB in $(ls -A jobs); do
+    - if [ "${SCAN_ALL_IMAGES}" = "true" ]; then
+    -   JOBS=$(ls -A jobs)
+    - else
+    # Retrieve the list of jobs that have been modified in the current branch and keep only the job name 
+    -   git fetch
+    -   JOBS=$(git diff-tree --no-commit-id --name-only -r origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME -r $CI_COMMIT_SHA | tr ' ' '\n' | grep "jobs/.*${JOB_FILES_EXTENSION}$" | tr '\n' ' ' | cut -d'/' -f2)
+    - fi
+    - for JOB in $JOBS; do
     -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
     -   if [ ! -z ${IMAGE} ]; then
     -     NAME=$(basename ${IMAGE})
@@ -144,8 +175,6 @@ job_image_scan:
     -   fi
     -   IMAGE=""
     - done
-  # rules:
-  #   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
   cache:
     paths:
       - "$TRIVY_CACHE_DIR"
@@ -159,6 +188,31 @@ job_image_scan:
         - "${OUTPUT_DIR}/*.xml"
     expire_in: 30 days
     when: always
+
+
+# Extends the job_image_scan job to scan all images
+# Is triggered only by the schedule
+job_image_scan_schedule:
+  extends: .job_image_scan
+  variables:
+    SCAN_ALL_IMAGES: "true"
+  rules:
+    - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+
+# Scan only the images of the jobs that have changed on merge requests
+job_image_scan:
+  extends: .job_image_scan
+  variables:
+    SCAN_ALL_IMAGES: "false"
+  rules:
+    - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE'
+      when: never
+    - changes: 
+      - "jobs/**/*${JOB_FILES_EXTENSION}"
+      - "tools/job_image/**/*"
 
 links_checker:
   variables:
