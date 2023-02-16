@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/npm_build/npm_build.yml
+  documentation: ./jobs/npm_build/README.md
+  changelog: ./jobs/npm_build/CHANGELOG.md
+data:
+  description: A ready to use `npm` job to build your application
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Build

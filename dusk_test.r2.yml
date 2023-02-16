@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/dusk_test/dusk_test.yml
+  documentation: ./jobs/dusk_test/README.md
+  changelog: ./jobs/dusk_test/CHANGELOG.md
+data:
+  description: A ready to use Laravel Dusk job to test your project
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Test
+    - Utilities
+    - Laravel

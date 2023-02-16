@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/php_security_checker/php_security_checker.yml
+  documentation: ./jobs/php_security_checker/README.md
+  changelog: ./jobs/php_security_checker/CHANGELOG.md
+data:
+  description: PHP security-checker is a job that checks if your PHP application
+    depends on PHP packages with known security vulnerabilities.
+  public: true
+  license: MIT
+  icon: 🚦
+  labels:
+    - Security
+    - PHP
+    - Composer

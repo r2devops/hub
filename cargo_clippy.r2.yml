@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/cargo_clippy/cargo_clippy.yml
+  documentation: ./jobs/cargo_clippy/README.md
+  changelog: ./jobs/cargo_clippy/CHANGELOG.md
+data:
+  description: Run a format check onto your Rust project and prevent the pipeline
+    to pass if there is any unexpected linting warning / error in your project.
+  public: true
+  license: MIT
+  icon: 🖇
+  labels: 
+    - Lint
+    - Utilities
+    - Code Quality

@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/serverless_deploy/serverless_deploy.yml
+  documentation: ./jobs/serverless_deploy/README.md
+  changelog: ./jobs/serverless_deploy/CHANGELOG.md
+data:
+  description: This job will deploy your serverless resources to AWS
+  public: true
+  license: MIT
+  icon: 🎨
+  labels:
+    - AWS
+    - Deploy

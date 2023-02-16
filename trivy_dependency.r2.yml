@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/trivy_dependency/trivy_dependency.yml
+  documentation: ./jobs/trivy_dependency/README.md
+  changelog: ./jobs/trivy_dependency/CHANGELOG.md
+data:
+  description: A ready-to-use trivy job to scan the application dependencies of your code
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Security

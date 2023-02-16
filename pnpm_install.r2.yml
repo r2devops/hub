@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/pnpm_install/pnpm_install.yml
+  documentation: ./jobs/pnpm_install/README.md
+  changelog: ./jobs/pnpm_install/CHANGELOG.md
+data:
+  description: Install NPM packages based on pnpm-lock.yaml file
+  public: true
+  license: MIT
+  icon: 🔧
+  labels: 
+    - Npm
+    - Dependency management

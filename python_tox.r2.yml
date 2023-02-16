@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/python_tox/python_tox.yml
+  documentation: ./jobs/python_tox/README.md
+  changelog: ./jobs/python_tox/CHANGELOG.md
+data:
+  description: A ready-to-use Tox job to test your Python project
+  public: true
+  license: MIT
+  icon: 🗝
+  labels:
+    - Python

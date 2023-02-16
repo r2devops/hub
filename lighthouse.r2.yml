@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/lighthouse/lighthouse.yml
+  documentation: ./jobs/lighthouse/README.md
+  changelog: ./jobs/lighthouse/CHANGELOG.md
+data:
+  description: A job using Google Lighthouse to do various tests on a website, and
+    giving you a comprehensive report
+  public: true
+  license: MIT
+  icon: 🗽
+  labels:
+    - Security

@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/mkdocs/mkdocs.yml
+  documentation: ./jobs/mkdocs/README.md
+  changelog: ./jobs/mkdocs/CHANGELOG.md
+data:
+  description: A ready-to-use MkDocs job to build the documentation of your
+    project from markdown files
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Documentation

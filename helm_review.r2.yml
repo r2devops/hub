@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/helm_review/helm_review.yml
+  documentation: ./jobs/helm_review/README.md
+  changelog: ./jobs/helm_review/CHANGELOG.md
+data:
+  description: A ready-to-use helm job to deploy your review environment in a merge request
+  public: true
+  license: MIT
+  icon: ⌛
+  labels:
+    - Helm
+    - Kubernetes

@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/pages/pages.yml
+  documentation: ./jobs/pages/README.md
+  changelog: ./jobs/pages/CHANGELOG.md
+data:
+  description: A ready-to-use GitLab pages job to deploy your HTML static pages from GitLab
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Documentation
+    - Deploy

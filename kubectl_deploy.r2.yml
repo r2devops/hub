@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/kubectl_deploy/kubectl_deploy.yml
+  documentation: ./jobs/kubectl_deploy/README.md
+  changelog: ./jobs/kubectl_deploy/CHANGELOG.md
+data:
+  description: This job will deploy your YAML files to a kubernetes cluster
+  public: true
+  license: MIT
+  icon: 🎁
+  labels:
+    - Utilities
+    - Deploy

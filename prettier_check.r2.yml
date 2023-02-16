@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/prettier_check/prettier_check.yml
+  documentation: ./jobs/prettier_check/README.md
+  changelog: ./jobs/prettier_check/CHANGELOG.md
+data:
+  description: It's an opinionated code formatter with multiple support for
+    JavaScript, TypeScript, JSX and many others.
+  public: true
+  license: MIT
+  icon: 🪄
+  labels:
+    - Test
+    - Code Quality

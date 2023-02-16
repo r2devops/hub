@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/s3_deploy/s3_deploy.yml
+  documentation: ./jobs/s3_deploy/README.md
+  changelog: ./jobs/s3_deploy/CHANGELOG.md
+data:
+  description: Deploy a static website inside an S3 object storage
+  public: true
+  license: MIT
+  icon: 🛸
+  labels:
+    - AWS
+    - S3
+    - Deploy

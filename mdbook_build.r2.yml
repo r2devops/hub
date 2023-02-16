@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/mdbook_build/mdbook_build.yml
+  documentation: ./jobs/mdbook_build/README.md
+  changelog: ./jobs/mdbook_build/CHANGELOG.md
+data:
+  description: The markdown documentation builder named mdBook is done in Rust.
+    This job would build the documentation of a mdbook project.
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Documentation
+    - Build

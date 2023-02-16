@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/zaproxy/zaproxy.yml
+  documentation: ./jobs/zaproxy/README.md
+  changelog: ./jobs/zaproxy/CHANGELOG.md
+data:
+  description: A ready-to-use job to run a Dynamic Application Security Testing
+    using Zaproxy
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Robustness
+    - DAST

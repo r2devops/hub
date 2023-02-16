@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/codespell/codespell.yml
+  documentation: ./jobs/codespell/README.md
+  changelog: ./jobs/codespell/CHANGELOG.md
+data:
+  description: A simple job to lint typo
+  public: true
+  license: MIT
+  icon: 🪄
+  labels: 
+    - Spelling
+    - Utilities
+    - Code Quality

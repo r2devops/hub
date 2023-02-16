@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/ng_lint/ng_lint.yml
+  documentation: ./jobs/ng_lint/README.md
+  changelog: ./jobs/ng_lint/CHANGELOG.md
+data:
+  description: This job checks your code quality inside your Angular application.
+    It uses a custom lint scipt of your choices.
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Utilities

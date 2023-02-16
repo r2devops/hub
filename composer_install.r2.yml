@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/composer_install/composer_install.yml
+  documentation: ./jobs/composer_install/README.md
+  changelog: ./jobs/composer_install/CHANGELOG.md
+data:
+  description: A ready to use composer job that installs dependencies and exposes
+    vendor as cache to other jobs
+  public: true
+  license: MIT
+  icon: 🎷
+  labels:
+    - Utilities
+    - Composer

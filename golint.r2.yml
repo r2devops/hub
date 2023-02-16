@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/golint/golint.yml
+  documentation: ./jobs/golint/README.md
+  changelog: ./jobs/golint/CHANGELOG.md
+data:
+  description: A ready-to-use job to lint a project written in Golang
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Golang
+    - Lint

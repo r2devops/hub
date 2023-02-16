@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/gradle_sonarqube/gradle_sonarqube.yml
+  documentation: ./jobs/gradle_sonarqube/README.md
+  changelog: ./jobs/gradle_sonarqube/CHANGELOG.md
+data:
+  description: Check your code quality with SonarQube
+  public: true
+  license: MIT
+  icon: 🧰
+  labels:
+    - Gradle

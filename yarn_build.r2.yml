@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/yarn_build/yarn_build.yml
+  documentation: ./jobs/yarn_build/README.md
+  changelog: ./jobs/yarn_build/CHANGELOG.md
+data:
+  description: A ready to use yarn job to build your application
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Yarn
+    - Build

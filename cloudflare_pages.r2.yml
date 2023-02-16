@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/cloudflare_pages/cloudflare_pages.yml
+  documentation: ./jobs/cloudflare_pages/README.md
+  changelog: ./jobs/cloudflare_pages/CHANGELOG.md
+data:
+  description: Deploy a static website to Cloudflare pages
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Deploy

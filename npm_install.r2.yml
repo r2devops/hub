@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/npm_install/npm_install.yml
+  documentation: ./jobs/npm_install/README.md
+  changelog: ./jobs/npm_install/CHANGELOG.md
+data:
+  description: A ready to use npm job that install dependencies and expose
+    node_modules as cache to other jobs
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Utilities

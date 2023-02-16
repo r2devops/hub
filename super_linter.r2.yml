@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/super_linter/super_linter.yml
+  documentation: ./jobs/super_linter/README.md
+  changelog: ./jobs/super_linter/CHANGELOG.md
+data:
+  description: A ready-to-use combination of various linters, to help validate the
+    quality of your source code
+  public: true
+  license: MIT
+  icon: 💡
+  labels: []

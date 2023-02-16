@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/gulp/gulp.yml
+  documentation: ./jobs/gulp/README.md
+  changelog: ./jobs/gulp/CHANGELOG.md
+data:
+  description: A ready-to-use gulp job that runs your tasks
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Utilities

@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/gradle_build/gradle_build.yml
+  documentation: ./jobs/gradle_build/README.md
+  changelog: ./jobs/gradle_build/CHANGELOG.md
+data:
+  description: Build your application with Gradle 🐘
+  public: true
+  license: MIT
+  icon: 🎧
+  labels:
+    - Gradle
+    - Build

@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/aws_s3_sync/aws_s3_sync.yml
+  documentation: ./jobs/aws_s3_sync/README.md
+  changelog: ./jobs/aws_s3_sync/CHANGELOG.md
+data:
+  description: A ready-to-use AWS S3 job to sync a local directory into a bucket.
+    This Job is compatible with all S3 Object storage.
+  public: true
+  license: MIT
+  icon: 💎
+  labels:
+    - AWS
+    - S3

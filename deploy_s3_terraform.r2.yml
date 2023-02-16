@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/deploy_s3_terraform/deploy_s3_terraform.yml
+  documentation: ./jobs/deploy_s3_terraform/README.md
+  changelog: ./jobs/deploy_s3_terraform/CHANGELOG.md
+data:
+  description: Provision a S3 object storage and deploy a static website
+  public: true
+  license: MIT
+  icon: 🧽
+  labels:
+    - Terraform
+    - S3
+    - Deploy

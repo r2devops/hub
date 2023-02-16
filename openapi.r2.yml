@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/openapi/openapi.yml
+  documentation: ./jobs/openapi/README.md
+  changelog: ./jobs/openapi/CHANGELOG.md
+data:
+  description: A ready-to-use job building a web documentation from swagger or
+    openAPI file (json/yml), using Swagger-ui
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - API
+    - Documentation

@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/maven_build/maven_build.yml
+  documentation: ./jobs/maven_build/README.md
+  changelog: ./jobs/maven_build/CHANGELOG.md
+data:
+  description: Build a Java project with maven and expose built artifacts (jar,
+    classes, etc.)
+  public: true
+  license: MIT
+  icon: ⚙️
+  labels:
+    - Java
+    - Build

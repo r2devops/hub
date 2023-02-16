@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/yarn_test/yarn_test.yml
+  documentation: ./jobs/yarn_test/README.md
+  changelog: ./jobs/yarn_test/CHANGELOG.md
+data:
+  description: Ready to use yarn job that runs predefined command `test` specified
+    in package.json
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Test
+    - Utilities
+    - Yarn

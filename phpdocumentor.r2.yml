@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/phpdocumentor/phpdocumentor.yml
+  documentation: ./jobs/phpdocumentor/README.md
+  changelog: ./jobs/phpdocumentor/CHANGELOG.md
+data:
+  description: A ready-to-use job to build the documentation of your PHP Project
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - PHP
+    - API
+    - Documentation

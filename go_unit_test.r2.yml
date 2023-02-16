@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/go_unit_test/go_unit_test.yml
+  documentation: ./jobs/go_unit_test/README.md
+  changelog: ./jobs/go_unit_test/CHANGELOG.md
+data:
+  description: Perform golang unit tests and integrate results with Gitlab UI
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Golang
+    - Test

@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/npm_lint/npm_lint.yml
+  documentation: ./jobs/npm_lint/README.md
+  changelog: ./jobs/npm_lint/CHANGELOG.md
+data:
+  description: A ready-to-use linter, to help validate the quality of your source
+    code. It uses available node_modules if there are any from npm_install job.
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Utilities

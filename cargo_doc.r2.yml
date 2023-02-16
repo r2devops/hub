@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/cargo_doc/cargo_doc.yml
+  documentation: ./jobs/cargo_doc/README.md
+  changelog: ./jobs/cargo_doc/CHANGELOG.md
+data:
+  description: Cargo_doc aims to generate rustdoc for your project
+  public: true
+  license: MIT
+  icon: 🧠
+  labels: 
+    - Documentation
+    - Utilities

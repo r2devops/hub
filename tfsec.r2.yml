@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/tfsec/tfsec.yml
+  documentation: ./jobs/tfsec/README.md
+  changelog: ./jobs/tfsec/CHANGELOG.md
+data:
+  description: "Security scanner for your Terraform code "
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Gitlab
+    - Security
+    - SAST

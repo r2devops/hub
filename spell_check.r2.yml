@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/spell_check/spell_check.yml
+  documentation: ./jobs/spell_check/README.md
+  changelog: ./jobs/spell_check/CHANGELOG.md
+data:
+  description: Analyze your `.md` files to find spelling mistakes
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Spelling

@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/python_test/python_test.yml
+  documentation: ./jobs/python_test/README.md
+  changelog: ./jobs/python_test/CHANGELOG.md
+data:
+  description: A ready-to-use pipenv and pytest environment to launch your unit tests
+  public: true
+  license: MIT
+  icon: 🪄
+  labels:
+    - Python

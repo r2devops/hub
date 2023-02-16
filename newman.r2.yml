@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/newman/newman.yml
+  documentation: ./jobs/newman/README.md
+  changelog: ./jobs/newman/CHANGELOG.md
+data:
+  description: Run a Postman collection to test your API with Newman
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - API
+    - Robustness

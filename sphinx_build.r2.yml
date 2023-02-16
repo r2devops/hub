@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/sphinx_build/sphinx_build.yml
+  documentation: ./jobs/sphinx_build/README.md
+  changelog: ./jobs/sphinx_build/CHANGELOG.md
+data:
+  description: Sphinx is a tool that makes it easy to create intelligent and
+    beautiful documentation for python projects.
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Documentation
+    - Build

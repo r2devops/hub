@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/phpunit_test/phpunit_test.yml
+  documentation: ./jobs/phpunit_test/README.md
+  changelog: ./jobs/phpunit_test/CHANGELOG.md
+data:
+  description: A ready to use php environment that launches phpunit testings in your code
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - PHP

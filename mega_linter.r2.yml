@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/mega_linter/mega_linter.yml
+  documentation: ./jobs/mega_linter/README.md
+  changelog: ./jobs/mega_linter/CHANGELOG.md
+data:
+  description: A ready-to-use combination of various linters forked from
+    super_linter, to help validate the quality of your source code
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Lint
+    - Utilities
+    - Code Quality

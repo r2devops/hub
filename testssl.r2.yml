@@ -1,0 +1,10 @@
+files:
+  template: ./jobs/testssl/testssl.yml
+  documentation: ./jobs/testssl/README.md
+  changelog: ./jobs/testssl/CHANGELOG.md
+data:
+  description: Tool to check SSL/TLS related vulnerabilities
+  public: true
+  license: MIT
+  icon: 🔐
+  labels: []

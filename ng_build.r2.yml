@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/ng_build/ng_build.yml
+  documentation: ./jobs/ng_build/README.md
+  changelog: ./jobs/ng_build/CHANGELOG.md
+data:
+  description: A ready to use `npm` job to build your Angular application
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Build

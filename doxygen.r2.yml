@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/doxygen/doxygen.yml
+  documentation: ./jobs/doxygen/README.md
+  changelog: ./jobs/doxygen/CHANGELOG.md
+data:
+  description: A ready-to-use job to build your documentation with doxygen syntax
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Documentation

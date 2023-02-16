@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/trivy_image/trivy_image.yml
+  documentation: ./jobs/trivy_image/README.md
+  changelog: ./jobs/trivy_image/CHANGELOG.md
+data:
+  description: A ready-to-use trivy job to scan your docker images and discover
+    dependency vulnerabilities
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Security
+    - Container
+    - Docker

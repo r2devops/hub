@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/marp/marp.yml
+  documentation: ./jobs/marp/README.md
+  changelog: ./jobs/marp/CHANGELOG.md
+data:
+  description: A ready-to-use Marp job to build HTML and PDF slides using Markdown.
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Documentation

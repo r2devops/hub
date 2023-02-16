@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/yarn_install/yarn_install.yml
+  documentation: ./jobs/yarn_install/README.md
+  changelog: ./jobs/yarn_install/CHANGELOG.md
+data:
+  description: A ready to use yarn job that install dependencies and expose
+    node_modules as cache to other jobs
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Utilities
+    - Yarn

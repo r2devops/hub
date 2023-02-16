@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/netlify_deploy/netlify_deploy.yml
+  documentation: ./jobs/netlify_deploy/README.md
+  changelog: ./jobs/netlify_deploy/CHANGELOG.md
+data:
+  description: Deploy a frontend website on Netlify
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Deploy

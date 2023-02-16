@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/docusaurus_build/docusaurus_build.yml
+  documentation: ./jobs/docusaurus_build/README.md
+  changelog: ./jobs/docusaurus_build/CHANGELOG.md
+data:
+  description: Build HTML documentation from Markdown source using Docusaurus, and
+    can even embed JSX components into your Markdown thanks to MDX.
+  public: true
+  license: MIT
+  icon: 🧱
+  labels:
+    - Build

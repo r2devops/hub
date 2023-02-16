@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/links_checker/links_checker.yml
+  documentation: ./jobs/links_checker/README.md
+  changelog: ./jobs/links_checker/CHANGELOG.md
+data:
+  description: A job that helps you find broken links in your Markdown and HTML files
+  public: true
+  license: MIT
+  icon: 🖇
+  labels:
+    - Utilities

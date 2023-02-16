@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/pnpm_build/pnpm_build.yml
+  documentation: ./jobs/pnpm_build/README.md
+  changelog: ./jobs/pnpm_build/CHANGELOG.md
+data:
+  description: Build your project with pnpm
+  public: true
+  license: MIT
+  icon: 🪄
+  labels:
+    - Build

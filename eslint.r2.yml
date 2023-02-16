@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/eslint/eslint.yml
+  documentation: ./jobs/eslint/README.md
+  changelog: ./jobs/eslint/CHANGELOG.md
+data:
+  description: ESLint statically analyzes your code to quickly find problems in
+    your JavaScript code.
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Lint
+    - Code Quality

@@ -1,0 +1,10 @@
+files:
+  template: ./jobs/typescript_compile/typescript_compile.yml
+  documentation: ./jobs/typescript_compile/README.md
+  changelog: ./jobs/typescript_compile/CHANGELOG.md
+data:
+  description: A simple job to transpile typescript easily
+  public: true
+  license: MIT
+  icon: 🍔
+  labels: []

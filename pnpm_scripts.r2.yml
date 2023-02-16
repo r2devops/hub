@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/pnpm_scripts/pnpm_scripts.yml
+  documentation: ./jobs/pnpm_scripts/README.md
+  changelog: ./jobs/pnpm_scripts/CHANGELOG.md
+data:
+  description: This job will run one or many scripts contained in the package.json
+    through pnpm package manager
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Gitlab
+    - Utilities

@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/heroku_deploy/heroku_deploy.yml
+  documentation: ./jobs/heroku_deploy/README.md
+  changelog: ./jobs/heroku_deploy/CHANGELOG.md
+data:
+  description: Deploy your application to Heroku
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Deploy

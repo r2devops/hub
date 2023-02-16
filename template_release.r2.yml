@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/template_release/template_release.yml
+  documentation: ./jobs/template_release/README.md
+  changelog: ./jobs/template_release/CHANGELOG.md
+data:
+  description: Retrieve all versions of multiple templates and create release for
+    each entry inside their CHANGELOG.md files
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Gitlab
+    - Utilities
+    - Deploy

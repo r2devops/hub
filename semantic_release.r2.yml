@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/semantic_release/semantic_release.yml
+  documentation: ./jobs/semantic_release/README.md
+  changelog: ./jobs/semantic_release/CHANGELOG.md
+data:
+  description: Get your versioning & release deployments automated using semantic-release
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Utilities
+    - Release

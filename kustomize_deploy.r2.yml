@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/kustomize_deploy/kustomize_deploy.yml
+  documentation: ./jobs/kustomize_deploy/README.md
+  changelog: ./jobs/kustomize_deploy/CHANGELOG.md
+data:
+  description: This job will deploy your cluster using Kustomize
+  public: true
+  license: MIT
+  icon: ⚙️
+  labels:
+    - Utilities
+    - Kubernetes
+    - Deploy

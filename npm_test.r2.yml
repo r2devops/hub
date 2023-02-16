@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/npm_test/npm_test.yml
+  documentation: ./jobs/npm_test/README.md
+  changelog: ./jobs/npm_test/CHANGELOG.md
+data:
+  description: Ready to use npm job that runs predefined command `test` specified
+    in package.json
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Test
+    - Utilities

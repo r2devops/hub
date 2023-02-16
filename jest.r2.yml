@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/jest/jest.yml
+  documentation: ./jobs/jest/README.md
+  changelog: ./jobs/jest/CHANGELOG.md
+data:
+  description: Ready to run jest job to expose your code coverage and do your tests
+  public: true
+  license: MIT
+  icon: 💪
+  labels:
+    - Test
+    - Utilities

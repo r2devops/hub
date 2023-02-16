@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/ansible_playbook/ansible_playbook.yml
+  documentation: ./jobs/ansible_playbook/README.md
+  changelog: ./jobs/ansible_playbook/CHANGELOG.md
+data:
+  description: Run ansible-playbook to automate deployments.
+  public: true
+  license: MIT
+  icon: 📦
+  labels:
+    - Deploy

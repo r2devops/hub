@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/gradle_test/gradle_test.yml
+  documentation: ./jobs/gradle_test/README.md
+  changelog: ./jobs/gradle_test/CHANGELOG.md
+data:
+  description: Run your unit tests with 🐘 Gradle & jUnit
+  public: true
+  license: MIT
+  icon: 🎧
+  labels:
+    - Test
+    - Gradle

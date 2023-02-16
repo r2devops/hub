@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/apidoc/apidoc.yml
+  documentation: ./jobs/apidoc/README.md
+  changelog: ./jobs/apidoc/CHANGELOG.md
+data:
+  description: A ready-to-use ApiDoc job to build a web documentation of your API
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - API
+    - Documentation

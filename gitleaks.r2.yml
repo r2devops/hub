@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/gitleaks/gitleaks.yml
+  documentation: ./jobs/gitleaks/README.md
+  changelog: ./jobs/gitleaks/CHANGELOG.md
+data:
+  description: A secret detection job, using gitleaks to alert on secrets
+    (passwords, api keys…) pushed in your code
+  public: true
+  license: MIT
+  icon: 🔐
+  labels:
+    - Security
+    - SAST

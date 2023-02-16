@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/gitlab-terraform_apply/gitlab-terraform_apply.yml
+  documentation: ./jobs/gitlab-terraform_apply/README.md
+  changelog: ./jobs/gitlab-terraform_apply/CHANGELOG.md
+data:
+  description: This job will apply all the changes set by gitlab-terraform_plan in
+    the file plan.cache
+  public: true
+  license: MIT
+  icon: 💎
+  labels:
+    - Terraform
+    - Configuration

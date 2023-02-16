@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/pnpm_test/pnpm_test.yml
+  documentation: ./jobs/pnpm_test/README.md
+  changelog: ./jobs/pnpm_test/CHANGELOG.md
+data:
+  description: "Run your tests with pnpm "
+  public: true
+  license: MIT
+  icon: 🚦
+  labels:
+    - Test

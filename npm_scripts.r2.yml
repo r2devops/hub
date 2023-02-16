@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/npm_scripts/npm_scripts.yml
+  documentation: ./jobs/npm_scripts/README.md
+  changelog: ./jobs/npm_scripts/CHANGELOG.md
+data:
+  description: A ready to use npm job that run predefined scripts specified in package.json
+  public: true
+  license: MIT
+  icon: 💡
+  labels:
+    - Utilities

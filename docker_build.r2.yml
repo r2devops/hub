@@ -1,0 +1,14 @@
+files:
+  template: ./jobs/docker_build/docker_build.yml
+  documentation: ./jobs/docker_build/README.md
+  changelog: ./jobs/docker_build/CHANGELOG.md
+data:
+  description: A ready-to-use docker job to push the image of your project
+    repository to the GitLab registry
+  public: true
+  license: MIT
+  icon: 🛸
+  labels:
+    - Build
+    - Container
+    - Docker

@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/venom/venom.yml
+  documentation: ./jobs/venom/README.md
+  changelog: ./jobs/venom/CHANGELOG.md
+data:
+  description: Run your Venom tests
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Test

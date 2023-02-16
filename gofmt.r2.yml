@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/gofmt/gofmt.yml
+  documentation: ./jobs/gofmt/README.md
+  changelog: ./jobs/gofmt/CHANGELOG.md
+data:
+  description: Gofmt formats Go programs. It uses tabs for indentation and blanks
+    for alignment. Alignment assumes that an editor is using a fixed-width font.
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - Lint

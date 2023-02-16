@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/owasp_dependency_check/owasp_dependency_check.yml
+  documentation: ./jobs/owasp_dependency_check/README.md
+  changelog: ./jobs/owasp_dependency_check/CHANGELOG.md
+data:
+  description: Analyze your dependencies for various packet managers using Dependency-Check
+  public: true
+  license: MIT
+  icon: 🎯
+  labels:
+    - Security
+    - Dependency management

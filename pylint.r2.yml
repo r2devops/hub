@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/pylint/pylint.yml
+  documentation: ./jobs/pylint/README.md
+  changelog: ./jobs/pylint/CHANGELOG.md
+data:
+  description: A ready-to-use linter, to help validate the quality of your source
+    code in python project.
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Python

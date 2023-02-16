@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/sls_scan/sls_scan.yml
+  documentation: ./jobs/sls_scan/README.md
+  changelog: ./jobs/sls_scan/CHANGELOG.md
+data:
+  description: Use a ShiftLeftSecurity sast scan to secure your application
+  public: true
+  license: MIT
+  icon: 🔐
+  labels:
+    - Security
+    - SAST

@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/gitlab-terraform_plan/gitlab-terraform_plan.yml
+  documentation: ./jobs/gitlab-terraform_plan/README.md
+  changelog: ./jobs/gitlab-terraform_plan/CHANGELOG.md
+data:
+  description: This job will initialize a working directory containing Terraform
+    configuration files and plan the changes
+  public: true
+  license: MIT
+  icon: 💎
+  labels:
+    - Terraform
+    - Configuration

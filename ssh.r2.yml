@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/ssh/ssh.yml
+  documentation: ./jobs/ssh/README.md
+  changelog: ./jobs/ssh/CHANGELOG.md
+data:
+  description: A simple job to run a remote command through SSH
+  public: true
+  license: MIT
+  icon: 📦
+  labels:
+    - Utilities

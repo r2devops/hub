@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/ng_test/ng_test.yml
+  documentation: ./jobs/ng_test/README.md
+  changelog: ./jobs/ng_test/CHANGELOG.md
+data:
+  description: Ready to use job on Angular project that runs `test` specified on options.
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Test

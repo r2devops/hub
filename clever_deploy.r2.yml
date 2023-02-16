@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/clever_deploy/clever_deploy.yml
+  documentation: ./jobs/clever_deploy/README.md
+  changelog: ./jobs/clever_deploy/CHANGELOG.md
+data:
+  description: Deploy a static website to a Clever Cloud application
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Gitlab
+    - Deploy

@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/maven_test/maven_test.yml
+  documentation: ./jobs/maven_test/README.md
+  changelog: ./jobs/maven_test/CHANGELOG.md
+data:
+  description: Run unit tests of a Java project using Maven and JUnit
+  public: true
+  license: MIT
+  icon: 🔧
+  labels:
+    - Test
+    - Java
+    - Maven

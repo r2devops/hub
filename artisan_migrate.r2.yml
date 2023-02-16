@@ -1,0 +1,13 @@
+files:
+  template: ./jobs/artisan_migrate/artisan_migrate.yml
+  documentation: ./jobs/artisan_migrate/README.md
+  changelog: ./jobs/artisan_migrate/CHANGELOG.md
+data:
+  description: A ready-to-use job for migrating your database
+  public: true
+  license: MIT
+  icon: 📄
+  labels:
+    - PHP
+    - Artisan
+    - Database
