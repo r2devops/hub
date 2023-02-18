@@ -12,13 +12,13 @@ customized through configuration.
 
 * **🚀 Find jobs to use in your pipeline in [Jobs index](https://r2devops.io/_/jobs/)**
 * **📚 Understand how to use the hub in [Documentation](https://docs.r2devops.io/)**
-* **🙋 Add your own job using the [Contributing guide](https://docs.r2devops.io/contribute/)**
+* **🙋 Add your own job using the [Contributing guide](https://docs.r2devops.io/public-catalog/contribute)**
 
 ## Repository
 
 This mono-repo contains several parts:
 
-* Jobs' sources and a job template (jobs structure is described in [documentation](https://docs.r2devops.io/job-structure/))
+* Jobs' sources and a job template (jobs structure is described in [documentation](https://docs.r2devops.io/public-catalog/contribute/#template-definition))
 * Documentation of the hub
 * Tools used in hub pipeline to check jobs
 
@@ -36,7 +36,7 @@ This mono-repo contains several parts:
 
 ### How to add or update a job
 
-* Follow the [Contributing guide](https://docs.r2devops.io/contribute/)
+* Follow the [Contributing guide](https://docs.r2devops.io/public-catalog/contribute)
 
 ### How to update the hub documentation
 
