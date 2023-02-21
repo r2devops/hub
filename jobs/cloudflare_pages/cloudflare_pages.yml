@@ -8,7 +8,7 @@ cloudflare_pages:
     name: node:${IMAGE_TAG}
   stage: deploy
   variables:
-    PAGES_BUILD_PATH: "build"
+    PAGES_BUILD_PATH: "website_build"
     PROJECT_NAME: "$CI_PROJECT_PATH_SLUG" 
     PRODUCTION_BRANCH: $CI_DEFAULT_BRANCH
     DEPLOY_PRODUCTION: "true"
