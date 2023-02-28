@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.2.1] - 2023-02-28
+* Fix broken documentation links
+
 ## [1.2.0] - 2022-10-28
 * Add `GOLINT_OUTPUT_FORMAT` variable to export the report as `junit` or `code-climate` artifact
 * Fix the Junit report artifact

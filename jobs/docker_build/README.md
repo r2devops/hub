@@ -13,16 +13,10 @@ from a Dockerfile at the root of your project, and push it to a remote registry 
 1. Create a
    [Dockerfile](https://docs.docker.com/get-started/part2/#sample-dockerfile){:target="_blank"} (by default at the root of your project)
    to containerize your application
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 5. Well done, your job is ready to work ! 😀
-
-## Job details
-
-* Job name: `docker_build`
-* Docker image: [`gcr.io/kaniko-project/executor:v1.8.1-debug`](https://github.com/GoogleContainerTools/kaniko){:target="_blank"}
-* Default stage: `build`
 
 ### Build behavior
 
@@ -82,4 +76,4 @@ The registry and tag of the resulting Docker image follow this behavior:
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@thomasboni](https://gitlab.com/thomasboni)

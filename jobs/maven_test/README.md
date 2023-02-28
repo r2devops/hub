@@ -8,8 +8,8 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 2. Use the provided `pom.xml` in the example below to get you started. You are then free to customize your `pom.xml`
 depending on your needs. You can also use this job along with the `maven_build` job on the R2DevOps hub for a completely
 automated Java pipeline.
-3. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-4. If you need to customize the job (stage, variables, ...) check the [jobs-customization](/use-the-hub/#jobs-customization)
+3. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+4. If you need to customize the job (stage, variables, ...) check the [jobs-customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 5. Grab a ☕ while the job is running !
 
 ## Example pom.xml
@@ -115,4 +115,4 @@ directly in pipeline `Test` tab and in merge request widget. It's also available
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.4.1] - 2023-02-28
+* Fix broken documentation links
+
 ## [0.4.0] - 2022-09-20
 * Enable pages composability by default
 

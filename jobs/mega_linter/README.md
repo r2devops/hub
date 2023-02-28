@@ -9,8 +9,8 @@ to use out of the box.
 ## How to use it
 
 1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the
-   [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed
-   version](#changelog) instead of `latest`.
+   [quick use]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#quick-setup)). You can specify [a fixed
+   version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
 1. Well done, your job is ready to work ! 😀
@@ -79,6 +79,6 @@ The job uses the following dependencies for converting the `output` to `CodeClim
 - [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) tool to convert `SARIF` to `CodeClimate`
 
 ## Author and contributors
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@protocole](https://gitlab.com/Protocole)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@protocole](https://gitlab.com/Protocole)
 
 It was updated in september 2022 by [@GridexX](https://gitlab.com/GridexX) with the help of [@nvuillam](https://github.com/nvuillam)

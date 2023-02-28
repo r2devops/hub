@@ -5,8 +5,8 @@ Retrieve all templates from a repository and create GitLab release (and git tag)
 ## How to use it
 
 1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the
-   [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed
-   version](#changelog) instead of `latest`.
+   [quick use]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#quick-setup)). You can specify [a fixed
+   version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
 1. Well done, your job is ready to work and will be execute on your main branch ! 😀
@@ -40,7 +40,7 @@ A job metadata file is required to create the releases. It should follow these r
 - The changelog path must be defined and must be a valid file.
 - The template path must be defined and must be a valid file.
 
-For more information about job templates, check the [documentation](https://docs.r2devops.io/get-started/import-job-template#how-to-import-job-templates).
+For more information about job templates, check the [documentation](https://docs.r2devops.io/get-started/manage-templates/#template-r2-file).
 
 
 **Here's the example structure of a job template folder:**
@@ -54,7 +54,7 @@ docker_build/
 A `CHANGELOG.md` file as explained in the previous example, is required to create releases. It should follow these rules:
 
 - The structure of the `CHANGELOG.md` is based on [keepachangelog](https://keepachangelog.com/en/1.0.0/) structure.
-- You could also checkout the [R2Devops documentation](https://docs.r2devops.io/job-structure/#job-changelogs) about it
+- You could also checkout the [R2Devops documentation](https://docs.r2devops.io/get-started/manage-templates/#template-changelog) about it
 
 **Here's an example of a `CHANGELOG.md`:**
 ```
@@ -85,4 +85,4 @@ A `CHANGELOG.md` file as explained in the previous example, is required to creat
 | `METADATA_FILE_EXTENSION` | The extension of metadata files | `.r2.yml` |
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

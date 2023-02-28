@@ -2,6 +2,9 @@
 
 All notable changes to this job will be documented in this file.
 
+## [0.1.3] - 2023-02-28
+* Fix broken documentation links
+
 ## [0.1.2] - 2022-07-22
 * Rename the job from `s3_sync` to `s3_deploy`
 * Add TLS protocol for the website with `aws` provider

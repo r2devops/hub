@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.1] - 2023-02-28
+* Fix broken documentation links
+
 ## [0.3.0] - 2023-01-28
 * Change the stage from `deploy` to `others`
 

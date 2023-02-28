@@ -9,8 +9,8 @@ Retrieve all job templates from a repository and create GitLab release (and git 
 ## How to use it
 
 1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the
-   [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed
-   version](#changelog) instead of `latest`.
+   [quick use]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#quick-setup)). You can specify [a fixed
+   version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
 1. Well done, your job is ready to work and will be execute on your main branch ! 😀
@@ -28,7 +28,7 @@ docker_build/
 
 A `CHANGELOG.md` is required to create the releases
 - The structure of the `CHANGELOG.md` is based on [keepachangelog](https://keepachangelog.com/en/1.0.0/) structure.
-- You could also checkout the [R2Devops documentation](https://docs.r2devops.io/job-structure/#job-changelogs) about it
+- You could also checkout the [R2Devops documentation](https://docs.r2devops.io/get-started/manage-templates/#template-versioning) about it
 
 **Here's an example of a `CHANGELOG.md`:**
 ```
@@ -62,4 +62,4 @@ A `CHANGELOG.md` is required to create the releases
 | `CHANGELOG_FILE` | The name of changelog files (case insensitive) | `CHANGELOG.md` |
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Totara-thib](https://gitlab.com/Totara-thib)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Totara-thib](https://gitlab.com/Totara-thib)

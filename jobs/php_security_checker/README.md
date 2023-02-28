@@ -4,9 +4,9 @@ This job checks if your PHP application depends on PHP packages with known secur
 
 ## How to use it
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. By default, the output is optimized for terminals, change it via the variable `FORMAT_OUTPUT` (supported formats: `ansi`, `markdown`, `json`, and `yaml`):
   `--format=json`
 1. Well done, your job is ready to work ! 😀
@@ -22,4 +22,4 @@ This job checks if your PHP application depends on PHP packages with known secur
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@melheb.younes](https://gitlab.com/melheb.younes)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@melheb.younes](https://gitlab.com/melheb.younes)

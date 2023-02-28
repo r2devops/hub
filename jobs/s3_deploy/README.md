@@ -8,7 +8,7 @@ Deploy your static website on following S3-compatible cloud-providers:
 
 1. Include this job in your configuration. Copy/paste link in the right panel
    and see [use the
-   hub](https://docs.r2devops.io/get-started-use-the-hub/#quick-setup)
+   hub](https://docs.r2devops.io/get-started/use-templates/)
 1. Set credentials variables `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY` in
    the Gitlab CI/CD variables section of your project. Follow these guides
    depending of your Cloud-provider:
@@ -18,7 +18,7 @@ Deploy your static website on following S3-compatible cloud-providers:
    `S3_ENDPOINT` variable.
     - [Scaleway](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/){:target="_blank"}
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀
 
 ## Variables
@@ -46,6 +46,6 @@ Deploy your static website on following S3-compatible cloud-providers:
 
 ## Author
 
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)**
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)**
 added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by
 [@GridexX](https://gitlab.com/GridexX)

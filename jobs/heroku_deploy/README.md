@@ -6,9 +6,9 @@ Deploy your application to Heroku. You can use custom buildpacks depending on ou
 
 1. Create an application on [Heroku](https://dashboard.heroku.com/new-app) and fill the application name in the `HEROKU_APP` variable.
 1. Copy your API key in the `HEROKU_API_KEY` variable.
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀
 
 ## Variables
@@ -21,4 +21,4 @@ Deploy your application to Heroku. You can use custom buildpacks depending on ou
 | `IMAGE_TAG` | The default tag for the docker image | `3.2-rc-buster`  |
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

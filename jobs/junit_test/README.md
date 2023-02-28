@@ -14,4 +14,4 @@ Test your Java project using [Apache Maven](http://maven.apache.org/) JDK 11, Ja
 | `IMAGE_TAG` | The default tag for the docker image | `3.8.4-jdk-11`  |
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

@@ -6,7 +6,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
 ## How to use it
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 2. Choose a target
 
     !!! tip "Plug and play available !"
@@ -21,15 +21,15 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
     ??? summary "Option 2: Plug manually your external website"
       Add the site IP or the domain name of the service to check in `LIGHTHOUSE_TARGET` variable
-      (see [jobs customization](/use-the-hub/#jobs-customization))
+      (see [jobs customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization))
 
     ??? summary "Option 3: Plug manually your container instance"
       Add the target container instance as a service (see
-      [Container instance as Service](/use-the-hub/#advanced-services)) and
+      [Container instance as Service]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#advanced-services)) and
       set variable `LIGHTHOUSE_TARGET` as the name of your container.
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 4. Well done, your job is ready to work ! 😀
 
 ## Variables
@@ -72,4 +72,4 @@ Lighthouse result is available as artifact.
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)

@@ -5,8 +5,8 @@ A ready-to-use job to lint your Golang project. It includes a lot of linters suc
 ## How to use it
 
 1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the
-   [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed
-   version](#changelog) instead of `latest`.
+   [quick use]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#quick-setup)). You can specify [a fixed
+   version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
 1. Well done, your job is ready to work ! 😀
@@ -23,4 +23,4 @@ A ready-to-use job to lint your Golang project. It includes a lot of linters suc
 | `IMAGE_TAG` | The default tag for the docker image | `v1.50.1`  |
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Alexia](https://gitlab.com/alexiaognard). Was improved by [@GridexX](https://gitlab.com/GridexX) on October 2022.
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Alexia](https://gitlab.com/alexiaognard). Was improved by [@GridexX](https://gitlab.com/GridexX) on October 2022.

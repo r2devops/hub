@@ -10,10 +10,10 @@ This job allows users to run several scripts from their `package.json` file usin
    file which contains predefined command in the `scripts` object
 1. If you want the job to run scripts make sure to add them inside the `variable` `NPM_SCRIPTS` and separate every command with `;`
 1. The default stage is `others`, if you want to customize this stage depending of the scripts that you run, check the [stage
-   customization](/use-the-hub/#use-custom-stage)
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+   customization]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#use-custom-stage)
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. You are done, the job is ready to use ! 😉
 
 
@@ -58,9 +58,9 @@ npm_scripts:
 
 ## Cache
 
-To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](/jobs/others/npm_install/#cache)
+To cache `node_modules` folder for other `npm` jobs, take a look at [`npm_install`](https://r2devops.io/_/gitlab/r2devops/hub/npm_install/#cache)
 
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@totara-thib](https://gitlab.com/Totara-thib)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@totara-thib](https://gitlab.com/Totara-thib)

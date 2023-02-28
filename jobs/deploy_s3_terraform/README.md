@@ -22,9 +22,9 @@ Deploy a static website on a S3 bucket provided by a Terraform state. It is a fu
     ??? info "Set up a bucket policy 👮"
       Depending on your Cloud provider, you might need to set up a bucket policy. You can specify it via the variable `AWS_BUCKET_POLICY_FILE`. For example, you can find some documentation for bucket policy for Amazon S3 [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html){:target="_blank"}.
 1. Make sure to fulfill all mandatory variables. See the **Variables** section 👇
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀
 
 ## Variables
@@ -165,4 +165,4 @@ For more information here are some useful links :
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

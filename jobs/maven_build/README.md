@@ -8,8 +8,8 @@ Build your Java project using [Apache Maven](http://maven.apache.org/) and JDK 1
 2. _(Recommended)_ Use the provided `pom.xml` in the example section below to get started. You are then free to customize your `pom.xml`
 as you wish. For instance you can choose to use the [Spring Boot](https://spring.io/projects/spring-boot) framework that will
 package your jar a different way and the job will still work and expose your shiny jars.
-3. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
-4. If you need to customize the job (stage, variables, ...) check the [jobs-customization](/use-the-hub/#jobs-customization)
+3. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+4. If you need to customize the job (stage, variables, ...) check the [jobs-customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 5. Grab a ☕ while the job is running !
 
 ## Example pom.xml
@@ -58,4 +58,4 @@ package your jar a different way and the job will still work and expose your shi
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@alexlevy](https://gitlab.com/alexlevy)

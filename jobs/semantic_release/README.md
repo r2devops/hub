@@ -18,7 +18,7 @@ version of the software is needed, and the content of your release note. Learn m
 1. Have a valid `semantic-release` configuration stored in a file `./releaserc`  (use `SEMANTIC_CONFIG_PATH` if path is different)
 1. Add a [CI/CD variable](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project) named `GITLAB_TOKEN` containing a GitLab access token with `api` access and `Maintainer` role on the project to release
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀
 
 ## Variables
@@ -57,4 +57,4 @@ This job will expose an artifact will the result from `semantic-release` and is 
 it is also available directly in the job's logs.
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

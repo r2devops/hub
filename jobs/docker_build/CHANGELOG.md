@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [2.0.1] - 2023-02-28
+* Fix broken documentation links
+
 ## [2.0.0] - 2022-07-29
 * 🚨 **BREAKING CHANGE**
   Variable `DOCKER_TAG` updated to `DOCKER_TAGS` to use multiple tags in image building. 

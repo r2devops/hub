@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.0.1] - 2023-02-28
+* Fix broken documentation links
+
 ## [1.0.0] - 2023-01-28
 * Change the stage of the job to `tests`
  

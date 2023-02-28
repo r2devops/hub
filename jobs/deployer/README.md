@@ -4,7 +4,7 @@ Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"
 
 ## How to use it
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. Set the secret variable `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS`as CI/CD variables in [your Gitlab project](https://docs.gitlab.com/ee/ci/variables/README.html#project-cicd-variables){:target="_blank"}
    if you need encrypted variables.
 
@@ -13,7 +13,7 @@ Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"
 
 1. Make sure that you have the deployer config file (`deploy.php` or `deploy.yaml`) in the root folder of your project, More info in [this guide](https://deployer.org/docs/7.x/getting-started){:target="_blank"}
 1. If you need to customize other part of the job (stage, variables, ...) 👉
-   check the [jobs customization](/use-the-hub/#jobs-customization)
+   check the [jobs customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀
 
 ## Example of `deploy.php` file
@@ -94,4 +94,4 @@ task('deploy', [
     with any output location.
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@moha-s](https://gitlab.com/moha-s)

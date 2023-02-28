@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.9.1] - 2023-02-28
+* Fix broken documentation links
+
 ## [1.9.0] - 2023-01-27
 * Bump sarif-codeclimate version to 2.1.1
 

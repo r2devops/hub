@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.2.2] - 2023-02-28
+* Fix broken documentation links
+
 ## [1.2.1] - 2022-06-13
 * Add docker image tag in variable 
 

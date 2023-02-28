@@ -13,22 +13,22 @@ This job installs `npm` or `yarn` dependencies listed in your `package.json` and
    or
    [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/#transpilation){:target="_blank"}
    file which contains your tasks
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-customization](/use-the-hub/#jobs-customization)
+customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀
 
 
 ## Example of `.gitlab-ci.yml` file
 
-If you want to [change the default stage](/use-the-hub/#use-custom-stage), or [customize your job](/use-the-hub/#global) have a look on the example below 👇🏽
+If you want to [change the default stage]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#use-custom-stage), or [customize your job]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#global) have a look on the example below 👇🏽
 
 ```yaml
 stages:
   - prepare-frontend
 
 include:
-  - remote: 'https://jobs.r2devops.io/gulp.yml'
+  - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/gulp'
 
 gulp:
   stage: prepare-frontend
@@ -53,8 +53,8 @@ gulp:
 | `GULPFILE_PATH` | Path (from `PROJECT_ROOT`) to your  gulpfile `gulpfile.js` or `gulpfile.ts`| ` ` |
 | `GULP_TASKS` | List of your tasks to run with `gulp` (separated by ; ). <br/> *Ex: "minify-css; minify-js;"* | ` ` |
 | `GULP_OUTPUT_FOLDER` | If needed, path to the output produced by your scripts (path relative from the `PROJECT_ROOT`) | `build` |
-| `PAGES_DEPLOY` | If enabled, prepare your build result to be deployed on pages (require [pages job](jobs/deploy/pages/)) | `false` |
-| `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](jobs/deploy/pages/) (path relative from the root of the repository) | `./website_build` |
+| `PAGES_DEPLOY` | If enabled, prepare your build result to be deployed on pages (require [pages job](https://r2devops.io/_/gitlab/r2devops/hub/pages)) | `false` |
+| `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](https://r2devops.io/_/gitlab/r2devops/hub/pages) (path relative from the root of the repository) | `./website_build` |
 | `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
 
 ## Artifacts
@@ -73,4 +73,4 @@ When the job is successful, Gulp result is available as artifact.
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@coconux](https://gitlab.com/coconux)

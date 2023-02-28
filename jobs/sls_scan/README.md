@@ -12,9 +12,9 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 
 1. The job can be run "out of the box". If you need to personalize its
    behavior, check the [variables section](#variables)
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 5. Well done, your job is ready to work ! 😀
 
 !!! info
@@ -32,7 +32,7 @@ build_break_rules = {
 
 | Name | Description | Default |
 | ---- | ----------- | ------- |
-| `SCAN_OPTIONS` | If you want to add [additional arguments](https://slscan.io/en/latest/getting-started/#command-line-arguments) for `scan` | ` ` |
+| `SCAN_OPTIONS` | If you want to add [additional arguments](https://appthreat.com/en/latest/getting-started/?h=command#command-line-arguments) for `scan` | ` ` |
 | `ENABLE_BUILD` | The option to use `--build` with the `scan` command | `true` |
 | `SLS_TYPE` | If you want to specify a specific scanner to use | ` ` |
 | `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |
@@ -87,4 +87,4 @@ Scan result is available as artifact, and all HTML reports are merged into one s
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@FulcrandG](https://gitlab.com/FulcrandG)

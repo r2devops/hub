@@ -18,9 +18,9 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 
 1. (Optional) Configure your PySpelling config file (see [here](#configuration))
 2. (Optional) According to your PySpelling config, define `PYSPELLING_SPELLER` and `PYSPELLING_LANGUAGE`
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick setup](/use-the-hub/#quick-setup)). You can specify [a fixed version](#changelog) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
-   customization](/use-the-hub/#jobs-customization)
+   customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 5. Well done, your job is ready to work ! 😀
 
 !!! note "About Hunspell"
@@ -43,7 +43,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 !!! info
     Spell_Check is also using [`allow_failure`](https://docs.gitlab.com/ee/ci/yaml/#allow_failure){:target="_blank"} Gitlab's variable,
     which is by default true.
-    You can change this option to make the pipeline fails if any spelling error is detected. See [jobs customization](/use-the-hub/#jobs-customization).
+    You can change this option to make the pipeline fails if any spelling error is detected. See [jobs customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization).
 
 !!! info
     This job use scripts and default config files in order to be plug and play. These scripts are fetched
@@ -103,4 +103,4 @@ The report defined as `spelling_junit.xml` is also available directly in the art
 
 
 ## Author
-This resource is an **[official job](https://docs.r2devops.io/faq-labels/)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)
+This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Protocole](https://gitlab.com/Protocole)
