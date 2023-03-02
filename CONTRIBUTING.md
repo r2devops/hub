@@ -1,0 +1,1 @@
+We welcome contributions to our project! Please follow these [guidelines](https://docs.r2devops.io/public-catalog/contribute/) when contributing.
