@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [2.0.0] - 2023-03-02
+* Add a new variable `SECURITY_CHECKER_VERSION` to specify the version of Local PHP Security Checker
+* Change `IMAGE_TAG` from `php7.4-alpine` to `3.17`
+* Change the default image from `jakzal/phpqa` to `alpine`
+
 ## [1.1.1] - 2023-02-28
 * Fix broken documentation links
 

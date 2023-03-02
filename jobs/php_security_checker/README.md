@@ -16,8 +16,9 @@ This job checks if your PHP application depends on PHP packages with known secur
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `COMPOSER_PATH` <img width=100/> | A general variable for this job <img width=175/>| `./composer.lock` <img width=100/>|
-| `FORMAT_OUTPUT` <img width=100/> | A variable for the format of the output<img width=175/>| ` ` <img width=100/>|
-| `IMAGE_TAG` | The default tag for the docker image | `php7.4-alpine`  |
+| `FORMAT_OUTPUT` | A variable for the format of the output | ` ` |
+| `SECURITY_CHECKER_VERSION` | The version of Local PHP Security Checker | `2.0.6` |
+| `IMAGE_TAG` | The default tag for the docker image | `3.17`  |
 
 
 
