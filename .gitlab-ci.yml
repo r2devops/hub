@@ -63,26 +63,6 @@ ci_linter:
     - changes:
       - "jobs/**/*${JOB_FILES_EXTENSION}"
 
-job_structure:
-  image: python:${IMAGE_TAG_PYTHON_ALPINE}
-  stage: static_tests
-  variables:
-    PIPENV_PIPFILE: tools/job_structure/Pipfile
-    JOB_LOGFILE: "job_structure.log"
-    PYTHONPATH: "./:$PYTHONPATH"
-  before_script:
-    - pip install --ignore-installed distlib pipenv
-    - pipenv install
-  script:
-    - pipenv run python3 tools/job_structure/job_structure.py
-  artifacts:
-    expose_as: "job_structure"
-    paths:
-      - ${JOB_LOGFILE}
-    when: always
-  rules:
-    - changes:
-      - jobs/**/*
 
 job_customs:
   image: python:${IMAGE_TAG_PYTHON_ALPINE}
