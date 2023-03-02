@@ -168,7 +168,7 @@ job_customs:
     -   if [ ! -z ${IMAGE} ]; then
     -     NAME=$(basename ${IMAGE})
     -     ./trivy image --template "@${TEMPLATE_NAME}" --security-checks vuln --vuln-type ${TRIVY_VULN_TYPE} --offline-scan --cache-dir ${TRIVY_CACHE_DIR} -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
-    -     ./trivy image --security-checks vuln --cache-dir ${TRIVY_CACHE_DIR} --offline-scan -f json -o ${OUTPUT_DIR}/JobsVul/${JOB}.json ${IMAGE}
+    -     ./trivy image --security-checks vuln --cache-dir ${TRIVY_CACHE_DIR} --offline-scan -f json -o ${OUTPUT_DIR}/jobs/${JOB}.json ${IMAGE}
     -     if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
     -       ./trivy image --template "@${TEMPLATE_NAME}" --security-checks vuln --vuln-type ${TRIVY_VULN_TYPE} --offline-scan --cache-dir ${TRIVY_CACHE_DIR} --exit-code 1 --severity ${TRIVY_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
     -     fi
