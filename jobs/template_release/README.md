@@ -83,6 +83,7 @@ A `CHANGELOG.md` file as explained in the previous example, is required to creat
 | `IMAGE_TAG` | The default tag for the docker image [alpine/httpie](https://hub.docker.com/r/alpine/httpie) | `3.2.1` |
 | `GITLAB_API_URL` | The domain of GitLab instance. ⚠️ It should be changed if you using a self-hosted version | `gitlab.com` |
 | `METADATA_FILE_EXTENSION` | The extension of metadata files | `.r2.yml` |
+| `RELEASE_PATH` | The path where releases files are exposed as artifacts | `${CI_PROJECT_DIR}/releases` |
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)

@@ -12,10 +12,12 @@ template_release:
     IMAGE_TAG: "3.2.1"
     GITLAB_API_URL: "${CI_SERVER_HOST}"
     METADATA_FILE_EXTENSION: ".r2.yml"
+    RELEASE_PATH: "${CI_PROJECT_DIR}/releases"
   before_script:
     - apk update && apk add --no-cache bash
   script:
     # Url encode the project name
+    - mkdir -p $RELEASE_PATH
     - PROJECT_ENCODED=$(/bin/bash -c "$(http --ignore-stdin --body https://gitlab.com/r2devops/hub/-/snippets/2462394/raw/92c7e820e5b7ce468d8031748e1a57c24c67f6a4/_encode.sh) && _encode '$CI_PROJECT_PATH'")
     # Search for all changelog files
     - METADATA_JOBS="$(find . -iname "*$METADATA_FILE_EXTENSION")"
@@ -92,7 +94,9 @@ template_release:
     -           exit 1;
     -         else
     -           if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
-    -             echo "New version detected for $JOB_NAME-$VERSION"
+    -             echo "New version detected for ${JOB_RELEASE}"
+    -             JOB_RELEASE_STRIP=$(echo ${JOB_RELEASE} | sed -e 's/\//|/g')
+    -             echo "${CHANGELOG}" > ${RELEASE_PATH}/${JOB_RELEASE_STRIP}.md
     -           fi
     -   |
               echo "Processed ${JOB_RELEASE} : ${result}"
@@ -101,3 +105,9 @@ template_release:
     - done
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  artifacts:
+    expose_as: "template_release"
+    paths:
+    - "${RELEASE_PATH}"
+    expire_in: 3 days
+    when: always
