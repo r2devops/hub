@@ -261,6 +261,20 @@ codespell:
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 template_release:
+  after_script:
+    # We notify the release to Discord
+    - cd ${RELEASE_PATH}
+    - |
+      for release in *; do
+        if [[ $release =~ ^(.*)@(.*)\.(.*)\.md$ ]]; then
+          JOB="${BASH_REMATCH[1]}"
+          VERSION="${BASH_REMATCH[2]}"
+          STAGE="${BASH_REMATCH[3]}"
+          changelog=$(cat "$release")
+          echo "New version detected for $job-$version, sending notification to discord"
+          pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}" -s ${STAGE}
+        fi
+      done
   rules:
    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
