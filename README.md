@@ -2,7 +2,7 @@
 
 ## Description
 
-**R2Devops hub** is a collaborative hub of CI & CD **ready to use** jobs which
+**R2Devops hub** is a collaborative hub of CI & CD **ready to use** templates which
 helps you to quickly build powerful pipelines for your projects.
 
 
@@ -18,14 +18,15 @@ customized through configuration.
 
 This mono-repo contains several parts:
 
-* Jobs' sources and a job template (jobs structure is described in [documentation](https://docs.r2devops.io/public-catalog/contribute/#template-definition))
+* templates' sources (structure is described in [documentation](https://docs.r2devops.io/public-catalog/contribute/#template-definition))
 * Documentation of the hub
-* Tools used in hub pipeline to check jobs
+* Tools used in hub pipeline to check templates
+* Template R2 files, that defines template metadata
 
 ```
 .
 ├── docs            # Documentation sources
-├── jobs            # Folder containing jobs sources
+├── jobs            # Folder containing templates sources
 │   └── ...
 ├── mkdocs.yml      # Documentation configuration
 ├── Pipfile         # Pipenv dependency file to build doc
@@ -34,7 +35,7 @@ This mono-repo contains several parts:
     └── ...
 ```
 
-### How to add or update a job
+### How to add or update a template
 
 * Follow the [Contributing guide](https://docs.r2devops.io/public-catalog/contribute)
 
@@ -86,26 +87,20 @@ There are several jobs used on the CI/CD pipeline. The following list shows all 
 1. `ci_linter`  
 This jobs use the [CI lint API](https://docs.gitlab.com/ee/api/lint.html) to validate the configuration of each jobs.yaml file. 
 
-2. `job_structure`  
-This job written in Python ensures every files respect the structure we want. It checks that every file has the right name, the right path and the right content. 
+1. `job_image_scan`  
+Runs only on merge request.
+This job uses [trivy](https://aquasecurity.github.io/trivy/) to scan images listed in template files that have been modified. It checks that the image doesn't have any vulnerability.
 
-3. `job_customs`  
-This job written in Python ensures every script of the jobs doesn't made modifications on the repository. It checks that every script doesn't use `git commit` or `git push`.
-
-4. `job_image_scan`  
-Runs only on the default branch. And uses some cache for the images.
-This job uses [trivy](https://aquasecurity.github.io/trivy/) to scan all images used in the jobs. It checks that the image doesn't have any vulnerability.
-
-5. `code_spell`
+1. `code_spell`
 This job uses codespell to check the spelling of the code. It checks that the code doesn't have any spelling mistake.
 
-6. `links_checker`
+1. `links_checker`
 This job ensures all links are valid in the documentation.
 
 #### merge_test & scheduled pipeline
 
 A scheduled pipeline is triggered at 8 pm each day to launch a full antivirus scan on each jobs. 
-This pipeline triggers 3 jobs :  
+This pipeline triggers 4 jobs :  
 
 1. `refresh_job_av_database`   
 Refresh antivirus definition's with `freshclam` command. See the [english documentation(https://help.ubuntu.com/community/ClamAV)(english) or [french documentation](https://doc.ubuntu-fr.org/clamav) for more information.
@@ -113,6 +108,8 @@ Refresh antivirus definition's with `freshclam` command. See the [english docume
 This job is only trigger when a branch is being merged or on a schedule pipeline. Iterates over the jobs to get their image and write a .gitlab-ci.yml that can run a child pipeline in order to use ClamAV for virus detection. The generated .gitlab-ci.yml is launched in the next job.
 3. `child_job_av`   
 It is launched by the previous job and scan the docker image and warn if they are know virus listed in the database.
+4. `job_image_scan_schedule`
+This job scans every image of the hub and warn if they are know vulnerability.
 
 #### project_setup
 
