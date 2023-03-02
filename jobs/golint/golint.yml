@@ -4,7 +4,7 @@ stages:
   - tests
 
 golint:
-  image: golangci/golangci-lint:${IMAGE_TAG}
+  image: golang:${IMAGE_TAG}
   stage: tests
   variables:
     PROJECT_ROOT: "."
@@ -12,8 +12,12 @@ golint:
     GOLINT_REPORTS_DIRECTORY: "reports"
     GOLINT_OUTPUT_FORMAT: "junit-xml" 
     ADDITIONAL_OPTIONS: ""
-    IMAGE_TAG: "v1.50.1"
+    GOLINT_VERSION: "1.51.2"
+    IMAGE_TAG: "alpine3.17"
   script:
+    - wget -O ./golint.tar.gz "https://github.com/golangci/golangci-lint/releases/download/v${GOLINT_VERSION}/golangci-lint-${GOLINT_VERSION}-linux-amd64.tar.gz"
+    - tar -xzf ./golint.tar.gz
+    - mv ./golangci-lint-${GOLINT_VERSION}-linux-amd64/golangci-lint /usr/local/bin/golangci-lint
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     - mkdir ${GOLINT_REPORTS_DIRECTORY}
     - touch ${GOLINT_REPORTS_DIRECTORY}/report-golint.xml

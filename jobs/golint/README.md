@@ -20,7 +20,8 @@ A ready-to-use job to lint your Golang project. It includes a lot of linters suc
 | `GOLINT_REPORTS_DIRECTORY` | Name for the reports directory | `reports` |
 | `GOLINT_OUTPUT_FORMAT` | Format for the linters. Could be `junit-xml`, `code-climate` or `colored-line-number` for printing the output in the console.  | `junit-xml` |
 | `ADDITIONAL_OPTIONS` | [Additional options](https://golangci-lint.run/usage/configuration/) available for the user, they are added at the end of lint command | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `v1.50.1`  |
+| `GOLINT_VERSION` | The version of golangci-lint | `1.51.2`  |
+| `IMAGE_TAG` | The default tag for the docker image | `alpine3.17`  |
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@Alexia](https://gitlab.com/alexiaognard). Was improved by [@GridexX](https://gitlab.com/GridexX) on October 2022.
