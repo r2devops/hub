@@ -3,6 +3,7 @@ stages:
   - merge_tests
   - project_setup
   - deploy
+  - .after-deploy
 
 include:
   - remote: 'https://api.r2devops.io/job/r/r2devops-bot/links_checker/0.2.0.yml?ignore=true.yml'
@@ -220,19 +221,26 @@ codespell:
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
 template_release:
-  after_script:
-    # We notify the release to Discord
+  rules:
+   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+
+discord_notifier:
+  image: python:${IMAGE_TAG_PYTHON_ALPINE}
+  stage: .after-deploy
+  variables:
+    RELEASE_PATH: "${CI_PROJECT_DIR}/releases" 
+  dependencies:
+    - template_release
+  script:
     - cd ${RELEASE_PATH}
     - |
       for release in *; do
-        if [[ $release =~ ^(.*)@(.*)\.(.*)\.md$ ]]; then
-          JOB="${BASH_REMATCH[1]}"
-          VERSION="${BASH_REMATCH[2]}"
-          STAGE="${BASH_REMATCH[3]}"
-          changelog=$(cat "$release")
-          echo "New version detected for $job-$version, sending notification to discord"
-          pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}" -s ${STAGE}
-        fi
+        JOB="$(echo "$release" | cut -d'@' -f1 | sed -e 's/|/\//g')"
+        VERSION="$(echo "$release" | sed -E 's/.*@([0-9]+\.[0-9]+\.[0-9]+)\..*$/\1/')"
+        STAGE="$(echo "$release" | sed -E 's/.*\.([^.]+)\.md$/\1/')"
+        CHANGELOG=$(cat "$release")
+        echo "New version detected for $JOB@$VERSION, STAGE: $STAGE, sending notification to discord"
+        pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}" -s ${STAGE}
       done
   rules:
    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
