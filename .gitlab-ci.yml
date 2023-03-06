@@ -232,15 +232,14 @@ discord_notifier:
   dependencies:
     - template_release
   script:
-    - cd ${RELEASE_PATH}
+    - RELEASES=$(ls "$RELEASE_PATH")
     - |
-      for release in *; do
+      for release in $RELEASES; do
         JOB="$(echo "$release" | cut -d'@' -f1 | sed -e 's/|/\//g')"
         VERSION="$(echo "$release" | sed -E 's/.*@([0-9]+\.[0-9]+\.[0-9]+)\..*$/\1/')"
-        STAGE="$(echo "$release" | sed -E 's/.*\.([^.]+)\.md$/\1/')"
-        CHANGELOG=$(cat "$release")
-        echo "New version detected for $JOB@$VERSION, STAGE: $STAGE, sending notification to discord"
-        pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}" -s ${STAGE}
+        CHANGELOG=$(cat "$RELEASE_PATH/$release")
+        echo "New version detected for $JOB@$VERSION, sending notification to discord"
+        pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}"
       done
   rules:
    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'

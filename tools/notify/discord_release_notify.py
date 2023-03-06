@@ -20,9 +20,9 @@ USERNAME = "R2" # Message's author
 EMBED_COLOR = 1127128 # Trailing color at left of message
 EMBED_TITLE = "A new job version is available for " # Title of the message
 EMBED_DESCRIPTION = "Wanna see what's new ? :point_down:" # Content of the message (body)
-DOC_LINK = "https://r2devops.io/jobs/"
-API_JOBS_LINK = "https://api.r2devops.io/job/"
-R2_BOT_USER = "r2devops-bot"
+DOC_LINK = "https://r2devops.io/_/gitlab/r2devops/hub"
+API_JOBS_LINK = "https://api.r2devops.io/job/gitlab/r2devops/hub"
+IGNORE_QUERY_PARAM = "ignore=true"
 
 def get_random_quote():
     """Retrieve a random quote from R2Devops Snippet
@@ -34,14 +34,13 @@ def get_random_quote():
         data = response.json()
         return random.choice(data)
 
-def generate_data(name: str, version: str, changelog: str, stage: str):
+def generate_data(name: str, version: str, changelog: str):
     """Generate the body of the request
 
     Args:
         name (str): Name of the job
         version (str): Version of the job
         changelog (str): Changelog of the job
-        stage (str): Stage of the job
     Returns:
         object: Describe the format and content of discord notification
     """
@@ -52,12 +51,12 @@ def generate_data(name: str, version: str, changelog: str, stage: str):
     logging.debug(job_path)
 
     #send an http GET request to the quotes url
-    job_url="{0}{1}/{2}".format(API_JOBS_LINK, R2_BOT_USER, name.lower())
+    job_url="{0}/{1}?{2}".format(API_JOBS_LINK, name.lower(), IGNORE_QUERY_PARAM)
     job_metadata_request=requests.get(job_url)
     icon = "🏷"
 
     if job_metadata_request.status_code != 200:
-        logging.error("[WARN] Job %s not found for user %s with request %s", name.lower(), R2_BOT_USER, job_url)
+        logging.error("[WARN] Job %s not found with request %s", name.lower(), job_url)
         logging.error("[WARN] In order to proceed, we are replacing the job icon by default: 🏷")
     else:
         icon = job_metadata_request.json()["icon"]
@@ -74,7 +73,7 @@ def generate_data(name: str, version: str, changelog: str, stage: str):
                 "fields": [
                         {
                             "name": "Documentation",
-                            "value": "{0}{1}/{2}/".format(DOC_LINK, stage, name.lower())
+                            "value": "{0}/{1}/".format(DOC_LINK, name.lower())
                         },
                         {
                             "name": "Version",
@@ -135,9 +134,6 @@ def main():
     parser.add_argument("--changelog", "-c",
     type=str, required=True, help="R2DevOps job's changelog")
 
-    parser.add_argument("--stage", "-s",
-    type=str, required=True, help="R2DevOps job's stage")
-
     parser.add_argument("--webhook", "-w",
     type=str, default=os.getenv("DISCORD_RELEASE_WEBHOOK"),
     help="Custom Discord WebHook (default: {})".format(os.getenv("DISCORD_RELEASE_WEBHOOK")))
@@ -149,7 +145,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level=args.loglevel)
 
-    data_format = generate_data(args.name, args.version, args.changelog, args.stage)
+    data_format = generate_data(args.name, args.version, args.changelog)
     send_message(args.webhook, data_format)
 
 if __name__ == "__main__":
