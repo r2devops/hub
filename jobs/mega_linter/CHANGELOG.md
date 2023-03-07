@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [2.0.0] - 2023-03-07
+* Bump megalinter image version to v6.20.0
+* Bump sarif-codeclimate version to 2.1.2
+
 ## [1.9.1] - 2023-02-28
 * Fix broken documentation links
 

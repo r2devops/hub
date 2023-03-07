@@ -38,10 +38,10 @@ mega_linter:
     # End folder where reports are held
     CONVERTED_OUTPUT_FOLDER: "converted.report"
     # Image tag of the MegaLinter image used in this job
-    IMAGE_TAG: "v6.18.0"
+    IMAGE_TAG: "v6.20.0"
     # Version tag of the sarif-codeclimate package to convert sarif reports
     # https://www.npmjs.com/package/sarif-codeclimate
-    SARIF_CODECLIMATE_VERSION: "2.1.1"
+    SARIF_CODECLIMATE_VERSION: "2.1.2"
   script:
     - FAILED=false
     - |
@@ -62,7 +62,8 @@ mega_linter:
   artifacts:
     when: always
     paths:
-      - megalinter-reports
+      - ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}
+      - ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
     expire_in: 1 week
     reports:
       codequality: "${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}/code-climate.json"

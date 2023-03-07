@@ -25,6 +25,26 @@ By default, this job will run MegaLinter on your project, lint all the files and
 !!! info "How can i get results summary directly in the merge request comments?"
    MegaLinter could also write comments directly in the merge request comments section (see `GITLAB_COMMENT_REPORTER` variable). 
    ⚠️ You need to configure an access token between GitLab and MegaLinter, see the [documentation](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}.
+
+## Optimize MegaLinter
+
+MegaLinter provides flavored images with pre-defined linters for most of your
+projects, you will find the complete list
+[here](https://github.com/oxsecurity/megalinter#flavors).
+
+By using a flavor instead of the default image, you'll be able to optimize the
+docker image size and your pipeline. If any of the flavors is matching your
+project type, all you have to do is overriding the image used in the job, like
+this:
+
+```yaml
+mega_linter:
+  # Replace FLAVOR by the one matching your project
+  image: 
+    name: oxsecurity/megalinter-<flavor>:${IMAGE_TAG}
+    entrypoint: [""] # This is required to override the default entrypoint
+```
+
 ## Variables
 
 !!! info
@@ -49,26 +69,8 @@ customize its behavior.
 | `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `CodeClimate` reports | `converted.report` |
 |`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}) | `true` |
 | `DISABLE_LINTERS` | Comma separated list of linters to be disabled | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `v6.18.0` |
+| `IMAGE_TAG` | The default tag for the docker image | `v6.20.0` |
 | `SARIF_CODECLIMATE_VERSION` | Version tag of the [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) package to convert sarif reports | `2.1.1` |
-
-
-## Optimize MegaLinter
-
-MegaLinter provides flavored images with pre-defined linters for most of your
-projects, you will find the complete list
-[here](https://github.com/oxsecurity/megalinter#flavors).
-
-By using a flavor instead of the default image, you'll be able to optimize the
-docker image size and your pipeline. If any of the flavors is matching your
-project type, all you have to do is overriding the image used in the job, like
-this:
-
-```yaml
-mega_linter:
-  # Replace FLAVOR by the one matching your project
-  image: oxsecurity/megalinter-<flavor>:${IMAGE_TAG}
-```
 
 ## Artifacts
 
