@@ -1,5 +1,9 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
+
 This job allows you to run the units tests on Angular project. The `ng test` command builds the application in watch mode, and launches the Karma test runner.
 
 ## How to use it

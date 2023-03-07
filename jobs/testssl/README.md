@@ -1,5 +1,8 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 Tool to check SSL/TLS related vulnerabilities of an URL
 
 ## How to use it

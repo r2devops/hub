@@ -1,5 +1,8 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 Deploy your PHP project using [Deployer](https://deployer.org/){:target="_blank"}
 
 ## How to use it

@@ -1,5 +1,9 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
+
 This job tests your final project by using Laravel Dusk, this will run tests that you already created beforehand and stored on the folder `tests/Browser`, all the logs, console output and screenshots, if generated, will be available as an artifact when the job succeeds.
 
 

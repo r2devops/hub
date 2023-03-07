@@ -1,5 +1,8 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 Tox aims to automate and standardize testing in Python. It is part of a larger vision of easing the packaging, testing and release process of Python software.
 
 ## How to use it

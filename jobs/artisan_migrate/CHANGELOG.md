@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.2] - 2023-03-07
+* Tag this job as deprecated
+
 ## [0.3.1] - 2023-02-28
 * Fix broken documentation links
 

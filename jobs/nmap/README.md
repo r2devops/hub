@@ -1,5 +1,8 @@
 ## Objective
 
+!!! error "This job is deprecated 🚨"
+    The job is no more maintained and is now deprecated. Despites it still exists to keep working on pipelines.
+
 [Nmap](https://nmap.org) is a tool designed to discover networks, map them, and
 information that they could offer by being reachable on the internet. Its
 powerful [scripting engine](https://nmap.org/book/nse.html) is very
