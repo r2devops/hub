@@ -162,7 +162,7 @@ job_customs:
     # Retrieve the list of jobs that have been modified in the current branch and keep only the job name
     -   git fetch
     -   if [ -z ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME} ]; then
-    -     CI_MERGE_REQUEST_TARGET_BRANCH_NAME=${CI_DEFAULT_BRANCH}
+    -     exit 0
     -   fi
     -   JOBS=$(git diff-tree --no-commit-id --name-only -r origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME -r $CI_COMMIT_SHA | tr ' ' '\n' | grep "jobs/.*${JOB_FILES_EXTENSION}$" | tr '\n' ' ' | cut -d'/' -f2)
     - fi
