@@ -181,16 +181,6 @@ job_customs:
   cache:
     paths:
       - "$TRIVY_CACHE_DIR"
-  artifacts:
-    expose_as: "job_image_scan"
-    paths:
-      - "${JOB_LOGFILE}"
-      - "${OUTPUT_DIR}"
-    reports:
-      junit:
-        - "${OUTPUT_DIR}/*.xml"
-    expire_in: 30 days
-    when: always
 
 
 # Extends the job_image_scan job to scan all images
@@ -202,6 +192,16 @@ job_image_scan_schedule:
   rules:
     - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+  artifacts:
+    expose_as: "job_image_scan"
+    paths:
+      - "${JOB_LOGFILE}"
+      - "${OUTPUT_DIR}"
+    reports:
+      junit:
+        - "${OUTPUT_DIR}/*.xml"
+    expire_in: 30 days
+    when: always
 
 # Scan only the images of the jobs that have changed on merge requests
 job_image_scan:
