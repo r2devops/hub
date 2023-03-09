@@ -225,12 +225,19 @@ template_release:
    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 discord_notifier:
-  image: python:${IMAGE_TAG_PYTHON_ALPINE}
+  image:
+    name: alpine/httpie:${IMAGE_TAG_HTTPIE_ALPINE}
+    entrypoint: [""]
   stage: .after-deploy
-  variables:
-    RELEASE_PATH: "${CI_PROJECT_DIR}/releases" 
   dependencies:
     - template_release
+  variables:
+    RELEASE_PATH: "${CI_PROJECT_DIR}/releases" 
+    PIPENV_PIPFILE: tools/notify/Pipfile
+  before_script:
+    - apk update && apk add --no-cache bash
+    - pip install --ignore-installed distlib pipenv
+    - pipenv install
   script:
     - RELEASES=$(ls "$RELEASE_PATH")
     - |
