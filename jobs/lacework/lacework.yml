@@ -1,0 +1,75 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - tests
+
+lacework:
+  stage: tests
+  image:
+    name: lacework/lacework-inline-scanner:$IMAGE_TAG
+    entrypoint: [""]
+  services:
+    - name: docker:$DIND_VERSION
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    IMAGE_TAG: 0.20.0
+    DIND_VERSION: 20.10.16-dind
+    LW_ADDITIONAL_OPTIONS: ""
+    REGISTRY: $CI_REGISTRY
+    REGISTRY_USER: ""
+    REGISTRY_PASSWORD: ""
+    IMAGE: $CI_PROJECT_PATH
+    TAG: ""
+
+  before_script:
+    # This before_script do the authentication to the registry
+
+    # If registry is the GitLab project registry, auto-set user and password
+    - if [ ! -z ${REGISTRY} ] && [ ${REGISTRY} = ${CI_REGISTRY} ]; then
+    -   export REGISTRY_USER=$CI_REGISTRY_USER
+    -   export REGISTRY_PASSWORD=$CI_REGISTRY_PASSWORD
+    - fi
+
+    # Login to registry if needed
+    - if [ ! -z ${REGISTRY} ] && [ ! -z ${REGISTRY_USER} ] && [ ! -z ${REGISTRY_PASSWORD} ]; then
+    -   echo $REGISTRY_PASSWORD | docker login --password-stdin -u $REGISTRY_USER $REGISTRY
+    - fi
+
+  script:
+
+    # If tag is empty, set it to COMMIT_TAG if it is a pipeline for tag, else
+    # COMMIT_SHA
+    - if [ -z ${TAG} ]; then
+    -   if [ ! -z ${CI_COMMIT_TAG} ]; then
+    -     TAG="$CI_COMMIT_TAG"
+    -   else
+    -     TAG="$CI_COMMIT_SHA"
+    -   fi
+    - fi
+
+    # If registry is not empty and not set in IMAGE, add it
+    - if [ ! -z ${REGISTRY} ] && [ ! $(echo $IMAGE | grep $REGISTRY) ]; then
+    -   IMAGE="$REGISTRY/$IMAGE"
+    - fi
+
+    # Prepare output folders
+    - mkdir -p lw_output/data lw_output/log
+
+    # Pull the image before running the scan. It prevents some issues.
+    - docker pull $IMAGE:$TAG
+
+    # Display command that will be launched as debug
+    - echo "#### Command that will be run => lw-scanner evaluate $IMAGE $TAG -s --policy --critical-violation-exit-code 1 --data-directory lw_output/data --log-directory lw_output/log --html --html-file lw_report.html $LW_ADDITIONAL_OPTIONS"
+
+    # Run the lacework scan
+    - lw-scanner evaluate $IMAGE $TAG -s --policy --critical-violation-exit-code 1 --data-directory lw_output/data --log-directory lw_output/log --html --html-file lw_report.html $LW_ADDITIONAL_OPTIONS
+
+  artifacts:
+    when: always
+    name: "lacework_report"
+    paths:
+      - lw_report.html
+      - lw_output
+    expose_as: "lacework_report"
+

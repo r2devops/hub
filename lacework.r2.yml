@@ -1,0 +1,13 @@
+files:
+    template: ./jobs/lacework/lacework.yml
+    documentation: ./jobs/lacework/README.md
+    changelog: ./jobs/lacework/CHANGELOG.md
+data:
+    description: "Run lacework scanner on docker image"
+    icon: 🔎
+    public: true
+    labels:
+    - Security
+    - Docker
+    license:
+    deprecated: false
