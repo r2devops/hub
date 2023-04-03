@@ -11,9 +11,9 @@ lighthouse:
     OUTPUT_LOCALE: "en"
     ADDITIONAL_OPTIONS: ""
     PAGES_PATH: "website_build/"
-    SERVE_VERSION: "11.3.2"
-    LIGHTHOUSE_VERSION: "7.2.0"
-    IMAGE_TAG: "89-with-node"
+    SERVE_VERSION: "14.2.0"
+    LIGHTHOUSE_VERSION: "10.1.0"
+    IMAGE_TAG: "102-with-node-16"
   script:
     # Put in full lowercase OUTPUT_FORMAT to avoid problems
     - export OUTPUT_FORMAT=$(echo ${OUTPUT_FORMAT} | tr '[:upper:]' '[:lower:]')
@@ -24,7 +24,7 @@ lighthouse:
     - export CHROME_PATH="/usr/bin/chromium-browser"
     -  if [ -z ${LIGHTHOUSE_TARGET} ]; then
     -    if [ ! -d ${PAGES_PATH} ]; then
-    -      echo "[ERROR] Variable LIGHTHOUSE_TARGET must be filled, see https://r2devops.io/_/r2devops-bot/lighthouse/"
+    -      echo "[ERROR] Variable LIGHTHOUSE_TARGET must be filled, see https://r2devops.io/marketplace/gitlab/r2devops/hub/lighthouse/"
     -      exit 1
     -    fi
     -    npm install serve@${SERVE_VERSION}

@@ -25,7 +25,7 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 
     ??? summary "Option 3: Plug manually your container instance"
       Add the target container instance as a service (see
-      [Container instance as Service]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#advanced-services)) and
+      [Container instance as Service](https://docs.r2devops.io/get-started/use-templates/#advanced-services) and
       set variable `LIGHTHOUSE_TARGET` as the name of your container.
 
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
@@ -42,9 +42,9 @@ This job analyzes a remote website (or a local web service) and gives you a repo
 | `OUTPUT_LOCALE` | Language of report file | `en` |
 | `ADDITIONAL_OPTIONS` | Variable to add custom options (see [options](https://github.com/GoogleChrome/lighthouse#cli-options){:target="_blank"}) | ` ` |
 | `PAGES_PATH` | Path of your static website (not used if `LIGHTHOUSE_TARGET` is filled) | `website_build/` |
-| `SERVE_VERSION` | `serve` npm module's version | `11.3.2` |
-| `LIGHTHOUSE_VERSION` | `Lighthouse` tool's version | `7.2.0`
-| `IMAGE_TAG` | The default tag for the docker image | `89-with-node`  |
+| `SERVE_VERSION` | `serve` npm module's version | `14.2.0` |
+| `LIGHTHOUSE_VERSION` | `Lighthouse` tool's version | `10.1.0`
+| `IMAGE_TAG` | The default tag for the docker image | `102-with-node-16`  |
 
 
 ## Audit configuration

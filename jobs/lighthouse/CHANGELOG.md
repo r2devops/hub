@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.2.0] - 2023-04-03
+* Bump `IMAGE_TAG` from `89-with-node` to `102-with-node-16`
+* Bump `LIGHTHOUSE_VERSION` from `7.2.0` to `10.1.0`
+* Bump `SERVE_VERSION` from `11.3.2` to `14.2.0`
+
 ## [1.1.1] - 2023-02-28
 * Fix broken documentation links
 
