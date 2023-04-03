@@ -12,20 +12,21 @@ marp:
     MARP_OUTPUT_PATH: 'website_build/'
     MARP_INPUT_PATH: 'slides/'
     GENERATE_PDF: 'true'
+    MARP_CLI_VERSION: '2.4.0'
     MARP_ADDITIONNAL_OPTIONS: ' '
 
     #Custom installation directory for npm in order to use marp command
     NPM_INSTALL_DIR: ".npm-global"
     #Custom path is needed to avoid permission error on generating pdf
     CHROME_PATH: "/usr/bin/chromium-browser"
-    IMAGE_TAG: "89-with-node-14"
+    IMAGE_TAG: "102-with-node-16"
   script:
     - mkdir ${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}
     - npm config set prefix '${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}'
 
     - export PATH=${CI_PROJECT_DIR}/${NPM_INSTALL_DIR}/bin:$PATH
 
-    - npm install -g @marp-team/marp-cli@1.4.1 
+    - npm install -g @marp-team/marp-cli@${MARP_CLI_VERSION}
 
     - marp ${MARP_ADDITIONNAL_OPTIONS} -I $MARP_INPUT_PATH -o ${CI_PROJECT_DIR}/${MARP_OUTPUT_PATH}
     - if [ $GENERATE_PDF == "true" ]; then
