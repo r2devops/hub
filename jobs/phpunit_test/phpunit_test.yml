@@ -4,7 +4,7 @@ stages:
   - tests
 
 phpunit_test:
-  image: lorisleiva/laravel-docker:${IMAGE_TAG}
+  image: bitnami/laravel:${IMAGE_TAG}
   stage: tests
   variables:
     PHPUNIT_OUTPUT: "report_phpunit.xml"
@@ -12,15 +12,16 @@ phpunit_test:
     PHPUNIT_COLORS: "never"
     PHPUNIT_OPTIONS: ""
     PHPUNIT_MEMORY_LIMIT: "512M"
-    PROJECT_ROOT: "/"
-    IMAGE_TAG: "7.3"
+    PHPUNIT_VERSION: "10.0.19"
+    PROJECT_ROOT: "."
+    IMAGE_TAG: "9.5.2"
   script:
-    # Installing globally PHPUnit if not already
-    - composer global require "phpunit/phpunit"
+    # Install phpunit for the project
+    - composer require --dev "phpunit/phpunit:${PHPUNIT_VERSION}"
     # Going to the root of php project
-    - cd ${CI_PROJECT_DIR}${PROJECT_ROOT}
+    - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     # Running Unit testing
-    - phpunit \
+    - vendor/bin/phpunit \
       -d memory_limit=${PHPUNIT_MEMORY_LIMIT} --configuration ${PHPUNIT_CONFIG_FILE} \
       --coverage-text --colors=${PHPUNIT_COLORS} \
       --log-junit ${CI_PROJECT_DIR}/${PHPUNIT_OUTPUT} ${PHPUNIT_OPTIONS} 

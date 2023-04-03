@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.2.0] - 2023-04-03
+* Change docker image to `bitnami/laravel`
+* Add `PHPUNIT_VERSION` variable
+
 ## [1.1.1] - 2023-02-28
 * Fix broken documentation links
 
