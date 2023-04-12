@@ -44,6 +44,7 @@ semantic_release:
     - fi
 
     - npx semantic-release $SEMANTIC_ADDITIONAL_OPTIONS | tee -a semantic-output.log
+    - echo RELEASE_VERSION="$(git describe --tags --abbrev=0)" > release_version.env
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   cache:
@@ -55,3 +56,6 @@ semantic_release:
     expose_as: "semantic-release logs"
     paths:
       - semantic-output.log
+    reports:
+      dotenv: release_version.env
+      

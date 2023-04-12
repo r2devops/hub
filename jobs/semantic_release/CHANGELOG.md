@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.1.0] - 2023-04-14
+* Export `RELEASE_VERSION` variable to be used in next jobs.
+
 ## [1.0.1] - 2023-02-28
 * Fix broken documentation links
 
