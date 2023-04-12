@@ -7,7 +7,7 @@ data:
     repository to the GitLab registry
   public: true
   license: MIT
-  icon: 🛸
+  icon: 🐳
   labels:
     - Build
     - Container
