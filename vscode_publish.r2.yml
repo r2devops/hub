@@ -1,0 +1,12 @@
+files:
+  template: ./jobs/vscode_publish/vscode_publish.yml
+  documentation: ./jobs/vscode_publish/README.md
+  changelog: ./jobs/vscode_publish/CHANGELOG.md
+data:
+  description: Ready to use job that publishes VSCode extension to marketplace
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Utilities
+    - Deploy

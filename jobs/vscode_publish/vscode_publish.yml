@@ -1,0 +1,41 @@
+# Job from R2Devops hub --> r2devops.io
+
+stages:
+  - deploy
+
+vscode_publish:
+  image:
+    name: node:${IMAGE_TAG}
+  stage: deploy
+  variables:
+    RELEASE_VERSION: "${RELEASE_VERSION}"
+    VSCE_PAT: ""
+    VSCE_OUTPUT_FOLDER: "package"
+    VSCE_VERSION: "2.19.0"
+    VSCE_ADDITIONAL_OPTIONS: ""
+    IMAGE_TAG: "18-alpine"
+  script:
+    - npm install -g @vscode/vsce@${VSCE_VERSION}
+    - cd $CI_PROJECT_DIR
+    - mkdir -p ${VSCE_OUTPUT_FOLDER}
+
+    - if [ ! -z ${RELEASE_VERSION} ]; then
+    -   echo "Release version is set to ${RELEASE_VERSION}"
+
+        # Write the new version to the package.json
+    -   npm version ${RELEASE_VERSION} --no-git-tag-version
+
+        # Echo the version to the console and remove whitespace
+    -   | 
+        echo "New version added : $(cat package.json | grep version | tr -d ' ' | cut -d: -f2 | tr -d '",')"
+
+    - fi
+    - vsce package -o ${VSCE_OUTPUT_FOLDER}
+    - vsce publish --packagePath ${VSCE_OUTPUT_FOLDER}/*.vsix ${VSCE_ADDITIONAL_OPTIONS} 
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  artifacts:
+    when: always
+    expose_as: "vscode package"
+    paths:
+      - "${CI_PROJECT_DIR}/${VSCE_OUTPUT_FOLDER}"
