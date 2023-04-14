@@ -6,7 +6,7 @@ stages:
 lacework:
   stage: tests
   image:
-    name: lacework/lacework-inline-scanner:$IMAGE_TAG
+    name: lacework/lacework-inline-scanner:${IMAGE_TAG}
     entrypoint: [""]
   services:
     - name: docker:$DIND_VERSION
