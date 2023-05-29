@@ -3,8 +3,7 @@ files:
   documentation: ./jobs/trivy_image/README.md
   changelog: ./jobs/trivy_image/CHANGELOG.md
 data:
-  description: A ready-to-use trivy job to scan your docker images and discover
-    dependency vulnerabilities
+  description: A ready-to-use container image scanner that discovers dependency vulnerabilities
   public: true
   license: MIT
   icon: 🧱
