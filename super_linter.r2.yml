@@ -8,4 +8,5 @@ data:
   public: true
   license: MIT
   icon: 💡
-  labels: []
+  labels: 
+    - Lint
