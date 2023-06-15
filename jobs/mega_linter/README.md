@@ -63,7 +63,7 @@ customize its behavior.
 | `DEFAULT_BRANCH`| Default branch of your project | `${CI_DEFAULT_BRANCH}` |
 | `FILTER_REGEX_EXCLUDE` | Regex in order to exclude specific files | ` ` |
 | `LINTER_RULES_PATH` | Directory where are stored linters configuration | `.linters` |
-| `MEGALINTER_CONFIG` | MegaLinter configuration file location | `.mega_linter.yml` |
+| `MEGALINTER_CONFIG` | MegaLinter configuration file location | `.mega-linter.yml` |
 | `VALIDATE_ALL_CODEBASE` | Whether linters should only go through **edited** or **new** files | `true` |
 | `REPORT_OUTPUT_FOLDER` | Folder where are stored all the reports | `megalinter-reports` |
 | `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `CodeClimate` reports | `converted.report` |
