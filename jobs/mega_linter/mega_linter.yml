@@ -16,22 +16,15 @@ mega_linter:
     ### MegaLinter variables
     DEFAULT_WORKSPACE: "${CI_PROJECT_DIR}"
     DEFAULT_BRANCH: "${CI_DEFAULT_BRANCH}"
-    # Exclude files based on a regex
-    FILTER_REGEX_EXCLUDE: ""
     # Directory in which your linters configuration are
     LINTER_RULES_PATH: ".linters"
     # Your mega linter config file if any
     MEGALINTER_CONFIG: ".mega-linter.yml"
-    # If set to false will only scan diff files from previous commit
-    VALIDATE_ALL_CODEBASE: "true"
     # Directory in which every report is filed
     REPORT_OUTPUT_FOLDER: "megalinter-reports"
     # Posts Mega-Linter results summary in the comments of the related merge request (if existing)
     # https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/
     GITLAB_COMMENT_REPORTER: "true"
-    # List of disabled linters in every case, this linter is deactivated due to
-    # its time of processing (~10 minutes on tested projects)
-    DISABLE_LINTERS: SPELL_CSPELL
     # Activate the SARIF reporter
     SARIF_REPORTER: "true"
     ### Custom variables
