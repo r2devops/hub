@@ -1,0 +1,11 @@
+files:
+  template: ./jobs/vercel_deploy/vercel_deploy.yml
+  documentation: ./jobs/vercel_deploy/README.md
+  changelog: ./jobs/vercel_deploy/CHANGELOG.md
+data:
+  description: Deploy your frontend application to Vercel. Vercel supports a wide range of the most popular frontend frameworks optimizing how your site builds and runs no matter what tool you use.
+  public: true
+  license: MIT
+  icon: 🚀
+  labels:
+    - Deploy
