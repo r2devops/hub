@@ -76,6 +76,11 @@ vercel_deploy_prod:
 | `CUSTOM_DOMAIN`                 | The custom domain to assign a `$VERCEL_ENV_GENERATED_URL` to it.        ⚠️ `$VERCEL_ENV_GENERATED_URL` must also be set                                                                                                                       | `10.5.0`             |
 | `IMAGE_TAG`                           | The default tag for the node docker image                                                                                                          | `16.16.0`          |
 
+## Troubleshooting
+
+!!! info "You don't have access to the domain <domain_name> under <scope_slug>"
+    This error can occur when you have set a `VERCEL_TOKEN` with the `Full account` scope but want to deploy to use a domain set inside one of your `Vercel Teams`.
+    To fix it you must set `$TEAM_SLUG_SCOPE` with the `Team slug` containing your domain
 
 ## Author
 
