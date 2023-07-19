@@ -196,37 +196,12 @@ links_checker:
     LICHE_DIRECTORY: "jobs/"
   allow_failure: true
 
-# See https://docs.gitlab.com/ee/api/labels.html
-job_gitlab_labels:
-  image: python:${IMAGE_TAG_PYTHON_ALPINE}
-  stage: project_setup
-  variables:
-    PIPENV_PIPFILE: tools/job_gitlab_labels/Pipfile
-    JOB_LOGFILE: "job_gitlab_labels.log"
-    PYTHONPATH: "./:$PYTHONPATH"
-    API_TOKEN: "kTLrRuV7yyrKXC95sSRd"
-  before_script:
-    - pip install --ignore-installed distlib pipenv
-    - pipenv install
-  script:
-    - pipenv run python3 tools/job_gitlab_labels/job_gitlab_labels.py
-  artifacts:
-    expose_as: "job_gitlab_labels"
-    paths:
-      - ${JOB_LOGFILE}
-    expire_in: 30 days
-    when: always
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
-
 codespell:
   stage: static_tests
   variables:
     CODESPELL_DICTIONARY: ".codespell/dictionary.txt"
     #separate each file to ignore with a space
     CODESPELL_IGNORE_FILES: "./jobs/doxygen/test/src/sample.cpp"
-
-
 
 # See https://docs.gitlab.com/ee/api/releases/
 # We can only control the link to the hub, the release is still storing the source code
