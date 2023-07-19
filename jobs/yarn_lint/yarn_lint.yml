@@ -19,7 +19,7 @@ yarn_lint:
   variables:
     YARN_INSTALL_OPTIONS: ""
     YARN_LINT_OPTIONS: ""
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
   script:
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     - yarn install ${YARN_INSTALL_OPTIONS}

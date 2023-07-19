@@ -14,7 +14,7 @@ yarn_test:
     PROJECT_ROOT: "."
     YARN_INSTALL_OPTIONS: ""
     YARN_TEST_OPTIONS: ""
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

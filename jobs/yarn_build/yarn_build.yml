@@ -15,7 +15,7 @@ yarn_build:
     YARN_BUILD_OPTIONS: ""
     YARN_BUILD_OUTPUT_FOLDER: "build"
     PAGES_FOLDER: "./website_build"
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

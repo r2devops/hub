@@ -16,7 +16,7 @@ yarn_install:
     entrypoint: [""]
   variables:
     YARN_INSTALL_OPTIONS: ""
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
   script:
     # Working directory
     # PROJECT_ROOT doesn't have a default value, as we want it to be a global CI variable.

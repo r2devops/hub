@@ -24,7 +24,7 @@ from your `package.json` file.
 | `NPM_BUILD_OPTIONS` | Options passed to your build script | ` ` |
 | `NPM_BUILD_OUTPUT_FOLDER` | Path to the output produced by the `npm` build script used (path relative from the `PROJECT_ROOT`) | `build` |
 | `PAGES_FOLDER` | Path where to copy the output to be exposed for deployment on [pages](https://r2devops.io/_/gitlab/r2devops/hub/pages) (path relative from the root of the repository) | `./website_build` |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20-buster`  |
 
 ## Example to deploy on pages
 

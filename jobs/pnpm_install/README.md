@@ -23,7 +23,7 @@ This job will install pnpm packages based on pnpm-lock.yaml file. Here the [doc 
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` | Relative path to the directory containing `pnpm-lock.yaml` and `package.json` (**see warning below**)  | `.` |
 | `PNPM_INSTALL_OPTIONS` | Additional options for `pnpm install` | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20-buster`  |
 
 !!! warning
     In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache,

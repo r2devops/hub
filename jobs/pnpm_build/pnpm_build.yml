@@ -4,7 +4,7 @@ pnpm_build:
   stage: build
   image: node:${IMAGE_TAG}
   variables:
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
     PNPM_INSTALL_OPTIONS: ""
     PNPM_BUILD_SCRIPT_NAME: "build"
     PNPM_BUILD_OPTIONS: ""

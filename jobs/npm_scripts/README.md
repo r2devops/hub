@@ -29,7 +29,7 @@ This job allows users to run several scripts from their `package.json` file usin
 | `NPM_INSTALL_OPTIONS` | Additional options for `npm install` | ` ` |
 | `NPM_SCRIPTS` | Value of several scripts specified in `package.json` that can be separated by `;` | ` ` |
 | `NPM_OUTPUT` | Path to the output send by script specified in `package.json` | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20-buster`  |
 
 ## Example to use several scripts
 

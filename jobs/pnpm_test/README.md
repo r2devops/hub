@@ -22,7 +22,7 @@ This job will run a predefined `test` command specified in the scripts section o
 | `PNPM_INSTALL_OPTIONS` | Additional options for `pnpm install` | ` ` |
 | `PNPM_TEST_COMMAND` | The command to run test specified in your `package.json` | `test` |
 | `PNPM_TEST_OPTIONS` | Additional options for `pnpm test` | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20-buster`  |
 
 ## Author
 This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@DjNaGuRo](https://gitlab.com/DjNaGuRo)

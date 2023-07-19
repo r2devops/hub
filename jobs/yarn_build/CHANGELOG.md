@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.6.0] - 2023-07-19
+* Update `node` image to `20-buster`
+
 ## [0.5.1] - 2023-02-28
 * Fix broken documentation links
 

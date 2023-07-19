@@ -12,7 +12,7 @@ pnpm_install:
   stage: .pre
   image: node:${IMAGE_TAG}
   variables:
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
     PNPM_INSTALL_OPTIONS: ""
     PROJECT_ROOT: "."
   before_script:

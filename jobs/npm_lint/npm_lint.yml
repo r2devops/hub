@@ -19,7 +19,7 @@ npm_lint:
   variables:
     NPM_INSTALL_OPTIONS: ""
     NPM_LINT_OPTIONS: ""
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
   script:
     - cd ${CI_PROJECT_DIR}/${PROJECT_ROOT}
     - npm install ${NPM_INSTALL_OPTIONS}

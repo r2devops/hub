@@ -21,7 +21,7 @@ This job installs `yarn` dependencies listed in your `package.json` and exposes
 | ---- | ----------- | ------- |
 | `PROJECT_ROOT` | Relative path to the directory containing `package.json` (**see warning below**)  | ` ` |
 | `YARN_INSTALL_OPTIONS` | Additional options for `yarn install` | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20-buster`  |
 
 !!! warning
     In the case you are updating `PROJECT_ROOT` and you want to have a properly working cache,

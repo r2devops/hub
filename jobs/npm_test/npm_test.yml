@@ -14,7 +14,7 @@ npm_test:
     PROJECT_ROOT: "."
     NPM_INSTALL_OPTIONS: ""
     NPM_TEST_OPTIONS: ""
-    IMAGE_TAG: "18-buster"
+    IMAGE_TAG: "20-buster"
   script:
     # Working directory
     - cd $PROJECT_ROOT

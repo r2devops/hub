@@ -19,7 +19,7 @@ This job will run one or many scripts contained in the package.json through pnpm
 | `PNPM_INSTALL_OPTIONS` | Additional options for `pnpm install` | ` ` |
 | `PNPM_SCRIPTS` | The names of multiple scripts specified in `package.json` that can be separated by `;` | ` ` |
 | `PNPM_OUTPUT` | Path to the output send by script specified in `package.json` | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `18-buster`  |
+| `IMAGE_TAG` | The default tag for the docker image | `20-buster`  |
 
 ### Example to use several scripts
 
