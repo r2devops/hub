@@ -45,7 +45,7 @@ vercel_deploy:
     VERCEL_ENV: "preview" # change the default value "production"
     TEAM_SLUG_SCOPE: "team-slug" # your team slug
     VERCEL_ENV_GENERATED_URL: "project-name-author-name-scope-slug.vercel.app" # your vercel preview environment generated url
-    CUSTOM_DOMAIN: "mycustomdomain.com" # your custom domain
+    CUSTOM_DOMAIN: "mycustomdomain.tech" # your custom domain
 
 # New job that extends the remotely included vercel_deploy job
 vercel_deploy_prod: 
@@ -53,6 +53,7 @@ vercel_deploy_prod:
   extends:
     - vercel_deploy
   variables:
+    VERCEL_ENV: "production"
     TEAM_SLUG_SCOPE: "team-slug" # your team slug
     VERCEL_ENV_GENERATED_URL: "project-name-scope-slug.vercel.app" # your vercel production environment generated url
     CUSTOM_DOMAIN: "mycustomdomain.com" # your custom domain

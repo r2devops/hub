@@ -15,11 +15,12 @@ vercel_deploy:
   script:
     - npm install --global vercel
     - vercel pull --yes --environment=$VERCEL_ENV --token=$VERCEL_TOKEN --scope=$TEAM_SLUG_SCOPE
-    - vercel build --token=$VERCEL_TOKEN --scope=$TEAM_SLUG_SCOPE
     - if [ "${VERCEL_ENV}" == "production" ]; then
+    -   vercel build --prod --token=$VERCEL_TOKEN --scope=$TEAM_SLUG_SCOPE
     -   vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN --scope=$TEAM_SLUG_SCOPE
     - fi
     - if [ "${VERCEL_ENV}" == "preview" ]; then
+    -   vercel build --token=$VERCEL_TOKEN --scope=$TEAM_SLUG_SCOPE
     -   vercel deploy --prebuilt --token=$VERCEL_TOKEN --scope=$TEAM_SLUG_SCOPE
     - fi
     - if [ "${CUSTOM_DOMAIN}" != "" ] && [ "${VERCEL_ENV_GENERATED_URL}" != "" ]; then
