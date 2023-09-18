@@ -13,8 +13,8 @@ lacework:
       alias: docker
   variables:
     DOCKER_HOST: tcp://docker:2375
-    IMAGE_TAG: 0.20.0
-    DIND_VERSION: 20.10.16-dind
+    IMAGE_TAG: 0.22.0
+    DIND_VERSION: 24.0.6-dind
     LW_ADDITIONAL_OPTIONS: ""
     REGISTRY: $CI_REGISTRY
     REGISTRY_USER: ""

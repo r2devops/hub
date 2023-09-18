@@ -83,6 +83,6 @@ include:
 | `REGISTRY_USER` | Registry user | `$CI_REGISTRY_USER` if `REGISTRY`==`$CI_REGISTRY` |
 | `REGISTRY_PASSWORD` | Registry password. It should be set in GitLab CI/CD variables. | `$CI_REGISTRY_PASSWORD` if `REGISTRY`==`$CI_REGISTRY` |
 | `LW_ADDITIONAL_OPTIONS` | Additional option to use in `lacework-inline-scanner` CLI | ` ` |
-| `LW_VERSION` | Version of `lacework-inline-scanner` | `0.20.0` |
-| `DIND_VERSION` | Version of `docker-in-docker` | `20.10.16-dind` |
+| `LW_VERSION` | Version of `lacework-inline-scanner` | `0.22.0` |
+| `DIND_VERSION` | Version of `docker-in-docker` | `24.0.6-dind` |
 
