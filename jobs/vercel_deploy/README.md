@@ -72,8 +72,8 @@ vercel_deploy_prod:
 | `VERCEL_PROJECT_ID` <img width=100/> | ⚠️ Mandatory variable. Defined in `Project Settings > General > Project ID`. This variable should be specified in the `Gitlab > CI/CD Settings` section of your project. <img width=175/> | ` ` <img width=100/> |
 | `VERCEL_ENV`| The deployment environment | `production` |
 | `TEAM_SLUG_SCOPE`| ⚠️ Mandatory variable if you have set a `VERCEL_TOKEN` with the `Full account` scope but still want to deploy to a project inside one of your `Vercel Teams`. Defined in `Team Settings > General > Team URL`| ` ` |
-| `VERCEL_ENV_GENERATED_URL`             | The [environment generated url](https://vercel.com/docs/concepts/deployments/generated-urls#url-with-vercel-cli) to assign a `custom domain` to it. ⚠️ `$CUSTOM_DOMAIN` must also be set                                                                                                                           | ``              |
-| `CUSTOM_DOMAIN`                 | The custom domain to assign a `$VERCEL_ENV_GENERATED_URL` to it.        ⚠️ `$VERCEL_ENV_GENERATED_URL` must also be set                                                                                                                       | `10.5.0`             |
+| `VERCEL_ENV_GENERATED_URL`             | The [environment generated url](https://vercel.com/docs/concepts/deployments/generated-urls#url-with-vercel-cli) to assign a `custom domain` to it. ⚠️ `$CUSTOM_DOMAIN` must also be set                                                                                                                           | ` `              |
+| `CUSTOM_DOMAIN`                 | The custom domain to assign a `$VERCEL_ENV_GENERATED_URL` to it.        ⚠️ `$VERCEL_ENV_GENERATED_URL` must also be set                                                                                                                       | ` `             |
 | `IMAGE_TAG`                           | The default tag for the node docker image                                                                                                          | `16.16.0`          |
 
 ## Troubleshooting

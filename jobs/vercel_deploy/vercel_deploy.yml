@@ -6,11 +6,11 @@ stages:
 vercel_deploy:
   image: node:${IMAGE_TAG}
   variables:
+    IMAGE_TAG: "16.16.0"
     VERCEL_ENV: "production"
     TEAM_SLUG_SCOPE: ""
     VERCEL_ENV_GENERATED_URL: ""
     CUSTOM_DOMAIN: ""
-    IMAGE_TAG: "16.16.0"
   stage: deploy
   script:
     - npm install --global vercel
