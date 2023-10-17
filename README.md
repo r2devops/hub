@@ -2,15 +2,16 @@
 
 ## Description
 
-**R2Devops hub** is a collaborative hub of CI & CD **ready to use** templates which
-helps you to quickly build powerful pipelines for your projects.
+🤔 Imagine a place where no matter what language or technology you use, you can find a ready-made template to configure your pipeline 🤩
 
+This is why R2Devops hub exists.
+Join the movement, and together, let's stop reinventing the wheel in CI/CD.
 
 Each jobs of the hub can be used independently or to create fully **customized pipelines.**
 You can use them for any kind of software and deployment type. Each job can be
 customized through configuration.
 
-* **🚀 Find jobs to use in your pipeline in [Jobs index](https://r2devops.io/_/jobs/)**
+* **🚀 Find jobs to use in your pipeline in [Jobs index](https://r2devops.io/marketplace)**
 * **📚 Understand how to use the hub in [Documentation](https://docs.r2devops.io/)**
 * **🙋 Add your own job using the [Contributing guide](https://docs.r2devops.io/public-catalog/contribute)**
 
