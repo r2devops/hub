@@ -6,6 +6,7 @@ openapi:
   stage: build
   variables:
     API_DEF_LOCATION: "openapi.json"
+    REF_DEF_LOCATION: ""
     SWAGGER_OUTPUT: "website_build/"
     SWAGGERUI_VERSION: "v3.37.0"
     IMAGE_TAG: "3.16.2"
@@ -15,12 +16,21 @@ openapi:
     - mkdir ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
     - mv swaggerui/dist/* ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
     - cp $API_DEF_LOCATION ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}
+    - |
+      if [[ ${REF_DEF_LOCATION} != "" ]]; then
+        oldIFS=$IFS
+        export IFS=";"
+        for ref in $REF_DEF_LOCATION; do
+          IFS=$oldIFS
+          mkdir -p ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}$(dirname $ref)
+          cp $ref ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}$ref
+          export IFS=";"
+        done
+      fi
     - sed -i "s|https://petstore.swagger.io/v2/swagger.json|$(basename $API_DEF_LOCATION)|g" ${CI_PROJECT_DIR}/${SWAGGER_OUTPUT}/index.html
   artifacts:
     when: always
     expose_as: "OpenAPI Build"
     paths:
         - "${SWAGGER_OUTPUT}"
-        # Below path is a workaround to provide artifact exposition in MR if
-        # default value is used. See https://r2devops.io/jobs/build/openapi/#artifacts
         - "website_build/"

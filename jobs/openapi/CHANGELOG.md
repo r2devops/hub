@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.5.0] - 2023-11-14
+* Enable multiple config file
+
 ## [0.4.1] - 2023-02-28
 * Fix broken documentation links
 
