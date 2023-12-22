@@ -25,13 +25,13 @@ Mkdocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"} are read
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `MKDOCS_OUTPUT_PATH` | Output directory path | `website_build/` |
-| `MKDOCS_ADDITIONAL_PLUGINS` | Value of several [plugins](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins) to install before the build. They have to be separated by `;` | `mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin` |
-| `IMAGE_TAG` | The default tag for the docker image | `8.5.10`  |
+| `MKDOCS_ADDITIONAL_PLUGINS` | Value of several [plugins](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins) to install before the build. They have to be separated by `;` | `mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin;mkdocs-same-dir` |
+| `IMAGE_TAG` | The default tag for the docker image | `9.5.2`  |
 
 !!! info
-    By default `MKDOCS_ADDITIONAL_PLUGINS` variable contains 3 plugins for `Material for mkdocs`
-    If you don't override this variable, it will install those 3 plugins `mkdocs-awesome-pages-plugin`,
-    `mkdocs-git-revision-date-localized-plugin`, `mkdocs-macros-plugin`
+    By default `MKDOCS_ADDITIONAL_PLUGINS` variable contains plugins for `Material for mkdocs`
+    If you don't override this variable, it will install those  plugins `mkdocs-awesome-pages-plugin`,
+    `mkdocs-git-revision-date-localized-plugin`, `mkdocs-macros-plugin`, `mkdocs-same-dir`
 
 ## Artifacts
 

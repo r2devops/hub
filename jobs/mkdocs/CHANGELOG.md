@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.8.0] - 2023-12-22
+* Update `material for mkdocs` image version to 9.5.2
+* Add `mkdocs-same-dir` in `MKDOCS_ADDITIONAL_PLUGINS` variable to allow placing mkdocs.yml in the same directory as documentation
+
 ## [1.7.1] - 2023-02-28
 * Fix broken documentation links
 

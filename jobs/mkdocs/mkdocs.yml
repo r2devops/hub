@@ -10,9 +10,9 @@ mkdocs:
   stage: build
   variables:
     MKDOCS_OUTPUT_PATH: 'website_build/'
-    MKDOCS_ADDITIONAL_PLUGINS: 'mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin'
+    MKDOCS_ADDITIONAL_PLUGINS: 'mkdocs-awesome-pages-plugin;mkdocs-git-revision-date-localized-plugin;mkdocs-macros-plugin;mkdocs-same-dir'
 
-    IMAGE_TAG: "8.5.10"
+    IMAGE_TAG: "9.5.2"
   script:
     - |
       if [[ ${MKDOCS_ADDITIONAL_PLUGINS} != "" ]]; then
