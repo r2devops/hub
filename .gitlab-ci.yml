@@ -7,7 +7,7 @@ stages:
 
 include:
   - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/links_checker@0.2.0.yml?ignore=true.yml'
-  - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/codespell@0.1.0.yml?ignore=true.yml'
+  - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/codespell@0.2.1.yml?ignore=true.yml'
   - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/template_release@0.2.0.yaml?ignore=true.yml'
 
 variables:
