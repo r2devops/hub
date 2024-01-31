@@ -31,8 +31,8 @@ build_break_rules = {
 ## Variables
 
 | Name | Description | Default |
-| ---- | ----------- | ------- |
-| `SCAN_OPTIONS` | If you want to add [additional arguments](https://appthreat.com/en/latest/getting-started/?h=command#command-line-arguments) for `scan` | ` ` |
+| ---- | ----------- | ------- |h
+| `SCAN_OPTIONS` | If you want to add [additional arguments](https://www.appthreat.com/) for `scan` | ` ` |
 | `ENABLE_BUILD` | The option to use `--build` with the `scan` command | `true` |
 | `SLS_TYPE` | If you want to specify a specific scanner to use | ` ` |
 | `OUTPUT_PATH` | Path to scan output folder | `sls_scan_report/` |

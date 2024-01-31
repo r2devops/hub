@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.2] - 2024-01-31
+* Fix broken documentation links
+
 ## [0.3.1] - 2023-02-28
 * Fix broken documentation links
 

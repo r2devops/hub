@@ -17,7 +17,7 @@ This job will help you deploy your serverless resources to AWS using the framewo
 ## Variables
 
 !!! info
-    All variables can be set using [Gitlab CI/CD variables](https://docs.gitlab.com/ee/ci/variables/README.html) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensible variables such as `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+    All variables can be set using [Gitlab CI/CD variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensible variables such as `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 
 | Name | Description | Mandatory | Default |
 | ---- | ----------- | --------- | ------- |

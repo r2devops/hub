@@ -16,7 +16,7 @@ This job will initialize a working directory containing Terraform configuration 
 ## Variables
 
 !!! info
-    All variables can be set using [Gitlab CI/CD variables](https://docs.gitlab.com/ee/ci/variables/README.html) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensitive credential variables such as cloud providers tokens and passwords
+    All variables can be set using [Gitlab CI/CD variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) to avoid exposing them in clear in your `.gitlab-ci.yml`. This is **HIGHLY** recommended for sensitive credential variables such as cloud providers tokens and passwords
 
 !!! warning
     This job use `TF_ROOT` which is a global variable and must be defined in your `.gitlab-ci.yml`
