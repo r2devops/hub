@@ -8,7 +8,7 @@ In order to build Docusaurus, the user must `init` a Docusaurus project, checkou
 1. Ensure that your project has [`package.json`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json){:target="_blank"}
       file.
 1. Check the Docusaurus [documentation](https://docusaurus.io/docs){:target="_blank"} to install and configure a Docusaurus project.
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. Well done, your job is ready to work ! 😀

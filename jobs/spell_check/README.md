@@ -18,7 +18,7 @@ see [configuration](https://facelessuser.github.io/pyspelling/configuration/){:t
 
 1. (Optional) Configure your PySpelling config file (see [here](#configuration))
 2. (Optional) According to your PySpelling config, define `PYSPELLING_SPELLER` and `PYSPELLING_LANGUAGE`
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 5. Well done, your job is ready to work ! 😀

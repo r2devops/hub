@@ -14,7 +14,7 @@ This job installs `composer` dependencies listed in your `composer.lock` or `com
 1. Ensure that your project has
    [`composer.lock`](https://getcomposer.org/doc/01-basic-usage.md#installing-with-composer-lock){:target="_blank"}
    file which contains the dependencies and their exact versions
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 4. Well done, your job is ready to work ! 😀

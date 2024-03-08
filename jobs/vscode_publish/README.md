@@ -4,7 +4,7 @@ Deploy your extension on the [Visual Studio Marketplace](https://marketplace.vis
 
 ## How to use it
 
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 2. Set credentials variable `VSCE_PAT`  in
    the GitLab CI/CD variables section of your project. Follow the [documentation](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) for retrieving it.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

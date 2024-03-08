@@ -8,7 +8,7 @@ This job will run a predefined `test` command that can be specified in the `pack
 1. Make sure that your project has
    [`package.json`](https://yarnpkg.com/configuration/manifest){:target="_blank"}
    file which contains the required `test` command in the `scripts` object
-2. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+2. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the
    [jobs customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 4. Well done, your job is ready to work ! 😀

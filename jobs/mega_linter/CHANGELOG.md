@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [3.0.1] - 2024-03-08
+* New release required by the R2Devops upgrade to 1.33
+
 ## [3.0.0] - 2023-08-30
 * Remove job variables `FILTER_REGEX_EXCLUDE`, `VALIDATE_ALL_CODEBASE` and `DISABLE_LINTERS` to make them configurable via MegaLinter configuration file
 

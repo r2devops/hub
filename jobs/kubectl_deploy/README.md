@@ -11,11 +11,11 @@ This job will deploy your YAML files to a Kubernetes cluster, the cluster can be
 1. Make sure that you have a Kubernetes cluster, you have two options:
       1. Use a linked cluster with your Gitlab project, get more info [here](https://docs.gitlab.com/ee/user/project/clusters/){:target="_blank"}
       1. Provide a kubeconfig file through the variable `KUBECONFIG`, check [THIS](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-types){:target="_blank"} guide to see how
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
-1. Provide the value of the variable `FILES_LOCATION`, check [**Variables**](#variables)
-1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+2. Provide the value of the variable `FILES_LOCATION`, check **Variables**
+3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
-1. Well done, your job is ready to work ! 😀
+4. Well done, your job is ready to work ! 😀
 
 ## Variables
 

@@ -6,7 +6,7 @@ Clippy runs a format check onto your Rust project and logs any unexpected lintin
 
 1. By default, the job will not fail when encountering warnings or errors. If you want the job to fail, change `ADDITIONAL_OPTIONS` value to `-- -D clippy::all`.
 1. If you want to add more options into the `clippy` command, please check the official [documentation](https://github.com/rust-lang/rust-clippy#readme){:target="_blank"}.
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization){:target="_blank"}
 1. Well done, your job is ready to work ! 😀

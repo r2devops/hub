@@ -4,17 +4,17 @@ Run a SSH command on a remote host.
 
 ## How to use it
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. Set the secret variable `SSH_PRIVATE_KEY` as CI/CD variables (it can be file
    or variable type) in [your Gitlab
    project](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project){:target="_blank"}
    if you need encrypted variables
 1. Set the variables `SSH_USER`, `TARGET_HOST` and `SHELL_COMMAND` by
-   overriding the job or as Gitlab CI/CD variables. See [variables
-   section](#variables)
-1. If you need to customize other part of the job (stage, variables, ...) 👉
+   overriding the job or as Gitlab CI/CD variables. See **variables
+   section**
+2. If you need to customize other part of the job (stage, variables, ...) 👉
    check the [jobs customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
-1. Well done, your job is ready to work ! 😀
+3. Well done, your job is ready to work ! 😀
 
 ## Example of `.gitlab-ci.yml` file
 

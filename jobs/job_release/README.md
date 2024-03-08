@@ -8,11 +8,10 @@ Retrieve all job templates from a repository and create GitLab release (and git 
 
 ## How to use it
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the
-   [quick use]((https://docs.r2devops.io/get-started/use-templates/#use-a-template))/#quick-setup)). You can specify [a fixed
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed
    version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. The job can be run "out of the box". If you need to personalize its
-   behavior, check the [variables section](#variables)
+   behavior, check the **variables section**
 1. Well done, your job is ready to work and will be execute on your main branch ! 😀
 
 

@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.1] - 2024-03-08
+* New release required by the R2Devops upgrade to 1.33
+
 ## [0.3.0] - 2023-04-03
 * Bump `IMAGE_TAG` variable from `89-with-node-14` to `102-with-node-16`
 * Add `MARP_CLI_VERSION` variable

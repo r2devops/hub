@@ -4,9 +4,9 @@ Using this job you'll be able to launch PHPUnit tests.
 
 ## How to use it
 
-1. Put a `phpunit.xml` (check [syntax](https://phpunit.readthedocs.io/en/10.5/configuration.html){:target="_blank"}) in the root of your php project. Edit `PHPUNIT_CONFIG_FILE` (see [Variables](#variables)) to change the default behavior.
+1. Put a `phpunit.xml` (check [syntax](https://phpunit.readthedocs.io/en/10.5/configuration.html){:target="_blank"}) in the root of your php project. Edit `PHPUNIT_CONFIG_FILE` (see **Variables**) to change the default behavior.
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+2. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 4. Well done, your job is ready to work ! 😀

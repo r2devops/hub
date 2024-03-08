@@ -8,7 +8,7 @@ This job allows you to check your code with SonarQube plugin in a 🐘 Gradle pr
    [`build.gradle.kts`](https://docs.gradle.org/current/samples/sample_building_java_applications.html){:target="_blank"}
    file
 1. Configure the [SonarQube plugin](https://plugins.gradle.org/plugin/org.sonarqube){:target="_blank"} in your `build.gradle` file
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. Well done, your job is ready to work ! 😀
 
 ## Variables

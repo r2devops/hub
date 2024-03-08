@@ -5,7 +5,7 @@ This job allows you to deploy 500 time per month your site for free. You can tak
 
 ## How to use it
 
-1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy the job URL located in the `Install` part of the right panel and add it inside the `include` list of your `.gitlab-ci.yml` file (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. Set credentials variables `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in
    the GitLab CI/CD variables section of your project. Follow the [documentation](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/#generate-an-api-token) for retrieving them.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs

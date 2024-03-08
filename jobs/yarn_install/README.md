@@ -10,7 +10,7 @@ This job installs `yarn` dependencies listed in your `package.json` and exposes
 1. Ensure that your project have
    [`package.json`](https://classic.yarnpkg.com/en/docs/package-json/){:target="_blank"}
    file which contains the requirements
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 4. Well done, your job is ready to work ! 😀

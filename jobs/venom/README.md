@@ -5,10 +5,10 @@ Run your [Venom](https://github.com/ovh/venom) tests
 ## How to use it
 
 1. Write your test suite for Venom and specified the path to the test file with the `VENOM_TESTS` variable. Check the [documentation](https://github.com/ovh/venom#testsuites){:target="_blank"}.
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/)). You can specify a fixed version instead of `latest`.
-1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+2. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify a fixed version instead of `latest`.
+3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
-1. Well done, your job is ready to work ! 😀
+4. Well done, your job is ready to work ! 😀
 
 ## Variables
 

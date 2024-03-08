@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.2.1] - 2024-03-08
+* New release required by the R2Devops upgrade to 1.33
+
 ## [0.2.0] - 2023-03-02
 * Create files for each release and export them as artifacts
 * Add the variable `RELEASE_PATH` 

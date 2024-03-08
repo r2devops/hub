@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [1.1.3] - 2024-03-08
+* New release required by the R2Devops upgrade to 1.33
+
 ## [1.1.2] - 2023-03-07
 * Tag this job as deprecated
 

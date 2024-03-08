@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.3.1] - 2024-03-08
+* New release required by the R2Devops upgrade to 1.33
+
 ## [0.3.0] - 2023-03-03
 * Bump `IMAGE_TAG` to 3.11-alpine
 * Change default value of `SPHINX_SOURCE` to `docs/source/`

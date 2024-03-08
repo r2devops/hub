@@ -4,7 +4,7 @@ Deploy your frontend application to [Vercel](https://vercel.com). Vercel support
 
 ## How to use it
 
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
 1. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
 1. If you want to manually set a custom domain already register inside your Vercel dashboard, you must set `$CUSTOM_DOMAIN` and `$VERCEL_ENV_GENERATED_URL` variables (see variables list below), it will trigger the `vercel alias set` command ([see Vercel alias documentation](https://vercel.com/docs/cli/alias)), more details below

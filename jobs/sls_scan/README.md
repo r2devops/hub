@@ -11,11 +11,11 @@ This job uses the [ShiftLeftSecurity sast scan](https://github.com/ShiftLeftSecu
 ## How to use it
 
 1. The job can be run "out of the box". If you need to personalize its
-   behavior, check the [variables section](#variables)
-1. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the [quick use](https://docs.r2devops.io/get-started/use-templates/#use-a-template)). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
-4. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
+   behavior, check the **variables section**
+2. Copy/paste job URL in `include` list of your `.gitlab-ci.yml` (see the **quick use**). You can specify [a fixed version](https://docs.r2devops.io/get-started/use-templates/#versioning) instead of `latest`.
+3. If you need to customize the job (stage, variables, ...) 👉 check the [jobs
    customization](https://docs.r2devops.io/get-started/use-templates/#job-templates-customization)
-5. Well done, your job is ready to work ! 😀
+4. Well done, your job is ready to work ! 😀
 
 !!! info
     By default, the job will fail if it finds minimum the following number of vulnerabilities:
