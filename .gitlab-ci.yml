@@ -209,32 +209,32 @@ template_release:
   rules:
    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
-discord_notifier:
-  image:
-    name: alpine/httpie:${IMAGE_TAG_HTTPIE_ALPINE}
-    entrypoint: [""]
-  stage: .after-deploy
-  dependencies:
-    - template_release
-  variables:
-    RELEASE_PATH: "${CI_PROJECT_DIR}/releases" 
-    PIPENV_PIPFILE: tools/notify/Pipfile
-  before_script:
-    - apk update && apk add --no-cache bash
-    - pip install --ignore-installed distlib pipenv
-    - pipenv install
-  script:
-    - RELEASES=$(ls "$RELEASE_PATH")
-    - |
-      for release in $RELEASES; do
-        JOB="$(echo "$release" | cut -d'@' -f1 | sed -e 's/|/\//g')"
-        VERSION="$(echo "$release" | sed -E 's/.*@([0-9]+\.[0-9]+\.[0-9]+)\..*$/\1/')"
-        CHANGELOG=$(cat "$RELEASE_PATH/$release")
-        echo "New version detected for $JOB@$VERSION, sending notification to discord"
-        pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}"
-      done
-  rules:
-   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+# discord_notifier:
+#   image:
+#     name: alpine/httpie:${IMAGE_TAG_HTTPIE_ALPINE}
+#     entrypoint: [""]
+#   stage: .after-deploy
+#   dependencies:
+#     - template_release
+#   variables:
+#     RELEASE_PATH: "${CI_PROJECT_DIR}/releases" 
+#     PIPENV_PIPFILE: tools/notify/Pipfile
+#   before_script:
+#     - apk update && apk add --no-cache bash
+#     - pip install --ignore-installed distlib pipenv
+#     - pipenv install
+#   script:
+#     - RELEASES=$(ls "$RELEASE_PATH")
+#     - |
+#       for release in $RELEASES; do
+#         JOB="$(echo "$release" | cut -d'@' -f1 | sed -e 's/|/\//g')"
+#         VERSION="$(echo "$release" | sed -E 's/.*@([0-9]+\.[0-9]+\.[0-9]+)\..*$/\1/')"
+#         CHANGELOG=$(cat "$RELEASE_PATH/$release")
+#         echo "New version detected for $JOB@$VERSION, sending notification to discord"
+#         pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}"
+#       done
+#   rules:
+#    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 refresh_job_av_database:
   image: python:${IMAGE_TAG_PYTHON_ALPINE}
