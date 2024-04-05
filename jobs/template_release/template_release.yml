@@ -1,8 +1,5 @@
 # Job from R2Devops hub --> r2devops.io
 
-stages:
-  - deploy
-
 template_release:
   stage: deploy
   image:
