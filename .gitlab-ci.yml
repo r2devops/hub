@@ -1,14 +1,20 @@
+include:
+  - project: r2devops/hub
+    ref: template_release@0.4.0
+    file: jobs/template_release/template_release.yml
+  - project: r2devops/hub
+    ref: codespell@0.2.2
+    file: jobs/codespell/codespell.yml
+  - project: r2devops/hub
+    ref: links_checker@2.1.2
+    file: jobs/links_checker/links_checker.yml
+
 stages:
-  - static_tests
+  - tests
   - merge_tests
   - project_setup
   - deploy
   - .after-deploy
-
-include:
-  - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/links_checker@0.2.0.yml?ignore=true.yml'
-  - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/codespell@0.2.1.yml?ignore=true.yml'
-  - remote: 'https://api.r2devops.io/job/r/gitlab/r2devops/hub/template_release@0.2.0.yaml?ignore=true.yml'
 
 variables:
   IMAGE_TAG_PYTHON_ALPINE: "alpine3.16"
@@ -21,10 +27,10 @@ workflow:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 ci_linter:
-  stage: static_tests
+  stage: tests
   image:
     name: alpine/httpie:${IMAGE_TAG_HTTPIE_ALPINE}
-    entrypoint: [""]
+    entrypoint: [ "" ]
   variables:
     GITLAB_CI_LINT_URLS: "https://gitlab.gnome.org https://git.pleroma.social https://0xacab.org https://git.silence.dev"
     GITLAB_API_POSTFIX: "/api/v4/ci/lint?include_merged_yaml=true"
@@ -36,27 +42,25 @@ ci_linter:
     - JOBS_TEMPLATE_CHANGED=$(git diff-tree --no-commit-id --name-only -r origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME -r $CI_COMMIT_SHA | tr ' ' '\n' | grep "jobs/.*${JOB_FILES_EXTENSION}$" | tr '\n' ' ')
     - for JOB_PATH in $JOBS_TEMPLATE_CHANGED; do
     # Check if the file still exists in the current branch and ignore it if it doesn't
-    -   if ! git ls-files --error-unmatch ${JOB_PATH} > /dev/null 2>&1; then
-    -     echo "👎 job ${JOB_PATH} has been deleted"
-    -     continue
-    -   fi
-    -   echo "Start checking ${JOB_PATH} using Gitlab CI linter API"
-    -   JOB=$(basename ${JOB_PATH})
-      # Loop over all GitLab CI linter API URLs until one of them is working
-    -   for CI_URL in ${GITLAB_CI_LINT_URLS}; do
-    -     GITLAB_CI_LINT_URL="${CI_URL}${GITLAB_API_POSTFIX}"
-    -     if jq --null-input --arg yaml "$(cat ${JOB_PATH})" '.content=$yaml' | http --print 'b' --check-status "$GITLAB_CI_LINT_URL" Content-Type:"application/json" > ci_linter_reports/${JOB}.json; then
-    -       if [ $(jq -r '.status' ci_linter_reports/${JOB}.json) == "valid" ]; then
-    -         echo "👍 job ${JOB_PATH} is valid"
-    -       else
-    -         echo "👎 job ${JOB_PATH} is invalid"
-    -         jq '.' ci_linter_reports/${JOB}.json
-    -         exit 1
-    -       fi
-          # If the API URL is working, stop the loop
-    -       break
-    -     fi
-    -   done
+    - if ! git ls-files --error-unmatch ${JOB_PATH} > /dev/null 2>&1; then
+    - echo "👎 job ${JOB_PATH} has been deleted"
+    - continue
+    - fi
+    - echo "Start checking ${JOB_PATH} using Gitlab CI linter API"
+    - JOB=$(basename ${JOB_PATH}) # Loop over all GitLab CI linter API URLs until one of them is working
+    - for CI_URL in ${GITLAB_CI_LINT_URLS}; do
+    - GITLAB_CI_LINT_URL="${CI_URL}${GITLAB_API_POSTFIX}"
+    - if jq --null-input --arg yaml "$(cat ${JOB_PATH})" '.content=$yaml' | http --print 'b' --check-status "$GITLAB_CI_LINT_URL" Content-Type:"application/json" > ci_linter_reports/${JOB}.json; then
+    - if [ $(jq -r '.status' ci_linter_reports/${JOB}.json) == "valid" ]; then
+    - echo "👍 job ${JOB_PATH} is valid"
+    - else
+    - echo "👎 job ${JOB_PATH} is invalid"
+    - jq '.' ci_linter_reports/${JOB}.json
+    - exit 1
+    - fi # If the API URL is working, stop the loop
+    - break
+    - fi
+    - done
     - done
   artifacts:
     expose_as: "job_ci_lint"
@@ -67,15 +71,15 @@ ci_linter:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: never
     - changes:
-      - "jobs/**/*${JOB_FILES_EXTENSION}"
+        - "jobs/**/*${JOB_FILES_EXTENSION}"
 
 .job_image_scan:
   image: docker:20.10
-  stage: static_tests
+  stage: tests
   services:
     - name: docker:20.10-dind
-      entrypoint: ["env", "-u", "DOCKER_HOST"]
-      command: ["dockerd-entrypoint.sh"]
+      entrypoint: [ "env", "-u", "DOCKER_HOST" ]
+      command: [ "dockerd-entrypoint.sh" ]
   variables:
     PIPENV_PIPFILE: tools/job_image/Pipfile
     JOB_LOGFILE: "job_image.log"
@@ -122,36 +126,35 @@ ci_linter:
     # We force database download once so we don't do much GitHub Api calls
     - ./trivy --cache-dir ${TRIVY_CACHE_DIR} image --download-db-only
     - if [ "${SCAN_ALL_IMAGES}" = "true" ]; then
-    -   JOBS=$(ls -A jobs)
+    - JOBS=$(ls -A jobs)
     - else
     # Retrieve the list of jobs that have been modified in the current branch and keep only the job name
-    -   git fetch
-    -   if [ -z ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME} ]; then
-    -     exit 0
-    -   fi
-    -   JOBS=$(git diff-tree --no-commit-id --name-only -r origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME -r $CI_COMMIT_SHA | tr ' ' '\n' | grep "jobs/.*${JOB_FILES_EXTENSION}$" | tr '\n' ' ' | cut -d'/' -f2)
+    - git fetch
+    - if [ -z ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME} ]; then
+    - exit 0
+    - fi
+    - JOBS=$(git diff-tree --no-commit-id --name-only -r origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME -r $CI_COMMIT_SHA | tr ' ' '\n' | grep "jobs/.*${JOB_FILES_EXTENSION}$" | tr '\n' ' ' | cut -d'/' -f2)
     - fi
     - for JOB in $JOBS; do
     # Check if the file still exists in the current branch and ignore it if it doesn't
-    -   if ! git ls-files --error-unmatch ${JOB} > /dev/null 2>&1; then
-    -     echo "👎 job ${JOB} has been deleted"
-    -     continue
-    -   fi
-    -   IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
-    -   if [ ! -z ${IMAGE} ]; then
-    -     NAME=$(basename ${IMAGE})
-    -     ./trivy image --template "@${TEMPLATE_NAME}" --security-checks vuln --vuln-type ${TRIVY_VULN_TYPE} --offline-scan --cache-dir ${TRIVY_CACHE_DIR} -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
-    -     ./trivy image --security-checks vuln --cache-dir ${TRIVY_CACHE_DIR} --offline-scan -f json -o ${OUTPUT_DIR}/jobs/${JOB}.json ${IMAGE}
-    -     if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
-    -       ./trivy image --template "@${TEMPLATE_NAME}" --security-checks vuln --vuln-type ${TRIVY_VULN_TYPE} --offline-scan --cache-dir ${TRIVY_CACHE_DIR} --exit-code 1 --severity ${TRIVY_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
-    -     fi
-    -   fi
-    -   IMAGE=""
+    - if ! git ls-files --error-unmatch ${JOB} > /dev/null 2>&1; then
+    - echo "👎 job ${JOB} has been deleted"
+    - continue
+    - fi
+    - IMAGE=$(pipenv run python3 tools/job_image/job_image.py ${JOB})
+    - if [ ! -z ${IMAGE} ]; then
+    - NAME=$(basename ${IMAGE})
+    - ./trivy image --template "@${TEMPLATE_NAME}" --security-checks vuln --vuln-type ${TRIVY_VULN_TYPE} --offline-scan --cache-dir ${TRIVY_CACHE_DIR} -o ${OUTPUT_DIR}/${NAME}.${TRIVY_OUTPUT} ${IMAGE}
+    - ./trivy image --security-checks vuln --cache-dir ${TRIVY_CACHE_DIR} --offline-scan -f json -o ${OUTPUT_DIR}/jobs/${JOB}.json ${IMAGE}
+    - if [ ! -z ${TRIVY_EXIT_ON_SEVERITY} ]; then
+    - ./trivy image --template "@${TEMPLATE_NAME}" --security-checks vuln --vuln-type ${TRIVY_VULN_TYPE} --offline-scan --cache-dir ${TRIVY_CACHE_DIR} --exit-code 1 --severity ${TRIVY_SEVERITY} -o ${OUTPUT_DIR}/${NAME}-failed-${TRIVY_OUTPUT} ${IMAGE}
+    - fi
+    - fi
+    - IMAGE=""
     - done
   cache:
     paths:
       - "$TRIVY_CACHE_DIR"
-
 
 # Extends the job_image_scan job to scan all images
 # Is triggered only by the schedule
@@ -184,8 +187,8 @@ job_image_scan:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_CLAMAV_PIPELINE'
       when: never
     - changes:
-      - "jobs/**/*${JOB_FILES_EXTENSION}"
-      - "tools/job_image/**/*"
+        - "jobs/**/*${JOB_FILES_EXTENSION}"
+        - "tools/job_image/**/*"
 
 links_checker:
   variables:
@@ -197,7 +200,7 @@ links_checker:
   allow_failure: true
 
 codespell:
-  stage: static_tests
+  stage: tests
   variables:
     CODESPELL_DICTIONARY: ".codespell/dictionary.txt"
     #separate each file to ignore with a space
@@ -207,17 +210,17 @@ codespell:
 # We can only control the link to the hub, the release is still storing the source code
 template_release:
   rules:
-   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 discord_notifier:
   image:
     name: alpine/httpie:${IMAGE_TAG_HTTPIE_ALPINE}
-    entrypoint: [""]
+    entrypoint: [ "" ]
   stage: .after-deploy
   dependencies:
     - template_release
   variables:
-    RELEASE_PATH: "${CI_PROJECT_DIR}/releases" 
+    RELEASE_PATH: "${CI_PROJECT_DIR}/releases"
     PIPENV_PIPFILE: tools/notify/Pipfile
   before_script:
     - apk update && apk add --no-cache bash
@@ -234,11 +237,11 @@ discord_notifier:
         pipenv run python tools/notify/discord_release_notify.py -n ${JOB} -v ${VERSION} -c "${CHANGELOG}"
       done
   rules:
-   - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH_SLUG == "r2devops-hub"'
 
 refresh_job_av_database:
   image: python:${IMAGE_TAG_PYTHON_ALPINE}
-  stage: static_tests
+  stage: tests
   variables:
     PIPENV_PIPFILE: tools/job_av/Pipfile
     PYTHONPATH: "./:${PYTHONPATH}"
@@ -264,7 +267,7 @@ refresh_job_av_database:
 
 generate_job_av:
   image: python:${IMAGE_TAG_PYTHON_ALPINE}
-  stage: static_tests
+  stage: tests
   dependencies:
     - refresh_job_av_database
   variables:
