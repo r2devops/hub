@@ -10,6 +10,7 @@ template_release:
     GITLAB_API_URL: "${CI_SERVER_HOST}"
     METADATA_FILE_EXTENSION: ".r2.yml"
     RELEASE_PATH: "${CI_PROJECT_DIR}/releases"
+    RELEASE_ONLY_LATEST_VERSION: "true"
   before_script:
     - apk update && apk add --no-cache bash
   script:
@@ -30,14 +31,14 @@ template_release:
     -     echo "No changelog entry found for $METADATA_JOB"
     -     continue
     -   fi
-    
+
     -   if JOB_PATH_WITH_EXTENSION=$(grep "template:" $METADATA_JOB | cut -d ":" -f 2 | sed -e 's/#.*$//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/"//g' -e "s/'//g" -e 's/^\.\///'); then
     -     echo "Template entry found for $METADATA_JOB with path $JOB_PATH_WITH_EXTENSION"
     -   else
     -     echo "No template entry found for $METADATA_JOB"
     -     continue
     -   fi
-    
+
     -   JOB_PATH=$(echo $JOB_PATH_WITH_EXTENSION | sed -e 's/\.ya*ml$//')
 
     # Go to the directory of the metadata file
@@ -98,6 +99,12 @@ template_release:
     -   |
               echo "Processed ${JOB_RELEASE} : ${result}"
     -         fi
+
+          # If we want to release only latest version: break
+    -     if [ "${RELEASE_ONLY_LATEST_VERSION}" = "true" ]; then
+    -       break
+    -     fi
+
     -   done
     - done
   rules:
