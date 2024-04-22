@@ -84,6 +84,3 @@ A `CHANGELOG.md` file as explained in the previous example, is required to creat
 | `METADATA_FILE_EXTENSION` | The extension of metadata files | `.r2.yml` |
 | `RELEASE_PATH` | The path where releases files are exposed as artifacts | `${CI_PROJECT_DIR}/releases` |
 | `RELEASE_ONLY_LATEST_VERSION` | Release only the latest version from changelog files | `true`
-
-## Author
-This resource is an **[official job](https://docs.r2devops.io/get-started/faq/#use-a-template)** added in [**R2Devops repository**](https://gitlab.com/r2devops/hub) by [@GridexX](https://gitlab.com/GridexX)
