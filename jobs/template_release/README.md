@@ -75,6 +75,26 @@ A `CHANGELOG.md` file as explained in the previous example, is required to creat
 * Initial version
 ```
 
+## Semantic tagging feature
+
+This job usually create when a new R2 template has been created or modified, a **gitlab release** for the detected R2 template.
+This release has the following form :
+```
+<<R2template_name>>@<<MAJOR>>.<<MINOR>>.<<PATCH>>
+```
+
+When the semantic tagging is enabled, in addition, this job will add **git tag** in the form of :
+```
+<<R2template_name>>@<<MAJOR>>
+```
+and
+```
+<<R2template_name>>@<<MAJOR>>.<<MINOR>>
+```
+
+This will allow your users to include in their pipelines the latest MAJOR version of a job or the latest MAJOR.MINOR version of a job without to go back in the CI/CD editor each time a PATCH or MINOR version of a R2 template is published reducing the total cost of ownership of the R2DevOps solution
+
+
 ## Variables
 
 | Name | Description | Default |
@@ -83,4 +103,6 @@ A `CHANGELOG.md` file as explained in the previous example, is required to creat
 | `GITLAB_API_URL` | The domain of GitLab instance | `${CI_SERVER_HOST}` |
 | `METADATA_FILE_EXTENSION` | The extension of metadata files | `.r2.yml` |
 | `RELEASE_PATH` | The path where releases files are exposed as artifacts | `${CI_PROJECT_DIR}/releases` |
-| `RELEASE_ONLY_LATEST_VERSION` | Release only the latest version from changelog files | `true`
+| `RELEASE_ONLY_LATEST_VERSION` | Release only the latest version from changelog files | `true` |
+| `SEMANTIC_TAGGING_ENABLED` | Semantic tagging add MAJOR and MAJOR.MINOR tagging of the repo | `false` |
+| `PRIVATE_TOKEN` | A personal or repo token required only when `SEMANTIC_TAGGING_ENABLED` is set to true to be able to update git tags | ` ` |

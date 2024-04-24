@@ -11,8 +11,9 @@ template_release:
     METADATA_FILE_EXTENSION: ".r2.yml"
     RELEASE_PATH: "${CI_PROJECT_DIR}/releases"
     RELEASE_ONLY_LATEST_VERSION: "true"
+    SEMANTIC_TAGGING_ENABLED: "false"
   before_script:
-    - apk update && apk add --no-cache bash
+    - apk update && apk add --no-cache bash jq
   script:
     # Url encode the project name
     - mkdir -p $RELEASE_PATH
@@ -81,30 +82,69 @@ template_release:
           [ -z "${CHANGELOG}" ] && CHANGELOG=$(sed -n "/^##\s*\[\s*$VERSION\s*\]/,/^[^##]/p" $CHANGELOG_PATH | sed -e '/^$/d' | tail -n +2)
           TEMPLATE_PATH=$(echo $METADATA_JOB | sed -e "s/${METADATA_FILE_EXTENSION=}//g" -e 's/\.\///g' )
           JOB_RELEASE="${TEMPLATE_PATH}@${VERSION}"
+          if [ "${SEMANTIC_TAGGING_ENABLED}" = "true" ]; then
+            release_exist=$(http --ignore-stdin GET https://${GITLAB_API_URL}/api/v4/projects/${PROJECT_ENCODED}/releases/${JOB_RELEASE} \
+              "JOB-TOKEN:${CI_JOB_TOKEN}" )
+          fi
           result=$(http --ignore-stdin POST https://${GITLAB_API_URL}/api/v4/projects/$PROJECT_ENCODED/releases \
             "JOB-TOKEN: ${CI_JOB_TOKEN}" \
             tag_name=${JOB_RELEASE} \
             ref=${CI_COMMIT_SHA} \
             "description=${CHANGELOG}")
-    -         if [ $(echo $result | grep "Release already exists\|${JOB_RELEASE}" | wc -l) -eq 0 ]; then
-    -           echo "[ERROR] Problem when attempting to create release ${JOB_RELEASE}"
-    -           echo "[ERROR] ${result}"
-    -           exit 1;
-    -         else
-    -           if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
-    -             echo "New version detected for ${JOB_RELEASE}"
-    -             JOB_RELEASE_STRIP=$(echo ${JOB_RELEASE} | sed -e 's/\//|/g')
-    -             echo "${CHANGELOG}" > ${RELEASE_PATH}/${JOB_RELEASE_STRIP}.md
-    -           fi
+    -     if [ $(echo $result | grep "Release already exists\|${JOB_RELEASE}" | wc -l) -eq 0 ]; then
+    -       echo "[ERROR] Problem when attempting to create release ${JOB_RELEASE}"
+    -       echo "[ERROR] ${result}"
+    -       exit 1;
+    -     else
+    -       if [ $(echo ${result} | grep "Release already exists" | wc -l) -eq 0 ]; then
+    -         echo "New version detected for ${JOB_RELEASE}"
+    -         JOB_RELEASE_STRIP=$(echo ${JOB_RELEASE} | sed -e 's/\//|/g')
+    -         echo "${CHANGELOG}" > ${RELEASE_PATH}/${JOB_RELEASE_STRIP}.md
+    -       fi
     -   |
-              echo "Processed ${JOB_RELEASE} : ${result}"
-    -         fi
-
+            echo "Processed ${JOB_RELEASE} : ${result}"
+    -     fi
+    # If we want to use semantic tagging:
+    -     if [ "${SEMANTIC_TAGGING_ENABLED}" = "true" ]; then
+    # Determine major and minor versions
+    -       MAJOR_VERSION=`echo $VERSION | cut -d. -f1`
+    -       MINOR_VERSION=`echo $VERSION | cut -d. -f2`
+    -       PATCH_VERSION=`echo $VERSION | cut -d. -f3`
+    -       |
+            TEMPLATE_PATH=$(echo $METADATA_JOB | sed -e "s/${METADATA_FILE_EXTENSION=}//g" -e 's/\.\///g' )
+            JOB_RELEASE="${TEMPLATE_PATH}@${VERSION}"
+            JOB_TAGS_MAJOR="${TEMPLATE_PATH}@${MAJOR_VERSION}"
+            JOB_TAGS_MINOR="${TEMPLATE_PATH}@${MAJOR_VERSION}.${MINOR_VERSION}"
+    -       if [ $(echo $release_exist | grep -v "404 Not Found" | wc -l) -eq 0 ]; then
+              # release previously existed so no need to tag 1 and 2 digits tags
+    -         release_created=$(http --ignore-stdin GET https://${GITLAB_API_URL}/api/v4/projects/${PROJECT_ENCODED}/releases/${JOB_RELEASE} "JOB-TOKEN:${CI_JOB_TOKEN}" )
+              # Get commit hash associated with created release
+    -         |
+              COMMIT_HASH=$(echo $release_created | jq -r '.commit|.id')
+              result=$(http --ignore-stdin DELETE https://${GITLAB_API_URL}/api/v4/projects/${CI_PROJECT_ID}/repository/tags/${JOB_TAGS_MAJOR} \
+                "PRIVATE-TOKEN:${PRIVATE_TOKEN}" )
+              echo "Deleting git's 1-digit tag ${JOB_TAGS_MAJOR} : ${result}"
+              result=$(http --ignore-stdin POST https://${GITLAB_API_URL}/api/v4/projects/${PROJECT_ENCODED}/repository/tags \
+                "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" \
+                tag_name==${JOB_TAGS_MAJOR} \
+                ref==${COMMIT_HASH} )
+              echo "Processed git's 1-digit tag ${JOB_TAGS_MINOR} : ${result}"
+                result=$(http --ignore-stdin DELETE https://${GITLAB_API_URL}/api/v4/projects/${CI_PROJECT_ID}/repository/tags/${JOB_TAGS_MINOR} \
+                "PRIVATE-TOKEN:${PRIVATE_TOKEN}" )
+              echo "Deleting git's 2-digit tag ${JOB_TAGS_MINOR} : ${result}"
+              result=$(http --ignore-stdin POST https://${GITLAB_API_URL}/api/v4/projects/${PROJECT_ENCODED}/repository/tags \
+                "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" \
+                tag_name==${JOB_TAGS_MINOR} \
+                ref==${COMMIT_HASH} )
+              echo "Processed git's 2-digit tag ${JOB_TAGS_MINOR} : ${result}"
+            else
+              echo "Skipping tagging because ${JOB_RELEASE} is not the latest release"
+            fi
+    -     fi
           # If we want to release only latest version: break
     -     if [ "${RELEASE_ONLY_LATEST_VERSION}" = "true" ]; then
     -       break
     -     fi
-
     -   done
     - done
   rules:
