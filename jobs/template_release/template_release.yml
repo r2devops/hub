@@ -138,8 +138,8 @@ template_release:
                 ref==${COMMIT_HASH} )
               echo "Processed git's 2-digit tag ${JOB_TAGS_MINOR} : ${result}"
     -       else
-              echo "Skipping tagging because ${JOB_RELEASE} is not the latest release"
-            fi
+    -         echo "Skipping tagging because ${JOB_RELEASE} is not the latest release"
+    -       fi
     -     fi
           # If we want to release only latest version: break
     -     if [ "${RELEASE_ONLY_LATEST_VERSION}" = "true" ]; then

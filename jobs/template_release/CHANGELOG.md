@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.5.2] - 2024-04-24
+* Fix syntax error
+
 ## [0.5.1] - 2024-04-24
 * Fix syntax error
 
