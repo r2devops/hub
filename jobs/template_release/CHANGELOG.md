@@ -1,8 +1,11 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [0.5.1] - 2024-04-24
+* Fix syntax error
+
 ## [0.5.0] - 2024-04-24
-* introduce semantic tagging as disabled by default (`SEMANTIC_TAGGING_ENABLED` variable)
+* Introduce semantic tagging as disabled by default (`SEMANTIC_TAGGING_ENABLED` variable)
 
 ## [0.4.0] - 2024-04-22
 * Release only the latest version by default (`RELEASE_ONLY_LATEST_VERSION` variable)

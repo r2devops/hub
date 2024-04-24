@@ -137,7 +137,7 @@ template_release:
                 tag_name==${JOB_TAGS_MINOR} \
                 ref==${COMMIT_HASH} )
               echo "Processed git's 2-digit tag ${JOB_TAGS_MINOR} : ${result}"
-            else
+    -       else
               echo "Skipping tagging because ${JOB_RELEASE} is not the latest release"
             fi
     -     fi
