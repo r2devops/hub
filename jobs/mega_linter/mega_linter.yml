@@ -44,14 +44,17 @@ mega_linter:
         echo -e "\e[31mMegaLinter found some issues. Check this job log and the artifact reports."
         FAILED=true
       fi
-
-    - mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
-    - cp ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/megalinter-report.sarif ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
-    - cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
-    - npx -y sarif-codeclimate@${SARIF_CODECLIMATE_VERSION} -i megalinter-report.sarif -o code-climate.json
-    - if [ "$FAILED" = true ]; then
-    -   exit 1
-    - fi
+    - |
+      if [ "$SARIF_REPORTER" = true]; then
+        mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+        cp ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/megalinter-report.sarif ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+        cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
+        npx -y sarif-codeclimate@${SARIF_CODECLIMATE_VERSION} -i megalinter-report.sarif -o code-climate.json
+      fi
+    - |
+      if [ "$FAILED" = true ]; then
+        exit 1
+      fi
   artifacts:
     when: always
     paths:
