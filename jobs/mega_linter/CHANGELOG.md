@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [3.0.2] - 2024-09-05
+* Do not create code-climate.json if `SARIF_REPORTER` is set to `false`
+
 ## [3.0.1] - 2024-03-08
 * New release required by the R2Devops upgrade to 1.33
 
