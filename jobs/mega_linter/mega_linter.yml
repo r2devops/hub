@@ -45,7 +45,7 @@ mega_linter:
         FAILED=true
       fi
     - |
-      if [ "$SARIF_REPORTER" = true]; then
+      if [ "$SARIF_REPORTER" = true ]; then
         mkdir ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
         cp ${CI_PROJECT_DIR}/${REPORT_OUTPUT_FOLDER}/megalinter-report.sarif ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
         cd ${CI_PROJECT_DIR}/${CONVERTED_OUTPUT_FOLDER}
