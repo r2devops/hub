@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
+## [Unreleased] - 2024-10-DD
+* Bump megalinter image version to `v8.1.0`
+* Fix mega_linter job script : bash typo
+
 ## [3.0.2] - 2024-09-05
 * Do not create code-climate.json if `SARIF_REPORTER` is set to `false`
 
