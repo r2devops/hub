@@ -31,7 +31,8 @@ mega_linter:
     # End folder where reports are held
     CONVERTED_OUTPUT_FOLDER: "converted.report"
     # Image tag of the MegaLinter image used in this job
-    IMAGE_TAG: "v6.20.0"
+    # https://hub.docker.com/r/oxsecurity/megalinter/tags
+    IMAGE_TAG: "v8.1.0"
     # Version tag of the sarif-codeclimate package to convert sarif reports
     # https://www.npmjs.com/package/sarif-codeclimate
     SARIF_CODECLIMATE_VERSION: "2.1.2"

@@ -68,7 +68,7 @@ customize its behavior.
 | `CONVERTED_OUTPUT_FOLDER` | Folder where are stored `CodeClimate` reports | `converted.report` |
 |`GITLAB_COMMENT_REPORTER` | Posts Mega-Linter results summary in the comments of the related merge request ([⚠️ GitLab API access require](https://oxsecurity.github.io/megalinter/latest/reporters/GitlabCommentReporter/#configuration){:target="_blank"}) | `true` |
 | `DISABLE_LINTERS` | Comma separated list of linters to be disabled | ` ` |
-| `IMAGE_TAG` | The default tag for the docker image | `v6.20.0` |
+| `IMAGE_TAG` | The default tag for the docker image | `v8.1.0` |
 | `SARIF_CODECLIMATE_VERSION` | Version tag of the [sarif-codeclimate](https://www.npmjs.com/package/sarif-codeclimate) package to convert sarif reports | `2.1.1` |
 
 ## Artifacts
