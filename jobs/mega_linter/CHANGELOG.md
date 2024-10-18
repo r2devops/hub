@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this job will be documented in this file.
 
-## [Unreleased] - 2024-10-DD
+## [3.1.0] - 2024-10-18
 * Bump megalinter image version to `v8.1.0`
 * Fix mega_linter job script : bash typo
 
