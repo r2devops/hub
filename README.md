@@ -1,5 +1,7 @@
 # R2Devops Hub
 
+**🚨 This repository is no longer maintained and will be archived on Jan 15, 2025.**
+
 ## Description
 
 🤔 Imagine a place where no matter what language or technology you use, you can find a ready-made template to configure your pipeline 🤩
